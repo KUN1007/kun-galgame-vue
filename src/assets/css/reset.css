@@ -1,0 +1,16 @@
+/* --------------------------------------------------------------
+   reset.css
+   * Resets default browser CSS.
+-------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+:focus {
+  outline: 0;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
