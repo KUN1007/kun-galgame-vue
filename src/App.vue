@@ -10,4 +10,4 @@ export default {
   <KUNGalgameMainPage />
 </template>
 
-<style type="scss" scoped></style>
+<style type="less" scoped></style>
