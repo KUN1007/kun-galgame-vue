@@ -38,7 +38,7 @@ export default {
   min-height: 1150px;
   overflow-y: scroll;
   /* 所有帖子的总区域占左侧页面的下边距 */
-  margin-bottom: 5px;
+  margin: 5px 0;
   /* 帖子区域弹性盒 */
   display: flex;
   flex-direction: column;
