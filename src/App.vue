@@ -1,5 +1,5 @@
 <script lang="ts">
-import KUNGalgameMainPage from "./views/Home/index.vue";
+import KUNGalgameMainPage from "./views/Home/KUNGalgameMainPage.vue";
 export default {
   name: "App",
   components: { KUNGalgameMainPage },
@@ -10,4 +10,4 @@ export default {
   <KUNGalgameMainPage />
 </template>
 
-<style type="less" scoped></style>
+<style scoped></style>

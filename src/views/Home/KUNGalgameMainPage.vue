@@ -1,9 +1,10 @@
 <script lang="ts">
 import KUNGalgameTopBar from "../../components/KUNGalgameTopBar.vue";
+import MainPageContent from "./content/MainPageContent.vue";
 
 export default {
   name: "KUNGalgameMainPage",
-  components: { KUNGalgameTopBar },
+  components: { KUNGalgameTopBar, MainPageContent },
 };
 </script>
 
@@ -11,10 +12,11 @@ export default {
   <!-- 可视部分的容器 -->
   <div class="visual-wrapper">
     <KUNGalgameTopBar />
+    <MainPageContent/>
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .visual-wrapper {
   height: 1500px;
   display: flex;
