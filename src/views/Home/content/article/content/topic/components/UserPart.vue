@@ -8,7 +8,9 @@ export default {
   <div class="kungalgamer-topic-info">
     <!-- 发布者头像 -->
     <div class="kungalgamer-topic-avatar">
-      <a href="#"><img src="../../../../../../../assets/images/topic.jpg" alt="鲲" /></a>
+      <a href="#"
+        ><img src="../../../../../../../assets/images/topic.jpg" alt="鲲"
+      /></a>
     </div>
     <!-- 发布者姓名 -->
     <div class="kungalgamer-name">
@@ -20,8 +22,7 @@ export default {
 </template>
 <style scoped>
 /* 发布者信息 */
-.kungalgamer-topic-info,
-.topic-info {
+.kungalgamer-topic-info {
   width: 1px;
   height: 100%;
   /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */

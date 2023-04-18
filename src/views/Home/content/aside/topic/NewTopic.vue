@@ -1,6 +1,10 @@
 <script lang="ts">
+import { Icon } from "@iconify/vue";
 export default {
-    name:'NewTopic'
+  name: "NewTopic",
+  components: {
+    Icon,
+  },
 };
 </script>
 
@@ -17,7 +21,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -28,7 +32,7 @@ export default {
         </div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>1小时前</span>
         </div>
       </div>
@@ -37,7 +41,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>10小时前</span>
         </div>
       </div>
@@ -46,7 +50,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -55,7 +59,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -64,7 +68,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -73,7 +77,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -82,7 +86,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -91,7 +95,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -100,7 +104,7 @@ export default {
         <div class="new-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="new-topic-number">
-          <i class="fa-regular fa-clock"></i>
+          <Icon icon="svg-spinners:clock" />
           <span>刚刚</span>
         </div>
       </div>
@@ -181,7 +185,7 @@ export default {
   align-items: center;
 }
 /* 时钟图标的颜色 */
-.new-topic-number i {
+.new-topic-number {
   /* 设置 fa 图标字体的颜色 */
   color: var(--kungalgame-purple-4);
 }
@@ -191,5 +195,6 @@ export default {
   font-size: xx-small;
   /* 右侧区域距离最右侧的距离 */
   margin-left: 5px;
+  color: var(--kungalgame-font-color-3);
 }
 </style>

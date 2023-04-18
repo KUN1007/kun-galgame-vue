@@ -44,6 +44,11 @@ export default {
 <style scoped>
 /* 帖子信息 */
 .topic-info {
+  width: 1px;
+  height: 100%;
+  /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */
+  display: flex;
+  flex-direction: column;
   flex-grow: 7;
   display: flex;
   flex-direction: column;
@@ -105,10 +110,8 @@ export default {
 /* 点赞、评论、查看之间的距离 */
 .topic-status ul li {
   margin-left: 5px;
-}
-/* 点赞 - 图标字体距离数字的距离 */
-.topic-status ul li Icon {
-  margin-right: 1px;
+  display: flex;
+  cursor: pointer;
 }
 /* 发帖日期 */
 .topic-post-date {
