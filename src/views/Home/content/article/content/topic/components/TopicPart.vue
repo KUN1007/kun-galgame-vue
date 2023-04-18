@@ -47,9 +47,7 @@ export default {
   width: 1px;
   height: 100%;
   /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */
-  display: flex;
-  flex-direction: column;
-  flex-grow: 7;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -67,9 +65,7 @@ export default {
   justify-content: space-between;
 }
 /* 帖子的头部信息，标题日期等 */
-.topic-title,
-.topic-post-date,
-.topic-status {
+.topic-title {
   height: 100%;
   width: 1px;
 }
@@ -94,9 +90,8 @@ export default {
 }
 /* 帖子点赞数等信息 */
 .topic-status {
-  flex-grow: 3;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
@@ -115,7 +110,7 @@ export default {
 }
 /* 发帖日期 */
 .topic-post-date {
-  flex-grow: 1;
+  width: 45px;
   font-size: x-small;
   color: var(--kungalgame-gray-4);
   /* 居中 */

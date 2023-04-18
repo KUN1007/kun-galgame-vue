@@ -18,7 +18,6 @@ export default {
 .topic {
   width: 100%;
   height: 70px;
-  flex-grow: 1;
   flex-shrink: 0;
   border-radius: 3px;
   background-color: var(--kungalgame-white);

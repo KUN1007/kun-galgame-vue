@@ -20,8 +20,8 @@ export default {
     <div class="nav-top">
       <div class="kungal-info">
 		<!-- 网站的名字和网站图标 -->
-        <a href="#"><img src="../assets/images/favicon.png" alt="KUNgal" /></a>
-        <a href="#"><span>KUNGalgame</span></a>
+        <img src="../assets/images/favicon.png" alt="KUNgal" />
+        <span>KUNGalgame</span>
       </div>
       <div class="top-bar">
         <ul>
@@ -39,7 +39,7 @@ export default {
     </div> -->
     <!-- 用户个人信息 -->
     <div class="kungalgamer-info">
-      <a href="#"><img src="../assets/images/KUN.jpg" alt="KUN" /></a>
+      <img src="../assets/images/KUN.jpg" alt="KUN" />
       <span>KUN</span>
     </div>
   </div>

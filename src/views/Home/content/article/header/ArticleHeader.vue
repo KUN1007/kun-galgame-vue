@@ -61,10 +61,9 @@ export default {
 .nav-article {
   width: 100%;
   height: 50px;
-  /* 设置交互栏的下边距 */
-  margin-bottom: 5px;
   /* 整体弹性 */
   display: flex;
+  flex-shrink: 0;
 }
 /* 筛选、搜索帖子、更多 */
 .nav-article-sort-container,

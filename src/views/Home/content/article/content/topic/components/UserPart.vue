@@ -21,19 +21,15 @@ export default {
   </div>
 </template>
 <style scoped>
-/* 发布者信息 */
+/* 发帖人信息 */
 .kungalgamer-topic-info {
-  width: 1px;
+  width: 70px;
   height: 100%;
   /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */
   display: flex;
   flex-direction: column;
-}
-/* 发帖人信息 */
-.kungalgamer-topic-info {
   /* 发帖人信息距离帖子概览的距离 */
   margin: 0 5px;
-  flex-grow: 1;
 }
 .kungalgamer-topic-avatar,
 .kungalgamer-name {
@@ -62,7 +58,7 @@ export default {
 }
 /* 发帖人昵称位置设置 */
 .kungalgamer-name {
-  border-top: 1px solid var(--kungalgame-gray-3);
+  border-top: 1px solid var(--kungalgame-gray-2);
   flex-grow: 1;
   display: flex;
 }

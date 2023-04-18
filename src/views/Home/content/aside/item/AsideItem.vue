@@ -108,7 +108,8 @@ export default {
 /* 六个功能之间的距离 */
 .item-box-container div {
   /* 设置六个功能（模式、排行、背景等）之间的间距 */
-  padding: 10px;
+  padding: 14px;
+  border-radius: 5px;
 }
 /* 设置六个功能（模式、排行、背景等）的 hover */
 .item-box-container > div:hover {
