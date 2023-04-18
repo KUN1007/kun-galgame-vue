@@ -1,10 +1,11 @@
 <script lang="ts">
 import KUNGalgameTopBar from "../../components/KUNGalgameTopBar.vue";
 import MainPageContent from "./content/MainPageContent.vue";
+import MainPageFooter from "./footer/MainPageFooter.vue";
 
 export default {
   name: "KUNGalgameMainPage",
-  components: { KUNGalgameTopBar, MainPageContent },
+  components: { KUNGalgameTopBar, MainPageContent, MainPageFooter },
 };
 </script>
 
@@ -12,17 +13,18 @@ export default {
   <!-- 可视部分的容器 -->
   <div class="visual-wrapper">
     <KUNGalgameTopBar />
-    <MainPageContent/>
+    <MainPageContent />
+    <MainPageFooter />
   </div>
 </template>
 
-<style lang="less">
+<style scoped>
 .visual-wrapper {
   height: 1500px;
   display: flex;
   flex-direction: column;
-  // background-image: url(../../assets/images/bg.png);
-  // background-image: url(./img/bg-dark.png);
+  /* background-image: url(../../assets/images/bg.png); */
+  /* background-image: url(./img/bg-dark.png); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

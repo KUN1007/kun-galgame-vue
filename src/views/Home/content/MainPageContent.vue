@@ -1,8 +1,9 @@
 <script lang="ts">
-import AsideItem from "./aside/item/AsideItem.vue";
+import MainPageAside from "./aside/MainPageAside.vue";
+import MainPageArticle from "./article/MainPageArticle.vue";
 export default {
-    name:'MainPageContent',
-  components: { AsideItem },
+  name: "MainPageContent",
+  components: { MainPageAside, MainPageArticle },
 };
 </script>
 
@@ -11,12 +12,13 @@ export default {
   <div class="main-container">
     <!-- 内容区容器 -->
     <div class="content-container">
-      <AsideItem />
+      <MainPageAside />
+      <MainPageArticle />
     </div>
   </div>
 </template>
 
-<style type="less" scoped>
+<style scoped>
 .main-container {
   height: 100%;
   display: flex;

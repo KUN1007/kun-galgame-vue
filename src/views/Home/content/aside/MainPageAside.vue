@@ -1,8 +1,11 @@
 <script lang="ts">
 import AsideItem from "./item/AsideItem.vue";
+import NewTopic from "./topic/NewTopic.vue";
+import HotTopic from "./topic/HotTopic.vue";
+
 export default {
   name: "MainPageAside",
-  component: { AsideItem },
+  components: { AsideItem, HotTopic, NewTopic },
 };
 </script>
 
@@ -10,6 +13,8 @@ export default {
   <!-- 侧边栏 -->
   <div class="aside">
     <AsideItem />
+    <HotTopic />
+    <NewTopic />
   </div>
 </template>
 

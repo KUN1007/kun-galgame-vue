@@ -1,0 +1,34 @@
+<script lang="ts">
+import FooterWave from "./wave/FooterWave.vue";
+import KUNGalgameInfo from "./info/KUNGalgameInfo.vue";
+export default {
+  name: "MainPageFooter",
+  components: { FooterWave, KUNGalgameInfo },
+};
+</script>
+
+<template>
+  <div class="footer">
+    <!-- footer 的内部容器 -->
+    <div class="kungalgame-footer-wrap">
+      <FooterWave />
+      <KUNGalgameInfo />
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.footer {
+  height: 1px;
+  width: 100%;
+  flex-grow: 4;
+  display: flex;
+  flex-direction: column;
+}
+/* footer 总容器的 flex */
+.kungalgame-footer-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+</style>
