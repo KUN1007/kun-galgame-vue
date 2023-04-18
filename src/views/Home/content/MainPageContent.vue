@@ -8,17 +8,31 @@ export default {
 </script>
 
 <template>
-  <!-- 主容器 -->
-  <div class="main-container">
-    <!-- 内容区容器 -->
-    <div class="content-container">
-      <MainPageAside />
-      <MainPageArticle />
+  <!-- 主体部分 -->
+  <div class="main">
+    <!-- 主容器 -->
+    <div class="main-container">
+      <!-- 内容区容器 -->
+      <div class="content-container">
+        <MainPageAside />
+        <MainPageArticle />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* 主体部分配置 */
+.main {
+  width: 100%;
+  height: 1px;
+  flex-grow: 21;
+  /* 背景图片 */
+  /*   background-image: url(../img/bg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+}
 .main-container {
   height: 100%;
   display: flex;

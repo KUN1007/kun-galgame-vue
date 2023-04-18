@@ -1,6 +1,10 @@
 <script lang="ts">
+import { Icon } from "@iconify/vue";
 export default {
-    name:'HotTopic'
+  name: "HotTopic",
+  components: {
+    Icon,
+  },
 };
 </script>
 
@@ -17,7 +21,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -28,7 +32,7 @@ export default {
         </div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -37,7 +41,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -46,7 +50,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -55,7 +59,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -64,7 +68,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -73,7 +77,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -82,7 +86,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -91,7 +95,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -100,13 +104,14 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-          <i class="fa-solid fa-fire"></i>
+            <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <style scoped>
 /* 侧边栏动态推送帖子的总容器 */
 .top-topic-wrap {
@@ -183,13 +188,13 @@ export default {
   white-space: nowrap;
   align-items: center;
 }
-.top-topic-number i {
-  /* 设置 fa 图标字体的颜色 */
+.top-topic-number {
   color: var(--kungalgame-red-4);
 }
 .top-topic-number span {
   width: 38px;
   font-size: small;
   margin-left: 5px;
+  color: var(--kungalgame-font-color-3);
 }
 </style>

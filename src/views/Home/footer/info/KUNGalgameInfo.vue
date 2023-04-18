@@ -1,6 +1,10 @@
 <script lang="ts">
+import { Icon } from "@iconify/vue";
 export default {
   name: "KUNGalgameInfo",
+  components: {
+    Icon,
+  },
 };
 </script>
 
@@ -54,9 +58,9 @@ export default {
             <h2>联系我们</h2>
             <!-- QQ, 微信, telegram 的图标列表 -->
             <ul>
-              <li><i class="fa-brands fa-qq"></i></li>
-              <li><i class="fa-brands fa-weixin"></i></li>
-              <li><i class="fa-brands fa-telegram"></i></li>
+              <li><Icon icon="bi:tencent-qq" /></li>
+              <li><Icon icon="ri:wechat-fill" /></li>
+              <li><Icon icon="ic:baseline-telegram" /></li>
             </ul>
           </div>
           <!-- 版权描述,版本号 -->
