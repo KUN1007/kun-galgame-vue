@@ -60,7 +60,7 @@ export default {
 /* 文章顶部交互栏 */
 .nav-article {
   width: 100%;
-  height: 50px;
+  height: 40px;
   /* 整体弹性 */
   display: flex;
   flex-shrink: 0;

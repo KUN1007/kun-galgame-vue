@@ -161,6 +161,14 @@ export default {
   flex-grow: 1;
   color: var(--kungalgame-font-color-3);
   align-items: center;
+  cursor: pointer;
+}
+/* 单个新帖子的 hover */
+.new-topic:hover {
+  box-shadow: -2px -2px 5px var(--kungalgame-white), 2px 2px 5px var(--kungalgame-gray-3);
+}
+.new-topic:active {
+  box-shadow: inset 1px 1px 2px var(--kungalgame-gray-3), inset -1px -1px 2px var(--kungalgame-white);
 }
 /* 单个帖子的标题样式 */
 .new-topic-title {
