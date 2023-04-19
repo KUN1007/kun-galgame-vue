@@ -6,7 +6,7 @@ export default {
     Icon,
   },
   setup() {
-    let topBarItem: string[] = ["回到主页", "帖子发布", "技术交流", "关于我们"];
+    let topBarItem: string[] = ["所有帖子", "发布帖子", "技术交流", "关于我们"];
     return {
       topBarItem,
     };
