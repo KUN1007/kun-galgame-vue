@@ -20,7 +20,7 @@ export default {
   height: 70px;
   flex-shrink: 0;
   border-radius: 3px;
-  background-color: var(--kungalgame-white);
+  background-color: var(--kungalgame-trans-white-4);
   margin-bottom: 3px;
   /* 单个帖子横向弹性盒 */
   display: flex;

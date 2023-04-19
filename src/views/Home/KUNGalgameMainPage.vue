@@ -23,8 +23,8 @@ export default {
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-image: url(../../assets/images/bg.png);
-  /* background-image: url(./img/bg-dark.png); */
+  background-image: url(../../assets/images/bg/bg1.png);
+  /* background-image: url(../../assets/images/bg/bg2.png); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

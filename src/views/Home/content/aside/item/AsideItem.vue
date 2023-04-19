@@ -9,30 +9,67 @@ export default {
 </script>
 
 <template>
-
-    <!-- 侧边栏交互 -->
-    <div class="nav-aside">
-      <!-- fa 箭头图标字体 -->
-      <Icon icon="line-md:arrow-left" />
-      折叠左侧区域
+  <!-- 侧边栏交互 -->
+  <div class="nav-aside">
+    <!-- fa 箭头图标字体 -->
+    <Icon icon="line-md:arrow-left" />
+    折叠左侧区域
+  </div>
+  <!-- 侧边栏功能区 -->
+  <div class="item-box">
+    <!-- 发布新文章 -->
+    <div class="new-article">
+      <!-- 发布新文章的按钮 -->
+      <button class="btn-new-article">发布帖子</button>
     </div>
-    <!-- 侧边栏功能区 -->
-    <div class="item-box">
-      <!-- 发布新文章 -->
-      <div class="new-article">
-        <!-- 发布新文章的按钮 -->
-        <button class="btn-new-article">发布帖子</button>
+    <!-- 功能盒子容器 -->
+    <div class="item-box-container">
+      <!-- 模式切换容器 -->
+      <div class="kungalgame-model-container">
+        模式切换
+        <ul class="kungalgame-model">
+          <li><Icon class="sun" icon="line-md:moon-filled-alt-to-sunny-filled-loop-transition" />白天</li>
+          <li><Icon class="moon" icon="line-md:sunny-outline-to-moon-loop-transition" />黑夜</li>
+        </ul>
       </div>
-      <!-- 功能盒子容器 -->
-      <div class="item-box-container">
-        <div class="function">模式切换</div>
-        <div class="function">游戏排行</div>
-        <div class="function">坛友排行</div>
-        <div class="function">加入我们</div>
-        <div class="function">背景设置</div>
-        <div class="function">其它游戏</div>
+      <div>其它游戏</div>
+      <div>排行榜</div>
+      <!-- 背景容器 -->
+      <div class="kungalgame-background">
+        背景设置
+        <ul class="kungalgame-background-container">
+          <li>
+            <span>使用我们的预设的背景</span>
+            <!-- 预设背景集 -->
+            <ul class="kungalgame-reset-bg">
+              <li><img src="../../../../../assets/images/bg/bg1-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg2-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg3-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg4-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg5-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg6-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg7-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg8-m.png" /></li>
+              <li><img src="../../../../../assets/images/bg/bg9-m.png" /></li>
+            </ul>
+          </li>
+          <!-- 用户自定义背景 -->
+          <li>
+            <span>自定义背景</span>
+            <div class="kungalgamer-bg">
+              <span>请在这里粘贴图片url</span>
+              <div class="bg-url-input">
+                <input type="text" required />
+                <button>确定</button>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
+      <div>加入我们</div>
+      <div>帖子池</div>
     </div>
+  </div>
 </template>
 
 <style scoped>
@@ -94,27 +131,160 @@ export default {
   transition: 0.3s;
 }
 /* 功能区容器 */
+/* 功能区容器 */
 .item-box-container {
-  width: 100%;
-  /* 设置六个功能（模式、排行、背景等）的容器为弹性 */
+  /* 两行三列 grid 布局 */
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(2, 40px);
+  font-size: 14px;
+  /* 字体颜色 */
+  color: var(--kungalgame-font-color-3);
+  /* 相对定位 */
+  position: relative;
+}
+/* 六个功能之间的距离 */
+.item-box-container > div {
+  /* 设置六个功能（模式、排行、背景等）之间的间距 */
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  color: var(--kungalgame-font-color-2);
-  font-size: small;
   font-weight: bold;
+  color: var(--kungalgame-font-color-2);
 }
-/* 六个功能之间的距离 */
-.item-box-container div {
-  /* 设置六个功能（模式、排行、背景等）之间的间距 */
-  padding: 14px;
-  border-radius: 5px;
+/* 模式切换 */
+.kungalgame-model {
+  position: absolute;
+  top: 50%;
+  /* 模式切换的高度 */
+  height: 77px;
+  width: 80px;
+  display: none;
+  flex-direction: column;
+  background-color: var(--kungalgame-blue-0);
+  z-index: 7;
+}
+/* hover 时菜单出现 */
+.kungalgame-model-container:hover .kungalgame-model {
+  display: flex;
+}
+/* 白天/黑夜设置居中 */
+.kungalgame-model li {
+  height: 1px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 图标字体距离文字的位置 */
+.sun {
+  margin-right: 5px;
+  font-size: x-large;
+  color: var(--kungalgame-red-4);
+}
+.moon {
+  margin-right: 5px;
+  font-size: x-large;
+  color: var(--kungalgame-blue-4);
+}
+/* 每一个模式切换的 hover */
+.kungalgame-model li:hover {
+  background-color: var(--kungalgame-red-1);
 }
 /* 设置六个功能（模式、排行、背景等）的 hover */
 .item-box-container > div:hover {
   color: var(--kungalgame-font-color-3);
-  background-color: var(--kungalgame-trans-red-1);
+  background-color: var(--kungalgame-blue-0);
   cursor: pointer;
+}
+/* hover 时展示背景功能板块 */
+.kungalgame-background:hover .kungalgame-background-container {
+  display: block;
+}
+/* 背景容器 */
+.kungalgame-background-container {
+  display: none;
+  /* 背景菜单的高度 */
+  height: 300px;
+  /* 相对于功能区绝对定位 */
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  background-color: var(--kungalgame-blue-0);
+  box-shadow: 1px 2px 1px 1px var(--kungalgame-trans-red-3);
+  font-size: 15px;
+  font-weight: normal;
+  color: var(--kungalgame-font-color-3);
+}
+/* 背景容器的标题字体 */
+.kungalgame-background-container span {
+  height: 30px;
+  /* 居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 背景图片略缩图三行三列 grid */
+.kungalgame-reset-bg {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 50px);
+  color: var(--kungalgame-font-color-3);
+  position: relative;
+  /* 距离下方区域的距离 */
+  margin-bottom: 17px;
+}
+/* 单个图片居中 */
+.kungalgame-reset-bg li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 单个图片的距离 */
+.kungalgame-reset-bg img{
+  width: 70px;
+}
+/* 图片的 hover */
+.kungalgame-reset-bg img:hover {
+  width: 200px;
+  transition: 0.2s;
+  z-index: 7;
+}
+.kungalgamer-bg {
+  display: flex;
+  flex-direction: column;
+}
+/* url 的粘贴框 */
+.bg-url-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bg-url-input input {
+  height: 25px;
+  border: 1px solid var(--kungalgame-blue-4);
+}
+/* 粘贴框的 focus */
+.bg-url-input input:focus {
+  outline: none;
+  background-color: var(--kungalgame-trans-red-0);
+}
+/* 确定按钮 */
+.bg-url-input button {
+  padding: 0 10px;
+  height: 27px;
+  box-sizing: border-box;
+  border: 1px solid var(--kungalgame-blue-4);
+  border-left: none;
+  background-color: var(--kungalgame-trans-white-5);
+  cursor: pointer;
+}
+/* 确定按钮的 hover */
+.bg-url-input button:hover {
+  background-color: var(--kungalgame-trans-blue-0);
+}
+/* 确定按钮的 active */
+.bg-url-input button:active {
+  background-color: var(--kungalgame-trans-red-3);
 }
 </style>
