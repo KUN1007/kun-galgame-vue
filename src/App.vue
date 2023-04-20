@@ -5,8 +5,8 @@ import KUNGalgameTopicPage from "./views/topic/KUNGalgameTopicPage.vue";
 </script>
 
 <template>
-  <!-- <KUNGalgameMainPage /> -->
-  <KUNGalgameTopicPage/>
+  <KUNGalgameMainPage />
+  <!-- <KUNGalgameTopicPage/> -->
 </template>
 
 <style scoped></style>

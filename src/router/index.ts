@@ -8,9 +8,14 @@ import {
 /** 常驻路由 */
 export const constantRoutes: RouteRecordRaw[] = [
   {
-    name:'topic',
+    name: "topic",
     path: "/topic",
-    component: () => import("@/views/topic/KUNGalgameTopicPage.vue")
+    component: () => import("@/views/topic/KUNGalgameTopicPage.vue"),
+  },
+  {
+    name: "kun",
+    path: "/",
+    component: () => import("@/views/Home/KUNGalgameMainPage.vue"),
   },
 ];
 
