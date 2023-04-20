@@ -1,3 +1,6 @@
+<!-- 
+  这里是楼主的其他帖子组件
+ -->
 <script setup lang="ts"></script>
 
 <template>

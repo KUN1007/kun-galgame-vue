@@ -1,3 +1,6 @@
+<!-- 
+  这是 KUNGalgame 帖子页面展示版权信息的地方
+ -->
 <script setup lang="ts"></script>
 
 <template>
