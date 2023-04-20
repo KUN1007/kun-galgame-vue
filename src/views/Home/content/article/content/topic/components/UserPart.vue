@@ -9,7 +9,7 @@ export default {
     <!-- 发布者头像 -->
     <div class="kungalgamer-topic-avatar">
       <a href="#"
-        ><img src="../../../../../../../assets/images/topic.jpg" alt="鲲"
+        ><img src="@/assets/images/topic.jpg" alt="鲲"
       /></a>
     </div>
     <!-- 发布者姓名 -->
