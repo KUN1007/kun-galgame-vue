@@ -1,13 +1,11 @@
-<script lang="ts">
+<script setup lang="ts">
 import KUNGalgameMainPage from "./views/Home/KUNGalgameMainPage.vue";
-export default {
-  name: "App",
-  components: { KUNGalgameMainPage },
-};
+import KUNGalgameTopicPage from "./views/topic/KUNGalgameTopicPage.vue";
 </script>
 
 <template>
-  <KUNGalgameMainPage />
+  <!-- <KUNGalgameMainPage /> -->
+  <KUNGalgameTopicPage/>
 </template>
 
 <style scoped></style>
