@@ -179,7 +179,11 @@ export default {
   align-items: center;
   justify-content: center;
 }
+/* 单个二级菜单 hover */
 .sort-submenu > div:hover {
+  background-color: var(--kungalgame-red-1);
+}
+.sort-submenu > div:active {
   background-color: var(--kungalgame-red-2);
 }
 .icon-item {
@@ -199,6 +203,8 @@ export default {
   /* 相对于二级菜单定位 */
   position: relative;
   display: flex;
+  border: 1px solid var(--kungalgame-trans-blue-4);
+  box-sizing: border-box;
 }
 /* 中间搜索菜单的 hover */
 .nav-article-search-container:hover {
@@ -221,12 +227,12 @@ export default {
 }
 /* 框体 */
 .nav-search-input {
+  padding: 0 15px;
   height: 40px;
   width: 100%;
   /* 搜索时输入的字体大小 */
   font-size: 16px;
-  border: 1px solid var(--kungalgame-trans-blue-4);
-  box-sizing: border-box;
+  border: none;
   background-color: var(--kungalgame-trans-white-9);
 }
 /* 提示文字“搜索帖子”的文字颜色 */
@@ -243,9 +249,7 @@ export default {
   height: 40px;
   width: 40px;
   flex-shrink: 0;
-  border: 1px solid var(--kungalgame-trans-blue-4);
-  /* 左侧无边框 */
-  border-left: none;
+  border-left: 1px solid var(--kungalgame-trans-blue-4);
   /* 搜索图标居中 */
   display: flex;
   justify-content: center;
@@ -290,6 +294,16 @@ export default {
   /* 两个提示文字左右分布 */
   justify-content: space-between;
 }
+.search-history-title span {
+  font-size: 14px;
+}
+.search-history-title span:nth-child(2) {
+  cursor: pointer;
+  border-bottom: 1.5px solid var(--kungalgame-trans-white-2);
+}
+.search-history-title span:nth-child(2):hover {
+  border-bottom: 1.5px solid var(--kungalgame-blue-4);
+}
 /* 搜索历史 TAG 的存放容器 */
 .search-history-container {
   display: flex;
@@ -322,6 +336,7 @@ export default {
 }
 /* 删除按钮 */
 .del-history {
+  top: 10%;
   right: 1%;
   font-size: medium;
   position: absolute;
@@ -341,6 +356,15 @@ export default {
   background-color: var(--kungalgame-trans-purple-3);
   flex-grow: 1;
   border-radius: 0 5px 0 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
+  box-sizing: border-box;
+}
+.nav-article-more-topic:hover {
+  background-color: var(--kungalgame-trans-white-2);
+}
+.nav-article-more-topic:active {
+  background-color: var(--kungalgame-trans-red-3);
 }
 .all-topic {
   font-size: 18px;

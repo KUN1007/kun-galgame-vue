@@ -90,6 +90,7 @@ export default {
   /* 页面缩小到最小时不换行 */
   overflow: hidden;
   white-space: nowrap;
+  cursor: pointer;
 }
 /* 侧边栏功能区 */
 .item-box {

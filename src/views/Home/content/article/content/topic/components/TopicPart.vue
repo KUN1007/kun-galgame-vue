@@ -137,6 +137,7 @@ export default {
   -webkit-line-clamp: 2;
   overflow: hidden;
   -webkit-box-orient: vertical;
+  cursor: pointer;
 }
 /* 发帖预览信息的字体 */
 .topic-introduction-text p {

@@ -25,6 +25,10 @@ export default {
   /* 单个帖子横向弹性盒 */
   display: flex;
 }
+.topic:hover {
+  background-color: var(--kungalgame-trans-white-1);
+  transition: .2s;
+}
 .topic:last-child {
   /* 最后一个帖子的没有下边距 */
   margin-bottom: 0;
