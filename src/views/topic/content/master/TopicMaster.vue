@@ -1,3 +1,6 @@
+<!-- 
+  这是 KUNGalgame 帖子展示区域楼主帖子的区域，楼主的帖子将会被展示在这里，位于帖子展示区域最上方
+ -->
 <script setup lang="ts"></script>
 
 <template>
@@ -350,6 +353,8 @@
 }
 /* 楼主的头像 */
 .master-avatar {
+  /* 图像加载不出来时页面不塌陷 */
+  width: 100px;
   margin-top: 17px;
 }
 /* 楼主的等级 */

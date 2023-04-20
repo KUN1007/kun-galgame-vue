@@ -1,3 +1,6 @@
+<!-- 
+  这里是帖子部分的功能区，有返回顶部等功能
+ -->
 <script setup lang="ts"></script>
 
 <template>
