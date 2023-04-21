@@ -1,18 +1,14 @@
-<script lang="ts">
-import KUNGalgameTopBar from "../../components/KUNGalgameTopBar.vue";
+<script setup lang="ts">
+import KUNGalgameTopBar from "@/components/KUNGalgameTopBar.vue";
 import MainPageContent from "./content/MainPageContent.vue";
 import MainPageFooter from "./footer/MainPageFooter.vue";
 
-export default {
-  name: "KUNGalgameMainPage",
-  components: { KUNGalgameTopBar, MainPageContent, MainPageFooter },
-};
 </script>
 
 <template>
   <!-- 可视部分的容器 -->
   <div class="visual-wrapper">
-    <KUNGalgameTopBar />
+    <KUNGalgameTopBar/>
     <MainPageContent />
     <MainPageFooter />
   </div>

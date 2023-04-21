@@ -19,4 +19,18 @@ import TopicAsideFooter from "./footer/TopicAsideFooter.vue";
     <TopicAsideFooter />
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+/* 左侧内容区 */
+.content-left-part {
+  top: 73px;
+  position: sticky;
+  /* 左侧区域的总高度 */
+  height: 1000px;
+  /* 左侧区域宽度 */
+  width: 250px;
+  /* 左侧内容区为弹性盒，方便分成上下两部分 */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+</style>
