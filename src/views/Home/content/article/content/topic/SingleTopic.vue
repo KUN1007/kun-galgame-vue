@@ -1,14 +1,15 @@
-<script lang="ts">
+<script setup lang="ts">
 import UserPart from "./components/UserPart.vue";
 import TopicPart from "./components/TopicPart.vue";
+import { useRouter } from "vue-router";
 
-export default {
-  name: "SingleTopic",
-  components: { UserPart, TopicPart },
-};
+const router = useRouter();
+const toTopic = (url:string) => {
+  router.push(url)
+}
 </script>
 <template>
-  <div class="topic">
+  <div class="topic" @click="toTopic('/topic')">
     <UserPart />
     <TopicPart />
   </div>
@@ -27,7 +28,7 @@ export default {
 }
 .topic:hover {
   background-color: var(--kungalgame-trans-white-1);
-  transition: .2s;
+  transition: 0.2s;
 }
 .topic:last-child {
   /* 最后一个帖子的没有下边距 */

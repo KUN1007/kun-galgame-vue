@@ -1,12 +1,8 @@
 <!-- App -->
-<script setup lang="ts">
-import KUNGalgameMainPage from "./views/Home/KUNGalgameMainPage.vue";
-import KUNGalgameTopicPage from "./views/topic/KUNGalgameTopicPage.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <!-- <KUNGalgameMainPage /> -->
-  <KUNGalgameTopicPage/>
+  <router-view />
 </template>
 
 <style scoped></style>
