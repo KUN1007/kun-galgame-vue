@@ -1,8 +1,10 @@
 <!-- App -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameMain from './layout/KUNGalgameMain.vue';
+</script>
 
 <template>
-  <router-view />
+  <KUNGalgameMain/>
 </template>
 
 <style scoped></style>
