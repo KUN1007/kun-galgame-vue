@@ -58,7 +58,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 50px;
 }
 .nav-top {
   display: flex;
@@ -146,6 +145,7 @@ TODO:
 .kungalgamer-info {
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .kungalgamer-info img {
@@ -153,8 +153,9 @@ TODO:
   height: 40px;
 }
 
-.kungalgamer-info span {
+.kungalgamer-info > span {
   color: var(--kungalgame-font-color-2);
-  margin-left: 20px;
+  margin-left: 30px;
+  padding-right: 50px;
 }
 </style>
