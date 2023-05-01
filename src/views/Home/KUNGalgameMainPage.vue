@@ -24,7 +24,7 @@ import MainPageFooter from "./footer/MainPageFooter.vue";
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-width: 700px;
+  min-width: 800px;
   font-family: "adobe-clean", "Source Sans Pro", -apple-system,
     "BlinkMacSystemFont", "Segoe UI,Roboto", sans-serif;
 }

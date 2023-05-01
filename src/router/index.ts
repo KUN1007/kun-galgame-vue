@@ -8,12 +8,13 @@ import {
 /** 常驻路由 */
 export const constantRoutes: RouteRecordRaw[] = [
   {
-    name: "topic",
+    name: "Topic",
     path: "/topic",
+    // 路由懒加载
     component: () => import("@/views/topic/KUNGalgameTopicPage.vue"),
   },
   {
-    name: "kun",
+    name: "KUN",
     path: "/",
     component: () => import("@/views/Home/KUNGalgameMainPage.vue"),
   },
