@@ -1,10 +1,10 @@
 <!-- App -->
 <script setup lang="ts">
-import KUNGalgameMain from './layout/KUNGalgameMain.vue';
+import KUNGalgameMainPage from "./views/Home/KUNGalgameMainPage.vue";
 </script>
 
 <template>
-  <KUNGalgameMain/>
+  <KUNGalgameMainPage />
 </template>
 
 <style scoped></style>
