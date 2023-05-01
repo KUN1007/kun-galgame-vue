@@ -7,6 +7,9 @@ import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef();
 
+// 编辑器的模式
+const mode = "default"
+
 // 内容 HTML
 const valueHtml = ref("<p>hello</p>");
 
@@ -27,7 +30,8 @@ onBeforeUnmount(() => {
   editor.destroy();
 });
 
-const handleCreated = (editor) => {
+// TODO:
+const handleCreated = (editor: any) => {
   editorRef.value = editor; // 记录 editor 实例，重要！
 };
 </script>
