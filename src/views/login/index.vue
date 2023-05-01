@@ -1,28 +1,20 @@
 <script setup lang="ts">
-const signInBtn = document.getElementById("signIn");
-const signUpBtn = document.getElementById("signUp");
-const fistForm = document.getElementById("form1");
-const secondForm = document.getElementById("form2");
-const container = document.querySelector(".container");
-
-signInBtn.addEventListener("click", () => {
+const handleSignIn = () => {
   container.classList.remove("right-panel-active");
-});
+}
 
-signUpBtn.addEventListener("click", () => {
+const handleSignUp = () => {
   container.classList.add("right-panel-active");
-});
-
-fistForm.addEventListener("submit", (e) => e.preventDefault());
-secondForm.addEventListener("submit", (e) => e.preventDefault());
+}
 </script>
 
 <template>
   <div class="root">
-    <div class="container right-panel-active">
+    <div :class="container" class="right-panel-active">
       <!-- 登陆 -->
       <div class="container__form container--signin">
-        <form action="#" class="form" id="form1">
+        <!-- 阻止冒泡？ -->
+        <form action="#" class="form" id="form1" @submit.preventDefault>
           <h2 class="form__title">登陆</h2>
           <input type="email" placeholder="用户名或邮箱" class="input" />
           <input type="password" placeholder="密码" class="input" />
@@ -33,7 +25,8 @@ secondForm.addEventListener("submit", (e) => e.preventDefault());
 
       <!-- 注册 -->
       <div class="container__form container--signup">
-        <form action="#" class="form" id="form2">
+        <!-- 阻止冒泡？ -->
+        <form action="#" class="form" id="form2" @submit.preventDefault>
           <h2 class="form__title">注册</h2>
           <!--           <input type="text" placeholder="用户名 (中文 < 7个字符, 英文 < 14 个字符)" class="input" />
           <input type="email" placeholder="邮箱 (gmail, outlook, sina, qq, 163)" class="input" />
@@ -59,7 +52,7 @@ secondForm.addEventListener("submit", (e) => e.preventDefault());
               galgame 论坛
             </h2>
             <br />
-            <button class="btn" id="signIn">登陆</button>
+            <button class="btn" id="signIn" @click="handleSignIn">登陆</button>
           </div>
           <div class="overlay__panel overlay--right">
             <h2>
@@ -67,7 +60,7 @@ secondForm.addEventListener("submit", (e) => e.preventDefault());
               <br />
               KUNgalgame 给你最温暖的拥抱
             </h2>
-            <button class="btn" id="signUp">注册</button>
+            <button class="btn" id="signUp" @click="handleSignUp">注册</button>
           </div>
         </div>
       </div>
