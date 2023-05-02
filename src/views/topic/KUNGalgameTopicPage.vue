@@ -9,7 +9,7 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
 <template>
   <!-- 总容器 -->
   <div class="main-wrapper">
-    <KUNGalgameTopBar :isTopicPage="true" />
+    <KUNGalgameTopBar :isMainPage="false" :isTopicPage="true" />
     <!-- 下面帖子详情区的容器 -->
     <div class="topic-wrapper">
       <!-- 下方可视内容区的容器 -->

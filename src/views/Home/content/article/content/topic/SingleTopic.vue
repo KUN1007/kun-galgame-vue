@@ -23,15 +23,13 @@ const toTopic = (url: string) => {
   border-radius: 3px;
   background-color: @kungalgame-trans-white-4;
   margin-bottom: 3px;
-  /* 单个帖子横向弹性盒 */
   display: flex;
-}
-.topic:hover {
-  background-color: @kungalgame-trans-white-1;
-  transition: 0.2s;
-}
-.topic:last-child {
-  /* 最后一个帖子的没有下边距 */
-  margin-bottom: 0;
+  &:hover {
+    background-color: @kungalgame-trans-white-1;
+    transition: 0.2s;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>

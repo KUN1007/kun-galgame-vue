@@ -1,38 +1,33 @@
 <script setup lang="ts">
+import { type Ref, ref } from 'vue'
+import 'animate.css'
 const topBarItem: string[] = [
-  '返回主页',
   '所有帖子',
   '发布帖子',
   '技术交流',
   '关于我们',
+  '返回主页',
 ]
+// 初始不展示用户头像点击信息
+let isShowInfo = false
 
-let topBarColor: string[] = [
-  'red',
-  'yellow',
-  'blue',
-  'green',
-  'purple',
-  'orange',
-]
-
+// 初始进入页面 header 没有附加样式
 let topicStyle = {}
 
 // 接受父组件的传值
 let props = defineProps(['isMainPage', 'isTopicPage'])
 
 const isMain = props.isMainPage
-const isTopicPage = props.isMainPage
+const isTopicPage = props.isTopicPage
 // 如果是主页的话删除 “返回主页” 项目
 if (isMain) {
-  topBarItem.shift()
+  topBarItem.pop()
 }
-
+// 如果是帖子页的话定位为 sticky，距离底部 10px
 if (isTopicPage) {
   topicStyle = {
     top: 0,
     position: 'sticky',
-    'z-index': 1007,
     /* 设置可视区域内容不覆盖顶部 shadow */
     'margin-bottom': '10px',
   }
@@ -42,10 +37,10 @@ if (isTopicPage) {
 let navItemNum = topBarItem.length
 const navItemNumString = navItemNum + '00px'
 
-// 根据导航条的项目个数操作 css 中导航条的 hover
-topBarColor.forEach((e, index) => {
-  topBarColor[index] = '--kungalgame-' + e + '-3'
-})
+// 用户点击头像时的操作
+const handelAvatar = () => {
+  isShowInfo != isShowInfo
+}
 </script>
 
 <template>
@@ -67,7 +62,12 @@ topBarColor.forEach((e, index) => {
       </div>
     </div>
     <div class="kungalgamer-info">
-      <img src="../assets/images/KUN.jpg" alt="KUN" />
+      <img src="../assets/images/KUN.jpg" alt="KUN" @click="handelAvatar" />
+      <div class="triangle" v-if="isShowInfo"></div>
+      <div class="kungalgamer" v-if="isShowInfo">
+        <div>用户主页</div>
+        <div>更改头像</div>
+      </div>
       <span>KUN</span>
     </div>
   </div>
@@ -86,6 +86,7 @@ topBarColor.forEach((e, index) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1007;
 }
 .nav-top {
   display: flex;
@@ -108,6 +109,7 @@ topBarColor.forEach((e, index) => {
   }
 }
 
+// 顶部交互栏
 @navNumber: v-bind(navItemNum);
 
 .top-bar {
@@ -167,20 +169,43 @@ topBarColor.forEach((e, index) => {
 }
 
 /* 用户个人信息 */
+
 .kungalgamer-info {
   display: flex;
   align-items: center;
-  overflow: hidden;
+  img {
+    cursor: pointer;
+    border-radius: 50%;
+    height: 40px;
+    position: relative;
+  }
+  > span {
+    color: @kungalgame-font-color-2;
+    margin-left: 30px;
+    padding-right: 50px;
+  }
 }
-
-.kungalgamer-info img {
-  border-radius: 50%;
-  height: 40px;
+.triangle {
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: @kungalgame-trans-white-2;
+  top: 50px;
+  right: 126px;
 }
-
-.kungalgamer-info > span {
-  color: @kungalgame-font-color-2;
-  margin-left: 30px;
-  padding-right: 50px;
+.kungalgamer {
+  top: 70px;
+  right: 96px;
+  position: absolute;
+  background-color: @kungalgame-trans-white-2;
+  box-shadow: @shadow;
+  div {
+    cursor: pointer;
+    padding: 7px;
+    &:hover {
+      background-color: @kungalgame-trans-red-3;
+    }
+  }
 }
 </style>

@@ -100,6 +100,7 @@ import { Icon } from '@iconify/vue'
 .topic-status ul li {
   margin-left: 5px;
   display: flex;
+  align-items: center;
   cursor: pointer;
 }
 /* 发帖日期 */
