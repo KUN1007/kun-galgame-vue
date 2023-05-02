@@ -1,3 +1,4 @@
+import LoginVue from "@/views/login/Login.vue";
 import {
   type RouteRecordRaw,
   createRouter,
@@ -7,16 +8,36 @@ import {
 
 /** 常驻路由 */
 export const constantRoutes: RouteRecordRaw[] = [
+  // KUNGalgame 主页
+  {
+    name: "KUN",
+    path: "/",
+    component: () => import("@/views/Home/KUNGalgameMainPage.vue"),
+  },
+  // KUNgalgame 帖子详情页
   {
     name: "Topic",
     path: "/topic",
     // 路由懒加载
     component: () => import("@/views/topic/KUNGalgameTopicPage.vue"),
   },
+  // KUNGalgame 登陆页
   {
-    name: "KUN",
-    path: "/",
-    component: () => import("@/views/Home/KUNGalgameMainPage.vue"),
+    name: "Login",
+    path: "/login",
+    component: () => import("@/views/login/Login.vue"),
+  },
+  // KUNGalgame 技术交流页
+  {
+    name: "Technology",
+    path: "/technology",
+    component: () => import("@/views/login/Login.vue"),
+  },
+  // KUNGalgame 帖子池页
+  {
+    name: "Pool",
+    path: "/pool",
+    component: () => import("@/views/login/Login.vue"),
   },
 ];
 

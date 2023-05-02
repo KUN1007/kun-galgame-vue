@@ -1,16 +1,30 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+import { Ref, ref } from "vue";
+import { log } from "console";
+
+let isLogIn: Ref<string> = ref("right-panel-active");
+
 const handleSignIn = () => {
-  container.classList.remove("right-panel-active");
-}
+  isLogIn.value = "";
+};
 
 const handleSignUp = () => {
-  container.classList.add("right-panel-active");
-}
+  isLogIn.value = "right-panel-active";
+};
+const router = useRouter();
+
+const login = () => {
+  router.push({ path: "/" });
+};
+const register = () => {
+  router.push({ path: "/" });
+};
 </script>
 
 <template>
   <div class="root">
-    <div :class="container" class="right-panel-active">
+    <div class="container" :class="isLogIn">
       <!-- 登陆 -->
       <div class="container__form container--signin">
         <!-- 阻止冒泡？ -->
@@ -19,7 +33,7 @@ const handleSignUp = () => {
           <input type="email" placeholder="用户名或邮箱" class="input" />
           <input type="password" placeholder="密码" class="input" />
           <a href="#" class="link">忘记密码? 点击发送重置邮件</a>
-          <button class="btn">登陆</button>
+          <button class="btn" @click="login">登陆</button>
         </form>
       </div>
 
@@ -36,7 +50,7 @@ const handleSignUp = () => {
           <input type="password" placeholder="密码" class="input" />
           <input type="text" placeholder="验证码" class="input" />
           <button class="mail-confirm">发送验证码</button>
-          <button class="btn">注册</button>
+          <button class="btn" @click="register">注册</button>
           <a href="#" class="user-agreement"
             >点击注册表示您已经同意我们的<span>用户协议</span></a
           >
@@ -146,7 +160,7 @@ const handleSignUp = () => {
 /* 总容器 */
 .container {
   /* 背景图片 */
-  background: url("../../img/bg/bg1.png");
+  background: url("@/assets/images/bg/bg1.png");
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;

@@ -2,13 +2,12 @@
 import KUNGalgameTopBar from "@/components/KUNGalgameTopBar.vue";
 import MainPageContent from "./content/MainPageContent.vue";
 import MainPageFooter from "./footer/MainPageFooter.vue";
-
 </script>
 
 <template>
   <!-- 可视部分的容器 -->
   <div class="visual-wrapper">
-    <KUNGalgameTopBar/>
+    <KUNGalgameTopBar :isMainPage="true" />
     <MainPageContent />
     <MainPageFooter />
   </div>
