@@ -1,11 +1,5 @@
-<script lang="ts">
-import { Icon } from "@iconify/vue";
-export default {
-  name: "ArticleHeader",
-  components: {
-    Icon,
-  },
-};
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -72,41 +66,88 @@ export default {
         <div class="search-history-container">
           <div>
             <span
-              >啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" />
+              >啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+              />
             </span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
           <div>
-            <span>啊这可海星<Icon class="del-history" icon="line-md:close-circle-twotone" /></span>
+            <span
+              >啊这可海星<Icon
+                class="del-history"
+                icon="line-md:close-circle-twotone"
+            /></span>
           </div>
         </div>
       </div>
@@ -119,7 +160,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 文章顶部交互栏 */
 .nav-article {
   width: 100%;
@@ -141,16 +182,16 @@ export default {
 }
 /* 筛选 */
 .nav-article-sort-container {
-  background-color: var(--kungalgame-trans-red-3);
+  background-color: @kungalgame-trans-red-3;
   flex-grow: 1;
   border-radius: 5px 0 0 0;
   position: relative;
-  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
+  border-bottom: 1px solid @kungalgame-trans-blue-4;
   box-sizing: border-box;
   cursor: pointer;
 }
 .nav-article-sort-container:hover {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
 }
 .sort-container {
   width: 100%;
@@ -164,16 +205,16 @@ export default {
 .sort-submenu {
   display: none;
   flex-direction: column;
-  box-shadow: 1px 2px 1px 1px var(--kungalgame-trans-blue-4);
+  box-shadow: 1px 2px 1px 1px @kungalgame-trans-blue-4;
 }
 .nav-article-sort-container:hover .sort-submenu {
   display: flex;
 }
 .sort-submenu > div {
   padding: 10px 0;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
   font-size: 14px;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -181,13 +222,13 @@ export default {
 }
 /* 单个二级菜单 hover */
 .sort-submenu > div:hover {
-  background-color: var(--kungalgame-red-1);
+  background-color: @kungalgame-red-1;
 }
 .sort-submenu > div:active {
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
 }
 .icon-item {
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
   padding-right: 3px;
 }
 /* 搜索帖子 */
@@ -198,17 +239,17 @@ export default {
   align-items: center;
   /* 页面缩小不换行 */
   white-space: nowrap;
-  background-color: var(--kungalgame-trans-blue-2);
+  background-color: @kungalgame-trans-blue-2;
   flex-grow: 2;
   /* 相对于二级菜单定位 */
   position: relative;
   display: flex;
-  border: 1px solid var(--kungalgame-trans-blue-4);
+  border: 1px solid @kungalgame-trans-blue-4;
   box-sizing: border-box;
 }
 /* 中间搜索菜单的 hover */
 .nav-article-search-container:hover {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
 }
 /* 搜索框表单 */
 .article-search-form {
@@ -233,11 +274,11 @@ export default {
   /* 搜索时输入的字体大小 */
   font-size: 16px;
   border: none;
-  background-color: var(--kungalgame-trans-white-9);
+  background-color: @kungalgame-trans-white-8;
 }
 /* 提示文字“搜索帖子”的文字颜色 */
 .nav-search-input::placeholder {
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
 }
 /* 获取焦点后的框体 */
 .nav-search-input:focus {
@@ -249,7 +290,7 @@ export default {
   height: 40px;
   width: 40px;
   flex-shrink: 0;
-  border-left: 1px solid var(--kungalgame-trans-blue-4);
+  border-left: 1px solid @kungalgame-trans-blue-4;
   /* 搜索图标居中 */
   display: flex;
   justify-content: center;
@@ -260,11 +301,11 @@ export default {
 }
 /* 搜索按钮的 hover */
 .nav-search-btn:hover {
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
 }
 /* 搜索按钮的 active */
 .nav-search-btn:active {
-  background-color: var(--kungalgame-red-3);
+  background-color: @kungalgame-red-3;
 }
 /* 搜索历史的容器 */
 .article-search-history {
@@ -277,11 +318,11 @@ export default {
   /* 无 hover 时不显示搜索历史 */
   display: none;
   flex-direction: column;
-  background-color: var(--kungalgame-trans-white-2);
-  color: var(--kungalgame-font-color-3);
-  border: 1px solid var(--kungalgame-red-1);
+  background-color: @kungalgame-trans-white-2;
+  color: @kungalgame-font-color-3;
+  border: 1px solid @kungalgame-red-1;
   border-radius: 7px;
-  box-shadow: 0 1px 6px var(--kungalgame-gray-2);
+  box-shadow: 0 1px 6px @kungalgame-gray-2;
 }
 /* hover 时显示搜索历史 */
 .nav-article-search-container:hover .article-search-history {
@@ -299,10 +340,10 @@ export default {
 }
 .search-history-title span:nth-child(2) {
   cursor: pointer;
-  border-bottom: 1.5px solid var(--kungalgame-trans-white-2);
+  border-bottom: 1.5px solid @kungalgame-trans-white-2;
 }
 .search-history-title span:nth-child(2):hover {
-  border-bottom: 1.5px solid var(--kungalgame-blue-4);
+  border-bottom: 1.5px solid @kungalgame-blue-4;
 }
 /* 搜索历史 TAG 的存放容器 */
 .search-history-container {
@@ -317,12 +358,12 @@ export default {
 .search-history-container > div {
   padding: 7px 3px;
   margin: 2px 0;
-  background-color: var(--kungalgame-trans-gray-1);
+  background-color: @kungalgame-trans-gray-1;
   cursor: pointer;
 }
 /* 单个搜索历史的 hover */
 .search-history-container > div:hover {
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: @kungalgame-trans-blue-1;
 }
 /* 单个搜索按钮 hover 时显示删除按钮 */
 .search-history-container > div:hover .del-history {
@@ -340,7 +381,7 @@ export default {
   right: 1%;
   font-size: medium;
   position: absolute;
-  color: var(--kungalgame-font-color-0);
+  color: @kungalgame-font-color-0;
   display: none;
 }
 /* 更多 */
@@ -353,18 +394,18 @@ export default {
   align-items: center;
   /* 页面缩小不换行 */
   white-space: nowrap;
-  background-color: var(--kungalgame-trans-purple-3);
+  background-color: @kungalgame-trans-purple-3;
   flex-grow: 1;
   border-radius: 0 5px 0 0;
   cursor: pointer;
-  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
+  border-bottom: 1px solid @kungalgame-trans-blue-4;
   box-sizing: border-box;
 }
 .nav-article-more-topic:hover {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
 }
 .nav-article-more-topic:active {
-  background-color: var(--kungalgame-trans-red-3);
+  background-color: @kungalgame-trans-red-3;
 }
 .all-topic {
   font-size: 18px;

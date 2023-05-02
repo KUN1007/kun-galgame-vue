@@ -69,7 +69,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   margin: 0;
   padding: 0;
@@ -104,9 +104,9 @@ input:focus {
   max-width: 1350px;
   max-width: 1200px;
   /* 背景色和边框阴影 */
-  background-color: var(--kungalgame-trans-white-2);
-  border: 1px solid var(--kungalgame-blue-4);
-  box-shadow: var(--shadow);
+  background-color: @kungalgame-trans-white-2;
+  border: 1px solid @kungalgame-blue-4;
+  box-shadow: @shadow;
   border-radius: 7px;
   /* 居中 */
   margin: auto;
@@ -114,7 +114,7 @@ input:focus {
   display: flex;
   flex-direction: column;
   /* 用户页面的所有字体颜色 */
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   overflow: hidden;
 }
 /* 页面的头部 */
@@ -131,7 +131,7 @@ input:focus {
   flex-grow: 2;
   width: 100%;
   /* 头部的颜色 */
-  background-color: var(--kungalgame-trans-blue-0);
+  background-color: @kungalgame-trans-blue-0;
   align-items: center;
 }
 /* 用户名字的位置 */
@@ -147,9 +147,9 @@ input:focus {
   position: absolute;
   right: 0;
   font-size: 100px;
-  color: var(--kungalgame-trans-white-6);
+  color: @kungalgame-trans-white-6;
   font-style: italic;
-  text-shadow: 2px 2px 2px var(--kungalgame-trans-white-8);
+  text-shadow: 2px 2px 2px @kungalgame-trans-white-8;
 }
 /* 用户头像 */
 .kungalgamer-avatar {
@@ -163,7 +163,7 @@ input:focus {
 .kungalgamer-avatar img {
   width: 140px;
   border-radius: 50%;
-  box-shadow: 0px 0px 2px 4px var(--kungalgame-trans-red-2);
+  box-shadow: 0px 0px 2px 4px @kungalgame-trans-red-2;
 }
 /* 头像的 hover */
 .kungalgamer-avatar img:hover {
@@ -177,7 +177,7 @@ input:focus {
     transform: scale(1.1);
   }
   80% {
-    box-shadow: 0px 0px 2px 7px var(--kungalgame-trans-red-2);
+    box-shadow: 0px 0px 2px 7px @kungalgame-trans-red-2;
   }
 }
 /* 用户萌萌点 */
@@ -185,8 +185,8 @@ input:focus {
   height: 1px;
   flex-grow: 1;
   /* 分割线 */
-  border-top: 2px solid var(--kungalgame-blue-4);
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-top: 2px solid @kungalgame-blue-4;
+  border-bottom: 1px solid @kungalgame-blue-4;
   /* 内 border 盒子 */
   box-sizing: border-box;
   display: flex;
@@ -198,7 +198,7 @@ input:focus {
   height: 100%;
   /* 这个数值会根据用户的萌萌点数增长，引起页面蓝色占比的变化 */
   width: 77%;
-  background-color: var(--kungalgame-trans-blue-2);
+  background-color: @kungalgame-trans-blue-2;
 }
 /* 萌萌点进度提示数字 */
 .moemoepoint span {
@@ -224,8 +224,8 @@ input:focus {
   /* 固定宽度 */
   height: 100%;
   width: 120px;
-  background-color: var(--kungalgame-trans-red-0);
-  border-right: 1px solid var(--kungalgame-blue-4);
+  background-color: @kungalgame-trans-red-0;
+  border-right: 1px solid @kungalgame-blue-4;
   box-sizing: border-box;
 }
 /* 左侧交互区的无需列表容器 */
@@ -237,14 +237,14 @@ input:focus {
 /* 列表中的单个项目 */
 .nav > ul li {
   height: 40px;
-  background-color: var(--kungalgame-trans-blue-0);
+  background-color: @kungalgame-trans-blue-0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 /* 单个项目的 hover */
 .nav > ul li:hover {
-  background-color: var(--kungalgame-trans-blue-4);
+  background-color: @kungalgame-trans-blue-4;
   transition: 0.1s;
 }
 /* 内容区 */
@@ -273,24 +273,24 @@ input:focus {
 .pwd-form input {
   height: 16px;
   padding: 2px;
-  border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-white-5);
+  border: 1px solid @kungalgame-blue-4;
+  background-color: @kungalgame-trans-white-5;
 }
 .pwd-form input:focus {
-  box-shadow: 0px 0px 3px var(--kungalgame-blue-4);
+  box-shadow: 0px 0px 3px @kungalgame-blue-4;
 }
 /* 更改密码 button */
 .pwd-form button {
   width: 304px;
-  border: 1px solid var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-0);
+  border: 1px solid @kungalgame-red-4;
+  background-color: @kungalgame-trans-red-0;
   cursor: pointer;
 }
 .pwd-form button:hover {
-  background-color: var(--kungalgame-trans-red-4);
+  background-color: @kungalgame-trans-red-4;
 }
 .pwd-form button:active {
-  background-color: var(--kungalgame-trans-red-0);
+  background-color: @kungalgame-trans-red-0;
 }
 /* 更改邮箱 */
 .change-mail {

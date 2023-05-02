@@ -2,14 +2,14 @@
   KUNGalgame 的帖子页面
  -->
 <script setup lang="ts">
-import KUNGalgameTopBar from "../../components/KUNGalgameTopBar.vue";
-import KUNGalgameTopicAside from "./aside/KUNGalgameTopicAside.vue";
-import KUNGalgameTopicContent from "./content/KUNGalgameTopicContent.vue";
+import KUNGalgameTopBar from '../../components/KUNGalgameTopBar.vue'
+import KUNGalgameTopicAside from './aside/KUNGalgameTopicAside.vue'
+import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
 </script>
 <template>
   <!-- 总容器 -->
   <div class="main-wrapper">
-    <KUNGalgameTopBar />
+    <KUNGalgameTopBar :isTopicPage="true" />
     <!-- 下面帖子详情区的容器 -->
     <div class="topic-wrapper">
       <!-- 下方可视内容区的容器 -->
@@ -20,7 +20,7 @@ import KUNGalgameTopicContent from "./content/KUNGalgameTopicContent.vue";
     </div>
   </div>
 </template>
-<style scoped>
+<style lang="less" scoped>
 /* 页面总容器 */
 .main-wrapper {
   display: flex;
@@ -28,7 +28,7 @@ import KUNGalgameTopicContent from "./content/KUNGalgameTopicContent.vue";
   flex-direction: column;
   min-width: 1040px;
   /* 背景图片 */
-  /* background-image: url(../img/bg.png); */
+  background-image: url(../../assets/images/bg/bg1.png);
   /*         background-image: url(../img/bg-dark.png); */
   background-repeat: no-repeat;
   background-position: center;
@@ -50,7 +50,7 @@ import KUNGalgameTopicContent from "./content/KUNGalgameTopicContent.vue";
   display: flex;
   /* 设置背景的毛玻璃效果 */
   backdrop-filter: blur(5px);
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: @kungalgame-trans-white-5;
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;

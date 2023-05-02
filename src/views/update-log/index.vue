@@ -187,7 +187,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -202,7 +202,7 @@
   display: flex;
   flex-direction: column;
   background-image: url(../img/bg/bg6.png);
-  /* background-image: url(./img/bg/bg2.png); */
+  /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -218,7 +218,7 @@
   position: relative;
   /* 居中 */
   margin: auto;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   border-radius: 7px;
@@ -226,9 +226,9 @@
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  color: var(--kungalgame-font-color-3);
-  border: 1px solid var(--kungalgame-trans-blue-2);
-  box-shadow: var(--shadow);
+  color: @kungalgame-font-color-3;
+  border: 1px solid @kungalgame-trans-blue-2;
+  box-shadow: @shadow;
 }
 /* 内容区 */
 .content {
@@ -276,12 +276,12 @@
 /* 访问 github */
 .preview > span {
   margin-top: 10px;
-  color: var(--kungalgame-blue-4);
-  border-bottom: 2px solid var(--kungalgame-trans-white-8);
+  color: @kungalgame-blue-4;
+  border-bottom: 2px solid @kungalgame-trans-white-8;
   cursor: pointer;
 }
 .preview > span:hover {
-  border-bottom: 2px solid var(--kungalgame-blue-4);
+  border-bottom: 2px solid @kungalgame-blue-4;
 }
 /* 预计更新时间 */
 .time {
@@ -296,7 +296,7 @@
 }
 /* 历史更新的内容 */
 .article-history {
-  border-left: 1px solid var(--kungalgame-blue-4);
+  border-left: 1px solid @kungalgame-blue-4;
   height: 75%;
   padding: 10px;
 }
@@ -318,11 +318,11 @@
   display: inline;
   width: 4px;
   height: 0;
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
   border-radius: 2px;
 }
 .history-list::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
+  background: @kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单个更新历史 */
@@ -331,7 +331,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-bottom: 1px solid @kungalgame-blue-4;
 }
 .article-history ul > li:first-child {
   margin-top: 10px;

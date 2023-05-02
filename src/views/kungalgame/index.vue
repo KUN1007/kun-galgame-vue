@@ -215,7 +215,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -228,7 +228,7 @@
 .root {
   height: 100vh;
   background-image: url(../img/bg/bg1.png);
-  /* background-image: url(./img/bg/bg2.png); */
+  /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -237,7 +237,7 @@
 }
 /* 内容区容器 */
 .content-container {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
   backdrop-filter: blur(5px);
   border-radius: 7px;
   /* 固定高度 */
@@ -253,17 +253,17 @@
 /* 内容区 */
 .content {
   height: 100%;
-  border: 1px solid var(--kungalgame-blue-4);
+  border: 1px solid @kungalgame-blue-4;
   border-radius: 7px;
   display: flex;
-  box-shadow: var(--shadow);
+  box-shadow: @shadow;
 }
 /* 侧边的文章结构索引 */
 .aside {
   width: 122px;
   height: 100%;
   flex-shrink: 0;
-  border-right: 1px solid var(--kungalgame-blue-4);
+  border-right: 1px solid @kungalgame-blue-4;
 }
 /* 侧边的标题 */
 .aside > div {
@@ -294,7 +294,7 @@
 }
 /* 单个项目的 hover */
 .aside > ul li:hover {
-  background-color: var(--kungalgame-trans-blue-2);
+  background-color: @kungalgame-trans-blue-2;
 }
 /* 文章区距离侧边的距离 */
 .article {
@@ -307,7 +307,7 @@ h2,
 h3,
 p,
 .list {
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
 }
 /* da标题的字体 */
 h1 {
@@ -320,7 +320,7 @@ h1 {
 h2 {
   margin-top: 77px;
   margin-bottom: 30px;
-  border-left: 4px solid var(--kungalgame-blue-4);
+  border-left: 4px solid @kungalgame-blue-4;
   text-indent: 1em;
 }
 h3 {
@@ -334,9 +334,9 @@ p {
 }
 /* 被划出来的链接字体 */
 .skip {
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-bottom: 1px solid @kungalgame-blue-4;
   cursor: pointer;
-  color: var(--kungalgame-blue-4);
+  color: @kungalgame-blue-4;
 }
 .list > li {
   list-style: inside;

@@ -1,11 +1,5 @@
-<script lang="ts">
-import { Icon } from "@iconify/vue";
-export default {
-  name: "AsideItem",
-  components: {
-    Icon,
-  },
-};
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -28,8 +22,18 @@ export default {
       <div class="kungalgame-model-container">
         模式切换
         <ul class="kungalgame-model">
-          <li><Icon class="sun" icon="line-md:moon-filled-alt-to-sunny-filled-loop-transition" />白天</li>
-          <li><Icon class="moon" icon="line-md:sunny-outline-to-moon-loop-transition" />黑夜</li>
+          <li>
+            <Icon
+              class="sun"
+              icon="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
+            />白天
+          </li>
+          <li>
+            <Icon
+              class="moon"
+              icon="line-md:sunny-outline-to-moon-loop-transition"
+            />黑夜
+          </li>
         </ul>
       </div>
       <div>其它游戏</div>
@@ -72,7 +76,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 侧边栏交互 */
 .nav-aside {
   width: 100%;
@@ -86,7 +90,7 @@ export default {
   text-align: center;
   /* 字体设置 */
   font-size: small;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   /* 页面缩小到最小时不换行 */
   overflow: hidden;
   white-space: nowrap;
@@ -112,11 +116,11 @@ export default {
 .new-article button {
   height: 100%;
   width: 100%;
-  background-color: var(--kungalgame-red-0);
-  border: 1px solid var(--kungalgame-red-3);
+  background-color: @kungalgame-red-0;
+  border: 1px solid @kungalgame-red-3;
   border-radius: 5px;
   cursor: pointer;
-  color: var(--kungalgame-red-3);
+  color: @kungalgame-red-3;
   font-weight: bold;
   font-size: larger;
   /* 页面缩小到最小时不换行 */
@@ -126,8 +130,8 @@ export default {
 /* 发布按钮 hover 效果 */
 .new-article button:hover {
   font-size: xx-large;
-  background-color: var(--kungalgame-red-3);
-  color: var(--kungalgame-red-0);
+  background-color: @kungalgame-red-3;
+  color: @kungalgame-red-0;
   /* 效果过渡时长 */
   transition: 0.3s;
 }
@@ -140,7 +144,7 @@ export default {
   grid-template-rows: repeat(2, 40px);
   font-size: 14px;
   /* 字体颜色 */
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   /* 相对定位 */
   position: relative;
 }
@@ -151,7 +155,7 @@ export default {
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
 }
 /* 模式切换 */
 .kungalgame-model {
@@ -162,7 +166,7 @@ export default {
   width: 80px;
   display: none;
   flex-direction: column;
-  background-color: var(--kungalgame-blue-0);
+  background-color: @kungalgame-blue-0;
   z-index: 7;
 }
 /* hover 时菜单出现 */
@@ -181,21 +185,21 @@ export default {
 .sun {
   margin-right: 5px;
   font-size: x-large;
-  color: var(--kungalgame-red-4);
+  color: @kungalgame-red-4;
 }
 .moon {
   margin-right: 5px;
   font-size: x-large;
-  color: var(--kungalgame-blue-4);
+  color: @kungalgame-blue-4;
 }
 /* 每一个模式切换的 hover */
 .kungalgame-model li:hover {
-  background-color: var(--kungalgame-red-1);
+  background-color: @kungalgame-red-1;
 }
 /* 设置六个功能（模式、排行、背景等）的 hover */
 .item-box-container > div:hover {
-  color: var(--kungalgame-font-color-3);
-  background-color: var(--kungalgame-blue-0);
+  color: @kungalgame-font-color-3;
+  background-color: @kungalgame-blue-0;
   cursor: pointer;
 }
 /* hover 时展示背景功能板块 */
@@ -211,11 +215,11 @@ export default {
   position: absolute;
   top: 100%;
   left: 0%;
-  background-color: var(--kungalgame-blue-0);
-  box-shadow: 1px 2px 1px 1px var(--kungalgame-trans-red-3);
+  background-color: @kungalgame-blue-0;
+  box-shadow: 1px 2px 1px 1px @kungalgame-trans-red-3;
   font-size: 15px;
   font-weight: normal;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
 }
 /* 背景容器的标题字体 */
 .kungalgame-background-container span {
@@ -230,7 +234,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 80px);
   grid-template-rows: repeat(3, 50px);
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   position: relative;
   /* 距离下方区域的距离 */
   margin-bottom: 17px;
@@ -242,7 +246,7 @@ export default {
   align-items: center;
 }
 /* 单个图片的距离 */
-.kungalgame-reset-bg img{
+.kungalgame-reset-bg img {
   width: 70px;
 }
 /* 图片的 hover */
@@ -263,29 +267,29 @@ export default {
 }
 .bg-url-input input {
   height: 25px;
-  border: 1px solid var(--kungalgame-blue-4);
+  border: 1px solid @kungalgame-blue-4;
 }
 /* 粘贴框的 focus */
 .bg-url-input input:focus {
   outline: none;
-  background-color: var(--kungalgame-trans-red-0);
+  background-color: @kungalgame-trans-red-0;
 }
 /* 确定按钮 */
 .bg-url-input button {
   padding: 0 10px;
   height: 27px;
   box-sizing: border-box;
-  border: 1px solid var(--kungalgame-blue-4);
+  border: 1px solid @kungalgame-blue-4;
   border-left: none;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: @kungalgame-trans-white-5;
   cursor: pointer;
 }
 /* 确定按钮的 hover */
 .bg-url-input button:hover {
-  background-color: var(--kungalgame-trans-blue-0);
+  background-color: @kungalgame-trans-blue-0;
 }
 /* 确定按钮的 active */
 .bg-url-input button:active {
-  background-color: var(--kungalgame-trans-red-3);
+  background-color: @kungalgame-trans-red-3;
 }
 </style>

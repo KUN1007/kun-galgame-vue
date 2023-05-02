@@ -1,11 +1,5 @@
-<script lang="ts">
-import { Icon } from "@iconify/vue";
-export default {
-  name: "NewTopic",
-  components: {
-    Icon,
-  },
-};
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -112,7 +106,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 最新话题 */
 .new-topic-wrap {
   width: 100%;
@@ -131,7 +125,7 @@ export default {
 .new-topic-title-name {
   /* 设置盒子的 border 在内侧显示 */
   box-sizing: border-box;
-  border: 3px dashed var(--kungalgame-trans-pink-1);
+  border: 3px dashed @kungalgame-trans-pink-1;
   border-bottom: none;
   /* 设置（今日热门话题）居中 */
   display: flex;
@@ -139,13 +133,13 @@ export default {
   align-items: center;
   /* 设置（今日热门话题占整个热门区域的宽度） */
   flex-grow: 1;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   /* 设置页面缩小到最小时该行不换行 */
   overflow: hidden;
   white-space: nowrap;
 }
 .new-topic-content {
-  background-color: var(--kungalgame-trans-pink-1);
+  background-color: @kungalgame-trans-pink-1;
   /* 热门帖子标题区域占整个左侧页面中部的比例 */
   flex-grow: 10;
   /* 热门帖子标题部分为弹性盒 */
@@ -159,16 +153,17 @@ export default {
   justify-content: space-between;
   /* 设置每个帖子高度相等 */
   flex-grow: 1;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   align-items: center;
   cursor: pointer;
 }
 /* 单个新帖子的 hover */
 .new-topic:hover {
-  box-shadow: -2px -2px 5px var(--kungalgame-white), 2px 2px 5px var(--kungalgame-gray-3);
+  box-shadow: -2px -2px 5px @kungalgame-white, 2px 2px 5px @kungalgame-gray-3;
 }
 .new-topic:active {
-  box-shadow: inset 1px 1px 2px var(--kungalgame-gray-3), inset -1px -1px 2px var(--kungalgame-white);
+  box-shadow: inset 1px 1px 2px @kungalgame-gray-3,
+    inset -1px -1px 2px @kungalgame-white;
 }
 /* 单个帖子的标题样式 */
 .new-topic-title {
@@ -195,7 +190,7 @@ export default {
 /* 时钟图标的颜色 */
 .new-topic-number {
   /* 设置 fa 图标字体的颜色 */
-  color: var(--kungalgame-purple-4);
+  color: @kungalgame-purple-4;
 }
 /* 右侧区域的大小 */
 .new-topic-number span {
@@ -203,6 +198,6 @@ export default {
   font-size: xx-small;
   /* 右侧区域距离最右侧的距离 */
   margin-left: 5px;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
 }
 </style>

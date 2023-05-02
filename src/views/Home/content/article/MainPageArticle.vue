@@ -1,10 +1,6 @@
-<script lang="ts">
-import ArticleHeader from "./header/ArticleHeader.vue";
-import ArticleContent from "./content/ArticleContent.vue";
-export default {
-  name: "MainPageArticle",
-  components: { ArticleHeader, ArticleContent },
-};
+<script setup lang="ts">
+import ArticleHeader from './header/ArticleHeader.vue'
+import ArticleContent from './content/ArticleContent.vue'
 </script>
 
 <template>
@@ -18,7 +14,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 文章部分 */
 .article {
   width: 1px;
@@ -35,8 +31,8 @@ export default {
   /* 盒子的边显示在内侧 */
   box-sizing: border-box;
   /* 文章区边上的颜色 */
-  border: 1px solid var(--kungalgame-trans-blue-4);
-  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid @kungalgame-trans-blue-4;
+  background-color: @kungalgame-trans-blue-0;
   border-radius: 5px;
   display: flex;
   /* 文章区所有组件居中 */

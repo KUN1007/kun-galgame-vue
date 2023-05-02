@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import UserPart from "./components/UserPart.vue";
-import TopicPart from "./components/TopicPart.vue";
-import { useRouter } from "vue-router";
+import UserPart from './components/UserPart.vue'
+import TopicPart from './components/TopicPart.vue'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
-const toTopic = (url:string) => {
+const router = useRouter()
+const toTopic = (url: string) => {
   router.push(url)
 }
 </script>
@@ -14,20 +14,20 @@ const toTopic = (url:string) => {
     <TopicPart />
   </div>
 </template>
-<style scoped>
+<style lang="less" scoped>
 /* 单个帖子 */
 .topic {
   width: 100%;
   height: 70px;
   flex-shrink: 0;
   border-radius: 3px;
-  background-color: var(--kungalgame-trans-white-4);
+  background-color: @kungalgame-trans-white-4;
   margin-bottom: 3px;
   /* 单个帖子横向弹性盒 */
   display: flex;
 }
 .topic:hover {
-  background-color: var(--kungalgame-trans-white-1);
+  background-color: @kungalgame-trans-white-1;
   transition: 0.2s;
 }
 .topic:last-child {

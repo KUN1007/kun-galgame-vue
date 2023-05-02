@@ -1,16 +1,10 @@
-<script lang="ts">
-export default {
-  name: "UserPart",
-};
-</script>
+<script setup lang="ts"></script>
 <template>
   <!-- 帖子发布者个人信息 -->
   <div class="kungalgamer-topic-info">
     <!-- 发布者头像 -->
     <div class="kungalgamer-topic-avatar">
-      <a href="#"
-        ><img src="@/assets/images/topic.jpg" alt="鲲"
-      /></a>
+      <a href="#"><img src="@/assets/images/topic.jpg" alt="鲲" /></a>
     </div>
     <!-- 发布者姓名 -->
     <div class="kungalgamer-name">
@@ -20,7 +14,7 @@ export default {
     <!--                   <div class="kungalgamer-rank"></div> -->
   </div>
 </template>
-<style scoped>
+<style lang="less" scoped>
 /* 发帖人信息 */
 .kungalgamer-topic-info {
   width: 70px;
@@ -58,7 +52,7 @@ export default {
 }
 /* 发帖人昵称位置设置 */
 .kungalgamer-name {
-  border-top: 1px solid var(--kungalgame-gray-2);
+  border-top: 1px solid @kungalgame-gray-2;
   flex-grow: 1;
   display: flex;
 }
@@ -77,7 +71,7 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
   /* 颜色和字体大小 */
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   font-size: x-small;
 }
 </style>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from "@/components/KUNGalgameTopBar.vue";
-import MainPageContent from "./content/MainPageContent.vue";
-import MainPageFooter from "./footer/MainPageFooter.vue";
+import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import MainPageContent from './content/MainPageContent.vue'
+import MainPageFooter from './footer/MainPageFooter.vue'
 </script>
 
 <template>
@@ -24,7 +24,7 @@ import MainPageFooter from "./footer/MainPageFooter.vue";
   background-position: center;
   background-size: cover;
   min-width: 800px;
-  font-family: "adobe-clean", "Source Sans Pro", -apple-system,
-    "BlinkMacSystemFont", "Segoe UI,Roboto", sans-serif;
+  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
+    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 </style>

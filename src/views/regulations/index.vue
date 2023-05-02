@@ -112,7 +112,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -127,7 +127,7 @@
   display: flex;
   flex-direction: column;
   background-image: url(../img/bg/bg1.png);
-  /* background-image: url(./img/bg/bg2.png); */
+  /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -143,9 +143,9 @@
   /* 固定宽高 */
   width: 700px;
   height: 1300px;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: @kungalgame-trans-white-5;
   border-radius: 7px;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -156,11 +156,11 @@
 .content {
   padding: 10px;
   height: 100%;
-  border: 1px solid var(--kungalgame-trans-blue-4);
+  border: 1px solid @kungalgame-trans-blue-4;
   border-radius: 7px;
   box-sizing: border-box;
-  background-color: var(--kungalgame-trans-white-2);
-  box-shadow: var(--shadow);
+  background-color: @kungalgame-trans-white-2;
+  box-shadow: @shadow;
 }
 /* 一级标题 */
 .title-0 {
@@ -169,21 +169,21 @@
 }
 /* 提示消息 */
 .tips {
-  border-top: 2px solid var(--kungalgame-blue-4);
+  border-top: 2px solid @kungalgame-blue-4;
   padding-top: 10px;
   margin-bottom: 47px;
 }
 /* 规则跳转页面 */
 .tips span {
   cursor: pointer;
-  color: var(--kungalgame-blue-4);
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  color: @kungalgame-blue-4;
+  border-bottom: 1px solid @kungalgame-blue-4;
 }
 /* 二级标题 */
 .title-1 {
   font-size: 25px;
   margin: 20px 0;
-  border-left: 2px solid var(--kungalgame-blue-4);
+  border-left: 2px solid @kungalgame-blue-4;
   /* 距离左侧的缩进距离 */
   padding-left: 5px;
 }

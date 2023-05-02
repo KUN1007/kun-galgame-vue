@@ -1,9 +1,5 @@
-<script lang="ts">
-import SingleTopic from "./topic/SingleTopic.vue";
-export default {
-  name: "ArticleContent",
-  components: { SingleTopic },
-};
+<script setup lang="ts">
+import SingleTopic from './topic/SingleTopic.vue'
 </script>
 
 <template>
@@ -30,7 +26,7 @@ export default {
     <SingleTopic />
   </div>
 </template>
-<style scoped>
+<style lang="less" scoped>
 /* 帖子区容器 */
 .topic-container {
   /* 帖子区域占文章总区域的宽度 */
@@ -48,11 +44,11 @@ export default {
   display: inline;
   width: 4px;
   height: 0;
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
   border-radius: 2px;
 }
 .topic-container::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
+  background: @kungalgame-blue-4;
   border-radius: 2px;
 }
 </style>

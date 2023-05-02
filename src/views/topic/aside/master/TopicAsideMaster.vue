@@ -17,19 +17,19 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 楼主的其它帖子 */
 .master-other-topic {
   width: 100%;
   height: 1px;
   flex-grow: 4;
   /* 上方区域的配色 */
-  border: 1px solid var(--kungalgame-trans-pink-2);
+  border: 1px solid @kungalgame-trans-pink-2;
   /* 隐藏溢出的颜色 */
   overflow: hidden;
   border-radius: 5px;
-  background-color: var(--kungalgame-trans-pink-0);
-  box-shadow: var(--shadow);
+  background-color: @kungalgame-trans-pink-0;
+  box-shadow: @shadow;
 }
 .master-other-topic ul {
   height: 100%;
@@ -52,15 +52,15 @@
 }
 /* 上方的 hover 效果 */
 .master-other-topic ul li:hover {
-  border-left: 4px solid var(--kungalgame-blue-3);
-  background-color: var(--kungalgame-trans-pink-1);
+  border-left: 4px solid @kungalgame-blue-3;
+  background-color: @kungalgame-trans-pink-1;
   transition: 0.3s;
 }
 /* 单个标题的样式 */
 .master-other-topic ul li a {
   /* 左右两侧的距离 */
   margin: 0 17px;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   /* 标题显示两行、超出部分隐藏 */
   overflow: hidden; /* 超出部分隐藏 */
   text-overflow: ellipsis; /* 显示省略号 */
@@ -81,9 +81,9 @@
   line-height: 40px;
   font-size: 1.8ch;
   font-weight: bold;
-  background-color: var(--kungalgame-trans-pink-1);
+  background-color: @kungalgame-trans-pink-1;
   /* 与单个帖子标题的分割线 */
-  border-bottom: 1px solid var(--kungalgame-trans-pink-2);
+  border-bottom: 1px solid @kungalgame-trans-pink-2;
   /* 水平居中 */
   justify-content: center;
 }
