@@ -1,43 +1,44 @@
-<script lang="ts">
-import { Icon } from "@iconify/vue";
-export default {
-  name: "KUNGalgameTopBar",
-  components: {
-    Icon,
-  },
-  setup() {
-    let topBarItem: string[] = ["所有帖子", "发布帖子", "技术交流", "关于我们"];
-    return {
-      topBarItem,
-    };
-  },
-};
+<script setup lang="ts">
+// 引入一个 vue3 中传参的函数
+import { defineProps } from 'vue'
+import { useHeaderStore } from '@/store/modules/header'
+
+// 接受父组件的传值
+const props = defineProps(['isMainPage'])
+
+const store = useHeaderStore()
+
+let navItemNum = store.topBarItem.length
+
+const navItemNumString = navItemNum + '00px'
+
+const isMain = true
+
+if (isMain === true) {
+  store.topBarItem.unshift()
+}
+
+let topBarItem: string[] = store.topBarItem
 </script>
 
 <template>
-  <div class="header">
+  <div class="header" :isMainPage="isMain">
     <!-- 顶部左侧交互栏 -->
     <div class="nav-top">
       <div class="kungal-info">
-		<!-- 网站的名字和网站图标 -->
+        <!-- 网站的名字和网站图标 -->
         <img src="../assets/images/favicon.png" alt="KUNgal" />
         <span>KUNGalgame</span>
       </div>
       <div class="top-bar">
         <ul>
-			<!-- 顶部单个板块 -->
+          <!-- 顶部单个板块 -->
           <li v-for="(kun, index) in topBarItem" :key="index">{{ kun }}</li>
-		  <!-- 顶部板块下部的 hover 效果 -->
+          <!-- 顶部板块下部的 hover 效果 -->
           <div class="top-bar-box"></div>
         </ul>
       </div>
     </div>
-
-    <!-- TODO: 顶部全局搜索框 -->
-    <!--     <div class="top-search-bar">
-      <Icon icon="line-md:search" :rotate="3" />
-    </div> -->
-    <!-- 用户个人信息 -->
     <div class="kungalgamer-info">
       <img src="../assets/images/KUN.jpg" alt="KUN" />
       <span>KUN</span>
@@ -83,7 +84,8 @@ export default {
 }
 /* 顶部导航栏 */
 .top-bar {
-  width: 400px;
+  /* 导航条内容个数的变化 */
+  width: v-bind(navItemNumString);
   position: relative;
   text-align: center;
 }
@@ -98,7 +100,7 @@ export default {
   left: 0;
   /* 如果导航栏就六个导航，那么每个导航的宽度都是整个导航
             的六分之一 */
-  width: calc((100% / 4) * 1);
+  width: calc((100% / v-bind(navItemNum)) * 1);
   height: 7px;
   border-radius: 2px;
   transition: 0.5s;
