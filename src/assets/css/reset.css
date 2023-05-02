@@ -7,6 +7,9 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
+  font-family: PingFang SC, HarmonyOS_Regular, Helvetica Neue, Microsoft YaHei,
+    sans-serif;
+  box-sizing: border-box;
 }
 :focus {
   outline: 0;

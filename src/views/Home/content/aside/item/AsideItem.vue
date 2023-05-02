@@ -266,6 +266,7 @@ import { Icon } from '@iconify/vue'
   align-items: center;
 }
 .bg-url-input input {
+  padding-left: 5px;
   height: 25px;
   border: 1px solid @kungalgame-blue-4;
 }
@@ -277,7 +278,7 @@ import { Icon } from '@iconify/vue'
 /* 确定按钮 */
 .bg-url-input button {
   padding: 0 10px;
-  height: 27px;
+  height: 25px;
   box-sizing: border-box;
   border: 1px solid @kungalgame-blue-4;
   border-left: none;
