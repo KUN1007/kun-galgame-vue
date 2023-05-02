@@ -306,7 +306,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -321,7 +321,7 @@
   display: flex;
   flex-direction: column;
   background-image: url(../img/bg/bg1.png);
-  /* background-image: url(./img/bg/bg2.png); */
+  /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -335,15 +335,15 @@
   height: 500px;
   /* 居中 */
   margin: auto;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   /* 边距 */
   padding: 10px;
   border-radius: 7px;
-  border: 1px solid var(--kungalgame-trans-blue-2);
+  border: 1px solid @kungalgame-trans-blue-2;
   /* 阴影 */
-  box-shadow: var(--shadow);
+  box-shadow: @shadow;
   /* 竖直弹性盒 */
   display: flex;
   align-items: center;
@@ -373,7 +373,7 @@
   width: 49%;
   /* 固定高度 */
   height: 300px;
-  border: 1px solid var(--kungalgame-blue-4);
+  border: 1px solid @kungalgame-blue-4;
   display: flex;
   flex-direction: column;
 }
@@ -383,8 +383,8 @@
   display: flex;
   justify-content: center;
   padding: 10px 0;
-  border-bottom: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-0);
+  border-bottom: 1px solid @kungalgame-blue-4;
+  background-color: @kungalgame-trans-blue-0;
 }
 /* 收入记录的容器 */
 .revenue-container {
@@ -398,21 +398,21 @@
   display: inline;
   width: 4px;
   height: 0;
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
   border-radius: 2px;
 }
 .revenue-container::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
+  background: @kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单条收入 */
 .single-revenue {
   margin-top: 20px;
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-bottom: 1px solid @kungalgame-blue-4;
 }
 /* 收入来源 */
 .revenue-reason {
-  border-left: 5px solid var(--kungalgame-blue-4);
+  border-left: 5px solid @kungalgame-blue-4;
   padding-left: 5px;
 }
 /* 收入时间和金额 */
@@ -428,7 +428,7 @@
 /* 收入金额 */
 .revenue-amount {
   padding: 0 5px;
-  background-color: var(--kungalgame-blue-2);
+  background-color: @kungalgame-blue-2;
 }
 /* 总收入 */
 .revenue-sum {
@@ -438,14 +438,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-0);
+  border-top: 1px solid @kungalgame-blue-4;
+  background-color: @kungalgame-trans-blue-0;
 }
 /* 支出 */
 .expenditure {
   width: 49%;
   height: 300px;
-  border: 1px solid var(--kungalgame-red-4);
+  border: 1px solid @kungalgame-red-4;
   display: flex;
   flex-direction: column;
 }
@@ -455,8 +455,8 @@
   display: flex;
   justify-content: center;
   padding: 10px 0;
-  border-bottom: 1px solid var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-0);
+  border-bottom: 1px solid @kungalgame-red-4;
+  background-color: @kungalgame-trans-red-0;
 }
 /* 支出记录的容器 */
 .expenditure-container {
@@ -469,21 +469,21 @@
   display: inline;
   width: 4px;
   height: 0;
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
   border-radius: 2px;
 }
 .expenditure-container::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
+  background: @kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单条支出 */
 .single-expenditure {
   margin-top: 20px;
-  border-bottom: 1px solid var(--kungalgame-red-4);
+  border-bottom: 1px solid @kungalgame-red-4;
 }
 /* 支出原因 */
 .expenditure-reason {
-  border-left: 5px solid var(--kungalgame-red-4);
+  border-left: 5px solid @kungalgame-red-4;
   padding-left: 5px;
 }
 /* 支出的时间和金额 */
@@ -499,7 +499,7 @@
 /* 支出金额 */
 .expenditure-amount {
   padding: 0 5px;
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
 }
 /* 总支出 */
 .expenditure-sum {
@@ -508,8 +508,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-0);
+  border-top: 1px solid @kungalgame-red-4;
+  background-color: @kungalgame-trans-red-0;
 }
 /* 收入支出总结 */
 .sum {
@@ -528,7 +528,7 @@
 }
 .disposable-amount > span {
   padding: 5px;
-  background-color: var(--kungalgame-green-2);
+  background-color: @kungalgame-green-2;
 }
 /* 经济状态 */
 .amount-status {
@@ -538,11 +538,11 @@
 }
 .amount-status span {
   padding: 5px;
-  background-color: var(--kungalgame-red-4);
-  color: var(--kungalgame-white);
+  background-color: @kungalgame-red-4;
+  color: @kungalgame-white;
 }
 .amount-status > div:last-child {
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
 }
 /* 版权 */
 .copyright {

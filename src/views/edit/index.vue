@@ -1,39 +1,39 @@
 <script setup lang="ts">
-import "@wangeditor/editor/dist/css/style.css"; // 引入 css
+import '@wangeditor/editor/dist/css/style.css' // 引入 css
 
-import { onBeforeUnmount, ref, shallowRef, onMounted } from "vue";
-import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
+import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
 // 编辑器实例，必须用 shallowRef
-const editorRef = shallowRef();
+const editorRef = shallowRef()
 
 // 编辑器的模式
-const mode = "default"
+const mode = 'default'
 
 // 内容 HTML
-const valueHtml = ref("<p>hello</p>");
+const valueHtml = ref('<p>hello</p>')
 
 // 模拟 ajax 异步获取内容
 onMounted(() => {
   setTimeout(() => {
-    valueHtml.value = "<p>模拟 Ajax 异步设置内容</p>";
-  }, 1500);
-});
+    valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>'
+  }, 1500)
+})
 
-const toolbarConfig = {};
-const editorConfig = { placeholder: "请输入内容..." };
+const toolbarConfig = {}
+const editorConfig = { placeholder: '请输入内容...' }
 
 // 组件销毁时，也及时销毁编辑器
 onBeforeUnmount(() => {
-  const editor = editorRef.value;
-  if (editor == null) return;
-  editor.destroy();
-});
+  const editor = editorRef.value
+  if (editor == null) return
+  editor.destroy()
+})
 
 // TODO:
 const handleCreated = (editor: any) => {
-  editorRef.value = editor; // 记录 editor 实例，重要！
-};
+  editorRef.value = editor // 记录 editor 实例，重要！
+}
 </script>
 
 <template>
@@ -142,7 +142,7 @@ const handleCreated = (editor: any) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -173,7 +173,7 @@ body::-webkit-scrollbar {
 /* 编辑器的样式 */
 #editor—wrapper {
   /* 编辑器的 border */
-  border: 1px solid var(--kungalgame-blue-4);
+  border: 1px solid @kungalgame-blue-4;
   box-sizing: border-box;
   /* 编辑器的宽度 */
   width: 75vw;
@@ -181,7 +181,7 @@ body::-webkit-scrollbar {
   z-index: 100; /* 按需定义 */
 }
 #toolbar-container {
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-bottom: 1px solid @kungalgame-blue-4;
 }
 /* 编辑器编辑部分 */
 #editor-container {
@@ -194,9 +194,9 @@ body::-webkit-scrollbar {
   /* 距离顶部 header 的距离 */
   margin-top: 7px;
   /* 容器的阴影 */
-  box-shadow: var(--shadow);
-  background-color: var(--kungalgame-trans-white-2);
-  color: var(--kungalgame-font-color-3);
+  box-shadow: @shadow;
+  background-color: @kungalgame-trans-white-2;
+  color: @kungalgame-font-color-3;
 }
 /* 容器的顶部 */
 .content-header {
@@ -213,7 +213,7 @@ body::-webkit-scrollbar {
 }
 /* 帖子标题的输入框 */
 .topic-title input {
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
   /* 距离外轮廓的距离 */
   padding: 7px;
   /* 内边距盒子 */
@@ -221,12 +221,12 @@ body::-webkit-scrollbar {
   width: 100%;
   /* 标题输入字体大小 */
   font-size: 40px;
-  border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-white-9);
+  border: 1px solid @kungalgame-blue-4;
+  background-color: @kungalgame-trans-white-9;
 }
 /* 标题输入框 focus 之后的样式 */
 .topic-title input:focus {
-  box-shadow: 0px 0px 5px var(--kungalgame-blue-4);
+  box-shadow: 0px 0px 5px @kungalgame-blue-4;
 }
 /* 内容区的底部样式 */
 .content-footer {
@@ -244,17 +244,17 @@ body::-webkit-scrollbar {
 }
 /* 标签输入框 */
 .tags-container input {
-  background-color: var(--kungalgame-trans-white-9);
+  background-color: @kungalgame-trans-white-9;
   /* 输入标签的字体 */
   font-size: 17px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid var(--kungalgame-blue-4);
+  border: 1px solid @kungalgame-blue-4;
   padding: 5px;
 }
 /* 标签输入框 focus */
 .tags-container input:focus {
-  box-shadow: 0px 0px 3px var(--kungalgame-blue-4);
+  box-shadow: 0px 0px 3px @kungalgame-blue-4;
 }
 /* 单个标签容器 */
 .tags {
@@ -268,11 +268,11 @@ body::-webkit-scrollbar {
 .tags > span {
   font-size: 14px;
   padding: 3px;
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: @kungalgame-trans-blue-1;
   cursor: pointer;
 }
 .tags > span:hover {
-  background-color: var(--kungalgame-trans-red-1);
+  background-color: @kungalgame-trans-red-1;
 }
 /* 话题分类的容器 */
 .topic-group {
@@ -292,9 +292,9 @@ body::-webkit-scrollbar {
   width: 20%;
   font-size: 17px;
   cursor: pointer;
-  border: 1px solid var(--kungalgame-purple-4);
-  background-color: var(--kungalgame-trans-purple-1);
-  color: var(--kungalgame-purple-4);
+  border: 1px solid @kungalgame-purple-4;
+  background-color: @kungalgame-trans-purple-1;
+  color: @kungalgame-purple-4;
 }
 /* 按钮的容器 */
 .btn-container {
@@ -316,34 +316,34 @@ body::-webkit-scrollbar {
 }
 /* 确认按钮的样式 */
 .confirm-btn {
-  color: var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-1);
-  border: 1px solid var(--kungalgame-blue-4);
+  color: @kungalgame-blue-4;
+  background-color: @kungalgame-trans-blue-1;
+  border: 1px solid @kungalgame-blue-4;
 }
 .confirm-btn:hover {
-  color: var(--kungalgame-trans-white-1);
-  background-color: var(--kungalgame-blue-4);
+  color: @kungalgame-trans-white-1;
+  background-color: @kungalgame-blue-4;
   transition: 0.1s;
 }
 .confirm-btn:active {
-  background-color: var(--kungalgame-red-4);
-  border: 1px solid var(--kungalgame-red-4);
+  background-color: @kungalgame-red-4;
+  border: 1px solid @kungalgame-red-4;
   font-size: 17px;
 }
 /* 保存按钮的样式 */
 .save-btn {
-  color: var(--kungalgame-orange-4);
-  background-color: var(--kungalgame-trans-orange-1);
-  border: 1px solid var(--kungalgame-orange-4);
+  color: @kungalgame-orange-4;
+  background-color: @kungalgame-trans-orange-1;
+  border: 1px solid @kungalgame-orange-4;
 }
 .save-btn:hover {
-  color: var(--kungalgame-trans-white-1);
-  background-color: var(--kungalgame-orange-4);
+  color: @kungalgame-trans-white-1;
+  background-color: @kungalgame-orange-4;
   transition: 0.1s;
 }
 .save-btn:active {
-  background-color: var(--kungalgame-trans-orange-1);
-  color: var(--kungalgame-orange-4);
+  background-color: @kungalgame-trans-orange-1;
+  color: @kungalgame-orange-4;
 }
 /* 版权 */
 .copyright {

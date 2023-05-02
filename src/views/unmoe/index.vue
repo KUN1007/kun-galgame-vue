@@ -151,7 +151,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -172,8 +172,8 @@
   background-size: cover;
   min-width: 800px;
   min-height: 750px;
-  font-family: "adobe-clean", "Source Sans Pro", -apple-system,
-    "BlinkMacSystemFont", "Segoe UI,Roboto", sans-serif;
+  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
+    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 /* 根容器 */
 .container {
@@ -182,16 +182,16 @@
   width: 700px;
   /* 居中 */
   margin: auto;
-  background-color: var(--kungalgame-trans-white-5);
-  border: 1px solid var(--kungalgame-red-4);
+  background-color: @kungalgame-trans-white-5;
+  border: 1px solid @kungalgame-red-4;
   overflow: hidden;
   border-radius: 7px;
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   display: flex;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   position: relative;
-  box-shadow: var(--shadow);
+  box-shadow: @shadow;
 }
 /* 页面标题 */
 .title {
@@ -203,13 +203,13 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
 }
 /* 文章部分 */
 .article {
   width: 90%;
-  background-color: var(--kungalgame-trans-white-3);
-  border-left: 1px solid var(--kungalgame-red-4);
+  background-color: @kungalgame-trans-white-3;
+  border-left: 1px solid @kungalgame-red-4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -234,11 +234,11 @@
   display: inline;
   width: 4px;
   height: 0;
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
   border-radius: 2px;
 }
 .content::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
+  background: @kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 原因、处理方式 */
@@ -254,17 +254,17 @@
 /* 单个记录 */
 .single-log {
   margin: 20px 40px;
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-bottom: 1px solid @kungalgame-blue-4;
 }
 /* 原因 */
 .reason {
   width: 80%;
   padding-left: 5px;
-  border-left: 2px solid var(--kungalgame-blue-4);
+  border-left: 2px solid @kungalgame-blue-4;
 }
 /* 后果 */
 .result {
-  border-right: 4px solid var(--kungalgame-red-4);
+  border-right: 4px solid @kungalgame-red-4;
   padding-right: 5px;
   margin-top: 10px;
   display: flex;

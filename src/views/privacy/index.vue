@@ -39,7 +39,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -55,8 +55,8 @@
   min-width: 700px;
   min-height: 600px;
   background: linear-gradient(
-    var(--kungalgame-trans-pink-1),
-    var(--kungalgame-trans-blue-1)
+    @kungalgame-trans-pink-1,
+    @kungalgame-trans-blue-1
   );
   display: flex;
   flex-direction: column;
@@ -70,19 +70,19 @@
   /* 居中 */
   margin: auto;
   position: relative;
-  background-color: var(--kungalgame-trans-blue-0);
-  border: 1px solid var(--kungalgame-trans-blue-4);
+  background-color: @kungalgame-trans-blue-0;
+  border: 1px solid @kungalgame-trans-blue-4;
   border-radius: 7px;
-  box-shadow: var(--kungalgame-shadow-0);
+  box-shadow: @kungalgame-shadow-0;
   /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
 }
 /* 内容区容器 hover */
 .container:hover {
-  box-shadow: var(--kungalgame-shadow-1);
+  box-shadow: @kungalgame-shadow-1;
   transition: 0.3s;
 }
 /* 内容区 */

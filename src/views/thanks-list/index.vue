@@ -113,7 +113,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -134,8 +134,8 @@
   background-size: cover;
   min-width: 1000px;
   min-height: 1300px;
-  font-family: "adobe-clean", "Source Sans Pro", -apple-system,
-    "BlinkMacSystemFont", "Segoe UI,Roboto", sans-serif;
+  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
+    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 .container {
   /* 固定宽高 */
@@ -145,13 +145,13 @@
   margin: auto;
   position: relative;
   border-radius: 7px;
-  box-shadow: var(--kungalgame-shadow-0);
+  box-shadow: @kungalgame-shadow-0;
   /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--kungalgame-font-color-3);
-  background-color: var(--kungalgame-trans-blue-0);
+  color: @kungalgame-font-color-3;
+  background-color: @kungalgame-trans-blue-0;
   backdrop-filter: blur(17px);
   padding: 20px;
   box-sizing: border-box;
@@ -168,9 +168,9 @@
 }
 /* 被划出来的链接字体 */
 .skip {
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-bottom: 1px solid @kungalgame-blue-4;
   cursor: pointer;
-  color: var(--kungalgame-blue-4);
+  color: @kungalgame-blue-4;
 }
 /* 单个列表项 */
 .list > li {

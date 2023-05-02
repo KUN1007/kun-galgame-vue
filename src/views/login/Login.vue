@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-import { Ref, ref } from "vue";
-import { log } from "console";
+import { useRouter } from 'vue-router'
+import { Ref, ref } from 'vue'
+import { log } from 'console'
 
-let isLogIn: Ref<string> = ref("right-panel-active");
+let isLogIn: Ref<string> = ref('right-panel-active')
 
 const handleSignIn = () => {
-  isLogIn.value = "";
-};
+  isLogIn.value = ''
+}
 
 const handleSignUp = () => {
-  isLogIn.value = "right-panel-active";
-};
-const router = useRouter();
+  isLogIn.value = 'right-panel-active'
+}
+const router = useRouter()
 
 const login = () => {
-  router.push({ path: "/" });
-};
+  router.push({ path: '/' })
+}
 const register = () => {
-  router.push({ path: "/" });
-};
+  router.push({ path: '/' })
+}
 </script>
 
 <template>
@@ -42,9 +42,9 @@ const register = () => {
         <!-- 阻止冒泡？ -->
         <form action="#" class="form" id="form2" @submit.preventDefault>
           <h2 class="form__title">注册</h2>
-          <!--           <input type="text" placeholder="用户名 (中文 < 7个字符, 英文 < 14 个字符)" class="input" />
-          <input type="email" placeholder="邮箱 (gmail, outlook, sina, qq, 163)" class="input" />
-          <input type="password" placeholder="密码 (7 ~ 17位, 数字、字母、符号组合)" class="input" /> -->
+          <!--           <input type="text" placeholder="用户名 (中文 < 7个字符, 英文 < 14 个字符" class="input" />
+          <input type="email" placeholder="邮箱 (gmail, outlook, sina, qq, 163" class="input" />
+          <input type="password" placeholder="密码 (7 ~ 17位, 数字、字母、符号组合" class="input" /> -->
           <input type="text" placeholder="用户名" class="input" />
           <input type="email" placeholder="邮箱" class="input" />
           <input type="password" placeholder="密码" class="input" />
@@ -87,7 +87,7 @@ const register = () => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -105,10 +105,7 @@ const register = () => {
   place-items: center;
   min-height: 500px;
   min-width: 800px;
-  background: linear-gradient(
-    var(--kungalgame-pink-0),
-    var(--kungalgame-blue-0)
-  );
+  background: linear-gradient(@kungalgame-pink-0, @kungalgame-blue-0);
   background-repeat: no-repeat;
   position: relative;
 }
@@ -117,7 +114,7 @@ const register = () => {
   font-weight: 300;
   font-weight: bold;
   margin-bottom: 1.25rem;
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
 }
 
 /* 获取验证码 */
@@ -125,7 +122,7 @@ const register = () => {
 .link {
   text-decoration: none;
   font-size: small;
-  color: var(--kungalgame-blue-4);
+  color: @kungalgame-blue-4;
 }
 .mail-confirm {
   position: absolute;
@@ -133,13 +130,13 @@ const register = () => {
   height: 30px;
   top: 46%;
   right: 12%;
-  border: 1px solid var(--kungalgame-blue-1);
-  background-color: var(--kungalgame-white);
+  border: 1px solid @kungalgame-blue-1;
+  background-color: @kungalgame-white;
   cursor: pointer;
 }
 .mail-confirm:hover {
-  background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-white);
+  background-color: @kungalgame-blue-4;
+  color: @kungalgame-white;
 }
 /* 忘记密码 */
 .link {
@@ -150,25 +147,25 @@ const register = () => {
   position: absolute;
   bottom: 2%;
   font-size: x-small;
-  color: var(--kungalgame-font-color-1);
+  color: @kungalgame-font-color-1;
   text-decoration: none;
 }
 .user-agreement span {
-  color: var(--kungalgame-red-4);
+  color: @kungalgame-red-4;
   font-style: oblique;
 }
 /* 总容器 */
 .container {
   /* 背景图片 */
-  background: url("@/assets/images/bg/bg1.png");
+  background: url('@/assets/images/bg/bg1.png');
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   /* 圆角 */
   border-radius: 5px;
   /* 容器的阴影 */
-  box-shadow: 0 0.9rem 1.7rem var(--kungalgame-blue-0),
-    0 0.7rem 0.7rem var(--kungalgame-blue-0);
+  box-shadow: 0 0.9rem 1.7rem @kungalgame-blue-0,
+    0 0.7rem 0.7rem @kungalgame-blue-0;
   height: 490px;
   max-width: 700px;
   overflow: hidden;
@@ -256,9 +253,9 @@ const register = () => {
   position: absolute;
   bottom: 7%;
   border-radius: 50px;
-  background-color: var(--kungalgame-trans-white-1);
-  border: 1px solid var(--kungalgame-blue-4);
-  color: var(--kungalgame-blue-4);
+  background-color: @kungalgame-trans-white-1;
+  border: 1px solid @kungalgame-blue-4;
+  color: @kungalgame-blue-4;
   cursor: pointer;
   font-size: 0.9em;
   letter-spacing: 0.1rem;
@@ -269,8 +266,8 @@ const register = () => {
   white-space: nowrap;
 }
 .btn:hover {
-  background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-trans-white-1);
+  background-color: @kungalgame-blue-4;
+  color: @kungalgame-trans-white-1;
 }
 /* 交互页面的盒子 */
 .overlay__panel {
@@ -285,19 +282,19 @@ const register = () => {
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
   width: 50%;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: @kungalgame-trans-white-5;
 }
 .overlay__panel .btn {
   /* 红色按钮距离底部的距离 */
   position: absolute;
   bottom: 7%;
-  background-color: var(--kungalgame-red-0);
-  border: 1px solid var(--kungalgame-red-4);
-  color: var(--kungalgame-red-4);
+  background-color: @kungalgame-red-0;
+  border: 1px solid @kungalgame-red-4;
+  color: @kungalgame-red-4;
 }
 .overlay__panel .btn:hover {
-  background-color: var(--kungalgame-red-4);
-  color: var(--kungalgame-trans-white-1);
+  background-color: @kungalgame-red-4;
+  color: @kungalgame-trans-white-1;
 }
 
 .overlay__panel h2 {
@@ -306,7 +303,7 @@ const register = () => {
   color: #333;
 }
 .overlay__panel h2 span {
-  color: var(--kungalgame-red-4);
+  color: @kungalgame-red-4;
   padding: 0 5px;
   font-size: large;
 }
@@ -345,7 +342,7 @@ const register = () => {
 }
 /* 表单的设置 */
 .form {
-  background-color: var(--kungalgame-white);
+  background-color: @kungalgame-white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -358,13 +355,13 @@ const register = () => {
 .input {
   border: none;
   outline: none;
-  border-bottom: 1.5px solid var(--kungalgame-blue-0);
+  border-bottom: 1.5px solid @kungalgame-blue-0;
   padding: 0.9rem 0.9rem;
   margin: 0.5rem 0;
   width: 100%;
 }
 .input:focus {
-  border-bottom: 1.5px solid var(--kungalgame-blue-4);
+  border-bottom: 1.5px solid @kungalgame-blue-4;
   transition: 0.2s linear;
 }
 .copyright {

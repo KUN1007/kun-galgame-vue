@@ -1,8 +1,8 @@
-import { PluginOption, defineConfig } from "vite";
-import path from "path";
-import vue from "@vitejs/plugin-vue";
+import { PluginOption, defineConfig } from 'vite'
+import path, { resolve } from 'path'
+import vue from '@vitejs/plugin-vue'
 // 引入 Rollup Plugin Visualizer 打包可视化工具
-import { visualizer } from "rollup-plugin-visualizer";
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,7 +10,18 @@ export default defineConfig({
   /* src 别名为 @ */
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
-});
+  css: {
+    preprocessorOptions: {
+        less: {
+            javascriptEnabled: true,
+            additionalData: `@import "${resolve(
+                __dirname,
+                "./src/assets/css/color.less"
+            )}";`,
+        },
+    },
+},
+})

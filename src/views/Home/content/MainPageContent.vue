@@ -1,10 +1,6 @@
-<script lang="ts">
-import MainPageAside from "./aside/MainPageAside.vue";
-import MainPageArticle from "./article/MainPageArticle.vue";
-export default {
-  name: "MainPageContent",
-  components: { MainPageAside, MainPageArticle },
-};
+<script setup lang="ts">
+import MainPageAside from './aside/MainPageAside.vue'
+import MainPageArticle from './article/MainPageArticle.vue'
 </script>
 
 <template>
@@ -21,7 +17,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 主体部分配置 */
 .main {
   width: 100%;
@@ -55,7 +51,7 @@ export default {
   align-items: center;
   /* 设置背景毛玻璃效果 */
   backdrop-filter: blur(5px);
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: @kungalgame-trans-white-5;
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;

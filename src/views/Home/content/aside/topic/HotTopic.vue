@@ -1,11 +1,5 @@
-<script lang="ts">
-import { Icon } from "@iconify/vue";
-export default {
-  name: "HotTopic",
-  components: {
-    Icon,
-  },
-};
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -21,7 +15,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -32,7 +26,7 @@ export default {
         </div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -41,7 +35,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -50,7 +44,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -59,7 +53,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -68,7 +62,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -77,7 +71,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -86,7 +80,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -95,7 +89,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -104,7 +98,7 @@ export default {
         <div class="top-topic-title">啊这可海星</div>
         <!-- 热门帖子的热度值 -->
         <div class="top-topic-number">
-            <Icon icon="bi:fire" />
+          <Icon icon="bi:fire" />
           <span>1007</span>
         </div>
       </div>
@@ -112,7 +106,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 侧边栏动态推送帖子的总容器 */
 .top-topic-wrap {
   width: 100%;
@@ -134,7 +128,7 @@ export default {
 .top-topic-title-name {
   /* 设置盒子的 border 在内侧显示 */
   box-sizing: border-box;
-  border: 3px dashed var(--kungalgame-trans-blue-1);
+  border: 3px dashed @kungalgame-trans-blue-1;
   border-bottom: none;
   /* 设置（今日热门话题）居中 */
   display: flex;
@@ -142,14 +136,14 @@ export default {
   align-items: center;
   /* 设置（今日热门话题占整个热门区域的宽度） */
   flex-grow: 1;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   /* 设置页面缩小到最小时该行不换行 */
   overflow: hidden;
   white-space: nowrap;
 }
 /* 展示热门帖子标题的区域 */
 .top-topic-content {
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: @kungalgame-trans-blue-1;
   /* 热门帖子标题区域占整个左侧页面中部的比例 */
   flex-grow: 10;
   /* 热门帖子标题部分为弹性盒 */
@@ -163,16 +157,17 @@ export default {
   justify-content: space-between;
   /* 设置每个帖子高度相等 */
   flex-grow: 1;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   align-items: center;
   cursor: pointer;
 }
 /* 单个热门帖子的 hover */
 .hot-topic:hover {
-  box-shadow: -2px -2px 5px var(--kungalgame-white), 2px 2px 5px var(--kungalgame-gray-3);
+  box-shadow: -2px -2px 5px @kungalgame-white, 2px 2px 5px @kungalgame-gray-3;
 }
 .hot-topic:active {
-  box-shadow: inset 1px 1px 2px var(--kungalgame-gray-3), inset -1px -1px 2px var(--kungalgame-white);
+  box-shadow: inset 1px 1px 2px @kungalgame-gray-3,
+    inset -1px -1px 2px @kungalgame-white;
 }
 /* 单个帖子的标题样式 */
 .top-topic-title {
@@ -197,12 +192,12 @@ export default {
   align-items: center;
 }
 .top-topic-number {
-  color: var(--kungalgame-red-4);
+  color: @kungalgame-red-4;
 }
 .top-topic-number span {
   width: 38px;
   font-size: small;
   margin-left: 5px;
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
 }
 </style>

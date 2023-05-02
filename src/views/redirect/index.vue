@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -25,8 +25,8 @@
   min-width: 700px;
   min-height: 600px;
   background: linear-gradient(
-    var(--kungalgame-trans-pink-1),
-    var(--kungalgame-trans-blue-1)
+    @kungalgame-trans-pink-1,
+    @kungalgame-trans-blue-1
   );
   display: flex;
   flex-direction: column;

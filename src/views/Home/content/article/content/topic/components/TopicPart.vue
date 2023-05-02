@@ -1,11 +1,5 @@
-<script lang="ts">
-import { Icon } from "@iconify/vue";
-export default {
-  name: "TopicPart",
-  components: {
-    Icon,
-  },
-};
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
 </script>
 <template>
   <!-- 帖子信息 -->
@@ -41,7 +35,7 @@ export default {
     </div>
   </div>
 </template>
-<style scoped>
+<style lang="less" scoped>
 /* 帖子信息 */
 .topic-info {
   width: 1px;
@@ -85,7 +79,7 @@ export default {
 }
 /* 帖子标题的字体颜色 */
 .topic-title span {
-  color: var(--kungalgame-font-color-3);
+  color: @kungalgame-font-color-3;
   font-weight: 500;
 }
 /* 帖子点赞数等信息 */
@@ -99,7 +93,7 @@ export default {
 /* 设置点赞、评论、查看字体和位置 */
 .topic-status ul {
   display: flex;
-  color: var(--kungalgame-gray-7);
+  color: @kungalgame-gray-7;
   font-size: smaller;
 }
 /* 点赞、评论、查看之间的距离 */
@@ -112,7 +106,7 @@ export default {
 .topic-post-date {
   width: 45px;
   font-size: x-small;
-  color: var(--kungalgame-gray-4);
+  color: @kungalgame-gray-4;
   /* 居中 */
   display: flex;
   justify-content: center;
@@ -142,6 +136,6 @@ export default {
 /* 发帖预览信息的字体 */
 .topic-introduction-text p {
   font-size: 14px;
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
 }
 </style>

@@ -551,7 +551,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -566,13 +566,13 @@
   display: flex;
   flex-direction: column;
   background-image: url(../img/bg/bg1.png);
-  /* background-image: url(./img/bg/bg2.png); */
+  /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   min-width: 800px;
-  font-family: "adobe-clean", "Source Sans Pro", -apple-system,
-    "BlinkMacSystemFont", "Segoe UI,Roboto", sans-serif;
+  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
+    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 /* 内容区 */
 .content {
@@ -586,10 +586,10 @@
   /* 水平垂直居中 */
   margin: auto;
   display: flex;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: @kungalgame-trans-white-5;
   /* 全局字体颜色 */
-  color: var(--kungalgame-font-color-3);
-  border: 1px solid var(--kungalgame-trans-blue-1);
+  color: @kungalgame-font-color-3;
+  border: 1px solid @kungalgame-trans-blue-1;
   border-radius: 5px;
 }
 /* 侧边的交互栏 */
@@ -597,8 +597,8 @@
   /* 固定宽度 */
   width: 200px;
   height: 100%;
-  background-color: var(--kungalgame-trans-white-5);
-  border: 1px solid var(--kungalgame-trans-blue-4);
+  background-color: @kungalgame-trans-white-5;
+  border: 1px solid @kungalgame-trans-blue-4;
   box-sizing: border-box;
   border-radius: 5px;
 }
@@ -606,8 +606,8 @@
 .aside-container {
   height: 100%;
   background: linear-gradient(
-    var(--kungalgame-trans-blue-1),
-    var(--kungalgame-trans-red-1)
+    @kungalgame-trans-blue-1,
+    @kungalgame-trans-red-1
   );
   display: flex;
   flex-direction: column;
@@ -623,18 +623,18 @@
   justify-content: center;
   align-items: center;
   font-size: 40px;
-  color: var(--kungalgame-blue-3);
+  color: @kungalgame-blue-3;
   font-style: italic;
-  text-shadow: 1px 1px 3px var(--kungalgame-red-4);
+  text-shadow: 1px 1px 3px @kungalgame-red-4;
 }
 /* 侧边搜索框 */
 .nav-search {
-  background-color: var(--kungalgame-trans-blue-2);
+  background-color: @kungalgame-trans-blue-2;
   display: flex;
   box-sizing: border-box;
 }
 .nav-search:hover {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
 }
 /* 搜索框表单 */
 .article-search-form {
@@ -659,11 +659,11 @@
   /* 搜索时输入的字体大小 */
   font-size: 16px;
   border: none;
-  background-color: var(--kungalgame-trans-white-9);
+  background-color: @kungalgame-trans-white-9;
 }
 /* 提示文字“搜索帖子”的文字颜色 */
 .nav-search-input::placeholder {
-  color: var(--kungalgame-font-color-2);
+  color: @kungalgame-font-color-2;
 }
 /* 获取焦点后的框体 */
 .nav-search-input:focus {
@@ -675,7 +675,7 @@
   height: 40px;
   width: 40px;
   flex-shrink: 0;
-  border-left: 1px solid var(--kungalgame-trans-blue-3);
+  border-left: 1px solid @kungalgame-trans-blue-3;
   /* 搜索图标居中 */
   display: flex;
   justify-content: center;
@@ -685,11 +685,11 @@
 }
 /* 搜索按钮的 hover */
 .nav-search-btn:hover {
-  background-color: var(--kungalgame-red-2);
+  background-color: @kungalgame-red-2;
 }
 /* 搜索按钮的 active */
 .nav-search-btn:active {
-  background-color: var(--kungalgame-red-3);
+  background-color: @kungalgame-red-3;
 }
 /* 推荐标签 */
 .recommend {
@@ -704,11 +704,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
+  border-bottom: 1px solid @kungalgame-trans-blue-4;
   cursor: pointer;
 }
 .recommend span:hover {
-  background-color: var(--kungalgame-trans-red-2);
+  background-color: @kungalgame-trans-red-2;
 }
 /* 热门标签池 */
 .tags-container {
@@ -735,16 +735,16 @@
 }
 /* 标签的图标字体 */
 .tags > li i {
-  color: var(--kungalgame-red-3);
+  color: @kungalgame-red-3;
   margin-right: 5px;
 }
 /* 标签的文字部分 */
 .tags > li > span {
   cursor: pointer;
-  border-bottom: 2px solid var(--kungalgame-trans-white-8);
+  border-bottom: 2px solid @kungalgame-trans-white-8;
 }
 .tags > li > span:hover {
-  border-bottom: 2px solid var(--kungalgame-blue-4);
+  border-bottom: 2px solid @kungalgame-blue-4;
 }
 /* 版权 */
 .copyright {
@@ -788,11 +788,11 @@
 }
 /* 单个帖子 */
 .topic {
-  border: 1px solid var(--kungalgame-trans-blue-4);
+  border: 1px solid @kungalgame-trans-blue-4;
   border-radius: 5px;
   /* 帖子内容距离边的距离 */
   padding: 0 10px;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: @kungalgame-trans-white-2;
   /* 相对于底部状态的定位 */
   position: relative;
   display: inline-block;
@@ -802,9 +802,9 @@
 }
 /* 单个帖子 hover */
 .topic:hover {
-  box-shadow: var(--shadow);
+  box-shadow: @shadow;
   /* 放大、旋转 */
-  transform: scale(1.2) rotate(1deg);
+  transform: scale(1.2 rotate(1deg));
   transition: 0.2s;
   z-index: 7;
 }
@@ -820,7 +820,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--kungalgame-blue-4));
+  background: linear-gradient(90deg, transparent, @kungalgame-blue-4);
   animation: animate1 1s linear infinite;
 }
 @keyframes animate1 {
@@ -838,7 +838,7 @@
   right: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, var(--kungalgame-blue-4));
+  background: linear-gradient(180deg, transparent, @kungalgame-blue-4);
   animation: animate2 1s linear infinite;
   animation-delay: 0.25s;
 }
@@ -856,7 +856,7 @@
   bottom: 0;
   right: 0;
   width: 100%;
-  background: linear-gradient(270deg, transparent, var(--kungalgame-blue-4));
+  background: linear-gradient(270deg, transparent, @kungalgame-blue-4);
   animation: animate3 1s linear infinite;
   animation-delay: 0.5s;
 }
@@ -877,7 +877,7 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, var(--kungalgame-blue-4));
+  background: linear-gradient(360deg, transparent, @kungalgame-blue-4);
   animation: animate4 1s linear infinite;
   animation-delay: 0.75s;
 }
@@ -940,7 +940,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: var(--kungalgame-trans-white-9);
+  background-color: @kungalgame-trans-white-9;
   /* 起初看不见文字 */
   opacity: 0;
   cursor: pointer;
@@ -950,15 +950,15 @@
   margin-bottom: 3px;
 }
 .topic-tags > span > i {
-  color: var(--kungalgame-red-4);
+  color: @kungalgame-red-4;
   margin-right: 5px;
 }
 /* 单个帖子 hover 时显示帖子标签 */
 .topic:hover .topic-tags {
-  background-color: var(--kungalgame-trans-blue-0);
+  background-color: @kungalgame-trans-blue-0;
   backdrop-filter: blur(5px);
   /* 放大、旋转回正 */
-  transform: scale(1.1) rotate(-1deg);
+  transform: scale(1.1 rotate(-1deg));
   /* 完全不透明，可视 */
   opacity: 1;
   transition: 0.2s;
@@ -976,15 +976,15 @@
   height: 30px;
   width: 30px;
   margin-right: 10px;
-  border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid @kungalgame-blue-4;
+  background-color: @kungalgame-trans-blue-0;
 }
 .page-switch > button:hover {
-  background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-white);
+  background-color: @kungalgame-blue-4;
+  color: @kungalgame-white;
 }
 .page-switch > button:active {
-  background-color: var(--kungalgame-blue-3);
+  background-color: @kungalgame-blue-3;
 }
 /* 上一页和下一页两个按钮更宽 */
 .page-switch > button:first-child {
