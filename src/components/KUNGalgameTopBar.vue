@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { type Ref, ref } from 'vue'
+import { type Ref, ref, handleError } from 'vue'
 import 'animate.css'
+interface topBar {
+  name:string,
+  router:string
+}
 const topBarItem: string[] = [
   '所有帖子',
   '发布帖子',
@@ -9,7 +13,7 @@ const topBarItem: string[] = [
   '返回主页',
 ]
 // 初始不展示用户头像点击信息
-let isShowInfo = false
+const isShowInfo = ref(false)
 
 // 初始进入页面 header 没有附加样式
 let topicStyle = {}
@@ -38,9 +42,6 @@ let navItemNum = topBarItem.length
 const navItemNumString = navItemNum + '00px'
 
 // 用户点击头像时的操作
-const handelAvatar = () => {
-  isShowInfo != isShowInfo
-}
 </script>
 
 <template>
@@ -62,7 +63,11 @@ const handelAvatar = () => {
       </div>
     </div>
     <div class="kungalgamer-info">
-      <img src="../assets/images/KUN.jpg" alt="KUN" @click="handelAvatar" />
+      <img
+        src="../assets/images/KUN.jpg"
+        alt="KUN"
+        @click="isShowInfo = !isShowInfo"
+      />
       <div class="triangle" v-if="isShowInfo"></div>
       <div class="kungalgamer" v-if="isShowInfo">
         <div>用户主页</div>

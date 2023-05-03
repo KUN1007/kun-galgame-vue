@@ -66,6 +66,16 @@ export const constantRoutes: RouteRecordRaw[] = [
       transition: 'animate__backInUp',
     },
   },
+  // KUNGalgame 关于我们页
+  {
+    name: 'KUNGalgame',
+    path: '/kungalgame',
+    component: () => import('@/views/kungalgame/KUNGalgame.vue'),
+    meta: {
+      title: '帖子池',
+      transition: 'animate__backInUp',
+    },
+  },
 ]
 
 const router = createRouter({
