@@ -1,30 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+</script>
 
 <template>
   <div class="root">
     <!-- 头部 -->
-    <div class="header">
-      <!-- 顶部左侧交互栏 -->
-      <div class="nav-top">
-        <div class="kungal-info">
-          <img src="../img/favicon.png" alt="KUNgal" />
-          <span>KUNGalgame</span>
-        </div>
-        <div class="top-bar">
-          <ul>
-            <li>所有帖子</li>
-            <li>发布帖子</li>
-            <li>技术交流</li>
-            <li>数据统计</li>
-            <div class="top-bar-box"></div>
-          </ul>
-        </div>
-      </div>
-      <div class="kungalgamer-info">
-        <img src="../img/KUN.jpg" alt="KUN" />
-        <span>KUN</span>
-      </div>
-    </div>
+    <KUNGalgameTopBar />
     <!-- 内容区 -->
     <div class="content">
       <!-- 侧边的交互栏 -->
@@ -565,7 +546,7 @@
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-image: url(../img/bg/bg1.png);
+  background-image: url(@/assets/images/bg/bg1.png);
   /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
@@ -589,7 +570,7 @@
   background-color: @kungalgame-trans-white-5;
   /* 全局字体颜色 */
   color: @kungalgame-font-color-3;
-  border: 1px solid @kungalgame-trans-blue-1;
+  border: 1px solid @kungalgame-trans-blue-2;
   border-radius: 5px;
 }
 /* 侧边的交互栏 */
@@ -804,7 +785,7 @@
 .topic:hover {
   box-shadow: @shadow;
   /* 放大、旋转 */
-  transform: scale(1.2 rotate(1deg));
+  transform: scale(1.2) rotate(1deg);
   transition: 0.2s;
   z-index: 7;
 }
@@ -958,7 +939,7 @@
   background-color: @kungalgame-trans-blue-0;
   backdrop-filter: blur(5px);
   /* 放大、旋转回正 */
-  transform: scale(1.1 rotate(-1deg));
+  transform: scale(1.1) rotate(-1deg);
   /* 完全不透明，可视 */
   opacity: 1;
   transition: 0.2s;

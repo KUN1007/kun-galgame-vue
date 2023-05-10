@@ -1,35 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+
+interface asideBar {
+  index: number
+  name: string
+  router: string
+}
+
+const asideBarItem: asideBar[] = [
+  { index: 1, name: '隐私政策', router: '/privacy' },
+  { index: 2, name: '执行条例', router: '/regulations' },
+  { index: 3, name: '更新日志', router: '/update-log' },
+  { index: 4, name: '收支公示', router: '/balance' },
+  { index: 5, name: '不萌记录', router: '/unmoe' },
+  { index: 6, name: '加入我们', router: '/contacts' },
+  { index: 7, name: '感谢名单', router: '/thanks-list' },
+  { index: 8, name: '返回主页', router: '/' },
+]
+</script>
 
 <template>
   <div class="root">
     <!-- 头部 -->
-    <div class="header">
-      <!-- 顶部左侧交互栏 -->
-      <div class="nav-top">
-        <div class="kungal-info">
-          <img src="../img/favicon.png" alt="KUNgal" />
-          <span>KUNGalgame</span>
-        </div>
-        <div class="top-bar">
-          <ul>
-            <li>所有帖子</li>
-            <li>发布帖子</li>
-            <li>技术交流</li>
-            <li>数据统计</li>
-            <div class="top-bar-box"></div>
-          </ul>
-        </div>
-      </div>
-      <!-- 顶部全局搜索框 -->
-      <!--           <div class="top-search-bar">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div> -->
-      <!-- 用户个人信息 -->
-      <div class="kungalgamer-info">
-        <img src="../img/KUN.jpg" alt="KUN" />
-        <span>KUN</span>
-      </div>
-    </div>
+    <KUNGalgameTopBar />
     <!-- 内容区容器 -->
     <div class="content-container">
       <!-- 内容区 -->
@@ -41,16 +34,11 @@
             <li>网站简介</li>
             <li>运营理念</li>
             <li>论坛规定</li>
-            <li class="skip">隐私政策</li>
-            <li class="skip">执行条例</li>
-            <li class="skip">更新日志</li>
-            <li class="skip">收支公示</li>
-            <li class="skip">不萌记录</li>
-            <li class="skip">联系我们</li>
-            <li class="skip">执行条例</li>
-            <li class="skip">感谢名单</li>
-            <li class="skip">加入我们</li>
-            <li class="skip">返回主页</li>
+            <li class="skip" v-for="kun in asideBarItem" :key="kun.index">
+              <router-link style="color: #218bff" :to="{ path: kun.router }">{{
+                kun.name
+              }}</router-link>
+            </li>
           </ul>
         </div>
         <!-- 文章容器 -->
@@ -58,7 +46,7 @@
           <h1>关于我们</h1>
           <br />
           <br />
-          <h2 class="introduction">网站简介</h2>
+          <h2 id="introduction">网站简介</h2>
           <p>
             KUNGalgame 是由 <span class="skip">KUN（鲲）</span>个人发起的一个
             galgame 论坛建设项目，目前正在<span class="skip">开发阶段</span>。
@@ -139,7 +127,7 @@
           </p>
           <br />
           <br />
-          <h2 class="principle">运营理念</h2>
+          <h2 id="principle">运营理念</h2>
           <br />
           <h3>1. 世界上最萌的 galgame 论坛</h3>
           <p>
@@ -180,7 +168,7 @@
             字面意思，任何人永远不会为网站的任何虚拟货币（萌萌点）花钱，虚拟货币的数量取决于别人对你的赞赏，我们认为运营不起一个网站只能说明我们的经济有问题，直接关站即可，当然，我们提供
             <span class="skip">赞助渠道</span>
           </p>
-          <h2 class="regulations">论坛规定</h2>
+          <h2 id="stipulate">论坛规定</h2>
           <p>
             规定？不，我们<strong>没有规定</strong>，一切的规定取决于所有人共同的看法
           </p>
@@ -227,7 +215,7 @@
 }
 .root {
   height: 100vh;
-  background-image: url(../img/bg/bg1.png);
+  background-image: url(@/assets/images/bg/bg1.png);
   /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
@@ -284,7 +272,7 @@
   align-items: center;
 }
 /* 侧边的单个项目 */
-.aside > ul li {
+.aside > ul > li {
   width: 100%;
   height: 40px;
   display: flex;
@@ -293,7 +281,7 @@
   cursor: pointer;
 }
 /* 单个项目的 hover */
-.aside > ul li:hover {
+.aside > ul > li:hover {
   background-color: @kungalgame-trans-blue-2;
 }
 /* 文章区距离侧边的距离 */
@@ -332,9 +320,17 @@ p {
   text-indent: 3em;
   margin: 5px;
 }
+a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* 被划出来的链接字体 */
 .skip {
-  border-bottom: 1px solid @kungalgame-blue-4;
+  border-bottom: 1.5px solid @kungalgame-blue-4;
   cursor: pointer;
   color: @kungalgame-blue-4;
 }
