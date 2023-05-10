@@ -1,4 +1,3 @@
-import LoginVue from '@/views/login/Login.vue'
 import {
   type RouteRecordRaw,
   createRouter,
