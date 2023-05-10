@@ -1,36 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+</script>
 
 <template>
   <div class="content-wrapper">
     <div class="visual-wrapper">
       <!-- 头部 -->
-      <div class="header">
-        <!-- 顶部左侧交互栏 -->
-        <div class="nav-top">
-          <div class="kungal-info">
-            <a href="#"><img src="../img/favicon.png" alt="KUNgal" /></a>
-            <a href="#"><span>KUNgal</span></a>
-          </div>
-          <div class="top-bar">
-            <ul>
-              <li>回到主页</li>
-              <li>帖子发布</li>
-              <li>技术交流</li>
-              <li>数据统计</li>
-              <div class="top-bar-box"></div>
-            </ul>
-          </div>
-        </div>
-        <!-- 顶部全局搜索框 -->
-        <!--           <div class="top-search-bar">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div> -->
-        <!-- 用户个人信息 -->
-        <div class="kungalgamer-info">
-          <a href="#"><img src="../img/KUN.jpg" alt="KUN" /></a>
-          <span>KUN</span>
-        </div>
-      </div>
+      <KUNGalgameTopBar />
       <!-- 帖子池容器 -->
       <div class="pool-container">
         <!-- 帖子池顶部交互栏 -->
@@ -344,6 +320,7 @@
       <div class="kungalgame-right-bar">
         <!-- 右侧部分 -->
         <div class="kungalgame-right-bar-right">
+          <div class="triangle"></div>
           <!-- 对帖子进行排序 -->
           <div class="sort">
             <div>排序</div>
@@ -383,7 +360,7 @@
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-image: url(../img/bg/bg6.png);
+  background-image: url(@/assets/images/bg/bg1.png);
   /* background-image: url(./img/bg-dark.png; */
   background-repeat: no-repeat;
   background-position: center;
@@ -562,6 +539,15 @@
 /* 右侧部分 */
 .kungalgame-right-bar-right {
   position: relative;
+}
+.triangle {
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: @kungalgame-trans-white-2;
+  top: 50px;
+  right: 14px;
 }
 /* 排序 */
 .sort,
