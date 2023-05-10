@@ -2,15 +2,16 @@
 import { type Ref, ref, handleError } from 'vue'
 import 'animate.css'
 interface topBar {
+  index: number
   name: string
   router: string
 }
-const topBarItem: string[] = [
-  '所有帖子',
-  '发布帖子',
-  '技术交流',
-  '关于我们',
-  '返回主页',
+const topBarItem: topBar[] = [
+  { index: 1, name: '所有帖子', router: '/pool' },
+  { index: 2, name: '发布帖子', router: 'edit' },
+  { index: 3, name: '技术交流', router: 'technology' },
+  { index: 4, name: '关于我们', router: 'kungalgame' },
+  { index: 5, name: '返回主页', router: '/' },
 ]
 // 初始不展示用户头像点击信息
 const isShowInfo = ref(false)
@@ -56,7 +57,9 @@ const navItemNumString = navItemNum + '00px'
       <div class="top-bar">
         <ul>
           <!-- 顶部单个板块 -->
-          <li v-for="(kun, index) in topBarItem" :key="index">{{ kun }}</li>
+          <li v-for="kun in topBarItem" :key="kun.index">
+            <router-link :to="{ path: kun.router }">{{ kun.name }}</router-link>
+          </li>
           <!-- 顶部板块下部的 hover 效果 -->
           <div class="top-bar-box"></div>
         </ul>
@@ -134,8 +137,14 @@ const navItemNumString = navItemNum + '00px'
       transition: 0.5s;
       width: calc(100% / @navNumber);
     }
-    li {
+    a {
+      // 转变 a 标签为块级元素
+      display: block;
       color: @kungalgame-blue-5;
+      width: 100%;
+      height: 100%;
+    }
+    li {
       cursor: pointer;
       display: block;
       font-weight: bold;
