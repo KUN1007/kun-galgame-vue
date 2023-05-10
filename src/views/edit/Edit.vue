@@ -1,66 +1,12 @@
 <script setup lang="ts">
-import '@wangeditor/editor/dist/css/style.css' // 引入 css
-
-import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-
-// 编辑器实例，必须用 shallowRef
-const editorRef = shallowRef()
-
-// 编辑器的模式
-const mode = 'default'
-
-// 内容 HTML
-const valueHtml = ref('<p>hello</p>')
-
-// 模拟 ajax 异步获取内容
-onMounted(() => {
-  setTimeout(() => {
-    valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>'
-  }, 1500)
-})
-
-const toolbarConfig = {}
-const editorConfig = { placeholder: '请输入内容...' }
-
-// 组件销毁时，也及时销毁编辑器
-onBeforeUnmount(() => {
-  const editor = editorRef.value
-  if (editor == null) return
-  editor.destroy()
-})
-
-// TODO:
-const handleCreated = (editor: any) => {
-  editorRef.value = editor // 记录 editor 实例，重要！
-}
+import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import WangEditor from '@/components/WangEditor.vue'
 </script>
 
 <template>
   <div class="root">
     <!-- 头部 -->
-    <div class="header">
-      <!-- 顶部左侧交互栏 -->
-      <div class="nav-top">
-        <div class="kungal-info">
-          <img src="../img/favicon.png" alt="KUNgal" />
-          <span>KUNGalgame</span>
-        </div>
-        <div class="top-bar">
-          <ul>
-            <li>所有帖子</li>
-            <li>发布帖子</li>
-            <li>技术交流</li>
-            <li>数据统计</li>
-            <div class="top-bar-box"></div>
-          </ul>
-        </div>
-      </div>
-      <div class="kungalgamer-info">
-        <img src="../img/KUN.jpg" alt="KUN" />
-        <span>KUN</span>
-      </div>
-    </div>
+    <KUNGalgameTopBar />
     <!-- 内容区容器 -->
     <div class="container">
       <!-- 内容区容器 -->
@@ -73,21 +19,7 @@ const handleCreated = (editor: any) => {
           </div>
         </div>
         <!-- 编辑器 -->
-        <div style="border: 1px solid #ccc">
-          <Toolbar
-            style="border-bottom: 1px solid #ccc"
-            :editor="editorRef"
-            :defaultConfig="toolbarConfig"
-            :mode="mode"
-          />
-          <Editor
-            style="height: 500px; overflow-y: hidden"
-            v-model="valueHtml"
-            :defaultConfig="editorConfig"
-            :mode="mode"
-            @onCreated="handleCreated"
-          />
-        </div>
+        <WangEditor />
       </div>
 
       <!-- 内容区的底部 -->
@@ -97,12 +29,12 @@ const handleCreated = (editor: any) => {
           <!-- 标签输入框 -->
           <input
             type="text"
-            placeholder="请输入帖子的关键词（至少选择一个、最多 7 个）, 输入文字按下 ' Enter ' 创建关键词"
+            placeholder="请输入帖子的关键词（单个关键词 10 个字符以内，至少选择一个、最多 7 个）, 输入文字按下 ' Enter ' 创建关键词"
           />
+          <!-- 标签的提示词 -->
+          <div class="tags-info">热门关键词（点击选择）:</div>
           <!-- 标签容器 -->
           <div class="tags">
-            <!-- 标签的提示词 -->
-            <div class="tags-info">热门关键词（点击选择）:</div>
             <span>啊这可海星</span>
             <span>啊这可海星</span>
             <span>啊这可海星</span>
@@ -129,6 +61,8 @@ const handleCreated = (editor: any) => {
         <div class="btn-container">
           <!-- 确认按钮 -->
           <button class="confirm-btn">确认发布</button>
+          <!-- 预览编辑 -->
+          <button class="preview-btn">预览结果</button>
           <!-- 保存按钮 -->
           <button class="save-btn">保存草稿</button>
         </div>
@@ -161,35 +95,18 @@ body::-webkit-scrollbar {
 .root {
   height: 100vh;
   min-height: 1000px;
-  min-width: 800px;
+  min-width: 900px;
   display: flex;
   flex-direction: column;
-  background-image: url(../img/bg/bg1.png);
+  background-image: url(@/assets/images/bg/bg1.png);
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
 }
-/* 编辑器的样式 */
-#editor—wrapper {
-  /* 编辑器的 border */
-  border: 1px solid @kungalgame-blue-4;
-  box-sizing: border-box;
-  /* 编辑器的宽度 */
-  width: 75vw;
-  margin: 0 auto;
-  z-index: 100; /* 按需定义 */
-}
-#toolbar-container {
-  border-bottom: 1px solid @kungalgame-blue-4;
-}
-/* 编辑器编辑部分 */
-#editor-container {
-  height: 427px;
-}
 /* 内容部分的总容器 */
 .container {
-  width: 77vw;
+  width: 80%;
   margin: auto;
   /* 距离顶部 header 的距离 */
   margin-top: 7px;
@@ -209,7 +126,7 @@ body::-webkit-scrollbar {
 }
 /* 帖子的发布标题 */
 .topic-title {
-  width: 75vw;
+  width: 97%;
 }
 /* 帖子标题的输入框 */
 .topic-title input {
@@ -230,17 +147,15 @@ body::-webkit-scrollbar {
 }
 /* 内容区的底部样式 */
 .content-footer {
-  /* 固定高度 */
-  height: 250px;
   /* 距离内容区的距离 */
   margin-top: 17px;
-  padding: 0 1vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 /* 标签的总容器 */
 .tags-container {
-  flex-grow: 1;
+  width: 97%;
 }
 /* 标签输入框 */
 .tags-container input {
@@ -256,16 +171,19 @@ body::-webkit-scrollbar {
 .tags-container input:focus {
   box-shadow: 0px 0px 3px @kungalgame-blue-4;
 }
+.tags-info {
+  margin: 10px 0;
+}
 /* 单个标签容器 */
 .tags {
-  margin-top: 17px;
-}
-/* 标签的提示词 */
-.tags div {
-  margin-bottom: 7px;
+  display: flex;
+  flex-wrap: wrap;
 }
 /* 单个标签的样式 */
 .tags > span {
+  margin: 5px;
+  display: block;
+  white-space: nowrap;
   font-size: 14px;
   padding: 3px;
   background-color: @kungalgame-trans-blue-1;
@@ -277,14 +195,15 @@ body::-webkit-scrollbar {
 /* 话题分类的容器 */
 .topic-group {
   /* 相对于标签容器的占比 */
-  flex-grow: 1;
+  width: 97%;
+  margin: 10px 0;
 }
 /* 分类容器的按钮集合 */
 .group-btn {
   height: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin: 20px 0;
 }
 /* 单个按钮的样式 */
 .group-btn > button {
@@ -298,12 +217,12 @@ body::-webkit-scrollbar {
 }
 /* 按钮的容器 */
 .btn-container {
-  flex-grow: 1;
+  width: 97%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* 距离最底端的距离 */
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 /* 单个按钮的样式 */
 .btn-container button {
@@ -326,9 +245,23 @@ body::-webkit-scrollbar {
   transition: 0.1s;
 }
 .confirm-btn:active {
-  background-color: @kungalgame-red-4;
+  background-color: @kungalgame-blue-2;
+  transform: scale(0.8);
+}
+/* 预览按钮的样式 */
+.preview-btn {
+  color: @kungalgame-red-4;
+  background-color: @kungalgame-trans-red-1;
   border: 1px solid @kungalgame-red-4;
-  font-size: 17px;
+}
+.preview-btn:hover {
+  color: @kungalgame-trans-white-1;
+  background-color: @kungalgame-red-4;
+  transition: 0.1s;
+}
+.preview-btn:active {
+  background-color: @kungalgame-red-2;
+  transform: scale(0.8);
 }
 /* 保存按钮的样式 */
 .save-btn {
@@ -342,8 +275,8 @@ body::-webkit-scrollbar {
   transition: 0.1s;
 }
 .save-btn:active {
-  background-color: @kungalgame-trans-orange-1;
-  color: @kungalgame-orange-4;
+  background-color: @kungalgame-orange-2;
+  transform: scale(0.8);
 }
 /* 版权 */
 .copyright {
