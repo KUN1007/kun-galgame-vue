@@ -50,7 +50,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     name: 'Technology',
     path: '/technology',
-    component: () => import('@/views/login/Login.vue'),
+    component: () => import('@/views/technology/Technology.vue'),
     meta: {
       title: '技术交流',
       transition: 'animate__backInUp',
@@ -60,7 +60,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     name: 'Pool',
     path: '/pool',
-    component: () => import('@/views/login/Login.vue'),
+    component: () => import('@/views/pool/Pool.vue'),
     meta: {
       title: '帖子池',
       transition: 'animate__backInUp',
@@ -73,6 +73,156 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/kungalgame/KUNGalgame.vue'),
     meta: {
       title: '帖子池',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 403
+  {
+    name: '403',
+    path: '/403',
+    component: () => import('@/views/403/403.vue'),
+    meta: {
+      title: '禁止访问',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 404
+  {
+    name: '404',
+    path: '/404',
+    component: () => import('@/views/404/404.vue'),
+    meta: {
+      title: '错误',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 收支公示
+  {
+    name: 'Balance',
+    path: '/balance',
+    component: () => import('@/views/balance/Balance.vue'),
+    meta: {
+      title: '收支公示',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 联系我们
+  {
+    name: 'Contacts',
+    path: '/contacts',
+    component: () => import('@/views/contacts/Contacts.vue'),
+    meta: {
+      title: '联系我们',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 捐助我们
+  {
+    name: 'Donate',
+    path: '/donate',
+    component: () => import('@/views/donate/Donate.vue'),
+    meta: {
+      title: '捐助我们',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 编辑页面
+  {
+    name: 'Edit',
+    path: '/edit',
+    component: () => import('@/views/edit/Edit.vue'),
+    meta: {
+      title: '编辑',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame  用户协议
+  {
+    name: 'Licence',
+    path: '/kungalgame',
+    component: () => import('@/views/licence/Licence.vue'),
+    meta: {
+      title: '用户协议',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 隐私政策
+  {
+    name: 'Privacy',
+    path: '/privacy',
+    component: () => import('@/views/privacy/Privacy.vue'),
+    meta: {
+      title: '隐私政策',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 排行榜
+  {
+    name: 'Rank',
+    path: '/rank',
+    component: () => import('@/views/rank/Rank.vue'),
+    meta: {
+      title: '排行榜',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 重定向页面
+  {
+    name: 'Redirect',
+    path: '/redirect',
+    component: () => import('@/views/redirect/Redirect.vue'),
+    meta: {
+      title: '帖子池',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 执行条例
+  {
+    name: 'Regulations',
+    path: '/regulations',
+    component: () => import('@/views/regulations/Regulations.vue'),
+    meta: {
+      title: '执行条例（试行）',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 感谢名单
+  {
+    name: 'ThanksList',
+    path: '/thanks-list',
+    component: () => import('@/views/thanks-list/ThanksList.vue'),
+    meta: {
+      title: '感谢名单',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 不萌萌页
+  {
+    name: 'Unmoe',
+    path: '/unmoe',
+    component: () => import('@/views/unmoe/Unmoe.vue'),
+    meta: {
+      title: '不萌萌',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 更新日志页
+  {
+    name: 'UpdateLog',
+    path: '/update-log',
+    component: () => import('@/views/update-log/UpdateLog.vue'),
+    meta: {
+      title: '更新日志',
+      transition: 'animate__backInUp',
+    },
+  },
+  // KUNGalgame 用户页
+  {
+    name: 'KUNGalgamer',
+    path: '/kungalgamer',
+    component: () => import('@/views/kungalgamer/KUNGalgamer.vue'),
+    meta: {
+      title: '用户页',
       transition: 'animate__backInUp',
     },
   },

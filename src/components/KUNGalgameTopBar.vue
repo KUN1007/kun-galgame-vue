@@ -2,8 +2,8 @@
 import { type Ref, ref, handleError } from 'vue'
 import 'animate.css'
 interface topBar {
-  name:string,
-  router:string
+  name: string
+  router: string
 }
 const topBarItem: string[] = [
   '所有帖子',
@@ -197,11 +197,11 @@ const navItemNumString = navItemNum + '00px'
   border-color: transparent;
   border-bottom-color: @kungalgame-trans-white-2;
   top: 50px;
-  right: 126px;
+  right: 124px;
 }
 .kungalgamer {
   top: 70px;
-  right: 96px;
+  right: 95px;
   position: absolute;
   background-color: @kungalgame-trans-white-2;
   box-shadow: @shadow;
