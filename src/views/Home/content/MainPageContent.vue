@@ -36,7 +36,7 @@ import MainPageArticle from './article/MainPageArticle.vue'
 }
 /* 可视内容部分宽度 */
 .content-container {
-  width: 61.8%;
+  width: 80%;
   /* 可视页面的最小宽度 */
   min-width: 700px;
   /* 盒子边线在内部，页面缩小到最小时右侧不留白 */

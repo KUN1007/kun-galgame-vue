@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { type Ref, ref, handleError } from 'vue'
+import KUNGalgameSettingsPanel from './KUNGalgameSettingPanel.vue'
+import { Icon } from '@iconify/vue'
+import { onBeforeMount, ref } from 'vue'
 import 'animate.css'
 interface topBar {
   index: number
@@ -43,6 +45,10 @@ let navItemNum = topBarItem.length
 const navItemNumString = navItemNum + '00px'
 
 // 用户点击头像时的操作
+
+// 用户点击网站设置时的操作
+const handleSittingsClick = () => {}
+onBeforeMount(() => {})
 </script>
 
 <template>
@@ -66,6 +72,7 @@ const navItemNumString = navItemNum + '00px'
       </div>
     </div>
     <div class="kungalgamer-info">
+      <span @click="handleSittingsClick"><Icon icon="uiw:setting-o" /></span>
       <img
         src="../assets/images/KUN.jpg"
         alt="KUN"
@@ -76,9 +83,9 @@ const navItemNumString = navItemNum + '00px'
         <div>用户主页</div>
         <div>更改头像</div>
       </div>
-      <span>KUN</span>
     </div>
   </div>
+  <KUNGalgameSettingsPanel />
 </template>
 
 <style lang="less" scoped>
@@ -94,6 +101,8 @@ const navItemNumString = navItemNum + '00px'
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* 相对于设置面板定位 */
+  position: relative;
   z-index: 1007;
 }
 .nav-top {
@@ -192,11 +201,13 @@ const navItemNumString = navItemNum + '00px'
     border-radius: 50%;
     height: 40px;
     position: relative;
+    margin-right: 50px;
   }
   > span {
     color: @kungalgame-font-color-2;
-    margin-left: 30px;
-    padding-right: 50px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-right: 30px;
   }
 }
 .triangle {
@@ -220,6 +231,12 @@ const navItemNumString = navItemNum + '00px'
     &:hover {
       background-color: @kungalgame-trans-red-3;
     }
+  }
+}
+
+@media (max-width: 1000px) {
+  span {
+    display: none;
   }
 }
 </style>
