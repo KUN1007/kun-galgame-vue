@@ -229,7 +229,7 @@ const asideBarItem: asideBar[] = [
   backdrop-filter: blur(5px);
   border-radius: 7px;
   /* 固定高度 */
-  height: 2500px;
+  height: 2600px;
   width: 90%;
   /* 居中 */
   margin: 0 auto;
