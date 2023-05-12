@@ -43,6 +43,9 @@ if (isTopicPage) {
 let navItemNum = topBarItem.length
 const navItemNumString = navItemNum + '00px'
 
+// 用户点击设置按钮时的操作
+const isShowPanel = ref(true)
+
 // 用户点击头像时的操作
 const handleClickAvatar = () => {
   // isShowInfo.value = !isShowInfo.value
@@ -50,7 +53,9 @@ const handleClickAvatar = () => {
 }
 
 // 用户点击网站设置时的操作
-const handleSittingsClick = () => {}
+const handleSittingsClick = () => {
+  isShowPanel.value = !isShowPanel.value
+}
 onBeforeMount(() => {})
 </script>
 
@@ -88,10 +93,19 @@ onBeforeMount(() => {})
       </div>
     </div>
   </div>
-  <KUNGalgameSettingsPanel />
+  <transition name="kungalgame-panel">
+    <KUNGalgameSettingsPanel v-if="isShowPanel" />
+  </transition>
 </template>
 
 <style lang="less" scoped>
+.kungalgame-panel-enter-active,
+.kungalgame-panel-leave-active {
+  transition: right 0.5s;
+}
+.kungalgame-panel-enter, .kungalgame-panel-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  right: -300px;
+}
 /* 头部样式 */
 .header {
   /* 头部高度 */
