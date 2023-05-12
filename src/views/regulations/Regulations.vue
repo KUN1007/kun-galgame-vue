@@ -102,7 +102,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-image: url(../img/bg/bg1.png);
+  background-image: url('@/assets/images/bg/bg6.png');
   /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
@@ -114,8 +114,6 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   /* 居中 */
   margin: 0 auto;
   padding: 10px;
-  /* 距离顶部固定交互栏的距离 */
-  margin-top: 17px;
   /* 固定宽高 */
   width: 700px;
   height: 1300px;

@@ -28,15 +28,6 @@
 </template>
 
 <style lang="less" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 /* 根容器 */
 .root {
   height: 100vh;

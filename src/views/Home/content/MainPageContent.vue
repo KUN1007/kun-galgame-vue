@@ -43,8 +43,6 @@ import MainPageArticle from './article/MainPageArticle.vue'
   box-sizing: border-box;
   height: 100%;
   margin: 0 auto;
-  /* 设置可视内容区不覆盖顶部 shadow */
-  margin-top: 5px;
   /* 可视内容区为弹性盒 */
   display: flex;
   /* 可视内容区居中 */

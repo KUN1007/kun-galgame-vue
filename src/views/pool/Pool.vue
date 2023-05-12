@@ -347,15 +347,6 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 </template>
 
 <style lang="less" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .visual-wrapper {
   height: 1500px;
   display: flex;
@@ -390,7 +381,6 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   backdrop-filter: blur(5px);
   background-color: @kungalgame-trans-white-5;
   border-radius: 7px;
-  margin-top: 7px;
 }
 /* 帖子池顶部交互栏 */
 .pool-nav-bar {
