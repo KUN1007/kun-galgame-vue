@@ -565,7 +565,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   /* 最小宽度 */
   min-width: 700px;
   /* 水平垂直居中 */
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   background-color: @kungalgame-trans-white-5;
   /* 全局字体颜色 */
@@ -787,13 +787,13 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   /* 放大、旋转 */
   transform: scale(1.2) rotate(1deg);
   transition: 0.2s;
-  z-index: 7;
+  z-index: 1009;
 }
 /* 帖子边的光效 */
 .topic:hover > span {
   position: absolute;
   display: block;
-  z-index: 7;
+  z-index: 1009;
 }
 .topic:hover > span:nth-child(1) {
   filter: hue-rotate(0deg);

@@ -103,13 +103,13 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url(../img/bg/bg6.png);
+  background-image: url('@/assets/images/bg/bg6.png');
   /* background-image: url(./img/bg/bg2.png); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   min-width: 1000px;
-  min-height: 1300px;
+  min-height: 1400px;
   font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
     'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
@@ -121,13 +121,13 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   margin: auto;
   position: relative;
   border-radius: 7px;
-  box-shadow: @kungalgame-shadow-0;
+  box-shadow: @shadow;
   /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
   color: @kungalgame-font-color-3;
-  background-color: @kungalgame-trans-blue-0;
+  background-color: @kungalgame-trans-white-5;
   backdrop-filter: blur(17px);
   padding: 20px;
   box-sizing: border-box;

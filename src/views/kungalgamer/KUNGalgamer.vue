@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+</script>
 
 <template>
   <div class="root">
+    <KUNGalgameTopBar />
     <!-- 信息区域容器 -->
     <div class="container">
       <!-- 页面头部 -->
@@ -47,18 +50,6 @@
 </template>
 
 <style lang="less" scoped>
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style: none;
-}
-input:focus {
-  outline: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
   height: 100vh;
   width: 100vw;
@@ -66,7 +57,7 @@ input:focus {
   min-height: 800px;
   display: flex;
   flex-direction: column;
-  background-image: url(../img/bg/bg1.png);
+  background-image: url('@/assets/images/bg/bg3.png');
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;

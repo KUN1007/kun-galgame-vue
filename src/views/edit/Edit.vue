@@ -19,7 +19,7 @@ import WangEditor from '@/components/WangEditor.vue'
           </div>
         </div>
         <!-- 编辑器 -->
-        <WangEditor />
+        <WangEditor class="editor" />
       </div>
 
       <!-- 内容区的底部 -->
@@ -77,24 +77,12 @@ import WangEditor from '@/components/WangEditor.vue'
 </template>
 
 <style lang="less" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-input:focus {
-  outline: none;
-}
-body::-webkit-scrollbar {
-  display: none;
-}
 .content-wrapper {
   margin: 0 auto;
 }
 .root {
   height: 100vh;
-  min-height: 1000px;
+  min-height: 1100px;
   min-width: 900px;
   display: flex;
   flex-direction: column;
@@ -107,9 +95,8 @@ body::-webkit-scrollbar {
 /* 内容部分的总容器 */
 .container {
   width: 80%;
+  height: 100%;
   margin: auto;
-  /* 距离顶部 header 的距离 */
-  margin-top: 7px;
   /* 容器的阴影 */
   box-shadow: @shadow;
   background-color: @kungalgame-trans-white-2;

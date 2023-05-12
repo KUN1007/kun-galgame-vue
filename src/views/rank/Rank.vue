@@ -1,36 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+</script>
 
 <template>
   <!-- 根容器 -->
   <div class="root">
     <!-- 头部 -->
-    <div class="header">
-      <!-- 顶部左侧交互栏 -->
-      <div class="nav-top">
-        <div class="kungal-info">
-          <img src="../img/favicon.png" alt="KUNgal" />
-          <span>KUNGalgame</span>
-        </div>
-        <div class="top-bar">
-          <ul>
-            <li>所有帖子</li>
-            <li>发布帖子</li>
-            <li>技术交流</li>
-            <li>数据统计</li>
-            <div class="top-bar-box"></div>
-          </ul>
-        </div>
-      </div>
-      <!-- 顶部全局搜索框 -->
-      <!--           <div class="top-search-bar">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div> -->
-      <!-- 用户个人信息 -->
-      <div class="kungalgamer-info">
-        <img src="../img/KUN.jpg" alt="KUN" />
-        <span>KUN</span>
-      </div>
-    </div>
+    <KUNGalgameTopBar />
     <!-- 内容区 -->
     <div class="article">
       <!-- 用户排行 -->
@@ -973,8 +949,8 @@
   background-size: cover;
   min-width: 1000px;
   min-height: 1000px;
-  font-family: "adobe-clean", "Source Sans Pro", -apple-system,
-    "BlinkMacSystemFont", "Segoe UI,Roboto", sans-serif;
+  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
+    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 /* 内容区 */
 .article {

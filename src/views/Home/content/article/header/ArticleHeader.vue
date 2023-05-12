@@ -168,6 +168,8 @@ import { Icon } from '@iconify/vue'
   /* 整体弹性 */
   display: flex;
   flex-shrink: 0;
+  /* 交互区距离外面半透明总容器的距离 */
+  margin-top: 5px;
 }
 /* 筛选、搜索帖子、更多 */
 .nav-article-sort-container {

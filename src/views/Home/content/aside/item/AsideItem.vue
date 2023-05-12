@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import router from '@/router'
 import { Icon } from '@iconify/vue'
+
+const handleClick = () => {
+  router.push('/rank')
+}
 </script>
 
 <template>
@@ -37,7 +42,7 @@ import { Icon } from '@iconify/vue'
         </ul>
       </div>
       <div>其它游戏</div>
-      <div>排行榜</div>
+      <div @click="handleClick">排行榜</div>
       <!-- 背景容器 -->
       <div class="kungalgame-background">
         背景设置

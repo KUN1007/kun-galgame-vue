@@ -3,6 +3,7 @@ import KUNGalgameSettingsPanel from './KUNGalgameSettingPanel.vue'
 import { Icon } from '@iconify/vue'
 import { onBeforeMount, ref } from 'vue'
 import 'animate.css'
+import router from '@/router'
 interface topBar {
   index: number
   name: string
@@ -16,7 +17,7 @@ const topBarItem: topBar[] = [
   { index: 5, name: '返回主页', router: '/' },
 ]
 // 初始不展示用户头像点击信息
-const isShowInfo = ref(false)
+let isShowInfo = ref(false)
 
 // 初始进入页面 header 没有附加样式
 let topicStyle = {}
@@ -35,8 +36,6 @@ if (isTopicPage) {
   topicStyle = {
     top: 0,
     position: 'sticky',
-    /* 设置可视区域内容不覆盖顶部 shadow */
-    'margin-bottom': '10px',
   }
 }
 
@@ -45,6 +44,10 @@ let navItemNum = topBarItem.length
 const navItemNumString = navItemNum + '00px'
 
 // 用户点击头像时的操作
+const handleClickAvatar = () => {
+  // isShowInfo.value = !isShowInfo.value
+  router.push('/kungalgamer')
+}
 
 // 用户点击网站设置时的操作
 const handleSittingsClick = () => {}
@@ -76,7 +79,7 @@ onBeforeMount(() => {})
       <img
         src="../assets/images/KUN.jpg"
         alt="KUN"
-        @click="isShowInfo = !isShowInfo"
+        @click="handleClickAvatar"
       />
       <div class="triangle" v-if="isShowInfo"></div>
       <div class="kungalgamer" v-if="isShowInfo">
@@ -104,6 +107,7 @@ onBeforeMount(() => {})
   /* 相对于设置面板定位 */
   position: relative;
   z-index: 1007;
+  margin-bottom: 7px;
 }
 .nav-top {
   display: flex;

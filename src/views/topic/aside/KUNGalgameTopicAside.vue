@@ -6,10 +6,10 @@
   页面被拆成 3 个大组件，这是左边的侧边栏部分
  -->
 <script setup lang="ts">
-import TopicAsideNav from "./nav/TopicAsideNav.vue";
-import TopicAsideSame from "./same/TopicAsideSame.vue";
-import TopicAsideMaster from "./master/TopicAsideMaster.vue";
-import TopicAsideFooter from "./footer/TopicAsideFooter.vue";
+import TopicAsideNav from './nav/TopicAsideNav.vue'
+import TopicAsideSame from './same/TopicAsideSame.vue'
+import TopicAsideMaster from './master/TopicAsideMaster.vue'
+import TopicAsideFooter from './footer/TopicAsideFooter.vue'
 </script>
 <template>
   <div class="content-left-part">
@@ -22,7 +22,7 @@ import TopicAsideFooter from "./footer/TopicAsideFooter.vue";
 <style scoped>
 /* 左侧内容区 */
 .content-left-part {
-  top: 73px;
+  top: 70px;
   position: sticky;
   /* 左侧区域的总高度 */
   height: 1000px;
