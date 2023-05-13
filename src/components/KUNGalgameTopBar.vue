@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import KUNGalgameSettingsPanel from './KUNGalgameSettingPanel.vue'
+import KUNGalgameSettingsPanel from './setting-panel/KUNGalgameSettingPanel.vue'
 import { Icon } from '@iconify/vue'
 import { onBeforeMount, ref } from 'vue'
 import 'animate.css'
@@ -104,7 +104,7 @@ onBeforeMount(() => {})
   transition: right 0.5s;
 }
 .kungalgame-panel-enter, .kungalgame-panel-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  right: -300px;
+  right: -600px;
 }
 /* 头部样式 */
 .header {
