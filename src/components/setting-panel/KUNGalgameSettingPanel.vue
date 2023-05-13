@@ -3,6 +3,7 @@ import { Icon } from '@iconify/vue'
 import Loli from './components/Loli.vue'
 import Background from './components/Background.vue'
 import SwitchButton from './components/SwitchButton.vue'
+const handleClose = () => {}
 </script>
 
 <template>
@@ -42,7 +43,9 @@ import SwitchButton from './components/SwitchButton.vue'
       <div><button class="reset">恢复所有设置为默认</button></div>
     </div>
     <!-- 看板娘组件 -->
-    <Loli />
+    <Loli class="loli" />
+    <!-- 关闭面板 -->
+    <div class="close"><Icon @click="handleClose" icon="line-md:close" /></div>
   </div>
 </template>
 
@@ -52,7 +55,7 @@ import SwitchButton from './components/SwitchButton.vue'
   width: 600px;
   top: 65px;
   right: 0;
-  position: absolute;
+  position: fixed;
   background-color: @kungalgame-trans-white-5;
   backdrop-filter: blur(5px);
   border-radius: 10px;
@@ -129,6 +132,29 @@ import SwitchButton from './components/SwitchButton.vue'
   &:hover {
     background-color: @kungalgame-red-3;
     color: @kungalgame-white;
+  }
+}
+.close {
+  font-size: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .loli {
+    display: none;
+  }
+  .root {
+    width: 300px;
+    transition: 0.3s;
+  }
+}
+@media (max-height: 600px) {
+  .root {
+    right: -600px;
+    transition: 0.5s;
   }
 }
 </style>

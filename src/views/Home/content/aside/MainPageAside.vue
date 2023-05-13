@@ -1,24 +1,27 @@
-<script lang="ts">
-import AsideItem from "./item/AsideItem.vue";
-import NewTopic from "./topic/NewTopic.vue";
-import HotTopic from "./topic/HotTopic.vue";
-
-export default {
-  name: "MainPageAside",
-  components: { AsideItem, HotTopic, NewTopic },
-};
+<script setup lang="ts">
+import AsideItem from './item/AsideItem.vue'
+import NewTopic from './topic/NewTopic.vue'
+import HotTopic from './topic/HotTopic.vue'
+// 导入图标
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
   <!-- 侧边栏 -->
   <div class="aside">
+    <!-- 侧边栏交互 -->
+    <div class="nav-aside">
+      <!-- fa 箭头图标字体 -->
+      <Icon icon="line-md:arrow-left" />
+      折叠左侧区域
+    </div>
     <AsideItem />
     <HotTopic />
     <NewTopic />
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 /* 侧边栏部分 */
 .aside {
   /* 侧边栏距离文章区域的距离 */
@@ -31,5 +34,24 @@ export default {
   display: flex;
   /* 方向为竖向 */
   flex-direction: column;
+}
+/* 侧边栏交互 */
+.nav-aside {
+  width: 100%;
+  height: 1px;
+  /* 折叠区相当于侧边栏的占比 */
+  flex-grow: 1;
+  /* 内容居中（折叠左侧区域） */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* 字体设置 */
+  font-size: small;
+  color: @kungalgame-font-color-3;
+  /* 页面缩小到最小时不换行 */
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
 }
 </style>
