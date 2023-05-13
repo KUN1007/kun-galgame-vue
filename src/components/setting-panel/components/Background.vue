@@ -100,11 +100,12 @@
   padding-left: 5px;
   height: 25px;
   border: 1px solid @kungalgame-blue-4;
+  background-color: @kungalgame-trans-white-9;
 }
 /* 粘贴框的 focus */
 .bg-url-input input:focus {
   outline: none;
-  background-color: @kungalgame-trans-red-0;
+  background-color: @kungalgame-trans-blue-0;
 }
 /* 确定按钮 */
 .bg-url-input button {
@@ -119,7 +120,7 @@
 }
 /* 确定按钮的 hover */
 .bg-url-input button:hover {
-  background-color: @kungalgame-trans-blue-0;
+  background-color: @kungalgame-trans-red-1;
 }
 /* 确定按钮的 active */
 .bg-url-input button:active {

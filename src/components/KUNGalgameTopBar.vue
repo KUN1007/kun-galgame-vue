@@ -1,14 +1,23 @@
 <script setup lang="ts">
+// 导入设置面板
 import KUNGalgameSettingsPanel from './setting-panel/KUNGalgameSettingPanel.vue'
+// 导入图标
 import { Icon } from '@iconify/vue'
+// 导入必要 vue 函数
 import { onBeforeMount, ref } from 'vue'
+// 导入 css 动画
 import 'animate.css'
+// 导入路由
 import router from '@/router'
+
+// 顶部导航栏单个项目的接口
 interface topBar {
   index: number
   name: string
   router: string
 }
+
+// 顶部导航栏的项目
 const topBarItem: topBar[] = [
   { index: 1, name: '所有帖子', router: '/pool' },
   { index: 2, name: '发布帖子', router: 'edit' },
@@ -226,6 +235,7 @@ onBeforeMount(() => {})
     font-size: 25px;
     margin-top: 10px;
     margin-right: 30px;
+    cursor: pointer;
   }
 }
 .triangle {
