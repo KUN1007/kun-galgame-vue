@@ -17,7 +17,7 @@ const kungalgameSettings: KUNGalgameSettings = {
   darkMode: false,
   pageWidth: 61.8,
   kungalgameBackground: 0,
-  fixLoli: false,
+  fixLoli: true,
 }
 
 export default kungalgameSettings

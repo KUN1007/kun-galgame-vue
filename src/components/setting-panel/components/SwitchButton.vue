@@ -1,9 +1,24 @@
 <!-- KUNGalgame 通用切换按钮 -->
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// 导入设置面板 store
+import { useSettingsPanelStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+// 使用设置面板的 store
+const settingsStore = useSettingsPanelStore()
+let { showSettings, showFixedLoli } = storeToRefs(settingsStore)
+// 用户点击固定看板娘
+const handleClick = () => {
+  showFixedLoli.value = !showFixedLoli.value
+  console.log(showFixedLoli.value)
+}
+</script>
 
 <template>
-  <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+  <input type="checkbox" id="switch" /><label @click="handleClick" for="switch"
+    >Toggle</label
+  >
 </template>
 
 <style lang="less" scoped>

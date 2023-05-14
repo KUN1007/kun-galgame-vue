@@ -1,4 +1,10 @@
 <script setup lang="ts">
+// 导入设置面板 store
+import { useSettingsPanelStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+// 使用设置面板的 store
+const settingsStore = useSettingsPanelStore()
 /* 导入 loli 数据 */
 import {
   loliBodyLeft,

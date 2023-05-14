@@ -11,7 +11,6 @@ import SwitchButton from './components/SwitchButton.vue'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import Drug from './components/Drug.vue'
 
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
@@ -21,7 +20,10 @@ const handleClose = () => {
 }
 
 // 用户点击固定看板娘
-const handleClick = () => {}
+const handleClick = () => {
+  showFixedLoli.value = false
+  console.log(showFixedLoli.value)
+}
 </script>
 
 <template>
@@ -61,15 +63,15 @@ const handleClick = () => {}
       <!-- 背景设置组件 -->
       <Background />
       <div class="fix-loli">
-        <!-- 处理固定看板娘按钮点击事件 -->
+        <!-- 处理固定看板娘按钮点击事件，点击切换是否固定看板娘 -->
         <span>是否固定看板娘</span><SwitchButton @click="handleClick" />
       </div>
       <div><button class="reset">恢复所有设置为默认</button></div>
     </div>
     <!-- 看板娘组件 -->
-    <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件 -->
+    <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件，传送的状态使用全局 store 中的 showFixedLoli -->
     <Teleport to="body" :disabled="showFixedLoli">
-      <Loli class="loli" :isShowFixedLoli="showFixedLoli" />
+      <Loli class="loli" />
     </Teleport>
     <!-- 关闭面板 -->
     <div class="close"><Icon @click="handleClose" icon="line-md:close" /></div>
