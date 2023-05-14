@@ -3,7 +3,15 @@ import { Icon } from '@iconify/vue'
 import Loli from './components/Loli.vue'
 import Background from './components/Background.vue'
 import SwitchButton from './components/SwitchButton.vue'
-const handleClose = () => {}
+// 导入设置面板 store
+import { useSettingsPanelStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+const settingsStore = useSettingsPanelStore()
+let { showSettings, showFixedLoli } = storeToRefs(settingsStore)
+const handleClose = () => {
+  showSettings.value = false
+}
 </script>
 
 <template>
@@ -95,6 +103,9 @@ const handleClose = () => {}
   width: 60%;
   display: flex;
   justify-content: space-around;
+  li {
+    cursor: pointer;
+  }
   li:nth-child(1) {
     color: @kungalgame-red-4;
   }

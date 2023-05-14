@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
+    "@types/less": "^3.0.3",
     "@types/node": "^18.15.12",
     "@vitejs/plugin-vue": "^4.1.0",
     "less": "^4.1.3",

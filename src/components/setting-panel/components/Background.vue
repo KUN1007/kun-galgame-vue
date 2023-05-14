@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useSettingsPanelStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+const settingsStore = useSettingsPanelStore()
+let { showKUNGalgameBackground } = storeToRefs(settingsStore)
+</script>
 
 <template>
   <div class="kungalgame-background">
@@ -46,14 +52,14 @@
   font-size: 15px;
   font-weight: normal;
   color: @kungalgame-font-color-3;
-}
-/* 背景容器的标题字体 */
-.kungalgame-background-container span {
-  height: 30px;
-  /* 居中 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* 背景容器的标题字体 */
+  span {
+    height: 30px;
+    /* 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .bg-settings {
   margin: 10px 0;
@@ -67,23 +73,23 @@
   position: relative;
   /* 距离下方区域的距离 */
   margin-bottom: 17px;
-}
-/* 单个图片居中 */
-.kungalgame-reset-bg li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* 单个图片的距离 */
-.kungalgame-reset-bg img {
-  cursor: pointer;
-  width: 70px;
-}
-/* 图片的 hover */
-.kungalgame-reset-bg img:hover {
-  width: 170px;
-  transition: 0.2s;
-  z-index: 7;
+  /* 单个图片居中 */
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 单个图片的距离 */
+    img {
+      cursor: pointer;
+      width: 70px;
+      /* 图片的 hover */
+      &:hover {
+        transform: scale(3);
+        transition: 0.2s;
+        z-index: 7;
+      }
+    }
+  }
 }
 .kungalgamer-bg {
   display: flex;
@@ -94,37 +100,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.bg-url-input input {
-  width: 100%;
-  padding-left: 5px;
-  height: 25px;
-  border: 1px solid @kungalgame-blue-4;
-  background-color: @kungalgame-trans-white-9;
-}
-/* 粘贴框的 focus */
-.bg-url-input input:focus {
-  outline: none;
-  background-color: @kungalgame-trans-blue-0;
-}
-/* 确定按钮 */
-.bg-url-input button {
-  flex-shrink: 0;
-  padding: 0 10px;
-  height: 25px;
-  box-sizing: border-box;
-  border: 1px solid @kungalgame-blue-4;
-  border-left: none;
-  background-color: @kungalgame-trans-white-5;
-  cursor: pointer;
-}
-/* 确定按钮的 hover */
-.bg-url-input button:hover {
-  background-color: @kungalgame-trans-red-1;
-}
-/* 确定按钮的 active */
-.bg-url-input button:active {
-  background-color: @kungalgame-trans-red-3;
+  input {
+    width: 100%;
+    padding-left: 5px;
+    height: 25px;
+    border: 1px solid @kungalgame-blue-4;
+    background-color: @kungalgame-trans-white-9;
+    /* 粘贴框的 focus */
+    &:focus {
+      outline: none;
+      background-color: @kungalgame-trans-blue-0;
+    }
+  }
+  /* 确定按钮 */
+  button {
+    flex-shrink: 0;
+    padding: 0 10px;
+    height: 25px;
+    box-sizing: border-box;
+    border: 1px solid @kungalgame-blue-4;
+    border-left: none;
+    background-color: @kungalgame-trans-white-5;
+    cursor: pointer;
+    /* 确定按钮的 hover */
+    &:hover {
+      background-color: @kungalgame-trans-red-1;
+      /* 确定按钮的 active */
+      &:active {
+        background-color: @kungalgame-trans-red-3;
+      }
+    }
+  }
 }
 .reset-bg {
   font-size: 15px;
