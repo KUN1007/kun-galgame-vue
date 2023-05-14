@@ -1,26 +1,38 @@
+<!-- 设置面板组件，展示整个论坛的设置面板 -->
 <script setup lang="ts">
+// 引入图标字体
 import { Icon } from '@iconify/vue'
+// 引入看板娘组件
 import Loli from './components/Loli.vue'
+// 引入背景设置组件
 import Background from './components/Background.vue'
+// 引入点击按钮组件
 import SwitchButton from './components/SwitchButton.vue'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+import Drug from './components/Drug.vue'
 
+// 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
 let { showSettings, showFixedLoli } = storeToRefs(settingsStore)
 const handleClose = () => {
   showSettings.value = false
 }
+
+// 用户点击固定看板娘
+const handleClick = () => {}
 </script>
 
 <template>
+  <!-- 根元素 -->
   <div class="root">
     <div class="container">
       <div class="title">
         <span>设置面板</span><Icon class="settings-icon" icon="uiw:setting-o" />
       </div>
       <div class="mode">
+        <!-- 白天 / 黑夜模式切换 -->
         <span>模式切换</span>
         <div class="mode-container">
           <li>
@@ -33,11 +45,12 @@ const handleClose = () => {
             <Icon
               class="moon"
               icon="line-md:sunny-outline-to-moon-loop-transition"
-            />
+            />we
           </li>
         </div>
       </div>
       <div>
+        <!-- 设置主页的宽度 -->
         <span>主页页面宽度设置</span>
         <div class="page-width">
           <span>61.8%</span><input class="main" type="range" value="0" /><span
@@ -47,11 +60,18 @@ const handleClose = () => {
       </div>
       <!-- 背景设置组件 -->
       <Background />
-      <div class="fix-loli"><span>是否固定看板娘</span><SwitchButton /></div>
+      <div class="fix-loli">
+        <!-- 处理固定看板娘按钮点击事件 -->
+        <span>是否固定看板娘</span><SwitchButton @click="handleClick" />
+      </div>
       <div><button class="reset">恢复所有设置为默认</button></div>
     </div>
     <!-- 看板娘组件 -->
-    <Loli class="loli" />
+    <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件 -->
+    <Drug />
+    <Teleport to="body" :disabled="showFixedLoli">
+      <Loli class="loli" :isShowFixedLoli="showFixedLoli" />
+    </Teleport>
     <!-- 关闭面板 -->
     <div class="close"><Icon @click="handleClose" icon="line-md:close" /></div>
   </div>

@@ -4,7 +4,7 @@ import KUNGalgameSettingsPanel from './setting-panel/KUNGalgameSettingPanel.vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入必要 vue 函数
-import { computed, onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 // 导入 css 动画
 import 'animate.css'
 // 导入路由
@@ -40,8 +40,6 @@ const topBarItem: topBar[] = [
   { index: 4, name: '关于我们', router: 'kungalgame' },
   { index: 5, name: '返回主页', router: '/' },
 ]
-// 初始不展示用户头像点击信息
-let isShowInfo = ref(false)
 
 // 初始进入页面 header 没有附加样式
 let topicStyle = {}
