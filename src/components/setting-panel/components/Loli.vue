@@ -17,58 +17,66 @@ import {
   mouth,
   face,
 } from '@/utils/loli'
-import { onMounted, onUnmounted, ref } from 'vue'
 
-interface Position {
-  x: number
-  y: number
+// 用户拖动看板娘和缩放看板娘
+import { ref, reactive, CSSProperties, onMounted, onBeforeUnmount } from 'vue'
+
+const loli = ref<HTMLElement | null>(null)
+
+const state = reactive({
+  isDragging: false,
+  isResizing: false,
+  origin: { x: 0, y: 0 },
+  translation: { x: 0, y: 0 },
+})
+
+const loliStyle: CSSProperties = {
+  top: `${state.translation.y}px`,
+  left: `${state.translation.x}px`,
 }
-const box = ref<HTMLElement | null>(null)
-const isDragging = ref(false)
-const mousePosition = ref<Position>({ x: 0, y: 0 })
-const elementPosition = ref<Position>({ x: 120, y: -250 })
 
-const handleMouseDown = (event: MouseEvent) => {
-  isDragging.value = true
-  mousePosition.value = { x: event.clientX, y: event.clientY }
+const startDragLoli = (event: MouseEvent) => {
+  if (event.ctrlKey) {
+    state.isResizing = true
+  } else {
+    state.isDragging = true
+  }
+  state.origin.x = event.clientX
+  state.origin.y = event.clientY
 }
 
-const handleMouseMove = (event: MouseEvent) => {
-  if (isDragging.value) {
-    const deltaX = event.clientX - mousePosition.value.x
-    const deltaY = event.clientY - mousePosition.value.y
-    elementPosition.value = {
-      x: elementPosition.value.x + deltaX,
-      y: elementPosition.value.y + deltaY,
-    }
-    mousePosition.value = { x: event.clientX, y: event.clientY }
+const stopDrag = () => {
+  state.isDragging = false
+  state.isResizing = false
+}
+
+const drag = (event: MouseEvent) => {
+  if (state.isDragging && loli.value !== null) {
+    const deltaX = event.clientX - state.origin.x
+    const deltaY = event.clientY - state.origin.y
+    state.translation.x += deltaX
+    state.translation.y += deltaY
+    loli.value.style.top = `${state.translation.y}px`
+    loli.value.style.left = `${state.translation.x}px`
+    state.origin.x = event.clientX
+    state.origin.y = event.clientY
   }
 }
 
-const handleMouseUp = () => {
-  isDragging.value = false
-}
-
 onMounted(() => {
-  box.value?.addEventListener('mousedown', handleMouseDown)
-  box.value?.addEventListener('mousemove', handleMouseMove)
-  box.value?.addEventListener('mouseup', handleMouseUp)
+  window.addEventListener('mouseup', stopDrag)
+  window.addEventListener('mousemove', drag)
 })
-
-const loliPositionXPixel = elementPosition.value.x + 'px'
-const loliPositionYPixel = elementPosition.value.y + 'px'
-
-onUnmounted(() => {
-  box.value?.removeEventListener('mousedown', handleMouseDown)
-  box.value?.removeEventListener('mousemove', handleMouseMove)
-  box.value?.removeEventListener('mouseup', handleMouseUp)
+onBeforeUnmount(() => {
+  window.removeEventListener('mouseup', stopDrag)
+  window.removeEventListener('mousemove', drag)
 })
 </script>
 
 <template>
   <!-- 看板娘 -->
   <!-- 给看板娘整体绑定鼠标移动事件，改变看板娘的位置 -->
-  <div class="loli">
+  <div class="loli" ref="loli" @mousedown="startDragLoli" :style="loliStyle">
     <!-- 身体 -->
     <img class="lass" :src="lass" alt="ren" />
     <img class="eye" :src="eye" alt="ren" />
@@ -82,10 +90,13 @@ onUnmounted(() => {
 /* 看板娘 */
 .loli {
   height: 100%;
+  width: 300px;
+  /* 定位看板娘，重要 */
   position: fixed;
+  z-index: 9999;
   // 根据父元素控制面板传过来的参数确定看板娘的位置
-  top: v-bind(loliPositionYPixel);
-  left: v-bind(loliPositionXPixel);
+  // top: v-bind(loliPositionYPixel);
+  // left: v-bind(loliPositionXPixel);
 }
 .lass {
   position: absolute;

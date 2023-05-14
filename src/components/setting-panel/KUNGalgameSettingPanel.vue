@@ -45,7 +45,7 @@ const handleClick = () => {}
             <Icon
               class="moon"
               icon="line-md:sunny-outline-to-moon-loop-transition"
-            />we
+            />
           </li>
         </div>
       </div>
@@ -68,7 +68,6 @@ const handleClick = () => {}
     </div>
     <!-- 看板娘组件 -->
     <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件 -->
-    <Drug />
     <Teleport to="body" :disabled="showFixedLoli">
       <Loli class="loli" :isShowFixedLoli="showFixedLoli" />
     </Teleport>
@@ -83,7 +82,7 @@ const handleClick = () => {}
   width: 600px;
   top: 65px;
   right: 0;
-  position: fixed;
+  position: absolute;
   background-color: @kungalgame-trans-white-5;
   backdrop-filter: blur(5px);
   border-radius: 10px;
