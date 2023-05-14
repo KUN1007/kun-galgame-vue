@@ -13,7 +13,7 @@ import MainPageFooter from './footer/MainPageFooter.vue'
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .visual-wrapper {
   height: 1500px;
   display: flex;

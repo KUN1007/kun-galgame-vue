@@ -15,13 +15,13 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-        less: {
-            javascriptEnabled: true,
-            additionalData: `@import "${resolve(
-                __dirname,
-                "./src/assets/css/color.less"
-            )}";`,
-        },
+      less: {
+        javascriptEnabled: true,
+        additionalData: `@import "${resolve(
+          __dirname,
+          './src/styles/theme/theme.less'
+        )}";`,
+      },
     },
-},
+  },
 })

@@ -4,11 +4,26 @@ import KUNGalgameSettingsPanel from './setting-panel/KUNGalgameSettingPanel.vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入必要 vue 函数
-import { onBeforeMount, ref } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 // 导入 css 动画
 import 'animate.css'
 // 导入路由
 import router from '@/router'
+// 导入设置面板 store
+import { useSettingsPanelStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+// 接收设置面板的 store
+const settingsStore = useSettingsPanelStore()
+
+// 使数据变为响应式
+let {
+  showSettings,
+  showDarkMode,
+  showPageWidth,
+  showKUNGalgameBackground,
+  showFixedLoli,
+} = storeToRefs(settingsStore)
 
 // 顶部导航栏单个项目的接口
 interface topBar {
@@ -63,7 +78,7 @@ const handleClickAvatar = () => {
 
 // 用户点击网站设置时的操作
 const handleSittingsClick = () => {
-  isShowPanel.value = !isShowPanel.value
+  showSettings.value = !showSettings.value
 }
 onBeforeMount(() => {})
 </script>
@@ -95,15 +110,10 @@ onBeforeMount(() => {})
         alt="KUN"
         @click="handleClickAvatar"
       />
-      <div class="triangle" v-if="isShowInfo"></div>
-      <div class="kungalgamer" v-if="isShowInfo">
-        <div>用户主页</div>
-        <div>更改头像</div>
-      </div>
     </div>
   </div>
   <transition name="kungalgame-panel">
-    <KUNGalgameSettingsPanel v-if="isShowPanel" />
+    <KUNGalgameSettingsPanel v-show="showSettings" />
   </transition>
 </template>
 
@@ -112,7 +122,13 @@ onBeforeMount(() => {})
 .kungalgame-panel-leave-active {
   transition: right 0.5s;
 }
-.kungalgame-panel-enter, .kungalgame-panel-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.kungalgame-panel-enter-from {
+  right: -600px;
+}
+.kungalgame-panel-enter-to {
+  right: 0;
+}
+.kungalgame-panel-leave-to {
   right: -600px;
 }
 /* 头部样式 */
@@ -238,30 +254,6 @@ onBeforeMount(() => {})
     cursor: pointer;
   }
 }
-.triangle {
-  position: absolute;
-  border-width: 10px;
-  border-style: solid;
-  border-color: transparent;
-  border-bottom-color: @kungalgame-trans-white-2;
-  top: 50px;
-  right: 124px;
-}
-.kungalgamer {
-  top: 70px;
-  right: 95px;
-  position: absolute;
-  background-color: @kungalgame-trans-white-2;
-  box-shadow: @shadow;
-  div {
-    cursor: pointer;
-    padding: 7px;
-    &:hover {
-      background-color: @kungalgame-trans-red-3;
-    }
-  }
-}
-
 @media (max-width: 1000px) {
   span {
     display: none;

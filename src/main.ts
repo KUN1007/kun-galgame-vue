@@ -11,6 +11,6 @@ import { createPinia } from 'pinia'
 const store = createPinia()
 
 // css
-import './assets/css/reset.css'
-import './assets/css/color.less'
+import '@/styles/reset.css'
+import '@/styles/theme/theme.less'
 createApp(App).use(router).use(store).mount('#app')
