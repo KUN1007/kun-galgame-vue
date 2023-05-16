@@ -12,6 +12,14 @@ import SwitchButton from './components/SwitchButton.vue'
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
+// 获取 localeStorage 中的看板娘信息
+import {
+  getThemeStatus,
+  getMainPageWidth,
+  getBackgroundPicture,
+  getLoliStatus,
+} from '@/utils/cache/local-storage'
+
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
 let { showSettings, showFixedLoli } = storeToRefs(settingsStore)
