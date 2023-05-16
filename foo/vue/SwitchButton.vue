@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia'
 
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
-let { showSettings, showFixedLoli } = storeToRefs(settingsStore)
+let { showSettings } = storeToRefs(settingsStore)
 // 用户点击固定看板娘
 const handleClick = () => {
   showFixedLoli.value = !showFixedLoli.value
@@ -16,19 +16,22 @@ const handleClick = () => {
 </script>
 
 <template>
-  <input type="checkbox" id="switch" /><label @click="handleClick" for="switch"
+  <input class="switch-input" type="checkbox" id="switch" /><label
+    class="switch-label"
+    @click="handleClick"
+    for="switch"
     >Toggle</label
   >
 </template>
 
 <style lang="less" scoped>
-input {
+.switch-input {
   height: 0;
   width: 0;
   visibility: hidden;
 }
 
-label {
+.switch-label {
   cursor: pointer;
   text-indent: -9999px;
   width: 50px;
@@ -39,7 +42,7 @@ label {
   position: relative;
 }
 
-label:after {
+.switch-label:after {
   content: '';
   position: absolute;
   top: 2px;
@@ -51,20 +54,12 @@ label:after {
   transition: 0.3s;
 }
 
-input:checked + label {
+.switch-input:checked + .switch-label {
   background: @kungalgame-blue-4;
 }
 
-input:checked + label:after {
+.switch-input:checked + .switch-label:after {
   left: calc(100% - 2px);
   transform: translateX(-100%);
-}
-
-// centering
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 </style>

@@ -6,30 +6,43 @@ import { Icon } from '@iconify/vue'
 import Loli from './components/Loli.vue'
 // 引入背景设置组件
 import Background from './components/Background.vue'
-// 引入点击按钮组件
-import SwitchButton from './components/SwitchButton.vue'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+// 导入看板娘 hook
+import { useFixedLoli } from '@/hooks/useFixedLoli'
 
 // 获取 localeStorage 中的看板娘信息
-import {
-  getThemeStatus,
-  getMainPageWidth,
-  getBackgroundPicture,
-  getLoliStatus,
-} from '@/utils/cache/local-storage'
 
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
-let { showSettings, showFixedLoli } = storeToRefs(settingsStore)
+
+// 使用全局固定看板娘的 hook
+const { kungalgameLoliStatus, setLoli, setLoliBtn, initLoli } = useFixedLoli()
+
+// 初始化看板娘
+initLoli()
+
+let { showSettings } = storeToRefs(settingsStore)
 const handleClose = () => {
   showSettings.value = false
 }
 
+let checked = kungalgameLoliStatus.value === 'true'
+
+let flag = false
 // 用户点击固定看板娘
 const handleClick = () => {
-  showFixedLoli.value = false
+  let str = 'false'
+  if (flag) {
+    setLoli(str)
+    str = 'false'
+    flag = !flag
+  } else {
+    setLoli(str)
+    str = 'true'
+    flag = !flag
+  }
 }
 </script>
 
@@ -71,13 +84,19 @@ const handleClick = () => {
       <Background />
       <div class="fix-loli">
         <!-- 处理固定看板娘按钮点击事件，点击切换是否固定看板娘 -->
-        <span>是否固定看板娘</span><SwitchButton @click="handleClick" />
+        <span>是否固定看板娘</span>
+        <input
+          class="switch-input"
+          type="checkbox"
+          id="switch"
+          v-model="checked"
+        /><label class="switch-label" @click="handleClick" for="switch"></label>
       </div>
       <div><button class="reset">恢复所有设置为默认</button></div>
     </div>
     <!-- 看板娘组件 -->
     <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件，传送的状态使用全局 store 中的 showFixedLoli -->
-    <Teleport to="body" :disabled="showFixedLoli">
+    <Teleport to="body" :disabled="kungalgameLoliStatus === 'false'">
       <Loli class="loli" />
     </Teleport>
     <!-- 关闭面板 -->
@@ -159,6 +178,42 @@ const handleClick = () => {
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
+}
+.switch-input {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 50px;
+  height: 27px;
+  background: @kungalgame-trans-blue-2;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 23px;
+    height: 23px;
+    background: @kungalgame-white;
+    border-radius: 15px;
+    transition: 0.3s;
+  }
+}
+
+.switch-input:checked + .switch-label {
+  background: @kungalgame-blue-4;
+}
+
+.switch-input:checked + .switch-label:after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
 }
 .reset {
   font-size: 15px;
