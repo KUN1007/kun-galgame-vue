@@ -6,7 +6,7 @@ import {
   getBackgroundPicture,
   getLoliStatus,
 } from '@/utils/cache/local-storage'
-import { type Ref, ref, watchEffect } from 'vue'
+import { type Ref, ref } from 'vue'
 
 // 设置面板配置
 interface KUNGalgameSettings {
@@ -33,17 +33,6 @@ const KUNGalgameBackgroundPicture = ref<number>(getBackgroundPicture() || 61.8)
 
 // 获取 localStorage 中的看板娘状态设置
 const KUNGalgameLoliStatus = ref<boolean>(getLoliStatus() || false)
-
-const setLoliStatus = (status: boolean) => {
-  KUNGalgameLoliStatus.value = status
-}
-
-const initLoli = () => {
-  watchEffect(() => {
-    const value = KUNGalgameLoliStatus.value
-    setLoliStatus(value)
-  })
-}
 
 const kungalgameSettings: KUNGalgameSettings = {
   settings: true,
