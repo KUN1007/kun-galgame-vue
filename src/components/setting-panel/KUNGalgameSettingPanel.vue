@@ -22,7 +22,6 @@ const handleClose = () => {
 // 用户点击固定看板娘
 const handleClick = () => {
   showFixedLoli.value = false
-  console.log(showFixedLoli.value)
 }
 </script>
 
