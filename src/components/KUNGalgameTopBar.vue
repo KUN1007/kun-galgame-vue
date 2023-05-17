@@ -104,25 +104,29 @@ onBeforeMount(() => {})
       />
     </div>
   </div>
-  <transition name="kungalgame-panel">
+  <transition
+    name="kungalgame-panel"
+    enter-active-class="animate__animated animate__jackInTheBox animate__faster"
+    leave-active-class="animate__animated animate__fadeOutRight animate__faster"
+  >
     <KUNGalgameSettingsPanel v-show="showSettings" />
   </transition>
 </template>
 
 <style lang="less" scoped>
-.kungalgame-panel-enter-active,
-.kungalgame-panel-leave-active {
-  transition: right 0.5s;
-}
-.kungalgame-panel-enter-from {
-  right: -600px;
-}
-.kungalgame-panel-enter-to {
-  right: 0;
-}
-.kungalgame-panel-leave-to {
-  right: -600px;
-}
+// .kungalgame-panel-enter-active,
+// .kungalgame-panel-leave-active {
+//   transition: right 0.5s;
+// }
+// .kungalgame-panel-enter-from {
+//   right: -600px;
+// }
+// .kungalgame-panel-enter-to {
+//   right: 0;
+// }
+// .kungalgame-panel-leave-to {
+//   right: -600px;
+// }
 /* 头部样式 */
 .header {
   /* 头部高度 */

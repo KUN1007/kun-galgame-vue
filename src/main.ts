@@ -6,6 +6,8 @@ import App from './App.vue'
 import router from './router'
 /* 引入 Pinia */
 import { createPinia } from 'pinia'
+// 导入 css 动画
+import 'animate.css'
 
 /* 导入 Pinia */
 const store = createPinia()
