@@ -12,8 +12,10 @@ class KUNCacheKey {
   static BACKGROUND_PICTURE = `${KUN}-background-picture`
   // 是否固定看板娘
   static LOLI_STATUS = `${KUN}-loli-status`
-  // 看板娘点击按钮的选中状态
-  static LOLI_BTN_STATUS = `${KUN}-loli-btn-status`
+  // 看板娘定位 X
+  static LOLI_POSITION_X = `${KUN}-loli-position-x`
+  // 看板娘定位 Y
+  static LOLI_POSITION_Y = `${KUN}-loli-position-y`
 }
 
 export default KUNCacheKey

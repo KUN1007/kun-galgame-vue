@@ -17,13 +17,7 @@ import { storeToRefs } from 'pinia'
 const settingsStore = useSettingsPanelStore()
 
 // 使数据变为响应式
-let {
-  showSettings,
-  showDarkMode,
-  showPageWidth,
-  showKUNGalgameBackground,
-  showFixedLoli,
-} = storeToRefs(settingsStore)
+let { showSettings } = storeToRefs(settingsStore)
 
 // 顶部导航栏单个项目的接口
 interface topBar {
