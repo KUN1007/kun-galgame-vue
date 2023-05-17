@@ -4,31 +4,46 @@ import { ref, watchEffect } from 'vue'
 import {
   getLoliStatus,
   setLoliStatus,
-  getLoliButtonStatus,
-  setLoliButtonStatus,
+  getLoliPositionX,
+  setLoliPositionX,
+  getLoliPositionY,
+  setLoliPositionY,
 } from '@/utils/cache/local-storage'
 
+// 初始化看板娘状态
 const kungalgameLoliStatus = ref<string>(getLoliStatus() || 'false')
-const kungalgameLoliBtnStatus = ref<string>(getLoliButtonStatus() || 'false')
+const kungalgameLoliPositionX = ref<string>(getLoliPositionX() || '120')
+const kungalgameLoliPositionY = ref<string>(getLoliPositionY() || '-250')
 
 const setLoli = (status: string) => {
   kungalgameLoliStatus.value = status
 }
 
-const setLoliBtn = (status: string) => {
-  kungalgameLoliBtnStatus.value = status
+const setLoliX = (x: string) => {
+  kungalgameLoliPositionX.value = x
+}
+
+const setLoliY = (y: string) => {
+  kungalgameLoliPositionY.value = y
 }
 
 const initLoli = () => {
   watchEffect(() => {
-    const loli = kungalgameLoliStatus.value
-    const loliBtn = kungalgameLoliStatus.value
-    setLoliStatus(loli)
-    setLoliButtonStatus(loliBtn)
+    setLoliStatus(kungalgameLoliStatus.value)
+    setLoliPositionX(kungalgameLoliPositionX.value)
+    setLoliPositionY(kungalgameLoliPositionY.value)
   })
 }
 
 // 全局 hook
 export function useFixedLoli() {
-  return { kungalgameLoliStatus, setLoli, setLoliBtn, initLoli }
+  return {
+    kungalgameLoliStatus,
+    kungalgameLoliPositionX,
+    kungalgameLoliPositionY,
+    setLoli,
+    setLoliX,
+    setLoliY,
+    initLoli,
+  }
 }

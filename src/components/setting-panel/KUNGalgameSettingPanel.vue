@@ -18,7 +18,15 @@ import { useFixedLoli } from '@/hooks/useFixedLoli'
 const settingsStore = useSettingsPanelStore()
 
 // 使用全局固定看板娘的 hook
-const { kungalgameLoliStatus, setLoli, setLoliBtn, initLoli } = useFixedLoli()
+const {
+  kungalgameLoliStatus,
+  kungalgameLoliPositionX,
+  kungalgameLoliPositionY,
+  setLoli,
+  setLoliX,
+  setLoliY,
+  initLoli,
+} = useFixedLoli()
 
 // 初始化看板娘
 initLoli()
@@ -30,19 +38,22 @@ const handleClose = () => {
 
 let checked = kungalgameLoliStatus.value === 'true'
 
-let flag = false
 // 用户点击固定看板娘
 const handleClick = () => {
-  let str = 'false'
-  if (flag) {
-    setLoli(str)
-    str = 'false'
-    flag = !flag
+  if (!checked) {
+    setLoli('true')
   } else {
-    setLoli(str)
-    str = 'true'
-    flag = !flag
+    setLoli('false')
   }
+}
+// 看板娘的位置数据
+let loliPositionX = parseFloat(kungalgameLoliPositionX.value)
+let loliPositionY = parseFloat(kungalgameLoliPositionY.value)
+
+// 看板娘的位置样式
+const loliPosition = {
+  left: `${loliPositionX}px`,
+  top: `${loliPositionY}px`,
 }
 </script>
 
@@ -97,7 +108,7 @@ const handleClick = () => {
     <!-- 看板娘组件 -->
     <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件，传送的状态使用全局 store 中的 showFixedLoli -->
     <Teleport to="body" :disabled="kungalgameLoliStatus === 'false'">
-      <Loli class="loli" />
+      <Loli class="loli" :style="loliPosition" @get-position="getPosition" />
     </Teleport>
     <!-- 关闭面板 -->
     <div class="close"><Icon @click="handleClose" icon="line-md:close" /></div>

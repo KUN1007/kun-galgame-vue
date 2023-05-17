@@ -39,6 +39,7 @@ const state = reactive({
 const loliStyle: CSSProperties = {
   top: `${state.translation.y}px`,
   left: `${state.translation.x}px`,
+  width: 0,
 }
 
 const startDragLoli = (event: MouseEvent) => {
@@ -101,8 +102,6 @@ onBeforeUnmount(() => {
   position: fixed;
   z-index: 9999;
   // 根据父元素控制面板传过来的参数确定看板娘的位置
-  // top: v-bind(loliPositionYPixel);
-  // left: v-bind(loliPositionXPixel);
 }
 .lass {
   position: absolute;

@@ -35,10 +35,17 @@ export const setLoliStatus = (loli: string) => {
   // 看板娘的状态是一个布尔值，对应着固定还是不固定
   localStorage.setItem(KUNCacheKey.LOLI_STATUS, loli)
 }
-export const getLoliButtonStatus = () => {
-  return localStorage.getItem(KUNCacheKey.LOLI_BTN_STATUS) as string
+// 看板娘的水平位置
+export const getLoliPositionX = () => {
+  return localStorage.getItem(KUNCacheKey.LOLI_POSITION_X) as string
 }
-export const setLoliButtonStatus = (loliBtn: string) => {
-  // 看板娘的状态是一个布尔值，对应着固定还是不固定
-  localStorage.setItem(KUNCacheKey.LOLI_BTN_STATUS, loliBtn)
+export const setLoliPositionX = (loliX: string) => {
+  localStorage.setItem(KUNCacheKey.LOLI_POSITION_X, loliX)
+}
+// 看板娘的竖直位置
+export const getLoliPositionY = () => {
+  return localStorage.getItem(KUNCacheKey.LOLI_POSITION_Y) as string
+}
+export const setLoliPositionY = (loliY: string) => {
+  localStorage.setItem(KUNCacheKey.LOLI_POSITION_Y, loliY)
 }
