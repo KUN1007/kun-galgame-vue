@@ -35,7 +35,7 @@ const KUNGalgameBackgroundPicture = ref<number>(getBackgroundPicture() || 61.8)
 const KUNGalgameLoliStatus = ref<boolean>(getLoliStatus() || false)
 
 const kungalgameSettings: KUNGalgameSettings = {
-  settings: true,
+  settings: false,
   darkMode: KUNGalgameTheme,
   pageWidth: KUNGalgameMainPageWidth,
   kungalgameBackground: KUNGalgameBackgroundPicture || 0,

@@ -1,10 +1,6 @@
 <script setup lang="ts">
-// 导入设置面板 store
-import { useSettingsPanelStore } from '@/store/modules/settings'
-import { storeToRefs } from 'pinia'
-
-// 使用设置面板的 store
-const settingsStore = useSettingsPanelStore()
+// 使用全局 hook
+import { useFixedLoli } from '@/hooks/useFixedLoli'
 /* 导入 loli 数据 */
 import {
   loliBodyLeft,
@@ -27,38 +23,54 @@ import {
 // 用户拖动看板娘和缩放看板娘
 import { ref, reactive, CSSProperties, onMounted, onBeforeUnmount } from 'vue'
 
+// 使用全局固定看板娘的 hook
+const {
+  kungalgameLoliStatus,
+  kungalgameLoliPositionX,
+  kungalgameLoliPositionY,
+  setLoliX,
+  setLoliY,
+} = useFixedLoli()
+
 const loli = ref<HTMLElement | null>(null)
 
 const state = reactive({
   isDragging: false,
-  isResizing: false,
-  origin: { x: 0, y: 0 },
-  translation: { x: 0, y: 0 },
+  origin: {
+    x: 0,
+    y: 0,
+  },
+  translation: {
+    x: parseFloat(kungalgameLoliPositionX.value),
+    y: parseFloat(kungalgameLoliPositionY.value),
+  },
 })
 
+let loliPosX = `${state.translation.x}px`
+let loliPosY = `${state.translation.y}px`
+
 const loliStyle: CSSProperties = {
-  top: `${state.translation.y}px`,
-  left: `${state.translation.x}px`,
-  width: 0,
+  left: loliPosX,
+  top: loliPosY,
+  height: 0,
 }
 
 const startDragLoli = (event: MouseEvent) => {
-  if (event.ctrlKey) {
-    state.isResizing = true
-  } else {
-    state.isDragging = true
-  }
+  state.isDragging = true
   state.origin.x = event.clientX
   state.origin.y = event.clientY
 }
 
 const stopDrag = () => {
   state.isDragging = false
-  state.isResizing = false
 }
 
 const drag = (event: MouseEvent) => {
-  if (state.isDragging && loli.value !== null) {
+  if (
+    state.isDragging &&
+    loli.value !== null &&
+    kungalgameLoliStatus.value === 'true'
+  ) {
     const deltaX = event.clientX - state.origin.x
     const deltaY = event.clientY - state.origin.y
     state.translation.x += deltaX
@@ -77,6 +89,8 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('mouseup', stopDrag)
   window.removeEventListener('mousemove', drag)
+  setLoliX(state.translation.x.toString())
+  setLoliY(state.translation.y.toString())
 })
 </script>
 

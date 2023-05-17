@@ -12,21 +12,12 @@ import { storeToRefs } from 'pinia'
 // 导入看板娘 hook
 import { useFixedLoli } from '@/hooks/useFixedLoli'
 
-// 获取 localeStorage 中的看板娘信息
-
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
 
 // 使用全局固定看板娘的 hook
-const {
-  kungalgameLoliStatus,
-  kungalgameLoliPositionX,
-  kungalgameLoliPositionY,
-  setLoli,
-  setLoliX,
-  setLoliY,
-  initLoli,
-} = useFixedLoli()
+const { kungalgameLoliStatus, setLoli, initLoli, setLoliX, setLoliY } =
+  useFixedLoli()
 
 // 初始化看板娘
 initLoli()
@@ -36,6 +27,7 @@ const handleClose = () => {
   showSettings.value = false
 }
 
+// 点击按钮的选中状态
 let checked = kungalgameLoliStatus.value === 'true'
 
 // 用户点击固定看板娘
@@ -44,16 +36,9 @@ const handleClick = () => {
     setLoli('true')
   } else {
     setLoli('false')
+    setLoliX('120')
+    setLoliY('-250')
   }
-}
-// 看板娘的位置数据
-let loliPositionX = parseFloat(kungalgameLoliPositionX.value)
-let loliPositionY = parseFloat(kungalgameLoliPositionY.value)
-
-// 看板娘的位置样式
-const loliPosition = {
-  left: `${loliPositionX}px`,
-  top: `${loliPositionY}px`,
 }
 </script>
 
@@ -108,22 +93,25 @@ const loliPosition = {
     <!-- 看板娘组件 -->
     <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件，传送的状态使用全局 store 中的 showFixedLoli -->
     <Teleport to="body" :disabled="kungalgameLoliStatus === 'false'">
-      <Loli class="loli" :style="loliPosition" @get-position="getPosition" />
+      <!-- 绑定看板娘组件的样式（位置），给其传递信息获取它现在的位置，给它传递状态（是否允许拖动） -->
+      <Loli class="loli" />
     </Teleport>
     <!-- 关闭面板 -->
-    <div class="close"><Icon @click="handleClose" icon="line-md:close" /></div>
+    <div class="close" v-if="kungalgameLoliStatus === 'false'">
+      <Icon @click="handleClose" icon="line-md:close" />
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 /* 根容器 */
 .root {
-  width: 600px;
   top: 65px;
   right: 0;
   position: absolute;
   background-color: @kungalgame-trans-white-5;
   backdrop-filter: blur(5px);
+  box-shadow: @shadow;
   border-radius: 10px;
   z-index: 1007;
   display: flex;
@@ -241,7 +229,7 @@ const loliPosition = {
 }
 .close {
   font-size: 25px;
-  width: 100%;
+  width: 270px;
   display: flex;
   justify-content: end;
   margin: 20px;
