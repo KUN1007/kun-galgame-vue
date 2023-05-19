@@ -4,6 +4,8 @@ const KUN = 'KUNGalgame'
 
 // KUNGalgame 的 cache 键
 class KUNCacheKey {
+  // 中文 / 英文
+  static MAIN_LANG = `${KUN}-lang`
   // 白天 / 黑夜模式
   static THEME_STATUS = `${KUN}-theme`
   // 主页的宽度

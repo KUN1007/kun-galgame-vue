@@ -12,6 +12,11 @@ import router from '@/router'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+// 导入 i18n
+import { useI18n } from 'vue-i18n'
+
+// 引入 i18n
+const { t } = useI18n()
 
 // 接收设置面板的 store
 const settingsStore = useSettingsPanelStore()
@@ -82,7 +87,7 @@ onBeforeMount(() => {})
       <div class="kungal-info">
         <!-- 网站的名字和网站图标 -->
         <img src="../assets/images/favicon.png" alt="KUNgal" />
-        <span>KUNGalgame</span>
+        <span>{{ t('header.name') }}</span>
       </div>
       <div class="top-bar">
         <ul>
@@ -114,19 +119,6 @@ onBeforeMount(() => {})
 </template>
 
 <style lang="less" scoped>
-// .kungalgame-panel-enter-active,
-// .kungalgame-panel-leave-active {
-//   transition: right 0.5s;
-// }
-// .kungalgame-panel-enter-from {
-//   right: -600px;
-// }
-// .kungalgame-panel-enter-to {
-//   right: 0;
-// }
-// .kungalgame-panel-leave-to {
-//   right: -600px;
-// }
 /* 头部样式 */
 .header {
   /* 头部高度 */
