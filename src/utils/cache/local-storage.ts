@@ -3,6 +3,19 @@
 // 引入定义的键
 import KUNCacheKey from './cache-key'
 
+/*
+ * KUNGalgame 语言设置
+ */
+
+export const getLangStatus = () => {
+  return localStorage.getItem(KUNCacheKey.MAIN_LANG) as string
+}
+
+export const setLangStatus = (lang: string) => {
+  // true -> chinese, false -> english
+  localStorage.setItem(KUNCacheKey.MAIN_LANG, lang)
+}
+
 export const getThemeStatus = () => {
   return localStorage.getItem(KUNCacheKey.THEME_STATUS)
 }
@@ -26,6 +39,10 @@ export const setBackgroundPicture = (backgroundPicture: string) => {
   // 背景的图片是一个数字，对应着一个图片
   return localStorage.setItem(KUNCacheKey.BACKGROUND_PICTURE, backgroundPicture)
 }
+
+/*
+ * KUNGalgame 看板娘设置
+ */
 
 // 将 localeStorage 中的字符串看板娘状态转换为布尔值返回
 export const getLoliStatus = () => {

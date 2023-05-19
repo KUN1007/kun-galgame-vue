@@ -6,8 +6,10 @@ import App from './App.vue'
 import router from './router'
 /* 引入 Pinia */
 import { createPinia } from 'pinia'
-// 导入 css 动画
+// 引入 css 动画
 import 'animate.css'
+// 引入 i18n
+import i18n from '@/language/i18n'
 
 /* 导入 Pinia */
 const store = createPinia()
@@ -15,4 +17,4 @@ const store = createPinia()
 // css
 import '@/styles/reset.css'
 import '@/styles/theme/theme.less'
-createApp(App).use(router).use(store).mount('#app')
+createApp(App).use(router).use(store).use(i18n).mount('#app')

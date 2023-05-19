@@ -11,9 +11,31 @@ import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 // 导入看板娘 hook
 import { useFixedLoli } from '@/hooks/useFixedLoli'
+// 导入语言 hook
+import { useLang } from '@/hooks/useLang'
+// 引入 i18n
+import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
 
-// 使用设置面板的 store
-const settingsStore = useSettingsPanelStore()
+// 全局切换语言
+const { kungalgameLang, setLang, initLang } = useLang()
+const { t, locale } = useI18n({ useScope: 'global' })
+
+// 初始化语言
+initLang()
+
+// 用户切换网站语言
+const changeLang = () => {
+  if (kungalgameLang.value === 'en') {
+    setLang('en')
+    locale.value = 'en'
+    kungalgameLang.value = 'zh'
+  } else {
+    setLang('zh')
+    locale.value = 'zh'
+    kungalgameLang.value = 'en'
+  }
+}
 
 // 使用全局固定看板娘的 hook
 const { kungalgameLoliStatus, setLoli, initLoli, setLoliX, setLoliY } =
@@ -22,7 +44,11 @@ const { kungalgameLoliStatus, setLoli, initLoli, setLoliX, setLoliY } =
 // 初始化看板娘
 initLoli()
 
-let { showSettings } = storeToRefs(settingsStore)
+// 使用设置面板的 store
+const settingsStore = useSettingsPanelStore()
+const { showSettings } = storeToRefs(settingsStore)
+
+// 展示设置面板
 const handleClose = () => {
   showSettings.value = false
 }
@@ -47,7 +73,14 @@ const handleClick = () => {
   <div class="root">
     <div class="container">
       <div class="title">
-        <span>设置面板</span><Icon class="settings-icon" icon="uiw:setting-o" />
+        <span>设置面板</span>
+        <span
+          ><Icon
+            class="change-lang"
+            icon="mdi:spoken-language"
+            @click="changeLang"
+        /></span>
+        <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
       <div class="mode">
         <!-- 白天 / 黑夜模式切换 -->
@@ -126,6 +159,13 @@ const handleClick = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  span {
+    display: flex;
+    align-items: center;
+    &:nth-child(2) {
+      cursor: pointer;
+    }
+  }
 }
 .settings-icon {
   animation: settings 3s linear infinite;
