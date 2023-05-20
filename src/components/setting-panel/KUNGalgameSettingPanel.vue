@@ -1,5 +1,7 @@
 <!-- 设置面板组件，展示整个论坛的设置面板 -->
 <script setup lang="ts">
+// 引入 vue 函数
+import { ref, watch, onMounted } from 'vue'
 // 引入图标字体
 import { Icon } from '@iconify/vue'
 // 引入看板娘组件
@@ -9,27 +11,32 @@ import Background from './components/Background.vue'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// 导入语言 hook
-import { useLang } from '@/hooks/useLang'
-// 引入 i18n
+// 导入 i18n
 import { useI18n } from 'vue-i18n'
 
-// 全局切换语言
-const { kungalgameLang, setLang, initLang } = useLang()
 const { t, locale } = useI18n({ useScope: 'global' })
+const selectedLocale = ref(locale.value)
 
-// 初始化语言
-initLang()
+// 监听selectedLocale的变化，并更新Vue I18n的locale
+watch(selectedLocale, (newVal) => {
+  locale.value = newVal
+})
 
-// 用户切换网站语言
-const changeLang = () => {
-  if (kungalgameLang.value === 'en') {
-    setLang('en')
-    locale.value = 'en'
-  } else {
-    setLang('zh')
-    locale.value = 'zh'
+// 在页面加载时从localStorage中读取保存的语言设置
+onMounted(() => {
+  const savedLocale = localStorage.getItem('locale')
+  if (savedLocale) {
+    selectedLocale.value = savedLocale
   }
+})
+
+// 监听语言变化，并将语言设置保存到localStorage
+watch(locale, (newVal) => {
+  localStorage.setItem('locale', newVal)
+})
+
+const changeLanguage = () => {
+  locale.value = selectedLocale.value
 }
 
 // 使用设置面板的 store
@@ -68,12 +75,23 @@ const handleClose = () => {
           </li>
         </div>
       </div>
-      <div class="fix-loli">
-        <span>语言设置</span>
+      <div class="set-lang">
+        <span>网站语言设置</span>
+        <select
+          class="select"
+          v-model="selectedLocale"
+          @change="changeLanguage"
+        >
+          <option value="en">English</option>
+          <option value="zh">中文</option>
+        </select>
       </div>
       <div>
         <!-- 设置主页的宽度 -->
-        <span>主页页面宽度设置</span>
+        <div class="width-container">
+          <span>主页页面宽度设置</span>
+          <span>61.8%</span>
+        </div>
         <div class="page-width">
           <span>61.8%</span><input class="main" type="range" value="0" /><span
             >90%</span
@@ -127,6 +145,7 @@ const handleClose = () => {
     }
   }
 }
+// 使设置按钮保持旋转
 .settings-icon {
   animation: settings 3s linear infinite;
 }
@@ -159,6 +178,21 @@ const handleClose = () => {
     color: @kungalgame-blue-4;
   }
 }
+// 语言设置
+.set-lang {
+  display: flex;
+  justify-content: space-between;
+}
+// 语言的选择框
+.select {
+  width: 100px;
+  font-size: 16px;
+  border: 1px solid @kungalgame-blue-4;
+  background-color: @kungalgame-trans-white-9;
+  option {
+    background-color: @kungalgame-trans-white-9;
+  }
+}
 .page-width {
   font-size: 15px;
   display: flex;
@@ -173,8 +207,10 @@ const handleClose = () => {
   margin: 20px 0;
 }
 /* 固定看板娘 */
-.fix-loli {
+.set-lang {
   margin-bottom: 20px;
+}
+.width-container {
   display: flex;
   justify-content: space-between;
 }
