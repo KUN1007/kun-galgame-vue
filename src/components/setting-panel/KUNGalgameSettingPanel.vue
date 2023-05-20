@@ -29,11 +29,9 @@ const changeLang = () => {
   if (kungalgameLang.value === 'en') {
     setLang('en')
     locale.value = 'en'
-    kungalgameLang.value = 'zh'
   } else {
     setLang('zh')
     locale.value = 'zh'
-    kungalgameLang.value = 'en'
   }
 }
 
@@ -62,8 +60,6 @@ const handleClick = () => {
     setLoli('true')
   } else {
     setLoli('false')
-    setLoliX('120')
-    setLoliY('-250')
   }
 }
 </script>
@@ -74,11 +70,8 @@ const handleClick = () => {
     <div class="container">
       <div class="title">
         <span>设置面板</span>
-        <span
-          ><Icon
-            class="change-lang"
-            icon="mdi:spoken-language"
-            @click="changeLang"
+        <span @click="changeLang"
+          ><Icon class="change-lang" icon="mdi:spoken-language"
         /></span>
         <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
