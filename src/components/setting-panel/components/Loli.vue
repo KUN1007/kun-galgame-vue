@@ -33,8 +33,7 @@ import {
 <style lang="less" scoped>
 /* 看板娘 */
 .loli {
-  height: 100%;
-  width: 300px;
+  width: 0;
   /* 定位看板娘，重要 */
   position: fixed;
   z-index: 9999;

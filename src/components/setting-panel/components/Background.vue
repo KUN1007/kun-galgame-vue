@@ -45,9 +45,7 @@ const settingsStore = useSettingsPanelStore()
 .kungalgame-background-container {
   display: block;
   /* 背景菜单的高度 */
-  height: 300px;
-  top: 100%;
-  left: 0%;
+  height: 100%;
   font-size: 15px;
   font-weight: normal;
   color: @kungalgame-font-color-3;

@@ -48,9 +48,6 @@ const handleClose = () => {
     <div class="container">
       <div class="title">
         <span>设置面板</span>
-        <span @click="changeLang"
-          ><Icon class="change-lang" icon="mdi:spoken-language"
-        /></span>
         <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
       <div class="mode">
@@ -71,6 +68,9 @@ const handleClose = () => {
           </li>
         </div>
       </div>
+      <div class="fix-loli">
+        <span>语言设置</span>
+      </div>
       <div>
         <!-- 设置主页的宽度 -->
         <span>主页页面宽度设置</span>
@@ -82,10 +82,7 @@ const handleClose = () => {
       </div>
       <!-- 背景设置组件 -->
       <Background />
-      <div class="fix-loli">
-        <!-- 处理固定看板娘按钮点击事件，点击切换是否固定看板娘 -->
-        <span>语言设置</span>
-      </div>
+
       <div><button class="reset">恢复所有设置为默认</button></div>
     </div>
 
@@ -177,45 +174,9 @@ const handleClose = () => {
 }
 /* 固定看板娘 */
 .fix-loli {
-  margin-top: 50px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-}
-.switch-input {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
-
-.switch-label {
-  cursor: pointer;
-  text-indent: -9999px;
-  width: 50px;
-  height: 27px;
-  background: @kungalgame-trans-blue-2;
-  display: block;
-  border-radius: 100px;
-  position: relative;
-  &:after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 23px;
-    height: 23px;
-    background: @kungalgame-white;
-    border-radius: 15px;
-    transition: 0.3s;
-  }
-}
-
-.switch-input:checked + .switch-label {
-  background: @kungalgame-blue-4;
-}
-
-.switch-input:checked + .switch-label:after {
-  left: calc(100% - 2px);
-  transform: translateX(-100%);
 }
 .reset {
   font-size: 15px;
