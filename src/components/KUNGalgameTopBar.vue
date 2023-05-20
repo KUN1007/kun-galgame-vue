@@ -12,11 +12,6 @@ import router from '@/router'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// 导入 i18n
-import { useI18n } from 'vue-i18n'
-
-// 引入 i18n
-const { t } = useI18n()
 
 // 接收设置面板的 store
 const settingsStore = useSettingsPanelStore()
@@ -87,7 +82,7 @@ onBeforeMount(() => {})
       <div class="kungal-info">
         <!-- 网站的名字和网站图标 -->
         <img src="../assets/images/favicon.png" alt="KUNgal" />
-        <span>{{ t('header.name') }}</span>
+        <span>{{ $t('header.name') }}</span>
       </div>
       <div class="top-bar">
         <ul>
