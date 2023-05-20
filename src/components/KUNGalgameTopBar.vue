@@ -1,6 +1,10 @@
 <script setup lang="ts">
-// 导入设置面板
-import KUNGalgameSettingsPanel from './setting-panel/KUNGalgameSettingPanel.vue'
+// 异步导入设置面板，提升首页加载速度
+import { defineAsyncComponent } from 'vue'
+
+const KUNGalgameSettingsPanel = defineAsyncComponent(
+  () => import('./setting-panel/KUNGalgameSettingPanel.vue')
+)
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入必要 vue 函数
@@ -109,7 +113,7 @@ onBeforeMount(() => {})
     enter-active-class="animate__animated animate__jackInTheBox animate__faster"
     leave-active-class="animate__animated animate__fadeOutRight animate__faster"
   >
-    <KUNGalgameSettingsPanel v-show="showSettings" />
+    <KUNGalgameSettingsPanel v-if="showSettings" />
   </transition>
 </template>
 

@@ -3,7 +3,6 @@ import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
 const settingsStore = useSettingsPanelStore()
-let { showKUNGalgameBackground } = storeToRefs(settingsStore)
 </script>
 
 <template>

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// 使用全局 hook
-import { useFixedLoli } from '@/hooks/useFixedLoli'
-/* 导入 loli 数据 */
 import {
   loliBodyLeft,
   loliBodyTop,
@@ -19,85 +16,11 @@ import {
   mouth,
   face,
 } from '@/utils/loli'
-
-// 用户拖动看板娘和缩放看板娘
-import { ref, reactive, CSSProperties, onMounted, onBeforeUnmount } from 'vue'
-
-// 使用全局固定看板娘的 hook
-const {
-  kungalgameLoliStatus,
-  kungalgameLoliPositionX,
-  kungalgameLoliPositionY,
-  setLoliX,
-  setLoliY,
-} = useFixedLoli()
-
-const loli = ref<HTMLElement | null>(null)
-
-const state = reactive({
-  isDragging: false,
-  origin: {
-    x: 0,
-    y: 0,
-  },
-  translation: {
-    x: parseFloat(kungalgameLoliPositionX.value),
-    y: parseFloat(kungalgameLoliPositionY.value),
-  },
-})
-
-let loliPosX = `${state.translation.x}px`
-let loliPosY = `${state.translation.y}px`
-
-const loliStyle: CSSProperties = {
-  left: loliPosX,
-  top: loliPosY,
-  height: 0,
-}
-
-const startDragLoli = (event: MouseEvent) => {
-  state.isDragging = true
-  state.origin.x = event.clientX
-  state.origin.y = event.clientY
-}
-
-const stopDrag = () => {
-  state.isDragging = false
-}
-
-const drag = (event: MouseEvent) => {
-  if (
-    state.isDragging &&
-    loli.value !== null &&
-    kungalgameLoliStatus.value === 'true'
-  ) {
-    const deltaX = event.clientX - state.origin.x
-    const deltaY = event.clientY - state.origin.y
-    state.translation.x += deltaX
-    state.translation.y += deltaY
-    loli.value.style.top = `${state.translation.y}px`
-    loli.value.style.left = `${state.translation.x}px`
-    state.origin.x = event.clientX
-    state.origin.y = event.clientY
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('mouseup', stopDrag)
-  window.addEventListener('mousemove', drag)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('mouseup', stopDrag)
-  window.removeEventListener('mousemove', drag)
-  setLoliX(state.translation.x.toString())
-  setLoliY(state.translation.y.toString())
-})
 </script>
 
 <template>
   <!-- 看板娘 -->
-  <!-- 给看板娘整体绑定鼠标移动事件，改变看板娘的位置 -->
-  <div class="loli" ref="loli" @mousedown="startDragLoli" :style="loliStyle">
+  <div class="loli" ref="loli">
     <!-- 身体 -->
     <img class="lass" :src="lass" alt="ren" />
     <img class="eye" :src="eye" alt="ren" />
@@ -115,7 +38,8 @@ onBeforeUnmount(() => {
   /* 定位看板娘，重要 */
   position: fixed;
   z-index: 9999;
-  // 根据父元素控制面板传过来的参数确定看板娘的位置
+  top: -250px;
+  left: 120px;
 }
 .lass {
   position: absolute;

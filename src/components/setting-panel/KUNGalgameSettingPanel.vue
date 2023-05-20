@@ -9,13 +9,10 @@ import Background from './components/Background.vue'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// 导入看板娘 hook
-import { useFixedLoli } from '@/hooks/useFixedLoli'
 // 导入语言 hook
 import { useLang } from '@/hooks/useLang'
 // 引入 i18n
 import { useI18n } from 'vue-i18n'
-import { ref } from 'vue'
 
 // 全局切换语言
 const { kungalgameLang, setLang, initLang } = useLang()
@@ -35,13 +32,6 @@ const changeLang = () => {
   }
 }
 
-// 使用全局固定看板娘的 hook
-const { kungalgameLoliStatus, setLoli, initLoli, setLoliX, setLoliY } =
-  useFixedLoli()
-
-// 初始化看板娘
-initLoli()
-
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
 const { showSettings } = storeToRefs(settingsStore)
@@ -49,18 +39,6 @@ const { showSettings } = storeToRefs(settingsStore)
 // 展示设置面板
 const handleClose = () => {
   showSettings.value = false
-}
-
-// 点击按钮的选中状态
-let checked = kungalgameLoliStatus.value === 'true'
-
-// 用户点击固定看板娘
-const handleClick = () => {
-  if (!checked) {
-    setLoli('true')
-  } else {
-    setLoli('false')
-  }
 }
 </script>
 
@@ -106,24 +84,16 @@ const handleClick = () => {
       <Background />
       <div class="fix-loli">
         <!-- 处理固定看板娘按钮点击事件，点击切换是否固定看板娘 -->
-        <span>是否固定看板娘</span>
-        <input
-          class="switch-input"
-          type="checkbox"
-          id="switch"
-          v-model="checked"
-        /><label class="switch-label" @click="handleClick" for="switch"></label>
+        <span>语言设置</span>
       </div>
       <div><button class="reset">恢复所有设置为默认</button></div>
     </div>
+
     <!-- 看板娘组件 -->
-    <!-- 此处使用 Teleport，如果固定看板娘，则将看板娘传送到根组件，传送的状态使用全局 store 中的 showFixedLoli -->
-    <Teleport to="body" :disabled="kungalgameLoliStatus === 'false'">
-      <!-- 绑定看板娘组件的样式（位置），给其传递信息获取它现在的位置，给它传递状态（是否允许拖动） -->
-      <Loli class="loli" />
-    </Teleport>
+    <Loli class="loli" />
+
     <!-- 关闭面板 -->
-    <div class="close" v-if="kungalgameLoliStatus === 'false'">
+    <div class="close">
       <Icon @click="handleClose" icon="line-md:close" />
     </div>
   </div>
