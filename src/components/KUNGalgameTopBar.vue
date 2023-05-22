@@ -1,10 +1,6 @@
 <script setup lang="ts">
-// 异步导入设置面板，提升首页加载速度
+// 导入 Vue 函数
 import { defineAsyncComponent } from 'vue'
-
-const KUNGalgameSettingsPanel = defineAsyncComponent(
-  () => import('./setting-panel/KUNGalgameSettingPanel.vue')
-)
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入必要 vue 函数
@@ -16,6 +12,11 @@ import router from '@/router'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+
+// 异步导入设置面板，提升首页加载速度
+const KUNGalgameSettingsPanel = defineAsyncComponent(
+  () => import('./setting-panel/KUNGalgameSettingPanel.vue')
+)
 
 // 接收设置面板的 store
 const settingsStore = useSettingsPanelStore()

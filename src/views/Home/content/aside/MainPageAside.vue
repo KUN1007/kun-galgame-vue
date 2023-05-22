@@ -4,16 +4,26 @@ import NewTopic from './topic/NewTopic.vue'
 import HotTopic from './topic/HotTopic.vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
+// 导入 Vue 函数
+import { ref } from 'vue'
+// 用户点击折叠左侧区域
+const asideWidth = ref(240)
+const asideWidthStyle = `${asideWidth.value}px`
+const handleFold = () => {
+  asideWidth.value = 40
+  console.log(asideWidth.value)
+}
 </script>
 
 <template>
   <!-- 侧边栏 -->
   <div class="aside">
     <!-- 侧边栏交互 -->
-    <div class="nav-aside">
+    <div class="nav-aside" @click="handleFold">
+      <span>{{ asideWidth }}</span>
       <!-- fa 箭头图标字体 -->
       <Icon icon="line-md:arrow-left" />
-      折叠左侧区域
+      <span>折叠左侧区域</span>
     </div>
     <AsideItem />
     <HotTopic />
@@ -26,7 +36,7 @@ import { Icon } from '@iconify/vue'
 .aside {
   /* 侧边栏距离文章区域的距离 */
   margin-right: 5px;
-  width: 240px;
+  width: v-bind('asideWidthStyle');
   /* 侧边栏相对于整体可视部分的占比 */
   /* 侧边栏高度 */
   height: 100%;
