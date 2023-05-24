@@ -1,28 +1,12 @@
 <script setup lang="ts">
-import NewTopic from '../topic/NewTopic.vue'
-import HotTopic from '../topic/HotTopic.vue'
+import Topic from '../topic/components/Topic.vue'
 import { toRefs } from 'vue'
+// 导入功能区的单个项目
+import asideItem from '../aside-item'
 
 // 接受父组件的传值
-let props = defineProps(['isActive'])
+const props = defineProps(['isActive'])
 const isActive = toRefs(props.isActive)
-
-// 单个项目的接口
-interface aside {
-  index: number
-  name: string
-  router: string
-}
-
-// 顶部导航栏的项目
-const asideItem: aside[] = [
-  { index: 1, name: '技术交流', router: '/pool' },
-  { index: 2, name: '收支公示', router: '/balance' },
-  { index: 3, name: '排行榜', router: '/rank' },
-  { index: 4, name: '执行条例', router: '/regulations' },
-  { index: 5, name: '加入我们', router: '/contacts' },
-  { index: 6, name: '帖子池', router: '/pool' },
-]
 </script>
 
 <template>
@@ -35,23 +19,21 @@ const asideItem: aside[] = [
     </div>
     <!-- 功能盒子容器 -->
     <div class="item-box-container">
-      <!-- 顶部单个板块 -->
-      <div v-for="kun in asideItem" :key="kun.index">
+      <!-- 侧边栏单个项目 -->
+      <span v-for="kun in asideItem" :key="kun.index">
         <router-link :to="{ path: kun.router }">{{ kun.name }}</router-link>
-      </div>
+      </span>
     </div>
   </div>
-  <HotTopic v-show="isActive" />
-  <NewTopic v-show="isActive" />
+  <Topic v-show="isActive" />
+  <Topic v-show="isActive" />
 </template>
 
 <style lang="less" scoped>
 /* 侧边栏功能区 */
 .item-box {
   width: 100%;
-  height: 1px;
-  /* 功能区相对于侧边栏的占比 */
-  flex-grow: 6;
+  height: 200px;
   /* 设置六个功能（模式、排行、背景等）分布的弹性盒 */
   display: flex;
   flex-direction: column;
@@ -96,16 +78,16 @@ const asideItem: aside[] = [
   color: @kungalgame-font-color-3;
   /* 相对定位 */
   position: relative;
+
   /* 六个功能之间的距离 */
-  & > div {
-    /* 设置六个功能（模式、排行、背景等）之间的间距 */
+  a {
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    a {
-      color: @kungalgame-font-color-2;
-    }
+    height: 100%;
+    width: 100%;
+    color: @kungalgame-font-color-2;
     /* 设置六个功能（模式、排行、背景等）的 hover */
     &:hover {
       color: @kungalgame-font-color-3;

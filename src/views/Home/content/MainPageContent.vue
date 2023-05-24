@@ -53,5 +53,6 @@ import MainPageArticle from './article/MainPageArticle.vue'
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;
+  overflow: hidden;
 }
 </style>
