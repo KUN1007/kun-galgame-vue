@@ -7,6 +7,10 @@ import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 // 用户点击项目跳转
 import router from '@/router'
+import { is } from 'dom7'
+
+// 单个 item 样式
+const itemStyle = {}
 
 const handleClick = () => {
   router.push('/rank')
@@ -15,15 +19,15 @@ const handleClick = () => {
 // localStorage.setItem('KUNGalgameMainPageAsideBar', 'true')
 // const asideBarStatus =
 //   localStorage.getItem('KUNGalgameMainPageAsideBar') || true
-const topic = ref(true)
-const asideWidth = ref('240px')
+const isActive = ref(false)
+const asideWidth = ref('40px')
 const handleFold = () => {
-  if (topic.value) {
+  if (isActive.value) {
     asideWidth.value = '40px'
   } else {
     asideWidth.value = '240px'
   }
-  topic.value = !topic.value
+  isActive.value = !isActive.value
 }
 </script>
 
@@ -33,13 +37,22 @@ const handleFold = () => {
     <!-- 侧边栏交互 -->
     <div class="nav-aside" @click="handleFold">
       <!-- fa 箭头图标字体 -->
-      <Icon icon="line-md:arrow-left" />
-      <span>折叠左侧区域</span>
+      <Icon
+        icon="line-md:arrow-left"
+        style="font-size: 17px"
+        v-show="isActive"
+      />
+      <Icon
+        icon="line-md:arrow-right"
+        style="font-size: 17px"
+        v-show="!isActive"
+      />
+      <span v-show="isActive">折叠左侧区域</span>
     </div>
     <!-- 侧边栏功能区 -->
-    <div class="item-box">
+    <div class="item-box" v-show="isActive">
       <!-- 发布新文章 -->
-      <div class="new-article" v-show="topic">
+      <div class="new-article">
         <!-- 发布新文章的按钮 -->
         <button class="btn-new-article">发布帖子</button>
       </div>
@@ -53,8 +66,8 @@ const handleFold = () => {
         <div>帖子池</div>
       </div>
     </div>
-    <HotTopic v-show="topic" />
-    <NewTopic v-show="topic" />
+    <HotTopic v-show="isActive" />
+    <NewTopic v-show="isActive" />
   </div>
 </template>
 
@@ -75,10 +88,7 @@ const handleFold = () => {
 }
 /* 侧边栏交互 */
 .nav-aside {
-  width: 100%;
-  height: 1px;
-  /* 折叠区相当于侧边栏的占比 */
-  flex-grow: 1;
+  height: 38px;
   /* 内容居中（折叠左侧区域） */
   display: flex;
   justify-content: center;
@@ -88,11 +98,6 @@ const handleFold = () => {
   font-size: small;
   color: @kungalgame-font-color-3;
   cursor: pointer;
-}
-@media (max-width: 50px) {
-  .nav-aside {
-    background-color: aqua;
-  }
 }
 /* 侧边栏功能区 */
 .item-box {
