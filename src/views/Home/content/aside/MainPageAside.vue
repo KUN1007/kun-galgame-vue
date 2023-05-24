@@ -30,19 +30,13 @@ const handleFold = () => {
     <!-- 侧边栏交互 -->
     <div class="nav-aside" @click="handleFold">
       <!-- fa 箭头图标字体 -->
-      <Icon
-        icon="line-md:arrow-left"
-        style="font-size: 17px"
-        v-show="isActive"
-      />
+      <Icon icon="line-md:arrow-left" style="font-size: 17px" v-if="isActive" />
       <Icon
         icon="line-md:arrow-right"
         style="font-size: 17px"
-        v-show="!isActive"
+        v-if="!isActive"
       />
-      <span
-        v-show="isActive"
-        class="animate__animated animate__rotateInDownRight"
+      <span v-if="isActive" class="animate__animated animate__rotateInDownRight"
         >折叠左侧区域</span
       >
     </div>
@@ -50,9 +44,16 @@ const handleFold = () => {
       enter-active-class="animate__animated animate__fadeIn animate__fast"
       leave-active-class="animate__animated animate__bounceOutLeft"
     >
-      <div class="item" v-show="isActive">
+      <div class="item" v-if="isActive">
         <AsideActive :isActive="isActive" />
-        <!-- <Aside /> -->
+      </div>
+    </Transition>
+    <Transition
+      enter-active-class="animate__animated animate__fadeIn animate__fast"
+      leave-active-class="animate__animated animate__bounceOutLeft"
+    >
+      <div class="item" v-if="!isActive">
+        <Aside :isActive="!isActive" v-if="!isActive" />
       </div>
     </Transition>
   </div>
