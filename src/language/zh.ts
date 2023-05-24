@@ -1,5 +1,5 @@
 export default {
   header: {
-    name: '鲲站',
+    name: '鲲Galgame',
   },
 }
