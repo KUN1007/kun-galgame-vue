@@ -146,9 +146,6 @@ const handleClose = () => {
   span {
     display: flex;
     align-items: center;
-    &:nth-child(2) {
-      cursor: pointer;
-    }
   }
 }
 // 使设置按钮保持旋转
