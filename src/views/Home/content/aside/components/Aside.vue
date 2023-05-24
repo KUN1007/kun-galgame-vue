@@ -18,6 +18,7 @@ import asideItem from '../aside-item'
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  border: 1px solid @kungalgame-blue-4;
   span {
     width: 100%;
     height: 100%;
@@ -28,6 +29,10 @@ import asideItem from '../aside-item'
     /* 文字竖直显示 */
     writing-mode: vertical-rl;
     text-orientation: upright;
+    border-top: 1px solid @kungalgame-blue-4;
+    &:first-child {
+      border-top: none;
+    }
     a {
       width: 100%;
       height: 100%;
@@ -36,6 +41,7 @@ import asideItem from '../aside-item'
       align-items: center;
       color: @kungalgame-blue-5;
       &:hover {
+        transition: 0.2s;
         background-color: @kungalgame-trans-blue-2;
       }
     }

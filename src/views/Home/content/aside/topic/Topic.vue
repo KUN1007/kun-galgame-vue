@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SingleTopic from './components/SingleTopic.vue'
+import SingleNewTopic from './components/SingleNewTopic.vue'
 
 import singleTopic from './topic'
 </script>
@@ -11,7 +11,7 @@ import singleTopic from './topic'
     <div class="title">今日热门话题</div>
     <!-- 热门帖子的目录 -->
     <span class="top-topic-content" v-for="kun in singleTopic" :key="kun.index">
-      <SingleTopic :data="kun.data" :to="{ path: kun.router }" />
+      <SingleNewTopic :data="kun.data" :to="{ path: kun.router }" />
     </span>
   </div>
 </template>
