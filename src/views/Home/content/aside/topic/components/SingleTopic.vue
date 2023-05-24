@@ -8,7 +8,9 @@ console.log(props)
 <template>
   <div class="new-topic">
     <!-- 热门帖子的标题 -->
-    <div class="new-topic-title">啊这可海星</div>
+    <div class="title">
+      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+    </div>
     <!-- 热门帖子的热度值 -->
     <div class="new-topic-number">
       <Icon icon="svg-spinners:clock" />
@@ -20,11 +22,11 @@ console.log(props)
 <style lang="less" scoped>
 /* 单个新帖子的样式 */
 .new-topic {
+  width: 100%;
   display: flex;
   /* 设置空白左右居中 */
   justify-content: space-between;
-  /* 设置每个帖子高度相等 */
-  flex-grow: 1;
+  height: 100%;
   color: @kungalgame-font-color-3;
   align-items: center;
   cursor: pointer;
@@ -38,15 +40,12 @@ console.log(props)
     inset -1px -1px 2px @kungalgame-white;
 }
 /* 单个帖子的标题样式 */
-.new-topic-title {
+.title {
   /* 单个帖子标题左侧的一段距离 */
   padding-left: 10px;
-  /* 设置页面变化时不换行，显示省略号 */
-  overflow: hidden; /* 超出部分隐藏 */
-  text-overflow: ellipsis; /* 显示省略号 */
-  display: -webkit-box; /* 将文本框转化为弹性伸缩盒子 */
-  -webkit-box-orient: vertical; /* 设置为纵向排列 */
-  -webkit-line-clamp: 2; /* 显示两行文本 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   /* 设置帖子的字体大小 */
   font-size: smaller;
 }

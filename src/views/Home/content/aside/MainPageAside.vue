@@ -4,8 +4,7 @@ import { Icon } from '@iconify/vue'
 // 导入 Vue 函数
 import { ref } from 'vue'
 import AsideActive from './components/AsideActive.vue'
-// 导入 animate css
-import 'animate.css'
+
 import Aside from './components/Aside.vue'
 
 // 用户点击折叠左侧区域
@@ -36,26 +35,15 @@ const handleFold = () => {
         style="font-size: 17px"
         v-if="!isActive"
       />
-      <span v-if="isActive" class="animate__animated animate__rotateInDownRight"
-        >折叠左侧区域</span
-      >
+      <span v-if="isActive">折叠左侧区域</span>
     </div>
-    <Transition
-      enter-active-class="animate__animated animate__fadeIn animate__fast"
-      leave-active-class="animate__animated animate__bounceOutLeft"
-    >
-      <div class="item" v-if="isActive">
-        <AsideActive :isActive="isActive" />
-      </div>
-    </Transition>
-    <Transition
-      enter-active-class="animate__animated animate__fadeIn animate__fast"
-      leave-active-class="animate__animated animate__bounceOutLeft"
-    >
-      <div class="item" v-if="!isActive">
-        <Aside :isActive="!isActive" v-if="!isActive" />
-      </div>
-    </Transition>
+    <div class="item-active" v-if="isActive">
+      <AsideActive :isActive="isActive" />
+    </div>
+
+    <div class="item" v-if="!isActive">
+      <Aside :isActive="!isActive" v-if="!isActive" />
+    </div>
   </div>
 </template>
 
@@ -79,9 +67,10 @@ const handleFold = () => {
 }
 /* 侧边栏交互 */
 .nav-aside {
-  height: 38px;
+  height: 40px;
   /* 内容居中（折叠左侧区域） */
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -90,9 +79,14 @@ const handleFold = () => {
   color: @kungalgame-font-color-3;
   cursor: pointer;
 }
-.item {
-  height: 100%;
+/* 激活后的左侧区域 */
+.item-active {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
+}
+/* 未激活的左侧区域 */
+.item {
+  height: 96.6%;
 }
 </style>

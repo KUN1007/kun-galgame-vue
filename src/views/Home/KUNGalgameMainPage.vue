@@ -18,7 +18,7 @@ import MainPageFooter from './footer/MainPageFooter.vue'
   height: 1500px;
   display: flex;
   flex-direction: column;
-  // background-image: url(../../assets/images/bg/bg1.png);
+  background-image: url(../../assets/images/bg/bg1.png);
   /* background-image: url(../../assets/images/bg/bg2.png); */
   background-repeat: no-repeat;
   background-position: center;
