@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import router from '@/router'
+
+const handleClick = () => {
+  router.push('/')
+}
 </script>
 
 <template>
@@ -28,7 +33,7 @@ import { Icon } from '@iconify/vue'
         </div>
       </div>
       <!-- 返回主页 -->
-      <div class="return">
+      <div class="return" @click="handleClick">
         <!-- 这里 Vue 不让用 < 这个符号，换成图标字体 -->
         <span><Icon icon="line-md:arrow-small-left" />返回主页</span>
       </div>

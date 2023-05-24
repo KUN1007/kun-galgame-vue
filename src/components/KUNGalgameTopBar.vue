@@ -4,7 +4,7 @@ import { defineAsyncComponent } from 'vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入必要 vue 函数
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount } from 'vue'
 // 导入 css 动画
 import 'animate.css'
 // 导入路由
@@ -63,9 +63,6 @@ if (isTopicPage) {
 // 根据导航条的项目个数操作 css 中导航条的宽度
 let navItemNum = topBarItem.length
 const navItemNumString = navItemNum + '00px'
-
-// 用户点击设置按钮时的操作
-const isShowPanel = ref(true)
 
 // 用户点击头像时的操作
 const handleClickAvatar = () => {
