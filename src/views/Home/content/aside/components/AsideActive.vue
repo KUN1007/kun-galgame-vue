@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Topic from '../topic/components/Topic.vue'
+import Topic from '../topic/Topic.vue'
 import { toRefs } from 'vue'
 // 导入功能区的单个项目
 import asideItem from '../aside-item'
@@ -26,14 +26,15 @@ const isActive = toRefs(props.isActive)
     </div>
   </div>
   <Topic v-show="isActive" />
-  <Topic v-show="isActive" />
+  <!-- 这个 style 使侧边栏和内容区等高 -->
+  <Topic v-show="isActive" style="margin-bottom: 0" />
 </template>
 
 <style lang="less" scoped>
 /* 侧边栏功能区 */
 .item-box {
   width: 100%;
-  height: 200px;
+  height: 600px;
   /* 设置六个功能（模式、排行、背景等）分布的弹性盒 */
   display: flex;
   flex-direction: column;
@@ -42,7 +43,8 @@ const isActive = toRefs(props.isActive)
 .new-article {
   width: 100%;
   /* 发布帖子的按钮相对于功能区盒子的占比 */
-  flex-grow: 2;
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 /* 发布按钮样式 */
 .new-article button {

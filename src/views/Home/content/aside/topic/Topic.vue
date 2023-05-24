@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SingleTopic from './SingleTopic.vue'
+import SingleTopic from './components/SingleTopic.vue'
 
 import singleTopic from './topic'
 </script>
@@ -8,7 +8,7 @@ import singleTopic from './topic'
   <!-- 侧边栏动态推送今日热度帖子 -->
   <div class="top-topic-wrap">
     <!-- 今日热度帖子的标题名 -->
-    <div class="top-topic-title-name">今日热门话题</div>
+    <div class="title">今日热门话题</div>
     <!-- 热门帖子的目录 -->
     <span class="top-topic-content" v-for="kun in singleTopic" :key="kun.index">
       <SingleTopic :data="kun.data" :to="{ path: kun.router }" />
@@ -28,7 +28,8 @@ import singleTopic from './topic'
   flex-direction: column;
 }
 /* “今日热门话题”六个字的样式 */
-.top-topic-title-name {
+.title {
+  height: 100%;
   border: 3px dashed @kungalgame-trans-blue-1;
   border-bottom: none;
   /* 设置（今日热门话题）居中 */

@@ -23,11 +23,6 @@ import MainPageArticle from './article/MainPageArticle.vue'
   width: 100%;
   height: 1px;
   flex-grow: 21;
-  /* 背景图片 */
-  /*   background-image: url(../img/bg.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; */
 }
 .main-container {
   height: 100%;
@@ -39,8 +34,6 @@ import MainPageArticle from './article/MainPageArticle.vue'
   width: 80%;
   /* 可视页面的最小宽度 */
   min-width: 700px;
-  /* 盒子边线在内部，页面缩小到最小时右侧不留白 */
-  box-sizing: border-box;
   height: 100%;
   margin: 0 auto;
   /* 可视内容区为弹性盒 */
@@ -53,6 +46,5 @@ import MainPageArticle from './article/MainPageArticle.vue'
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;
-  overflow: hidden;
 }
 </style>
