@@ -176,7 +176,7 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 楼主帖子容器 */
 .master-topic-container {
   width: 100%;
@@ -215,17 +215,17 @@
   height: 70px;
   border-radius: 50%;
   letter-spacing: 2px;
-  background: linear-gradient(@kungalgame-blue-1, @kungalgame-pink-1);
+  background: linear-gradient($kungalgame-blue-1, $kungalgame-pink-1);
   opacity: 0.8;
   font-size: 37px;
   font-weight: bold;
   font-style: oblique;
-  color: @kungalgame-pink-1;
-  text-shadow: -1px 0 @kungalgame-blue-4, 0 -1px @kungalgame-blue-4,
-    1px 0 @kungalgame-blue-4, 0 1px @kungalgame-blue-4,
-    1px 1px @kungalgame-black, -1px -1px @kungalgame-black,
-    -1px 1px @kungalgame-black, 1px -1px @kungalgame-black,
-    4px 2px 2px @kungalgame-red-4;
+  color: $kungalgame-pink-1;
+  text-shadow: -1px 0 $kungalgame-blue-4, 0 -1px $kungalgame-blue-4,
+    1px 0 $kungalgame-blue-4, 0 1px $kungalgame-blue-4,
+    1px 1px $kungalgame-black, -1px -1px $kungalgame-black,
+    -1px 1px $kungalgame-black, 1px -1px $kungalgame-black,
+    4px 2px 2px $kungalgame-red-4;
 }
 
 /* 楼主帖子内容区的容器 */
@@ -234,11 +234,11 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  border: 1px solid @kungalgame-blue-1;
+  border: 1px solid $kungalgame-blue-1;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: @shadow;
-  background-color: @kungalgame-trans-white-3;
+  box-shadow: $shadow;
+  background-color: $kungalgame-trans-white-3;
   box-sizing: border-box;
 }
 /* 楼主帖子头部 */
@@ -248,9 +248,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   font-size: 17px;
-  border-bottom: 1px solid @kungalgame-blue-1;
+  border-bottom: 1px solid $kungalgame-blue-1;
   box-sizing: border-box;
 }
 /* 楼主帖子标题 */
@@ -280,7 +280,7 @@
   /* 时间和标签分居两侧 */
   justify-content: space-between;
   /* 下面的分割线 */
-  border-bottom: 1px solid @kungalgame-blue-1;
+  border-bottom: 1px solid $kungalgame-blue-1;
   box-sizing: border-box;
 }
 /* 帖子的标签 */
@@ -292,7 +292,7 @@
 /* 图标字体 */
 .master-topic-tags i {
   padding: 0 20px;
-  color: @kungalgame-blue-4;
+  color: $kungalgame-blue-4;
 }
 /* 单个标签的盒子 */
 .master-topic-tags ul {
@@ -303,14 +303,14 @@
   margin-left: 5px;
   font-size: small;
   padding: 2px;
-  background-color: @kungalgame-blue-0;
+  background-color: $kungalgame-blue-0;
   overflow: hidden;
   white-space: nowrap;
   border-radius: 5px;
   cursor: pointer;
 }
 .master-topic-tags ul li:hover {
-  background-color: @kungalgame-red-0;
+  background-color: $kungalgame-red-0;
   transition: 0.2s;
 }
 /* 发帖时间 */
@@ -328,7 +328,7 @@
 /* 沙漏的样式 */
 .master-topic-time i {
   padding: 0 10px;
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
 }
 /* 发帖时间的样式 */
 .master-topic-time div {
@@ -339,7 +339,7 @@
   width: 100%;
   display: flex;
   flex-shrink: 0;
-  border-bottom: 1px solid @kungalgame-blue-1;
+  border-bottom: 1px solid $kungalgame-blue-1;
   box-sizing: border-box;
 }
 /* 内容区左侧楼主的信息 */
@@ -381,7 +381,7 @@
 .master-topic-content-center-right {
   font-size: 15px;
   padding: 17px;
-  border-left: 1px solid @kungalgame-blue-1;
+  border-left: 1px solid $kungalgame-blue-1;
 }
 /* 内容区的底部 */
 .master-topic-content-bottom {
@@ -390,7 +390,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid @kungalgame-blue-1;
+  border-bottom: 1px solid $kungalgame-blue-1;
 }
 /* 内容区域下方字体样式 */
 .master-topic-content-bottom span {
@@ -403,8 +403,8 @@
 }
 /* 帖子状态 */
 .master-topic-content-bottom span span {
-  background-color: @kungalgame-green-3;
-  color: @kungalgame-white;
+  background-color: $kungalgame-green-3;
+  color: $kungalgame-white;
 }
 /* 楼主帖子底部 */
 .master-topic-footer {
@@ -425,11 +425,11 @@
   margin-left: 17px;
 }
 .master-topic-footer-left ul li a {
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
   font-size: 20px;
 }
 .master-topic-footer-left ul li:nth-child(1) a {
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
 }
 /* 底部右侧部分（回复、评论、只看、编辑） */
 .master-topic-footer-right ul {
@@ -442,7 +442,7 @@
   margin-right: 17px;
 }
 .master-topic-footer-right ul li a {
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
   font-size: 20px;
 }
 /* button 的容器 li */
@@ -456,16 +456,16 @@
   position: relative;
   display: inline-block;
   padding: 7px 17px;
-  color: @kungalgame-blue-3;
+  color: $kungalgame-blue-3;
   overflow: hidden;
-  border: 2px solid @kungalgame-blue-2;
+  border: 2px solid $kungalgame-blue-2;
   filter: hue-rotate(0deg);
   transition: all 0.1s linear;
   cursor: pointer;
 }
 .kungalgame-reply-btn:hover {
   border: 2px solid transparent;
-  color: @kungalgame-orange-3;
+  color: $kungalgame-orange-3;
 }
 .kungalgame-reply-btn:hover span {
   position: absolute;
@@ -477,7 +477,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, transparent, @kungalgame-blue-3);
+  background: linear-gradient(90deg, transparent, $kungalgame-blue-3);
   animation: animate1 1s linear infinite;
 }
 @keyframes animate1 {
@@ -495,7 +495,7 @@
   right: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, @kungalgame-blue-3);
+  background: linear-gradient(180deg, transparent, $kungalgame-blue-3);
   animation: animate2 1s linear infinite;
   animation-delay: 0.25s;
 }
@@ -513,7 +513,7 @@
   bottom: 0;
   right: 0;
   width: 100%;
-  background: linear-gradient(270deg, transparent, @kungalgame-blue-3);
+  background: linear-gradient(270deg, transparent, $kungalgame-blue-3);
   animation: animate3 1s linear infinite;
   animation-delay: 0.5s;
 }
@@ -534,7 +534,7 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, @kungalgame-blue-3);
+  background: linear-gradient(360deg, transparent, $kungalgame-blue-3);
   animation: animate4 1s linear infinite;
   animation-delay: 0.75s;
 }

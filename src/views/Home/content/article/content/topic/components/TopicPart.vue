@@ -35,7 +35,7 @@ import { Icon } from '@iconify/vue'
     </div>
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 帖子信息 */
 .topic-info {
   width: 1px;
@@ -79,7 +79,7 @@ import { Icon } from '@iconify/vue'
 }
 /* 帖子标题的字体颜色 */
 .topic-title span {
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   font-weight: 500;
 }
 /* 帖子点赞数等信息 */
@@ -93,7 +93,7 @@ import { Icon } from '@iconify/vue'
 /* 设置点赞、评论、查看字体和位置 */
 .topic-status ul {
   display: flex;
-  color: @kungalgame-gray-7;
+  color: $kungalgame-gray-7;
   font-size: smaller;
 }
 /* 点赞、评论、查看之间的距离 */
@@ -107,7 +107,7 @@ import { Icon } from '@iconify/vue'
 .topic-post-date {
   width: 45px;
   font-size: x-small;
-  color: @kungalgame-gray-4;
+  color: $kungalgame-gray-4;
   /* 居中 */
   display: flex;
   justify-content: center;
@@ -137,6 +137,6 @@ import { Icon } from '@iconify/vue'
 /* 发帖预览信息的字体 */
 .topic-introduction-text p {
   font-size: 14px;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 </style>

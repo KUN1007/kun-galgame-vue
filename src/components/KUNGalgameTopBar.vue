@@ -98,11 +98,11 @@ onBeforeMount(() => {})
       </div>
     </div>
     <div class="kungalgamer-info">
-      <span @click="handleSittingsClick"><Icon icon="uiw:setting-o" /></span>
+      <span $click="handleSittingsClick"><Icon icon="uiw:setting-o" /></span>
       <img
         src="../assets/images/KUN.jpg"
         alt="KUN"
-        @click="handleClickAvatar"
+        $click="handleClickAvatar"
       />
     </div>
   </div>
@@ -115,16 +115,16 @@ onBeforeMount(() => {})
   </transition>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 头部样式 */
 .header {
   /* 头部高度 */
   height: 58px;
   /* 头部下方阴影 */
-  box-shadow: 0 2px 4px 0 @kungalgame-trans-blue-1;
+  box-shadow: 0 2px 4px 0 $kungalgame-trans-blue-1;
   /* 头部背景 */
   backdrop-filter: blur(5px);
-  background-color: @kungalgame-trans-white-5;
+  background-color: $kungalgame-trans-white-5;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -148,14 +148,14 @@ onBeforeMount(() => {})
   span {
     margin-left: 20px;
     margin-right: 7px;
-    color: @kungalgame-font-color-3;
+    color: $kungalgame-font-color-3;
     font-weight: bold;
     cursor: pointer;
   }
 }
 
 // 顶部交互栏
-@navNumber: v-bind(navItemNum);
+$navNumber: v-bind(navItemNum);
 
 .top-bar {
   position: relative;
@@ -172,12 +172,12 @@ onBeforeMount(() => {})
       left: 0;
       position: absolute;
       transition: 0.5s;
-      width: calc(100% / @navNumber);
+      width: calc(100% / $navNumber);
     }
     a {
       // 转变 a 标签为块级元素
       display: block;
-      color: @kungalgame-blue-5;
+      color: $kungalgame-blue-5;
       width: 100%;
       height: 100%;
     }
@@ -188,32 +188,32 @@ onBeforeMount(() => {})
       line-height: 58px;
       width: 100%;
       &:hover {
-        background-color: @kungalgame-blue-0;
+        background-color: $kungalgame-blue-0;
         border-radius: 2px;
         transition: 0.5s;
       }
       &:nth-child(1):hover ~ .top-bar-box {
-        background-color: @kungalgame-red-3;
-        left: calc(100% / @navNumber * 0);
+        background-color: $kungalgame-red-3;
+        left: calc(100% / $navNumber * 0);
       }
 
       &:nth-child(2):hover ~ .top-bar-box {
-        background-color: @kungalgame-yellow-3;
-        left: calc(100% / @navNumber * 1);
+        background-color: $kungalgame-yellow-3;
+        left: calc(100% / $navNumber * 1);
       }
 
       &:nth-child(3):hover ~ .top-bar-box {
-        background-color: @kungalgame-blue-3;
-        left: calc(100% / @navNumber * 2);
+        background-color: $kungalgame-blue-3;
+        left: calc(100% / $navNumber * 2);
       }
 
       &:nth-child(4):hover ~ .top-bar-box {
-        background-color: @kungalgame-green-3;
-        left: calc(100% / @navNumber * 3);
+        background-color: $kungalgame-green-3;
+        left: calc(100% / $navNumber * 3);
       }
       &:nth-child(5):hover ~ .top-bar-box {
-        background-color: @kungalgame-purple-3;
-        left: calc(100% / @navNumber * 4);
+        background-color: $kungalgame-purple-3;
+        left: calc(100% / $navNumber * 4);
       }
     }
   }
@@ -232,7 +232,7 @@ onBeforeMount(() => {})
     margin-right: 50px;
   }
   > span {
-    color: @kungalgame-font-color-2;
+    color: $kungalgame-font-color-2;
     font-size: 25px;
     margin-top: 10px;
     margin-right: 30px;

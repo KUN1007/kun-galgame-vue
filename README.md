@@ -1,6 +1,6 @@
 # KUNGalgame 论坛的 Vue 前端重构版本
 
-这个项目的技术栈为：Vite + Vue3 + Ts + Pinia + less，它并没有依赖任何 UI 库
+这个项目的技术栈为：Vite + Vue3 + Ts + Pinia + Scss，它并没有依赖任何 UI 库
 
 ### 纯 HTML / CSS 版本：https://github.com/KUN1007/kungalgame-pure-css
 

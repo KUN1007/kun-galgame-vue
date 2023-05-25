@@ -17,7 +17,7 @@ import MainPageArticle from './article/MainPageArticle.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 主体部分配置 */
 .main {
   width: 100%;
@@ -42,7 +42,7 @@ import MainPageArticle from './article/MainPageArticle.vue'
   align-items: center;
   /* 设置背景毛玻璃效果 */
   backdrop-filter: blur(5px);
-  background-color: @kungalgame-trans-white-5;
+  background-color: $kungalgame-trans-white-5;
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;

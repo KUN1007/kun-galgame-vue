@@ -30,7 +30,7 @@ import {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 看板娘 */
 .loli {
   width: 0;

@@ -13,15 +13,15 @@ const settingsStore = useSettingsPanelStore()
         <span>点击使用我们的预设的背景</span>
         <!-- 预设背景集 -->
         <ul class="kungalgame-reset-bg">
-          <li><img src="@/assets/images/bg/bg1-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg2-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg3-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg4-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg5-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg6-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg7-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg8-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg9-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg1-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg2-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg3-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg4-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg5-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg6-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg7-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg8-m.png" /></li>
+          <li><img src="$/assets/images/bg/bg9-m.png" /></li>
         </ul>
       </li>
       <!-- 用户自定义背景 -->
@@ -40,7 +40,7 @@ const settingsStore = useSettingsPanelStore()
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 背景设置 */
 .kungalgame-background-container {
   display: block;
@@ -48,7 +48,7 @@ const settingsStore = useSettingsPanelStore()
   height: 100%;
   font-size: 15px;
   font-weight: normal;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   /* 背景容器的标题字体 */
   span {
     height: 30px;
@@ -101,12 +101,12 @@ const settingsStore = useSettingsPanelStore()
     width: 100%;
     padding-left: 5px;
     height: 25px;
-    border: 1px solid @kungalgame-blue-4;
-    background-color: @kungalgame-trans-white-9;
+    border: 1px solid $kungalgame-blue-4;
+    background-color: $kungalgame-trans-white-9;
     /* 粘贴框的 focus */
     &:focus {
       outline: none;
-      background-color: @kungalgame-trans-blue-0;
+      background-color: $kungalgame-trans-blue-0;
     }
   }
   /* 确定按钮 */
@@ -115,16 +115,16 @@ const settingsStore = useSettingsPanelStore()
     padding: 0 10px;
     height: 25px;
     box-sizing: border-box;
-    border: 1px solid @kungalgame-blue-4;
+    border: 1px solid $kungalgame-blue-4;
     border-left: none;
-    background-color: @kungalgame-trans-white-5;
+    background-color: $kungalgame-trans-white-5;
     cursor: pointer;
     /* 确定按钮的 hover */
     &:hover {
-      background-color: @kungalgame-trans-red-1;
+      background-color: $kungalgame-trans-red-1;
       /* 确定按钮的 active */
       &:active {
-        background-color: @kungalgame-trans-red-3;
+        background-color: $kungalgame-trans-red-3;
       }
     }
   }
@@ -135,10 +135,10 @@ const settingsStore = useSettingsPanelStore()
   height: 30px;
   width: 100%;
   margin-top: 10px;
-  border: 1px solid @kungalgame-blue-4;
-  background-color: @kungalgame-trans-blue-1;
+  border: 1px solid $kungalgame-blue-4;
+  background-color: $kungalgame-trans-blue-1;
   &:hover {
-    background-color: @kungalgame-trans-blue-2;
+    background-color: $kungalgame-trans-blue-2;
   }
 }
 </style>

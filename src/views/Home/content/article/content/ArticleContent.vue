@@ -26,7 +26,7 @@ import SingleTopic from './topic/SingleTopic.vue'
     <SingleTopic />
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 帖子区容器 */
 .topic-container {
   /* 帖子区域占文章总区域的宽度 */
@@ -44,11 +44,11 @@ import SingleTopic from './topic/SingleTopic.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .topic-container::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 </style>

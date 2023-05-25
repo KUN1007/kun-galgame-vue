@@ -928,7 +928,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -959,34 +959,34 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 800px;
   /* 渐变背景色 */
   background: linear-gradient(
-    @kungalgame-trans-pink-1,
-    @kungalgame-trans-blue-1
+    $kungalgame-trans-pink-1,
+    $kungalgame-trans-blue-1
   );
   /* 调和背景色 */
-  background-color: @kungalgame-trans-white-4;
+  background-color: $kungalgame-trans-white-4;
   /* 模糊 */
   backdrop-filter: blur(5px);
-  border: 1px solid @kungalgame-pink-4;
-  box-shadow: @shadow;
+  border: 1px solid $kungalgame-pink-4;
+  box-shadow: $shadow;
   border-radius: 7px;
   margin: auto;
   display: flex;
   padding: 10px;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
 }
 /* 用户排行 */
 .kungalgamer-rank {
   width: 50%;
-  border-right: 1px solid @kungalgame-blue-4;
+  border-right: 1px solid $kungalgame-blue-4;
   box-sizing: border-box;
 }
 /* 用户排行标题 */
 .kungalgamer-title {
   /* 字体设置 */
   font-size: 30px;
-  color: @kungalgame-pink-4;
+  color: $kungalgame-pink-4;
   font-style: italic;
-  text-shadow: 2px 2px 4px @kungalgame-blue-0;
+  text-shadow: 2px 2px 4px $kungalgame-blue-0;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -1001,7 +1001,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   cursor: pointer;
 }
 .kungalgamer-nav > div:hover {
-  background-color: @kungalgame-pink-1;
+  background-color: $kungalgame-pink-1;
   transition: 0.2s;
 }
 /* 排行选择项 */
@@ -1011,7 +1011,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 .reply {
   height: 30px;
   width: 100%;
-  border: 1px solid @kungalgame-pink-4;
+  border: 1px solid $kungalgame-pink-4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1024,7 +1024,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 单个用户的容器 */
 .kungalgamer-container {
   height: 700px;
-  border: 1px solid @kungalgame-pink-4;
+  border: 1px solid $kungalgame-pink-4;
   border-top: none;
   display: flex;
   flex-direction: column;
@@ -1036,18 +1036,18 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .kungalgamer-container::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单个用户 */
 .single-kungalgamer {
   height: 37px;
   flex-shrink: 0;
-  border-bottom: 1px solid @kungalgame-pink-4;
+  border-bottom: 1px solid $kungalgame-pink-4;
   margin: 7px;
   display: flex;
   justify-content: space-between;
@@ -1080,9 +1080,9 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 帖子排行标题 */
 .topic-title {
   font-size: 30px;
-  color: @kungalgame-blue-4;
+  color: $kungalgame-blue-4;
   font-style: italic;
-  text-shadow: 2px 2px 4px @kungalgame-pink-0;
+  text-shadow: 2px 2px 4px $kungalgame-pink-0;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -1097,7 +1097,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   cursor: pointer;
 }
 .topic-nav > div:hover {
-  background-color: @kungalgame-blue-1;
+  background-color: $kungalgame-blue-1;
   transition: 0.2s;
 }
 /* 单个交互项目 */
@@ -1107,7 +1107,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 .top {
   height: 30px;
   width: 100%;
-  border: 1px solid @kungalgame-blue-4;
+  border: 1px solid $kungalgame-blue-4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1120,7 +1120,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 单个帖子的容器 */
 .topic-container {
   height: 700px;
-  border: 1px solid @kungalgame-blue-4;
+  border: 1px solid $kungalgame-blue-4;
   border-top: none;
   display: flex;
   flex-direction: column;
@@ -1132,18 +1132,18 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .topic-container::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单个帖子 */
 .single-topic {
   flex-shrink: 0;
   height: 37px;
-  border-bottom: 1px solid @kungalgame-blue-4;
+  border-bottom: 1px solid $kungalgame-blue-4;
   margin: 7px;
   display: flex;
   justify-content: space-between;

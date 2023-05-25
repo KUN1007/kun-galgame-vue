@@ -203,7 +203,7 @@ const asideBarItem: asideBar[] = [
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -225,7 +225,7 @@ const asideBarItem: asideBar[] = [
 }
 /* 内容区容器 */
 .content-container {
-  background-color: @kungalgame-trans-white-2;
+  background-color: $kungalgame-trans-white-2;
   backdrop-filter: blur(5px);
   border-radius: 7px;
   /* 固定高度 */
@@ -240,17 +240,17 @@ const asideBarItem: asideBar[] = [
 /* 内容区 */
 .content {
   height: 100%;
-  border: 1px solid @kungalgame-blue-4;
+  border: 1px solid $kungalgame-blue-4;
   border-radius: 7px;
   display: flex;
-  box-shadow: @shadow;
+  box-shadow: $shadow;
 }
 /* 侧边的文章结构索引 */
 .aside {
   width: 122px;
   height: 100%;
   flex-shrink: 0;
-  border-right: 1px solid @kungalgame-blue-4;
+  border-right: 1px solid $kungalgame-blue-4;
 }
 /* 侧边的标题 */
 .aside > div {
@@ -281,7 +281,7 @@ const asideBarItem: asideBar[] = [
 }
 /* 单个项目的 hover */
 .aside > ul > li:hover {
-  background-color: @kungalgame-trans-blue-2;
+  background-color: $kungalgame-trans-blue-2;
 }
 /* 文章区距离侧边的距离 */
 .article {
@@ -294,7 +294,7 @@ h2,
 h3,
 p,
 .list {
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 /* da标题的字体 */
 h1 {
@@ -307,7 +307,7 @@ h1 {
 h2 {
   margin-top: 77px;
   margin-bottom: 30px;
-  border-left: 4px solid @kungalgame-blue-4;
+  border-left: 4px solid $kungalgame-blue-4;
   text-indent: 1em;
 }
 h3 {
@@ -329,9 +329,9 @@ a {
 }
 /* 被划出来的链接字体 */
 .skip {
-  border-bottom: 1.5px solid @kungalgame-blue-4;
+  border-bottom: 1.5px solid $kungalgame-blue-4;
   cursor: pointer;
-  color: @kungalgame-blue-4;
+  color: $kungalgame-blue-4;
 }
 .list > li {
   list-style: inside;

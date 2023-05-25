@@ -39,7 +39,7 @@ import Comments from './comments/Comments.vue'
             <div class="other-topic-content-right-top">
               <!-- 上部区域的左边 -->
               <div class="other-topic-content-right-top-left">
-                <span>回复给@<a href="#">啊这可海星啊这</a>（楼主）</span>
+                <span>回复给$<a href="#">啊这可海星啊这</a>（楼主）</span>
               </div>
               <!-- 上部区域的右边 -->
               <div class="other-topic-content-right-top-right">
@@ -150,7 +150,7 @@ import Comments from './comments/Comments.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 其它人的楼层 */
 .other-topic-floor {
   /* 标志在最左边 */
@@ -170,17 +170,17 @@ import Comments from './comments/Comments.vue'
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(@kungalgame-blue-1, @kungalgame-pink-1);
+  background: linear-gradient($kungalgame-blue-1, $kungalgame-pink-1);
   opacity: 0.7;
   font-size: 18px;
   font-weight: bold;
   font-style: oblique;
-  color: @kungalgame-pink-1;
-  text-shadow: -1px 0 @kungalgame-blue-5, 0 -1px @kungalgame-blue-5,
-    1px 0 @kungalgame-blue-5, 0 1px @kungalgame-blue-5,
-    1px 1px @kungalgame-black, -1px -1px @kungalgame-black,
-    -1px 1px @kungalgame-black, 1px -1px @kungalgame-black,
-    4px 2px 2px @kungalgame-red-4;
+  color: $kungalgame-pink-1;
+  text-shadow: -1px 0 $kungalgame-blue-5, 0 -1px $kungalgame-blue-5,
+    1px 0 $kungalgame-blue-5, 0 1px $kungalgame-blue-5,
+    1px 1px $kungalgame-black, -1px -1px $kungalgame-black,
+    -1px 1px $kungalgame-black, 1px -1px $kungalgame-black,
+    4px 2px 2px $kungalgame-red-4;
 }
 /* 其他人帖子内容区容器 */
 .other-topic-content-container {
@@ -188,10 +188,10 @@ import Comments from './comments/Comments.vue'
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  border: 1px solid @kungalgame-blue-1;
+  border: 1px solid $kungalgame-blue-1;
   border-radius: 5px;
-  background-color: @kungalgame-trans-white-3;
-  box-shadow: @shadow;
+  background-color: $kungalgame-trans-white-3;
+  box-shadow: $shadow;
 }
 /* 其它人回帖的内容区 */
 .other-topic-content {
@@ -257,7 +257,7 @@ import Comments from './comments/Comments.vue'
 }
 /* 被回复的人 */
 .other-topic-content-right-top-left span a {
-  color: @kungalgame-blue-5;
+  color: $kungalgame-blue-5;
   font-weight: 500;
 }
 .other-topic-content-right-top-left span a:hover {
@@ -274,7 +274,7 @@ import Comments from './comments/Comments.vue'
 /* 右侧部分分文本 */
 .other-topic-content-right-text {
   padding: 7px;
-  border-left: 1px solid @kungalgame-blue-1;
+  border-left: 1px solid $kungalgame-blue-1;
   font-size: 15px;
 }
 /* 其他人回帖的下部 */
@@ -282,7 +282,7 @@ import Comments from './comments/Comments.vue'
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid @kungalgame-blue-1;
+  border-bottom: 1px solid $kungalgame-blue-1;
   padding-bottom: 7px;
 }
 /* 其他人回帖的下部分左侧 */
@@ -300,21 +300,21 @@ import Comments from './comments/Comments.vue'
 /* 图标字体 */
 .other-topic-content-bottom-left i {
   padding: 0 20px;
-  color: @kungalgame-blue-4;
+  color: $kungalgame-blue-4;
 }
 /* 单个标签的样式 */
 .other-topic-content-bottom-left ul li {
   margin-left: 5px;
   font-size: small;
   padding: 2px;
-  background-color: @kungalgame-blue-0;
+  background-color: $kungalgame-blue-0;
   overflow: hidden;
   white-space: nowrap;
   border-radius: 5px;
   cursor: pointer;
 }
 .other-topic-content-bottom-left ul li:hover {
-  background-color: @kungalgame-red-1;
+  background-color: $kungalgame-red-1;
   transition: 0.2s;
 }
 /* 其他人回帖的下部分右侧 */
@@ -336,7 +336,7 @@ import Comments from './comments/Comments.vue'
 /* 沙漏的样式 */
 .other-topic-time i {
   padding: 0 10px;
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
 }
 /* 发帖时间的样式 */
 .other-topic-time div {
@@ -368,11 +368,11 @@ import Comments from './comments/Comments.vue'
   margin-left: 17px;
 }
 .other-topic-footer-top-left ul li a {
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
   font-size: 20px;
 }
 .other-topic-footer-top-left ul li:nth-child(1) a {
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
 }
 /* 回复、评论、编辑 */
 .other-topic-footer-top-right ul {
@@ -385,7 +385,7 @@ import Comments from './comments/Comments.vue'
   margin-right: 17px;
 }
 .other-topic-footer-top-right ul li a {
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
   font-size: 20px;
 }
 /* 其它人回帖的底部 */

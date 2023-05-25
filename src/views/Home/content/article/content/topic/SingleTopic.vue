@@ -14,18 +14,18 @@ const toTopic = (url: string) => {
     <TopicPart />
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 单个帖子 */
 .topic {
   width: 100%;
   height: 70px;
   flex-shrink: 0;
   border-radius: 3px;
-  background-color: @kungalgame-trans-white-4;
+  background-color: $kungalgame-trans-white-4;
   margin-bottom: 3px;
   display: flex;
   &:hover {
-    background-color: @kungalgame-trans-white-1;
+    background-color: $kungalgame-trans-white-1;
     transition: 0.2s;
   }
   &:last-child {

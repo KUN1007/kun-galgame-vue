@@ -14,7 +14,7 @@
     <!--                   <div class="kungalgamer-rank"></div> -->
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 发帖人信息 */
 .kungalgamer-topic-info {
   width: 70px;
@@ -52,7 +52,7 @@
 }
 /* 发帖人昵称位置设置 */
 .kungalgamer-name {
-  border-top: 1px solid @kungalgame-gray-2;
+  border-top: 1px solid $kungalgame-gray-2;
   flex-grow: 1;
   display: flex;
 }
@@ -71,7 +71,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   /* 颜色和字体大小 */
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   font-size: x-small;
 }
 </style>

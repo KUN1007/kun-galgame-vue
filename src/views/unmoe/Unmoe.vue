@@ -127,7 +127,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -141,7 +141,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('@/assets/images/bg/bg6.png');
+  background-image: url('$/assets/images/bg/bg6.png');
   /* background-image: url(./img/bg/bg2.png); */
   background-repeat: no-repeat;
   background-position: center;
@@ -158,16 +158,16 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   width: 700px;
   /* 居中 */
   margin: auto;
-  background-color: @kungalgame-trans-white-5;
-  border: 1px solid @kungalgame-red-4;
+  background-color: $kungalgame-trans-white-5;
+  border: 1px solid $kungalgame-red-4;
   overflow: hidden;
   border-radius: 7px;
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   display: flex;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   position: relative;
-  box-shadow: @shadow;
+  box-shadow: $shadow;
 }
 /* 页面标题 */
 .title {
@@ -179,13 +179,13 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 /* 文章部分 */
 .article {
   width: 90%;
-  background-color: @kungalgame-trans-white-3;
-  border-left: 1px solid @kungalgame-red-4;
+  background-color: $kungalgame-trans-white-3;
+  border-left: 1px solid $kungalgame-red-4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -210,11 +210,11 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .content::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 原因、处理方式 */
@@ -230,17 +230,17 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 单个记录 */
 .single-log {
   margin: 20px 40px;
-  border-bottom: 1px solid @kungalgame-blue-4;
+  border-bottom: 1px solid $kungalgame-blue-4;
 }
 /* 原因 */
 .reason {
   width: 80%;
   padding-left: 5px;
-  border-left: 2px solid @kungalgame-blue-4;
+  border-left: 2px solid $kungalgame-blue-4;
 }
 /* 后果 */
 .result {
-  border-right: 4px solid @kungalgame-red-4;
+  border-right: 4px solid $kungalgame-red-4;
   padding-right: 5px;
   margin-top: 10px;
   display: flex;

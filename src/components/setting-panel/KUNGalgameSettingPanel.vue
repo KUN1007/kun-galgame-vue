@@ -86,7 +86,7 @@ const handleClose = () => {
         <select
           class="select"
           v-model="selectedLocale"
-          @change="changeLanguage"
+          $change="changeLanguage"
         >
           <option value="en">English</option>
           <option value="zh">中文</option>
@@ -115,20 +115,20 @@ const handleClose = () => {
 
     <!-- 关闭面板 -->
     <div class="close">
-      <Icon @click="handleClose" icon="line-md:close" />
+      <Icon $click="handleClose" icon="line-md:close" />
     </div>
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 根容器 */
 .root {
   top: 65px;
   right: 0;
   position: absolute;
-  background-color: @kungalgame-trans-white-5;
+  background-color: $kungalgame-trans-white-5;
   backdrop-filter: blur(5px);
-  box-shadow: @shadow;
+  box-shadow: $shadow;
   border-radius: 10px;
   z-index: 1007;
   display: flex;
@@ -175,10 +175,10 @@ const handleClose = () => {
     cursor: pointer;
   }
   li:nth-child(1) {
-    color: @kungalgame-red-4;
+    color: $kungalgame-red-4;
   }
   li:nth-child(2) {
-    color: @kungalgame-blue-4;
+    color: $kungalgame-blue-4;
   }
 }
 // 语言设置
@@ -190,10 +190,10 @@ const handleClose = () => {
 .select {
   width: 100px;
   font-size: 16px;
-  border: 1px solid @kungalgame-blue-4;
-  background-color: @kungalgame-trans-white-9;
+  border: 1px solid $kungalgame-blue-4;
+  background-color: $kungalgame-trans-white-9;
   option {
-    background-color: @kungalgame-trans-white-9;
+    background-color: $kungalgame-trans-white-9;
   }
 }
 .page-width {
@@ -221,13 +221,13 @@ const handleClose = () => {
   font-size: 15px;
   cursor: pointer;
   margin-top: 20px;
-  border: 1px solid @kungalgame-red-4;
-  background-color: @kungalgame-trans-red-1;
+  border: 1px solid $kungalgame-red-4;
+  background-color: $kungalgame-trans-red-1;
   width: 100%;
   height: 30px;
   &:hover {
-    background-color: @kungalgame-red-3;
-    color: @kungalgame-white;
+    background-color: $kungalgame-red-3;
+    color: $kungalgame-white;
   }
 }
 .close {

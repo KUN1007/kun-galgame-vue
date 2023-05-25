@@ -12,13 +12,13 @@ import asideItem from '../aside-item'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .aside {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid @kungalgame-blue-4;
+  border: 1px solid $kungalgame-blue-4;
   span {
     width: 100%;
     height: 100%;
@@ -28,13 +28,13 @@ import asideItem from '../aside-item'
     font-size: 18px;
     /* 文字竖直显示 */
     word-wrap: break-word;
-    border-top: 1px solid @kungalgame-blue-4;
+    border-top: 1px solid $kungalgame-blue-4;
     &:first-child {
       border-top: none;
     }
     &:hover {
       transition: 0.2s;
-      background-color: @kungalgame-trans-blue-2;
+      background-color: $kungalgame-trans-blue-2;
     }
     a {
       width: 1px;
@@ -42,7 +42,7 @@ import asideItem from '../aside-item'
       display: flex;
       justify-content: center;
       align-items: center;
-      color: @kungalgame-blue-5;
+      color: $kungalgame-blue-5;
     }
   }
 }

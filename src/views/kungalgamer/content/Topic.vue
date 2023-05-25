@@ -9,7 +9,7 @@ import SingleTopic from './SingleTopic.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 内容区 */
 .article {
   width: 50%;
@@ -26,11 +26,11 @@ import SingleTopic from './SingleTopic.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .article::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 </style>

@@ -33,7 +33,7 @@ const isActive = toRefs(props.isActive)
   <Topic v-show="isActive" :isHotTopic="false" style="margin-bottom: 0" />
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 侧边栏功能区 */
 .item-box {
   width: 100%;
@@ -53,19 +53,19 @@ const isActive = toRefs(props.isActive)
 .new-article button {
   height: 100%;
   width: 100%;
-  background-color: @kungalgame-red-0;
-  border: 1px solid @kungalgame-red-3;
+  background-color: $kungalgame-red-0;
+  border: 1px solid $kungalgame-red-3;
   border-radius: 5px;
   cursor: pointer;
-  color: @kungalgame-red-3;
+  color: $kungalgame-red-3;
   font-weight: bold;
   font-size: larger;
 }
 /* 发布按钮 hover 效果 */
 .new-article button:hover {
   font-size: xx-large;
-  background-color: @kungalgame-red-3;
-  color: @kungalgame-red-0;
+  background-color: $kungalgame-red-3;
+  color: $kungalgame-red-0;
   /* 效果过渡时长 */
   transition: 0.3s;
 }
@@ -80,7 +80,7 @@ const isActive = toRefs(props.isActive)
   grid-template-rows: repeat(2, 1fr);
   font-size: 14px;
   /* 字体颜色 */
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   /* 相对定位 */
   position: relative;
 
@@ -92,11 +92,11 @@ const isActive = toRefs(props.isActive)
     align-items: center;
     height: 100%;
     width: 100%;
-    color: @kungalgame-font-color-2;
+    color: $kungalgame-font-color-2;
     /* 设置六个功能（模式、排行、背景等）的 hover */
     &:hover {
-      color: @kungalgame-font-color-3;
-      background-color: @kungalgame-blue-0;
+      color: $kungalgame-font-color-3;
+      background-color: $kungalgame-blue-0;
       cursor: pointer;
     }
   }

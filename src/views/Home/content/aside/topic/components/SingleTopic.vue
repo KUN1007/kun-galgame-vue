@@ -23,7 +23,7 @@ const isHotTopic = props.isHotTopic
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 单个新帖子的样式 */
 .new-topic {
   width: 100%;
@@ -31,16 +31,16 @@ const isHotTopic = props.isHotTopic
   /* 设置空白左右居中 */
   justify-content: space-between;
   height: 100%;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   align-items: center;
   cursor: pointer;
   /* 单个新帖子的 hover */
   &:hover {
-    box-shadow: -2px -2px 5px @kungalgame-white, 2px 2px 5px @kungalgame-gray-3;
+    box-shadow: -2px -2px 5px $kungalgame-white, 2px 2px 5px $kungalgame-gray-3;
   }
   &:active {
-    box-shadow: inset 1px 1px 2px @kungalgame-gray-3,
-      inset -1px -1px 2px @kungalgame-white;
+    box-shadow: inset 1px 1px 2px $kungalgame-gray-3,
+      inset -1px -1px 2px $kungalgame-white;
   }
 }
 /* 单个帖子的标题样式 */
@@ -62,13 +62,13 @@ const isHotTopic = props.isHotTopic
   white-space: nowrap;
   align-items: center;
   /* 设置 fa 图标字体的颜色 */
-  color: @kungalgame-purple-4;
+  color: $kungalgame-purple-4;
   span {
     width: 36px;
     font-size: xx-small;
     /* 右侧区域距离最右侧的距离 */
     margin-left: 5px;
-    color: @kungalgame-font-color-3;
+    color: $kungalgame-font-color-3;
   }
 }
 
@@ -79,12 +79,12 @@ const isHotTopic = props.isHotTopic
   display: flex;
   white-space: nowrap;
   align-items: center;
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
   span {
     width: 38px;
     font-size: small;
     margin-left: 5px;
-    color: @kungalgame-font-color-3;
+    color: $kungalgame-font-color-3;
   }
 }
 </style>

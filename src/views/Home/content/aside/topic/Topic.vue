@@ -38,10 +38,10 @@ if (isHotTopic) {
   </div>
 </template>
 
-<style lang="less" scoped>
-@hot-color: @kungalgame-trans-pink-1;
-@new-color: @kungalgame-trans-blue-1;
-// @color: v-bind(topicColor);
+<style lang="scss" scoped>
+$hot-color: $kungalgame-trans-pink-1;
+$new-color: $kungalgame-trans-blue-1;
+// $color: v-bind(topicColor);
 /* 侧边栏动态推送帖子的总容器 */
 .topic-wrap {
   width: 100%;
@@ -55,13 +55,13 @@ if (isHotTopic) {
 /* 标题六个字的样式 */
 .title {
   height: 100%;
-  border: 3px dashed @kungalgame-trans-blue-1;
+  border: 3px dashed $kungalgame-trans-blue-1;
   border-bottom: none;
   /* 设置（今日热门话题）居中 */
   display: flex;
   justify-content: center;
   align-items: center;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   /* 设置页面缩小到最小时该行不换行 */
   overflow: hidden;
   white-space: nowrap;
@@ -69,7 +69,7 @@ if (isHotTopic) {
 /* 展示热门帖子的区域 */
 .topic-content {
   height: 100%;
-  background-color: @kungalgame-trans-blue-1;
+  background-color: $kungalgame-trans-blue-1;
   /* 热门帖子标题部分为弹性盒 */
   display: flex;
   flex-direction: column;

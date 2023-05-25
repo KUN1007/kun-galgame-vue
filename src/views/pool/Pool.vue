@@ -346,12 +346,12 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .visual-wrapper {
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-image: url(@/assets/images/bg/bg1.png);
+  background-image: url($/assets/images/bg/bg1.png);
   /* background-image: url(./img/bg-dark.png; */
   background-repeat: no-repeat;
   background-position: center;
@@ -379,7 +379,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   flex-direction: column;
   /* 毛玻璃背景 */
   backdrop-filter: blur(5px);
-  background-color: @kungalgame-trans-white-5;
+  background-color: $kungalgame-trans-white-5;
   border-radius: 7px;
 }
 /* 帖子池顶部交互栏 */
@@ -400,12 +400,12 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   font-size: 14px;
   margin: 2px;
   padding: 7px;
-  background-color: @kungalgame-trans-blue-3;
+  background-color: $kungalgame-trans-blue-3;
   border-radius: 17px;
   cursor: pointer;
 }
 .nav-tags:hover {
-  background-color: @kungalgame-trans-red-3;
+  background-color: $kungalgame-trans-red-3;
 }
 /* 帖子池内容区容器 */
 .content-container {
@@ -428,13 +428,13 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   flex-direction: column;
   /* 圆角 */
   border-radius: 7px;
-  /* Less random color */
+  /* Scss random color */
   background-color: azure;
   border: 1px solid black;
   cursor: pointer;
 }
 .single-topic-container:hover {
-  background-color: @kungalgame-blue-1;
+  background-color: $kungalgame-blue-1;
 }
 /* 帖子的标题 */
 .topic-title {
@@ -449,7 +449,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   margin-top: 7px;
   padding: 0 7px;
   font-weight: bold;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 /* 帖子的内容区 */
 .topic-content {
@@ -470,7 +470,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   flex-wrap: wrap;
 }
 .topic-status i {
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
 }
 .topic-post-time {
   display: flex;
@@ -485,7 +485,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 }
 .topic-post-time i {
   margin: 0 5px;
-  color: @kungalgame-purple-5;
+  color: $kungalgame-purple-5;
 }
 /* 右侧的功能栏 */
 .kungalgame-right-bar {
@@ -505,13 +505,13 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   right: 50px;
   cursor: pointer;
   display: none;
-  background-color: @kungalgame-blue-2;
+  background-color: $kungalgame-blue-2;
 }
 .kungalgame-right-bar-left > div {
   padding: 7px;
 }
 .kungalgame-right-bar-left > div:hover {
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
 }
 /* 排序 hover 出现 */
 .kungalgame-right-bar .sort:hover .kungalgame-right-bar-left {
@@ -520,7 +520,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 图标字体的颜色 */
 .kungalgame-right-bar-left i {
   margin-right: 10px;
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
 }
 /* 最后一个排序的样式 */
 .kungalgame-right-bar-left div:last-child i {
@@ -535,7 +535,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   border-width: 10px;
   border-style: solid;
   border-color: transparent;
-  border-bottom-color: @kungalgame-trans-white-2;
+  border-bottom-color: $kungalgame-trans-white-2;
   top: 50px;
   right: 14px;
 }
@@ -547,12 +547,12 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   align-items: center;
   height: 50px;
   padding: 0 9px;
-  background-color: @kungalgame-blue-2;
-  box-shadow: @shadow;
+  background-color: $kungalgame-blue-2;
+  box-shadow: $shadow;
   cursor: pointer;
 }
 .top {
-  background-color: @kungalgame-red-1;
+  background-color: $kungalgame-red-1;
 }
 .top {
   margin-top: 11px;
@@ -560,6 +560,6 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 .sort i,
 .top i {
   margin-top: 5px;
-  color: @kungalgame-red-6;
+  color: $kungalgame-red-6;
 }
 </style>

@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 根容器 */
 .root {
   height: 100vh;
@@ -35,8 +35,8 @@
   min-width: 600px;
   min-height: 500px;
   background: linear-gradient(
-    @kungalgame-trans-pink-1,
-    @kungalgame-trans-blue-1
+    $kungalgame-trans-pink-1,
+    $kungalgame-trans-blue-1
   );
   display: flex;
 }
@@ -49,18 +49,18 @@
   margin: auto;
   position: relative;
   border-radius: 7px;
-  box-shadow: @kungalgame-shadow-0;
+  box-shadow: $kungalgame-shadow-0;
   /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   padding: 20px;
   box-sizing: border-box;
 }
 /* 内容区容器 hover */
 .container:hover {
-  box-shadow: @kungalgame-shadow-1;
+  box-shadow: $kungalgame-shadow-1;
   transition: 0.3s;
 }
 /* 页面的标题 */
