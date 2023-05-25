@@ -16,5 +16,4 @@ const store = createPinia()
 
 // css
 import '@/styles/reset.css'
-// import '@/styles/color.scss'
 createApp(App).use(router).use(store).use(i18n).mount('#app')

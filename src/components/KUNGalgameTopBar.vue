@@ -98,11 +98,11 @@ onBeforeMount(() => {})
       </div>
     </div>
     <div class="kungalgamer-info">
-      <span $click="handleSittingsClick"><Icon icon="uiw:setting-o" /></span>
+      <span @click="handleSittingsClick"><Icon icon="uiw:setting-o" /></span>
       <img
         src="../assets/images/KUN.jpg"
         alt="KUN"
-        $click="handleClickAvatar"
+        @click="handleClickAvatar"
       />
     </div>
   </div>
