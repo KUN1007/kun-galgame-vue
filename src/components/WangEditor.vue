@@ -2,7 +2,7 @@
     编辑器实例共用组件
  -->
 <script setup lang="ts">
-import '$wangeditor/editor/dist/css/style.css' // 引入 css
+import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import axios from 'axios'
@@ -146,7 +146,7 @@ onBeforeUnmount(() => {
       style="height: 427px; overflow-y: hidden"
       v-model="valueHtml"
       :defaultConfig="editorConfig"
-      $onCreated="handleCreated"
+      @onCreated="handleCreated"
     />
   </div>
 </template>

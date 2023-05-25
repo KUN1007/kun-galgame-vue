@@ -546,7 +546,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-image: url($/assets/images/bg/bg1.png);
+  background-image: url(@/assets/images/bg/bg1.png);
   /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;

@@ -13,15 +13,15 @@ const settingsStore = useSettingsPanelStore()
         <span>点击使用我们的预设的背景</span>
         <!-- 预设背景集 -->
         <ul class="kungalgame-reset-bg">
-          <li><img src="$/assets/images/bg/bg1-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg2-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg3-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg4-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg5-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg6-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg7-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg8-m.png" /></li>
-          <li><img src="$/assets/images/bg/bg9-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg1-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg2-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg3-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg4-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg5-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg6-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg7-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg8-m.png" /></li>
+          <li><img src="@/assets/images/bg/bg9-m.png" /></li>
         </ul>
       </li>
       <!-- 用户自定义背景 -->

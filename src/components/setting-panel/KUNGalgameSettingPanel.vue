@@ -86,7 +86,7 @@ const handleClose = () => {
         <select
           class="select"
           v-model="selectedLocale"
-          $change="changeLanguage"
+          @change="changeLanguage"
         >
           <option value="en">English</option>
           <option value="zh">中文</option>
@@ -115,7 +115,7 @@ const handleClose = () => {
 
     <!-- 关闭面板 -->
     <div class="close">
-      <Icon $click="handleClose" icon="line-md:close" />
+      <Icon @click="handleClose" icon="line-md:close" />
     </div>
   </div>
 </template>
