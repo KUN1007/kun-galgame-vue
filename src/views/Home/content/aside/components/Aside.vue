@@ -22,12 +22,9 @@ import asideItem from '../aside-item'
   span {
     width: 100%;
     height: 100%;
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
     font-size: 18px;
-    /* 文字竖直显示 */
-    word-wrap: break-word;
+    display: grid;
+    grid-auto-rows: minmax(0, 1fr); /* 控制行高度自适应 */
     border-top: 1px solid $kungalgame-blue-4;
     &:first-child {
       border-top: none;
@@ -37,7 +34,8 @@ import asideItem from '../aside-item'
       background-color: $kungalgame-trans-blue-2;
     }
     a {
-      width: 1px;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
       height: 100%;
       display: flex;
       justify-content: center;

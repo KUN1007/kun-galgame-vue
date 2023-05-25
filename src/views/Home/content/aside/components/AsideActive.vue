@@ -26,7 +26,7 @@ const isActive = toRefs(props.isActive)
     </div>
   </div>
   <!-- 热门帖子板块 -->
-  <Topic v-show="isActive" :isHotTopic="true"/>
+  <Topic v-show="isActive" :isHotTopic="true" />
   <!-- 这个 style 使侧边栏和内容区等高 -->
   <!-- <Topic v-show="isActive" /> -->
   <!-- 新帖子板块 -->
@@ -93,6 +93,7 @@ const isActive = toRefs(props.isActive)
     height: 100%;
     width: 100%;
     color: $kungalgame-font-color-2;
+    border-radius: 5px;
     /* 设置六个功能（模式、排行、背景等）的 hover */
     &:hover {
       color: $kungalgame-font-color-3;
