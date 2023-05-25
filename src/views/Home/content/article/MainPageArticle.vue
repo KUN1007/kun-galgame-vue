@@ -14,7 +14,7 @@ import ArticleContent from './content/ArticleContent.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 文章部分 */
 .article {
   width: 1px;
@@ -31,8 +31,8 @@ import ArticleContent from './content/ArticleContent.vue'
   /* 盒子的边显示在内侧 */
   box-sizing: border-box;
   /* 文章区边上的颜色 */
-  border: 1px solid @kungalgame-trans-blue-4;
-  background-color: @kungalgame-trans-blue-0;
+  border: 1px solid $kungalgame-trans-blue-4;
+  background-color: $kungalgame-trans-blue-0;
   border-radius: 5px;
   display: flex;
   /* 文章区所有组件居中 */

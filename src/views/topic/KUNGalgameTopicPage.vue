@@ -20,7 +20,7 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
     </div>
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 页面总容器 */
 .main-wrapper {
   display: flex;
@@ -50,7 +50,7 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
   display: flex;
   /* 设置背景的毛玻璃效果 */
   backdrop-filter: blur(5px);
-  background-color: @kungalgame-trans-white-5;
+  background-color: $kungalgame-trans-white-5;
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;

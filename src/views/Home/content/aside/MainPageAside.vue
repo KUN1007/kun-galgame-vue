@@ -47,7 +47,7 @@ const handleFold = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 侧边栏部分 */
 .aside {
   /* 侧边栏距离文章区域的距离 */
@@ -76,7 +76,7 @@ const handleFold = () => {
   text-align: center;
   /* 字体设置 */
   font-size: small;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   cursor: pointer;
 }
 /* 激活后的左侧区域 */

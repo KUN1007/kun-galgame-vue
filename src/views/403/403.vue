@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -28,8 +28,8 @@
   min-width: 700px;
   min-height: 600px;
   background: linear-gradient(
-    @kungalgame-trans-pink-1,
-    @kungalgame-trans-blue-1
+    $kungalgame-trans-pink-1,
+    $kungalgame-trans-blue-1
   );
   display: flex;
   flex-direction: column;
@@ -48,19 +48,19 @@ p {
 p:first-child {
   font-size: 50px;
   font-weight: bold;
-  color: @kungalgame-red-5;
+  color: $kungalgame-red-5;
 }
 button {
-  border: 1px solid @kungalgame-blue-4;
+  border: 1px solid $kungalgame-blue-4;
   width: 200px;
   height: 30px;
   font-size: 17px;
-  background-color: @kungalgame-trans-blue-1;
+  background-color: $kungalgame-trans-blue-1;
   cursor: pointer;
 }
 button:hover {
-  background-color: @kungalgame-blue-4;
-  color: @kungalgame-white;
+  background-color: $kungalgame-blue-4;
+  color: $kungalgame-white;
   transition: 0.2s;
 }
 </style>

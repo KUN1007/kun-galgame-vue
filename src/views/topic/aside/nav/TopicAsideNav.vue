@@ -17,15 +17,15 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 帖子详情页的交互 */
 .topic-page-nav {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   /* 左边第一个部分的边 */
-  border: 1px solid @kungalgame-trans-red-4;
-  box-shadow: @shadow;
+  border: 1px solid $kungalgame-trans-red-4;
+  box-shadow: $shadow;
   border-radius: 5px;
   /* 距离顶部的距离 */
   margin-bottom: 17px;
@@ -36,7 +36,7 @@
 .topic-page-nav-container {
   flex-grow: 1;
   display: flex;
-  background-color: @kungalgame-trans-yellow-0;
+  background-color: $kungalgame-trans-yellow-0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -70,7 +70,7 @@
   bottom: 0;
   left: 0;
   inset: 0 0 0 0;
-  background-color: @kungalgame-trans-red-4;
+  background-color: $kungalgame-trans-red-4;
   z-index: -1;
   transition: transform 0.3s ease;
 }

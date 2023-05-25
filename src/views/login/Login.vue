@@ -87,7 +87,7 @@ const register = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -105,7 +105,7 @@ const register = () => {
   place-items: center;
   min-height: 500px;
   min-width: 800px;
-  background: linear-gradient(@kungalgame-pink-0, @kungalgame-blue-0);
+  background: linear-gradient($kungalgame-pink-0, $kungalgame-blue-0);
   background-repeat: no-repeat;
   position: relative;
 }
@@ -114,7 +114,7 @@ const register = () => {
   font-weight: 300;
   font-weight: bold;
   margin-bottom: 1.25rem;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 
 /* 获取验证码 */
@@ -122,7 +122,7 @@ const register = () => {
 .link {
   text-decoration: none;
   font-size: small;
-  color: @kungalgame-blue-4;
+  color: $kungalgame-blue-4;
 }
 .mail-confirm {
   position: absolute;
@@ -130,13 +130,13 @@ const register = () => {
   height: 30px;
   top: 46%;
   right: 12%;
-  border: 1px solid @kungalgame-blue-1;
-  background-color: @kungalgame-white;
+  border: 1px solid $kungalgame-blue-1;
+  background-color: $kungalgame-white;
   cursor: pointer;
 }
 .mail-confirm:hover {
-  background-color: @kungalgame-blue-4;
-  color: @kungalgame-white;
+  background-color: $kungalgame-blue-4;
+  color: $kungalgame-white;
 }
 /* 忘记密码 */
 .link {
@@ -147,25 +147,25 @@ const register = () => {
   position: absolute;
   bottom: 2%;
   font-size: x-small;
-  color: @kungalgame-font-color-1;
+  color: $kungalgame-font-color-1;
   text-decoration: none;
 }
 .user-agreement span {
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
   font-style: oblique;
 }
 /* 总容器 */
 .container {
   /* 背景图片 */
-  background: url('@/assets/images/bg/bg1.png');
+  background: url('$/assets/images/bg/bg1.png');
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   /* 圆角 */
   border-radius: 5px;
   /* 容器的阴影 */
-  box-shadow: 0 0.9rem 1.7rem @kungalgame-blue-0,
-    0 0.7rem 0.7rem @kungalgame-blue-0;
+  box-shadow: 0 0.9rem 1.7rem $kungalgame-blue-0,
+    0 0.7rem 0.7rem $kungalgame-blue-0;
   height: 490px;
   max-width: 700px;
   overflow: hidden;
@@ -253,9 +253,9 @@ const register = () => {
   position: absolute;
   bottom: 7%;
   border-radius: 50px;
-  background-color: @kungalgame-trans-white-1;
-  border: 1px solid @kungalgame-blue-4;
-  color: @kungalgame-blue-4;
+  background-color: $kungalgame-trans-white-1;
+  border: 1px solid $kungalgame-blue-4;
+  color: $kungalgame-blue-4;
   cursor: pointer;
   font-size: 0.9em;
   letter-spacing: 0.1rem;
@@ -266,8 +266,8 @@ const register = () => {
   white-space: nowrap;
 }
 .btn:hover {
-  background-color: @kungalgame-blue-4;
-  color: @kungalgame-trans-white-1;
+  background-color: $kungalgame-blue-4;
+  color: $kungalgame-trans-white-1;
 }
 /* 交互页面的盒子 */
 .overlay__panel {
@@ -282,19 +282,19 @@ const register = () => {
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
   width: 50%;
-  background-color: @kungalgame-trans-white-5;
+  background-color: $kungalgame-trans-white-5;
 }
 .overlay__panel .btn {
   /* 红色按钮距离底部的距离 */
   position: absolute;
   bottom: 7%;
-  background-color: @kungalgame-red-0;
-  border: 1px solid @kungalgame-red-4;
-  color: @kungalgame-red-4;
+  background-color: $kungalgame-red-0;
+  border: 1px solid $kungalgame-red-4;
+  color: $kungalgame-red-4;
 }
 .overlay__panel .btn:hover {
-  background-color: @kungalgame-red-4;
-  color: @kungalgame-trans-white-1;
+  background-color: $kungalgame-red-4;
+  color: $kungalgame-trans-white-1;
 }
 
 .overlay__panel h2 {
@@ -303,7 +303,7 @@ const register = () => {
   color: #333;
 }
 .overlay__panel h2 span {
-  color: @kungalgame-red-4;
+  color: $kungalgame-red-4;
   padding: 0 5px;
   font-size: large;
 }
@@ -342,7 +342,7 @@ const register = () => {
 }
 /* 表单的设置 */
 .form {
-  background-color: @kungalgame-white;
+  background-color: $kungalgame-white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -355,13 +355,13 @@ const register = () => {
 .input {
   border: none;
   outline: none;
-  border-bottom: 1.5px solid @kungalgame-blue-0;
+  border-bottom: 1.5px solid $kungalgame-blue-0;
   padding: 0.9rem 0.9rem;
   margin: 0.5rem 0;
   width: 100%;
 }
 .input:focus {
-  border-bottom: 1.5px solid @kungalgame-blue-4;
+  border-bottom: 1.5px solid $kungalgame-blue-4;
   transition: 0.2s linear;
 }
 .copyright {

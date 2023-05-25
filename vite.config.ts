@@ -1,5 +1,5 @@
 import { PluginOption, defineConfig } from 'vite'
-import path, { resolve } from 'path'
+import path from 'path'
 import vue from '@vitejs/plugin-vue'
 // 引入 Rollup Plugin Visualizer 打包可视化工具
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -15,12 +15,8 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      less: {
-        javascriptEnabled: true,
-        additionalData: `@import "${resolve(
-          __dirname,
-          './src/styles/theme/theme.less'
-        )}";`,
+      scss: {
+        additionalData: `@use "@/styles/color.scss";`,
       },
     },
   },

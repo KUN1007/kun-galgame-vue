@@ -31,22 +31,22 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 相同标签下的其它帖子 */
 .same-tag-topic {
   height: 1px;
   flex-grow: 4;
   width: 100%;
   /* 上方区域的配色 */
-  border: 1px solid @kungalgame-trans-blue-2;
+  border: 1px solid $kungalgame-trans-blue-2;
   /* 隐藏溢出的颜色 */
   overflow: hidden;
   border-radius: 5px;
-  background-color: @kungalgame-trans-blue-0;
+  background-color: $kungalgame-trans-blue-0;
   /* 左侧两个部分之间的距离 */
   margin-bottom: 17px;
   /* 盒子的阴影 */
-  box-shadow: @shadow;
+  box-shadow: $shadow;
 }
 .same-tag-topic ul {
   height: 100%;
@@ -69,15 +69,15 @@
 }
 /* 上方的 hover 效果 */
 .same-tag-topic ul li:hover {
-  border-left: 4px solid @kungalgame-red-3;
-  background-color: @kungalgame-trans-blue-1;
+  border-left: 4px solid $kungalgame-red-3;
+  background-color: $kungalgame-trans-blue-1;
   transition: 0.3s;
 }
 /* 单个标题的样式 */
 .same-tag-topic ul li a {
   /* 左右两侧的距离 */
   margin: 0 17px;
-  color: @kungalgame-font-color-3;
+  color: $kungalgame-font-color-3;
   /* 标题显示两行、超出部分隐藏 */
   overflow: hidden; /* 超出部分隐藏 */
   text-overflow: ellipsis; /* 显示省略号 */
@@ -98,9 +98,9 @@
   line-height: 40px;
   font-size: 1.8ch;
   font-weight: bold;
-  background-color: @kungalgame-trans-blue-1;
+  background-color: $kungalgame-trans-blue-1;
   /* 与单个帖子标题的分割线 */
-  border-bottom: 1px solid @kungalgame-trans-blue-2;
+  border-bottom: 1px solid $kungalgame-trans-blue-2;
   /* 水平居中 */
   justify-content: center;
 }

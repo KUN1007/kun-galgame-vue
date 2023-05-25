@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 单个评论容器 */
 .single-comment-container {
   display: flex;
@@ -64,7 +64,7 @@
   font-size: 15px;
 }
 .single-comment-left a {
-  color: @kungalgame-blue-5;
+  color: $kungalgame-blue-5;
 }
 .single-comment-left a:hover {
   text-decoration: underline;
@@ -77,7 +77,7 @@
   margin-right: 10px;
 }
 .single-comment-right ul li a {
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 /* 单个评论内容区底部 */
 .single-comment-content-bottom {

@@ -89,7 +89,7 @@ export default {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 头部下面的信息展示部分,目的是使信息区域居中且占比 61.8 */
 .kungalgame-footer-info {
   /* 信息区域的增长 */
@@ -126,7 +126,7 @@ export default {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
   font-size: small;
 }
 .footer-catalog-wrap ul li {
@@ -134,10 +134,10 @@ export default {
 }
 .footer-catalog-wrap ul li a {
   flex-grow: 1;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 .footer-catalog-wrap ul {
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 /* 左侧下方的信息 */
 .footer-left-bottom-info {
@@ -152,7 +152,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
   font-size: small;
 }
 .kungalgame-contact h2 {
@@ -184,7 +184,7 @@ export default {
   align-items: center;
   /* 右侧网站介绍部分相对于左侧的占比 */
   flex-grow: 1;
-  color: @kungalgame-font-color-2;
+  color: $kungalgame-font-color-2;
 }
 /* 网站名 */
 .kungalgame {

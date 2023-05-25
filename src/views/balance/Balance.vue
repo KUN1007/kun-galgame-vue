@@ -282,7 +282,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -311,15 +311,15 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 500px;
   /* 居中 */
   margin: auto;
-  background-color: @kungalgame-trans-white-2;
+  background-color: $kungalgame-trans-white-2;
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   /* 边距 */
   padding: 10px;
   border-radius: 7px;
-  border: 1px solid @kungalgame-trans-blue-2;
+  border: 1px solid $kungalgame-trans-blue-2;
   /* 阴影 */
-  box-shadow: @shadow;
+  box-shadow: $shadow;
   /* 竖直弹性盒 */
   display: flex;
   align-items: center;
@@ -349,7 +349,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   width: 49%;
   /* 固定高度 */
   height: 300px;
-  border: 1px solid @kungalgame-blue-4;
+  border: 1px solid $kungalgame-blue-4;
   display: flex;
   flex-direction: column;
 }
@@ -359,8 +359,8 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: flex;
   justify-content: center;
   padding: 10px 0;
-  border-bottom: 1px solid @kungalgame-blue-4;
-  background-color: @kungalgame-trans-blue-0;
+  border-bottom: 1px solid $kungalgame-blue-4;
+  background-color: $kungalgame-trans-blue-0;
 }
 /* 收入记录的容器 */
 .revenue-container {
@@ -374,21 +374,21 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .revenue-container::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单条收入 */
 .single-revenue {
   margin-top: 20px;
-  border-bottom: 1px solid @kungalgame-blue-4;
+  border-bottom: 1px solid $kungalgame-blue-4;
 }
 /* 收入来源 */
 .revenue-reason {
-  border-left: 5px solid @kungalgame-blue-4;
+  border-left: 5px solid $kungalgame-blue-4;
   padding-left: 5px;
 }
 /* 收入时间和金额 */
@@ -404,7 +404,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 收入金额 */
 .revenue-amount {
   padding: 0 5px;
-  background-color: @kungalgame-blue-2;
+  background-color: $kungalgame-blue-2;
 }
 /* 总收入 */
 .revenue-sum {
@@ -414,14 +414,14 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid @kungalgame-blue-4;
-  background-color: @kungalgame-trans-blue-0;
+  border-top: 1px solid $kungalgame-blue-4;
+  background-color: $kungalgame-trans-blue-0;
 }
 /* 支出 */
 .expenditure {
   width: 49%;
   height: 300px;
-  border: 1px solid @kungalgame-red-4;
+  border: 1px solid $kungalgame-red-4;
   display: flex;
   flex-direction: column;
 }
@@ -431,8 +431,8 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: flex;
   justify-content: center;
   padding: 10px 0;
-  border-bottom: 1px solid @kungalgame-red-4;
-  background-color: @kungalgame-trans-red-0;
+  border-bottom: 1px solid $kungalgame-red-4;
+  background-color: $kungalgame-trans-red-0;
 }
 /* 支出记录的容器 */
 .expenditure-container {
@@ -445,21 +445,21 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .expenditure-container::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单条支出 */
 .single-expenditure {
   margin-top: 20px;
-  border-bottom: 1px solid @kungalgame-red-4;
+  border-bottom: 1px solid $kungalgame-red-4;
 }
 /* 支出原因 */
 .expenditure-reason {
-  border-left: 5px solid @kungalgame-red-4;
+  border-left: 5px solid $kungalgame-red-4;
   padding-left: 5px;
 }
 /* 支出的时间和金额 */
@@ -475,7 +475,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 支出金额 */
 .expenditure-amount {
   padding: 0 5px;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
 }
 /* 总支出 */
 .expenditure-sum {
@@ -484,8 +484,8 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid @kungalgame-red-4;
-  background-color: @kungalgame-trans-red-0;
+  border-top: 1px solid $kungalgame-red-4;
+  background-color: $kungalgame-trans-red-0;
 }
 /* 收入支出总结 */
 .sum {
@@ -504,7 +504,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 }
 .disposable-amount > span {
   padding: 5px;
-  background-color: @kungalgame-green-2;
+  background-color: $kungalgame-green-2;
 }
 /* 经济状态 */
 .amount-status {
@@ -514,11 +514,11 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 }
 .amount-status span {
   padding: 5px;
-  background-color: @kungalgame-red-4;
-  color: @kungalgame-white;
+  background-color: $kungalgame-red-4;
+  color: $kungalgame-white;
 }
 .amount-status > div:last-child {
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
 }
 /* 版权 */
 .copyright {

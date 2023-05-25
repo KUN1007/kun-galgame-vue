@@ -163,7 +163,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 * {
   list-style: none;
   padding: 0;
@@ -177,7 +177,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('@/assets/images/bg/bg6.png');
+  background-image: url('$/assets/images/bg/bg6.png');
   /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
@@ -194,7 +194,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   position: relative;
   /* 居中 */
   margin: auto;
-  background-color: @kungalgame-trans-white-2;
+  background-color: $kungalgame-trans-white-2;
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   border-radius: 7px;
@@ -202,9 +202,9 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  color: @kungalgame-font-color-3;
-  border: 1px solid @kungalgame-trans-blue-2;
-  box-shadow: @shadow;
+  color: $kungalgame-font-color-3;
+  border: 1px solid $kungalgame-trans-blue-2;
+  box-shadow: $shadow;
 }
 /* 内容区 */
 .content {
@@ -252,12 +252,12 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 /* 访问 github */
 .preview > span {
   margin-top: 10px;
-  color: @kungalgame-blue-4;
-  border-bottom: 2px solid @kungalgame-trans-white-8;
+  color: $kungalgame-blue-4;
+  border-bottom: 2px solid $kungalgame-trans-white-8;
   cursor: pointer;
 }
 .preview > span:hover {
-  border-bottom: 2px solid @kungalgame-blue-4;
+  border-bottom: 2px solid $kungalgame-blue-4;
 }
 /* 预计更新时间 */
 .time {
@@ -272,7 +272,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 }
 /* 历史更新的内容 */
 .article-history {
-  border-left: 1px solid @kungalgame-blue-4;
+  border-left: 1px solid $kungalgame-blue-4;
   height: 75%;
   padding: 10px;
 }
@@ -294,11 +294,11 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: @kungalgame-red-2;
+  background-color: $kungalgame-red-2;
   border-radius: 2px;
 }
 .history-list::-webkit-scrollbar-thumb {
-  background: @kungalgame-blue-4;
+  background: $kungalgame-blue-4;
   border-radius: 2px;
 }
 /* 单个更新历史 */
@@ -307,7 +307,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-bottom: 1px solid @kungalgame-blue-4;
+  border-bottom: 1px solid $kungalgame-blue-4;
 }
 .article-history ul > li:first-child {
   margin-top: 10px;

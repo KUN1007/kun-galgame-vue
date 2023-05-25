@@ -2,7 +2,7 @@
     编辑器实例共用组件
  -->
 <script setup lang="ts">
-import '@wangeditor/editor/dist/css/style.css' // 引入 css
+import '$wangeditor/editor/dist/css/style.css' // 引入 css
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import axios from 'axios'
@@ -146,16 +146,16 @@ onBeforeUnmount(() => {
       style="height: 427px; overflow-y: hidden"
       v-model="valueHtml"
       :defaultConfig="editorConfig"
-      @onCreated="handleCreated"
+      $onCreated="handleCreated"
     />
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 /* 编辑器的样式 */
 .editor—wrapper {
   /* 编辑器的 border */
-  border: 1px solid @kungalgame-blue-4;
+  border: 1px solid $kungalgame-blue-4;
   box-sizing: border-box;
   /* 编辑器的宽度 */
   width: 97%;
@@ -163,7 +163,7 @@ onBeforeUnmount(() => {
   z-index: 1008; /* 按需定义 */
 }
 .toolbar-container {
-  border-bottom: 1px solid @kungalgame-blue-4;
+  border-bottom: 1px solid $kungalgame-blue-4;
 }
 /* 编辑器编辑部分 */
 .editor-container {
