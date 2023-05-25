@@ -12,13 +12,13 @@ const isHotTopic = props.isHotTopic
     <!-- 热门帖子的标题 -->
     <div class="title">{{ title }}</div>
     <!-- 热门帖子的热度值 -->
-    <div class="new" v-if="isHotTopic">
+    <div class="new" v-if="!isHotTopic">
       <Icon icon="svg-spinners:clock" />
-      <span>{{ value }}</span>
-    </div>
-    <div class="hot" v-if="!isHotTopic">
-      <Icon icon="bi:fire" />
       <span>{{ time }}</span>
+    </div>
+    <div class="hot" v-if="isHotTopic">
+      <Icon icon="bi:fire" />
+      <span>{{ value }}</span>
     </div>
   </div>
 </template>
@@ -36,11 +36,10 @@ const isHotTopic = props.isHotTopic
   cursor: pointer;
   /* 单个新帖子的 hover */
   &:hover {
-    box-shadow: -2px -2px 5px $kungalgame-white, 2px 2px 5px $kungalgame-gray-3;
+    box-shadow: $kungalgame-shadow-1;
   }
   &:active {
-    box-shadow: inset 1px 1px 2px $kungalgame-gray-3,
-      inset -1px -1px 2px $kungalgame-white;
+    box-shadow: $kungalgame-shadow-2;
   }
 }
 /* 单个帖子的标题样式 */

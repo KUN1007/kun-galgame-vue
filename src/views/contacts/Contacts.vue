@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import router from '@/router'
-
-const handleClick = () => {
-  router.push('/')
-}
+// Vue 中不允许在 template 中用 '<' 这个符号，换成 msg
+const msg = '< 返回主页'
 </script>
 
 <template>
@@ -32,11 +28,12 @@ const handleClick = () => {
           <i class="fa-brands fa-bilibili"></i>
         </div>
       </div>
-      <!-- 返回主页 -->
-      <div class="return" @click="handleClick">
-        <!-- 这里 Vue 不让用 < 这个符号，换成图标字体 -->
-        <span><Icon icon="line-md:arrow-small-left" />返回主页</span>
-      </div>
+      <router-link to="/">
+        <!-- 返回主页 -->
+        <div class="return">
+          <span>{{ msg }}</span>
+        </div>
+      </router-link>
       <!-- 版权 -->
       <div class="copyright">
         <span>Copyright © 2023 KUNgalgame</span>
