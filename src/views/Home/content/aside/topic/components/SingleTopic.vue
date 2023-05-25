@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-const props = defineProps(['data'])
-const { title, isHotTopic, value, time } = props.data
+// 接受父组件 Topic 的传值
+const props = defineProps(['data', 'isHotTopic'])
+const { title, value, time } = props.data
+const isHotTopic = props.isHotTopic
 </script>
 
 <template>
@@ -10,13 +12,13 @@ const { title, isHotTopic, value, time } = props.data
     <!-- 热门帖子的标题 -->
     <div class="title">{{ title }}</div>
     <!-- 热门帖子的热度值 -->
-    <div class="new-topic-number" v-if="isHotTopic">
+    <div class="new" v-if="isHotTopic">
       <Icon icon="svg-spinners:clock" />
-      <span class="value">{{ value }}</span>
+      <span>{{ value }}</span>
     </div>
-    <div class="hot-topic" v-if="!isHotTopic">
+    <div class="hot" v-if="!isHotTopic">
       <Icon icon="bi:fire" />
-      <span class="time">{{ time }}</span>
+      <span>{{ time }}</span>
     </div>
   </div>
 </template>
@@ -32,14 +34,14 @@ const { title, isHotTopic, value, time } = props.data
   color: @kungalgame-font-color-3;
   align-items: center;
   cursor: pointer;
-}
-/* 单个新帖子的 hover */
-.new-topic:hover {
-  box-shadow: -2px -2px 5px @kungalgame-white, 2px 2px 5px @kungalgame-gray-3;
-}
-.new-topic:active {
-  box-shadow: inset 1px 1px 2px @kungalgame-gray-3,
-    inset -1px -1px 2px @kungalgame-white;
+  /* 单个新帖子的 hover */
+  &:hover {
+    box-shadow: -2px -2px 5px @kungalgame-white, 2px 2px 5px @kungalgame-gray-3;
+  }
+  &:active {
+    box-shadow: inset 1px 1px 2px @kungalgame-gray-3,
+      inset -1px -1px 2px @kungalgame-white;
+  }
 }
 /* 单个帖子的标题样式 */
 .title {
@@ -52,25 +54,37 @@ const { title, isHotTopic, value, time } = props.data
   font-size: smaller;
 }
 /* 设置单个帖子右侧的热度值盒子 */
-.new-topic-number {
-  /* 热度值距离右侧的距离 */
+.new {
+  /* 时间距离右侧的距离 */
   margin-right: 10px;
   display: flex;
   /* 右侧热度区域不换行 */
   white-space: nowrap;
   align-items: center;
-}
-/* 时钟图标的颜色 */
-.new-topic-number {
   /* 设置 fa 图标字体的颜色 */
   color: @kungalgame-purple-4;
+  span {
+    width: 36px;
+    font-size: xx-small;
+    /* 右侧区域距离最右侧的距离 */
+    margin-left: 5px;
+    color: @kungalgame-font-color-3;
+  }
 }
+
 /* 右侧区域的大小 */
-.new-topic-number span {
-  width: 36px;
-  font-size: xx-small;
-  /* 右侧区域距离最右侧的距离 */
-  margin-left: 5px;
-  color: @kungalgame-font-color-3;
+.hot {
+  /* 热度值距离右侧的距离 */
+  margin-right: 10px;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  color: @kungalgame-red-4;
+  span {
+    width: 38px;
+    font-size: small;
+    margin-left: 5px;
+    color: @kungalgame-font-color-3;
+  }
 }
 </style>

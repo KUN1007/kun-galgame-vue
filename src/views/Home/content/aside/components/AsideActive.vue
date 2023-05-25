@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Topic from '../topic/Topic.vue'
-import HotTopic from '../topic/HotTopic.vue'
 import { toRefs } from 'vue'
 // 导入功能区的单个项目
 import asideItem from '../aside-item'
@@ -26,10 +25,12 @@ const isActive = toRefs(props.isActive)
       </span>
     </div>
   </div>
-  <Topic v-show="isActive" />
+  <!-- 热门帖子板块 -->
+  <Topic v-show="isActive" :isHotTopic="true"/>
   <!-- 这个 style 使侧边栏和内容区等高 -->
-  <!-- <Topic v-show="isActive" style="margin-bottom: 0" /> -->
-  <HotTopic v-show="isActive" />
+  <!-- <Topic v-show="isActive" /> -->
+  <!-- 新帖子板块 -->
+  <Topic v-show="isActive" :isHotTopic="false" style="margin-bottom: 0" />
 </template>
 
 <style lang="less" scoped>

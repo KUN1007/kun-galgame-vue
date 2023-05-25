@@ -1,24 +1,49 @@
 <script setup lang="ts">
-import SingleNewTopic from './components/SingleNewTopic.vue'
+import SingleTopic from './components/SingleTopic.vue'
 
 import singleTopic from './topic'
+
+// 接受父组件 AsideActive 的传值
+const props = defineProps(['isHotTopic'])
+
+const isHotTopic = props.isHotTopic
+
+if (isHotTopic) {
+}
 </script>
 
 <template>
   <!-- 侧边栏动态推送今日热度帖子 -->
-  <div class="top-topic-wrap">
+  <div class="topic-wrap">
     <!-- 今日热度帖子的标题名 -->
     <div class="title">今日热门话题</div>
     <!-- 热门帖子的目录 -->
-    <span class="top-topic-content" v-for="kun in singleTopic" :key="kun.index">
-      <SingleNewTopic :data="kun.data" :to="{ path: kun.router }" />
-    </span>
+    <!-- 这里使用了父组件传过来的 isHotTopic 数据， -->
+    <template v-for="kun in singleTopic" :key="kun.index">
+      <span class="topic-content" v-if="isHotTopic">
+        <SingleTopic
+          :data="kun.data"
+          :to="{ path: kun.router }"
+          :isHotTopic="isHotTopic"
+        />
+      </span>
+      <span class="topic-content" v-if="!isHotTopic">
+        <SingleTopic
+          :data="kun.data"
+          :to="{ path: kun.router }"
+          :isHotTopic="isHotTopic"
+        />
+      </span>
+    </template>
   </div>
 </template>
 
 <style lang="less" scoped>
+@hot-color: @kungalgame-trans-pink-1;
+@new-color: @kungalgame-trans-blue-1;
+// @color: v-bind(topicColor);
 /* 侧边栏动态推送帖子的总容器 */
-.top-topic-wrap {
+.topic-wrap {
   width: 100%;
   height: 100%;
   /* 热门帖子距离最新帖子的距离 */
@@ -27,7 +52,7 @@ import singleTopic from './topic'
   display: flex;
   flex-direction: column;
 }
-/* “今日热门话题”六个字的样式 */
+/* 标题六个字的样式 */
 .title {
   height: 100%;
   border: 3px dashed @kungalgame-trans-blue-1;
@@ -42,7 +67,7 @@ import singleTopic from './topic'
   white-space: nowrap;
 }
 /* 展示热门帖子的区域 */
-.top-topic-content {
+.topic-content {
   height: 100%;
   background-color: @kungalgame-trans-blue-1;
   /* 热门帖子标题部分为弹性盒 */
