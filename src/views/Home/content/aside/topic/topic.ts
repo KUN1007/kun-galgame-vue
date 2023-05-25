@@ -3,7 +3,6 @@ interface topic {
   router: string
   data: {
     title: string
-    isHotTopic: boolean
     value?: number
     time?: string
   }
@@ -16,7 +15,6 @@ const singleTopic: topic[] = [
     data: {
       title:
         '啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },
@@ -26,7 +24,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '10小时前',
     },
@@ -36,7 +33,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1天前',
     },
@@ -46,7 +42,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },
@@ -56,7 +51,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },
@@ -66,7 +60,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },
@@ -76,7 +69,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },
@@ -86,7 +78,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },
@@ -96,7 +87,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },
@@ -106,7 +96,6 @@ const singleTopic: topic[] = [
     router: '/topic',
     data: {
       title: '啊这可海星',
-      isHotTopic: true,
       value: 1007,
       time: '1小时前',
     },

@@ -27,23 +27,22 @@ import asideItem from '../aside-item'
     justify-content: center;
     font-size: 18px;
     /* 文字竖直显示 */
-    writing-mode: vertical-rl;
-    text-orientation: upright;
+    word-wrap: break-word;
     border-top: 1px solid @kungalgame-blue-4;
     &:first-child {
       border-top: none;
     }
+    &:hover {
+      transition: 0.2s;
+      background-color: @kungalgame-trans-blue-2;
+    }
     a {
-      width: 100%;
+      width: 1px;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       color: @kungalgame-blue-5;
-      &:hover {
-        transition: 0.2s;
-        background-color: @kungalgame-trans-blue-2;
-      }
     }
   }
 }
