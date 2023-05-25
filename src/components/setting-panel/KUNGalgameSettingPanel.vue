@@ -1,5 +1,7 @@
 <!-- 设置面板组件，展示整个论坛的设置面板 -->
 <script setup lang="ts">
+// 引入 vue 函数
+import { ref, watch, onMounted } from 'vue'
 // 引入图标字体
 import { Icon } from '@iconify/vue'
 // 引入看板娘组件
@@ -9,9 +11,36 @@ import Background from './components/Background.vue'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// 导入更改语言的函数
-import selectedLocale from '@/config/storage/lang-storage'
-import changeLanguage from '@/config/storage/lang-storage'
+// 导入 i18n
+import { useI18n } from 'vue-i18n'
+
+/*
+ * 网站的语言设置
+ */
+const { locale } = useI18n({ useScope: 'global' })
+const selectedLocale = ref(locale.value)
+
+// 监听selectedLocale的变化，并更新Vue I18n的locale
+watch(selectedLocale, (newVal) => {
+  locale.value = newVal
+})
+
+// 在页面加载时从localStorage中读取保存的语言设置
+onMounted(() => {
+  const savedLocale = localStorage.getItem('KUNGalgame-locale')
+  if (savedLocale) {
+    selectedLocale.value = savedLocale
+  }
+})
+
+// 监听语言变化，并将语言设置保存到localStorage
+watch(locale, (newVal) => {
+  localStorage.setItem('KUNGalgame-locale', newVal)
+})
+
+const changeLanguage = () => {
+  locale.value = selectedLocale.value
+}
 
 /*
  * 设置面板显示切换
