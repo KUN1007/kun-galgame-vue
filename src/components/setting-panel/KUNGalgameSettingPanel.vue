@@ -18,20 +18,6 @@ import { useI18n } from 'vue-i18n'
  * 网站的语言设置
  */
 const { locale } = useI18n({ useScope: 'global' })
-const selectedLocale = ref(locale.value)
-
-// 监听selectedLocale的变化，并更新Vue I18n的locale
-watch(selectedLocale, (newVal) => {
-  locale.value = newVal
-})
-
-// 在页面加载时从localStorage中读取保存的语言设置
-onMounted(() => {
-  const savedLocale = localStorage.getItem('KUNGalgame-locale')
-  if (savedLocale) {
-    selectedLocale.value = savedLocale
-  }
-})
 
 // 监听语言变化，并将语言设置保存到localStorage
 watch(locale, (newVal) => {
@@ -39,17 +25,27 @@ watch(locale, (newVal) => {
 })
 
 const changeLanguage = () => {
-  locale.value = selectedLocale.value
+  locale.value = locale.value
 }
+
+/*
+ * 主页宽度设置
+ */
+
+// 使用设置面板的 store
+const settingsStore = useSettingsPanelStore()
+const { showSettings, showMainPageWidth } = storeToRefs(settingsStore)
+
+// 监听主页宽度变化，并将主页宽度设置保存到localStorage
+watch(showMainPageWidth, (width) => {
+  localStorage.setItem('KUNGalgame-main-page-width', width)
+})
 
 /*
  * 设置面板显示切换
  */
-// 使用设置面板的 store
-const settingsStore = useSettingsPanelStore()
-const { showSettings } = storeToRefs(settingsStore)
 
-// 展示设置面板
+// 关闭设置面板
 const handleClose = () => {
   showSettings.value = false
 }
@@ -83,11 +79,7 @@ const handleClose = () => {
       </div>
       <div class="set-lang">
         <span>网站语言设置</span>
-        <select
-          class="select"
-          v-model="selectedLocale"
-          @change="changeLanguage"
-        >
+        <select class="select" v-model="locale" @change="changeLanguage">
           <option value="en">English</option>
           <option value="zh">中文</option>
         </select>
@@ -96,12 +88,18 @@ const handleClose = () => {
         <!-- 设置主页的宽度 -->
         <div class="width-container">
           <span>主页页面宽度设置</span>
-          <span>61.8%</span>
+          <span>{{ showMainPageWidth }}%</span>
         </div>
         <div class="page-width">
-          <span>61.8%</span><input class="main" type="range" value="0" /><span
-            >90%</span
-          >
+          <span>61.8%</span
+          ><input
+            class="main"
+            min="61.8"
+            max="90"
+            step="0.1"
+            type="range"
+            v-model="showMainPageWidth"
+          /><span>90%</span>
         </div>
       </div>
       <!-- 背景设置组件 -->
