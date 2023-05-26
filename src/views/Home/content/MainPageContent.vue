@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import MainPageAside from './aside/MainPageAside.vue'
 import MainPageArticle from './article/MainPageArticle.vue'
+// 导入设置面板 store
+import { useSettingsPanelStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed, watch } from 'vue'
+// 使用设置面板的 store
+const settingsStore = useSettingsPanelStore()
+const { showMainPageWidth } = storeToRefs(settingsStore)
+const width = computed(() => {
+  return showMainPageWidth.value + '%'
+})
 </script>
 
 <template>
@@ -31,7 +41,7 @@ import MainPageArticle from './article/MainPageArticle.vue'
 }
 /* 可视内容部分宽度 */
 .content-container {
-  width: 80%;
+  width: v-bind(width);
   /* 可视页面的最小宽度 */
   min-width: 700px;
   height: 100%;
