@@ -9,12 +9,12 @@ interface aside {
 
 // 顶部导航栏的项目 TODO:（i18n）
 const asideItem: aside[] = [
-  { index: 1, name: '更新日志', router: '/update-log' },
-  { index: 2, name: '收支公示', router: '/balance' },
-  { index: 3, name: '排行榜单', router: '/rank' },
-  { index: 4, name: '执行条例', router: '/regulations' },
-  { index: 5, name: '加入我们', router: '/contacts' },
-  { index: 6, name: '不萌记录', router: '/anti-moe' },
+  { index: 1, name: 'update', router: '/update-log' },
+  { index: 2, name: 'balance', router: '/balance' },
+  { index: 3, name: 'ranking', router: '/ranking' },
+  { index: 4, name: 'regulations', router: '/regulations' },
+  { index: 5, name: 'contacts', router: '/contacts' },
+  { index: 6, name: 'antiMoe', router: '/anti-moe' },
 ]
 
 export default asideItem

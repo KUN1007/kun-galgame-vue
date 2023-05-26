@@ -11,7 +11,7 @@
       <a href="#"><span>鲲最可爱！</span></a>
     </div>
     <!-- 发布者相关信息 -->
-    <!--                   <div class="kungalgamer-rank"></div> -->
+    <!--                   <div class="kungalgamer-ranking"></div> -->
   </div>
 </template>
 <style lang="scss" scoped>
