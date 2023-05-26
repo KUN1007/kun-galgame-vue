@@ -33,11 +33,11 @@ interface topBar {
 
 // 顶部导航栏的项目
 const topBarItem: topBar[] = [
-  { index: 1, name: '所有帖子', router: '/pool' },
-  { index: 2, name: '发布帖子', router: 'edit' },
-  { index: 3, name: '技术交流', router: 'technology' },
-  { index: 4, name: '关于我们', router: 'kungalgame' },
-  { index: 5, name: '返回主页', router: '/' },
+  { index: 1, name: 'pool', router: '/pool' },
+  { index: 2, name: 'create', router: 'edit' },
+  { index: 3, name: 'technique', router: 'technology' },
+  { index: 4, name: 'about', router: 'kungalgame' },
+  { index: 5, name: 'return', router: '/' },
 ]
 
 // 初始进入页面 header 没有附加样式
@@ -90,7 +90,9 @@ onBeforeMount(() => {})
         <ul>
           <!-- 顶部单个板块 -->
           <li v-for="kun in topBarItem" :key="kun.index">
-            <router-link :to="{ path: kun.router }">{{ kun.name }}</router-link>
+            <router-link :to="{ path: kun.router }">{{
+              $t(`header['${kun.name}']`)
+            }}</router-link>
           </li>
           <!-- 顶部板块下部的 hover 效果 -->
           <div class="top-bar-box"></div>

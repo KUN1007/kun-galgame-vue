@@ -11,7 +11,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
       <div class="header">
         <!-- 用户头像 -->
         <div class="kungalgamer-avatar">
-          <img src="../img/KUN.jpg" alt="KUN" />
+          <img src="@/assets/images/KUN.jpg" alt="KUN" />
         </div>
         <!-- 用户名 -->
         <div class="kungalgamer-name">
@@ -57,7 +57,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   min-height: 800px;
   display: flex;
   flex-direction: column;
-  background-image: url('$/assets/images/bg/bg3.png');
+  background-image: url('@/assets/images/bg/bg3.png');
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -83,7 +83,6 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   flex-direction: column;
   /* 用户页面的所有字体颜色 */
   color: $kungalgame-font-color-3;
-  overflow: hidden;
 }
 /* 页面的头部 */
 .header {

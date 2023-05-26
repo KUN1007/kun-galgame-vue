@@ -4,10 +4,10 @@ import { useSettingsPanelStore } from '@/store/modules/settings'
 
 <template>
   <div class="kungalgame-background">
-    <div class="bg-settings">背景设置</div>
+    <div class="bg-settings">{{ $t('header.settings.background') }}</div>
     <ul class="kungalgame-background-container">
       <li>
-        <span>点击使用我们的预设的背景</span>
+        <span>{{ $t('header.settings.preset') }}</span>
         <!-- 预设背景集 -->
         <ul class="kungalgame-reset-bg">
           <li><img src="@/assets/images/bg/bg1-m.png" /></li>
@@ -23,15 +23,15 @@ import { useSettingsPanelStore } from '@/store/modules/settings'
       </li>
       <!-- 用户自定义背景 -->
       <li>
-        <span>自定义背景</span>
+        <span>{{ $t('header.settings.custom') }}</span>
         <div class="kungalgamer-bg">
-          <span>请在这里粘贴图片url</span>
+          <span>{{ $t('header.settings.url') }}</span>
           <div class="bg-url-input">
             <input type="text" required />
-            <button>确定</button>
+            <button>{{ $t('header.settings.confirm') }}</button>
           </div>
         </div>
-        <button class="reset-bg">恢复空白背景</button>
+        <button class="reset-bg">{{ $t('header.settings.restore') }}</button>
       </li>
     </ul>
   </div>

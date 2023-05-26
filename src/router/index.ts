@@ -157,9 +157,9 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
   // KUNGalgame 排行榜
   {
-    name: 'Rank',
-    path: '/rank',
-    component: () => import('@/views/rank/Rank.vue'),
+    name: 'Ranking',
+    path: '/ranking',
+    component: () => import('@/views/ranking/Ranking.vue'),
     meta: {
       title: '排行榜',
       transition: 'animate__backInUp',

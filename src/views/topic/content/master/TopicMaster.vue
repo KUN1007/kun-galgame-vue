@@ -51,7 +51,7 @@
               <!-- 楼主的头像图片 -->
               <img src="../img/KUN.jpg" alt="KUN" />
               <!-- 楼主的等级 -->
-              <div class="master-rank">站长</div>
+              <div class="master-ranking">站长</div>
             </div>
             <!-- 楼主的名字 -->
             <div class="master-name">啊这可海星啊这</div>
@@ -355,7 +355,7 @@
   margin-top: 17px;
 }
 /* 楼主的等级 */
-.master-rank {
+.master-ranking {
   font-size: 10px;
   position: absolute;
   margin-left: 90px;

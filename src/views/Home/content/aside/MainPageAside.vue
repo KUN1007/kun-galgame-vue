@@ -46,7 +46,7 @@ watch(
         style="font-size: 17px"
         v-if="!isActive"
       />
-      <span v-if="isActive">折叠左侧区域</span>
+      <span v-if="isActive">{{ $t('mainPage.asideActive.fold') }}</span>
     </div>
     <div class="item-active" v-if="isActive">
       <AsideActive :isActive="isActive" />

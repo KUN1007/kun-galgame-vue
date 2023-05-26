@@ -26,7 +26,7 @@ import Comments from './comments/Comments.vue'
               <!-- 其他人的头像图片 -->
               <img src="../img/KUN.jpg" alt="KUN" />
               <!-- 其他人的等级 -->
-              <div class="other-rank">萌葱</div>
+              <div class="other-ranking">萌葱</div>
             </div>
             <!-- 其他人的名字 -->
             <div class="other-name">啊这可海星啊这</div>
@@ -220,7 +220,7 @@ import Comments from './comments/Comments.vue'
   width: 100px;
 }
 /* 其他人的等级 */
-.other-rank {
+.other-ranking {
   font-size: 10px;
   position: absolute;
   margin-left: 90px;

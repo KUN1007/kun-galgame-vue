@@ -55,12 +55,12 @@ const handleClose = () => {
   <div class="root">
     <div class="container">
       <div class="title">
-        <span>设置面板</span>
+        <span>{{ $t('header.settings.name') }}</span>
         <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
       <div class="mode">
         <!-- 白天 / 黑夜模式切换 -->
-        <span>模式切换</span>
+        <span>{{ $t('header.settings.mode') }}</span>
         <div class="mode-container">
           <li>
             <Icon
@@ -77,7 +77,7 @@ const handleClose = () => {
         </div>
       </div>
       <div class="set-lang">
-        <span>网站语言设置</span>
+        <span>{{ $t('header.settings.language') }}</span>
         <select class="select" v-model="locale" @change="changeLanguage">
           <option value="en">English</option>
           <option value="zh">中文</option>
@@ -86,7 +86,7 @@ const handleClose = () => {
       <div>
         <!-- 设置主页的宽度 -->
         <div class="width-container">
-          <span>主页页面宽度设置</span>
+          <span>{{ $t('header.settings.width') }}</span>
           <span>{{ showMainPageWidth }}%</span>
         </div>
         <div class="page-width">
@@ -104,7 +104,9 @@ const handleClose = () => {
       <!-- 背景设置组件 -->
       <Background />
 
-      <div><button class="reset">恢复所有设置为默认</button></div>
+      <div>
+        <button class="reset">{{ $t('header.settings.recover') }}</button>
+      </div>
     </div>
 
     <!-- 看板娘组件 -->

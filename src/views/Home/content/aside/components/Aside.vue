@@ -7,7 +7,9 @@ import asideItem from '../aside-item'
   <div class="aside">
     <!-- 顶部单个板块 -->
     <span v-for="kun in asideItem" :key="kun.index">
-      <router-link :to="{ path: kun.router }">{{ kun.name }}</router-link>
+      <router-link :to="{ path: kun.router }">{{
+        $t(`mainPage.asideActive['${kun.name}']`)
+      }}</router-link>
     </span>
   </div>
 </template>

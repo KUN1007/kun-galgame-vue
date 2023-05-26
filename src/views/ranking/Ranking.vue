@@ -10,7 +10,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
     <!-- 内容区 -->
     <div class="article">
       <!-- 用户排行 -->
-      <div class="kungalgamer-rank">
+      <div class="kungalgamer-ranking">
         <!-- 用户排行标题 -->
         <div class="kungalgamer-title">最萌的萝莉</div>
         <!-- 用户排行的交互 -->
@@ -371,7 +371,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
         </div>
       </div>
       <!-- 帖子排行 -->
-      <div class="topic-rank">
+      <div class="topic-ranking">
         <!-- 帖子排行标题 -->
         <div class="topic-title">最萌的帖子</div>
         <!-- 帖子排行的交互 -->
@@ -975,7 +975,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   color: $kungalgame-font-color-3;
 }
 /* 用户排行 */
-.kungalgamer-rank {
+.kungalgamer-ranking {
   width: 50%;
   border-right: 1px solid $kungalgame-blue-4;
   box-sizing: border-box;
@@ -1074,7 +1074,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 
 */
 /* 帖子排行 */
-.topic-rank {
+.topic-ranking {
   width: 50%;
 }
 /* 帖子排行标题 */

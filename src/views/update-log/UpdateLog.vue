@@ -45,7 +45,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -57,7 +57,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -69,7 +69,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -81,7 +81,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -93,7 +93,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -105,7 +105,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -117,7 +117,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -129,7 +129,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>
@@ -141,7 +141,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
               <li>
                 <!-- 更新内容 -->
                 <div class="performance">
-                  <p>1. 添加新页面 rank page</p>
+                  <p>1. 添加新页面 ranking page</p>
                   <p>2. 修复关于我们页面缩放 BUG</p>
                   <p>3. 页面颜色调整</p>
                 </div>

@@ -15,13 +15,17 @@ const isActive = toRefs(props.isActive)
     <!-- 发布新文章 -->
     <div class="new-article">
       <!-- 发布新文章的按钮 -->
-      <button class="btn-new-article">发布帖子</button>
+      <button class="btn-new-article">
+        {{ $t('mainPage.asideActive.create') }}
+      </button>
     </div>
     <!-- 功能盒子容器 -->
     <div class="item-box-container">
       <!-- 侧边栏单个项目 -->
       <span v-for="kun in asideItem" :key="kun.index">
-        <router-link :to="{ path: kun.router }">{{ kun.name }}</router-link>
+        <router-link :to="{ path: kun.router }">{{
+          $t(`mainPage.asideActive['${kun.name}']`)
+        }}</router-link>
       </span>
     </div>
   </div>
