@@ -1,6 +1,10 @@
 export default {
   header: {
     name: 'KUNGalgame',
+    allTopic: 'All TOPIC',
+    createTopic: 'CREATE TOPIC',
+    technology: 'TECHNOLOGY',
+    aboutUs: 'ABOUT US',
   },
   mainPage: {
     asideActive: {

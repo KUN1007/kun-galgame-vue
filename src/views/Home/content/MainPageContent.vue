@@ -4,7 +4,7 @@ import MainPageArticle from './article/MainPageArticle.vue'
 // 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
 const { showMainPageWidth } = storeToRefs(settingsStore)

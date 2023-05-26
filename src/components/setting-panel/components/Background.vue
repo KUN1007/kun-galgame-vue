@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { useSettingsPanelStore } from '@/store/modules/settings'
-import { storeToRefs } from 'pinia'
-
-const settingsStore = useSettingsPanelStore()
 </script>
 
 <template>

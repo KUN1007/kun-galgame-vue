@@ -17,13 +17,21 @@ const asideBarStatus = (): boolean => {
 }
 
 const isActive = ref<boolean>(asideBarStatus())
-const asideWidth = isActive.value ? '40px' : '240px'
+const asideWidth = ref('240px')
 const handleFold = () => {
   isActive.value = !isActive.value
 }
-watch(isActive, () => {
-  localStorage.setItem('KUNGalgame-main-page-aside', isActive.value.toString())
-})
+watch(
+  isActive,
+  () => {
+    localStorage.setItem(
+      'KUNGalgame-main-page-aside',
+      isActive.value.toString()
+    )
+    asideWidth.value = isActive.value ? '240px' : '40px'
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
