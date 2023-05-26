@@ -2,25 +2,28 @@
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入 Vue 函数
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import AsideActive from './components/AsideActive.vue'
 
 import Aside from './components/Aside.vue'
 
 // 用户点击折叠左侧区域
-// localStorage.setItem('KUNGalgameMainPageAsideBar', 'true')
-// const asideBarStatus =
-//   localStorage.getItem('KUNGalgameMainPageAsideBar') || true
-const isActive = ref(false)
-const asideWidth = ref('40px')
-const handleFold = () => {
-  if (isActive.value) {
-    asideWidth.value = '40px'
+const asideBarStatus = (): boolean => {
+  if (localStorage.getItem('KUNGalgame-main-page-aside') === 'true') {
+    return true
   } else {
-    asideWidth.value = '240px'
+    return false
   }
+}
+
+const isActive = ref<boolean>(asideBarStatus())
+const asideWidth = isActive.value ? '40px' : '240px'
+const handleFold = () => {
   isActive.value = !isActive.value
 }
+watch(isActive, () => {
+  localStorage.setItem('KUNGalgame-main-page-aside', isActive.value.toString())
+})
 </script>
 
 <template>
