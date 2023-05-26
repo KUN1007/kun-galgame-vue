@@ -1,7 +1,7 @@
 <!-- 设置面板组件，展示整个论坛的设置面板 -->
 <script setup lang="ts">
 // 引入 vue 函数
-import { ref, watch, onMounted } from 'vue'
+import { watch } from 'vue'
 // 引入图标字体
 import { Icon } from '@iconify/vue'
 // 引入看板娘组件
@@ -13,7 +13,6 @@ import { useSettingsPanelStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 // 导入 i18n
 import { useI18n } from 'vue-i18n'
-
 /*
  * 网站的语言设置
  */

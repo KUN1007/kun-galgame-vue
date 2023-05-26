@@ -12,7 +12,7 @@ const asideBarItem: asideBar[] = [
   { index: 2, name: '执行条例', router: '/regulations' },
   { index: 3, name: '更新日志', router: '/update-log' },
   { index: 4, name: '收支公示', router: '/balance' },
-  { index: 5, name: '不萌记录', router: '/unmoe' },
+  { index: 5, name: '不萌记录', router: '/anti-moe' },
   { index: 6, name: '加入我们', router: '/contacts' },
   { index: 7, name: '感谢名单', router: '/thanks-list' },
   { index: 8, name: '返回主页', router: '/' },

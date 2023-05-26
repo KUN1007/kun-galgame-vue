@@ -197,9 +197,9 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
   // KUNGalgame 不萌萌页
   {
-    name: 'Unmoe',
-    path: '/unmoe',
-    component: () => import('@/views/unmoe/Unmoe.vue'),
+    name: 'AntiMoe',
+    path: '/anti-moe',
+    component: () => import('@/views/anti-moe/AntiMoe.vue'),
     meta: {
       title: '不萌萌',
       transition: 'animate__backInUp',

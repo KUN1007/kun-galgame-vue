@@ -14,7 +14,7 @@ const asideItem: aside[] = [
   { index: 3, name: '排行榜单', router: '/rank' },
   { index: 4, name: '执行条例', router: '/regulations' },
   { index: 5, name: '加入我们', router: '/contacts' },
-  { index: 6, name: '不萌记录', router: '/unmoe' },
+  { index: 6, name: '不萌记录', router: '/anti-moe' },
 ]
 
 export default asideItem
