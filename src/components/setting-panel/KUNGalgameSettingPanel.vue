@@ -40,6 +40,9 @@ watch(showMainPageWidth, (width) => {
   localStorage.setItem('KUNGalgame-main-page-width', width)
 })
 
+/* 恢复所有设置为默认 */
+const handleRecover = () => {}
+
 /*
  * 设置面板显示切换
  */
@@ -105,7 +108,9 @@ const handleClose = () => {
       <Background />
 
       <div>
-        <button class="reset">{{ $t('header.settings.recover') }}</button>
+        <button class="reset" @click="handleRecover">
+          {{ $t('header.settings.recover') }}
+        </button>
       </div>
     </div>
 

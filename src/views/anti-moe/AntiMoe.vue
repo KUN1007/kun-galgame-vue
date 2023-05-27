@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
-import currBackground from '@/utils/background'
+import { currBackground } from '@/hooks/useBackgroundPicture'
 </script>
 
 <template>
-  <div class="root" :style="{ backgroundImage: `url(${currBackground})` }">
+  <div class="root" :style="{ backgroundImage: currBackground }">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区容器 -->

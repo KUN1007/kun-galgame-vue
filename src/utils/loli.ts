@@ -9,7 +9,7 @@ const getAssetsFile = (url: number) => {
 }
 
 /* 随机数 */
-function getRandomNum(lowerValue: number, upperValue: number) {
+const getRandomNum = (lowerValue: number, upperValue: number) => {
   return Math.floor(Math.random() * (upperValue - lowerValue + 1) + lowerValue)
 }
 /* 随机汗水 ？ */

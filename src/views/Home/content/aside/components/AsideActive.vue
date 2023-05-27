@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import Topic from '../topic/Topic.vue'
-import { toRefs } from 'vue'
 // 导入功能区的单个项目
 import asideItem from '../aside-item'
 
 // 接受父组件的传值
 const props = defineProps(['isActive'])
-const isActive = toRefs(props.isActive)
 </script>
 
 <template>
   <!-- 侧边栏功能区 -->
-  <div class="item-box" v-show="isActive">
+  <div class="item-box" v-show="props.isActive">
     <!-- 发布新文章 -->
     <div class="new-article">
       <!-- 发布新文章的按钮 -->
@@ -30,11 +28,10 @@ const isActive = toRefs(props.isActive)
     </div>
   </div>
   <!-- 热门帖子板块 -->
-  <Topic v-show="isActive" :isHotTopic="true" />
-  <!-- 这个 style 使侧边栏和内容区等高 -->
-  <!-- <Topic v-show="isActive" /> -->
+  <Topic v-show="props.isActive" :isHotTopic="true" />
   <!-- 新帖子板块 -->
-  <Topic v-show="isActive" :isHotTopic="false" style="margin-bottom: 0" />
+  <!-- 这个 style 使侧边栏和内容区等高 -->
+  <Topic v-show="props.isActive" :isHotTopic="false" style="margin-bottom: 0" />
 </template>
 
 <style lang="scss" scoped>
