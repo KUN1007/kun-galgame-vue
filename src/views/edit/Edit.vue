@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import WangEditor from '@/components/WangEditor.vue'
+// 导入背景图片
+import currBackground from '@/utils/background'
 </script>
 
 <template>
-  <div class="root">
+  <div class="root" :style="{ backgroundImage: `url(${currBackground})` }">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区容器 -->
@@ -86,7 +88,6 @@ import WangEditor from '@/components/WangEditor.vue'
   min-width: 900px;
   display: flex;
   flex-direction: column;
-  background-image: url(@/assets/images/bg/bg1.png);
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;

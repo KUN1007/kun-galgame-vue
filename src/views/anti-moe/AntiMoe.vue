@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import currBackground from '@/utils/background'
 </script>
 
 <template>
-  <div class="root">
+  <div class="root" :style="{ backgroundImage: `url(${currBackground})` }">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区容器 -->
@@ -141,8 +142,6 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('@/assets/images/bg/bg6.png');
-  /* background-image: url(./img/bg/bg2.png); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

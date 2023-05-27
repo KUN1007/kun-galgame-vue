@@ -101,7 +101,7 @@ const isActive = toRefs(props.isActive)
     /* 设置六个功能（模式、排行、背景等）的 hover */
     &:hover {
       color: $kungalgame-font-color-3;
-      background-color: $kungalgame-blue-0;
+      background-color: $kungalgame-trans-blue-1;
       cursor: pointer;
     }
   }

@@ -90,10 +90,10 @@ const handleClose = () => {
           <span>{{ showMainPageWidth }}%</span>
         </div>
         <div class="page-width">
-          <span>61.8%</span
+          <span>50%</span
           ><input
             class="main"
-            min="61.8"
+            min="50"
             max="90"
             step="0.1"
             type="range"

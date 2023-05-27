@@ -5,10 +5,15 @@
 import KUNGalgameTopBar from '../../components/KUNGalgameTopBar.vue'
 import KUNGalgameTopicAside from './aside/KUNGalgameTopicAside.vue'
 import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
+// 导入背景图片
+import currBackground from '@/utils/background'
 </script>
 <template>
   <!-- 总容器 -->
-  <div class="main-wrapper">
+  <div
+    class="main-wrapper"
+    :style="{ backgroundImage: `url(${currBackground})` }"
+  >
     <KUNGalgameTopBar :isMainPage="false" :isTopicPage="true" />
     <!-- 下面帖子详情区的容器 -->
     <div class="topic-wrapper">
@@ -27,9 +32,6 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
   flex-shrink: 0;
   flex-direction: column;
   min-width: 1040px;
-  /* 背景图片 */
-  background-image: url(../../assets/images/bg/bg1.png);
-  /*         background-image: url(../img/bg-dark.png); */
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;

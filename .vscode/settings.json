@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
+    "anti-moe",
     "axios",
+    "azkhx",
     "Bilibili",
     "galgame",
     "Galgame",
@@ -13,7 +15,6 @@
     "moemoepoint",
     "Pinia",
     "sina",
-    "anti-moe",
     "weixin"
   ],
   "i18n-ally.localesPaths": ["src/language"]
