@@ -21,6 +21,11 @@ const handelChangeImage = (index: number) => {
 watch(showKUNGalgameBackground, () => {
   localStorage.setItem('KUNGalgame-background', showKUNGalgameBackground.value)
 })
+
+// 恢复空白背景
+const handleRestore = () => {
+  handelChangeImage(0)
+}
 </script>
 
 <template>
@@ -30,7 +35,7 @@ watch(showKUNGalgameBackground, () => {
       <li>
         <span>{{ $t('header.settings.preset') }}</span>
         <!-- 预设背景集 -->
-        <ul class="kungalgame-reset-bg">
+        <ul class="kungalgame-restore-bg">
           <li v-for="kun in backgroundImages" :key="kun.index">
             <img
               :src="kun.image"
@@ -50,7 +55,9 @@ watch(showKUNGalgameBackground, () => {
             <button>{{ $t('header.settings.confirm') }}</button>
           </div>
         </div>
-        <button class="reset-bg">{{ $t('header.settings.restore') }}</button>
+        <button class="restore-bg" @click="handleRestore">
+          {{ $t('header.settings.restore') }}
+        </button>
       </li>
     </ul>
   </div>
@@ -78,7 +85,7 @@ watch(showKUNGalgameBackground, () => {
   margin: 10px 0;
 }
 /* 背景图片略缩图三行三列 grid */
-.kungalgame-reset-bg {
+.kungalgame-restore-bg {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 80px);
@@ -145,7 +152,7 @@ watch(showKUNGalgameBackground, () => {
     }
   }
 }
-.reset-bg {
+.restore-bg {
   font-size: 15px;
   cursor: pointer;
   height: 30px;
