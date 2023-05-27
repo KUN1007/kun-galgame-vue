@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { Ref, ref } from 'vue'
-import { log } from 'console'
 
 let isLogIn: Ref<string> = ref('right-panel-active')
 

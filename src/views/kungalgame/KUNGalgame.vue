@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+// 导入背景图片
+import currBackground from '@/utils/background'
 
 interface asideBar {
   index: number
@@ -15,12 +17,13 @@ const asideBarItem: asideBar[] = [
   { index: 5, name: '不萌记录', router: '/anti-moe' },
   { index: 6, name: '加入我们', router: '/contacts' },
   { index: 7, name: '感谢名单', router: '/thanks-list' },
-  { index: 8, name: '返回主页', router: '/' },
+  { index: 8, name: '赞助我们', router: '/donate' },
+  { index: 9, name: '返回主页', router: '/' },
 ]
 </script>
 
 <template>
-  <div class="root">
+  <div class="root" :style="{ backgroundImage: `url(${currBackground})` }">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区容器 -->
@@ -215,8 +218,6 @@ const asideBarItem: asideBar[] = [
 }
 .root {
   height: 100vh;
-  background-image: url(@/assets/images/bg/bg1.png);
-  /* background-image: url(./img/bg/bg2.png; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

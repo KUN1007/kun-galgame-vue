@@ -8,8 +8,8 @@
         赞助我们<span>没有任何的萌萌点奖励</span>，不过可以帮我们缓解一部分服务器的费用，您确定要赞助吗
       </p>
       <div class="btn">
-        <div>确定赞助</div>
-        <div>返回主页</div>
+        <router-link to="/">确定赞助</router-link>
+        <router-link to="/">返回主页</router-link>
       </div>
     </div>
     <!-- 版权 -->
@@ -75,31 +75,32 @@
 .warning span {
   color: $kungalgame-red-5;
 }
+/* 按钮的样式 */
 .btn {
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
-}
-.btn > div {
-  padding: 7px 10px;
-}
-.btn > div:nth-child(1) {
-  background-color: $kungalgame-trans-red-0;
-  color: $kungalgame-red-5;
-  border: 1px solid $kungalgame-red-4;
-  cursor: pointer;
-}
-.btn > div:nth-child(1):hover {
-  background-color: $kungalgame-red-1;
-}
-.btn > div:nth-child(2) {
-  background-color: $kungalgame-trans-blue-1;
-  color: $kungalgame-blue-5;
-  border: 1px solid $kungalgame-blue-4;
-  cursor: pointer;
-}
-.btn > div:nth-child(2):hover {
-  background-color: $kungalgame-trans-blue-2;
+  a {
+    padding: 7px 10px;
+    &:nth-child(1) {
+      background-color: $kungalgame-trans-red-0;
+      color: $kungalgame-red-5;
+      border: 1px solid $kungalgame-red-4;
+      cursor: pointer;
+      &:hover {
+        background-color: $kungalgame-red-1;
+      }
+    }
+    &:nth-child(2) {
+      background-color: $kungalgame-trans-blue-1;
+      color: $kungalgame-blue-5;
+      border: 1px solid $kungalgame-blue-4;
+      cursor: pointer;
+      &:hover {
+        background-color: $kungalgame-trans-blue-2;
+      }
+    }
+  }
 }
 .copyright {
   margin-bottom: 20px;

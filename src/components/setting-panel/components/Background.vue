@@ -1,5 +1,26 @@
 <script setup lang="ts">
+// 导入设置面板 store
 import { useSettingsPanelStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+import { watch } from 'vue'
+
+import backgroundImages from './background'
+
+// 使用设置面板的 store
+const settingsStore = useSettingsPanelStore()
+const { showKUNGalgameBackground } = storeToRefs(settingsStore)
+
+console.log(showKUNGalgameBackground.value)
+
+// 更改背景图片
+const handelChangeImage = (index: number) => {
+  showKUNGalgameBackground.value = index.toString()
+}
+
+watch(showKUNGalgameBackground, () => {
+  localStorage.setItem('KUNGalgame-background', showKUNGalgameBackground.value)
+})
 </script>
 
 <template>
@@ -10,15 +31,13 @@ import { useSettingsPanelStore } from '@/store/modules/settings'
         <span>{{ $t('header.settings.preset') }}</span>
         <!-- 预设背景集 -->
         <ul class="kungalgame-reset-bg">
-          <li><img src="@/assets/images/bg/bg1-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg2-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg3-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg4-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg5-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg6-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg7-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg8-m.png" /></li>
-          <li><img src="@/assets/images/bg/bg9-m.png" /></li>
+          <li v-for="kun in backgroundImages" :key="kun.index">
+            <img
+              :src="kun.image"
+              :alt="kun.alt"
+              @click="handelChangeImage(kun.index)"
+            />
+          </li>
         </ul>
       </li>
       <!-- 用户自定义背景 -->
