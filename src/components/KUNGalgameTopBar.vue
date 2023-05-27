@@ -74,7 +74,6 @@ const handleClickAvatar = () => {
 const handleSittingsClick = () => {
   showSettings.value = !showSettings.value
 }
-onBeforeMount(() => {})
 </script>
 
 <template>

@@ -121,8 +121,6 @@ const editorConfig = {
 
 const handleCreated = (editor: any) => {
   editorRef.value = editor // 记录 editor 实例，重要！
-  console.log(editor.getConfig())
-  console.log(editor.getAllMenuKeys())
 }
 
 // 组件销毁时，及时销毁编辑器

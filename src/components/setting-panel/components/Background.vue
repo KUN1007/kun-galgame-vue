@@ -7,11 +7,11 @@ import { watch } from 'vue'
 
 import backgroundImages from './background'
 
+import { restoreBackground } from '@/hooks/useBackgroundPicture'
+
 // 使用设置面板的 store
 const settingsStore = useSettingsPanelStore()
 const { showKUNGalgameBackground } = storeToRefs(settingsStore)
-
-console.log(showKUNGalgameBackground.value)
 
 // 更改背景图片
 const handelChangeImage = (index: number) => {
@@ -23,9 +23,6 @@ watch(showKUNGalgameBackground, () => {
 })
 
 // 恢复空白背景
-const handleRestore = () => {
-  handelChangeImage(0)
-}
 </script>
 
 <template>
@@ -55,7 +52,7 @@ const handleRestore = () => {
             <button>{{ $t('header.settings.confirm') }}</button>
           </div>
         </div>
-        <button class="restore-bg" @click="handleRestore">
+        <button class="restore-bg" @click="restoreBackground">
           {{ $t('header.settings.restore') }}
         </button>
       </li>
