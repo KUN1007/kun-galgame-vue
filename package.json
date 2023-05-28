@@ -22,7 +22,9 @@
     "@wangeditor/editor-for-vue": "^5.1.12",
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
+    "dayjs": "^1.11.7",
     "pinia": "^2.0.35",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "vue": "^3.2.47",
     "vue-i18n": "^9.3.0-beta.17",
     "vue-router": "^4.1.6"

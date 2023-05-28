@@ -7,7 +7,7 @@
     <div class="container">
       <p>404</p>
       <p>您访问了一个不存在的页面</p>
-      <button>点击返回主页</button>
+      <button><router-link to="/">点击返回主页</router-link></button>
     </div>
   </div>
 </template>
@@ -57,10 +57,21 @@ button {
   font-size: 17px;
   background-color: $kungalgame-trans-blue-1;
   cursor: pointer;
-}
-button:hover {
-  background-color: $kungalgame-blue-4;
-  color: $kungalgame-white;
-  transition: 0.2s;
+  &:hover {
+    background-color: $kungalgame-blue-4;
+    transition: 0.2s;
+  }
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: $kungalgame-blue-4;
+    &:hover {
+      color: $kungalgame-white;
+      transition: 0.2s;
+    }
+  }
 }
 </style>

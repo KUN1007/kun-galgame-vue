@@ -1,6 +1,7 @@
 <!-- App -->
 <script setup lang="ts">
 import 'animate.css'
+import Login from './views/login/Login.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import 'animate.css'
     </transition>
   </router-view> -->
   <RouterView />
+  <!-- <Login /> -->
 </template>
 
 <style scoped></style>

@@ -1,8 +1,20 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { Ref, ref } from 'vue'
+import { Ref, reactive, ref } from 'vue'
 
 let isLogIn: Ref<string> = ref('right-panel-active')
+
+const loginForm = reactive({
+  username: '',
+  email: '',
+  password: '',
+  verificationCode: '',
+})
+
+const email = ref('')
+const password = ref('')
+const username = ref('')
+const verificationCode = ref('')
 
 const handleSignIn = () => {
   isLogIn.value = ''
@@ -19,6 +31,97 @@ const login = () => {
 const register = () => {
   router.push({ path: '/' })
 }
+
+/*
+ * 登陆注册逻辑
+ */
+
+// 模拟发送登录请求的函数
+const loginRequest = (email: string, password: string) => {
+  // 返回一个 Promise 对象，表示异步操作
+  return new Promise((resolve, reject) => {
+    // 假设在此处进行异步登录验证
+    // 模拟验证成功
+    if (email === 'kun@kungal.com' && password === '1007') {
+      resolve({ success: true })
+    } else {
+      // 模拟验证失败
+      reject({ error: 'Invalid credentials' })
+    }
+  })
+}
+
+// 模拟发送注册请求的函数
+const registerRequest = (
+  username: string,
+  email: string,
+  password: string,
+  verificationCode: string
+) => {
+  // 返回一个 Promise 对象，表示异步操作
+  return new Promise((resolve, reject) => {
+    // 假设在此处进行异步注册验证
+    // 模拟验证成功
+    if (username && email && password && verificationCode) {
+      resolve({ success: true })
+    } else {
+      // 模拟验证失败
+      reject({ error: 'Invalid registration details' })
+    }
+  })
+}
+
+const handleLogin = () => {
+  // 进行登录验证的逻辑
+  if (email.value && password.value) {
+    // 发送登录请求到后端进行验证
+    // 假设后端返回一个 Promise 对象，表示验证结果
+    loginRequest(email.value, password.value)
+      .then((response) => {
+        // 登录成功
+        console.log('登录成功')
+        // 执行其他操作，例如跳转到首页等
+      })
+      .catch((error) => {
+        // 登录失败
+        console.log('登录失败', error)
+        // 执行其他操作，例如显示错误提示等
+      })
+  } else {
+    console.log('请输入有效的邮箱和密码')
+  }
+}
+
+const handleRegister = () => {
+  // 进行注册验证的逻辑
+  if (
+    username.value &&
+    email.value &&
+    password.value &&
+    verificationCode.value
+  ) {
+    // 发送注册请求到后端进行验证
+    // 假设后端返回一个 Promise 对象，表示验证结果
+    registerRequest(
+      username.value,
+      email.value,
+      password.value,
+      verificationCode.value
+    )
+      .then((response) => {
+        // 注册成功
+        console.log('注册成功')
+        // 执行其他操作，例如跳转到登录页面等
+      })
+      .catch((error) => {
+        // 注册失败
+        console.log('注册失败', error)
+        // 执行其他操作，例如显示错误提示等
+      })
+  } else {
+    console.log('请填写完整的注册信息')
+  }
+}
 </script>
 
 <template>
@@ -27,29 +130,61 @@ const register = () => {
       <!-- 登陆 -->
       <div class="container__form container--signin">
         <!-- 阻止冒泡？ -->
-        <form action="#" class="form" id="form1" @submit.preventDefault>
+        <form action="#" class="form" id="form1" @submit.prevent="handleLogin">
           <h2 class="form__title">登陆</h2>
-          <input type="email" placeholder="用户名或邮箱" class="input" />
-          <input type="password" placeholder="密码" class="input" />
+          <input
+            v-model="email"
+            type="email"
+            placeholder="用户名或邮箱"
+            class="input"
+          />
+          <input
+            v-model="password"
+            type="password"
+            placeholder="密码"
+            class="input"
+          />
           <a href="#" class="link">忘记密码? 点击发送重置邮件</a>
-          <button class="btn" @click="login">登陆</button>
+          <button class="btn" type="submit">登陆</button>
         </form>
       </div>
 
       <!-- 注册 -->
       <div class="container__form container--signup">
         <!-- 阻止冒泡？ -->
-        <form action="#" class="form" id="form2" @submit.preventDefault>
+        <form
+          action="#"
+          class="form"
+          id="form2"
+          @submit.prevent="handleRegister"
+        >
           <h2 class="form__title">注册</h2>
-          <!--           <input type="text" placeholder="用户名 (中文 < 7个字符, 英文 < 14 个字符" class="input" />
-          <input type="email" placeholder="邮箱 (gmail, outlook, sina, qq, 163" class="input" />
-          <input type="password" placeholder="密码 (7 ~ 17位, 数字、字母、符号组合" class="input" /> -->
-          <input type="text" placeholder="用户名" class="input" />
-          <input type="email" placeholder="邮箱" class="input" />
-          <input type="password" placeholder="密码" class="input" />
-          <input type="text" placeholder="验证码" class="input" />
+          <input
+            v-model="username"
+            type="text"
+            placeholder="用户名"
+            class="input"
+          />
+          <input
+            v-model="email"
+            type="email"
+            placeholder="邮箱"
+            class="input"
+          />
+          <input
+            v-model="password"
+            type="password"
+            placeholder="密码"
+            class="input"
+          />
+          <input
+            v-model="verificationCode"
+            type="text"
+            placeholder="验证码"
+            class="input"
+          />
           <button class="mail-confirm">发送验证码</button>
-          <button class="btn" @click="register">注册</button>
+          <button class="btn" type="submit">注册</button>
           <a href="#" class="user-agreement"
             >点击注册表示您已经同意我们的<span>用户协议</span></a
           >
@@ -156,7 +291,7 @@ const register = () => {
 /* 总容器 */
 .container {
   /* 背景图片 */
-  background: url('$/assets/images/bg/bg1.png');
+  background: url('@/assets/images/bg/bg1.png');
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
