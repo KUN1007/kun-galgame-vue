@@ -13,7 +13,10 @@ export const restoreBackground = () => {
 }
 
 export const currBackground = computed(() => {
-  if (showKUNGalgameBackground.value === '0') {
+  if (
+    showKUNGalgameBackground.value === '0' ||
+    showKUNGalgameBackground.value === 'none'
+  ) {
     return 'none'
   } else {
     return `url(src/assets/images/bg/bg${showKUNGalgameBackground.value}.png)`
