@@ -18,7 +18,7 @@ const loadMainPageWidth =
 
 // 读出 localStorage 中网站的背景图数据
 const loadKUNGalgameBackground =
-  (localStorage.getItem('KUNGalgame-background') as string) || ''
+  (localStorage.getItem('KUNGalgame-background') as string) || 'none'
 
 const kungalgameSettings: KUNGalgameSettings = {
   // false -> settings panel off, true -> settings panel on

@@ -23,10 +23,9 @@ import asideItem from '../aside-item'
   border: 1px solid $kungalgame-blue-4;
   span {
     width: 100%;
-    height: 100%;
+    height: 1px;
+    flex-grow: 1;
     font-size: 18px;
-    display: grid;
-    grid-auto-rows: minmax(0, 1fr); /* 控制行高度自适应 */
     border-top: 1px solid $kungalgame-blue-4;
     &:first-child {
       border-top: none;
@@ -38,6 +37,7 @@ import asideItem from '../aside-item'
     a {
       writing-mode: vertical-rl;
       text-orientation: upright;
+      width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
