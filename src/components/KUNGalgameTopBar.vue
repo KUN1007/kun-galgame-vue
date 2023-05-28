@@ -35,7 +35,7 @@ interface topBar {
 const topBarItem: topBar[] = [
   { index: 1, name: 'pool', router: '/pool' },
   { index: 2, name: 'create', router: 'edit' },
-  { index: 3, name: 'technique', router: 'technology' },
+  { index: 3, name: 'technique', router: 'technique' },
   { index: 4, name: 'about', router: 'kungalgame' },
   { index: 5, name: 'return', router: '/' },
 ]

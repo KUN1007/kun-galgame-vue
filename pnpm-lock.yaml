@@ -13,9 +13,15 @@ dependencies:
   axios:
     specifier: ^1.4.0
     version: 1.4.0
+  dayjs:
+    specifier: ^1.11.7
+    version: 1.11.7
   pinia:
     specifier: ^2.0.35
     version: 2.0.35(typescript@4.9.3)(vue@3.2.47)
+  pinia-plugin-persistedstate:
+    specifier: ^3.1.0
+    version: 3.1.0(pinia@2.0.35)
   vue:
     specifier: ^3.2.47
     version: 3.2.47
@@ -952,6 +958,10 @@ packages:
       type: 1.2.0
     dev: false
 
+  /dayjs@1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
+
   /de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
     dev: true
@@ -1426,6 +1436,14 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
     dev: true
+
+  /pinia-plugin-persistedstate@3.1.0(pinia@2.0.35):
+    resolution: {integrity: sha512-8UN+vYMEPBdgNLwceY08mi5olI0wkYaEb8b6hD6xW7SnBRuPydWHlEhZvUWgNb/ibuf4PvufpvtS+dmhYjJQOw==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.0.35(typescript@4.9.3)(vue@3.2.47)
+    dev: false
 
   /pinia@2.0.35(typescript@4.9.3)(vue@3.2.47):
     resolution: {integrity: sha512-P1IKKQWhxGXiiZ3atOaNI75bYlFUbRxtJdhPLX059Z7+b9Z04rnTZdSY8Aph1LA+/4QEMAYHsTQ638Wfe+6K5g==}
