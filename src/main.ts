@@ -17,11 +17,15 @@ import { VueQueryPlugin } from '@tanstack/vue-query'
 /* 导入 Pinia */
 // const store = createPinia()
 import { setupPinia } from '@/store/index'
+// 注册全局指令
+// import replyDirective from '@/directive/spanEffect'
 
 // 获取 App 实例
 const app = createApp(App)
 
 setupPinia(app)
+
+// app.directive('reply', replyDirective)
 
 // css
 import '@/styles/reset.css'

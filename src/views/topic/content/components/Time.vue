@@ -1,11 +1,13 @@
 <!-- 发帖的时间 -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+</script>
 
 <template>
   <!-- 发帖时间 -->
   <div class="master-topic-time">
     <!-- 沙漏图标字体 -->
-    <i class="fa-solid fa-hourglass-half"></i>
+    <Icon class="hourglass" icon="eos-icons:hourglass" />
     <div>2019年10月7日-10:07:00 发布</div>
   </div>
 </template>
@@ -24,8 +26,9 @@
   white-space: nowrap;
 }
 /* 沙漏的样式 */
-.master-topic-time i {
-  padding: 0 10px;
+.hourglass {
+  font-size: 23px;
+  margin: 0 10px;
   color: $kungalgame-red-4;
 }
 /* 发帖时间的样式 */

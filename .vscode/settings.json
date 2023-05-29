@@ -19,5 +19,6 @@
     "tanstack",
     "weixin"
   ],
-  "i18n-ally.localesPaths": ["src/language"]
+  "i18n-ally.localesPaths": ["src/language"],
+  "vue.codeActions.enabled": false
 }

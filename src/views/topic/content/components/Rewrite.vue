@@ -12,6 +12,7 @@ span {
   margin: 0 10px;
   font-size: 12px;
   letter-spacing: 1px;
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
