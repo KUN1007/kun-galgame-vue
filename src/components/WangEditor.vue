@@ -5,7 +5,7 @@
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-import axios from 'axios'
+
 // 编辑器实例，必须用 shallowRef，重要！
 const editorRef = shallowRef()
 

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { Ref, reactive, ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { useMutation } from '@tanstack/vue-query'
+import { useRouter } from 'vue-router'
+import { request } from '@/utils/request'
 
-let isLogIn: Ref<string> = ref('right-panel-active')
-
+const isLogIn = ref('right-panel-active')
 const loginForm = reactive({
   username: '',
   email: '',
@@ -12,10 +13,29 @@ const loginForm = reactive({
   verificationCode: '',
 })
 
-const email = ref('')
-const password = ref('')
-const username = ref('')
-const verificationCode = ref('')
+const useStore = useKUNGalgamerStore()
+
+const router = useRouter()
+
+// 登录请求
+const loginMutation = useMutation(async (data: any) => {
+  const res = await request('http://127.0.0.1:1007/api/login', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' },
+  })
+  return await res.json()
+})
+
+// 注册请求
+const registerMutation = useMutation(async (data: any) => {
+  const res = await request('http://127.0.0.1:1007/api/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' },
+  })
+  return await res.json()
+})
 
 const handleSignIn = () => {
   isLogIn.value = ''
@@ -24,101 +44,46 @@ const handleSignIn = () => {
 const handleSignUp = () => {
   isLogIn.value = 'right-panel-active'
 }
-const router = useRouter()
-
-const login = () => {
-  router.push({ path: '/' })
-}
-const register = () => {
-  router.push({ path: '/' })
-}
-
-/*
- * 登陆注册逻辑
- */
-
-// 模拟发送登录请求的函数
-const loginRequest = (email: string, password: string) => {
-  // 返回一个 Promise 对象，表示异步操作
-  return new Promise((resolve, reject) => {
-    // 假设在此处进行异步登录验证
-    // 模拟验证成功
-    if (email === 'kun@kungal.com' && password === '1007') {
-      resolve({ success: true })
-    } else {
-      // 模拟验证失败
-      reject({ error: 'Invalid credentials' })
-    }
-  })
-}
-
-// 模拟发送注册请求的函数
-const registerRequest = (
-  username: string,
-  email: string,
-  password: string,
-  verificationCode: string
-) => {
-  // 返回一个 Promise 对象，表示异步操作
-  return new Promise((resolve, reject) => {
-    // 假设在此处进行异步注册验证
-    // 模拟验证成功
-    if (username && email && password && verificationCode) {
-      resolve({ success: true })
-    } else {
-      // 模拟验证失败
-      reject({ error: 'Invalid registration details' })
-    }
-  })
-}
 
 const handleLogin = () => {
-  // 进行登录验证的逻辑
-  if (email.value && password.value) {
-    // 发送登录请求到后端进行验证
-    // 假设后端返回一个 Promise 对象，表示验证结果
-    loginRequest(email.value, password.value)
-      .then((response) => {
-        // 登录成功
-        console.log('登录成功')
-        // 执行其他操作，例如跳转到首页等
-      })
-      .catch((error) => {
-        // 登录失败
-        console.log('登录失败', error)
-        // 执行其他操作，例如显示错误提示等
-      })
+  const { email, password } = loginForm
+  if (email && password) {
+    loginMutation.mutate(
+      { email, password },
+      {
+        onSuccess: (response: any) => {
+          if (response.success) {
+            const token = response.token
+            useStore.setToken(token)
+            router.push({ path: '/' })
+          } else {
+            console.log('登录失败:', response.error)
+          }
+        },
+      }
+    )
   } else {
     console.log('请输入有效的邮箱和密码')
   }
 }
 
 const handleRegister = () => {
-  // 进行注册验证的逻辑
-  if (
-    username.value &&
-    email.value &&
-    password.value &&
-    verificationCode.value
-  ) {
-    // 发送注册请求到后端进行验证
-    // 假设后端返回一个 Promise 对象，表示验证结果
-    registerRequest(
-      username.value,
-      email.value,
-      password.value,
-      verificationCode.value
+  const { username, email, password, verificationCode } = loginForm
+  if (username && email && password && verificationCode) {
+    registerMutation.mutate(
+      { username, email, password, verificationCode },
+      {
+        onSuccess: (response: any) => {
+          if (response.success) {
+            console.log('注册成功')
+            // 执行其他操作，例如跳转到登录页面等
+          } else {
+            console.log('注册失败:', response.error)
+            // 执行其他操作，例如显示错误提示等
+          }
+        },
+      }
     )
-      .then((response) => {
-        // 注册成功
-        console.log('注册成功')
-        // 执行其他操作，例如跳转到登录页面等
-      })
-      .catch((error) => {
-        // 注册失败
-        console.log('注册失败', error)
-        // 执行其他操作，例如显示错误提示等
-      })
   } else {
     console.log('请填写完整的注册信息')
   }
@@ -130,17 +95,16 @@ const handleRegister = () => {
     <div class="container" :class="isLogIn">
       <!-- 登陆 -->
       <div class="container__form container--signin">
-        <!-- 阻止冒泡？ -->
         <form action="#" class="form" id="form1" @submit.prevent="handleLogin">
           <h2 class="form__title">登陆</h2>
           <input
-            v-model="email"
+            v-model="loginForm.email"
             type="email"
             placeholder="用户名或邮箱"
             class="input"
           />
           <input
-            v-model="password"
+            v-model="loginForm.password"
             type="password"
             placeholder="密码"
             class="input"
@@ -152,7 +116,6 @@ const handleRegister = () => {
 
       <!-- 注册 -->
       <div class="container__form container--signup">
-        <!-- 阻止冒泡？ -->
         <form
           action="#"
           class="form"
@@ -161,25 +124,25 @@ const handleRegister = () => {
         >
           <h2 class="form__title">注册</h2>
           <input
-            v-model="username"
+            v-model="loginForm.username"
             type="text"
             placeholder="用户名"
             class="input"
           />
           <input
-            v-model="email"
+            v-model="loginForm.email"
             type="email"
             placeholder="邮箱"
             class="input"
           />
           <input
-            v-model="password"
+            v-model="loginForm.password"
             type="password"
             placeholder="密码"
             class="input"
           />
           <input
-            v-model="verificationCode"
+            v-model="loginForm.verificationCode"
             type="text"
             placeholder="验证码"
             class="input"
@@ -214,10 +177,11 @@ const handleRegister = () => {
         </div>
       </div>
     </div>
+
     <!-- 版权 -->
     <div class="copyright">
-      <span>Copyright © 2023 KUNgalgame</span>
-      <span>All rights reserved | Version 0.01</span>
+      <span>版权所有 © 2023 KUNgalgame</span>
+      <span>保留所有权利 | 版本 0.01</span>
     </div>
   </div>
 </template>
