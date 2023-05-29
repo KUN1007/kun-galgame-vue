@@ -12,6 +12,16 @@ import asideItem from '../aside-item'
       }}</router-link>
     </span>
   </div>
+  <!-- 
+
+    TODO:
+    <span><Icon icon="line-md:uploading-loop" /></span>
+    <span><Icon icon="healthicons:money-bag-outline" /></span>
+    <span><Icon icon="solar:ranking-outline" /></span>
+    <span><Icon icon="line-md:clipboard-list" /></span>
+    <span><Icon icon="fluent-mdl2:contact-list" /></span>
+    <span><Icon icon="line-md:alert" /></span>
+   -->
 </template>
 
 <style lang="scss" scoped>

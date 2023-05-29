@@ -24,10 +24,10 @@ export default {
     asideActive: {
       fold: 'Fold Aside',
       create: 'CREATE NEW!',
-      update: 'Update Log',
-      balance: 'F.S.',
+      update: 'Update',
+      balance: 'Balance',
       ranking: 'Ranking',
-      regulations: 'Regulations',
+      regulations: 'Bylaw',
       contacts: 'Join Us',
       antiMoe: 'Anti-moe',
       hot: `Today's Hot Topic`,

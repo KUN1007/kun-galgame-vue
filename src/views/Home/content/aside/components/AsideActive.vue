@@ -13,9 +13,11 @@ const props = defineProps(['isActive'])
     <!-- 发布新文章 -->
     <div class="new-article">
       <!-- 发布新文章的按钮 -->
-      <button class="btn-new-article">
-        {{ $t('mainPage.asideActive.create') }}
-      </button>
+      <router-link to="/edit">
+        <button class="btn-new-article">
+          {{ $t('mainPage.asideActive.create') }}
+        </button>
+      </router-link>
     </div>
     <!-- 功能盒子容器 -->
     <div class="item-box-container">
@@ -49,36 +51,35 @@ const props = defineProps(['isActive'])
   /* 发布帖子的按钮相对于功能区盒子的占比 */
   flex-grow: 1;
   flex-shrink: 0;
+  /* 发布按钮样式 */
+  button {
+    height: 100%;
+    width: 100%;
+    background-color: $kungalgame-red-0;
+    border: 1px solid $kungalgame-red-3;
+    border-radius: 5px;
+    cursor: pointer;
+    color: $kungalgame-red-3;
+    font-weight: bold;
+    font-size: larger;
+    /* 发布按钮 hover 效果 */
+    &:hover {
+      font-size: xx-large;
+      background-color: $kungalgame-red-3;
+      color: $kungalgame-red-0;
+      /* 效果过渡时长 */
+      transition: 0.3s;
+    }
+  }
 }
-/* 发布按钮样式 */
-.new-article button {
-  height: 100%;
-  width: 100%;
-  background-color: $kungalgame-red-0;
-  border: 1px solid $kungalgame-red-3;
-  border-radius: 5px;
-  cursor: pointer;
-  color: $kungalgame-red-3;
-  font-weight: bold;
-  font-size: larger;
-}
-/* 发布按钮 hover 效果 */
-.new-article button:hover {
-  font-size: xx-large;
-  background-color: $kungalgame-red-3;
-  color: $kungalgame-red-0;
-  /* 效果过渡时长 */
-  transition: 0.3s;
-}
-/* 功能区容器 */
 /* 功能区容器 */
 .item-box-container {
   /* 两行三列 grid 布局 */
   width: 100%;
   height: 80px;
   display: grid;
-  grid-template-columns: repeat(3, 2fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 2fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   font-size: 14px;
   /* 字体颜色 */
   color: $kungalgame-font-color-3;
