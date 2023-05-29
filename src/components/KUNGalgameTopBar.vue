@@ -1,16 +1,20 @@
 <script setup lang="ts">
 // 导入 Vue 函数
-import { defineAsyncComponent } from 'vue'
+import {
+  defineAsyncComponent,
+  onBeforeMount,
+  onBeforeUnmount,
+  onUpdated,
+} from 'vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
-// 导入必要 vue 函数
-import { onBeforeMount } from 'vue'
 // 导入 css 动画
 import 'animate.css'
 // 导入路由
 import router from '@/router'
 // 导入设置面板 store
-import { useSettingsPanelStore } from '@/store/modules/settings'
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+
 import { storeToRefs } from 'pinia'
 
 // 异步导入设置面板，提升首页加载速度
@@ -19,10 +23,10 @@ const KUNGalgameSettingsPanel = defineAsyncComponent(
 )
 
 // 接收设置面板的 store
-const settingsStore = useSettingsPanelStore()
+const settingsStore = useKUNGalgameSettingsStore()
 
-// 使数据变为响应式
-let { showSettings } = storeToRefs(settingsStore)
+// 使设置面板的数据变为响应式
+const { showKUNGalgamePanel } = storeToRefs(settingsStore)
 
 // 顶部导航栏单个项目的接口
 interface topBar {
@@ -72,8 +76,16 @@ const handleClickAvatar = () => {
 
 // 用户点击网站设置时的操作
 const handleSittingsClick = () => {
-  showSettings.value = !showSettings.value
+  showKUNGalgamePanel.value = !showKUNGalgamePanel.value
 }
+// 在路由跳转时关闭设置面板
+onBeforeUnmount(() => {
+  showKUNGalgamePanel.value = false
+})
+// 在页面刷新时关闭设置面板
+onBeforeMount(() => {
+  showKUNGalgamePanel.value = false
+})
 </script>
 
 <template>
@@ -112,7 +124,7 @@ const handleSittingsClick = () => {
     enter-active-class="animate__animated animate__jackInTheBox animate__faster"
     leave-active-class="animate__animated animate__fadeOutRight animate__faster"
   >
-    <KUNGalgameSettingsPanel v-if="showSettings" />
+    <KUNGalgameSettingsPanel v-if="showKUNGalgamePanel" />
   </transition>
 </template>
 

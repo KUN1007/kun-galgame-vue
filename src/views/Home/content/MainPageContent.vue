@@ -2,14 +2,14 @@
 import MainPageAside from './aside/MainPageAside.vue'
 import MainPageArticle from './article/MainPageArticle.vue'
 // 导入设置面板 store
-import { useSettingsPanelStore } from '@/store/modules/settings'
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 // 使用设置面板的 store
-const settingsStore = useSettingsPanelStore()
-const { showMainPageWidth } = storeToRefs(settingsStore)
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgameMainPageWidth } = storeToRefs(settingsStore)
 const width = computed(() => {
-  return showMainPageWidth.value + '%'
+  return showKUNGalgameMainPageWidth.value + '%'
 })
 </script>
 

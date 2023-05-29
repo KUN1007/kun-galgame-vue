@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 
 const port = 1007 // 端口号
 
-// Login endpoint
+// 登录
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body
 
@@ -24,18 +24,17 @@ app.post('/api/login', (req, res) => {
   }
 })
 
-// Register endpoint
+// 注册
 app.post('/api/register', (req, res) => {
-  // Retrieve the username, email, password, and verification code from the request body
+  // 获取请求 body 内容
   const { username, email, password, verificationCode } = req.body
 
-  // Perform the registration logic here
-  // Replace this with your actual registration logic
+  // 注册逻辑
   if (username && email && password && verificationCode) {
-    // Registration successful
+    // 注册成功
     res.json({ success: true })
   } else {
-    // Registration failed
+    // 注册失败
     res
       .status(400)
       .json({ success: false, error: 'Incomplete registration information' })

@@ -8,8 +8,6 @@ import { unref } from 'vue'
 // 临时使用
 import { asyncRoutes } from '../router'
 
-console.log(asyncRoutes)
-
 export const createPermission = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
     const useStore = useKUNGalgamerStore()
@@ -43,11 +41,7 @@ export const createPermission = (router: Router) => {
 
     // 是否已经挂载过路由
     if (getRoute.length > 0) {
-      console.log(1)
-
       if (router.hasRoute(<string>to.name)) {
-        console.log(2)
-
         next()
       } else {
         next(getRoute[0])
