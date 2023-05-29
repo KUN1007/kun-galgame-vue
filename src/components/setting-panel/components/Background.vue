@@ -1,27 +1,20 @@
 <script setup lang="ts">
 // 导入设置面板 store
-import { useSettingsPanelStore } from '@/store/modules/settings'
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-
-import { watch } from 'vue'
 
 import backgroundImages from './background'
 
 import { restoreBackground } from '@/hooks/useBackgroundPicture'
 
 // 使用设置面板的 store
-const settingsStore = useSettingsPanelStore()
+const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgameBackground } = storeToRefs(settingsStore)
 
 // 更改背景图片
 const handelChangeImage = (index: number) => {
   showKUNGalgameBackground.value = index.toString()
 }
-
-watch(showKUNGalgameBackground, () => {
-  localStorage.setItem('KUNGalgame-background', showKUNGalgameBackground.value)
-})
-
 // 恢复空白背景
 </script>
 

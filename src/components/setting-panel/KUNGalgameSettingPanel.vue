@@ -9,7 +9,7 @@ import Loli from './components/Loli.vue'
 // 引入背景设置组件
 import Background from './components/Background.vue'
 // 导入设置面板 store
-import { useSettingsPanelStore } from '@/store/modules/settings'
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 // 导入 i18n
 import { useI18n } from 'vue-i18n'
@@ -32,13 +32,9 @@ const changeLanguage = () => {
  */
 
 // 使用设置面板的 store
-const settingsStore = useSettingsPanelStore()
-const { showSettings, showMainPageWidth } = storeToRefs(settingsStore)
-
-// 监听主页宽度变化，并将主页宽度设置保存到localStorage
-watch(showMainPageWidth, (width) => {
-  localStorage.setItem('KUNGalgame-main-page-width', width)
-})
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgamePanel, showKUNGalgameMainPageWidth } =
+  storeToRefs(settingsStore)
 
 /* 恢复所有设置为默认 */
 const handleRecover = () => {}
@@ -49,7 +45,7 @@ const handleRecover = () => {}
 
 // 关闭设置面板
 const handleClose = () => {
-  showSettings.value = false
+  showKUNGalgamePanel.value = false
 }
 </script>
 
@@ -90,7 +86,7 @@ const handleClose = () => {
         <!-- 设置主页的宽度 -->
         <div class="width-container">
           <span>{{ $t('header.settings.width') }}</span>
-          <span>{{ showMainPageWidth }}%</span>
+          <span>{{ showKUNGalgameMainPageWidth }}%</span>
         </div>
         <div class="page-width">
           <span>50%</span
@@ -100,7 +96,7 @@ const handleClose = () => {
             max="90"
             step="0.1"
             type="range"
-            v-model="showMainPageWidth"
+            v-model="showKUNGalgameMainPageWidth"
           /><span>90%</span>
         </div>
       </div>

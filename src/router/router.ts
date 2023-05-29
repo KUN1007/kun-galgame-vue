@@ -1,5 +1,6 @@
 import type { KUNRouteType } from '@/router/types'
 
+// KUNGalgame 登录
 const LoginRoute: KUNRouteType = {
   name: 'Login',
   path: '/login',
@@ -83,6 +84,7 @@ const ForbiddenRoute = {
 const isArray = (val: any): val is object =>
   toString.call(val) === '[object Array]'
 
+// 获取动态路由表
 const getAsyncRoute = (): KUNRouteType[] => {
   const modules = import.meta.glob('./modules/*.ts', {
     eager: true,
