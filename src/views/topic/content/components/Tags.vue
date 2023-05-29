@@ -1,11 +1,13 @@
 <!-- 把所有帖子的所有 Tag 组合起来形成的一个区域 -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+</script>
 
 <template>
   <!-- 帖子的标签 -->
   <div class="master-topic-tags">
     <!-- 标签的图标字体 -->
-    <i class="fa-solid fa-tags"></i>
+    <Icon class="tag" icon="mingcute:tag-2-fill" />
     <ul>
       <li>啊这可海星</li>
       <li>啊这可海星</li>
@@ -24,8 +26,9 @@
   align-items: center;
 }
 /* 图标字体 */
-.master-topic-tags i {
-  padding: 0 20px;
+.tag {
+  font-size: 23px;
+  margin: 0 20px;
   color: $kungalgame-blue-4;
 }
 /* 单个标签的盒子 */

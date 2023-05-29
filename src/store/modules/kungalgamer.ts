@@ -8,7 +8,7 @@ export const useKUNGalgamerStore = defineStore({
   id: 'kungalgamer',
   persist: true,
   state: (): UserState => ({
-    token: '',
+    token: 'KUNGalgame',
   }),
   getters: {
     getToken(): string {

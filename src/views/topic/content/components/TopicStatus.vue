@@ -2,16 +2,17 @@
 <script setup lang="ts"></script>
 
 <template>
-  <!-- 内容区的底部 -->
-  <div class="master-topic-content-bottom">
-    <!-- 帖子状态 -->
-    <span>帖子状态：<span>正常</span></span>
-  </div>
+  <!-- 帖子状态 -->
+  <div>帖子状态：<span>正常</span></div>
 </template>
 
 <style lang="scss" scoped>
+div {
+  font-size: 12px;
+  margin-left: 10px;
+}
 /* 帖子状态 */
-.master-topic-content-bottom span span {
+span {
   background-color: $kungalgame-green-3;
   color: $kungalgame-white;
 }
