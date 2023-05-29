@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/vue-query'
 import { useRouter } from 'vue-router'
 import { request } from '@/utils/request'
 
-const isLogIn = ref('right-panel-active')
+const isShowPanel = ref('')
 const loginForm = reactive({
   username: '',
   email: '',
@@ -37,12 +37,14 @@ const registerMutation = useMutation(async (data: any) => {
   return await res.json()
 })
 
-const handleSignIn = () => {
-  isLogIn.value = ''
+// 点击登录，面板滑动
+const handleClickSignIn = () => {
+  isShowPanel.value = ''
 }
 
-const handleSignUp = () => {
-  isLogIn.value = 'right-panel-active'
+// 点击注册，面板滑动
+const handleClickRegister = () => {
+  isShowPanel.value = 'right-panel-active'
 }
 
 const handleLogin = () => {
@@ -92,7 +94,7 @@ const handleRegister = () => {
 
 <template>
   <div class="root">
-    <div class="container" :class="isLogIn">
+    <div class="container" :class="isShowPanel">
       <!-- 登陆 -->
       <div class="container__form container--signin">
         <form action="#" class="form" id="form1" @submit.prevent="handleLogin">
@@ -149,8 +151,12 @@ const handleRegister = () => {
           />
           <button class="mail-confirm">发送验证码</button>
           <button class="btn" type="submit">注册</button>
-          <a href="#" class="user-agreement"
-            >点击注册表示您已经同意我们的<span>用户协议</span></a
+          <span class="user-agreement"
+            >点击注册表示您已经同意我们的<router-link to="/licence"
+              ><span>用户协议</span></router-link
+            >和<router-link to="/privacy"
+              ><span>隐私政策</span></router-link
+            ></span
           >
         </form>
       </div>
@@ -164,7 +170,9 @@ const handleRegister = () => {
               galgame 论坛
             </h2>
             <br />
-            <button class="btn" id="signIn" @click="handleSignIn">登陆</button>
+            <button class="btn" id="signIn" @click="handleClickSignIn">
+              登陆
+            </button>
           </div>
           <div class="overlay__panel overlay--right">
             <h2>
@@ -172,7 +180,9 @@ const handleRegister = () => {
               <br />
               KUNgalgame 给你最温暖的拥抱
             </h2>
-            <button class="btn" id="signUp" @click="handleSignUp">注册</button>
+            <button class="btn" id="signUp" @click="handleClickRegister">
+              注册
+            </button>
           </div>
         </div>
       </div>
@@ -180,8 +190,8 @@ const handleRegister = () => {
 
     <!-- 版权 -->
     <div class="copyright">
-      <span>版权所有 © 2023 KUNgalgame</span>
-      <span>保留所有权利 | 版本 0.01</span>
+      <span>Copyright © 2023 KUNgalgame</span>
+      <span>All rights reserved | Version 0.01</span>
     </div>
   </div>
 </template>
@@ -227,8 +237,8 @@ const handleRegister = () => {
   position: absolute;
   padding: 5px;
   height: 30px;
-  top: 46%;
-  right: 12%;
+  bottom: 22%;
+  right: 15%;
   border: 1px solid $kungalgame-blue-1;
   background-color: $kungalgame-white;
   cursor: pointer;
