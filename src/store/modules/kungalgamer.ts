@@ -4,17 +4,20 @@ interface UserState {
   token: string
 }
 
-/* 模拟数据 */
-
 export const useKUNGalgamerStore = defineStore({
   id: 'kungalgamer',
   persist: true,
   state: (): UserState => ({
-    token: 'KUN',
+    token: '',
   }),
   getters: {
     getToken(): string {
       return this.token
+    },
+  },
+  actions: {
+    setToken(token: string): void {
+      this.token = token
     },
   },
 })
