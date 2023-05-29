@@ -16,6 +16,7 @@
     "persistedstate",
     "Pinia",
     "sina",
+    "tanstack",
     "weixin"
   ],
   "i18n-ally.localesPaths": ["src/language"]
