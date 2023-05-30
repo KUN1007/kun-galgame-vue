@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Vue 中不允许在 template 中用 '<' 这个符号，换成 msg
 const msg = '< 返回主页'
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -16,16 +17,16 @@ const msg = '< 返回主页'
       <!-- 联系方式 -->
       <div class="content">
         <div>
-          <span>Telegram 群</span>
-          <i class="fa-brands fa-telegram"></i>
+          <span>Telegram</span>
+          <Icon class="icon" icon="line-md:telegram" />
         </div>
         <div>
-          <span>QQ 群</span>
-          <i class="fa-brands fa-qq"></i>
+          <span>QQ</span>
+          <Icon class="icon" icon="bi:tencent-qq" />
         </div>
         <div>
-          <span>Bilibili 主页</span>
-          <i class="fa-brands fa-bilibili"></i>
+          <span>Bilibili</span>
+          <Icon class="icon" icon="ri:bilibili-line" />
         </div>
       </div>
       <router-link to="/">
@@ -138,13 +139,14 @@ const msg = '< 返回主页'
   cursor: pointer;
 }
 /* 图标字体 */
-.content i {
+.icon {
+  font-size: 25px;
   height: 100%;
   color: $kungalgame-blue-4;
   cursor: pointer;
   text-align: center;
 }
-.content i:hover {
+.icon:hover {
   color: $kungalgame-red-4;
   transform: scale(1.2);
   transition: 0.1s;

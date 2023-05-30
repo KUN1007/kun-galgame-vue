@@ -722,7 +722,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 /* 标签的文字部分 */
 .tags > li > span {
   cursor: pointer;
-  border-bottom: 2px solid $kungalgame-trans-white-8;
+  border-bottom: 2px solid $kungalgame-trans-white-9;
 }
 .tags > li > span:hover {
   border-bottom: 2px solid $kungalgame-blue-4;

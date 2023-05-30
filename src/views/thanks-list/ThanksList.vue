@@ -25,7 +25,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
           <li>Github（github） - 配色</li>
           <li>bbs.kfmax.com（绯月） - 用户信息分类</li>
           <li>StackOverflow （StackOverflow） - 页面板块的阴影</li>
-          <li>ChatGPT （Open AIChatGPT） - 布局中的各种技术问题</li>
+          <li>ChatGPT （Open AIChatGPT） - 各种技术问题</li>
           <li>Google（谷歌） - 帖子详情页面</li>
           <li>YouTube （油管） - 技术交流页面</li>
           <li>Adobe （Adobe） - 底部 Footer</li>
@@ -36,7 +36,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
         <br />
         <br />
         <p>
-          虽然可能还参考了众多网站的设计，但是因为我在设计之初查看了众多的网站设计，却没有做相关的记录，所以无法展示
+          在设计之初我们浏览了大量设计优秀的网页，可能还参考了众多网站的设计，但由于在大量的浏览时没有做相关记录，所以无法展示
         </p>
         <br />
         <br />
@@ -53,9 +53,10 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
         <br />
         <br />
         <p>
-          以及<span class="skip">鲲的 galgame 交流群（QQ）</span>，和<span
+          以及<span class="skip"> 鲲的 galgame 交流群（QQ）</span>，和<span
             class="skip"
-            >鲲的 galgame 交流群（Telegram）</span
+          >
+            鲲的 galgame 交流群（Telegram）</span
           >，以及其它众多人员的相关支持，在这里我们对他们的建议和纠错表示衷心的感谢。
         </p>
         <br />
@@ -67,7 +68,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
         </p>
         <br />
         <br />
-        <p>纯 HTML + CSS实现：<span class="skip">kungalgame-pure-css</span></p>
+        <p>纯 HTML + CSS 实现：<span class="skip">kungalgame-pure-css</span></p>
         <p>
           Vue + Vite + ts + pinia 实现：<span class="skip">kungalgame-vue</span>
         </p>

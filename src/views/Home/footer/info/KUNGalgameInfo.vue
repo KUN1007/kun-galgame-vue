@@ -59,7 +59,7 @@ export default {
             <!-- QQ, 微信, telegram 的图标列表 -->
             <ul>
               <li><Icon icon="bi:tencent-qq" /></li>
-              <li><Icon icon="ri:wechat-fill" /></li>
+              <li><Icon icon="ri:bilibili-line" /></li>
               <li><Icon icon="ic:baseline-telegram" /></li>
             </ul>
           </div>
