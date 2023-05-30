@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import UserPart from './components/UserPart.vue'
 import TopicPart from './components/TopicPart.vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-const toTopic = (url: string) => {
-  router.push(url)
-}
 </script>
 <template>
-  <div class="topic" @click="toTopic('/topic')">
+  <div class="topic">
     <UserPart />
-    <TopicPart />
+    <router-link to="/topic">
+      <TopicPart />
+    </router-link>
   </div>
 </template>
 <style lang="scss" scoped>

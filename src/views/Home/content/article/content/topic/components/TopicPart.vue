@@ -38,10 +38,8 @@ import { Icon } from '@iconify/vue'
 <style lang="scss" scoped>
 /* 帖子信息 */
 .topic-info {
-  width: 1px;
+  width: 100%;
   height: 100%;
-  /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }

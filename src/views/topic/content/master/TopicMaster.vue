@@ -24,25 +24,25 @@ import Floor from '../components/Floor.vue'
 
 <template>
   <!-- 楼主帖子容器 -->
-  <div class="master-topic-container">
+  <div class="container">
     <Floor />
     <!-- 楼主帖子内容区的容器 -->
-    <div class="master-topic-content-container">
+    <div class="content-container">
       <TopicHeader />
       <!-- 楼主帖子内容区 -->
-      <div class="master-topic-content">
+      <div class="content">
         <!-- 内容区的顶部 -->
-        <div class="master-topic-content-top">
+        <div class="content-top">
           <Tags />
           <Time />
         </div>
         <!-- 内容区的中部 -->
-        <div class="master-topic-content-center">
+        <div class="content-center">
           <KUNGalgamerInfo />
           <TopicContent />
         </div>
         <!-- 内容区的底部 -->
-        <div class="master-topic-content-bottom">
+        <div class="content-bottom">
           <TopicStatus />
           <Rewrite />
         </div>
@@ -54,7 +54,7 @@ import Floor from '../components/Floor.vue'
 
 <style lang="scss" scoped>
 /* 楼主帖子容器 */
-.master-topic-container {
+.container {
   width: 100%;
   /* 楼主帖子最小高度 */
   min-height: 400px;
@@ -71,7 +71,7 @@ import Floor from '../components/Floor.vue'
   background-size: cover;
 }
 /* 楼主帖子内容区的容器 */
-.master-topic-content-container {
+.content-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -85,14 +85,14 @@ import Floor from '../components/Floor.vue'
 }
 
 /* 楼主帖子内容区 */
-.master-topic-content {
+.content {
   width: 100%;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
 }
 /* 内容区的顶部 */
-.master-topic-content-top {
+.content-top {
   width: 100%;
   height: 40px;
   display: flex;
@@ -105,7 +105,7 @@ import Floor from '../components/Floor.vue'
 }
 
 /* 楼主的帖子和楼主的信息容器 */
-.master-topic-content-center {
+.content-center {
   width: 100%;
   display: flex;
   flex-shrink: 0;
@@ -113,7 +113,7 @@ import Floor from '../components/Floor.vue'
   box-sizing: border-box;
 }
 /* 内容区的底部 */
-.master-topic-content-bottom {
+.content-bottom {
   width: 100%;
   height: 20px;
   display: flex;

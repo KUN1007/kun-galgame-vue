@@ -1,18 +1,20 @@
 <!-- 
   这里是帖子部分的功能区，有返回顶部等功能
  -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+</script>
 
 <template>
   <div class="topic-page-nav">
     <!-- 交互区容器 -->
     <ul class="topic-page-nav-container">
-      <li><i class="fa-solid fa-people-group fa-bounce"></i>进入帖子池</li>
-      <li><i class="fa-solid fa-arrows-up-to-line"></i>返回到顶端</li>
-      <li><i class="fa-solid fa-house"></i>返回到首页</li>
-      <li><i class="fa-regular fa-clock"></i>按时间排序</li>
-      <li><i class="fa-regular fa-thumbs-up"></i>按点赞排序</li>
-      <li><i class="fa-regular fa-comment-dots"></i>按回复排序</li>
+      <li><Icon class="icon" icon="line-md:text-box-multiple" />进入帖子池</li>
+      <li><Icon class="icon" icon="line-md:arrow-close-up" />返回到顶端</li>
+      <li><Icon class="icon" icon="line-md:home-twotone" />返回到首页</li>
+      <li><Icon class="icon" icon="svg-spinners:clock" />按时间排序</li>
+      <li><Icon class="icon" icon="line-md:thumbs-up-twotone" />按点赞排序</li>
+      <li><Icon class="icon" icon="fa-regular:comment-dots" />按回复排序</li>
     </ul>
   </div>
 </template>
@@ -54,7 +56,7 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.topic-page-nav-container > li > i {
+.icon {
   margin-right: 4px;
   font-size: 17px;
 }
@@ -62,7 +64,7 @@
 .topic-page-nav-container > li::before {
   transform: scaleX(0);
   transform-origin: bottom right;
-  content: ' ';
+  content: '啊这可海星';
   display: block;
   position: absolute;
   top: 0;
@@ -70,7 +72,7 @@
   bottom: 0;
   left: 0;
   inset: 0 0 0 0;
-  background-color: $kungalgame-trans-red-4;
+  background-color: $kungalgame-red-4;
   z-index: -1;
   transition: transform 0.3s ease;
 }

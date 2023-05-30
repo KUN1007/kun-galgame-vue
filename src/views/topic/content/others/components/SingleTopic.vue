@@ -4,7 +4,14 @@
   里面包含着每个人的回复和下方回复这个人的评论
  -->
 <script setup lang="ts">
-import Comments from './comments/Comments.vue'
+// 导入评论组件
+import Comments from '../components/Comments.vue'
+// 导入 Footer 组件
+import TopicFooter from '../../components/TopicFooter.vue'
+// 导入发布时间组件
+import Time from '../../components/Time.vue'
+// 导入标签组件
+import Tags from '../../components/Tags.vue'
 </script>
 
 <template>
@@ -24,7 +31,7 @@ import Comments from './comments/Comments.vue'
             <!-- 其他人的头像 -->
             <div class="other-avatar">
               <!-- 其他人的头像图片 -->
-              <img src="../img/KUN.jpg" alt="KUN" />
+              <img src="@/assets/images/topic.jpg" alt="KUN" />
               <!-- 其他人的等级 -->
               <div class="other-ranking">萌葱</div>
             </div>
@@ -39,7 +46,7 @@ import Comments from './comments/Comments.vue'
             <div class="other-topic-content-right-top">
               <!-- 上部区域的左边 -->
               <div class="other-topic-content-right-top-left">
-                <span>回复给$<a href="#">啊这可海星啊这</a>（楼主）</span>
+                <span>回复给@<a href="#">啊这可海星啊这</a>（楼主）</span>
               </div>
               <!-- 上部区域的右边 -->
               <div class="other-topic-content-right-top-right">
@@ -69,83 +76,12 @@ import Comments from './comments/Comments.vue'
         </div>
         <!-- 其他人回帖的下部 -->
         <div class="other-topic-content-bottom">
-          <!-- 其他人回帖的下部分左侧 -->
-          <div class="other-topic-content-bottom-left">
-            <i class="fa-solid fa-tag"></i>
-            <ul>
-              <li>啊这可海星</li>
-              <li>啊这可海星</li>
-              <li>啊这可海星</li>
-              <li>啊这可海星</li>
-              <li>啊这可海星</li>
-            </ul>
-          </div>
-          <!-- 其他人回帖的下部分右侧 -->
-          <div class="other-topic-content-bottom-right">
-            <!-- 其他人回帖的时间 -->
-            <div class="other-topic-time">
-              <i class="fa-solid fa-hourglass-half"></i>
-              <div>发布于2019年10月7日-10:07:00</div>
-            </div>
-          </div>
+          <Tags />
+          <Time />
         </div>
       </div>
       <!-- 其它人回帖的底部 -->
-      <div class="other-topic-footer">
-        <!-- 顶部的点赞、推贴等 -->
-        <div class="other-topic-footer-top">
-          <!-- 点赞、推贴、踩 -->
-          <div class="other-topic-footer-top-left">
-            <ul>
-              <!-- 推贴 -->
-              <li>
-                <a href="#"><i class="fa-regular fa-hand-point-up"></i></a>
-              </li>
-              <!-- 点赞 -->
-              <li>
-                <a href="#"><i class="fa-regular fa-thumbs-up"></i></a>
-              </li>
-              <!-- 踩 -->
-              <li>
-                <a href="#"><i class="fa-regular fa-thumbs-down"></i></a>
-              </li>
-            </ul>
-          </div>
-          <!-- 回复、评论、编辑 -->
-          <div class="other-topic-footer-top-right">
-            <ul>
-              <!-- 回复按钮 -->
-              <li>
-                <div class="kungalgame-reply-btn">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  回帖
-                </div>
-              </li>
-              <!-- 回复 -->
-              <li>
-                <a href="#"><i class="fa-solid fa-reply"></i></a>
-              </li>
-              <!-- 评论 -->
-              <li>
-                <a href="#"><i class="fa-regular fa-comment-dots"></i></a>
-              </li>
-              <!-- 只看 -->
-              <li>
-                <a href="#"><i class="fa-solid fa-arrows-to-eye"></i></a>
-              </li>
-              <!-- 编辑 -->
-              <li>
-                <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- 底部的评论 -->
-        <Comments />
-      </div>
+      <TopicFooter />
     </div>
   </div>
 </template>
