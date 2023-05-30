@@ -3,11 +3,14 @@ import { createI18n } from 'vue-i18n'
 import zh from './zh'
 import en from './en'
 
+// 读取本地存储中的语言配置
 const localStorageString = localStorage.getItem('KUNGalgame-settings')
-const localStorageObject = JSON.parse(localStorageString as string)
+const lang = localStorageString
+  ? JSON.parse(localStorageString).showKUNGalgameLanguage
+  : 'en'
 
 const i18n = createI18n({
-  locale: localStorageObject.showKUNGalgameLanguage,
+  locale: lang,
   // 支持 Vue3 composition API
   legacy: false,
   // 全局注册 ts 方法
