@@ -8,6 +8,7 @@ export const useKUNGalgamerStore = defineStore({
   id: 'kungalgamer',
   persist: true,
   state: (): UserState => ({
+    // TODO:
     token: 'KUNGalgame',
   }),
   getters: {
