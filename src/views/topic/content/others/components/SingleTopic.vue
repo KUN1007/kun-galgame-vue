@@ -12,6 +12,12 @@ import TopicFooter from '../../components/TopicFooter.vue'
 import Time from '../../components/Time.vue'
 // 导入标签组件
 import Tags from '../../components/Tags.vue'
+// 导入帖子内容
+import TopicContent from '../../components/TopicContent.vue'
+// 导入重新编辑
+import Rewrite from '../../components/Rewrite.vue'
+// 导入发帖人个人信息
+import KUNGalgamerInfo from '../../components/KUNGalgamerInfo.vue'
 </script>
 
 <template>
@@ -27,51 +33,20 @@ import Tags from '../../components/Tags.vue'
         <!-- 其他人回帖的上部 -->
         <div class="other-topic-content-top">
           <!-- 其它人回帖的上部左侧区域 -->
-          <div class="other-topic-content-left">
-            <!-- 其他人的头像 -->
-            <div class="other-avatar">
-              <!-- 其他人的头像图片 -->
-              <img src="@/assets/images/topic.jpg" alt="KUN" />
-              <!-- 其他人的等级 -->
-              <div class="other-ranking">萌葱</div>
-            </div>
-            <!-- 其他人的名字 -->
-            <div class="other-name">啊这可海星啊这</div>
-            <!-- 其他人的萌萌点 -->
-            <div class="other-moemoepoint">1007</div>
-          </div>
+          <KUNGalgamerInfo />
           <!-- 其它人回帖的上部右侧区域 -->
           <div class="other-topic-content-right">
             <!-- 右侧的上部区域 -->
             <div class="other-topic-content-right-top">
               <!-- 上部区域的左边 -->
               <div class="other-topic-content-right-top-left">
-                <span>回复给@<a href="#">啊这可海星啊这</a>（楼主）</span>
+                <span>回复给@<a href="#">啊这可海星啊这</a></span>
               </div>
               <!-- 上部区域的右边 -->
-              <div class="other-topic-content-right-top-right">
-                <span>在2019年10月7日10:07:00重新编辑</span>
-              </div>
+              <Rewrite />
             </div>
             <!-- 右侧部分分文本 -->
-            <div class="other-topic-content-right-text">
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-            </div>
+            <TopicContent />
           </div>
         </div>
         <!-- 其他人回帖的下部 -->
@@ -82,6 +57,7 @@ import Tags from '../../components/Tags.vue'
       </div>
       <!-- 其它人回帖的底部 -->
       <TopicFooter />
+      <Comments />
     </div>
   </div>
 </template>
