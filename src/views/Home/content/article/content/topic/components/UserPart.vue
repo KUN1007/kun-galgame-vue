@@ -21,6 +21,7 @@
   height: 100%;
   /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   /* 发帖人信息距离帖子概览的距离 */
   margin: 0 5px;

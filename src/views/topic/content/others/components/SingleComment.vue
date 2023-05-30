@@ -4,18 +4,18 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="single-comment-container">
+  <div class="container">
     <!-- 用户头像 -->
-    <img src="../img/KUN.jpg" alt="KUN" />
+    <img src="@/assets/images/KUN.jpg" alt="KUN" />
     <!-- 单个评论的内容区 -->
-    <div class="single-comment-content">
+    <div class="content">
       <!-- 单个评论内容区顶部 -->
       <div class="single-comment-content-top">
         <!-- 顶部左侧名字 -->
         <div class="single-comment-left">
           鲲回复@<a href="#">啊这可海星啊这</a>
         </div>
-        <!-- 顶部吧右侧点赞、踩 -->
+        <!-- 顶部右侧点赞、踩 -->
         <div class="single-comment-right">
           <ul>
             <!-- 点赞 -->
@@ -40,17 +40,17 @@
 
 <style lang="scss" scoped>
 /* 单个评论容器 */
-.single-comment-container {
+.container {
   display: flex;
   margin: 10px 0;
 }
-.single-comment-container img {
+.container img {
   width: 50px;
   height: 50px;
   margin-right: 10px;
 }
 /* 单个评论的内容区 */
-.single-comment-content {
+.content {
   display: flex;
   flex-direction: column;
 }

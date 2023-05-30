@@ -4,16 +4,16 @@
   这个区域包含所有人回复给楼主的帖子，其中每个人的帖子将会被拆分成为单独的组件
  -->
 <script setup lang="ts">
-import SingleTopic from './single/SingleTopic.vue';
+import SingleTopic from './components/SingleTopic.vue'
 </script>
 
 <template>
   <!-- 其它人的回帖 -->
   <div class="other-topic-container">
     <!-- 每个人的单个帖子 -->
-    <SingleTopic/>
-    <SingleTopic/>
-    <SingleTopic/>
+    <SingleTopic />
+    <SingleTopic />
+    <SingleTopic />
   </div>
 </template>
 
