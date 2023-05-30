@@ -11,7 +11,7 @@ import { restoreBackground } from '@/hooks/useBackgroundPicture'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameBackground, showCustomBackground } =
+const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
   storeToRefs(settingsStore)
 
 // 更改背景图片
@@ -36,7 +36,7 @@ const handelChangeImage = (index: number) => {
 const url = ref('')
 const handleCustomBackground = () => {
   if (url.value) {
-    showCustomBackground.value = url.value
+    showKUNGalgameCustomBackground.value = url.value
     showKUNGalgameBackground.value = '1007'
     url.value = ''
   } else {

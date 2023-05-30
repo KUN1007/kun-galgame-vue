@@ -12,17 +12,28 @@ interface KUNGalgameSettings {
   // 背景图
   showKUNGalgameBackground: string
   // 自定义背景图
-  showCustomBackground: string
+  showKUNGalgameCustomBackground: string
 }
 
 export const useKUNGalgameSettingsStore = defineStore({
   id: 'KUNGalgame-settings',
   persist: true,
+  // 默认值
   state: (): KUNGalgameSettings => ({
     showKUNGalgamePanel: false,
     showKUNGalgameLanguage: 'en',
     showKUNGalgameMainPageWidth: '61.8',
     showKUNGalgameBackground: 'none',
-    showCustomBackground: '',
+    showKUNGalgameCustomBackground: '',
   }),
+  actions: {
+    // 恢复出厂设置()
+    restoreSettings() {
+      this.showKUNGalgamePanel = false
+      this.showKUNGalgameLanguage = 'en'
+      this.showKUNGalgameMainPageWidth = '61.8'
+      this.showKUNGalgameBackground = 'none'
+      this.showKUNGalgameCustomBackground = ''
+    },
+  },
 })
