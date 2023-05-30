@@ -44,6 +44,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 /* 下方可视内容区的容器 */
 .content-wrapper {
   width: 90%;
+  max-width: 1500px;
   height: 100%;
   margin: 0 auto;
   display: flex;

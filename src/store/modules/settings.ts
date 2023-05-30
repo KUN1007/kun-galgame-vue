@@ -1,5 +1,4 @@
 // KUNGalgame 设置面板的 store
-// import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 // 设置面板配置
@@ -15,7 +14,7 @@ interface KUNGalgameSettings {
 }
 
 export const useKUNGalgameSettingsStore = defineStore({
-  id: 'settings',
+  id: 'KUNGalgame-settings',
   persist: true,
   state: (): KUNGalgameSettings => ({
     showKUNGalgamePanel: false,
