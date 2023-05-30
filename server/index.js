@@ -24,6 +24,7 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
+    topicPartition: ['galgame'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -126,6 +127,7 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
+    topicPartition: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复

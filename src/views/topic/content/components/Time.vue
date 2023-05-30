@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue'
 
 <template>
   <!-- 发帖时间 -->
-  <div class="master-topic-time">
+  <div class="time">
     <!-- 沙漏图标字体 -->
     <Icon class="hourglass" icon="eos-icons:hourglass" />
     <div>2019年10月7日-10:07:00 发布</div>
@@ -14,7 +14,7 @@ import { Icon } from '@iconify/vue'
 
 <style lang="scss" scoped>
 /* 发帖时间 */
-.master-topic-time {
+.time {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,15 +24,15 @@ import { Icon } from '@iconify/vue'
   /* 窗口缩小不换行 */
   overflow: hidden;
   white-space: nowrap;
+  /* 发帖时间的样式 */
+  div {
+    padding-right: 20px;
+  }
 }
 /* 沙漏的样式 */
 .hourglass {
   font-size: 23px;
   margin: 0 10px;
   color: $kungalgame-red-4;
-}
-/* 发帖时间的样式 */
-.master-topic-time div {
-  padding-right: 20px;
 }
 </style>

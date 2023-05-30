@@ -3,6 +3,10 @@
 import { Icon } from '@iconify/vue'
 // 引入流光环绕的特效
 import '@/styles/effect/effect.scss'
+// 接受父组件的传值
+const props = defineProps(['isOthersTopic'])
+
+const isOthersTopic = props.isOthersTopic
 </script>
 
 <template>
@@ -14,14 +18,17 @@ import '@/styles/effect/effect.scss'
         <!-- 推贴 -->
         <li>
           <span class="icon"><Icon icon="bi:rocket" /></span>
+          1007
         </li>
         <!-- 点赞 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-up-twotone" /></span>
+          1007
         </li>
         <!-- 踩 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-down-twotone" /></span>
+          1007
         </li>
       </ul>
     </div>
@@ -50,6 +57,9 @@ import '@/styles/effect/effect.scss'
         <li>
           <span class="icon"><Icon icon="line-md:pencil-twotone-alt" /></span>
         </li>
+        <li v-if="isOthersTopic">
+          <span class="icon"><Icon icon="fa-regular:comment-dots" /></span>
+        </li>
       </ul>
     </div>
   </div>
@@ -64,23 +74,27 @@ import '@/styles/effect/effect.scss'
   justify-content: space-between;
   align-items: center;
 }
-/* 图标字体的样式 */
-.icon {
-  font-size: 24px;
-  color: $kungalgame-font-color-2;
-  cursor: pointer;
-}
 /* 底部左侧部分（点赞、推贴、踩） */
 .left ul {
   display: flex;
   justify-content: center;
   align-items: center;
   li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
     margin-left: 17px;
     &:nth-child(1) span {
       color: $kungalgame-red-4;
     }
   }
+}
+/* 图标字体的样式 */
+.icon {
+  font-size: 24px;
+  color: $kungalgame-font-color-2;
+  cursor: pointer;
 }
 /* 底部右侧部分（回复、评论、只看、编辑） */
 .right ul {

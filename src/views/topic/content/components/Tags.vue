@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue'
 
 <template>
   <!-- 帖子的标签 -->
-  <div class="master-topic-tags">
+  <div class="tags">
     <!-- 标签的图标字体 -->
     <Icon class="tag" icon="mingcute:tag-2-fill" />
     <ul>
@@ -20,34 +20,33 @@ import { Icon } from '@iconify/vue'
 
 <style lang="scss" scoped>
 /* 帖子的标签 */
-.master-topic-tags {
+.tags {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* 单个标签的盒子 */
+  ul {
+    display: flex;
+    li {
+      margin-left: 5px;
+      font-size: small;
+      padding: 2px;
+      background-color: $kungalgame-blue-0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: $kungalgame-red-0;
+        transition: 0.2s;
+      }
+    }
+  }
 }
 /* 图标字体 */
 .tag {
   font-size: 23px;
   margin: 0 20px;
   color: $kungalgame-blue-4;
-}
-/* 单个标签的盒子 */
-.master-topic-tags ul {
-  display: flex;
-}
-/* 单个标签的样式 */
-.master-topic-tags ul li {
-  margin-left: 5px;
-  font-size: small;
-  padding: 2px;
-  background-color: $kungalgame-blue-0;
-  overflow: hidden;
-  white-space: nowrap;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.master-topic-tags ul li:hover {
-  background-color: $kungalgame-red-0;
-  transition: 0.2s;
 }
 </style>
