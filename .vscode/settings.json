@@ -17,6 +17,7 @@
     "Pinia",
     "sina",
     "tanstack",
+    "Upvotes",
     "weixin"
   ],
   "i18n-ally.localesPaths": ["src/language"],
