@@ -50,11 +50,11 @@ import { Icon } from '@iconify/vue'
   display: flex;
   width: 100%;
   margin: 10px 0;
-}
-.container img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
+  img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
 }
 /* 单个评论的内容区 */
 .content {
@@ -70,24 +70,24 @@ import { Icon } from '@iconify/vue'
 /* 顶部左侧名字 */
 .name {
   font-size: 15px;
-}
-.name a {
-  color: $kungalgame-blue-5;
-}
-.name a:hover {
-  text-decoration: underline;
+  a {
+    color: $kungalgame-blue-5;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 .operate ul {
   display: flex;
   align-items: center;
-}
-.operate ul li {
-  margin-right: 10px;
+  li {
+    margin-right: 10px;
+  }
 }
 .icon {
   color: $kungalgame-font-color-2;
 }
-/* 单个评论内容区底部 */
+/* 单个评论 */
 .text {
   font-size: 12px;
   text-indent: 25px;
@@ -96,6 +96,6 @@ import { Icon } from '@iconify/vue'
   text-overflow: ellipsis; /* 显示省略号 */
   display: -webkit-box; /* 将文本框转化为弹性伸缩盒子 */
   -webkit-box-orient: vertical; /* 设置为纵向排列 */
-  -webkit-line-clamp: 10; /* 显示两行文本 */
+  -webkit-line-clamp: 10; /* 显示 10 行文本 */
 }
 </style>
