@@ -11,6 +11,8 @@ interface KUNGalgameSettings {
   showKUNGalgameMainPageWidth: string
   // 背景图
   showKUNGalgameBackground: string
+  // 自定义背景图
+  showCustomBackground: string
 }
 
 export const useKUNGalgameSettingsStore = defineStore({
@@ -21,5 +23,6 @@ export const useKUNGalgameSettingsStore = defineStore({
     showKUNGalgameLanguage: 'en',
     showKUNGalgameMainPageWidth: '61.8',
     showKUNGalgameBackground: 'none',
+    showCustomBackground: '',
   }),
 })

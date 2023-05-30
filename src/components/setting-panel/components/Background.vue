@@ -2,6 +2,8 @@
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+// 导入 vue 函数
+import { ref } from 'vue'
 
 import backgroundImages from './background'
 
@@ -9,11 +11,37 @@ import { restoreBackground } from '@/hooks/useBackgroundPicture'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameBackground } = storeToRefs(settingsStore)
+const { showKUNGalgameBackground, showCustomBackground } =
+  storeToRefs(settingsStore)
 
 // 更改背景图片
 const handelChangeImage = (index: number) => {
   showKUNGalgameBackground.value = index.toString()
+}
+
+/* 测试图片: 
+  https://s3.bmp.ovh/imgs/2023/05/30/1ee99996d0eb2646.png
+  https://s3.bmp.ovh/imgs/2023/05/30/87d94be5e004547a.png
+  https://s3.bmp.ovh/imgs/2023/05/30/2a639bd15113b570.png
+  https://s3.bmp.ovh/imgs/2023/05/30/b7c73a1643bdc55b.png
+  https://s3.bmp.ovh/imgs/2023/05/30/ee67fdadd4104bbd.png
+  https://s3.bmp.ovh/imgs/2023/05/30/30aacd3045496498.png
+  https://s3.bmp.ovh/imgs/2023/05/30/ab2da01971cc1629.png
+  https://s3.bmp.ovh/imgs/2023/05/30/ed196495796482e4.png
+  https://s3.bmp.ovh/imgs/2023/05/30/a6dcdae0afe118f0.png
+  https://s3.bmp.ovh/imgs/2023/05/30/7aa57120cc6977a1.png
+  */
+
+// 自定义背景
+const url = ref('')
+const handleCustomBackground = () => {
+  if (url.value) {
+    showCustomBackground.value = url.value
+    showKUNGalgameBackground.value = '1007'
+    url.value = ''
+  } else {
+    console.log('null')
+  }
 }
 // 恢复空白背景
 </script>
@@ -41,8 +69,10 @@ const handelChangeImage = (index: number) => {
         <div class="kungalgamer-bg">
           <span>{{ $t('header.settings.url') }}</span>
           <div class="bg-url-input">
-            <input type="text" required />
-            <button>{{ $t('header.settings.confirm') }}</button>
+            <input type="text" v-model="url" required />
+            <button @click="handleCustomBackground">
+              {{ $t('header.settings.confirm') }}
+            </button>
           </div>
         </div>
         <button class="restore-bg" @click="restoreBackground">
