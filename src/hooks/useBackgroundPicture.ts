@@ -1,11 +1,12 @@
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameBackground } = storeToRefs(settingsStore)
+const { showKUNGalgameBackground, showCustomBackground } =
+  storeToRefs(settingsStore)
 
 // 恢复空白背景
 export const restoreBackground = () => {
@@ -18,8 +19,12 @@ export const currBackground = computed(() => {
     showKUNGalgameBackground.value === 'none'
   ) {
     return 'none'
+  } else if (showKUNGalgameBackground.value === '1007') {
+    return `url(${showCustomBackground.value})`
   } else {
     // TODO: 替换为后端接口
     return `url(src/assets/images/bg/bg${showKUNGalgameBackground.value}.png)`
   }
 })
+
+console.log(currBackground.value)
