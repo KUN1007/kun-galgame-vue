@@ -30,7 +30,8 @@ import SingleTopic from './topic/SingleTopic.vue'
 /* 帖子区容器 */
 .topic-container {
   /* 帖子区域占文章总区域的宽度 */
-  width: 98%;
+  width: 100%;
+  padding: 0 7px;
   min-height: 1150px;
   overflow-y: scroll;
   /* 所有帖子的总区域占左侧页面的下边距 */

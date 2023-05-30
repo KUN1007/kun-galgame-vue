@@ -48,7 +48,7 @@ const topBarItem: topBar[] = [
 let topicStyle = {}
 
 // 接受父组件的传值
-let props = defineProps(['isMainPage', 'isTopicPage'])
+const props = defineProps(['isMainPage', 'isTopicPage'])
 
 const isMain = props.isMainPage
 const isTopicPage = props.isTopicPage
@@ -119,13 +119,18 @@ onBeforeMount(() => {
       />
     </div>
   </div>
-  <transition
-    name="kungalgame-panel"
-    enter-active-class="animate__animated animate__jackInTheBox animate__faster"
-    leave-active-class="animate__animated animate__fadeOutRight animate__faster"
-  >
-    <KUNGalgameSettingsPanel v-if="showKUNGalgamePanel" />
-  </transition>
+  <div class="settings-panel" :style="topicStyle">
+    <transition
+      name="kungalgame-panel"
+      enter-active-class="animate__animated animate__jackInTheBox animate__faster"
+      leave-active-class="animate__animated animate__fadeOutRight animate__faster"
+    >
+      <KUNGalgameSettingsPanel
+        v-if="showKUNGalgamePanel"
+        :isTopicPage="isTopicPage"
+      />
+    </transition>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -252,6 +257,12 @@ $navNumber: v-bind(navItemNum);
     cursor: pointer;
   }
 }
+
+/* 设置面板 */
+.settings-panel {
+  z-index: 1;
+}
+
 @media (max-width: 1000px) {
   span {
     display: none;

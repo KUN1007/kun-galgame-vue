@@ -1,7 +1,5 @@
 <!-- 设置面板组件，展示整个论坛的设置面板 -->
 <script setup lang="ts">
-// 引入 vue 函数
-import { watch } from 'vue'
 // 引入图标字体
 import { Icon } from '@iconify/vue'
 // 引入看板娘组件
@@ -13,28 +11,22 @@ import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 // 导入 i18n
 import { useI18n } from 'vue-i18n'
+
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const {
+  showKUNGalgamePanel,
+  showKUNGalgameMainPageWidth,
+  showKUNGalgameLanguage,
+} = storeToRefs(settingsStore)
 /*
  * 网站的语言设置
  */
 const { locale } = useI18n({ useScope: 'global' })
 
-// 监听语言变化，并将语言设置保存到localStorage
-watch(locale, (newVal) => {
-  localStorage.setItem('KUNGalgame-locale', newVal)
-})
-
-const changeLanguage = () => {
-  locale.value = locale.value
+const handleChangeLanguage = () => {
+  locale.value = showKUNGalgameLanguage.value
 }
-
-/*
- * 主页宽度设置
- */
-
-// 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgamePanel, showKUNGalgameMainPageWidth } =
-  storeToRefs(settingsStore)
 
 /* 恢复所有设置为默认 */
 const handleRecover = () => {}
@@ -77,7 +69,11 @@ const handleClose = () => {
       </div>
       <div class="set-lang">
         <span>{{ $t('header.settings.language') }}</span>
-        <select class="select" v-model="locale" @change="changeLanguage">
+        <select
+          class="select"
+          v-model="showKUNGalgameLanguage"
+          @change="handleChangeLanguage"
+        >
           <option value="en">English</option>
           <option value="zh">中文</option>
         </select>

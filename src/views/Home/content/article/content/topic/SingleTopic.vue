@@ -27,5 +27,8 @@ import TopicPart from './components/TopicPart.vue'
   &:last-child {
     margin-bottom: 0;
   }
+  a {
+    width: 100%;
+  }
 }
 </style>
