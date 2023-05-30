@@ -1,17 +1,10 @@
 <script setup lang="ts">
 // 导入 Vue 函数
-import {
-  defineAsyncComponent,
-  onBeforeMount,
-  onBeforeUnmount,
-  onUpdated,
-} from 'vue'
+import { defineAsyncComponent, onBeforeMount, onBeforeUnmount } from 'vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入 css 动画
 import 'animate.css'
-// 导入路由
-import router from '@/router'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 
@@ -68,16 +61,6 @@ if (isTopicPage) {
 let navItemNum = topBarItem.length
 const navItemNumString = navItemNum + '00px'
 
-// 用户点击头像时的操作
-const handleClickAvatar = () => {
-  // isShowInfo.value = !isShowInfo.value
-  router.push('/kungalgamer')
-}
-
-// 用户点击网站设置时的操作
-const handleSittingsClick = () => {
-  showKUNGalgamePanel.value = !showKUNGalgamePanel.value
-}
 // 在路由跳转时关闭设置面板
 onBeforeUnmount(() => {
   showKUNGalgamePanel.value = false
@@ -111,12 +94,13 @@ onBeforeMount(() => {
       </div>
     </div>
     <div class="kungalgamer-info">
-      <span @click="handleSittingsClick"><Icon icon="uiw:setting-o" /></span>
-      <img
-        src="../assets/images/KUN.jpg"
-        alt="KUN"
-        @click="handleClickAvatar"
-      />
+      <!-- showKUNGalgamePanel 为 store 里的布尔值,其真假控制设置面板的显示与关闭 -->
+      <span @click="showKUNGalgamePanel = !showKUNGalgamePanel"
+        ><Icon icon="uiw:setting-o"
+      /></span>
+      <router-link to="/kungalgamer">
+        <img src="../assets/images/KUN.jpg" alt="KUN" />
+      </router-link>
     </div>
   </div>
   <div class="settings-panel" :style="topicStyle">

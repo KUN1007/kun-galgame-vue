@@ -5,7 +5,7 @@ import { computed } from 'vue'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameBackground, showCustomBackground } =
+const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
   storeToRefs(settingsStore)
 
 // 恢复空白背景
@@ -20,11 +20,9 @@ export const currBackground = computed(() => {
   ) {
     return 'none'
   } else if (showKUNGalgameBackground.value === '1007') {
-    return `url(${showCustomBackground.value})`
+    return `url(${showKUNGalgameCustomBackground.value})`
   } else {
     // TODO: 替换为后端接口
     return `url(src/assets/images/bg/bg${showKUNGalgameBackground.value}.png)`
   }
 })
-
-console.log(currBackground.value)

@@ -29,15 +29,8 @@ const handleChangeLanguage = () => {
 }
 
 /* 恢复所有设置为默认 */
-const handleRecover = () => {}
-
-/*
- * 设置面板显示切换
- */
-
-// 关闭设置面板
-const handleClose = () => {
-  showKUNGalgamePanel.value = false
+const handleRecover = () => {
+  settingsStore.restoreSettings()
 }
 </script>
 
@@ -111,7 +104,8 @@ const handleClose = () => {
 
     <!-- 关闭面板 -->
     <div class="close">
-      <Icon @click="handleClose" icon="line-md:close" />
+      <!-- showKUNGalgamePanel 存在于 settings 里,false 为关闭设置面板 -->
+      <Icon @click="showKUNGalgamePanel = false" icon="line-md:close" />
     </div>
   </div>
 </template>
