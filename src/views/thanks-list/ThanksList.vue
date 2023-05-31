@@ -2,6 +2,8 @@
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 // 导入背景图片
 import { currBackground } from '@/hooks/useBackgroundPicture'
+// 导入 Footer
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
@@ -83,41 +85,24 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
         </p>
       </div>
       <!-- 版权 -->
-      <div class="copyright">
-        <span
-          >Copyright © 2023 KUNgalgame All rights reserved | Version 0.01</span
-        >
-      </div>
+      <KUNGalgameFooter style="margin-top: 60px" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-width: 1000px;
-  min-height: 1400px;
-  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
-    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
+  height: 1500px;
 }
 .container {
   /* 固定宽高 */
   width: 900px;
-  height: 1200px;
+  height: 1300px;
   /* 居中 */
   margin: auto;
   position: relative;
@@ -158,9 +143,5 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 p {
   text-indent: 3em;
   margin: 5px;
-}
-/* 版权 */
-.copyright {
-  margin-top: 60px;
 }
 </style>

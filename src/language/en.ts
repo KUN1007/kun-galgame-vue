@@ -27,7 +27,7 @@ export default {
       update: 'Update',
       balance: 'Balance',
       ranking: 'Ranking',
-      regulations: 'Bylaw',
+      bylaw: 'Bylaw',
       contacts: 'Join Us',
       nonMoe: 'Non-moe',
       hot: `Today's Hot Topic`,

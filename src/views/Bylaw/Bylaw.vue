@@ -115,7 +115,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 .container {
   /* 居中 */
   margin: 0 auto;
-  padding: 10px;
+  padding: 5px;
   /* 固定宽高 */
   width: 700px;
   height: 1300px;
@@ -159,9 +159,8 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 .title-1 {
   font-size: 25px;
   margin: 20px 0;
-  border-left: 2px solid $kungalgame-blue-4;
-  /* 距离左侧的缩进距离 */
-  padding-left: 5px;
+  border-left: 4px solid $kungalgame-blue-4;
+  text-indent: 1em;
 }
 /* 三级标题 */
 .title-2 {

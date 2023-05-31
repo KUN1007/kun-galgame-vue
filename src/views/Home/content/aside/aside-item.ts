@@ -12,7 +12,7 @@ const asideItem: aside[] = [
   { index: 1, name: 'update', router: '/update-log' },
   { index: 2, name: 'balance', router: '/balance' },
   { index: 3, name: 'ranking', router: '/ranking' },
-  { index: 4, name: 'regulations', router: '/regulations' },
+  { index: 4, name: 'bylaw', router: '/bylaw' },
   { index: 5, name: 'contacts', router: '/contacts' },
   { index: 6, name: 'nonMoe', router: '/non-moe' },
 ]

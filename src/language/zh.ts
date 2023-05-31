@@ -27,7 +27,7 @@ export default {
       update: '更新日志',
       balance: '收支公示',
       ranking: '排行榜单',
-      regulations: '执行条例',
+      bylaw: '执行条例',
       contacts: '加入我们',
       nonMoe: '不萌记录',
       hot: `今日热门话题`,

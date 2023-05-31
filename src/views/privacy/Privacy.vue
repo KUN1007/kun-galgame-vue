@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import BackToHome from '@/components/BackToHome.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+</script>
 
 <template>
   <!-- 根容器 -->
@@ -29,12 +32,10 @@
           </li>
           <li>设备相关：设备日期、操作系统信息等，方便我们对设备进行适配</li>
         </ul>
+        <BackToHome />
       </div>
       <!-- 版权 -->
-      <div class="copyright">
-        <span>Copyright © 2023 KUNgalgame</span>
-        <span>All rights reserved | Version 0.01</span>
-      </div>
+      <KUNGalgameFooter style="position: absolute; bottom: -40px" />
     </div>
   </div>
 </template>
@@ -105,11 +106,5 @@
   align-items: center;
   /* 距离下一个项目的距离 */
   margin: 10px 0;
-}
-/* 版权 */
-.copyright {
-  position: absolute;
-  bottom: -40px;
-  white-space: nowrap;
 }
 </style>
