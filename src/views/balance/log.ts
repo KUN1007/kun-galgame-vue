@@ -23,7 +23,7 @@ export const FSLog: FS[] = [
     income: true,
     reason: '啊这可海星',
     date: '2019/10/07',
-    amount: 1007,
+    amount: 107,
   },
   {
     index: 3,
@@ -61,3 +61,24 @@ export const FSLog: FS[] = [
     amount: 1007,
   },
 ]
+
+// 计算盈亏
+export const calculateTotalAmount = (): number => {
+  return FSLog.reduce((total, item) => {
+    if (item.income) {
+      return total + item.amount
+    } else {
+      return total - item.amount
+    }
+  }, 0)
+}
+
+// 计算总收入
+export const calculateTotalIncome = (): number => {
+  const filteredData = FSLog.filter((item) => item.income)
+  return filteredData.reduce((total, item) => total + item.amount, 0)
+}
+
+// 计算总支出
+export const calculateTotalExpenditure = (): number =>
+  calculateTotalAmount() - calculateTotalIncome()

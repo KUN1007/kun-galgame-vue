@@ -226,12 +226,12 @@ $navNumber: v-bind(navItemNum);
 .kungalgamer-info {
   display: flex;
   align-items: center;
+  margin-right: 50px;
   img {
     cursor: pointer;
     border-radius: 50%;
     height: 40px;
     position: relative;
-    margin-right: 50px;
   }
   > span {
     color: $kungalgame-font-color-2;
