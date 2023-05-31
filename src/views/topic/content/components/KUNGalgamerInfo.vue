@@ -8,8 +8,6 @@
     <div class="master-avatar">
       <!-- 楼主的头像图片 -->
       <img src="@/assets/images/KUN.jpg" alt="KUN" />
-      <!-- 楼主的等级 -->
-      <div class="master-ranking">站长</div>
     </div>
     <!-- 楼主的名字 -->
     <div class="master-name">啊这可海星啊这</div>
@@ -30,12 +28,6 @@
   /* 图像加载不出来时页面不塌陷 */
   width: 100px;
   margin-top: 17px;
-}
-/* 楼主的等级 */
-.master-ranking {
-  font-size: 10px;
-  position: absolute;
-  margin-left: 90px;
 }
 /* 楼主的头像图片 */
 .master-avatar img {

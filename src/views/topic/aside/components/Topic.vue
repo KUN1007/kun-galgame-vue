@@ -9,9 +9,15 @@ const props = defineProps(['isMasterTopics'])
 
 <template>
   <!-- 楼主的其它帖子 -->
-  <div class="topic">
+  <div class="topic" :class="$props.isMasterTopics ? 'master' : ''">
     <ul>
-      <li>{{ $t('topic.aside.master') }}</li>
+      <li>
+        {{
+          $props.isMasterTopics
+            ? $t('topic.aside.master')
+            : $t('topic.aside.tags')
+        }}
+      </li>
       <li v-for="kun in asideTopic" :key="kun.index">
         <router-link :to="kun.router">{{ kun.name }}</router-link>
       </li>
@@ -26,18 +32,18 @@ const props = defineProps(['isMasterTopics'])
   height: 1px;
   flex-grow: 4;
   /* 上方区域的配色 */
-  border: 1px solid $kungalgame-trans-pink-2;
+  border: 1px solid $kungalgame-trans-blue-2;
   /* 隐藏溢出的颜色 */
   overflow: hidden;
   border-radius: 5px;
-  background-color: $kungalgame-trans-pink-0;
+  background-color: $kungalgame-trans-blue-0;
   box-shadow: $shadow;
   ul {
     height: 100%;
     /* 整体为一个无序列表，列表为弹性盒 */
     display: flex;
     flex-direction: column;
-    li {
+    & > li {
       height: 1px;
       width: 100%;
       /* 每个项目相对于标题的占比 */
@@ -50,8 +56,8 @@ const props = defineProps(['isMasterTopics'])
       /* 内边距盒子 */
       box-sizing: border-box;
       &:hover {
-        border-left: 4px solid $kungalgame-blue-3;
-        background-color: $kungalgame-trans-pink-1;
+        border-left: 4px solid $kungalgame-pink-3;
+        background-color: $kungalgame-trans-blue-1;
         transition: 0.3s;
       }
       a {
@@ -75,14 +81,32 @@ const props = defineProps(['isMasterTopics'])
         /* 相对于单个帖子标题的比例 */
         flex-grow: 2;
         line-height: 40px;
-        font-size: 1.8ch;
+        font-size: 14px;
         font-weight: bold;
-        background-color: $kungalgame-trans-pink-1;
+        color: $kungalgame-font-color-2;
+        background-color: $kungalgame-trans-blue-1;
         /* 与单个帖子标题的分割线 */
-        border-bottom: 1px solid $kungalgame-trans-pink-2;
+        border-bottom: 1px solid $kungalgame-trans-blue-2;
         /* 水平居中 */
         justify-content: center;
       }
+    }
+  }
+}
+.master {
+  border: 1px solid $kungalgame-trans-pink-2;
+  background-color: $kungalgame-trans-pink-0;
+  ul > li {
+    &:hover {
+      border-left: 4px solid $kungalgame-blue-3;
+      background-color: $kungalgame-trans-pink-1;
+    }
+    &:nth-child(1) {
+      /* 左侧没有 border，没有 hover */
+      border-left: 0;
+      background-color: $kungalgame-trans-pink-1;
+      /* 与单个帖子标题的分割线 */
+      border-bottom: 1px solid $kungalgame-trans-pink-2;
     }
   }
 }
