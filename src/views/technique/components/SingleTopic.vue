@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+</script>
 
 <template>
   <!-- 单个帖子 -->
@@ -23,11 +25,11 @@
     <!-- 帖子的状态 -->
     <div class="topic-status">
       <!-- 帖子的点击数 -->
-      <div class="view"><i class="fa-regular fa-eye"></i>1007</div>
+      <div class="view"><Icon icon="ic:outline-remove-red-eye" />1007</div>
       <!-- 帖子的点赞数 -->
-      <div class="like"><i class="fa-regular fa-thumbs-up"></i>1007</div>
+      <div class="like"><Icon icon="line-md:thumbs-up-twotone" />1007</div>
       <!-- 帖子的回复数 -->
-      <div class="reply"><i class="fa-regular fa-comment-dots"></i>1007</div>
+      <div class="reply"><Icon icon="fa-regular:comment-dots" />1007</div>
     </div>
     <!-- 帖子的标签 -->
     <div class="topic-tags">
