@@ -40,6 +40,8 @@ export default {
       timeSort: 'Time Sort',
       likeSort: 'Like Sort',
       commentSort: 'Reply Sort',
+      tags: 'Topics Under the Same Tags',
+      master: 'Other Topics of The Master',
     },
   },
 }

@@ -7,7 +7,7 @@ interface aside {
   router: string
 }
 
-// 顶部导航栏的项目 TODO:（i18n）
+// 顶部导航栏的项目
 const asideItem: aside[] = [
   { index: 1, name: 'update', router: '/update-log' },
   { index: 2, name: 'balance', router: '/balance' },

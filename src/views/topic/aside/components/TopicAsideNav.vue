@@ -21,22 +21,21 @@ const asideNavItem: navItem[] = [
 </script>
 
 <template>
-  <div class="topic-page-nav">
+  <div class="nav">
     <!-- 交互区容器 -->
-    <ul class="topic-page-nav-container">
+    <ul>
       <li v-for="kun in asideNavItem" :key="kun.index">
-        <Icon class="icon" :icon="kun.icon" />{{ kun.name }}
+        <Icon class="icon" :icon="kun.icon" />{{
+          $t(`topic.aside['${kun.name}']`)
+        }}
       </li>
-      <li><Icon class="icon" icon="svg-spinners:clock" />按时间排序</li>
-      <li><Icon class="icon" icon="line-md:thumbs-up-twotone" />按点赞排序</li>
-      <li><Icon class="icon" icon="fa-regular:comment-dots" />按评论排序</li>
     </ul>
   </div>
 </template>
 
 <style lang="scss" scoped>
 /* 帖子详情页的交互 */
-.topic-page-nav {
+.nav {
   height: 100px;
   display: flex;
   justify-content: center;
@@ -48,49 +47,46 @@ const asideNavItem: navItem[] = [
   margin-bottom: 17px;
   /* 隐藏溢出的边角 */
   overflow: hidden;
-}
-/* 两个列表的容器 */
-.topic-page-nav-container {
-  flex-grow: 1;
-  display: flex;
-  background-color: $kungalgame-trans-yellow-0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-/* 每个功能 */
-.topic-page-nav-container > li {
-  padding: 0 11px;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  position: relative;
-  box-sizing: border-box;
-  /* 页面变化时不换行 */
-  overflow: hidden;
-  white-space: nowrap;
-  cursor: pointer;
+  ul {
+    flex-grow: 1;
+    display: flex;
+    background-color: $kungalgame-trans-yellow-0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    & > li {
+      padding: 0 11px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      position: relative;
+      box-sizing: border-box;
+      /* 页面变化时不换行 */
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+      &::before {
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        inset: 0 0 0 0;
+        background-color: $kungalgame-red-4;
+        z-index: -1;
+        transition: transform 0.3s ease;
+      }
+      &:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    }
+  }
 }
 .icon {
   margin-right: 4px;
   font-size: 17px;
-}
-/* 功能区 hover */
-.topic-page-nav-container > li::before {
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  inset: 0 0 0 0;
-  background-color: $kungalgame-red-4;
-  z-index: -1;
-  transition: transform 0.3s ease;
-}
-.topic-page-nav-container > li:hover::before {
-  transform: scaleX(1);
-  transform-origin: bottom left;
 }
 </style>

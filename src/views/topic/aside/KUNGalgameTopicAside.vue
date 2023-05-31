@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import TopicAsideNav from './components/TopicAsideNav.vue'
 import TopicAsideSame from './components/TopicAsideSame.vue'
-import TopicAsideMaster from './components/TopicAsideMaster.vue'
+import TopicAsideMaster from './components/Topic.vue'
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
