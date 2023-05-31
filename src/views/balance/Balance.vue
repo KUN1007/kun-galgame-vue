@@ -14,7 +14,7 @@ import { calculateTotalAmount } from './log'
     <!-- 文章部分 -->
     <div class="article">
       <!-- 页面标题 -->
-      <div class="title">收支公示</div>
+      <div class="title">{{ $t('balance.pl') }}</div>
       <!-- 内容区 -->
       <div class="content">
         <Form :isIncome="true" />
@@ -27,8 +27,21 @@ import { calculateTotalAmount } from './log'
           class="amount-status-deficit"
           :class="calculateTotalAmount() >= 0 ? 'amount-status-surplus' : ''"
         >
-          <div>经济状态: <span>亏损</span></div>
-          <div>亏损金额: {{ calculateTotalAmount() }} CNY</div>
+          <div>
+            {{ $t('balance.status') }}:
+            <span>{{
+              calculateTotalAmount() >= 0
+                ? $t('balance.surplusStatus')
+                : $t('balance.deficitStatus')
+            }}</span>
+          </div>
+          <div>
+            {{
+              calculateTotalAmount() >= 0
+                ? $t('balance.surplusAmount')
+                : $t('balance.deficitAmount')
+            }}: {{ calculateTotalAmount() }} CNY
+          </div>
         </div>
       </div>
       <!-- 版权 -->

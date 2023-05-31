@@ -4,21 +4,22 @@ import Log from './Log.vue'
 import { calculateTotalIncome, calculateTotalExpenditure } from '../log'
 
 const props = defineProps(['isIncome'])
-const status = props.isIncome ? '收入' : '支出'
+const title = props.isIncome ? 'income' : 'expenditure'
+const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
 </script>
 
 <template>
   <!-- 收入 -->
   <div class="form" :class="$props.isIncome ? '' : 'expenditure-form'">
     <!-- 标题 -->
-    <div class="title">{{ status }}</div>
+    <div class="title">{{ $t(`balance['${title}']`) }}</div>
     <!-- 收入记录的容器 -->
     <div class="container">
       <Log :isIncome="$props.isIncome" />
     </div>
     <!-- 总收入 -->
     <div class="sum">
-      总{{ status }}:
+      {{ $t(`balance['${total}']`) }}:
       {{
         $props.isIncome ? calculateTotalIncome() : calculateTotalExpenditure()
       }}
