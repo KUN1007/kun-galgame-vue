@@ -40,6 +40,8 @@ export default {
       timeSort: '按时间排序',
       likeSort: '按点赞排序',
       commentSort: '按评论排序',
+      tags: '相同标签下的其它帖子',
+      master: '楼主的其它帖子',
     },
   },
 }

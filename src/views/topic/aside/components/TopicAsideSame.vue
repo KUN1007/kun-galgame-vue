@@ -69,7 +69,7 @@
 }
 /* 上方的 hover 效果 */
 .same-tag-topic ul li:hover {
-  border-left: 4px solid $kungalgame-red-3;
+  border-left: 4px solid $kungalgame-pink-3;
   background-color: $kungalgame-trans-blue-1;
   transition: 0.3s;
 }

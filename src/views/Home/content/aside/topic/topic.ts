@@ -1,3 +1,5 @@
+// 注意，这只是一个临时的数据文件，后来会被替换为后端接口
+
 interface topic {
   index: number
   router: string

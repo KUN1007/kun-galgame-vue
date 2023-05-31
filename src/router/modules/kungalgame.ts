@@ -8,7 +8,7 @@ const kungalgame: KUNRouteType[] = [
     component: () => import('@/views/kungalgame/KUNGalgame.vue'),
     meta: {
       permission: 'kungalgamer',
-      title: '帖子池',
+      title: '关于我们',
     },
   },
 ]
