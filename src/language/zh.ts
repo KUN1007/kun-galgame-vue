@@ -34,4 +34,12 @@ export default {
       new: `今日最新话题`,
     },
   },
+  topic: {
+    aside: {
+      top: '返回到顶端',
+      timeSort: '按时间排序',
+      likeSort: '按点赞排序',
+      commentSort: '按评论排序',
+    },
+  },
 }

@@ -1,11 +1,11 @@
 <!-- 
-  这是 KUNGalgame 帖子页面展示版权信息的地方
+  这是 KUNGalgame 通用的 Footer
  -->
 <script setup lang="ts"></script>
 
 <template>
   <!-- 版权描述,版本号 -->
-  <div class="kungalgame-footer-copyright">
+  <div class="footer">
     <span>Copyright © 2023 KUNgalgame</span>
     <span>All rights reserved | Version 0.01</span>
   </div>
@@ -13,7 +13,7 @@
 
 <style scoped>
 /* 版权描述,版本号 */
-.kungalgame-footer-copyright {
+.footer {
   display: flex;
   flex-direction: column;
   align-items: center;

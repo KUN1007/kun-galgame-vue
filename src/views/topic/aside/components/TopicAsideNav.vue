@@ -3,18 +3,33 @@
  -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+// 顶部导航栏单个项目的接口
+interface navItem {
+  index: number
+  icon: string
+  name: string
+}
+
+// 顶部导航栏的项目
+const asideNavItem: navItem[] = [
+  { index: 1, icon: 'line-md:arrow-close-up', name: 'top' },
+  { index: 2, icon: 'svg-spinners:clock', name: 'timeSort' },
+  { index: 3, icon: 'line-md:thumbs-up-twotone', name: 'likeSort' },
+  { index: 4, icon: 'fa-regular:comment-dots', name: 'commentSort' },
+]
 </script>
 
 <template>
   <div class="topic-page-nav">
     <!-- 交互区容器 -->
     <ul class="topic-page-nav-container">
-      <li><Icon class="icon" icon="line-md:text-box-multiple" />进入帖子池</li>
-      <li><Icon class="icon" icon="line-md:arrow-close-up" />返回到顶端</li>
-      <li><Icon class="icon" icon="line-md:home-twotone" />返回到首页</li>
+      <li v-for="kun in asideNavItem" :key="kun.index">
+        <Icon class="icon" :icon="kun.icon" />{{ kun.name }}
+      </li>
       <li><Icon class="icon" icon="svg-spinners:clock" />按时间排序</li>
       <li><Icon class="icon" icon="line-md:thumbs-up-twotone" />按点赞排序</li>
-      <li><Icon class="icon" icon="fa-regular:comment-dots" />按回复排序</li>
+      <li><Icon class="icon" icon="fa-regular:comment-dots" />按评论排序</li>
     </ul>
   </div>
 </template>
@@ -22,7 +37,7 @@ import { Icon } from '@iconify/vue'
 <style lang="scss" scoped>
 /* 帖子详情页的交互 */
 .topic-page-nav {
-  flex-grow: 1;
+  height: 100px;
   display: flex;
   justify-content: center;
   /* 左边第一个部分的边 */
@@ -47,7 +62,6 @@ import { Icon } from '@iconify/vue'
   padding: 0 11px;
   flex-grow: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
   position: relative;
   box-sizing: border-box;
@@ -64,8 +78,7 @@ import { Icon } from '@iconify/vue'
 .topic-page-nav-container > li::before {
   transform: scaleX(0);
   transform-origin: bottom right;
-  content: '啊这可海星';
-  display: block;
+  content: '';
   position: absolute;
   top: 0;
   right: 0;

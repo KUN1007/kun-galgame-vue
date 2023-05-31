@@ -34,4 +34,12 @@ export default {
       new: `Today's New Topic`,
     },
   },
+  topic: {
+    aside: {
+      top: 'Back Top',
+      timeSort: 'Time Sort',
+      likeSort: 'Like Sort',
+      commentSort: 'Reply Sort',
+    },
+  },
 }
