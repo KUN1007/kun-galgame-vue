@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BackToHome from '@/components/BackToHome.vue'
+import BackToPrevious from '@/components/BackToPrevious.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
@@ -32,7 +32,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
           </li>
           <li>设备相关：设备日期、操作系统信息等，方便我们对设备进行适配</li>
         </ul>
-        <BackToHome />
+        <BackToPrevious />
       </div>
       <!-- 版权 -->
       <KUNGalgameFooter style="position: absolute; bottom: -40px" />
