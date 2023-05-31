@@ -44,4 +44,12 @@ export default {
       master: '楼主的其它帖子',
     },
   },
+  update: {
+    next: '下个版本',
+    update: '更新信息',
+    info: '更新预览 / 更多信息',
+    visit: '点击访问 github',
+    time: '预计更新时间',
+    history: '历史版本',
+  },
 }

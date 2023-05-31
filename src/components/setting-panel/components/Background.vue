@@ -157,6 +157,7 @@ const handleCustomBackground = () => {
     flex-shrink: 0;
     padding: 0 10px;
     height: 25px;
+    width: 70px;
     box-sizing: border-box;
     border: 1px solid $kungalgame-blue-4;
     border-left: none;

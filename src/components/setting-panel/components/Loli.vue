@@ -38,7 +38,7 @@ import {
   position: fixed;
   z-index: 9999;
   top: -250px;
-  left: 120px;
+  left: 150px;
 }
 .lass {
   position: absolute;
