@@ -29,7 +29,7 @@ export default {
       ranking: 'Ranking',
       regulations: 'Bylaw',
       contacts: 'Join Us',
-      antiMoe: 'Anti-moe',
+      nonMoe: 'Non-moe',
       hot: `Today's Hot Topic`,
       new: `Today's New Topic`,
     },

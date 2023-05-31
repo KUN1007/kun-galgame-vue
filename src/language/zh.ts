@@ -29,7 +29,7 @@ export default {
       ranking: '排行榜单',
       regulations: '执行条例',
       contacts: '加入我们',
-      antiMoe: '不萌记录',
+      nonMoe: '不萌记录',
       hot: `今日热门话题`,
       new: `今日最新话题`,
     },

@@ -1,11 +1,11 @@
 import type { KUNRouteType } from '@/router/types'
 
-const antiMoe: KUNRouteType[] = [
+const nonMoe: KUNRouteType[] = [
   // KUNGalgame 不萌萌页
   {
-    name: 'AntiMoe',
-    path: '/anti-moe',
-    component: () => import('@/views/anti-moe/AntiMoe.vue'),
+    name: 'NonMoe',
+    path: '/non-moe',
+    component: () => import('@/views/non-moe/NonMoe.vue'),
     meta: {
       permission: 'kungalgamer',
       title: '不萌萌',
@@ -13,4 +13,4 @@ const antiMoe: KUNRouteType[] = [
   },
 ]
 
-export default antiMoe
+export default nonMoe

@@ -24,7 +24,5 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-position: center;
   background-size: cover;
   min-width: 800px;
-  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
-    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 </style>
