@@ -44,4 +44,12 @@ export default {
       master: 'Other Topics of The Master',
     },
   },
+  update: {
+    next: 'Next Version',
+    update: 'Update Info',
+    info: 'Update Preview / More Info',
+    visit: 'Click to visit github',
+    time: 'Estimated update time',
+    history: 'History Version',
+  },
 }

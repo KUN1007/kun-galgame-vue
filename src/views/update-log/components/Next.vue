@@ -1,24 +1,32 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+</script>
 
 <template>
   <!-- 更新的内容 -->
   <div class="article-next">
     <div class="describe">
-      <div>更新信息</div>
+      <div>{{ $t('update.update') }}</div>
       <p>1. 添加数据统计页面</p>
       <p>2. 修复关于我们页面布局</p>
       <p>3. 其他细节修复</p>
     </div>
     <!-- 更新预览 -->
     <div class="preview">
-      <div>更新预览 / 更多信息</div>
-      <a href="https://github.com/KUN1007/KUNGalGame-vue" target="_blank"
-        >点击访问 github</a
+      <div>{{ $t('update.info') }}</div>
+      <a
+        class="github"
+        href="https://github.com/KUN1007/KUNGalGame-vue"
+        target="_blank"
+        >{{ $t('update.visit') }}</a
       >
+      <a href="https://github.com/KUN1007/KUNGalGame-vue" target="_blank">
+        <Icon class="icon" icon="raphael:github"
+      /></a>
     </div>
     <!-- 预计更新时间 -->
     <div class="time">
-      <span>预计更新时间: 2019/10/7</span>
+      <span>{{ $t('update.time') }}: 2019/10/7</span>
     </div>
   </div>
 </template>
@@ -42,25 +50,30 @@
 }
 /* 更新预览 */
 .preview {
-  margin-top: 100px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  & > a {
-    margin-top: 10px;
-    color: $kungalgame-blue-4;
-    border-bottom: 2px solid $kungalgame-trans-white-8;
-    cursor: pointer;
-    &:hover {
-      border-bottom: 2px solid $kungalgame-blue-4;
-    }
+}
+.github {
+  margin-top: 10px;
+  color: $kungalgame-blue-4;
+  border-bottom: 2px solid $kungalgame-trans-white-8;
+  cursor: pointer;
+  &:hover {
+    border-bottom: 2px solid $kungalgame-blue-4;
   }
 }
 /* 预计更新时间 */
 .time {
-  margin-top: 80px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
+}
+.icon {
+  margin-top: 20px;
+  font-size: 50px;
+  color: $kungalgame-font-color-2;
 }
 </style>
