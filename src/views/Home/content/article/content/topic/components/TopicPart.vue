@@ -17,7 +17,7 @@ import { Icon } from '@iconify/vue'
         <ul>
           <li><Icon icon="ic:outline-remove-red-eye" />1007</li>
           <li><Icon icon="line-md:thumbs-up-twotone" />1007</li>
-          <li><Icon icon="fa-regular:comment-dots" />1007</li>
+          <li><Icon icon="ri:reply-line" />1007</li>
         </ul>
       </div>
       <!-- 帖子的状态，点赞数等 -->

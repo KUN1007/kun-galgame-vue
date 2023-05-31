@@ -1,0 +1,98 @@
+<script setup lang="ts">
+import KUNgalgamer from './KUNGalgamer.vue'
+</script>
+
+<template>
+  <!-- 用户排行 -->
+  <div class="kungalgamer-ranking">
+    <!-- 用户排行标题 -->
+    <div class="kungalgamer-title">最萌的萝莉</div>
+    <!-- 用户排行的交互 -->
+    <div class="kungalgamer-nav">
+      <!-- 萌萌点 -->
+      <div class="moemoepoint">按萌萌点排序</div>
+      <!-- 获赞数 -->
+      <div class="praise">按获赞数排序</div>
+      <!-- 发布主题数 -->
+      <div class="topic">按发帖数排序</div>
+      <!-- 回贴数 -->
+      <div class="reply">按回贴数排序</div>
+    </div>
+    <!-- 单个用户的容器 -->
+    <div class="kungalgamer-container">
+      <KUNgalgamer />
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+/* 用户排行 */
+.kungalgamer-ranking {
+  width: 50%;
+  border-right: 1px solid $kungalgame-blue-4;
+  box-sizing: border-box;
+}
+/* 用户排行标题 */
+.kungalgamer-title {
+  /* 字体设置 */
+  font-size: 30px;
+  color: $kungalgame-pink-4;
+  font-style: italic;
+  text-shadow: 2px 2px 4px $kungalgame-blue-0;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+/* 用户排行的交互 */
+.kungalgamer-nav {
+  display: flex;
+  justify-content: space-around;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.kungalgamer-nav > div:hover {
+  background-color: $kungalgame-pink-1;
+  transition: 0.2s;
+}
+/* 排行选择项 */
+.moemoepoint,
+.praise,
+.topic,
+.reply {
+  height: 30px;
+  width: 100%;
+  border: 1px solid $kungalgame-pink-4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.praise,
+.topic,
+.reply {
+  border-left: none;
+}
+/* 单个用户的容器 */
+.kungalgamer-container {
+  height: 650px;
+  border: 1px solid $kungalgame-pink-4;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  overflow-y: scroll;
+}
+/* 滚动条的样式 */
+.kungalgamer-container::-webkit-scrollbar {
+  display: inline;
+  width: 4px;
+  height: 0;
+  background-color: $kungalgame-red-2;
+  border-radius: 2px;
+}
+.kungalgamer-container::-webkit-scrollbar-thumb {
+  background: $kungalgame-blue-4;
+  border-radius: 2px;
+}
+</style>
