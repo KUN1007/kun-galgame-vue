@@ -39,7 +39,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
       </div>
     </div>
     <!-- 搜索框 -->
-    <KUNGalgameSearchBox />
+    <KUNGalgameSearchBox :isMainPage="true" />
     <!-- 交互区域进入全部话题 -->
     <div class="nav-article-more-topic">
       <span>全部帖子</span>
@@ -77,6 +77,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   border-radius: 5px 0 0 0;
   position: relative;
   border-bottom: 1px solid $kungalgame-trans-blue-4;
+  border-right: 1px solid $kungalgame-trans-blue-4;
   box-sizing: border-box;
   cursor: pointer;
 }
@@ -136,6 +137,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   border-radius: 0 5px 0 0;
   cursor: pointer;
   border-bottom: 1px solid $kungalgame-trans-blue-4;
+  border-left: 1px solid $kungalgame-trans-blue-4;
   box-sizing: border-box;
 }
 .nav-article-more-topic:hover {

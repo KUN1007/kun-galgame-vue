@@ -4,7 +4,8 @@
 <script setup lang="ts">
 import { asideTopic } from './topic'
 
-const props = defineProps(['isMasterTopics'])
+// 接受父组件传值,若是楼主的帖子则变色
+defineProps(['isMasterTopics'])
 </script>
 
 <template>
