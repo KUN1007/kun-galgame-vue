@@ -34,7 +34,12 @@ import { Icon } from '@iconify/vue'
     <!-- 帖子的标签 -->
     <div class="topic-tags">
       <!-- 单个标签 -->
-      <span><i class="fa-solid fa-tag"></i>啊这可海星啊这可海星</span>
+      <span
+        ><Icon
+          class="icon"
+          icon="ant-design:tag-twotone"
+        />啊这可海星啊这可海星</span
+      >
       <span>啊这可海星啊这可海星</span>
       <span>啊这可海星</span>
       <span>啊这可海星</span>
@@ -184,10 +189,6 @@ import { Icon } from '@iconify/vue'
   position: absolute;
   bottom: 0;
 }
-/* 图标字体距离数字的距离 */
-.topic-status > div > i {
-  margin-right: 5px;
-}
 /* 帖子的标签 */
 .topic-tags {
   /* 占满单个帖子区域 */
@@ -212,7 +213,10 @@ import { Icon } from '@iconify/vue'
   display: block;
   margin-bottom: 3px;
 }
-.topic-tags > span > i {
+.icon {
+  position: absolute;
+  left: 20px;
+  font-size: 18px;
   color: $kungalgame-red-4;
   margin-right: 5px;
 }

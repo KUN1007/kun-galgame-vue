@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+// 接受父组件传值,若是主页则显示搜索历史
+defineProps(['isMainPage'])
 </script>
 
 <template>
@@ -18,7 +20,7 @@ import { Icon } from '@iconify/vue'
       </div>
     </form>
     <!-- 搜索历史容器 -->
-    <div class="history">
+    <div class="history" v-if="$props.isMainPage">
       <!-- 搜索历史标题 -->
       <div class="title">
         <span>搜索历史</span>
@@ -53,7 +55,7 @@ import { Icon } from '@iconify/vue'
   /* 相对于二级菜单定位 */
   position: relative;
   display: flex;
-  border: 1px solid $kungalgame-trans-blue-4;
+  border-bottom: 1px solid $kungalgame-trans-blue-4;
   box-sizing: border-box;
   &:hover {
     background-color: $kungalgame-trans-white-2;
