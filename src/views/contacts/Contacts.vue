@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import BackToHome from '@/components/BackToHome.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+import BackToPrevious from '@/components/BackToPrevious.vue'
 </script>
 
 <template>
@@ -29,7 +29,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
           <Icon class="icon" icon="ri:bilibili-line" />
         </div>
       </div>
-      <BackToHome />
+      <BackToPrevious />
       <!-- 版权 -->
       <KUNGalgameFooter
         style="position: absolute; bottom: -20%; white-space: nowrap"

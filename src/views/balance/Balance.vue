@@ -17,17 +17,19 @@ import { calculateTotalAmount } from './log'
       <div class="title">{{ $t('balance.pl') }}</div>
       <!-- 内容区 -->
       <div class="content">
+        <!-- 是收入表的话就渲染为蓝色 -->
         <Form :isIncome="true" />
         <Form />
       </div>
-      <!-- 收入支出总结 -->
+      <!-- 经济状态 -->
       <div class="sum">
-        <!-- 经济状态 -->
+        <!-- 亏损和盈余的样式不一样 -->
         <div
           class="amount-status-deficit"
           :class="calculateTotalAmount() >= 0 ? 'amount-status-surplus' : ''"
         >
           <div>
+            <!-- i18n -->
             {{ $t('balance.status') }}:
             <span>{{
               calculateTotalAmount() >= 0
@@ -36,6 +38,7 @@ import { calculateTotalAmount } from './log'
             }}</span>
           </div>
           <div>
+            <!-- i18n -->
             {{
               calculateTotalAmount() >= 0
                 ? $t('balance.surplusAmount')

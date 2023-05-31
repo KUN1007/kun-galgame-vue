@@ -48,10 +48,10 @@ export const FSLog: FS[] = [
   },
   {
     index: 6,
-    income: false,
+    income: true,
     reason: '啊这可海星',
     date: '2019/10/07',
-    amount: 1007,
+    amount: 10007,
   },
   {
     index: 7,
