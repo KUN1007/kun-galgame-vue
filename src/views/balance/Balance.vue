@@ -2,6 +2,9 @@
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import { currBackground } from '@/hooks/useBackgroundPicture'
 import Form from './components/Form.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+// 导入临时数据
+import { calculateTotalAmount } from './log'
 </script>
 
 <template>
@@ -19,19 +22,17 @@ import Form from './components/Form.vue'
       </div>
       <!-- 收入支出总结 -->
       <div class="sum">
-        <!-- 可支配金额 -->
-        <div class="disposable-amount">可支配金额: <span>1007 CNY</span></div>
         <!-- 经济状态 -->
-        <div class="amount-status">
+        <div
+          class="amount-status-deficit"
+          :class="calculateTotalAmount() >= 0 ? 'amount-status-surplus' : ''"
+        >
           <div>经济状态: <span>亏损</span></div>
-          <div>亏损金额: - 1007 CNY</div>
+          <div>亏损金额: {{ calculateTotalAmount() }} CNY</div>
         </div>
       </div>
       <!-- 版权 -->
-      <div class="copyright">
-        <span>Copyright © 2023 KUNgalgame</span>
-        <span>All rights reserved | Version 0.01</span>
-      </div>
+      <KUNGalgameFooter />
     </div>
   </div>
 </template>
@@ -45,7 +46,7 @@ import Form from './components/Form.vue'
   background-position: center;
   background-size: cover;
   min-width: 1100px;
-  min-height: 700px;
+  min-height: 600px;
 }
 /* 文章部分 */
 .article {
@@ -73,9 +74,10 @@ import Form from './components/Form.vue'
 /* 页面标题 */
 .title {
   /* 固定高度 */
-  height: 50px;
+  height: 60px;
   /* 字体大小 */
   font-size: 30px;
+  flex-shrink: 0;
   /* 居中 */
   display: flex;
   justify-content: center;
@@ -98,31 +100,27 @@ import Form from './components/Form.vue'
   align-items: center;
   font-size: 22px;
 }
-/* 可支配金额 */
-.disposable-amount {
-  height: 50px;
-}
-.disposable-amount > span {
-  padding: 5px;
-  background-color: $kungalgame-green-2;
-}
-/* 经济状态 */
-.amount-status {
+/* 经济状态亏损 */
+.amount-status-deficit {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  span {
+    padding: 5px;
+    background-color: $kungalgame-red-4;
+    color: $kungalgame-white;
+  }
+  & > div:last-child {
+    background-color: $kungalgame-red-2;
+  }
 }
-.amount-status span {
-  padding: 5px;
-  background-color: $kungalgame-red-4;
-  color: $kungalgame-white;
-}
-.amount-status > div:last-child {
-  background-color: $kungalgame-red-2;
-}
-/* 版权 */
-.copyright {
-  position: absolute;
-  bottom: -40px;
+/* 经济状态盈余 */
+.amount-status-surplus {
+  span {
+    background-color: $kungalgame-green-4;
+  }
+  & > div:last-child {
+    background-color: $kungalgame-green-2;
+  }
 }
 </style>

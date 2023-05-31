@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Log from './Log.vue'
+// 导入临时数据
+import { calculateTotalIncome, calculateTotalExpenditure } from '../log'
 
 const props = defineProps(['isIncome'])
 const status = props.isIncome ? '收入' : '支出'
@@ -7,15 +9,21 @@ const status = props.isIncome ? '收入' : '支出'
 
 <template>
   <!-- 收入 -->
-  <div class="form" :class="$props.isIncome ? '' : 'expenditure'">
+  <div class="form" :class="$props.isIncome ? '' : 'expenditure-form'">
     <!-- 标题 -->
     <div class="title">{{ status }}</div>
     <!-- 收入记录的容器 -->
     <div class="container">
-      <Log />
+      <Log :isIncome="$props.isIncome" />
     </div>
     <!-- 总收入 -->
-    <div class="sum">总{{ status }}: 1007 CNY</div>
+    <div class="sum">
+      总{{ status }}:
+      {{
+        $props.isIncome ? calculateTotalIncome() : calculateTotalExpenditure()
+      }}
+      CNY
+    </div>
   </div>
 </template>
 
@@ -49,6 +57,7 @@ const status = props.isIncome ? '收入' : '支出'
   .sum {
     height: 40px;
     font-size: 18px;
+    flex-shrink: 0;
     /* 文字居中 */
     display: flex;
     justify-content: center;
@@ -71,7 +80,7 @@ const status = props.isIncome ? '收入' : '支出'
   border-radius: 2px;
 }
 /* 支出的样式 */
-.expenditure {
+.expenditure-form {
   border: 1px solid $kungalgame-red-4;
   .title {
     border-bottom: 1px solid $kungalgame-red-4;
