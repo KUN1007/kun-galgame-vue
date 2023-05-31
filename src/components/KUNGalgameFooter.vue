@@ -6,8 +6,7 @@
 <template>
   <!-- 版权描述,版本号 -->
   <div class="footer">
-    <span>Copyright © 2023 KUNgalgame</span>
-    <span>All rights reserved | Version 0.01</span>
+    <span>Copyright © 2023 KUNgalgame All rights reserved | Version 0.01</span>
   </div>
 </template>
 
@@ -18,7 +17,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
   /* 距离上面的距离 */
   margin-top: 17px;
   /* 文字间距 */

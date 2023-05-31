@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// Vue 中不允许在 template 中用 '<' 这个符号，换成 msg
-const msg = '< 返回主页'
 import { Icon } from '@iconify/vue'
+import BackToHome from '@/components/BackToHome.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
@@ -29,17 +29,11 @@ import { Icon } from '@iconify/vue'
           <Icon class="icon" icon="ri:bilibili-line" />
         </div>
       </div>
-      <router-link to="/">
-        <!-- 返回主页 -->
-        <div class="return">
-          <span>{{ msg }}</span>
-        </div>
-      </router-link>
+      <BackToHome />
       <!-- 版权 -->
-      <div class="copyright">
-        <span>Copyright © 2023 KUNgalgame</span>
-        <span>All rights reserved | Version 0.01</span>
-      </div>
+      <KUNGalgameFooter
+        style="position: absolute; bottom: -20%; white-space: nowrap"
+      />
     </div>
   </div>
 </template>
@@ -113,6 +107,7 @@ import { Icon } from '@iconify/vue'
   text-shadow: 2px 2px 3px $kungalgame-trans-blue-1;
   font-size: 60px;
   font-style: italic;
+  font-family: serif;
   cursor: pointer;
 }
 .kungalgame:hover {
@@ -150,22 +145,5 @@ import { Icon } from '@iconify/vue'
   color: $kungalgame-red-4;
   transform: scale(1.2);
   transition: 0.1s;
-}
-/* 返回主页 */
-.return {
-  position: absolute;
-  bottom: 1%;
-  left: 2%;
-  color: $kungalgame-font-color-0;
-  cursor: pointer;
-}
-.return:hover {
-  color: $kungalgame-blue-4;
-}
-/* 版权 */
-.copyright {
-  position: absolute;
-  bottom: -20%;
-  white-space: nowrap;
 }
 </style>
