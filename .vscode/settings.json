@@ -1,6 +1,5 @@
 {
   "cSpell.words": [
-    "non-moe",
     "axios",
     "azkhx",
     "Bilibili",
@@ -13,13 +12,15 @@
     "Licence",
     "loli",
     "moemoepoint",
+    "non-moe",
     "persistedstate",
     "Pinia",
     "sina",
     "tanstack",
     "Upvotes",
     "VARCHAR",
-    "weixin"
+    "weixin",
+    "yuyu"
   ],
   "i18n-ally.localesPaths": ["src/language"],
   "vue.codeActions.enabled": false
