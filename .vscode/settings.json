@@ -18,6 +18,7 @@
     "sina",
     "tanstack",
     "Upvotes",
+    "VARCHAR",
     "weixin"
   ],
   "i18n-ally.localesPaths": ["src/language"],

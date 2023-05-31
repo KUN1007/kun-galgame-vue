@@ -7,16 +7,15 @@
  -->
 <script setup lang="ts">
 import TopicAsideNav from './components/TopicAsideNav.vue'
-import TopicAsideSame from './components/TopicAsideSame.vue'
-import TopicAsideMaster from './components/Topic.vue'
+import Topic from './components/Topic.vue'
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 <template>
   <div class="content-left-part">
     <TopicAsideNav />
-    <TopicAsideSame />
-    <TopicAsideMaster />
+    <Topic style="margin-bottom: 17px" />
+    <Topic :isMasterTopics="true" />
     <KUNGalgameFooter />
   </div>
 </template>
@@ -26,7 +25,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   top: 70px;
   position: sticky;
   /* 左侧区域的总高度 */
-  height: 1000px;
+  height: 940px;
   /* 左侧区域宽度 */
   width: 250px;
   /* 左侧内容区为弹性盒，方便分成上下两部分 */
