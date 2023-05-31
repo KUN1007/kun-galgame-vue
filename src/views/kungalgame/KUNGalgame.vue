@@ -11,7 +11,7 @@ interface asideBar {
 
 const asideBarItem: asideBar[] = [
   { index: 1, name: '隐私政策', router: '/privacy' },
-  { index: 2, name: '执行条例', router: '/regulations' },
+  { index: 2, name: '执行条例', router: '/bylaw' },
   { index: 3, name: '更新日志', router: '/update-log' },
   { index: 4, name: '收支公示', router: '/balance' },
   { index: 5, name: '不萌记录', router: '/non-moe' },

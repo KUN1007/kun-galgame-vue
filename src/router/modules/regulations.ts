@@ -1,11 +1,11 @@
 import type { KUNRouteType } from '@/router/types'
 
-const regulations: KUNRouteType[] = [
+const bylaw: KUNRouteType[] = [
   // KUNGalgame 执行条例
   {
-    name: 'Regulations',
-    path: '/regulations',
-    component: () => import('@/views/regulations/Regulations.vue'),
+    name: 'Bylaw',
+    path: '/bylaw',
+    component: () => import('@/views/bylaw/Bylaw.vue'),
     meta: {
       permission: 'kungalgamer',
       title: '执行条例（试行）',
@@ -13,4 +13,4 @@ const regulations: KUNRouteType[] = [
   },
 ]
 
-export default regulations
+export default bylaw
