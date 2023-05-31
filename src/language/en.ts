@@ -25,7 +25,7 @@ export default {
       fold: 'Fold Aside',
       create: 'CREATE NEW!',
       update: 'Update',
-      balance: 'Balance',
+      balance: 'P & L',
       ranking: 'Ranking',
       bylaw: 'Bylaw',
       contacts: 'Join Us',
@@ -51,5 +51,17 @@ export default {
     visit: 'Click to visit github',
     time: 'Estimated update time',
     history: 'History Version',
+  },
+  balance: {
+    pl: 'Income and Expenditure Statement', // Profit and Loss
+    income: 'INCOME',
+    totalIncome: 'Total Income',
+    expenditure: 'EXPENDITURE',
+    totalExpenditure: 'Total Expenditure',
+    status: 'Economic Status',
+    deficitStatus: 'DEFICIT',
+    deficitAmount: 'Deficit Amount',
+    surplusStatus: 'Surplus',
+    surplusAmount: 'Surplus Amount',
   },
 }

@@ -37,7 +37,7 @@ import {
   /* 定位看板娘，重要 */
   position: fixed;
   z-index: 9999;
-  top: -250px;
+  top: -270px;
   left: 150px;
 }
 .lass {

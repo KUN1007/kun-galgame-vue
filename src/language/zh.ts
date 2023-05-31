@@ -52,4 +52,16 @@ export default {
     time: '预计更新时间',
     history: '历史版本',
   },
+  balance: {
+    pl: '收支公示',
+    income: '收入',
+    totalIncome: '总收入',
+    expenditure: '支出',
+    totalExpenditure: '总支出',
+    status: '经济状态',
+    deficitStatus: '亏损',
+    deficitAmount: '亏损金额',
+    surplusStatus: '盈余',
+    surplusAmount: '盈余金额',
+  },
 }
