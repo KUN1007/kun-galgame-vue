@@ -1,0 +1,227 @@
+<script setup lang="ts"></script>
+
+<template>
+  <!-- 单个帖子 -->
+  <div class="topic">
+    <!-- 帖子 hover 后的边 -->
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <!-- 帖子的标题 -->
+    <div class="topic-title">啊这可海星</div>
+    <!-- 帖子的内容预览 -->
+    <div class="topic-content">
+      <p>
+        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+      </p>
+    </div>
+    <!-- 帖子的状态 -->
+    <div class="topic-status">
+      <!-- 帖子的点击数 -->
+      <div class="view"><i class="fa-regular fa-eye"></i>1007</div>
+      <!-- 帖子的点赞数 -->
+      <div class="like"><i class="fa-regular fa-thumbs-up"></i>1007</div>
+      <!-- 帖子的回复数 -->
+      <div class="reply"><i class="fa-regular fa-comment-dots"></i>1007</div>
+    </div>
+    <!-- 帖子的标签 -->
+    <div class="topic-tags">
+      <!-- 单个标签 -->
+      <span><i class="fa-solid fa-tag"></i>啊这可海星啊这可海星</span>
+      <span>啊这可海星啊这可海星</span>
+      <span>啊这可海星</span>
+      <span>啊这可海星</span>
+      <span>啊这可海星</span>
+      <span>啊这可海星</span>
+      <span>啊这可海星</span>
+      <span>啊这可海星</span>
+      <span>啊这可海星</span>
+      <span>啊这可海星</span>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+/* 单个帖子 */
+.topic {
+  border: 1px solid $kungalgame-trans-blue-4;
+  border-radius: 5px;
+  /* 帖子内容距离边的距离 */
+  padding: 0 10px;
+  background-color: $kungalgame-trans-white-2;
+  /* 相对于底部状态的定位 */
+  position: relative;
+  display: inline-block;
+  /* 隐藏 hover 的颜色露出 */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+/* 单个帖子 hover */
+.topic:hover {
+  box-shadow: $shadow;
+  /* 放大、旋转 */
+  transform: scale(1.2) rotate(1deg);
+  transition: 0.2s;
+  z-index: 1009;
+}
+/* 帖子边的光效 */
+.topic:hover > span {
+  position: absolute;
+  display: block;
+  z-index: 1009;
+}
+.topic:hover > span:nth-child(1) {
+  filter: hue-rotate(0deg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, $kungalgame-blue-4);
+  animation: animate1 1s linear infinite;
+}
+@keyframes animate1 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+.topic:hover > span:nth-child(2) {
+  filter: hue-rotate(60deg);
+  top: -100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, $kungalgame-blue-4);
+  animation: animate2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+@keyframes animate2 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+.topic:hover > span:nth-child(3) {
+  filter: hue-rotate(120deg);
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(270deg, transparent, $kungalgame-blue-4);
+  animation: animate3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+@keyframes animate3 {
+  0% {
+    right: -100%;
+    height: 3px;
+  }
+  50%,
+  100% {
+    height: 2px;
+    right: 100%;
+  }
+}
+.topic:hover > span:nth-child(4) {
+  filter: hue-rotate(300deg);
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, $kungalgame-blue-4);
+  animation: animate4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+@keyframes animate4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+/* 帖子标题 */
+.topic-title {
+  height: 30px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 帖子内容预览 */
+.topic-content {
+  font-size: 13px;
+  max-height: 200px;
+  /* 超过 11 行显示省略号 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 11;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+/* 帖子的状态 */
+.topic-status {
+  height: 30px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 相对于帖子绝对定位 */
+  position: absolute;
+  bottom: 0;
+}
+/* 图标字体距离数字的距离 */
+.topic-status > div > i {
+  margin-right: 5px;
+}
+/* 帖子的标签 */
+.topic-tags {
+  /* 占满单个帖子区域 */
+  width: 100%;
+  font-size: 12px;
+  padding: 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* 竖直分布 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: $kungalgame-trans-white-9;
+  /* 起初看不见文字 */
+  opacity: 0;
+  cursor: pointer;
+}
+.topic-tags > span {
+  display: block;
+  margin-bottom: 3px;
+}
+.topic-tags > span > i {
+  color: $kungalgame-red-4;
+  margin-right: 5px;
+}
+/* 单个帖子 hover 时显示帖子标签 */
+.topic:hover .topic-tags {
+  background-color: $kungalgame-trans-blue-0;
+  backdrop-filter: blur(5px);
+  /* 放大、旋转回正 */
+  transform: scale(1.1) rotate(-1deg);
+  /* 完全不透明，可视 */
+  opacity: 1;
+  transition: 0.2s;
+}
+</style>
