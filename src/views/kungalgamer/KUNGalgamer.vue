@@ -101,23 +101,22 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   /* 头部的颜色 */
   background-color: $kungalgame-trans-blue-0;
   align-items: center;
-}
-/* 用户名字的位置 */
-.kungalgamer-name span:nth-child(1) {
-  position: absolute;
-  font-size: 22px;
-  /* 相对于 header 定位信息 */
-  margin-left: 200px;
-  margin-top: 60px;
-  z-index: 1;
-}
-.kungalgamer-name span:nth-child(2) {
-  position: absolute;
-  right: 0;
-  font-size: 100px;
-  color: $kungalgame-trans-white-6;
-  font-style: italic;
-  text-shadow: 2px 2px 2px $kungalgame-trans-white-8;
+  span:nth-child(1) {
+    position: absolute;
+    font-size: 22px;
+    /* 相对于 header 定位信息 */
+    margin-left: 200px;
+    margin-top: 60px;
+    z-index: 1;
+  }
+  span:nth-child(2) {
+    position: absolute;
+    right: 0;
+    font-size: 100px;
+    color: $kungalgame-trans-white-6;
+    font-style: italic;
+    text-shadow: 2px 2px 2px $kungalgame-trans-white-8;
+  }
 }
 /* 用户头像 */
 .kungalgamer-avatar {

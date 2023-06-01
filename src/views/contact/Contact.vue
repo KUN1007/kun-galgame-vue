@@ -39,15 +39,6 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 /* 根容器 */
 .root {
   height: 100vh;
@@ -109,29 +100,27 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
   font-style: italic;
   font-family: serif;
   cursor: pointer;
-}
-.kungalgame:hover {
-  color: $kungalgame-blue-4;
-  transition: 0.1s;
+  &:hover {
+    color: $kungalgame-blue-4;
+    transition: 0.1s;
+  }
 }
 /* 联系方式容器 */
 .content {
   display: flex;
   font-size: 20px;
-}
-/* 单个项目 */
-.content > div {
-  /* 固定宽度 */
-  width: 110px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-/* 文字提示 */
-.content span {
-  margin-bottom: 20px;
-  cursor: pointer;
+  & > div {
+    /* 固定宽度 */
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  span {
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
 }
 /* 图标字体 */
 .icon {
@@ -140,10 +129,10 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
   color: $kungalgame-blue-4;
   cursor: pointer;
   text-align: center;
-}
-.icon:hover {
-  color: $kungalgame-red-4;
-  transform: scale(1.2);
-  transition: 0.1s;
+  &:hover {
+    color: $kungalgame-red-4;
+    transform: scale(1.2);
+    transition: 0.1s;
+  }
 }
 </style>

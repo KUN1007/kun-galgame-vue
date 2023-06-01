@@ -7,7 +7,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-const port = 1007 // 端口号
+const port = 10007 // 端口号
 
 // 模拟一个 topics 数组
 const topics = [

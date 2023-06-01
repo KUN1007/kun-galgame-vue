@@ -18,6 +18,7 @@ export interface KUNRouteType extends Omit<RouteRecordRaw, 'props'> {
   component?: Component | string
   components?: Component
   children?: KUNRouteType[]
+  fullPath?: string
   meta?: MetaType
   redirect?: string
 }
