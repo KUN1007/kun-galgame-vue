@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import { currBackground } from '@/hooks/useBackgroundPicture'
+import SingleLog from './components/SingleLog.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
@@ -24,120 +26,18 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
             <span>原因</span>
             <span>后果</span>
           </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">
-              啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-            </div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 1007</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
-          </div>
-          <!-- 单个记录 -->
-          <div class="single-log">
-            <!-- 原因 -->
-            <div class="reason">啊这可海星</div>
-            <!-- 后果 -->
-            <div class="result">萌萌点 - 10</div>
+          <div>
+            <SingleLog />
           </div>
         </div>
       </div>
     </div>
     <!-- 版权 -->
-    <div class="copyright">
-      <span>Copyright © 2023 KUNgalgame</span>
-      <span>All rights reserved | Version 0.01</span>
-    </div>
+    <KUNGalgameFooter style="margin: 20px auto" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
   height: 100vh;
   display: flex;
@@ -147,8 +47,6 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-size: cover;
   min-width: 800px;
   min-height: 750px;
-  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
-    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 /* 根容器 */
 .container {
@@ -225,25 +123,6 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   position: sticky;
   display: flex;
   justify-content: space-between;
-}
-/* 单个记录 */
-.single-log {
-  margin: 20px 40px;
-  border-bottom: 1px solid $kungalgame-blue-4;
-}
-/* 原因 */
-.reason {
-  width: 80%;
-  padding-left: 5px;
-  border-left: 2px solid $kungalgame-blue-4;
-}
-/* 后果 */
-.result {
-  border-right: 4px solid $kungalgame-red-4;
-  padding-right: 5px;
-  margin-top: 10px;
-  display: flex;
-  justify-content: end;
 }
 .copyright {
   margin: 10px auto;
