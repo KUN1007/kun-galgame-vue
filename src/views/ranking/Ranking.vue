@@ -18,7 +18,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
       <Temp />
     </div>
     <!-- 版权 -->
-    <KUNGalgameFooter />
+    <KUNGalgameFooter style="margin: 20px auto" />
   </div>
 </template>
 
