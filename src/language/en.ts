@@ -64,4 +64,11 @@ export default {
     surplusStatus: 'Surplus',
     surplusAmount: 'Surplus Amount',
   },
+  nonMoe: {
+    log: 'Non-moe Record',
+    title: 'All the non-moe behavior were recorded here, please do not do that',
+    reason: 'reason',
+    consequence: 'consequence',
+    moemoepoint: 'moemoepoint'
+  },
 }
