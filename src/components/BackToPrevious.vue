@@ -1,16 +1,16 @@
 <script setup lang="ts">
-// Vue 中不允许在 template 中用 '<' 这个符号，换成 msg
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const msg = '< 返回上一页'
+// Vue 中不允许在 template 中用 '<' 这个符号，换成 msg
+const msg = `< `
 </script>
 
 <template>
   <!-- 返回主页 -->
   <div class="return" @click="router.back()">
-    <span>{{ msg }}</span>
+    <span>{{ msg + $t('back.back') }}</span>
   </div>
 </template>
 

@@ -11,10 +11,10 @@ const LoginRoute: KUNRouteType = {
 }
 
 // KUNGalgame 联系我们
-const ContactsRoute: KUNRouteType = {
-  name: 'Contacts',
-  path: '/contacts',
-  component: () => import('@/views/contacts/Contacts.vue'),
+const ContactRoute: KUNRouteType = {
+  name: 'Contact',
+  path: '/contact',
+  component: () => import('@/views/contact/Contact.vue'),
   meta: {
     title: '联系我们',
   },
@@ -117,7 +117,7 @@ export const asyncRoutes = getAsyncRoute()
 // 基础路由
 export const noCertRoutes = [
   LoginRoute,
-  ContactsRoute,
+  ContactRoute,
   DonateRoute,
   LicenceRoute,
   PrivacyRoute,
