@@ -64,4 +64,11 @@ export default {
     surplusStatus: '盈余',
     surplusAmount: '盈余金额',
   },
+  nonMoe: {
+    log: '不萌记录',
+    title: '这里记录了迄今为止所有被处罚的记录，希望大家不要这样做',
+    reason: '原因',
+    consequence: '后果',
+    moemoepoint: '萌萌点'
+  },
 }

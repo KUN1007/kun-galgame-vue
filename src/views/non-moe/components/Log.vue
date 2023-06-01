@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { log } from '../log'
+import { log } from './log'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import { log } from '../log'
     <!-- 原因 -->
     <div class="reason">{{ kun.reason }}</div>
     <!-- 后果 -->
-    <div class="result">萌萌点 - {{ kun.result }}</div>
+    <div class="result">{{ $t('nonMoe.moemoepoint') }} - {{ kun.result }}</div>
   </div>
 </template>
 

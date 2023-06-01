@@ -12,24 +12,17 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     <!-- 内容区容器 -->
     <div class="container">
       <!-- 页面标题 -->
-      <div class="title">不萌记录</div>
+      <div class="title">{{ $t('nonMoe.log') }}</div>
       <!-- 文章部分 -->
       <div class="article">
         <!-- 文章标题 -->
         <div class="article-title">
-          这里记录了迄今为止所有被处罚的记录，希望大家不要这样做
+          {{ $t('nonMoe.title') }}
         </div>
         <!-- 内容区容器 -->
         <div class="content">
-          <!-- 原因、处理方式 -->
-          <div class="log-title">
-            <span>原因</span>
-            <span>后果</span>
-          </div>
-          <div>
-            <!-- 所有的记录 -->
-            <Log />
-          </div>
+          <!-- 所有的记录 -->
+          <Log />
         </div>
       </div>
     </div>
@@ -72,7 +65,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   /* 字体竖直方向分布 */
   font-size: 30px;
   padding: 30px;
-  width: 30px;
+  width: 100px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,7 +76,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 /* 文章部分 */
 .article {
-  width: 90%;
+  width: 600px;
+  flex-shrink: 0;
   background-color: $kungalgame-trans-white-3;
   border-left: 1px solid $kungalgame-red-4;
   display: flex;
@@ -102,30 +98,16 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   overflow-y: scroll;
   padding: 0 10px;
   box-sizing: border-box;
-}
-/* 滚动条的样式 */
-.content::-webkit-scrollbar {
-  display: inline;
-  width: 4px;
-  height: 0;
-  background-color: $kungalgame-red-2;
-  border-radius: 2px;
-}
-.content::-webkit-scrollbar-thumb {
-  background: $kungalgame-blue-4;
-  border-radius: 2px;
-}
-/* 原因、处理方式 */
-.log-title {
-  top: 0;
-  padding-top: 20px;
-  height: 40px;
-  /* 相对于标题粘滞定位 */
-  position: sticky;
-  display: flex;
-  justify-content: space-between;
-}
-.copyright {
-  margin: 10px auto;
+  &::-webkit-scrollbar {
+    display: inline;
+    width: 4px;
+    height: 0;
+    background-color: $kungalgame-red-2;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $kungalgame-blue-4;
+    border-radius: 2px;
+  }
 }
 </style>
