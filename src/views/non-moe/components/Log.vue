@@ -1,14 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { log } from '../log'
+</script>
 
 <template>
   <!-- 单个记录 -->
-  <div class="log">
+  <div class="log" v-for="kun in log" :key="kun.index">
     <!-- 原因 -->
-    <div class="reason">
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-    </div>
+    <div class="reason">{{ kun.reason }}</div>
     <!-- 后果 -->
-    <div class="result">萌萌点 - 1007</div>
+    <div class="result">萌萌点 - {{ kun.result }}</div>
   </div>
 </template>
 

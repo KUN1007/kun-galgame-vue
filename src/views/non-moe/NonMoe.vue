@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import { currBackground } from '@/hooks/useBackgroundPicture'
-import SingleLog from './components/SingleLog.vue'
+import Log from './components/Log.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
@@ -27,7 +27,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
             <span>后果</span>
           </div>
           <div>
-            <SingleLog />
+            <!-- 所有的记录 -->
+            <Log />
           </div>
         </div>
       </div>
