@@ -20,6 +20,9 @@ export default {
       recover: '恢复所有设置为默认',
     },
   },
+  back: {
+    back: '返回',
+  },
   mainPage: {
     asideActive: {
       fold: '折叠左侧区域',
@@ -28,7 +31,7 @@ export default {
       balance: '收支公示',
       ranking: '排行榜单',
       bylaw: '执行条例',
-      contacts: '加入我们',
+      contact: '加入我们',
       nonMoe: '不萌记录',
       hot: `今日热门话题`,
       new: `今日最新话题`,
@@ -69,6 +72,9 @@ export default {
     title: '这里记录了迄今为止所有被处罚的记录，希望大家不要这样做',
     reason: '原因',
     consequence: '后果',
-    moemoepoint: '萌萌点'
+    moemoepoint: '萌萌点',
+  },
+  contact: {
+    title: '加入 / 联系我们',
   },
 }

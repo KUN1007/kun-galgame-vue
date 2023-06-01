@@ -15,7 +15,7 @@ const asideBarItem: asideBar[] = [
   { index: 3, name: '更新日志', router: '/update-log' },
   { index: 4, name: '收支公示', router: '/balance' },
   { index: 5, name: '不萌记录', router: '/non-moe' },
-  { index: 6, name: '加入我们', router: '/contacts' },
+  { index: 6, name: '加入我们', router: '/contact' },
   { index: 7, name: '感谢名单', router: '/thanks-list' },
   { index: 8, name: '赞助我们', router: '/donate' },
   { index: 9, name: '返回主页', router: '/' },

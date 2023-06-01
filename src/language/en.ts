@@ -20,6 +20,9 @@ export default {
       recover: 'Recover all settings to default',
     },
   },
+  back: {
+    back: 'Back',
+  },
   mainPage: {
     asideActive: {
       fold: 'Fold Aside',
@@ -28,7 +31,7 @@ export default {
       balance: 'P & L',
       ranking: 'Ranking',
       bylaw: 'Bylaw',
-      contacts: 'Join Us',
+      contact: 'Join Us',
       nonMoe: 'Non-moe',
       hot: `Today's Hot Topic`,
       new: `Today's New Topic`,
@@ -69,6 +72,9 @@ export default {
     title: 'All the non-moe behavior were recorded here, please do not do that',
     reason: 'reason',
     consequence: 'consequence',
-    moemoepoint: 'moemoepoint'
+    moemoepoint: 'moemoepoint',
+  },
+  contact: {
+    title: 'Join / Contact Us',
   },
 }
