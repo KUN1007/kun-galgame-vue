@@ -44,7 +44,8 @@ export const createPermission = (router: Router) => {
       if (router.hasRoute(to.name as string)) {
         next()
       } else {
-        next(getRoute[0])
+        // 回到主页
+        next(getRoute[3])
       }
       return
     }

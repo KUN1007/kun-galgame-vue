@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SingleTopic from './SingleTopic.vue'
+import SingleTopic from '../components/SingleTopic.vue'
 </script>
 
 <template>

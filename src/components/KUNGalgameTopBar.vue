@@ -244,7 +244,8 @@ $navNumber: v-bind(navItemNum);
 
 /* 设置面板 */
 .settings-panel {
-  z-index: 1;
+  /* 永远在其它页面之上 */
+  z-index: 9999;
 }
 
 @media (max-width: 1000px) {

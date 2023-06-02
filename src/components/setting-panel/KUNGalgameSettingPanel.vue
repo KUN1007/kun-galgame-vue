@@ -120,7 +120,6 @@ const handleRecover = () => {
   backdrop-filter: blur(5px);
   box-shadow: $shadow;
   border-radius: 10px;
-  z-index: 1007;
   display: flex;
 }
 .container {
