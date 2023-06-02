@@ -1,20 +1,54 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface nav {
+  index: number
+  name: string
+  router: string
+}
+
+const navBar: nav[] = [
+  {
+    index: 1,
+    name: '个人信息',
+    router: '/kungalgamer/info',
+  },
+  {
+    index: 2,
+    name: '邮箱密码',
+    router: '/kungalgamer/password',
+  },
+  {
+    index: 3,
+    name: '发过的帖',
+    router: '/kungalgamer/topic',
+  },
+  {
+    index: 4,
+    name: '回过的贴',
+    router: '/kungalgamer/topic',
+  },
+  {
+    index: 5,
+    name: '赞过的帖',
+    router: '/kungalgamer/topic',
+  },
+  {
+    index: 6,
+    name: '推过的帖',
+    router: '/kungalgamer/topic',
+  },
+]
+</script>
 
 <template>
   <!-- 左侧交互区 -->
   <div class="nav">
     <!-- 交互区的单个项目 -->
     <ul>
-      <li><RouterLink to="/kungalgamer/info">个人信息</RouterLink></li>
-      <li>
-        <RouterLink to="/kungalgamer/password">邮箱密码</RouterLink>
+      <li v-for="kun in navBar" :key="kun.index">
+        <KeepAlive>
+          <router-link :to="kun.router">{{ kun.name }}</router-link>
+        </KeepAlive>
       </li>
-      <li>
-        <RouterLink to="/kungalgamer/topic">发过的帖</RouterLink>
-      </li>
-      <li>回过的贴</li>
-      <li>赞过的帖</li>
-      <li>推过的帖</li>
     </ul>
   </div>
 </template>
@@ -31,24 +65,26 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-}
-/* 左侧交互区的无需列表容器 */
-.nav > ul {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-/* 列表中的单个项目 */
-.nav > ul li {
-  height: 40px;
-  background-color: $kungalgame-trans-blue-0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* 单个项目的 hover */
-.nav > ul li:hover {
-  background-color: $kungalgame-trans-blue-4;
-  transition: 0.1s;
+  & > ul {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    li {
+      height: 40px;
+      background-color: $kungalgame-trans-blue-0;
+      display: flex;
+      &:hover {
+        background-color: $kungalgame-trans-blue-4;
+        transition: 0.1s;
+      }
+      a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
 }
 </style>

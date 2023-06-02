@@ -31,7 +31,8 @@ const kungalgamer: KUNRouteType[] = [
         },
       },
       {
-        name: 'Topic',
+        // 所有路由的命名是不能重复的！！！！
+        name: 'KUNGalgamerTopic',
         path: 'topic',
         component: () => import('@/views/kungalgamer/content/Topic.vue'),
         meta: {
