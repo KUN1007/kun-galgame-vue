@@ -6,6 +6,7 @@ const kungalgamer: KUNRouteType[] = [
     name: 'KUNGalgamer',
     path: '/kungalgamer',
     component: () => import('@/views/kungalgamer/KUNGalgamer.vue'),
+    redirect: '/kungalgamer/info',
     meta: {
       permission: 'kungalgamer',
       title: '用户页',

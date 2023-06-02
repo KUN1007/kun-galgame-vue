@@ -15,14 +15,14 @@ export const createPermission = (router: Router) => {
     const getRoute = asyncRoutes
 
     // 白名单
-    if (to.name && WHITE_LIST.includes(<string>to.name)) {
+    if (to.name && WHITE_LIST.includes(to.name as string)) {
       next()
       return
     }
 
     // 没有token
     if (!unref(token)) {
-      if (!to?.meta?.permission && getRoute.length > 0) {
+      if (!to.meta?.permission && getRoute.length > 0) {
         next()
         return
       }
@@ -41,7 +41,7 @@ export const createPermission = (router: Router) => {
 
     // 是否已经挂载过路由
     if (getRoute.length > 0) {
-      if (router.hasRoute(<string>to.name)) {
+      if (router.hasRoute(to.name as string)) {
         next()
       } else {
         next(getRoute[0])
@@ -53,8 +53,6 @@ export const createPermission = (router: Router) => {
     routeList.forEach((route: KUNRouteType) => {
       router.addRoute(route)
     })
-
-    console.log(routeList)
 
     let redirectPath = (from.query.redirect || to.path) as string
     if (redirectPath === '/') {

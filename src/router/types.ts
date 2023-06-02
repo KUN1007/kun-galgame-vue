@@ -14,7 +14,7 @@ export interface MetaType extends RouteMeta {
 }
 
 export interface KUNRouteType extends Omit<RouteRecordRaw, 'props'> {
-  name: string
+  name?: string
   component?: Component | string
   components?: Component
   children?: KUNRouteType[]

@@ -20,9 +20,9 @@ export const currBackground = computed(() => {
   ) {
     return 'none'
   } else if (showKUNGalgameBackground.value === '1007') {
-    return `url(${showKUNGalgameCustomBackground.value})`
+    return `/url(${showKUNGalgameCustomBackground.value})`
   } else {
     // TODO: 替换为后端接口
-    return `url(src/assets/images/bg/bg${showKUNGalgameBackground.value}.png)`
+    return `url(/src/assets/images/bg/bg${showKUNGalgameBackground.value}.png)`
   }
 })

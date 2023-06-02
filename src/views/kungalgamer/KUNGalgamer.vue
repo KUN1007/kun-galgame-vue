@@ -32,8 +32,10 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
         <div class="nav">
           <!-- 交互区的单个项目 -->
           <ul>
-            <li>个人信息</li>
-            <li>邮箱密码</li>
+            <li><RouterLink to="/kungalgamer/info">个人信息</RouterLink></li>
+            <li>
+              <RouterLink to="/kungalgamer/password">邮箱密码</RouterLink>
+            </li>
             <li>发过的贴</li>
             <li>回过的贴</li>
             <li>赞过的帖</li>
