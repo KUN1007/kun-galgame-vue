@@ -17,7 +17,7 @@ const kungalgamer: KUNRouteType[] = [
         path: 'info',
         component: () => import('@/views/kungalgamer/content/Info.vue'),
         meta: {
-          title: 'KUN',
+          title: 'KUN | info',
           permission: 'kun',
         },
       },
@@ -26,16 +26,16 @@ const kungalgamer: KUNRouteType[] = [
         path: 'password',
         component: () => import('@/views/kungalgamer/content/Password.vue'),
         meta: {
-          title: 'KUN',
+          title: 'KUN | password',
           permission: 'kun',
         },
       },
       {
-        name: 'CreatedTopic',
-        path: 'created',
+        name: 'Topic',
+        path: 'topic',
         component: () => import('@/views/kungalgamer/content/Topic.vue'),
         meta: {
-          title: 'KUN',
+          title: 'KUN | topic',
           permission: 'kun',
         },
       },

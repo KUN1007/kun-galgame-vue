@@ -62,14 +62,14 @@ const RedirectRoute: KUNRouteType = {
 }
 
 // KUNGalgame 404
-const ErrorRoute = {
-  name: '404',
-  path: '/:path(.*)*',
-  component: () => import('@/views/404/404.vue'),
-  meta: {
-    title: '404',
-  },
-}
+// const ErrorRoute = {
+//   name: '404',
+//   path: '/:path(.*)*',
+//   component: () => import('@/views/404/404.vue'),
+//   meta: {
+//     title: '404',
+//   },
+// }
 
 // KUNGalgame 403 TODO:
 const ForbiddenRoute = {
@@ -122,7 +122,7 @@ export const noCertRoutes = [
   LicenceRoute,
   PrivacyRoute,
   RedirectRoute,
-  ErrorRoute,
+  // ErrorRoute,
   ForbiddenRoute,
 ]
 
