@@ -28,12 +28,12 @@ interface topBar {
   router: string
 }
 
-// 顶部导航栏的项目
+// 顶部导航栏的项目（这里一定要加上 '/' 不然子路由会出问题！！！）
 const topBarItem: topBar[] = [
   { index: 1, name: 'pool', router: '/pool' },
-  { index: 2, name: 'create', router: 'edit' },
-  { index: 3, name: 'technique', router: 'technique' },
-  { index: 4, name: 'about', router: 'kungalgame' },
+  { index: 2, name: 'create', router: '/edit' },
+  { index: 3, name: 'technique', router: '/technique' },
+  { index: 4, name: 'about', router: '/kungalgame' },
   { index: 5, name: 'return', router: '/' },
 ]
 
