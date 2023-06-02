@@ -166,18 +166,20 @@ import Aside from './components/Aside.vue'
               >不萌记录</span
             >》
           </p>
+          <br />
+          <br />
         </div>
         <!-- 版权 -->
-        <KUNGalgameFooter
-          style="
-            width: 100%;
-            position: absolute;
-            bottom: 1%;
-            display: flex;
-            justify-content: center;
-          "
-        />
       </div>
+      <KUNGalgameFooter
+        style="
+          width: 100%;
+          position: relative;
+          bottom: -3%;
+          display: flex;
+          justify-content: center;
+        "
+      />
     </div>
   </div>
 </template>
@@ -187,24 +189,24 @@ import Aside from './components/Aside.vue'
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-width: 1000px;
-  min-height: 2700px;
+  height: 1500px;
 }
 /* 内容区容器 */
 .content-container {
   background-color: $kungalgame-trans-white-2;
-  backdrop-filter: blur(5px);
   border-radius: 7px;
   /* 固定高度 */
-  height: 2600px;
+  height: 1200px;
   width: 90%;
+  max-width: 1300px;
   /* 居中 */
-  margin: 0 auto;
+  margin: auto;
   padding: 7px;
 }
 /* 内容区 */
 .content {
   height: 100%;
+  overflow-y: scroll;
   border: 1px solid $kungalgame-blue-4;
   border-radius: 7px;
   display: flex;
