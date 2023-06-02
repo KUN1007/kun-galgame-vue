@@ -109,10 +109,12 @@ onBeforeMount(() => {
       enter-active-class="animate__animated animate__jackInTheBox animate__faster"
       leave-active-class="animate__animated animate__fadeOutRight animate__faster"
     >
-      <KUNGalgameSettingsPanel
-        v-if="showKUNGalgamePanel"
-        :isTopicPage="isTopicPage"
-      />
+      <KeepAlive>
+        <KUNGalgameSettingsPanel
+          v-if="showKUNGalgamePanel"
+          :isTopicPage="isTopicPage"
+        />
+      </KeepAlive>
     </transition>
   </div>
 </template>
