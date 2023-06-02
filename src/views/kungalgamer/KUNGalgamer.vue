@@ -61,11 +61,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   /* 用户页面的所有字体颜色 */
   color: $kungalgame-font-color-3;
 }
-/* 
-
-内容区
-
-*/
 .content {
   /* 使帖子不溢出 */
   height: 1px;

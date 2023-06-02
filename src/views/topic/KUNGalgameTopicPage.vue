@@ -33,8 +33,6 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-  font-family: PingFang SC, HarmonyOS_Regular, Helvetica Neue, Microsoft YaHei,
-    sans-serif;
 }
 /* 下面帖子详情区的容器 */
 .topic-wrapper {

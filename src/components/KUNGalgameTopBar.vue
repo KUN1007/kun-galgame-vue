@@ -41,7 +41,7 @@ const topBarItem: topBar[] = [
 let topicStyle = {}
 
 // 接受父组件的传值
-const props = defineProps(['isMainPage', 'isTopicPage'])
+const props = defineProps(['isMainPage', 'isTopicPage', 'isAboutPage'])
 
 const isMain = props.isMainPage
 const isTopicPage = props.isTopicPage

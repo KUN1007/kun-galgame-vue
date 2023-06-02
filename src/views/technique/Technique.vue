@@ -38,15 +38,6 @@ import Aside from './components/Aside.vue'
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
   height: 1500px;
   display: flex;
@@ -55,8 +46,6 @@ import Aside from './components/Aside.vue'
   background-position: center;
   background-size: cover;
   min-width: 800px;
-  font-family: 'adobe-clean', 'Source Sans Pro', -apple-system,
-    'BlinkMacSystemFont', 'Segoe UI,Roboto', sans-serif;
 }
 /* 内容区 */
 .content {
