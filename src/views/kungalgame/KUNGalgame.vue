@@ -2,24 +2,10 @@
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 // 导入背景图片
 import { currBackground } from '@/hooks/useBackgroundPicture'
-
-interface asideBar {
-  index: number
-  name: string
-  router: string
-}
-
-const asideBarItem: asideBar[] = [
-  { index: 1, name: '隐私政策', router: '/privacy' },
-  { index: 2, name: '执行条例', router: '/bylaw' },
-  { index: 3, name: '更新日志', router: '/update-log' },
-  { index: 4, name: '收支公示', router: '/balance' },
-  { index: 5, name: '不萌记录', router: '/non-moe' },
-  { index: 6, name: '加入我们', router: '/contact' },
-  { index: 7, name: '感谢名单', router: '/thanks-list' },
-  { index: 8, name: '赞助我们', router: '/donate' },
-  { index: 9, name: '返回主页', router: '/' },
-]
+// 导入 Footer
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+// 导入 Aside
+import Aside from './components/Aside.vue'
 </script>
 
 <template>
@@ -30,20 +16,7 @@ const asideBarItem: asideBar[] = [
     <div class="content-container">
       <!-- 内容区 -->
       <div class="content">
-        <!-- 侧边的文章结构索引 -->
-        <div class="aside">
-          <div>KUNGalgame</div>
-          <ul>
-            <li>网站简介</li>
-            <li>运营理念</li>
-            <li>论坛规定</li>
-            <li class="skip" v-for="kun in asideBarItem" :key="kun.index">
-              <router-link style="color: #218bff" :to="{ path: kun.router }">{{
-                kun.name
-              }}</router-link>
-            </li>
-          </ul>
-        </div>
+        <Aside />
         <!-- 文章容器 -->
         <div class="article">
           <h1>关于我们</h1>
@@ -195,29 +168,22 @@ const asideBarItem: asideBar[] = [
           </p>
         </div>
         <!-- 版权 -->
-        <div class="copyright">
-          <span
-            >Copyright © 2023 KUNgalgame All rights reserved | Version
-            0.01</span
-          >
-        </div>
+        <KUNGalgameFooter
+          style="
+            width: 100%;
+            position: absolute;
+            bottom: 1%;
+            display: flex;
+            justify-content: center;
+          "
+        />
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
-  height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -235,8 +201,6 @@ const asideBarItem: asideBar[] = [
   /* 居中 */
   margin: 0 auto;
   padding: 7px;
-  /* 相对于版权定位 */
-  position: relative;
 }
 /* 内容区 */
 .content {
@@ -245,44 +209,6 @@ const asideBarItem: asideBar[] = [
   border-radius: 7px;
   display: flex;
   box-shadow: $shadow;
-}
-/* 侧边的文章结构索引 */
-.aside {
-  width: 122px;
-  height: 100%;
-  flex-shrink: 0;
-  border-right: 1px solid $kungalgame-blue-4;
-}
-/* 侧边的标题 */
-.aside > div {
-  /* 固定高度 */
-  height: 50px;
-  /* 字体设置 */
-  font-size: 17px;
-  font-weight: bold;
-  /* 居中 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* 侧边总体的列表 */
-.aside > ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-/* 侧边的单个项目 */
-.aside > ul > li {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-/* 单个项目的 hover */
-.aside > ul > li:hover {
-  background-color: $kungalgame-trans-blue-2;
 }
 /* 文章区距离侧边的距离 */
 .article {
@@ -337,13 +263,5 @@ a {
 .list > li {
   list-style: inside;
   text-indent: 4em;
-}
-/* 版权 */
-.copyright {
-  width: 100%;
-  position: absolute;
-  bottom: 1%;
-  display: flex;
-  justify-content: center;
 }
 </style>

@@ -74,7 +74,7 @@ const navBar: nav[] = [
       background-color: $kungalgame-trans-blue-0;
       display: flex;
       &:hover {
-        background-color: $kungalgame-trans-blue-4;
+        background-color: $kungalgame-trans-red-2;
         transition: 0.1s;
       }
       a {
@@ -83,6 +83,7 @@ const navBar: nav[] = [
         display: flex;
         justify-content: center;
         align-items: center;
+        color: $kungalgame-blue-4;
       }
     }
   }
