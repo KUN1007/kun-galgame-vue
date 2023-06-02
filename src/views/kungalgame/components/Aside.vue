@@ -42,6 +42,8 @@ const asideBarItem: asideBar[] = [
   height: 100%;
   flex-shrink: 0;
   border-right: 1px solid $kungalgame-blue-4;
+  position: sticky;
+  top: 0;
   /* 侧边的标题 */
   & > div {
     /* 固定高度 */

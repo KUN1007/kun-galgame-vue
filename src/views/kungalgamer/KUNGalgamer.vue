@@ -67,4 +67,16 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   flex-grow: 1;
   display: flex;
 }
+/* 滚动条的样式 */
+.article::-webkit-scrollbar {
+  display: inline;
+  width: 4px;
+  height: 0;
+  background-color: $kungalgame-red-2;
+  border-radius: 2px;
+}
+.article::-webkit-scrollbar-thumb {
+  background: $kungalgame-blue-4;
+  border-radius: 2px;
+}
 </style>
