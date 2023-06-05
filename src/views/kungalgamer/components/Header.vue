@@ -51,9 +51,9 @@
     position: absolute;
     right: 0;
     font-size: 100px;
-    color: var(--kungalgame-trans-white-6);
+    color: var(--kungalgame-trans-white-5);
     font-style: italic;
-    text-shadow: 2px 2px 2px var(--kungalgame-trans-white-8);
+    text-shadow: 2px 2px 2px var(--kungalgame-trans-white-5);
   }
 }
 /* 用户头像 */

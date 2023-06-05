@@ -37,8 +37,6 @@ import KUNgalgamer from './KUNGalgamer.vue'
   /* 字体设置 */
   font-size: 30px;
   color: var(--kungalgame-pink-4);
-  font-style: italic;
-  text-shadow: 2px 2px 4px var(--kungalgame-blue-0);
   height: 50px;
   display: flex;
   justify-content: center;
@@ -53,7 +51,7 @@ import KUNgalgamer from './KUNGalgamer.vue'
   cursor: pointer;
 }
 .kungalgamer-nav > div:hover {
-  background-color: var(--kungalgame-pink-1);
+  background-color: var(--kungalgame-trans-pink-2);
   transition: 0.2s;
 }
 /* 排行选择项 */

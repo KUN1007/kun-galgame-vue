@@ -94,7 +94,7 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 .kungalgame {
   position: absolute;
   bottom: 15%;
-  color: var(--kungalgame-trans-white-7);
+  color: var(--kungalgame-trans-white-5);
   text-shadow: 2px 2px 3px var(--kungalgame-trans-blue-1);
   font-size: 60px;
   font-style: italic;

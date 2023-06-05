@@ -78,7 +78,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 .article {
   width: 600px;
   flex-shrink: 0;
-  background-color: var(--kungalgame-trans-white-3);
+  background-color: var(--kungalgame-trans-white-5);
   border-left: 1px solid var(--kungalgame-red-4);
   display: flex;
   flex-direction: column;

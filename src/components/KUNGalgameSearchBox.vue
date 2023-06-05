@@ -58,7 +58,7 @@ defineProps(['isMainPage'])
   border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
   &:hover {
-    background-color: var(--kungalgame-trans-white-2);
+    background-color: var(--kungalgame-trans-white-5);
     /* hover 时显示搜索历史 */
     & .history {
       display: flex;
@@ -88,7 +88,7 @@ defineProps(['isMainPage'])
   /* 搜索时输入的字体大小 */
   font-size: 16px;
   border: none;
-  background-color: var(--kungalgame-trans-white-8);
+  background-color: var(--kungalgame-trans-white-5);
   &::placeholder {
     color: var(--kungalgame-font-color-2);
   }
@@ -125,7 +125,7 @@ defineProps(['isMainPage'])
   /* 无 hover 时不显示搜索历史 */
   display: none;
   flex-direction: column;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-red-1);
   border-radius: 7px;
@@ -141,7 +141,7 @@ defineProps(['isMainPage'])
     font-size: 14px;
     &:nth-child(2) {
       cursor: pointer;
-      border-bottom: 1.5px solid var(--kungalgame-trans-white-2);
+      border-bottom: 1.5px solid var(--kungalgame-trans-white-5);
       &:hover {
         border-bottom: 1.5px solid var(--kungalgame-blue-4);
       }

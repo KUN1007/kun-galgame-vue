@@ -30,12 +30,12 @@
   height: 70px;
   border-radius: 50%;
   letter-spacing: 2px;
-  background: linear-gradient(var(--kungalgame-blue-1), var(--kungalgame-pink-1));
+  background: linear-gradient(var(--kungalgame-blue-1), var(--kungalgame-red-1));
   opacity: 0.8;
   font-size: 37px;
   font-weight: bold;
   font-style: oblique;
-  color: var(--kungalgame-pink-1);
+  color: var(--kungalgame-red-1);
   text-shadow: -1px 0 var(--kungalgame-blue-4), 0 -1px var(--kungalgame-blue-4),
     1px 0 var(--kungalgame-blue-4), 0 1px var(--kungalgame-blue-4),
     1px 1px var(--kungalgame-black), -1px -1px var(--kungalgame-black),

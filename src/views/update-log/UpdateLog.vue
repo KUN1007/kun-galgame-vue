@@ -55,7 +55,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   position: relative;
   /* 居中 */
   margin: auto;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   border-radius: 7px;

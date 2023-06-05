@@ -82,7 +82,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   cursor: pointer;
 }
 .nav-article-sort-container:hover {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
 }
 .sort-container {
   width: 100%;
@@ -103,7 +103,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 }
 .sort-submenu > div {
   padding: 10px 0;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
   font-size: 14px;
   color: var(--kungalgame-font-color-3);
   text-decoration: none;
@@ -141,7 +141,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   box-sizing: border-box;
 }
 .nav-article-more-topic:hover {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
 }
 .nav-article-more-topic:active {
   background-color: var(--kungalgame-trans-red-3);

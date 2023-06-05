@@ -38,13 +38,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   /* 固定高度 */
   width: 90%;
   height: 800px;
-  /* 渐变背景色 */
-  background: linear-gradient(
-    var(--kungalgame-trans-pink-1),
-    var(--kungalgame-trans-blue-1)
-  );
   /* 调和背景色 */
-  background-color: var(--kungalgame-trans-white-4);
+  background-color: var(--kungalgame-trans-white-5);
   /* 模糊 */
   backdrop-filter: blur(5px);
   border: 1px solid var(--kungalgame-pink-4);
