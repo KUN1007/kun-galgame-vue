@@ -40,19 +40,19 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   height: 800px;
   /* 渐变背景色 */
   background: linear-gradient(
-    $kungalgame-trans-pink-1,
-    $kungalgame-trans-blue-1
+    var(--kungalgame-trans-pink-1),
+    var(--kungalgame-trans-blue-1)
   );
   /* 调和背景色 */
-  background-color: $kungalgame-trans-white-4;
+  background-color: var(--kungalgame-trans-white-4);
   /* 模糊 */
   backdrop-filter: blur(5px);
-  border: 1px solid $kungalgame-pink-4;
-  box-shadow: $shadow;
+  border: 1px solid var(--kungalgame-pink-4);
+  box-shadow: var(--shadow);
   border-radius: 7px;
   margin: auto;
   display: flex;
   padding: 10px;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
 }
 </style>

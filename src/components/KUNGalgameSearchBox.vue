@@ -50,15 +50,15 @@ defineProps(['isMainPage'])
   align-items: center;
   /* 页面缩小不换行 */
   white-space: nowrap;
-  background-color: $kungalgame-trans-blue-2;
+  background-color: var(--kungalgame-trans-blue-2);
   flex-grow: 2;
   /* 相对于二级菜单定位 */
   position: relative;
   display: flex;
-  border-bottom: 1px solid $kungalgame-trans-blue-4;
+  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
   &:hover {
-    background-color: $kungalgame-trans-white-2;
+    background-color: var(--kungalgame-trans-white-2);
     /* hover 时显示搜索历史 */
     & .history {
       display: flex;
@@ -88,9 +88,9 @@ defineProps(['isMainPage'])
   /* 搜索时输入的字体大小 */
   font-size: 16px;
   border: none;
-  background-color: $kungalgame-trans-white-8;
+  background-color: var(--kungalgame-trans-white-8);
   &::placeholder {
-    color: $kungalgame-font-color-2;
+    color: var(--kungalgame-font-color-2);
   }
 }
 /* 搜索按钮 */
@@ -99,7 +99,7 @@ defineProps(['isMainPage'])
   height: 40px;
   width: 40px;
   flex-shrink: 0;
-  border-left: 1px solid $kungalgame-trans-blue-4;
+  border-left: 1px solid var(--kungalgame-trans-blue-4);
   /* 搜索图标居中 */
   display: flex;
   justify-content: center;
@@ -108,10 +108,10 @@ defineProps(['isMainPage'])
   box-sizing: border-box;
   font-size: 18px;
   &:hover {
-    background-color: $kungalgame-red-2;
+    background-color: var(--kungalgame-red-2);
   }
   &:active {
-    background-color: $kungalgame-red-3;
+    background-color: var(--kungalgame-red-3);
   }
 }
 /* 搜索历史的容器 */
@@ -125,11 +125,11 @@ defineProps(['isMainPage'])
   /* 无 hover 时不显示搜索历史 */
   display: none;
   flex-direction: column;
-  background-color: $kungalgame-trans-white-2;
-  color: $kungalgame-font-color-3;
-  border: 1px solid $kungalgame-red-1;
+  background-color: var(--kungalgame-trans-white-2);
+  color: var(--kungalgame-font-color-3);
+  border: 1px solid var(--kungalgame-red-1);
   border-radius: 7px;
-  box-shadow: 0 1px 6px $kungalgame-gray-2;
+  box-shadow: 0 1px 6px var(--kungalgame-gray-2);
 }
 /* 搜索历史 title 的文字 */
 .title {
@@ -141,9 +141,9 @@ defineProps(['isMainPage'])
     font-size: 14px;
     &:nth-child(2) {
       cursor: pointer;
-      border-bottom: 1.5px solid $kungalgame-trans-white-2;
+      border-bottom: 1.5px solid var(--kungalgame-trans-white-2);
       &:hover {
-        border-bottom: 1.5px solid $kungalgame-blue-4;
+        border-bottom: 1.5px solid var(--kungalgame-blue-4);
       }
     }
   }
@@ -159,10 +159,10 @@ defineProps(['isMainPage'])
   & > div {
     padding: 7px 3px;
     margin: 2px 0;
-    background-color: $kungalgame-trans-gray-1;
+    background-color: var(--kungalgame-trans-gray-1);
     cursor: pointer;
     &:hover {
-      background-color: $kungalgame-trans-blue-1;
+      background-color: var(--kungalgame-trans-blue-1);
       & .delete {
         display: block;
       }
@@ -180,7 +180,7 @@ defineProps(['isMainPage'])
   right: 1%;
   font-size: medium;
   position: absolute;
-  color: $kungalgame-font-color-0;
+  color: var(--kungalgame-font-color-0);
   display: none;
 }
 </style>

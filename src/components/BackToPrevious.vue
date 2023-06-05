@@ -20,10 +20,10 @@ const msg = `< `
   position: absolute;
   bottom: 1%;
   left: 2%;
-  color: $kungalgame-font-color-0;
+  color: var(--kungalgame-font-color-0);
   cursor: pointer;
 }
 .return:hover {
-  color: $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4)
 }
 </style>

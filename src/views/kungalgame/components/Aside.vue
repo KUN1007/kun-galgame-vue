@@ -41,7 +41,7 @@ const asideBarItem: asideBar[] = [
   width: 122px;
   height: 100%;
   flex-shrink: 0;
-  border-right: 1px solid $kungalgame-blue-4;
+  border-right: 1px solid var(--kungalgame-blue-4);
   position: sticky;
   top: 0;
   /* 侧边的标题 */
@@ -74,9 +74,9 @@ const asideBarItem: asideBar[] = [
 }
 /* 跳转链接 */
 .skip {
-  border-bottom: 1.5px solid $kungalgame-blue-4;
+  border-bottom: 1.5px solid var(--kungalgame-blue-4);
   cursor: pointer;
-  color: $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
   a {
     width: 100%;
     height: 100%;
@@ -85,7 +85,7 @@ const asideBarItem: asideBar[] = [
     align-items: center;
     /* 单个项目的 hover */
     &:hover {
-      background-color: $kungalgame-trans-blue-2;
+      background-color: var(--kungalgame-trans-blue-2);
     }
   }
 }

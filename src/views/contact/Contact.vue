@@ -46,8 +46,8 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
   min-width: 500px;
   min-height: 500px;
   background: linear-gradient(
-    $kungalgame-trans-pink-1,
-    $kungalgame-trans-blue-1
+    var(--kungalgame-trans-pink-1),
+    var(--kungalgame-trans-blue-1)
   );
   display: flex;
 }
@@ -59,19 +59,19 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
   /* 居中 */
   margin: auto;
   position: relative;
-  background-color: $kungalgame-trans-blue-0;
-  border: 1px solid $kungalgame-trans-blue-4;
+  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
-  box-shadow: $kungalgame-shadow-0;
+  box-shadow: var(--kungalgame-shadow-0);
   /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
 }
 /* 内容区容器 hover */
 .container:hover {
-  box-shadow: $kungalgame-shadow-1;
+  box-shadow: var(--kungalgame-shadow-1);
   transition: 0.3s;
 }
 /* 页面的标题 */
@@ -94,14 +94,14 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 .kungalgame {
   position: absolute;
   bottom: 15%;
-  color: $kungalgame-trans-white-7;
-  text-shadow: 2px 2px 3px $kungalgame-trans-blue-1;
+  color: var(--kungalgame-trans-white-7);
+  text-shadow: 2px 2px 3px var(--kungalgame-trans-blue-1);
   font-size: 60px;
   font-style: italic;
   font-family: serif;
   cursor: pointer;
   &:hover {
-    color: $kungalgame-blue-4;
+    color: var(--kungalgame-blue-4);
     transition: 0.1s;
   }
 }
@@ -126,11 +126,11 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 .icon {
   font-size: 25px;
   height: 100%;
-  color: $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
   cursor: pointer;
   text-align: center;
   &:hover {
-    color: $kungalgame-red-4;
+    color: var(--kungalgame-red-4);
     transform: scale(1.2);
     transition: 0.1s;
   }

@@ -23,7 +23,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-bottom: 1px solid $kungalgame-blue-4;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
   &:first-child {
     margin-top: 10px;
   }

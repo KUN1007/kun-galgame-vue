@@ -46,9 +46,9 @@ defineProps(['isIncome'])
 /* 单条收入 */
 .log {
   margin-top: 20px;
-  border-bottom: 1px solid $kungalgame-blue-4;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
   .reason {
-    border-left: 5px solid $kungalgame-blue-4;
+    border-left: 5px solid var(--kungalgame-blue-4);
     padding-left: 5px;
   }
   .result {
@@ -62,17 +62,17 @@ defineProps(['isIncome'])
     /* 收入金额 */
     .amount {
       padding: 0 5px;
-      background-color: $kungalgame-blue-2;
+      background-color: var(--kungalgame-blue-2);
     }
   }
 }
 .expenditure-log {
-  border-bottom: 1px solid $kungalgame-red-4;
+  border-bottom: 1px solid var(--kungalgame-red-4);
   .reason {
-    border-left: 5px solid $kungalgame-red-4;
+    border-left: 5px solid var(--kungalgame-red-4);
   }
   .result .amount {
-    background-color: $kungalgame-red-2;
+    background-color: var(--kungalgame-red-2);
   }
 }
 </style>

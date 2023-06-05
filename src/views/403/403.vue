@@ -19,8 +19,8 @@
   min-width: 700px;
   min-height: 600px;
   background: linear-gradient(
-    $kungalgame-trans-pink-1,
-    $kungalgame-trans-blue-1
+    var(--kungalgame-trans-pink-1),
+    var(--kungalgame-trans-blue-1)
   );
   display: flex;
   flex-direction: column;
@@ -39,19 +39,19 @@ p {
 p:first-child {
   font-size: 50px;
   font-weight: bold;
-  color: $kungalgame-red-5;
+  color: var(--kungalgame-red-5);
 }
 button {
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   width: 200px;
   height: 30px;
   font-size: 17px;
-  background-color: $kungalgame-trans-blue-1;
+  background-color: var(--kungalgame-trans-blue-1);
   cursor: pointer;
 }
 button:hover {
-  background-color: $kungalgame-blue-4;
-  color: $kungalgame-white;
+  background-color: var(--kungalgame-blue-4);
+  color: var(--kungalgame-white);
   transition: 0.2s;
 }
 </style>

@@ -26,11 +26,11 @@ import SingleTopic from '../components/SingleTopic.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
   border-radius: 2px;
 }
 .article::-webkit-scrollbar-thumb {
-  background: $kungalgame-blue-4;
+  background: var(--kungalgame-blue-4);
   border-radius: 2px;
 }
 </style>

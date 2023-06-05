@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
 /* 编辑器的样式 */
 .editor—wrapper {
   /* 编辑器的 border */
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   box-sizing: border-box;
   /* 编辑器的宽度 */
   width: 97%;
@@ -161,7 +161,7 @@ onBeforeUnmount(() => {
   z-index: 1008; /* 按需定义 */
 }
 .toolbar-container {
-  border-bottom: 1px solid $kungalgame-blue-4;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
 }
 /* 编辑器编辑部分 */
 .editor-container {

@@ -36,8 +36,8 @@
   min-width: 500px;
   min-height: 500px;
   background: linear-gradient(
-    $kungalgame-trans-pink-1,
-    $kungalgame-trans-blue-1
+    var(--kungalgame-trans-pink-1),
+    var(--kungalgame-trans-blue-1)
   );
   display: flex;
   flex-direction: column;
@@ -51,15 +51,15 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  background-color: $kungalgame-trans-blue-0;
-  box-shadow: $kungalgame-shadow-0;
+  background-color: var(--kungalgame-trans-blue-0);
+  box-shadow: var(--kungalgame-shadow-0);
   padding: 20px;
   box-sizing: border-box;
   position: relative;
   border-radius: 7px;
 }
 .container:hover {
-  box-shadow: $kungalgame-shadow-1;
+  box-shadow: var(--kungalgame-shadow-1);
   transition: 0.3s;
 }
 .title {
@@ -73,7 +73,7 @@
   font-size: 30px;
 }
 .warning span {
-  color: $kungalgame-red-5;
+  color: var(--kungalgame-red-5);
 }
 /* 按钮的样式 */
 .btn {
@@ -83,21 +83,21 @@
   a {
     padding: 7px 10px;
     &:nth-child(1) {
-      background-color: $kungalgame-trans-red-0;
-      color: $kungalgame-red-5;
-      border: 1px solid $kungalgame-red-4;
+      background-color: var(--kungalgame-trans-red-0);
+      color: var(--kungalgame-red-5);
+      border: 1px solid var(--kungalgame-red-4);
       cursor: pointer;
       &:hover {
-        background-color: $kungalgame-red-1;
+        background-color: var(--kungalgame-red-1);
       }
     }
     &:nth-child(2) {
-      background-color: $kungalgame-trans-blue-1;
-      color: $kungalgame-blue-5;
-      border: 1px solid $kungalgame-blue-4;
+      background-color: var(--kungalgame-trans-blue-1);
+      color: var(--kungalgame-blue-5);
+      border: 1px solid var(--kungalgame-blue-4);
       cursor: pointer;
       &:hover {
-        background-color: $kungalgame-trans-blue-2;
+        background-color: var(--kungalgame-trans-blue-2);
       }
     }
   }

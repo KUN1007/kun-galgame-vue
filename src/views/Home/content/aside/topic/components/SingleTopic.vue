@@ -31,15 +31,15 @@ const isHotTopic = props.isHotTopic
   /* 设置空白左右居中 */
   justify-content: space-between;
   height: 100%;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   align-items: center;
   cursor: pointer;
   /* 单个新帖子的 hover */
   &:hover {
-    box-shadow: $kungalgame-shadow-1;
+    box-shadow: var(--kungalgame-shadow-1);
   }
   &:active {
-    box-shadow: $kungalgame-shadow-2;
+    box-shadow: var(--kungalgame-shadow-2);
   }
 }
 /* 单个帖子的标题样式 */
@@ -61,13 +61,13 @@ const isHotTopic = props.isHotTopic
   white-space: nowrap;
   align-items: center;
   /* 设置 fa 图标字体的颜色 */
-  color: $kungalgame-purple-4;
+  color: var(--kungalgame-purple-4);
   span {
     width: 36px;
     font-size: xx-small;
     /* 右侧区域距离最右侧的距离 */
     margin-left: 5px;
-    color: $kungalgame-font-color-3;
+    color: var(--kungalgame-font-color-3);
   }
 }
 
@@ -78,12 +78,12 @@ const isHotTopic = props.isHotTopic
   display: flex;
   white-space: nowrap;
   align-items: center;
-  color: $kungalgame-red-4;
+  color: var(--kungalgame-red-4);
   span {
     width: 38px;
     font-size: small;
     margin-left: 5px;
-    color: $kungalgame-font-color-3;
+    color: var(--kungalgame-font-color-3);
   }
 }
 </style>

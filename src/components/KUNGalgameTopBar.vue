@@ -125,10 +125,10 @@ onBeforeMount(() => {
   /* 头部高度 */
   height: 58px;
   /* 头部下方阴影 */
-  box-shadow: 0 2px 4px 0 $kungalgame-trans-blue-1;
+  box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
   /* 头部背景 */
   backdrop-filter: blur(5px);
-  background-color: $kungalgame-trans-white-5;
+  background-color: var(--kungalgame-trans-white-5);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -152,7 +152,7 @@ onBeforeMount(() => {
   span {
     margin-left: 20px;
     margin-right: 7px;
-    color: $kungalgame-font-color-3;
+    color: var(--kungalgame-font-color-3);
     font-weight: bold;
     cursor: pointer;
   }
@@ -181,7 +181,7 @@ $navNumber: v-bind(navItemNum);
     a {
       // 转变 a 标签为块级元素
       display: block;
-      color: $kungalgame-blue-5;
+      color: var(--kungalgame-blue-5);
       width: 100%;
       height: 100%;
     }
@@ -192,31 +192,31 @@ $navNumber: v-bind(navItemNum);
       line-height: 58px;
       width: 100%;
       &:hover {
-        background-color: $kungalgame-blue-0;
+        background-color: var(--kungalgame-blue-0);
         border-radius: 2px;
         transition: 0.5s;
       }
       &:nth-child(1):hover ~ .top-bar-box {
-        background-color: $kungalgame-red-3;
+        background-color: var(--kungalgame-red-3);
         left: calc(100% / $navNumber * 0);
       }
 
       &:nth-child(2):hover ~ .top-bar-box {
-        background-color: $kungalgame-yellow-3;
+        background-color: var(--kungalgame-yellow-3);
         left: calc(100% / $navNumber * 1);
       }
 
       &:nth-child(3):hover ~ .top-bar-box {
-        background-color: $kungalgame-blue-3;
-        left: calc(100% / $navNumber * 2);
+        background-color: var(--kungalgame-blue-3);
+        left: calc(100% / navNumber * 2);
       }
 
       &:nth-child(4):hover ~ .top-bar-box {
-        background-color: $kungalgame-green-3;
+        background-color: var(--kungalgame-green-3);
         left: calc(100% / $navNumber * 3);
       }
       &:nth-child(5):hover ~ .top-bar-box {
-        background-color: $kungalgame-purple-3;
+        background-color: var(--kungalgame-purple-3);
         left: calc(100% / $navNumber * 4);
       }
     }
@@ -236,7 +236,7 @@ $navNumber: v-bind(navItemNum);
     position: relative;
   }
   > span {
-    color: $kungalgame-font-color-2;
+    color: var(--kungalgame-font-color-2);
     font-size: 25px;
     margin-top: 10px;
     margin-right: 30px;

@@ -99,9 +99,9 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   height: 100%;
   margin: auto;
   /* 容器的阴影 */
-  box-shadow: $shadow;
-  background-color: $kungalgame-trans-white-2;
-  color: $kungalgame-font-color-3;
+  box-shadow: var(--shadow);
+  background-color: var(--kungalgame-trans-white-2);
+  color: var(--kungalgame-font-color-3);
 }
 /* 容器的顶部 */
 .content-header {
@@ -118,7 +118,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 }
 /* 帖子标题的输入框 */
 .topic-title input {
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
   /* 距离外轮廓的距离 */
   padding: 7px;
   /* 内边距盒子 */
@@ -126,12 +126,12 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   width: 100%;
   /* 标题输入字体大小 */
   font-size: 40px;
-  border: 1px solid $kungalgame-blue-4;
-  background-color: $kungalgame-trans-white-9;
+  border: 1px solid var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-white-9);
 }
 /* 标题输入框 focus 之后的样式 */
 .topic-title input:focus {
-  box-shadow: 0px 0px 5px $kungalgame-blue-4;
+  box-shadow: 0px 0px 5px var(--kungalgame-blue-4);
 }
 /* 内容区的底部样式 */
 .content-footer {
@@ -147,17 +147,17 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 }
 /* 标签输入框 */
 .tags-container input {
-  background-color: $kungalgame-trans-white-9;
+  background-color: var(--kungalgame-trans-white-9);
   /* 输入标签的字体 */
   font-size: 17px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   padding: 5px;
 }
 /* 标签输入框 focus */
 .tags-container input:focus {
-  box-shadow: 0px 0px 3px $kungalgame-blue-4;
+  box-shadow: 0px 0px 3px var(--kungalgame-blue-4);
 }
 .tags-info {
   margin: 10px 0;
@@ -174,11 +174,11 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   white-space: nowrap;
   font-size: 14px;
   padding: 3px;
-  background-color: $kungalgame-trans-blue-1;
+  background-color: var(--kungalgame-trans-blue-1);
   cursor: pointer;
 }
 .tags > span:hover {
-  background-color: $kungalgame-trans-red-1;
+  background-color: var(--kungalgame-trans-red-1);
 }
 /* 话题分类的容器 */
 .topic-group {
@@ -199,9 +199,9 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   width: 20%;
   font-size: 17px;
   cursor: pointer;
-  border: 1px solid $kungalgame-purple-4;
-  background-color: $kungalgame-trans-purple-1;
-  color: $kungalgame-purple-4;
+  border: 1px solid var(--kungalgame-purple-4);
+  background-color: var(--kungalgame-trans-purple-1);
+  color: var(--kungalgame-purple-4);
 }
 /* 按钮的容器 */
 .btn-container {
@@ -223,47 +223,47 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 }
 /* 确认按钮的样式 */
 .confirm-btn {
-  color: $kungalgame-blue-4;
-  background-color: $kungalgame-trans-blue-1;
-  border: 1px solid $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-blue-1);
+  border: 1px solid var(--kungalgame-blue-4);
 }
 .confirm-btn:hover {
-  color: $kungalgame-trans-white-1;
-  background-color: $kungalgame-blue-4;
+  color: var(--kungalgame-trans-white-1);
+  background-color: var(--kungalgame-blue-4);
   transition: 0.1s;
 }
 .confirm-btn:active {
-  background-color: $kungalgame-blue-2;
+  background-color: var(--kungalgame-blue-2);
   transform: scale(0.8);
 }
 /* 预览按钮的样式 */
 .preview-btn {
-  color: $kungalgame-red-4;
-  background-color: $kungalgame-trans-red-1;
-  border: 1px solid $kungalgame-red-4;
+  color: var(--kungalgame-red-4);
+  background-color: var(--kungalgame-trans-red-1);
+  border: 1px solid var(--kungalgame-red-4);
 }
 .preview-btn:hover {
-  color: $kungalgame-trans-white-1;
-  background-color: $kungalgame-red-4;
+  color: var(--kungalgame-trans-white-1);
+  background-color: var(--kungalgame-red-4);
   transition: 0.1s;
 }
 .preview-btn:active {
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
   transform: scale(0.8);
 }
 /* 保存按钮的样式 */
 .save-btn {
-  color: $kungalgame-orange-4;
-  background-color: $kungalgame-trans-orange-1;
-  border: 1px solid $kungalgame-orange-4;
+  color: var(--kungalgame-orange-4);
+  background-color: var(--kungalgame-trans-orange-1);
+  border: 1px solid var(--kungalgame-orange-4);
 }
 .save-btn:hover {
-  color: $kungalgame-trans-white-1;
-  background-color: $kungalgame-orange-4;
+  color: var(--kungalgame-trans-white-1);
+  background-color: var(--kungalgame-orange-4);
   transition: 0.1s;
 }
 .save-btn:active {
-  background-color: $kungalgame-orange-2;
+  background-color: var(--kungalgame-orange-2);
   transform: scale(0.8);
 }
 /* 版权 */

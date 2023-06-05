@@ -35,7 +35,7 @@
   flex-grow: 2;
   width: 100%;
   /* 头部的颜色 */
-  background-color: $kungalgame-trans-blue-0;
+  background-color: var(--kungalgame-trans-blue-0);
   align-items: center;
   span:nth-child(1) {
     font-family: serif;
@@ -51,9 +51,9 @@
     position: absolute;
     right: 0;
     font-size: 100px;
-    color: $kungalgame-trans-white-6;
+    color: var(--kungalgame-trans-white-6);
     font-style: italic;
-    text-shadow: 2px 2px 2px $kungalgame-trans-white-8;
+    text-shadow: 2px 2px 2px var(--kungalgame-trans-white-8);
   }
 }
 /* 用户头像 */
@@ -68,7 +68,7 @@
 .kungalgamer-avatar img {
   width: 140px;
   border-radius: 50%;
-  box-shadow: 0px 0px 2px 4px $kungalgame-trans-red-2;
+  box-shadow: 0px 0px 2px 4px var(--kungalgame-trans-red-2);
 }
 /* 头像的 hover */
 .kungalgamer-avatar img:hover {
@@ -82,7 +82,7 @@
     transform: scale(1.1);
   }
   80% {
-    box-shadow: 0px 0px 2px 7px $kungalgame-trans-red-2;
+    box-shadow: 0px 0px 2px 7px var(--kungalgame-trans-red-2);
   }
 }
 /* 用户萌萌点 */
@@ -90,8 +90,8 @@
   height: 1px;
   flex-grow: 1;
   /* 分割线 */
-  border-top: 2px solid $kungalgame-blue-4;
-  border-bottom: 1px solid $kungalgame-blue-4;
+  border-top: 2px solid var(--kungalgame-blue-4);
+  border-bottom: 1px solid var(--kungalgame-blue-4);
   /* 内 border 盒子 */
   box-sizing: border-box;
   display: flex;
@@ -103,7 +103,7 @@
   height: 100%;
   /* 这个数值会根据用户的萌萌点数增长，引起页面蓝色占比的变化 */
   width: 77%;
-  background-color: $kungalgame-trans-blue-2;
+  background-color: var(--kungalgame-trans-blue-2);
 }
 /* 萌萌点进度提示数字 */
 .moemoepoint span {

@@ -44,8 +44,8 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   /* 固定宽度 */
   width: 200px;
   height: 100%;
-  background-color: $kungalgame-trans-white-5;
-  border: 1px solid $kungalgame-trans-blue-4;
+  background-color: var(--kungalgame-trans-white-5);
+  border: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
   border-radius: 5px;
 }
@@ -53,8 +53,8 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 .aside-container {
   height: 100%;
   background: linear-gradient(
-    $kungalgame-trans-blue-1,
-    $kungalgame-trans-red-1
+    var(--kungalgame-trans-blue-1),
+    var(--kungalgame-trans-red-1)
   );
   display: flex;
   flex-direction: column;
@@ -70,13 +70,13 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   justify-content: center;
   align-items: center;
   font-size: 40px;
-  color: $kungalgame-blue-3;
+  color: var(--kungalgame-blue-3);
   font-style: italic;
-  text-shadow: 1px 1px 3px $kungalgame-red-4;
+  text-shadow: 1px 1px 3px var(--kungalgame-red-4);
 }
 /* 侧边搜索框 */
 .search {
-  background-color: $kungalgame-trans-blue-2;
+  background-color: var(--kungalgame-trans-blue-2);
   display: flex;
   box-sizing: border-box;
 }
@@ -93,10 +93,10 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid $kungalgame-trans-blue-4;
+  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   cursor: pointer;
 }
 .recommend span:hover {
-  background-color: $kungalgame-trans-red-2;
+  background-color: var(--kungalgame-trans-red-2);
 }
 </style>

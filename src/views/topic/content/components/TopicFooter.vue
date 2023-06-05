@@ -86,14 +86,14 @@ const isOthersTopic = props.isOthersTopic
     font-size: 14px;
     margin-left: 17px;
     &:nth-child(1) span {
-      color: $kungalgame-red-4;
+      color: var(--kungalgame-red-4);
     }
   }
 }
 /* 图标字体的样式 */
 .icon {
   font-size: 24px;
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
   cursor: pointer;
 }
 /* 底部右侧部分（回复、评论、只看、编辑） */

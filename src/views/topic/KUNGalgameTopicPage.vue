@@ -48,7 +48,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   display: flex;
   /* 设置背景的毛玻璃效果 */
   backdrop-filter: blur(5px);
-  background-color: $kungalgame-trans-white-5;
+  background-color: var(--kungalgame-trans-white-5);
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;

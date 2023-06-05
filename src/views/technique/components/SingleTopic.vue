@@ -56,11 +56,11 @@ import { Icon } from '@iconify/vue'
 <style lang="scss" scoped>
 /* 单个帖子 */
 .topic {
-  border: 1px solid $kungalgame-trans-blue-4;
+  border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 5px;
   /* 帖子内容距离边的距离 */
   padding: 0 10px;
-  background-color: $kungalgame-trans-white-2;
+  background-color: var(--kungalgame-trans-white-2);
   /* 相对于底部状态的定位 */
   position: relative;
   display: inline-block;
@@ -70,7 +70,7 @@ import { Icon } from '@iconify/vue'
 }
 /* 单个帖子 hover */
 .topic:hover {
-  box-shadow: $shadow;
+  box-shadow: var(--shadow);
   /* 放大、旋转 */
   transform: scale(1.2) rotate(1deg);
   transition: 0.2s;
@@ -88,7 +88,7 @@ import { Icon } from '@iconify/vue'
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, transparent, $kungalgame-blue-4);
+  background: linear-gradient(90deg, transparent, var(--kungalgame-blue-4));
   animation: animate1 1s linear infinite;
 }
 @keyframes animate1 {
@@ -106,7 +106,7 @@ import { Icon } from '@iconify/vue'
   right: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, $kungalgame-blue-4);
+  background: linear-gradient(180deg, transparent, var(--kungalgame-blue-4));
   animation: animate2 1s linear infinite;
   animation-delay: 0.25s;
 }
@@ -124,7 +124,7 @@ import { Icon } from '@iconify/vue'
   bottom: 0;
   right: 0;
   width: 100%;
-  background: linear-gradient(270deg, transparent, $kungalgame-blue-4);
+  background: linear-gradient(270deg, transparent, var(--kungalgame-blue-4));
   animation: animate3 1s linear infinite;
   animation-delay: 0.5s;
 }
@@ -145,7 +145,7 @@ import { Icon } from '@iconify/vue'
   left: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, $kungalgame-blue-4);
+  background: linear-gradient(360deg, transparent, var(--kungalgame-blue-4));
   animation: animate4 1s linear infinite;
   animation-delay: 0.75s;
 }
@@ -204,7 +204,7 @@ import { Icon } from '@iconify/vue'
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: $kungalgame-trans-white-9;
+  background-color: var(--kungalgame-trans-white-9);
   /* 起初看不见文字 */
   opacity: 0;
   cursor: pointer;
@@ -217,12 +217,12 @@ import { Icon } from '@iconify/vue'
   position: absolute;
   left: 20px;
   font-size: 18px;
-  color: $kungalgame-red-4;
+  color: var(--kungalgame-red-4);
   margin-right: 5px;
 }
 /* 单个帖子 hover 时显示帖子标签 */
 .topic:hover .topic-tags {
-  background-color: $kungalgame-trans-blue-0;
+  background-color: var(--kungalgame-trans-blue-0);
   backdrop-filter: blur(5px);
   /* 放大、旋转回正 */
   transform: scale(1.1) rotate(-1deg);

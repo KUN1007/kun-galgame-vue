@@ -55,7 +55,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   position: relative;
   /* 居中 */
   margin: auto;
-  background-color: $kungalgame-trans-white-2;
+  background-color: var(--kungalgame-trans-white-2);
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   border-radius: 7px;
@@ -63,9 +63,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  color: $kungalgame-font-color-3;
-  border: 1px solid $kungalgame-trans-blue-2;
-  box-shadow: $shadow;
+  color: var(--kungalgame-font-color-3);
+  border: 1px solid var(--kungalgame-trans-blue-2);
+  box-shadow: var(--shadow);
 }
 /* 内容区 */
 .content {

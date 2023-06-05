@@ -19,9 +19,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   font-size: 17px;
-  border-bottom: 1px solid $kungalgame-blue-1;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
 }
 /* 楼主帖子标题 */

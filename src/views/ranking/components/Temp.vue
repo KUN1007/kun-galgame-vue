@@ -33,9 +33,9 @@ import Topic from './Topic.vue'
 /* 帖子排行标题 */
 .topic-title {
   font-size: 30px;
-  color: $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
   font-style: italic;
-  text-shadow: 2px 2px 4px $kungalgame-pink-0;
+  text-shadow: 2px 2px 4px var(--kungalgame-pink-0);
   height: 50px;
   display: flex;
   justify-content: center;
@@ -50,7 +50,7 @@ import Topic from './Topic.vue'
   cursor: pointer;
 }
 .topic-nav > div:hover {
-  background-color: $kungalgame-blue-1;
+  background-color: var(--kungalgame-blue-1);
   transition: 0.2s;
 }
 /* 单个交互项目 */
@@ -60,7 +60,7 @@ import Topic from './Topic.vue'
 .top {
   height: 30px;
   width: 100%;
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,7 +73,7 @@ import Topic from './Topic.vue'
 /* 单个帖子的容器 */
 .topic-container {
   height: 650px;
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   border-top: none;
   display: flex;
   flex-direction: column;
@@ -85,11 +85,11 @@ import Topic from './Topic.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
   border-radius: 2px;
 }
 .topic-container::-webkit-scrollbar-thumb {
-  background: $kungalgame-blue-4;
+  background: var(--kungalgame-blue-4);
   border-radius: 2px;
 }
 </style>

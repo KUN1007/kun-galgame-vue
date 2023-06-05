@@ -29,16 +29,16 @@ import KUNgalgamer from './KUNGalgamer.vue'
 /* 用户排行 */
 .kungalgamer-ranking {
   width: 50%;
-  border-right: 1px solid $kungalgame-blue-4;
+  border-right: 1px solid var(--kungalgame-blue-4);
   box-sizing: border-box;
 }
 /* 用户排行标题 */
 .kungalgamer-title {
   /* 字体设置 */
   font-size: 30px;
-  color: $kungalgame-pink-4;
+  color: var(--kungalgame-pink-4);
   font-style: italic;
-  text-shadow: 2px 2px 4px $kungalgame-blue-0;
+  text-shadow: 2px 2px 4px var(--kungalgame-blue-0);
   height: 50px;
   display: flex;
   justify-content: center;
@@ -53,7 +53,7 @@ import KUNgalgamer from './KUNGalgamer.vue'
   cursor: pointer;
 }
 .kungalgamer-nav > div:hover {
-  background-color: $kungalgame-pink-1;
+  background-color: var(--kungalgame-pink-1);
   transition: 0.2s;
 }
 /* 排行选择项 */
@@ -63,7 +63,7 @@ import KUNgalgamer from './KUNGalgamer.vue'
 .reply {
   height: 30px;
   width: 100%;
-  border: 1px solid $kungalgame-pink-4;
+  border: 1px solid var(--kungalgame-pink-4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +76,7 @@ import KUNgalgamer from './KUNGalgamer.vue'
 /* 单个用户的容器 */
 .kungalgamer-container {
   height: 650px;
-  border: 1px solid $kungalgame-pink-4;
+  border: 1px solid var(--kungalgame-pink-4);
   border-top: none;
   display: flex;
   flex-direction: column;
@@ -88,11 +88,11 @@ import KUNgalgamer from './KUNGalgamer.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
   border-radius: 2px;
 }
 .kungalgamer-container::-webkit-scrollbar-thumb {
-  background: $kungalgame-blue-4;
+  background: var(--kungalgame-blue-4);
   border-radius: 2px;
 }
 </style>

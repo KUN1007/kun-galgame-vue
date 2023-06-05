@@ -72,17 +72,17 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 }
 /* 筛选 */
 .nav-article-sort-container {
-  background-color: $kungalgame-trans-red-3;
+  background-color: var(--kungalgame-trans-red-3);
   flex-grow: 1;
   border-radius: 5px 0 0 0;
   position: relative;
-  border-bottom: 1px solid $kungalgame-trans-blue-4;
-  border-right: 1px solid $kungalgame-trans-blue-4;
+  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
+  border-right: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
   cursor: pointer;
 }
 .nav-article-sort-container:hover {
-  background-color: $kungalgame-trans-white-2;
+  background-color: var(--kungalgame-trans-white-2);
 }
 .sort-container {
   width: 100%;
@@ -96,16 +96,16 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 .sort-submenu {
   display: none;
   flex-direction: column;
-  box-shadow: 1px 2px 1px 1px $kungalgame-trans-blue-4;
+  box-shadow: 1px 2px 1px 1px var(--kungalgame-trans-blue-4);
 }
 .nav-article-sort-container:hover .sort-submenu {
   display: flex;
 }
 .sort-submenu > div {
   padding: 10px 0;
-  background-color: $kungalgame-trans-white-2;
+  background-color: var(--kungalgame-trans-white-2);
   font-size: 14px;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -113,13 +113,13 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 }
 /* 单个二级菜单 hover */
 .sort-submenu > div:hover {
-  background-color: $kungalgame-red-1;
+  background-color: var(--kungalgame-red-1);
 }
 .sort-submenu > div:active {
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
 }
 .icon-item {
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
   padding-right: 3px;
 }
 /* 更多 */
@@ -132,19 +132,19 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   align-items: center;
   /* 页面缩小不换行 */
   white-space: nowrap;
-  background-color: $kungalgame-trans-purple-3;
+  background-color: var(--kungalgame-trans-purple-3);
   flex-grow: 1;
   border-radius: 0 5px 0 0;
   cursor: pointer;
-  border-bottom: 1px solid $kungalgame-trans-blue-4;
-  border-left: 1px solid $kungalgame-trans-blue-4;
+  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
+  border-left: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
 }
 .nav-article-more-topic:hover {
-  background-color: $kungalgame-trans-white-2;
+  background-color: var(--kungalgame-trans-white-2);
 }
 .nav-article-more-topic:active {
-  background-color: $kungalgame-trans-red-3;
+  background-color: var(--kungalgame-trans-red-3);
 }
 .all-topic {
   font-size: 18px;

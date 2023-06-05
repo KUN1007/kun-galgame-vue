@@ -34,13 +34,13 @@
   right: 50px;
   cursor: pointer;
   display: none;
-  background-color: $kungalgame-blue-2;
+  background-color: var(--kungalgame-blue-2);
 }
 .kungalgame-right-bar-left > div {
   padding: 7px;
 }
 .kungalgame-right-bar-left > div:hover {
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
 }
 /* 排序 hover 出现 */
 .kungalgame-right-bar .sort:hover .kungalgame-right-bar-left {
@@ -49,7 +49,7 @@
 /* 图标字体的颜色 */
 .kungalgame-right-bar-left i {
   margin-right: 10px;
-  color: $kungalgame-red-4;
+  color: var(--kungalgame-red-4);
 }
 /* 最后一个排序的样式 */
 .kungalgame-right-bar-left div:last-child i {
@@ -64,7 +64,7 @@
   border-width: 10px;
   border-style: solid;
   border-color: transparent;
-  border-bottom-color: $kungalgame-trans-white-2;
+  border-bottom-color: var(--kungalgame-trans-white-2);
   top: 50px;
   right: 14px;
 }
@@ -76,12 +76,12 @@
   align-items: center;
   height: 50px;
   padding: 0 9px;
-  background-color: $kungalgame-blue-2;
-  box-shadow: $shadow;
+  background-color: var(--kungalgame-blue-2);
+  box-shadow: var(--shadow);
   cursor: pointer;
 }
 .top {
-  background-color: $kungalgame-red-1;
+  background-color: var(--kungalgame-red-1);
 }
 .top {
   margin-top: 11px;
@@ -89,6 +89,6 @@
 .sort i,
 .top i {
   margin-top: 5px;
-  color: $kungalgame-red-6;
+  color: var(--kungalgame-red-6);
 }
 </style>

@@ -91,15 +91,6 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
   height: 1500px;
   display: flex;
@@ -117,9 +108,9 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   /* 固定宽高 */
   width: 700px;
   height: 1300px;
-  background-color: $kungalgame-trans-white-5;
+  background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -130,11 +121,11 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 .content {
   padding: 10px;
   height: 100%;
-  border: 1px solid $kungalgame-trans-blue-4;
+  border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
   box-sizing: border-box;
-  background-color: $kungalgame-trans-white-2;
-  box-shadow: $shadow;
+  background-color: var(--kungalgame-trans-white-2);
+  box-shadow: var(--shadow);
 }
 /* 一级标题 */
 .title-0 {
@@ -143,21 +134,21 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 }
 /* 提示消息 */
 .tips {
-  border-top: 2px solid $kungalgame-blue-4;
+  border-top: 2px solid var(--kungalgame-blue-4);
   padding-top: 10px;
   margin-bottom: 47px;
 }
 /* 规则跳转页面 */
 .tips span {
   cursor: pointer;
-  color: $kungalgame-blue-4;
-  border-bottom: 1px solid $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
+  border-bottom: 1px solid var(--kungalgame-blue-4);
 }
 /* 二级标题 */
 .title-1 {
   font-size: 25px;
   margin: 20px 0;
-  border-left: 4px solid $kungalgame-blue-4;
+  border-left: 4px solid var(--kungalgame-blue-4);
   text-indent: 1em;
 }
 /* 三级标题 */

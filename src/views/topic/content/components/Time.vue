@@ -33,6 +33,6 @@ import { Icon } from '@iconify/vue'
 .hourglass {
   font-size: 23px;
   margin: 0 10px;
-  color: $kungalgame-red-4;
+  color: var(--kungalgame-red-4);
 }
 </style>

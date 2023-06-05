@@ -58,11 +58,11 @@ import { Icon } from '@iconify/vue'
 }
 .github {
   margin-top: 10px;
-  color: $kungalgame-blue-4;
-  border-bottom: 2px solid $kungalgame-trans-white-8;
+  color: var(--kungalgame-blue-4);
+  border-bottom: 2px solid var(--kungalgame-trans-white-8);
   cursor: pointer;
   &:hover {
-    border-bottom: 2px solid $kungalgame-blue-4;
+    border-bottom: 2px solid var(--kungalgame-blue-4);
   }
 }
 /* 预计更新时间 */
@@ -74,6 +74,6 @@ import { Icon } from '@iconify/vue'
 .icon {
   margin-top: 20px;
   font-size: 50px;
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
 }
 </style>
