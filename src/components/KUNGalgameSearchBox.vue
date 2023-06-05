@@ -44,7 +44,7 @@ defineProps(['isMainPage'])
 <style lang="scss" scoped>
 /* 搜索帖子 */
 .container {
-  height: 100%;
+  height: 40px;
   width: 1px;
   justify-content: center;
   align-items: center;
@@ -68,7 +68,7 @@ defineProps(['isMainPage'])
 /* 搜索框表单 */
 .search-form {
   display: flex;
-  height: 100%;
+  height: 40px;
   /* 随着页面自增长 */
   width: 1px;
   flex-grow: 1;
