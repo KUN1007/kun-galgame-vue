@@ -20,8 +20,12 @@ const app = createApp(App)
 
 setupPinia(app)
 
+// app.directive('reply', replyDirective)
+
+// 预处理 css
 // css
 import '@/styles/reset.css'
+
 app
   .use(router)
   //   .use(store)

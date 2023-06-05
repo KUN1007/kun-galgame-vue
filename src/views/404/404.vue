@@ -13,15 +13,6 @@
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
   height: 100vh;
   width: 100vw;
