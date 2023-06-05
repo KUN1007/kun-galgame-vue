@@ -27,8 +27,9 @@ setupPinia(app)
 
 // app.directive('reply', replyDirective)
 
-// css
+// 预处理 css
 import '@/styles/reset.css'
+
 app
   .use(router)
   //   .use(store)
