@@ -69,11 +69,6 @@ const asideBarItem: asideBar[] = [
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      /* 单个项目的 hover */
-      &:hover {
-        background-color: $kungalgame-trans-blue-2;
-      }
     }
   }
 }
@@ -82,5 +77,16 @@ const asideBarItem: asideBar[] = [
   border-bottom: 1.5px solid $kungalgame-blue-4;
   cursor: pointer;
   color: $kungalgame-blue-4;
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 单个项目的 hover */
+    &:hover {
+      background-color: $kungalgame-trans-blue-2;
+    }
+  }
 }
 </style>
