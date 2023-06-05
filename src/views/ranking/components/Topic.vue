@@ -28,7 +28,7 @@ import { Icon } from '@iconify/vue'
 .single-topic {
   flex-shrink: 0;
   height: 37px;
-  border-bottom: 1px solid $kungalgame-blue-4;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
   margin: 7px;
   display: flex;
   justify-content: space-between;

@@ -71,7 +71,7 @@ import { Icon } from '@iconify/vue'
 .name {
   font-size: 15px;
   a {
-    color: $kungalgame-blue-5;
+    color: var(--kungalgame-blue-5);
     &:hover {
       text-decoration: underline;
     }
@@ -85,7 +85,7 @@ import { Icon } from '@iconify/vue'
   }
 }
 .icon {
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
 }
 /* 单个评论 */
 .text {

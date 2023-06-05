@@ -1,38 +1,36 @@
-<script setup lang='ts'>
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-            <!-- 单个帖子容器 -->
-            <div class="single-topic-container">
-              <!-- 帖子的标题 -->
-              <div class="topic-title">
-                啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              </div>
-              <!-- 帖子的内容区 -->
-              <div class="topic-content">
-                啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-                啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-                啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-                啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-                啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-              </div>
-              <!-- 帖子的状态 -->
-              <div class="topic-status">
-                <!-- 浏览数 -->
-                <span><i class="fa-regular fa-eye"></i>10007</span>
-                <!-- 点赞数 -->
-                <span><i class="fa-regular fa-thumbs-up"></i>10007</span>
-              </div>
-              <!-- 发帖时间 -->
-              <div class="topic-post-time">
-                <i class="fa-solid fa-hourglass-half"></i>
-                <div>10月7日-10:07:00 发布</div>
-              </div>
-            </div>
+  <!-- 单个帖子容器 -->
+  <div class="single-topic-container">
+    <!-- 帖子的标题 -->
+    <div class="topic-title">
+      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+    </div>
+    <!-- 帖子的内容区 -->
+    <div class="topic-content">
+      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+    </div>
+    <!-- 帖子的状态 -->
+    <div class="topic-status">
+      <!-- 浏览数 -->
+      <span><i class="fa-regular fa-eye"></i>10007</span>
+      <!-- 点赞数 -->
+      <span><i class="fa-regular fa-thumbs-up"></i>10007</span>
+    </div>
+    <!-- 发帖时间 -->
+    <div class="topic-post-time">
+      <i class="fa-solid fa-hourglass-half"></i>
+      <div>10月7日-10:07:00 发布</div>
+    </div>
+  </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 /* 帖子池单个帖子 */
 .single-topic-container {
   /* 单个帖子距下方的距离 */
@@ -48,7 +46,7 @@
   cursor: pointer;
 }
 .single-topic-container:hover {
-  background-color: $kungalgame-blue-1;
+  background-color: var(--kungalgame-blue-1);
 }
 /* 帖子的标题 */
 .topic-title {
@@ -63,7 +61,7 @@
   margin-top: 7px;
   padding: 0 7px;
   font-weight: bold;
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
 }
 /* 帖子的内容区 */
 .topic-content {
@@ -84,7 +82,7 @@
   flex-wrap: wrap;
 }
 .topic-status i {
-  color: $kungalgame-red-4;
+  color: var(--kungalgame-red-4);
 }
 .topic-post-time {
   display: flex;
@@ -99,6 +97,6 @@
 }
 .topic-post-time i {
   margin: 0 5px;
-  color: $kungalgame-purple-5;
+  color: var(--kungalgame-purple-5);
 }
 </style>

@@ -59,8 +59,8 @@ const navBar: nav[] = [
   /* 固定宽度 */
   height: 100%;
   width: 120px;
-  background-color: $kungalgame-trans-red-0;
-  border-right: 1px solid $kungalgame-blue-4;
+  background-color: var(--kungalgame-trans-red-0);
+  border-right: 1px solid var(--kungalgame-blue-4);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -71,10 +71,10 @@ const navBar: nav[] = [
     cursor: pointer;
     li {
       height: 40px;
-      background-color: $kungalgame-trans-blue-0;
+      background-color: var(--kungalgame-trans-blue-0);
       display: flex;
       &:hover {
-        background-color: $kungalgame-trans-red-2;
+        background-color: var(--kungalgame-trans-red-2);
         transition: 0.1s;
       }
       a {
@@ -83,7 +83,7 @@ const navBar: nav[] = [
         display: flex;
         justify-content: center;
         align-items: center;
-        color: $kungalgame-blue-4;
+        color: var(--kungalgame-blue-4);
       }
     }
   }

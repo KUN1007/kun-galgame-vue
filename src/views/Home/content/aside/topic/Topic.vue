@@ -54,7 +54,7 @@ let titleName = isHotTopic ? 'hot' : 'new'
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   /* 设置页面缩小到最小时该行不换行 */
   overflow: hidden;
   white-space: nowrap;
@@ -73,17 +73,17 @@ let titleName = isHotTopic ? 'hot' : 'new'
   }
 }
 .hot {
-  border: 3px dashed $kungalgame-trans-blue-1;
+  border: 3px dashed var(--kungalgame-trans-blue-1);
   border-bottom: none;
 }
 .new {
-  border: 3px dashed $kungalgame-trans-pink-1;
+  border: 3px dashed var(--kungalgame-trans-pink-1);
   border-bottom: none;
 }
 .hot-bg {
-  background-color: $kungalgame-trans-blue-1;
+  background-color: var(--kungalgame-trans-blue-1);
 }
 .new-bg {
-  background-color: $kungalgame-trans-pink-1;
+  background-color: var(--kungalgame-trans-pink-1);
 }
 </style>

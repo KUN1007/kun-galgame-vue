@@ -76,11 +76,11 @@ import Floor from '../components/Floor.vue'
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  border: 1px solid $kungalgame-blue-1;
+  border: 1px solid var(--kungalgame-blue-1);
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: $shadow;
-  background-color: $kungalgame-trans-white-3;
+  box-shadow: var(--shadow);
+  background-color: var(--kungalgame-trans-white-3);
   box-sizing: border-box;
 }
 
@@ -100,7 +100,7 @@ import Floor from '../components/Floor.vue'
   /* 时间和标签分居两侧 */
   justify-content: space-between;
   /* 下面的分割线 */
-  border-bottom: 1px solid $kungalgame-blue-1;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
 }
 
@@ -109,7 +109,7 @@ import Floor from '../components/Floor.vue'
   width: 100%;
   display: flex;
   flex-shrink: 0;
-  border-bottom: 1px solid $kungalgame-blue-1;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
 }
 /* 内容区的底部 */
@@ -119,6 +119,6 @@ import Floor from '../components/Floor.vue'
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid $kungalgame-blue-1;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
 }
 </style>

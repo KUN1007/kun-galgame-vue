@@ -87,14 +87,14 @@
 .change-btn button {
   height: 30px;
   width: 49%;
-  border: 1px solid $kungalgame-blue-4;
-  background-color: $kungalgame-trans-blue-0;
+  border: 1px solid var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-blue-0);
   cursor: pointer;
 }
 .change-btn button:hover {
-  background-color: $kungalgame-trans-blue-4;
+  background-color: var(--kungalgame-trans-blue-4);
 }
 .change-btn button:active {
-  background-color: $kungalgame-trans-blue-0;
+  background-color: var(--kungalgame-trans-blue-0);
 }
 </style>

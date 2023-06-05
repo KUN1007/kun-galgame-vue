@@ -40,8 +40,8 @@ const asideNavItem: navItem[] = [
   display: flex;
   justify-content: center;
   /* 左边第一个部分的边 */
-  border: 1px solid $kungalgame-trans-red-4;
-  box-shadow: $shadow;
+  border: 1px solid var(--kungalgame-trans-red-4);
+  box-shadow: var(--shadow);
   border-radius: 5px;
   /* 距离顶部的距离 */
   margin-bottom: 17px;
@@ -50,7 +50,7 @@ const asideNavItem: navItem[] = [
   ul {
     flex-grow: 1;
     display: flex;
-    background-color: $kungalgame-trans-yellow-0;
+    background-color: var(--kungalgame-trans-yellow-0);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     & > li {
@@ -74,7 +74,7 @@ const asideNavItem: navItem[] = [
         bottom: 0;
         left: 0;
         inset: 0 0 0 0;
-        background-color: $kungalgame-red-4;
+        background-color: var(--kungalgame-red-4);
         z-index: -1;
         transition: transform 0.3s ease;
       }

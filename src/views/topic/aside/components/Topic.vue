@@ -33,12 +33,12 @@ defineProps(['isMasterTopics'])
   height: 1px;
   flex-grow: 4;
   /* 上方区域的配色 */
-  border: 1px solid $kungalgame-trans-blue-2;
+  border: 1px solid var(--kungalgame-trans-blue-2);
   /* 隐藏溢出的颜色 */
   overflow: hidden;
   border-radius: 5px;
-  background-color: $kungalgame-trans-blue-0;
-  box-shadow: $shadow;
+  background-color: var(--kungalgame-trans-blue-0);
+  box-shadow: var(--shadow);
   ul {
     height: 100%;
     /* 整体为一个无序列表，列表为弹性盒 */
@@ -57,14 +57,14 @@ defineProps(['isMasterTopics'])
       /* 内边距盒子 */
       box-sizing: border-box;
       &:hover {
-        border-left: 4px solid $kungalgame-pink-3;
-        background-color: $kungalgame-trans-blue-1;
+        border-left: 4px solid var(--kungalgame-pink-3);
+        background-color: var(--kungalgame-trans-blue-1);
         transition: 0.3s;
       }
       a {
         /* 左右两侧的距离 */
         margin: 0 17px;
-        color: $kungalgame-font-color-3;
+        color: var(--kungalgame-font-color-3);
         /* 标题显示两行、超出部分隐藏 */
         overflow: hidden; /* 超出部分隐藏 */
         text-overflow: ellipsis; /* 显示省略号 */
@@ -84,10 +84,10 @@ defineProps(['isMasterTopics'])
         line-height: 40px;
         font-size: 14px;
         font-weight: bold;
-        color: $kungalgame-font-color-2;
-        background-color: $kungalgame-trans-blue-1;
+        color: var(--kungalgame-font-color-2);
+        background-color: var(--kungalgame-trans-blue-1);
         /* 与单个帖子标题的分割线 */
-        border-bottom: 1px solid $kungalgame-trans-blue-2;
+        border-bottom: 1px solid var(--kungalgame-trans-blue-2);
         /* 水平居中 */
         justify-content: center;
       }
@@ -95,19 +95,19 @@ defineProps(['isMasterTopics'])
   }
 }
 .master {
-  border: 1px solid $kungalgame-trans-pink-2;
-  background-color: $kungalgame-trans-pink-0;
+  border: 1px solid var(--kungalgame-trans-pink-2);
+  background-color: var(--kungalgame-trans-pink-0);
   ul > li {
     &:hover {
-      border-left: 4px solid $kungalgame-blue-3;
-      background-color: $kungalgame-trans-pink-1;
+      border-left: 4px solid var(--kungalgame-blue-3);
+      background-color: var(--kungalgame-trans-pink-1);
     }
     &:nth-child(1) {
       /* 左侧没有 border，没有 hover */
       border-left: 0;
-      background-color: $kungalgame-trans-pink-1;
+      background-color: var(--kungalgame-trans-pink-1);
       /* 与单个帖子标题的分割线 */
-      border-bottom: 1px solid $kungalgame-trans-pink-2;
+      border-bottom: 1px solid var(--kungalgame-trans-pink-2);
     }
   }
 }

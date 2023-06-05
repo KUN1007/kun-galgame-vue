@@ -91,7 +91,7 @@ const handleCustomBackground = () => {
   height: 100%;
   font-size: 15px;
   font-weight: normal;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   /* 背景容器的标题字体 */
   span {
     height: 30px;
@@ -144,12 +144,12 @@ const handleCustomBackground = () => {
     width: 100%;
     padding-left: 5px;
     height: 25px;
-    border: 1px solid $kungalgame-blue-4;
-    background-color: $kungalgame-trans-white-9;
+    border: 1px solid var(--kungalgame-blue-4);
+    background-color: var(--kungalgame-trans-white-9);
     /* 粘贴框的 focus */
     &:focus {
       outline: none;
-      background-color: $kungalgame-trans-blue-0;
+      background-color: var(--kungalgame-trans-blue-0);
     }
   }
   /* 确定按钮 */
@@ -159,16 +159,16 @@ const handleCustomBackground = () => {
     height: 25px;
     width: 70px;
     box-sizing: border-box;
-    border: 1px solid $kungalgame-blue-4;
+    border: 1px solid var(--kungalgame-blue-4);
     border-left: none;
-    background-color: $kungalgame-trans-white-5;
+    background-color: var(--kungalgame-trans-white-5);
     cursor: pointer;
     /* 确定按钮的 hover */
     &:hover {
-      background-color: $kungalgame-trans-red-1;
+      background-color: var(--kungalgame-trans-red-1);
       /* 确定按钮的 active */
       &:active {
-        background-color: $kungalgame-trans-red-3;
+        background-color: var(--kungalgame-trans-red-3);
       }
     }
   }
@@ -179,10 +179,10 @@ const handleCustomBackground = () => {
   height: 30px;
   width: 100%;
   margin-top: 10px;
-  border: 1px solid $kungalgame-blue-4;
-  background-color: $kungalgame-trans-blue-1;
+  border: 1px solid var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-blue-1);
   &:hover {
-    background-color: $kungalgame-trans-blue-2;
+    background-color: var(--kungalgame-trans-blue-2);
   }
 }
 </style>

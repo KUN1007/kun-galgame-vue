@@ -59,13 +59,13 @@ import Aside from './components/Aside.vue'
   /* 水平垂直居中 */
   margin: 0 auto;
   display: flex;
-  background-color: $kungalgame-trans-white-5;
+  background-color: var(--kungalgame-trans-white-5);
   /* 全局字体颜色 */
-  color: $kungalgame-font-color-3;
-  border: 1px solid $kungalgame-trans-blue-2;
+  color: var(--kungalgame-font-color-3);
+  border: 1px solid var(--kungalgame-trans-blue-2);
   border-radius: 5px;
 }
-/* 
+/*
 
 文章部分
 

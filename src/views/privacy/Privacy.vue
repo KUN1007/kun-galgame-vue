@@ -41,23 +41,14 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </template>
 
 <style lang="scss" scoped>
-* {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
 .root {
   height: 100vh;
   width: 100vw;
   min-width: 700px;
   min-height: 600px;
   background: linear-gradient(
-    $kungalgame-trans-pink-1,
-    $kungalgame-trans-blue-1
+    var(--kungalgame-trans-pink-1),
+    var(--kungalgame-trans-blue-1)
   );
   display: flex;
   flex-direction: column;
@@ -71,19 +62,19 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   /* 居中 */
   margin: auto;
   position: relative;
-  background-color: $kungalgame-trans-blue-0;
-  border: 1px solid $kungalgame-trans-blue-4;
+  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
-  box-shadow: $kungalgame-shadow-0;
+  box-shadow: var(--kungalgame-shadow-0);
   /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
 }
 /* 内容区容器 hover */
 .container:hover {
-  box-shadow: $kungalgame-shadow-1;
+  box-shadow: var(--kungalgame-shadow-1);
   transition: 0.3s;
 }
 /* 内容区 */

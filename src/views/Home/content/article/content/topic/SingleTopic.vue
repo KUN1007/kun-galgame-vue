@@ -17,11 +17,11 @@ import TopicPart from './components/TopicPart.vue'
   height: 70px;
   flex-shrink: 0;
   border-radius: 3px;
-  background-color: $kungalgame-trans-white-4;
+  background-color: var(--kungalgame-trans-white-4);
   margin-bottom: 3px;
   display: flex;
   &:hover {
-    background-color: $kungalgame-trans-white-1;
+    background-color: var(--kungalgame-trans-white-1);
     transition: 0.2s;
   }
   &:last-child {

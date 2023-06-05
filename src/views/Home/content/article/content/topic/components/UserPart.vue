@@ -53,7 +53,7 @@
 }
 /* 发帖人昵称位置设置 */
 .kungalgamer-name {
-  border-top: 1px solid $kungalgame-gray-2;
+  border-top: 1px solid var(--kungalgame-gray-2);
   flex-grow: 1;
   display: flex;
 }
@@ -72,7 +72,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   /* 颜色和字体大小 */
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   font-size: x-small;
 }
 </style>

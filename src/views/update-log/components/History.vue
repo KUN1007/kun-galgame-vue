@@ -14,7 +14,7 @@ import SingleHistory from './SingleLog.vue'
 <style lang="scss" scoped>
 /* 历史更新的内容 */
 .article-history {
-  border-left: 1px solid $kungalgame-blue-4;
+  border-left: 1px solid var(--kungalgame-blue-4);
   height: 75%;
   padding: 10px;
 }
@@ -32,11 +32,11 @@ import SingleHistory from './SingleLog.vue'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
   border-radius: 2px;
 }
 .history-list::-webkit-scrollbar-thumb {
-  background: $kungalgame-blue-4;
+  background: var(--kungalgame-blue-4);
   border-radius: 2px;
 }
 </style>

@@ -87,7 +87,7 @@ watch(
   text-align: center;
   /* 字体设置 */
   font-size: small;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   cursor: pointer;
 }
 /* 激活后的左侧区域 */

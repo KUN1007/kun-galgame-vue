@@ -49,16 +49,16 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   width: 700px;
   /* 居中 */
   margin: auto;
-  background-color: $kungalgame-trans-white-5;
-  border: 1px solid $kungalgame-red-4;
+  background-color: var(--kungalgame-trans-white-5);
+  border: 1px solid var(--kungalgame-red-4);
   overflow: hidden;
   border-radius: 7px;
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   display: flex;
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   position: relative;
-  box-shadow: $shadow;
+  box-shadow: var(--shadow);
 }
 /* 页面标题 */
 .title {
@@ -72,14 +72,14 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
 }
 /* 文章部分 */
 .article {
   width: 600px;
   flex-shrink: 0;
-  background-color: $kungalgame-trans-white-3;
-  border-left: 1px solid $kungalgame-red-4;
+  background-color: var(--kungalgame-trans-white-3);
+  border-left: 1px solid var(--kungalgame-red-4);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,11 +102,11 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     display: inline;
     width: 4px;
     height: 0;
-    background-color: $kungalgame-red-2;
+    background-color: var(--kungalgame-red-2);
     border-radius: 2px;
   }
   &::-webkit-scrollbar-thumb {
-    background: $kungalgame-blue-4;
+    background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
 }

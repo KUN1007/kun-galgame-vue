@@ -16,17 +16,17 @@ import { log } from './log'
 /* 单个记录 */
 .log {
   margin: 20px 40px;
-  border-bottom: 1px solid $kungalgame-blue-4;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
 }
 /* 原因 */
 .reason {
   width: 80%;
   padding-left: 5px;
-  border-left: 2px solid $kungalgame-blue-4;
+  border-left: 2px solid var(--kungalgame-blue-4);
 }
 /* 后果 */
 .result {
-  border-right: 4px solid $kungalgame-red-4;
+  border-right: 4px solid var(--kungalgame-red-4);
   padding-right: 5px;
   margin-top: 10px;
   display: flex;

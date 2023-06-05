@@ -57,7 +57,7 @@ const tags: tag[] = [
   font-size: 14px;
   margin: 2px;
   padding: 2px;
-  background-color: $kungalgame-trans-blue-3;
+  background-color: var(--kungalgame-trans-blue-3);
   cursor: pointer;
 }
 .track {

@@ -25,6 +25,6 @@
 .text {
   font-size: 15px;
   padding: 17px;
-  border-left: 1px solid $kungalgame-blue-1;
+  border-left: 1px solid var(--kungalgame-blue-1);
 }
 </style>

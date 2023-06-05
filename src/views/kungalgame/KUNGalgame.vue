@@ -193,7 +193,7 @@ import Aside from './components/Aside.vue'
 }
 /* 内容区容器 */
 .content-container {
-  background-color: $kungalgame-trans-white-2;
+  background-color: var(--kungalgame-trans-white-2);
   border-radius: 7px;
   /* 固定高度 */
   height: 1200px;
@@ -207,10 +207,10 @@ import Aside from './components/Aside.vue'
 .content {
   height: 100%;
   overflow-y: scroll;
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   border-radius: 7px;
   display: flex;
-  box-shadow: $shadow;
+  box-shadow: var(--shadow);
 }
 /* 文章区距离侧边的距离 */
 .article {
@@ -223,7 +223,7 @@ h2,
 h3,
 p,
 .list {
-  color: $kungalgame-font-color-2;
+  color: var(--kungalgame-font-color-2);
 }
 /* da标题的字体 */
 h1 {
@@ -236,7 +236,7 @@ h1 {
 h2 {
   margin-top: 77px;
   margin-bottom: 30px;
-  border-left: 4px solid $kungalgame-blue-4;
+  border-left: 4px solid var(--kungalgame-blue-4);
   text-indent: 1em;
 }
 h3 {
@@ -258,9 +258,9 @@ a {
 }
 /* 被划出来的链接字体 */
 .skip {
-  border-bottom: 1.5px solid $kungalgame-blue-4;
+  border-bottom: 1.5px solid var(--kungalgame-blue-4);
   cursor: pointer;
-  color: $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
 }
 .list > li {
   list-style: inside;

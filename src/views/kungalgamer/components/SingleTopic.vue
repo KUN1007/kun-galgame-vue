@@ -22,14 +22,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid $kungalgame-blue-1;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
-  border-left: 2px solid $kungalgame-blue-4;
+  border-left: 2px solid var(--kungalgame-blue-4);
   cursor: pointer;
 }
 .topic:hover {
-  border-bottom: 1px solid $kungalgame-blue-4;
-  background-color: $kungalgame-trans-blue-1;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-blue-1);
 }
 /* 单个帖子的标题 */
 .topic-title {

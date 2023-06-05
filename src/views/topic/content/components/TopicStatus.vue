@@ -13,7 +13,7 @@ div {
 }
 /* 帖子状态 */
 span {
-  background-color: $kungalgame-green-3;
-  color: $kungalgame-white;
+  background-color: var(--kungalgame-green-3);
+  color: var(--kungalgame-white);
 }
 </style>

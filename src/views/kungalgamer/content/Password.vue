@@ -48,24 +48,24 @@
 .pwd-form input {
   height: 16px;
   padding: 2px;
-  border: 1px solid $kungalgame-blue-4;
-  background-color: $kungalgame-trans-white-5;
+  border: 1px solid var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-white-5);
 }
 .pwd-form input:focus {
-  box-shadow: 0px 0px 3px $kungalgame-blue-4;
+  box-shadow: 0px 0px 3px var(--kungalgame-blue-4);
 }
 /* 更改密码 button */
 .pwd-form button {
   width: 304px;
-  border: 1px solid $kungalgame-red-4;
-  background-color: $kungalgame-trans-red-0;
+  border: 1px solid var(--kungalgame-red-4);
+  background-color: var(--kungalgame-trans-red-0);
   cursor: pointer;
 }
 .pwd-form button:hover {
-  background-color: $kungalgame-trans-red-4;
+  background-color: var(--kungalgame-trans-red-4);
 }
 .pwd-form button:active {
-  background-color: $kungalgame-trans-red-0;
+  background-color: var(--kungalgame-trans-red-0);
 }
 /* 更改邮箱 */
 .change-mail {

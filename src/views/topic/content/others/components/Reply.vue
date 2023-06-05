@@ -13,7 +13,7 @@
 .reply {
   font-size: 17px;
   a {
-    color: $kungalgame-blue-5;
+    color: var(--kungalgame-blue-5);
     font-weight: 500;
     &:hover {
       text-decoration: underline;

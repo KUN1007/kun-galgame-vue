@@ -29,7 +29,7 @@ import { Icon } from '@iconify/vue'
 .single-kungalgamer {
   height: 37px;
   flex-shrink: 0;
-  border-bottom: 1px solid $kungalgame-pink-4;
+  border-bottom: 1px solid var(--kungalgame-pink-4);
   margin: 7px;
   display: flex;
   justify-content: space-between;

@@ -103,7 +103,7 @@ const list = [
   flex-direction: column;
   /* 毛玻璃背景 */
   backdrop-filter: blur(5px);
-  background-color: $kungalgame-trans-white-5;
+  background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
 }
 /* 帖子池内容区容器 */

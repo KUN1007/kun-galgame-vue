@@ -79,17 +79,17 @@ import Reply from './Reply.vue'
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient($kungalgame-blue-1, $kungalgame-pink-1);
+  background: linear-gradient(var(--kungalgame-blue-1), var(--kungalgame-pink-1));
   opacity: 0.7;
   font-size: 18px;
   font-weight: bold;
   font-style: oblique;
-  color: $kungalgame-pink-1;
-  text-shadow: -1px 0 $kungalgame-blue-5, 0 -1px $kungalgame-blue-5,
-    1px 0 $kungalgame-blue-5, 0 1px $kungalgame-blue-5,
-    1px 1px $kungalgame-black, -1px -1px $kungalgame-black,
-    -1px 1px $kungalgame-black, 1px -1px $kungalgame-black,
-    4px 2px 2px $kungalgame-red-4;
+  color: var(--kungalgame-pink-1);
+  text-shadow: -1px 0 var(--kungalgame-blue-5), 0 -1px var(--kungalgame-blue-5),
+    1px 0 var(--kungalgame-blue-5), 0 1px var(--kungalgame-blue-5),
+    1px 1px var(--kungalgame-black), -1px -1px var(--kungalgame-black),
+    -1px 1px var(--kungalgame-black), 1px -1px var(--kungalgame-black),
+    4px 2px 2px var(--kungalgame-red-4);
 }
 /* 其他人帖子内容区容器 */
 .container {
@@ -97,10 +97,10 @@ import Reply from './Reply.vue'
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  border: 1px solid $kungalgame-blue-1;
+  border: 1px solid var(--kungalgame-blue-1);
   border-radius: 5px;
-  background-color: $kungalgame-trans-white-3;
-  box-shadow: $shadow;
+  background-color: var(--kungalgame-trans-white-3);
+  box-shadow: var(--shadow);
 }
 /* 其它人回帖的内容区 */
 .content {
@@ -132,7 +132,7 @@ import Reply from './Reply.vue'
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid $kungalgame-blue-1;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
   padding-bottom: 7px;
 }
 </style>

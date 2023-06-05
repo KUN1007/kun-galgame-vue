@@ -36,7 +36,7 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
   width: 460px;
   margin: 0 10px;
   height: 300px;
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   display: flex;
   flex-direction: column;
   .title {
@@ -44,8 +44,8 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
     display: flex;
     justify-content: center;
     padding: 10px 0;
-    border-bottom: 1px solid $kungalgame-blue-4;
-    background-color: $kungalgame-trans-blue-0;
+    border-bottom: 1px solid var(--kungalgame-blue-4);
+    background-color: var(--kungalgame-trans-blue-0);
   }
   /* 收入记录的容器 */
   .container {
@@ -63,8 +63,8 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid $kungalgame-blue-4;
-    background-color: $kungalgame-trans-blue-0;
+    border-top: 1px solid var(--kungalgame-blue-4);
+    background-color: var(--kungalgame-trans-blue-0);
   }
 }
 
@@ -73,23 +73,23 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
   display: inline;
   width: 4px;
   height: 0;
-  background-color: $kungalgame-red-2;
+  background-color: var(--kungalgame-red-2);
   border-radius: 2px;
 }
 .container::-webkit-scrollbar-thumb {
-  background: $kungalgame-blue-4;
+  background: var(--kungalgame-blue-4);
   border-radius: 2px;
 }
 /* 支出的样式 */
 .expenditure-form {
-  border: 1px solid $kungalgame-red-4;
+  border: 1px solid var(--kungalgame-red-4);
   .title {
-    border-bottom: 1px solid $kungalgame-red-4;
-    background-color: $kungalgame-trans-red-0;
+    border-bottom: 1px solid var(--kungalgame-red-4);
+    background-color: var(--kungalgame-trans-red-0);
   }
   .sum {
-    border-top: 1px solid $kungalgame-red-4;
-    background-color: $kungalgame-trans-red-0;
+    border-top: 1px solid var(--kungalgame-red-4);
+    background-color: var(--kungalgame-trans-red-0);
   }
 }
 </style>

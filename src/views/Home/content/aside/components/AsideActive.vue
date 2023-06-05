@@ -55,18 +55,18 @@ const props = defineProps(['isActive'])
   button {
     height: 100%;
     width: 100%;
-    background-color: $kungalgame-red-0;
-    border: 1px solid $kungalgame-red-3;
+    background-color: var(--kungalgame-red-0);
+    border: 1px solid var(--kungalgame-red-3);
     border-radius: 5px;
     cursor: pointer;
-    color: $kungalgame-red-3;
+    color: var(--kungalgame-red-3);
     font-weight: bold;
     font-size: larger;
     /* 发布按钮 hover 效果 */
     &:hover {
       font-size: xx-large;
-      background-color: $kungalgame-red-3;
-      color: $kungalgame-red-0;
+      background-color: var(--kungalgame-red-3);
+      color: var(--kungalgame-red-0);
       /* 效果过渡时长 */
       transition: 0.3s;
     }
@@ -82,7 +82,7 @@ const props = defineProps(['isActive'])
   grid-template-rows: repeat(2, minmax(0, 1fr));
   font-size: 14px;
   /* 字体颜色 */
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
   /* 相对定位 */
   position: relative;
 
@@ -94,12 +94,12 @@ const props = defineProps(['isActive'])
     align-items: center;
     height: 100%;
     width: 100%;
-    color: $kungalgame-font-color-2;
+    color: var(--kungalgame-font-color-2);
     border-radius: 5px;
     /* 设置六个功能（模式、排行、背景等）的 hover */
     &:hover {
-      color: $kungalgame-font-color-3;
-      background-color: $kungalgame-trans-blue-1;
+      color: var(--kungalgame-font-color-3);
+      background-color: var(--kungalgame-trans-blue-1);
       cursor: pointer;
     }
   }

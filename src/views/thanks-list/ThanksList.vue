@@ -107,13 +107,13 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   margin: auto;
   position: relative;
   border-radius: 7px;
-  box-shadow: $shadow;
+  box-shadow: var(--shadow);
   /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: $kungalgame-font-color-3;
-  background-color: $kungalgame-trans-white-5;
+  color: var(--kungalgame-font-color-3);
+  background-color: var(--kungalgame-trans-white-5);
   backdrop-filter: blur(17px);
   padding: 20px;
   box-sizing: border-box;
@@ -130,9 +130,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 /* 被划出来的链接字体 */
 .skip {
-  border-bottom: 1px solid $kungalgame-blue-4;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
   cursor: pointer;
-  color: $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
 }
 /* 单个列表项 */
 .list > li {

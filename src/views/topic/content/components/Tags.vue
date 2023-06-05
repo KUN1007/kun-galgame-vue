@@ -31,13 +31,13 @@ import { Icon } from '@iconify/vue'
       margin-left: 5px;
       font-size: small;
       padding: 2px;
-      background-color: $kungalgame-blue-0;
+      background-color: var(--kungalgame-blue-0);
       overflow: hidden;
       white-space: nowrap;
       border-radius: 5px;
       cursor: pointer;
       &:hover {
-        background-color: $kungalgame-red-0;
+        background-color: var(--kungalgame-red-0);
         transition: 0.2s;
       }
     }
@@ -47,6 +47,6 @@ import { Icon } from '@iconify/vue'
 .tag {
   font-size: 23px;
   margin: 0 20px;
-  color: $kungalgame-blue-4;
+  color: var(--kungalgame-blue-4);
 }
 </style>

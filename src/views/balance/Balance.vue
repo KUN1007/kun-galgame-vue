@@ -71,15 +71,15 @@ import { calculateTotalAmount } from './log'
   height: 500px;
   /* 居中 */
   margin: auto;
-  background-color: $kungalgame-trans-white-2;
+  background-color: var(--kungalgame-trans-white-2);
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   /* 边距 */
   padding: 10px;
   border-radius: 7px;
-  border: 1px solid $kungalgame-trans-blue-2;
+  border: 1px solid var(--kungalgame-trans-blue-2);
   /* 阴影 */
-  box-shadow: $shadow;
+  box-shadow: var(--shadow);
   /* 竖直弹性盒 */
   display: flex;
   align-items: center;
@@ -123,20 +123,20 @@ import { calculateTotalAmount } from './log'
   justify-content: space-around;
   span {
     padding: 5px;
-    background-color: $kungalgame-red-4;
-    color: $kungalgame-white;
+    background-color: var(--kungalgame-red-4);
+    color: var(--kungalgame-white);
   }
   & > div:last-child {
-    background-color: $kungalgame-red-2;
+    background-color: var(--kungalgame-red-2);
   }
 }
 /* 经济状态盈余 */
 .amount-status-surplus {
   span {
-    background-color: $kungalgame-green-4;
+    background-color: var(--kungalgame-green-4);
   }
   & > div:last-child {
-    background-color: $kungalgame-green-2;
+    background-color: var(--kungalgame-green-2);
   }
 }
 </style>

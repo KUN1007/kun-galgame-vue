@@ -46,11 +46,11 @@ import { tagsList } from './tags'
     display: flex;
     align-items: center;
     & > a {
-      color: $kungalgame-font-color-3;
+      color: var(--kungalgame-font-color-3);
       cursor: pointer;
-      border-bottom: 2px solid $kungalgame-trans-white-9;
+      border-bottom: 2px solid var(--kungalgame-trans-white-9);
       &:hover {
-        border-bottom: 2px solid $kungalgame-blue-4;
+        border-bottom: 2px solid var(--kungalgame-blue-4);
       }
     }
   }
@@ -58,7 +58,7 @@ import { tagsList } from './tags'
 
 /* 标签的图标字体 */
 .icon {
-  color: $kungalgame-red-4;
+  color: var(--kungalgame-red-4);
   font-size: 20px;
   margin-right: 5px;
   flex-shrink: 0;

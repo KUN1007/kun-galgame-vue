@@ -30,19 +30,19 @@ import asideItem from '../aside-item'
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid $kungalgame-blue-4;
+  border: 1px solid var(--kungalgame-blue-4);
   span {
     width: 100%;
     height: 1px;
     flex-grow: 1;
     font-size: 18px;
-    border-top: 1px solid $kungalgame-blue-4;
+    border-top: 1px solid var(--kungalgame-blue-4);
     &:first-child {
       border-top: none;
     }
     &:hover {
       transition: 0.2s;
-      background-color: $kungalgame-trans-blue-2;
+      background-color: var(--kungalgame-trans-blue-2);
     }
     a {
       writing-mode: vertical-rl;
@@ -52,7 +52,7 @@ import asideItem from '../aside-item'
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $kungalgame-blue-5;
+      color: var(--kungalgame-blue-5);
     }
   }
 }

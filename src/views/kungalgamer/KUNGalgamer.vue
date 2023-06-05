@@ -49,9 +49,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   max-width: 1350px;
   max-width: 1200px;
   /* 背景色和边框阴影 */
-  background-color: $kungalgame-trans-white-2;
-  border: 1px solid $kungalgame-blue-4;
-  box-shadow: $shadow;
+  background-color: var(--kungalgame-trans-white-2);
+  border: 1px solid var(--kungalgame-blue-4);
+  box-shadow: var(--shadow);
   border-radius: 7px;
   /* 居中 */
   margin: auto;
@@ -59,7 +59,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   display: flex;
   flex-direction: column;
   /* 用户页面的所有字体颜色 */
-  color: $kungalgame-font-color-3;
+  color: var(--kungalgame-font-color-3);
 }
 .content {
   /* 使帖子不溢出 */
