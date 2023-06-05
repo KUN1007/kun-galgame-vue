@@ -80,7 +80,7 @@ import Floor from '../components/Floor.vue'
   border-radius: 5px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  background-color: var(--kungalgame-trans-white-3);
+  background-color: var(--kungalgame-trans-white-5);
   box-sizing: border-box;
 }
 

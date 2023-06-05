@@ -64,7 +64,7 @@
   border-width: 10px;
   border-style: solid;
   border-color: transparent;
-  border-bottom-color: var(--kungalgame-trans-white-2);
+  border-bottom-color: var(--kungalgame-trans-white-5);
   top: 50px;
   right: 14px;
 }

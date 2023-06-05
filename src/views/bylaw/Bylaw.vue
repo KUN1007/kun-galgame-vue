@@ -124,7 +124,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
   box-sizing: border-box;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
   box-shadow: var(--shadow);
 }
 /* 一级标题 */

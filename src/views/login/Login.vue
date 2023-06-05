@@ -204,7 +204,10 @@ const handleRegister = () => {
   place-items: center;
   min-height: 500px;
   min-width: 800px;
-  background: linear-gradient(var(--kungalgame-pink-0), var(--kungalgame-blue-0));
+  background: linear-gradient(
+    var(--kungalgame-pink-0),
+    var(--kungalgame-blue-0)
+  );
   background-repeat: no-repeat;
   position: relative;
 }
@@ -352,7 +355,7 @@ const handleRegister = () => {
   position: absolute;
   bottom: 7%;
   border-radius: 50px;
-  background-color: var(--kungalgame-trans-white-1);
+  background-color: var(--kungalgame-trans-white-5);
   border: 1px solid var(--kungalgame-blue-4);
   color: var(--kungalgame-blue-4);
   cursor: pointer;
@@ -366,7 +369,7 @@ const handleRegister = () => {
 }
 .btn:hover {
   background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-trans-white-1);
+  color: var(--kungalgame-trans-white-5);
 }
 /* 交互页面的盒子 */
 .overlay__panel {
@@ -393,7 +396,7 @@ const handleRegister = () => {
 }
 .overlay__panel .btn:hover {
   background-color: var(--kungalgame-red-4);
-  color: var(--kungalgame-trans-white-1);
+  color: var(--kungalgame-trans-white-5);
 }
 
 .overlay__panel h2 {

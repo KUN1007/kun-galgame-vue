@@ -193,7 +193,7 @@ import Aside from './components/Aside.vue'
 }
 /* 内容区容器 */
 .content-container {
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
   /* 固定高度 */
   height: 1200px;

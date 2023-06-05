@@ -34,8 +34,6 @@ import Topic from './Topic.vue'
 .topic-title {
   font-size: 30px;
   color: var(--kungalgame-blue-4);
-  font-style: italic;
-  text-shadow: 2px 2px 4px var(--kungalgame-pink-0);
   height: 50px;
   display: flex;
   justify-content: center;
@@ -50,7 +48,7 @@ import Topic from './Topic.vue'
   cursor: pointer;
 }
 .topic-nav > div:hover {
-  background-color: var(--kungalgame-blue-1);
+  background-color: var(--kungalgame-trans-blue-2);
   transition: 0.2s;
 }
 /* 单个交互项目 */

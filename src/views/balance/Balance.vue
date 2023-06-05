@@ -71,7 +71,7 @@ import { calculateTotalAmount } from './log'
   height: 500px;
   /* 居中 */
   margin: auto;
-  background-color: var(--kungalgame-trans-white-2);
+  background-color: var(--kungalgame-trans-white-5);
   /* 模糊背景 */
   backdrop-filter: blur(5px);
   /* 边距 */
