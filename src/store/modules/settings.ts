@@ -5,6 +5,8 @@ import { defineStore } from 'pinia'
 interface KUNGalgameSettings {
   // 是否显示设置面板
   showKUNGalgamePanel: boolean
+  // 白天黑夜模式切换
+  showKUNGalgameMode: string
   // 网站显示语言
   showKUNGalgameLanguage: string
   // 主页宽度
@@ -21,6 +23,7 @@ export const useKUNGalgameSettingsStore = defineStore({
   // 默认值
   state: (): KUNGalgameSettings => ({
     showKUNGalgamePanel: false,
+    showKUNGalgameMode: 'light',
     showKUNGalgameLanguage: 'en',
     showKUNGalgameMainPageWidth: '61.8',
     showKUNGalgameBackground: 'none',
@@ -30,10 +33,16 @@ export const useKUNGalgameSettingsStore = defineStore({
     // 恢复出厂设置()
     restoreSettings() {
       this.showKUNGalgamePanel = false
+      this.setKUNGalgameTheme('light')
       this.showKUNGalgameLanguage = 'en'
       this.showKUNGalgameMainPageWidth = '61.8'
       this.showKUNGalgameBackground = 'none'
       this.showKUNGalgameCustomBackground = ''
+    },
+    // 设置主题，只有两种模式 light 和 dark，light 为 ''
+    setKUNGalgameTheme(theme: string) {
+      this.showKUNGalgameMode = theme
+      document.documentElement.className = theme
     },
   },
 })

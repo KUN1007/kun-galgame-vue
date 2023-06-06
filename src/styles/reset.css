@@ -7,7 +7,7 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
-  font-family: cursive, serif, system-ui;
+  font-family: serif, system-ui;
   box-sizing: border-box;
 }
 :focus {

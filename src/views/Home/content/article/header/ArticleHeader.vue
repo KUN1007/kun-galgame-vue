@@ -56,8 +56,6 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   /* 整体弹性 */
   display: flex;
   flex-shrink: 0;
-  /* 交互区距离外面半透明总容器的距离 */
-  margin-top: 5px;
   border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   color: var(--kungalgame-font-color-3);
 }
