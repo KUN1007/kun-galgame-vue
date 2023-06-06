@@ -58,6 +58,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   flex-shrink: 0;
   /* 交互区距离外面半透明总容器的距离 */
   margin-top: 5px;
+  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
 }
 /* 筛选、搜索帖子、更多 */
 .nav-article-sort-container {
@@ -76,7 +77,6 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   flex-grow: 1;
   border-radius: 5px 0 0 0;
   position: relative;
-  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   border-right: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
   cursor: pointer;
@@ -103,7 +103,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 }
 .sort-submenu > div {
   padding: 10px 0;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-white-2);
   font-size: 14px;
   color: var(--kungalgame-font-color-3);
   text-decoration: none;
@@ -136,7 +136,6 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   flex-grow: 1;
   border-radius: 0 5px 0 0;
   cursor: pointer;
-  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   border-left: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
 }

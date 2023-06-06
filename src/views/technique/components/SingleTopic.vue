@@ -60,7 +60,7 @@ import { Icon } from '@iconify/vue'
   border-radius: 5px;
   /* 帖子内容距离边的距离 */
   padding: 0 10px;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-white-2);
   /* 相对于底部状态的定位 */
   position: relative;
   display: inline-block;

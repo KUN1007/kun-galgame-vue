@@ -44,7 +44,7 @@ defineProps(['isMainPage'])
 <style lang="scss" scoped>
 /* 搜索帖子 */
 .container {
-  height: 40px;
+  height: 39px;
   width: 1px;
   justify-content: center;
   align-items: center;
@@ -55,7 +55,6 @@ defineProps(['isMainPage'])
   /* 相对于二级菜单定位 */
   position: relative;
   display: flex;
-  border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   box-sizing: border-box;
   &:hover {
     background-color: var(--kungalgame-trans-white-5);
@@ -68,7 +67,7 @@ defineProps(['isMainPage'])
 /* 搜索框表单 */
 .search-form {
   display: flex;
-  height: 40px;
+  height: 39px;
   /* 随着页面自增长 */
   width: 1px;
   flex-grow: 1;
@@ -83,7 +82,7 @@ defineProps(['isMainPage'])
 /* 框体 */
 .input {
   padding: 0 15px;
-  height: 40px;
+  height: 39px;
   width: 100%;
   /* 搜索时输入的字体大小 */
   font-size: 16px;
@@ -96,8 +95,8 @@ defineProps(['isMainPage'])
 /* 搜索按钮 */
 .search-btn {
   /* 正方形，不缩小 */
-  height: 40px;
-  width: 40px;
+  height: 39px;
+  width: 39px;
   flex-shrink: 0;
   border-left: 1px solid var(--kungalgame-trans-blue-4);
   /* 搜索图标居中 */
@@ -120,12 +119,12 @@ defineProps(['isMainPage'])
   /* 相对于 nav 的搜索区域绝对定位 */
   position: absolute;
   /* 紧贴搜索区定位 */
-  top: 40px;
+  top: 39px;
   left: 0;
   /* 无 hover 时不显示搜索历史 */
   display: none;
   flex-direction: column;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-white);
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-red-1);
   border-radius: 7px;

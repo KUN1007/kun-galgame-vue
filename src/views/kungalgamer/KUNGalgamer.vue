@@ -49,7 +49,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   max-width: 1350px;
   max-width: 1200px;
   /* 背景色和边框阴影 */
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-4);
   box-shadow: var(--shadow);
   border-radius: 7px;
