@@ -21,7 +21,7 @@ import TopicPart from './components/TopicPart.vue'
   margin-bottom: 3px;
   display: flex;
   &:hover {
-    background-color: var(--kungalgame-trans-white-5);
+    background-color: var(--kungalgame-white);
     transition: 0.2s;
   }
   &:last-child {

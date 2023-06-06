@@ -50,7 +50,7 @@ import Aside from './components/Aside.vue'
 /* 内容区 */
 .content {
   /* 距离内部的距离 */
-  padding: 10px;
+  padding: 5px;
   height: 1400px;
   /* 占总页面的宽度 */
   width: 95%;

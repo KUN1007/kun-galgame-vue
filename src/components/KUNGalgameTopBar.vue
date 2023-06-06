@@ -208,7 +208,7 @@ $navNumber: v-bind(navItemNum);
 
       &:nth-child(3):hover ~ .top-bar-box {
         background-color: var(--kungalgame-blue-3);
-        left: calc(100% / navNumber * 2);
+        left: calc(100% / $navNumber * 2);
       }
 
       &:nth-child(4):hover ~ .top-bar-box {
