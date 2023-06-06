@@ -50,7 +50,7 @@ const asideNavItem: navItem[] = [
   ul {
     flex-grow: 1;
     display: flex;
-    background-color: var(--kungalgame-trans-yellow-0);
+    background-color: var(--kungalgame-trans-blue-0);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     & > li {

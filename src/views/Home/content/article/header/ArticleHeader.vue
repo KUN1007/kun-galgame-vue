@@ -59,6 +59,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   /* 交互区距离外面半透明总容器的距离 */
   margin-top: 5px;
   border-bottom: 1px solid var(--kungalgame-trans-blue-4);
+  color: var(--kungalgame-font-color-3);
 }
 /* 筛选、搜索帖子、更多 */
 .nav-article-sort-container {
@@ -113,10 +114,11 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 }
 /* 单个二级菜单 hover */
 .sort-submenu > div:hover {
-  background-color: var(--kungalgame-red-1);
+  background-color: var(--kungalgame-trans-blue-1);
+  backdrop-filter: blur(5px);
 }
 .sort-submenu > div:active {
-  background-color: var(--kungalgame-red-2);
+  background-color: var(--kungalgame-trans-blue-2);
 }
 .icon-item {
   color: var(--kungalgame-font-color-2);
@@ -143,7 +145,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   background-color: var(--kungalgame-trans-white-5);
 }
 .nav-article-more-topic:active {
-  background-color: var(--kungalgame-trans-red-3);
+  background-color: var(--kungalgame-trans-blue-2);
 }
 .all-topic {
   font-size: 18px;
