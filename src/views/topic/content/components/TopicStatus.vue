@@ -14,6 +14,7 @@ div {
 }
 /* 帖子状态 */
 span {
+  padding: 0 1px;
   background-color: var(--kungalgame-green-3);
   color: var(--kungalgame-white);
 }

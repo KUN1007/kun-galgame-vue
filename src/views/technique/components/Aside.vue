@@ -53,8 +53,8 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 .aside-container {
   height: 100%;
   background: linear-gradient(
-    var(--kungalgame-trans-blue-1),
-    var(--kungalgame-trans-red-1)
+    var(--kungalgame-trans-blue-0),
+    var(--kungalgame-trans-pink-0)
   );
   display: flex;
   flex-direction: column;
