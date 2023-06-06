@@ -140,6 +140,7 @@ const handleCustomBackground = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--kungalgame-font-color-3);
   input {
     width: 100%;
     padding-left: 5px;
@@ -159,6 +160,7 @@ const handleCustomBackground = () => {
     height: 25px;
     width: 70px;
     box-sizing: border-box;
+    color: var(--kungalgame-font-color-3);
     border: 1px solid var(--kungalgame-blue-4);
     border-left: none;
     background-color: var(--kungalgame-trans-white-5);
@@ -179,6 +181,7 @@ const handleCustomBackground = () => {
   height: 30px;
   width: 100%;
   margin-top: 10px;
+  color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-blue-1);
   &:hover {

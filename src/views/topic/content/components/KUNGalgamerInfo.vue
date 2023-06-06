@@ -22,6 +22,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  color: var(--kungalgame-font-color-3);
 }
 /* 楼主的头像 */
 .master-avatar {

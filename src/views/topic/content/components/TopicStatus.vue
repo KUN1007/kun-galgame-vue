@@ -10,6 +10,7 @@
 div {
   font-size: 12px;
   margin-left: 10px;
+  color: var(--kungalgame-font-color-3);
 }
 /* 帖子状态 */
 span {

@@ -34,6 +34,7 @@ import SingleComment from './SingleComment.vue'
 .title {
   flex-shrink: 0;
   margin: 10px;
+  color: var(--kungalgame-font-color-3);
 }
 /* 评论容器 */
 .container {

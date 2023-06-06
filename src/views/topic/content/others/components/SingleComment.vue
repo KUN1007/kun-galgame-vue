@@ -50,6 +50,7 @@ import { Icon } from '@iconify/vue'
   display: flex;
   width: 100%;
   margin: 10px 0;
+  color: var(--kungalgame-font-color-3);
   img {
     width: 50px;
     height: 50px;

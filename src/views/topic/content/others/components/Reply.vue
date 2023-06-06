@@ -12,6 +12,7 @@
 /* 上部区域的左边 */
 .reply {
   font-size: 17px;
+  color: var(--kungalgame-font-color-3);
   a {
     color: var(--kungalgame-blue-5);
     font-weight: 500;
