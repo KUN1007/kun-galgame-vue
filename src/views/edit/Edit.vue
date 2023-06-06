@@ -100,7 +100,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   margin: auto;
   /* 容器的阴影 */
   box-shadow: var(--shadow);
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-white-2);
   color: var(--kungalgame-font-color-3);
 }
 /* 容器的顶部 */
@@ -220,6 +220,9 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
+  &:hover {
+    color: var(--kungalgame-white);
+  }
 }
 /* 确认按钮的样式 */
 .confirm-btn {
@@ -228,7 +231,6 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   border: 1px solid var(--kungalgame-blue-4);
 }
 .confirm-btn:hover {
-  color: var(--kungalgame-trans-white-5);
   background-color: var(--kungalgame-blue-4);
   transition: 0.1s;
 }
@@ -243,7 +245,6 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   border: 1px solid var(--kungalgame-red-4);
 }
 .preview-btn:hover {
-  color: var(--kungalgame-trans-white-5);
   background-color: var(--kungalgame-red-4);
   transition: 0.1s;
 }
@@ -258,7 +259,6 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   border: 1px solid var(--kungalgame-orange-4);
 }
 .save-btn:hover {
-  color: var(--kungalgame-trans-white-5);
   background-color: var(--kungalgame-orange-4);
   transition: 0.1s;
 }

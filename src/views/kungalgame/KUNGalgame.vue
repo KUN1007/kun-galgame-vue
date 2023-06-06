@@ -201,7 +201,7 @@ import Aside from './components/Aside.vue'
   max-width: 1300px;
   /* 居中 */
   margin: auto;
-  padding: 7px;
+  padding: 5px;
 }
 /* 内容区 */
 .content {
