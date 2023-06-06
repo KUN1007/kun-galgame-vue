@@ -20,17 +20,14 @@ import SingleTopic from '../components/SingleTopic.vue'
   flex-direction: column;
   /* 溢出显示滚动条 */
   overflow-y: scroll;
-}
-/* 滚动条的样式 */
-.article::-webkit-scrollbar {
-  display: inline;
-  width: 4px;
-  height: 0;
-  background-color: var(--kungalgame-red-2);
-  border-radius: 2px;
-}
-.article::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
-  border-radius: 2px;
+  &::-webkit-scrollbar {
+    display: inline;
+    width: 4px;
+    height: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--kungalgame-blue-4);
+    border-radius: 2px;
+  }
 }
 </style>

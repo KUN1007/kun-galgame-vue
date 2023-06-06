@@ -80,17 +80,14 @@ import KUNgalgamer from './KUNGalgamer.vue'
   flex-direction: column;
   margin-right: 10px;
   overflow-y: scroll;
-}
-/* 滚动条的样式 */
-.kungalgamer-container::-webkit-scrollbar {
-  display: inline;
-  width: 4px;
-  height: 0;
-  background-color: var(--kungalgame-red-2);
-  border-radius: 2px;
-}
-.kungalgamer-container::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
-  border-radius: 2px;
+  &::-webkit-scrollbar {
+    display: inline;
+    width: 4px;
+    height: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--kungalgame-blue-4);
+    border-radius: 2px;
+  }
 }
 </style>

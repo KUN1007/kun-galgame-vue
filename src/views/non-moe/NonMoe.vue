@@ -102,8 +102,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     display: inline;
     width: 4px;
     height: 0;
-    background-color: var(--kungalgame-red-2);
-    border-radius: 2px;
   }
   &::-webkit-scrollbar-thumb {
     background: var(--kungalgame-blue-4);

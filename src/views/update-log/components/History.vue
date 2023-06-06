@@ -26,17 +26,14 @@ import SingleHistory from './SingleLog.vue'
   flex-direction: column;
   /* y 轴溢出滚动 */
   overflow-y: scroll;
-}
-/* 帖子区滚动条 */
-.history-list::-webkit-scrollbar {
-  display: inline;
-  width: 4px;
-  height: 0;
-  background-color: var(--kungalgame-red-2);
-  border-radius: 2px;
-}
-.history-list::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
-  border-radius: 2px;
+  &::-webkit-scrollbar {
+    display: inline;
+    width: 4px;
+    height: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--kungalgame-blue-4);
+    border-radius: 2px;
+  }
 }
 </style>
