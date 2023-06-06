@@ -32,5 +32,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  color: var(--kungalgame-font-color-3);
 }
 </style>

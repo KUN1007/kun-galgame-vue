@@ -26,5 +26,6 @@
   font-size: 15px;
   padding: 17px;
   border-left: 1px solid var(--kungalgame-blue-1);
+  color: var(--kungalgame-font-color-3);
 }
 </style>

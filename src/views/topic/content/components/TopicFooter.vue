@@ -79,6 +79,7 @@ const isOthersTopic = props.isOthersTopic
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--kungalgame-font-color-3);
   li {
     display: flex;
     justify-content: center;

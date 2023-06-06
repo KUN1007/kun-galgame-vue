@@ -121,6 +121,7 @@ const handleRecover = () => {
   box-shadow: var(--shadow);
   border-radius: 10px;
   display: flex;
+  color: var(--kungalgame-font-color-3);
 }
 .container {
   position: relative;
@@ -179,6 +180,7 @@ const handleRecover = () => {
 .select {
   width: 100px;
   font-size: 16px;
+  color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-white-9);
   option {
@@ -210,6 +212,7 @@ const handleRecover = () => {
   font-size: 15px;
   cursor: pointer;
   margin-top: 20px;
+  color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-red-4);
   background-color: var(--kungalgame-trans-red-1);
   width: 100%;

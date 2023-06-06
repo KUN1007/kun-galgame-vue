@@ -24,6 +24,7 @@ import { Icon } from '@iconify/vue'
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--kungalgame-font-color-3);
   /* 单个标签的盒子 */
   ul {
     display: flex;

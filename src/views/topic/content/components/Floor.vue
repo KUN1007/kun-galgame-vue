@@ -30,7 +30,10 @@
   height: 70px;
   border-radius: 50%;
   letter-spacing: 2px;
-  background: linear-gradient(var(--kungalgame-blue-1), var(--kungalgame-red-1));
+  background: linear-gradient(
+    var(--kungalgame-blue-1),
+    var(--kungalgame-red-1)
+  );
   opacity: 0.8;
   font-size: 37px;
   font-weight: bold;

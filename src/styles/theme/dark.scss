@@ -1,0 +1,94 @@
+html {
+  --kungalgame-font-color-0: #9f9f9f;
+  --kungalgame-font-color-1: #afafaf;
+  --kungalgame-font-color-2: #c2c2c2;
+  --kungalgame-font-color-3: #dcdcdc;
+  --kungalgame-black: #fff;
+  --kungalgame-white: #14171e;
+
+  --kungalgame-gray-7: #d0d7de;
+  --kungalgame-gray-4: #afb8c1;
+  --kungalgame-gray-3: #8c959f;
+  --kungalgame-gray-2: #424a53;
+
+  --kungalgame-blue-0: #002155;
+  --kungalgame-blue-1: #0a3069;
+  --kungalgame-blue-2: #033d8b;
+  --kungalgame-blue-3: #0550ae;
+  --kungalgame-blue-4: #0969da;
+  --kungalgame-blue-5: #218bff;
+
+  --kungalgame-green-2: #003d16;
+  --kungalgame-green-3: #116329;
+  --kungalgame-green-4: #1a7f37;
+
+  --kungalgame-yellow-3: #7d4e00;
+  --kungalgame-yellow-4: #9a6700;
+
+  --kungalgame-orange-2: #762c00;
+  --kungalgame-orange-3: #953800;
+  --kungalgame-orange-4: #bc4c00;
+
+  --kungalgame-red-0: #4c0014;
+  --kungalgame-red-1: #660018;
+  --kungalgame-red-2: #82071e;
+  --kungalgame-red-3: #a40e26;
+  --kungalgame-red-4: #cf222e;
+  --kungalgame-red-5: #fa4549;
+  --kungalgame-red-6: #ff8182;
+
+  --kungalgame-purple-3: #6639ba;
+  --kungalgame-purple-4: #8250df;
+  --kungalgame-purple-5: #a475f9;
+
+  --kungalgame-pink-0: #4d0336;
+  --kungalgame-pink-3: #99286e;
+  --kungalgame-pink-4: #bf3989;
+
+  /* 
+     
+      transparent color
+      
+      */
+
+  --kungalgame-trans-white-2: #14171ed9;
+  --kungalgame-trans-white-5: #14171e8e;
+  /* 这个白色是占位符，不然会导致塌陷 */
+  --kungalgame-trans-white-9: #ffffff00;
+
+  --kungalgame-trans-gray-1: #24292f77;
+  --kungalgame-trans-gray-4: #6e778177;
+
+  --kungalgame-trans-blue-0: #00215577;
+  --kungalgame-trans-blue-1: #0a306977;
+  --kungalgame-trans-blue-2: #033d8b77;
+  --kungalgame-trans-blue-3: #0550ae77;
+  --kungalgame-trans-blue-4: #0969da77;
+
+  --kungalgame-trans-yellow-0: #3b230077;
+
+  --kungalgame-trans-orange-1: #5c220077;
+
+  --kungalgame-trans-red-0: #4c001477;
+  --kungalgame-trans-red-1: #66001877;
+  --kungalgame-trans-red-2: #82071e77;
+  --kungalgame-trans-red-3: #a40e2677;
+  --kungalgame-trans-red-4: #cf222e77;
+
+  --kungalgame-trans-purple-1: #3e1f7977;
+  --kungalgame-trans-purple-2: #512a9777;
+  --kungalgame-trans-purple-3: #6639ba77;
+
+  --kungalgame-trans-pink-0: #4d033677;
+  --kungalgame-trans-pink-1: #61134777;
+  --kungalgame-trans-pink-2: #77205777;
+
+  --shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
+  --kungalgame-shadow-0: 5px 5px 7px var(--kungalgame-trans-gray-4),
+    -5px -5px 7px var(--kungalgame-gray-4);
+  --kungalgame-shadow-1: 2px 2px 4px var(--kungalgame-trans-gray-4),
+    -2px -2px 4px var(--kungalgame-gray-4);
+  --kungalgame-shadow-2: inset 1px 1px 2px var(--kungalgame-gray-3),
+    inset -1px -1px 2px var(--kungalgame-gray-4);
+}

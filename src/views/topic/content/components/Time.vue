@@ -24,6 +24,7 @@ import { Icon } from '@iconify/vue'
   /* 窗口缩小不换行 */
   overflow: hidden;
   white-space: nowrap;
+  color: var(--kungalgame-font-color-3);
   /* 发帖时间的样式 */
   div {
     padding-right: 20px;

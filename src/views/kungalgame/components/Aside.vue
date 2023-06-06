@@ -44,6 +44,7 @@ const asideBarItem: asideBar[] = [
   border-right: 1px solid var(--kungalgame-blue-4);
   position: sticky;
   top: 0;
+  color: var(--kungalgame-font-color-3);
   /* 侧边的标题 */
   & > div {
     /* 固定高度 */

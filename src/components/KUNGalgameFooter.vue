@@ -20,5 +20,6 @@
   margin-top: 17px;
   /* 文字间距 */
   letter-spacing: 1px;
+  color: var(--kungalgame-font-color-3);
 }
 </style>
