@@ -32,7 +32,7 @@
 /* 波浪的属性设置 */
 .kun-footer-waves {
   position: relative;
-  margin-bottom: -5px;
+  margin-bottom: -4px;
   width: 100%;
   /* 设定顶部波浪的高度 */
   min-height: 50px;

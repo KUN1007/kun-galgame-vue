@@ -1,12 +1,4 @@
-html {
-  //   --shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
-  //     0 2px 8px hsla(0, 0%, 0%, 0.05);
-  //   --kungalgame-shadow-0: 5px 5px 7px var(--kungalgame-trans-gray-4),
-  //     -5px -5px 7px var(--kungalgame-gray-4);
-  //   --kungalgame-shadow-1: 2px 2px 4px var(--kungalgame-trans-gray-4),
-  //     -2px -2px 4px var(--kungalgame-gray-4);
-  //   --kungalgame-shadow-2: inset 1px 1px 2px var(--kungalgame-gray-3),
-  //     inset -1px -1px 2px var(--kungalgame-gray-4);
+html.dark {
   --kungalgame-font-color-0: #b3b3b3;
   --kungalgame-font-color-1: #c5c5c5;
   --kungalgame-font-color-2: #dddddd;
@@ -15,14 +7,14 @@ html {
   --kungalgame-black: #fff;
   --kungalgame-white: #182533;
 
-  --kungalgame-trans-white-2: #292d3ed9;
-  --kungalgame-trans-white-5: #1825338e;
+  --kungalgame-trans-white-2: #0d2034d9;
+  --kungalgame-trans-white-5: #0d20348e;
 
-  --kungalgame-blue-0: #0550ae;
+  --kungalgame-blue-0: #00479e;
 
-  --kungalgame-red-0: #800d2c;
+  --kungalgame-red-0: #52000c;
 
-  --kungalgame-trans-blue-0: #0e162177;
+  --kungalgame-trans-blue-0: #09132077;
   --kungalgame-trans-blue-1: #5288c177;
   --kungalgame-trans-blue-2: #0c4cac77;
 

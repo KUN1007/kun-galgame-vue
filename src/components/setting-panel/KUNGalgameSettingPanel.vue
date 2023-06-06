@@ -19,6 +19,7 @@ const {
   showKUNGalgameMainPageWidth,
   showKUNGalgameLanguage,
 } = storeToRefs(settingsStore)
+
 /*
  * 网站的语言设置
  */
@@ -50,12 +51,14 @@ const handleRecover = () => {
             <Icon
               class="sun"
               icon="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
+              @click="settingsStore.setKUNGalgameTheme('')"
             />
           </li>
           <li>
             <Icon
               class="moon"
               icon="line-md:sunny-outline-to-moon-loop-transition"
+              @click="settingsStore.setKUNGalgameTheme('dark')"
             />
           </li>
         </div>
