@@ -39,11 +39,11 @@ Tips: 网站目前正在建设中······
 
 ### 预览
 
-原项目的地址为：[https://github.com/KUN1007/kungalgame-pure-css](https://github.com/KUN1007/kungalgame-pure-css)
+##### 原项目的地址为：[https://github.com/KUN1007/kungalgame-pure-css](https://github.com/KUN1007/kungalgame-pure-css)
 
 但是我们在重构的时候增加了大量的内容，并且将图标由`fontawesome`改为了`iconify`，所以外观可能会不同，这里仅展示主页预览
 
-![]()
+![](https://github.com/KUN1007/KUNGalGame-vue/blob/rebuild-color/introduction/images/preview.png)
 
 ### 启动方法
 
