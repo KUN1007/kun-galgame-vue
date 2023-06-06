@@ -53,6 +53,15 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
     padding: 10px;
     /* y 轴溢出滚动 */
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: inline;
+      width: 4px;
+      height: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--kungalgame-blue-4);
+      border-radius: 2px;
+    }
   }
   /* 总收入 */
   .sum {
@@ -66,19 +75,6 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
     border-top: 1px solid var(--kungalgame-blue-4);
     background-color: var(--kungalgame-trans-blue-0);
   }
-}
-
-/* 滚动条的样式 */
-.container::-webkit-scrollbar {
-  display: inline;
-  width: 4px;
-  height: 0;
-  background-color: var(--kungalgame-red-2);
-  border-radius: 2px;
-}
-.container::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
-  border-radius: 2px;
 }
 /* 支出的样式 */
 .expenditure-form {

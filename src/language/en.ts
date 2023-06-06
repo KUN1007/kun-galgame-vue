@@ -69,7 +69,7 @@ export default {
   },
   nonMoe: {
     log: 'Non-moe Record',
-    title: 'All the non-moe behavior were recorded here, please do not do that',
+    title: `All the non-moe behavior were recorded here, don't do that`,
     reason: 'reason',
     consequence: 'consequence',
     moemoepoint: 'moemoepoint',

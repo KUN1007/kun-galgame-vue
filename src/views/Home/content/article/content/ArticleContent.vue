@@ -39,17 +39,14 @@ import SingleTopic from './topic/SingleTopic.vue'
   /* 帖子区域弹性盒 */
   display: flex;
   flex-direction: column;
-}
-/* 帖子区滚动条 */
-.topic-container::-webkit-scrollbar {
-  display: inline;
-  width: 4px;
-  height: 0;
-  background-color: var(--kungalgame-red-2);
-  border-radius: 2px;
-}
-.topic-container::-webkit-scrollbar-thumb {
-  background: var(--kungalgame-blue-4);
-  border-radius: 2px;
+  &::-webkit-scrollbar {
+    display: inline;
+    width: 4px;
+    height: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--kungalgame-blue-4);
+    border-radius: 2px;
+  }
 }
 </style>

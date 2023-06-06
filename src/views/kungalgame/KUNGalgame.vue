@@ -207,10 +207,20 @@ import Aside from './components/Aside.vue'
 .content {
   height: 100%;
   overflow-y: scroll;
+  background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-4);
   border-radius: 7px;
   display: flex;
   box-shadow: var(--shadow);
+  &::-webkit-scrollbar {
+    display: inline;
+    width: 4px;
+    height: 0;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background: var(--kungalgame-blue-4);
+    border-radius: 2px;
+  }
 }
 /* 文章区距离侧边的距离 */
 .article {
