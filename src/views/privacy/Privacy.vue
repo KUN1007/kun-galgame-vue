@@ -53,6 +53,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--kungalgame-white);
 }
 /* 内容区容器 */
 .container {

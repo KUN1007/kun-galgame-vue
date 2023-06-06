@@ -39,6 +39,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+  background-color: var(--kungalgame-white);
 }
 /* 页面头部 */
 .container {

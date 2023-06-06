@@ -85,6 +85,7 @@ const list = [
   background-position: center;
   background-size: cover;
   min-width: 700px;
+  background-color: var(--kungalgame-white);
 }
 /* 帖子池容器 */
 .pool-container {

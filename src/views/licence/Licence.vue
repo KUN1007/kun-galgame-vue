@@ -39,6 +39,7 @@
     var(--kungalgame-trans-blue-1)
   );
   display: flex;
+  background-color: var(--kungalgame-white);
 }
 /* 内容区容器 */
 .container {

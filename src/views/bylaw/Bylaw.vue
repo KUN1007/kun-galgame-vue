@@ -99,6 +99,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-position: center;
   background-size: cover;
   min-width: 800px;
+  background-color: var(--kungalgame-white);
 }
 /* 总容器 */
 .container {

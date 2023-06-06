@@ -190,13 +190,14 @@ import Aside from './components/Aside.vue'
   background-position: center;
   background-size: cover;
   height: 1500px;
+  background-color: var(--kungalgame-white);
 }
 /* 内容区容器 */
 .content-container {
   background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
   /* 固定高度 */
-  height: 1200px;
+  height: 1300px;
   width: 90%;
   max-width: 1300px;
   /* 居中 */

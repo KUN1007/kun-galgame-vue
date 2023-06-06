@@ -92,6 +92,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+  background-color: var(--kungalgame-white);
 }
 /* 内容部分的总容器 */
 .container {

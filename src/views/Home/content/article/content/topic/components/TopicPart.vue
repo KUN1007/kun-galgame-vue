@@ -91,7 +91,7 @@ import { Icon } from '@iconify/vue'
 /* 设置点赞、评论、查看字体和位置 */
 .topic-status ul {
   display: flex;
-  color: var(--kungalgame-gray-7);
+  color: var(--kungalgame-font-color-2);
   font-size: smaller;
 }
 /* 点赞、评论、查看之间的距离 */

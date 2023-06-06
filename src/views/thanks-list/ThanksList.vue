@@ -98,6 +98,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   background-position: center;
   background-size: cover;
   height: 1500px;
+  background-color: var(--kungalgame-white);
 }
 .container {
   /* 固定宽高 */

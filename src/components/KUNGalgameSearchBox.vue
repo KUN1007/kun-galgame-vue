@@ -56,6 +56,7 @@ defineProps(['isMainPage'])
   position: relative;
   display: flex;
   box-sizing: border-box;
+  color: var(--kungalgame-font-color-3);
   &:hover {
     background-color: var(--kungalgame-trans-white-5);
     /* hover 时显示搜索历史 */
@@ -88,6 +89,7 @@ defineProps(['isMainPage'])
   font-size: 16px;
   border: none;
   background-color: var(--kungalgame-trans-white-5);
+  color: var(--kungalgame-font-color-3);
   &::placeholder {
     color: var(--kungalgame-font-color-2);
   }
