@@ -90,6 +90,7 @@
   border: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-blue-0);
   cursor: pointer;
+  color: var(--kungalgame-font-color-3);
 }
 .change-btn button:hover {
   background-color: var(--kungalgame-trans-blue-4);

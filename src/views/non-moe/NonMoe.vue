@@ -41,6 +41,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   background-size: cover;
   min-width: 800px;
   min-height: 750px;
+  background-color: var(--kungalgame-white);
 }
 /* 根容器 */
 .container {

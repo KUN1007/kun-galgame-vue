@@ -46,6 +46,7 @@ import Aside from './components/Aside.vue'
   background-position: center;
   background-size: cover;
   min-width: 800px;
+  background-color: var(--kungalgame-white);
 }
 /* 内容区 */
 .content {

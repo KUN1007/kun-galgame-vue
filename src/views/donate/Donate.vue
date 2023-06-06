@@ -33,6 +33,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--kungalgame-white);
 }
 .container {
   /* 固定宽高 */

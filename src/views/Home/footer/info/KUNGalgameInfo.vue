@@ -95,7 +95,7 @@ export default {
   /* 信息区域的增长 */
   flex-grow: 1;
   display: flex;
-  background-color: rgba(217, 233, 255, 0.7);
+  background-color: var(--kungalgame-trans-blue-2);
 }
 /* 信息展示部分的容器,目的是把左侧的信息和右侧的网站介绍分开 */
 .kungalgame-footer-info-wrap {

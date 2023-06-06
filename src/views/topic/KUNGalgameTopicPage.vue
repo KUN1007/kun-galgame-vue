@@ -33,6 +33,7 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+  background-color: var(--kungalgame-white);
 }
 /* 下面帖子详情区的容器 */
 .topic-wrapper {

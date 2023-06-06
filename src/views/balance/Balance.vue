@@ -63,6 +63,7 @@ import { calculateTotalAmount } from './log'
   background-size: cover;
   min-width: 1100px;
   min-height: 600px;
+  background-color: var(--kungalgame-white);
 }
 /* 文章部分 */
 .article {

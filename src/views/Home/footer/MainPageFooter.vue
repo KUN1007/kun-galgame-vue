@@ -1,10 +1,6 @@
-<script lang="ts">
-import FooterWave from "./wave/FooterWave.vue";
-import KUNGalgameInfo from "./info/KUNGalgameInfo.vue";
-export default {
-  name: "MainPageFooter",
-  components: { FooterWave, KUNGalgameInfo },
-};
+<script setup lang="ts">
+import FooterWave from './wave/FooterWave.vue'
+import KUNGalgameInfo from './info/KUNGalgameInfo.vue'
 </script>
 
 <template>

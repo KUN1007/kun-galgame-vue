@@ -210,6 +210,7 @@ const handleRegister = () => {
   );
   background-repeat: no-repeat;
   position: relative;
+  background-color: var(--kungalgame-white);
 }
 /* 登录和注册的字体 */
 .form__title {
