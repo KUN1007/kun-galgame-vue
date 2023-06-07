@@ -33,7 +33,7 @@ defineProps(['isMasterTopics'])
   height: 1px;
   flex-grow: 4;
   /* 上方区域的配色 */
-  border: 1px solid var(--kungalgame-trans-blue-2);
+  border: 1px solid var(--kungalgame-blue-1);
   /* 隐藏溢出的颜色 */
   overflow: hidden;
   border-radius: 5px;
@@ -87,7 +87,7 @@ defineProps(['isMasterTopics'])
         color: var(--kungalgame-font-color-2);
         background-color: var(--kungalgame-trans-blue-1);
         /* 与单个帖子标题的分割线 */
-        border-bottom: 1px solid var(--kungalgame-trans-blue-2);
+        border-bottom: 1px solid var(--kungalgame-blue-1);
         /* 水平居中 */
         justify-content: center;
       }
