@@ -2,24 +2,24 @@ import { type RouteRecordRaw } from 'vue-router'
 
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
-const edit: RouteRecordRaw[] = [
-  // KUNGalgame 编辑页面
+const nonMoe: RouteRecordRaw[] = [
+  // KUNGalgame 不萌萌页
   {
-    path: '/edit',
+    path: '/non-moe',
     component: Layout,
-    redirect: '/edit/index',
+    redirect: '/non-moe/index',
     children: [
       {
-        name: 'Edit',
+        name: 'NonMoe',
         path: 'index',
-        component: () => import('@/views/edit/Edit.vue'),
+        component: () => import('@/views/non-moe/NonMoe.vue'),
         meta: {
           permission: 'kungalgamer',
-          title: '编辑',
+          title: '不萌萌',
         },
       },
     ],
   },
 ]
 
-export default edit
+export default nonMoe

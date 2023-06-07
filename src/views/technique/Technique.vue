@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
-// 导入背景图片
-import { currBackground } from '@/hooks/useBackgroundPicture'
 import SingleTopic from './components/SingleTopic.vue'
 import Pagination from './components/Pagination.vue'
 import Aside from './components/Aside.vue'
 </script>
 
 <template>
-  <div class="root" :style="{ backgroundImage: currBackground }">
+  <div class="root">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区 -->
@@ -42,11 +40,7 @@ import Aside from './components/Aside.vue'
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   min-width: 800px;
-  background-color: var(--kungalgame-white);
 }
 /* 内容区 */
 .content {

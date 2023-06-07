@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
-import { currBackground } from '@/hooks/useBackgroundPicture'
 import Form from './components/Form.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 // 导入临时数据
@@ -8,7 +7,7 @@ import { calculateTotalAmount } from './log'
 </script>
 
 <template>
-  <div class="root" :style="{ backgroundImage: currBackground }">
+  <div class="root">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 文章部分 -->
@@ -58,12 +57,8 @@ import { calculateTotalAmount } from './log'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   min-width: 1100px;
   min-height: 600px;
-  background-color: var(--kungalgame-white);
 }
 /* 文章部分 */
 .article {

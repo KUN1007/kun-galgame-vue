@@ -13,7 +13,7 @@ const props = defineProps(['isActive'])
     <!-- 发布新文章 -->
     <div class="new-article">
       <!-- 发布新文章的按钮 -->
-      <router-link to="/edit">
+      <router-link to="/edit/index">
         <button class="btn-new-article">
           {{ $t('mainPage.asideActive.create') }}
         </button>

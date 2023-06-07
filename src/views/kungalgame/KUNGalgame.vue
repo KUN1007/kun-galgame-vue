@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
-// 导入背景图片
-import { currBackground } from '@/hooks/useBackgroundPicture'
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 // 导入 Aside
@@ -9,7 +7,7 @@ import Aside from './components/Aside.vue'
 </script>
 
 <template>
-  <div class="root" :style="{ backgroundImage: currBackground }">
+  <div class="root">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区容器 -->
@@ -186,11 +184,7 @@ import Aside from './components/Aside.vue'
 
 <style lang="scss" scoped>
 .root {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   height: 1500px;
-  background-color: var(--kungalgame-white);
 }
 /* 内容区容器 */
 .content-container {

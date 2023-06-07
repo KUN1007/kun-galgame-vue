@@ -1,5 +1,7 @@
 import { type RouteRecordRaw } from 'vue-router'
 
+const Layout = () => import('@/layout/KUNGalgameAPP.vue')
+
 const kungalgame: RouteRecordRaw[] = [
   // KUNGalgame 关于我们页
   {

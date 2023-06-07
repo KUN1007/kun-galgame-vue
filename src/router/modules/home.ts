@@ -11,7 +11,7 @@ const index: RouteRecordRaw[] = [
     children: [
       {
         name: 'index',
-        path: '/kun',
+        path: 'kun',
         component: () => import('@/views/Home/KUNGalgameMainPage.vue'),
         meta: {
           permission: 'kungalgamer',

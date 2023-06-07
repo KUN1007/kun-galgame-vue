@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
-// 导入背景图片
-import { currBackground } from '@/hooks/useBackgroundPicture'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import Tags from './components/Tags.vue'
 import Line from './components/Line.vue'
@@ -56,7 +54,7 @@ const list = [
 
 <template>
   <div class="content-wrapper">
-    <div class="visual-wrapper" :style="{ backgroundImage: currBackground }">
+    <div class="visual-wrapper">
       <!-- 头部 -->
       <KUNGalgameTopBar />
       <!-- 帖子池容器 -->
@@ -81,11 +79,7 @@ const list = [
   height: 1500px;
   display: flex;
   flex-direction: column;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   min-width: 700px;
-  background-color: var(--kungalgame-white);
 }
 /* 帖子池容器 */
 .pool-container {
