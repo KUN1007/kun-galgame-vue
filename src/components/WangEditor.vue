@@ -13,13 +13,13 @@ import '@/styles/editor/editor.scss'
 const editorRef = shallowRef()
 
 // 内容 HTML
-const valueHtml = ref('<p>hello</p>')
+const valueHtml = ref('')
 
 // 模拟 ajax 异步获取内容
 onMounted(() => {
-  setTimeout(() => {
-    valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>'
-  }, 1500)
+  // setTimeout(() => {
+  //   valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>'
+  // }, 1500)
 })
 
 // 编辑器配置
@@ -51,7 +51,7 @@ onBeforeUnmount(() => {
     <Toolbar class="toolbar-container" :editor="editorRef" />
     <Editor
       class="editor-container"
-      style="height: 427px; overflow-y: hidden"
+      style="height: 400px"
       v-model="valueHtml"
       :defaultConfig="editorConfig"
       @onCreated="handleCreated"
@@ -66,15 +66,11 @@ onBeforeUnmount(() => {
   border: 1px solid var(--kungalgame-blue-4);
   box-sizing: border-box;
   /* 编辑器的宽度 */
-  width: 97%;
+  width: 100%;
   margin: 0 auto;
   z-index: 1008; /* 按需定义 */
 }
 .toolbar-container {
   border-bottom: 1px solid var(--kungalgame-blue-4);
-}
-/* 编辑器编辑部分 */
-.editor-container {
-  height: 427px;
 }
 </style>
