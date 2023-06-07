@@ -23,8 +23,16 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
 </script>
 
 <template>
+  <!-- #default 是 v-slot 的简写，route 就是路由，Component 是一个 v-node -->
   <div class="app" :style="{ backgroundImage: currBackground }">
-    <RouterView />
+    <!-- <RouterView /> -->
+    <RouterView #default="{ route, Component }">
+      <transition
+        :enter-active-class="`animate__animated ${route.meta.transition}`"
+      >
+        <component :is="Component"></component>
+      </transition>
+    </RouterView>
   </div>
 </template>
 

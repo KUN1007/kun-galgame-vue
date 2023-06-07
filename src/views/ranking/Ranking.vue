@@ -37,7 +37,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   background-color: var(--kungalgame-trans-white-5);
   /* 模糊 */
   backdrop-filter: blur(5px);
-  border: 1px solid var(--kungalgame-pink-4);
+  border: 1px solid var(--kungalgame-blue-1);
   box-shadow: var(--shadow);
   border-radius: 7px;
   margin: auto;
