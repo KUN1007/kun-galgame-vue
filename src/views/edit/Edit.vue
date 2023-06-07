@@ -38,7 +38,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 .root {
   height: 100vh;
-  min-height: 1000px;
+  min-height: 1100px;
   min-width: 900px;
   display: flex;
   flex-direction: column;
