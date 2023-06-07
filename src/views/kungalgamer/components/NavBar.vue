@@ -9,32 +9,32 @@ const navBar: nav[] = [
   {
     index: 1,
     name: '个人信息',
-    router: '/kungalgamer/info',
+    router: '/kungalgamer/kungalgamer/info',
   },
   {
     index: 2,
     name: '邮箱密码',
-    router: '/kungalgamer/password',
+    router: '/kungalgamer/kungalgamer/password',
   },
   {
     index: 3,
     name: '发过的帖',
-    router: '/kungalgamer/topic',
+    router: '/kungalgamer/kungalgamer/topic',
   },
   {
     index: 4,
     name: '回过的贴',
-    router: '/kungalgamer/topic',
+    router: '/kungalgamer/kungalgamer/topic',
   },
   {
     index: 5,
     name: '赞过的帖',
-    router: '/kungalgamer/topic',
+    router: '/kungalgamer/kungalgamer/topic',
   },
   {
     index: 6,
     name: '推过的帖',
-    router: '/kungalgamer/topic',
+    router: '/kungalgamer/kungalgamer/topic',
   },
 ]
 </script>
