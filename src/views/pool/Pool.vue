@@ -2,7 +2,11 @@
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import Tags from './components/Tags.vue'
-import Line from './components/Line.vue'
+import Topic from './components/Topic.vue'
+// 导入瀑布流
+import { Waterfall } from 'vue-waterfall-plugin-next'
+import 'vue-waterfall-plugin-next/dist/style.css'
+
 const list = [
   {
     index: 1,
@@ -50,6 +54,8 @@ const list = [
     alt: 'azkhx',
   },
 ]
+
+const backgroundColor = 'var()'
 </script>
 
 <template>
@@ -60,12 +66,28 @@ const list = [
       <!-- 帖子池容器 -->
       <div class="pool-container">
         <KUNGalgameSearchBox style="width: 100%; height: 40px" />
-        <Line />
         <Tags />
         <!-- 帖子池内容区容器 -->
         <div class="content-container">
           <!-- 帖子池单个帖子列容器 -->
-          <div class="single-topic-column-container"></div>
+          <div class="single-topic-column-container">
+            <Waterfall
+              :list="list"
+              :background-color="'#00000000'"
+              :breakpoints="{
+                800: {
+                  rowPerView: 4,
+                },
+                576: {
+                  rowPerView: 3,
+                },
+              }"
+            >
+              <template #item="{ item, url, index }">
+                <Topic />
+              </template>
+            </Waterfall>
+          </div>
         </div>
       </div>
       <!-- 右侧的功能栏 -->
@@ -76,17 +98,12 @@ const list = [
 
 <style lang="scss" scoped>
 .visual-wrapper {
-  height: 1500px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  min-width: 700px;
 }
 /* 帖子池容器 */
 .pool-container {
-  /* 最小宽度 */
-  min-width: 900px;
-  /* 最大宽度 */
-  max-width: 1450px;
   /* 占页面的宽度比例 */
   width: 90%;
   /* 居中 */

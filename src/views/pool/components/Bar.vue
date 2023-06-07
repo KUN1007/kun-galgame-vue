@@ -2,13 +2,13 @@
 
 <template>
   <!-- 右侧部分 -->
-  <div class="kungalgame-right-bar-right">
+  <div class="bar">
     <div class="triangle"></div>
     <!-- 对帖子进行排序 -->
     <div class="sort">
       <div>排序</div>
       <!-- 左侧部分 -->
-      <div class="kungalgame-right-bar-left">
+      <div class="func">
         <!-- 按照浏览数排序 -->
         <div><i class="fa-regular fa-eye"></i> 按照浏览数排序</div>
         <!-- 按照点赞数排序 -->
@@ -28,7 +28,7 @@
 
 <style lang="scss" scoped>
 /* 功能栏的左侧 */
-.kungalgame-right-bar-left {
+.func {
   position: absolute;
   white-space: nowrap;
   right: 50px;
@@ -36,27 +36,27 @@
   display: none;
   background-color: var(--kungalgame-blue-2);
 }
-.kungalgame-right-bar-left > div {
+.func > div {
   padding: 7px;
 }
-.kungalgame-right-bar-left > div:hover {
+.func > div:hover {
   background-color: var(--kungalgame-red-2);
 }
 /* 排序 hover 出现 */
-.kungalgame-right-bar .sort:hover .kungalgame-right-bar-left {
+.kungalgame-right-bar .sort:hover .func {
   display: block;
 }
 /* 图标字体的颜色 */
-.kungalgame-right-bar-left i {
+.func i {
   margin-right: 10px;
   color: var(--kungalgame-red-4);
 }
 /* 最后一个排序的样式 */
-.kungalgame-right-bar-left div:last-child i {
+.func div:last-child i {
   margin-right: 14px;
 }
 /* 右侧部分 */
-.kungalgame-right-bar-right {
+.bar {
   position: relative;
 }
 .triangle {
