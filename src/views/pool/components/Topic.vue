@@ -65,8 +65,6 @@
 }
 /* 帖子的内容区 */
 .topic-content {
-  /* 单个帖子的最大高度 */
-  max-height: 700px;
   overflow: hidden;
   font-size: 14px;
   padding: 0 10px;
