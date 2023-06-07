@@ -21,10 +21,14 @@ const loginRoutes = require('./routes/login')
 // 注册路由
 const registerRoutes = require('./routes/register')
 
+// 上传图片路由
+const uploadImagesRoutes = require('./routes/upload-image')
+
 app.use('/kungalgamer', userRoutes)
 app.use('/topic', topicRoutes)
 app.use('/login', loginRoutes)
 app.use('/register', registerRoutes)
+app.use('/upload', uploadImagesRoutes)
 
 app.use((err, req, res, next) => {
   console.error(err.stack)
