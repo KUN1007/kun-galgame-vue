@@ -56,5 +56,6 @@ const width = computed(() => {
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;
+  border: 1px solid var(--kungalgame-blue-0);
 }
 </style>

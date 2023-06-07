@@ -59,6 +59,7 @@ import { calculateTotalAmount } from './log'
   flex-direction: column;
   min-width: 1100px;
   min-height: 600px;
+  color: var(--kungalgame-font-color-3);
 }
 /* 文章部分 */
 .article {

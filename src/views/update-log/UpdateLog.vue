@@ -59,7 +59,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   align-items: center;
   padding: 10px;
   color: var(--kungalgame-font-color-3);
-  border: 1px solid var(--kungalgame-trans-blue-2);
+  border: 1px solid var(--kungalgame-blue-1);
   box-shadow: var(--shadow);
 }
 /* 内容区 */

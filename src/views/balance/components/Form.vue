@@ -81,11 +81,11 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
   border: 1px solid var(--kungalgame-red-4);
   .title {
     border-bottom: 1px solid var(--kungalgame-red-4);
-    background-color: var(--kungalgame-trans-red-0);
+    background-color: var(--kungalgame-trans-pink-0);
   }
   .sum {
     border-top: 1px solid var(--kungalgame-red-4);
-    background-color: var(--kungalgame-trans-red-0);
+    background-color: var(--kungalgame-trans-pink-0);
   }
 }
 </style>

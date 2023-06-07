@@ -16,6 +16,7 @@ const index: RouteRecordRaw[] = [
         meta: {
           permission: 'kungalgamer',
           title: '主页',
+          // transition: 'animate__fadeIn',
         },
       },
     ],
