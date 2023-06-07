@@ -27,7 +27,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
       <Footer />
     </div>
     <!-- 版权 -->
-    <KUNGalgameFooter style="margin: 0 auto; margin-bottom: 17px" />
+    <KUNGalgameFooter style="margin: 0 auto" />
     <span style="margin: 0 auto">Editor powered by wangEditor</span>
   </div>
 </template>
@@ -38,7 +38,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 .root {
   height: 100vh;
-  min-height: 1100px;
+  min-height: 1000px;
   min-width: 900px;
   display: flex;
   flex-direction: column;
@@ -46,12 +46,14 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 内容部分的总容器 */
 .container {
   width: 80%;
-  height: 100%;
-  margin: auto;
+  max-width: 1500px;
+  margin: 0 auto;
   /* 容器的阴影 */
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-2);
   color: var(--kungalgame-font-color-3);
+  border: 1px solid var(--kungalgame-blue-1);
+  padding: 10px;
 }
 /* 容器的顶部 */
 .content-header {
@@ -59,12 +61,10 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* 顶部的固定高度 */
-  height: 90px;
 }
 /* 帖子的发布标题 */
 .topic-title {
-  width: 97%;
+  width: 100%;
 }
 /* 帖子标题的输入框 */
 .topic-title input {
@@ -77,7 +77,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   /* 标题输入字体大小 */
   font-size: 40px;
   border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-white-9);
+  background-color: var(--kungalgame-white);
+  margin-bottom: 10px;
 }
 /* 标题输入框 focus 之后的样式 */
 .topic-title input:focus {

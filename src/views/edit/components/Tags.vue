@@ -29,7 +29,7 @@
 <style lang="scss" scoped>
 /* 标签的总容器 */
 .tags-container {
-  width: 97%;
+  width: 100%;
 }
 /* 标签输入框 */
 .tags-container input {

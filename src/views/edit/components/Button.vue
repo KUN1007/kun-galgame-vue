@@ -15,8 +15,6 @@
   <div class="btn-container">
     <!-- 确认按钮 -->
     <button class="confirm-btn">确认发布</button>
-    <!-- 预览编辑 -->
-    <button class="preview-btn">预览结果</button>
     <!-- 保存按钮 -->
     <button class="save-btn">保存草稿</button>
   </div>
@@ -25,8 +23,7 @@
 <style lang="scss" scoped>
 /* 话题分类的容器 */
 .topic-group {
-  /* 相对于标签容器的占比 */
-  width: 97%;
+  width: 100%;
   margin: 10px 0;
 }
 /* 分类容器的按钮集合 */
@@ -48,7 +45,7 @@
 }
 /* 按钮的容器 */
 .btn-container {
-  width: 97%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,20 +76,6 @@
 }
 .confirm-btn:active {
   background-color: var(--kungalgame-blue-2);
-  transform: scale(0.8);
-}
-/* 预览按钮的样式 */
-.preview-btn {
-  color: var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-1);
-  border: 1px solid var(--kungalgame-red-4);
-}
-.preview-btn:hover {
-  background-color: var(--kungalgame-red-4);
-  transition: 0.1s;
-}
-.preview-btn:active {
-  background-color: var(--kungalgame-red-2);
   transform: scale(0.8);
 }
 /* 保存按钮的样式 */
