@@ -6,6 +6,9 @@ import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
+// 覆盖编辑器原生样式
+import '@/styles/editor/editor.scss'
+
 // 编辑器实例，必须用 shallowRef，重要！
 const editorRef = shallowRef()
 
@@ -19,104 +22,15 @@ onMounted(() => {
   }, 1500)
 })
 
-// 工具栏配置
-const toolbarConfig = {
-  /* 
-        // 菜单 key
-    'headerSelect', // h1, h2, h3, h4 选择
-    'bold', // 加粗
-    'italic', // 斜体
-    'through', // 删除线
-    'underline', // 下划线
-    'bulletedList', // 无序列表
-    'numberedList', // 有序列表
-    'color', // 文字颜色
-    'insertLink', // 插入链接
-    'fontSize', // 字体大小
-    'lineHeight', // 行高
-    'uploadImage', // 上传图片
-    'delIndent', // 缩进
-    'indent', // 增进
-    'deleteImage', //删除图片
-    'divider', // 分割线
-    'insertTable', // 插入表格
-    'justifyCenter', // 居中对齐
-    'justifyJustify', // 两端对齐
-    'justifyLeft', // 左对齐
-    'justifyRight', // 右对齐
-    'undo', // 撤销
-    'redo', // 重做
-    'clearStyle', // 清除格式
-    'fullScreen', // 全屏
-    */
-  toolbarKeys: [
-    'bold',
-    'underline',
-    'italic',
-    'through',
-    'code',
-    'sub',
-    'sup',
-    'clearStyle',
-    'color',
-    'bgColor',
-    'fontSize',
-    'fontFamily',
-    'indent',
-    'delIndent',
-    'justifyLeft',
-    'justifyRight',
-    'justifyCenter',
-    'justifyJustify',
-    'lineHeight',
-    'insertImage',
-    'deleteImage',
-    'editImage',
-    'viewImageLink',
-    'imageWidth30',
-    'imageWidth50',
-    'imageWidth100',
-    'divider',
-    'emotion',
-    'insertLink',
-    'editLink',
-    'unLink',
-    'viewLink',
-    'codeBlock',
-    'blockquote',
-    'headerSelect',
-    'header1',
-    'header2',
-    'header3',
-    'header4',
-    'header5',
-    'todo',
-    'redo',
-    'undo',
-    'fullScreen',
-    'enter',
-    'bulletedList',
-    'numberedList',
-    'insertTable',
-    'deleteTable',
-    'insertTableRow',
-    'deleteTableRow',
-    'insertTableCol',
-    'deleteTableCol',
-    'tableHeader',
-    'tableFullWidth',
-    'insertVideo',
-    'uploadVideo',
-    'editVideoSize',
-    'uploadImage',
-    'codeSelectLang',
-  ],
-}
-
 // 编辑器配置
 const editorConfig = {
   placeholder: '请输入内容...',
-  MENU_CONF: {},
+  MENU_CONF: {
+    uploadImage: {
+      // server: 'http://127.0.0.1:10007/upload/img',
+      // uploadFileName: 'image',
+    },
+  },
 }
 
 const handleCreated = (editor: any) => {
@@ -134,11 +48,7 @@ onBeforeUnmount(() => {
 <template>
   <!-- 编辑器 -->
   <div class="editor—wrapper">
-    <Toolbar
-      class="toolbar-container"
-      :editor="editorRef"
-      :defaultConfig="toolbarConfig"
-    />
+    <Toolbar class="toolbar-container" :editor="editorRef" />
     <Editor
       class="editor-container"
       style="height: 427px; overflow-y: hidden"

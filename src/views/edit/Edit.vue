@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import WangEditor from '@/components/WangEditor.vue'
+import Footer from './components/Footer.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
@@ -22,57 +24,11 @@ import WangEditor from '@/components/WangEditor.vue'
         <WangEditor class="editor" />
       </div>
 
-      <!-- 内容区的底部 -->
-      <div class="content-footer">
-        <!-- 标签的总容器 -->
-        <div class="tags-container">
-          <!-- 标签输入框 -->
-          <input
-            type="text"
-            placeholder="请输入帖子的关键词（单个关键词 10 个字符以内，至少选择一个、最多 7 个）, 输入文字按下 ' Enter ' 创建关键词"
-          />
-          <!-- 标签的提示词 -->
-          <div class="tags-info">热门关键词（点击选择）:</div>
-          <!-- 标签容器 -->
-          <div class="tags">
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-            <span>啊这可海星</span>
-          </div>
-        </div>
-        <!-- 话题分类的容器 -->
-        <div class="topic-group">
-          <div>点击选择帖子的分区（可多选）:</div>
-          <!-- 分类容器的按钮集合 -->
-          <div class="group-btn">
-            <button>galgame</button>
-            <button>技术交流</button>
-            <button>其它</button>
-          </div>
-        </div>
-        <!-- 按钮的容器 -->
-        <div class="btn-container">
-          <!-- 确认按钮 -->
-          <button class="confirm-btn">确认发布</button>
-          <!-- 预览编辑 -->
-          <button class="preview-btn">预览结果</button>
-          <!-- 保存按钮 -->
-          <button class="save-btn">保存草稿</button>
-        </div>
-      </div>
+      <Footer />
     </div>
     <!-- 版权 -->
-    <div class="copyright">
-      <span>Copyright © 2023 KUNgalgame</span>
-      <span>All rights reserved | Version 0.01</span>
-    </div>
+    <KUNGalgameFooter style="margin: 0 auto; margin-bottom: 17px" />
+    <span style="margin: 0 auto">Editor powered by wangEditor</span>
   </div>
 </template>
 
@@ -126,143 +82,5 @@ import WangEditor from '@/components/WangEditor.vue'
 /* 标题输入框 focus 之后的样式 */
 .topic-title input:focus {
   box-shadow: 0px 0px 5px var(--kungalgame-blue-4);
-}
-/* 内容区的底部样式 */
-.content-footer {
-  /* 距离内容区的距离 */
-  margin-top: 17px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-/* 标签的总容器 */
-.tags-container {
-  width: 97%;
-}
-/* 标签输入框 */
-.tags-container input {
-  background-color: var(--kungalgame-trans-white-9);
-  /* 输入标签的字体 */
-  font-size: 17px;
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid var(--kungalgame-blue-4);
-  padding: 5px;
-}
-/* 标签输入框 focus */
-.tags-container input:focus {
-  box-shadow: 0px 0px 3px var(--kungalgame-blue-4);
-}
-.tags-info {
-  margin: 10px 0;
-}
-/* 单个标签容器 */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-}
-/* 单个标签的样式 */
-.tags > span {
-  margin: 5px;
-  display: block;
-  white-space: nowrap;
-  font-size: 14px;
-  padding: 3px;
-  background-color: var(--kungalgame-trans-blue-1);
-  cursor: pointer;
-}
-.tags > span:hover {
-  background-color: var(--kungalgame-trans-red-1);
-}
-/* 话题分类的容器 */
-.topic-group {
-  /* 相对于标签容器的占比 */
-  width: 97%;
-  margin: 10px 0;
-}
-/* 分类容器的按钮集合 */
-.group-btn {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-/* 单个按钮的样式 */
-.group-btn > button {
-  height: 30px;
-  width: 20%;
-  font-size: 17px;
-  cursor: pointer;
-  border: 1px solid var(--kungalgame-purple-4);
-  background-color: var(--kungalgame-trans-purple-1);
-  color: var(--kungalgame-purple-4);
-}
-/* 按钮的容器 */
-.btn-container {
-  width: 97%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* 距离最底端的距离 */
-  margin-bottom: 20px;
-}
-/* 单个按钮的样式 */
-.btn-container button {
-  height: 40px;
-  width: 27%;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-  cursor: pointer;
-  &:hover {
-    color: var(--kungalgame-white);
-  }
-}
-/* 确认按钮的样式 */
-.confirm-btn {
-  color: var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-1);
-  border: 1px solid var(--kungalgame-blue-4);
-}
-.confirm-btn:hover {
-  background-color: var(--kungalgame-blue-4);
-  transition: 0.1s;
-}
-.confirm-btn:active {
-  background-color: var(--kungalgame-blue-2);
-  transform: scale(0.8);
-}
-/* 预览按钮的样式 */
-.preview-btn {
-  color: var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-1);
-  border: 1px solid var(--kungalgame-red-4);
-}
-.preview-btn:hover {
-  background-color: var(--kungalgame-red-4);
-  transition: 0.1s;
-}
-.preview-btn:active {
-  background-color: var(--kungalgame-red-2);
-  transform: scale(0.8);
-}
-/* 保存按钮的样式 */
-.save-btn {
-  color: var(--kungalgame-orange-4);
-  background-color: var(--kungalgame-trans-orange-1);
-  border: 1px solid var(--kungalgame-orange-4);
-}
-.save-btn:hover {
-  background-color: var(--kungalgame-orange-4);
-  transition: 0.1s;
-}
-.save-btn:active {
-  background-color: var(--kungalgame-orange-2);
-  transform: scale(0.8);
-}
-/* 版权 */
-.copyright {
-  margin: 0 auto;
-  margin-bottom: 17px;
 }
 </style>
