@@ -1,5 +1,5 @@
 import { Router } from 'vue-router'
-import type { KUNRouteType } from '@/router/types'
+import { type RouteRecordRaw } from 'vue-router'
 import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { WHITE_LIST } from '../router'
 import { storeToRefs } from 'pinia'
@@ -51,7 +51,7 @@ export const createPermission = (router: Router) => {
     }
 
     const routeList = asyncRoutes
-    routeList.forEach((route: KUNRouteType) => {
+    routeList.forEach((route: RouteRecordRaw) => {
       router.addRoute(route)
     })
 

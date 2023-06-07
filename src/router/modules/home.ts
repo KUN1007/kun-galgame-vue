@@ -1,15 +1,24 @@
-import type { KUNRouteType } from '@/router/types'
+import { type RouteRecordRaw } from 'vue-router'
 
-const index: KUNRouteType[] = [
+const Layout = () => import('@/layout/KUNGalgameAPP.vue')
+
+const index: RouteRecordRaw[] = [
   // KUNGalgame 主页
   {
-    name: 'index',
     path: '/',
-    component: () => import('@/views/Home/KUNGalgameMainPage.vue'),
-    meta: {
-      permission: 'kungalgamer',
-      title: '主页',
-    },
+    component: Layout,
+    redirect: '/kun',
+    children: [
+      {
+        name: 'index',
+        path: '/kun',
+        component: () => import('@/views/Home/KUNGalgameMainPage.vue'),
+        meta: {
+          permission: 'kungalgamer',
+          title: '主页',
+        },
+      },
+    ],
   },
 ]
 

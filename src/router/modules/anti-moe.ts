@@ -1,6 +1,6 @@
-import type { KUNRouteType } from '@/router/types'
+import { type RouteRecordRaw } from 'vue-router'
 
-const nonMoe: KUNRouteType[] = [
+const nonMoe: RouteRecordRaw[] = [
   // KUNGalgame 不萌萌页
   {
     name: 'NonMoe',

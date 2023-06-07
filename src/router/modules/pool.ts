@@ -1,6 +1,6 @@
-import type { KUNRouteType } from '@/router/types'
+import { type RouteRecordRaw } from 'vue-router'
 
-const pool: KUNRouteType[] = [
+const pool: RouteRecordRaw[] = [
   // KUNGalgame 帖子池页
   {
     name: 'Pool',

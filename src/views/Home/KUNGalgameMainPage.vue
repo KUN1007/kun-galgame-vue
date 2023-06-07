@@ -2,13 +2,11 @@
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import MainPageContent from './content/MainPageContent.vue'
 import MainPageFooter from './footer/MainPageFooter.vue'
-
-import { currBackground } from '@/hooks/useBackgroundPicture'
 </script>
 
 <template>
   <!-- 可视部分的容器 -->
-  <div class="visual-wrapper" :style="{ backgroundImage: currBackground }">
+  <div class="visual-wrapper">
     <KUNGalgameTopBar :isMainPage="true" />
     <MainPageContent />
     <MainPageFooter />
@@ -24,6 +22,5 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-position: center;
   background-size: cover;
   min-width: 800px;
-  background-color: var(--kungalgame-white);
 }
 </style>
