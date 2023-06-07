@@ -5,13 +5,20 @@ const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 const ranking: RouteRecordRaw[] = [
   // KUNGalgame 排行榜
   {
-    name: 'Ranking',
     path: '/ranking',
-    component: () => import('@/views/ranking/Ranking.vue'),
-    meta: {
-      permission: 'kungalgamer',
-      title: '排行榜',
-    },
+    component: Layout,
+    redirect: '/ranking/index',
+    children: [
+      {
+        name: 'Ranking',
+        path: 'index',
+        component: () => import('@/views/ranking/Ranking.vue'),
+        meta: {
+          permission: 'kungalgamer',
+          title: '排行榜',
+        },
+      },
+    ],
   },
 ]
 

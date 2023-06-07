@@ -5,13 +5,20 @@ const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 const technique: RouteRecordRaw[] = [
   // KUNGalgame 技术交流页
   {
-    name: 'Technology',
     path: '/technique',
-    component: () => import('@/views/technique/Technique.vue'),
-    meta: {
-      permission: 'kungalgamer',
-      title: '技术交流',
-    },
+    component: Layout,
+    redirect: '/technique/index',
+    children: [
+      {
+        name: 'Technique',
+        path: 'index',
+        component: () => import('@/views/technique/Technique.vue'),
+        meta: {
+          permission: 'kungalgamer',
+          title: '技术交流',
+        },
+      },
+    ],
   },
 ]
 
