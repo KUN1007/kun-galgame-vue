@@ -74,7 +74,7 @@ import { calculateTotalAmount } from './log'
   /* 边距 */
   padding: 10px;
   border-radius: 7px;
-  border: 1px solid var(--kungalgame-trans-blue-2);
+  border: 1px solid var(--kungalgame-blue-1);
   /* 阴影 */
   box-shadow: var(--shadow);
   /* 竖直弹性盒 */

@@ -26,6 +26,7 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--kungalgame-white);
+  color: var(--kungalgame-font-color-3);
 }
 .container {
   margin: auto;

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
@@ -78,22 +79,23 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
             </li>
           </ul>
         </div>
+        <br />
+        <br />
+        <br />
       </div>
       <!-- 版权 -->
-      <div class="copyright">
-        <span>Copyright © 2023 KUNgalgame</span>
-        <span>All rights reserved | Version 0.01</span>
-      </div>
+      <KUNGalgameFooter style="position: absolute; bottom: 2%" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .root {
-  height: 1500px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   min-width: 800px;
+  min-height: 1100px;
 }
 /* 总容器 */
 .container {
@@ -101,8 +103,9 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
   margin: 0 auto;
   padding: 5px;
   /* 固定宽高 */
-  width: 700px;
-  height: 1300px;
+  width: 70%;
+  max-width: 1300px;
+  height: 100%;
   background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
   color: var(--kungalgame-font-color-3);
@@ -114,12 +117,13 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 }
 /* 文章容器 */
 .content {
-  padding: 10px;
+  width: 100%;
   height: 100%;
+  padding: 10px;
   border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
   box-sizing: border-box;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-white-2);
   box-shadow: var(--shadow);
 }
 /* 一级标题 */
@@ -173,10 +177,5 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 }
 .topic > ul li {
   margin: 5px 0;
-}
-/* 版权 */
-.copyright {
-  position: absolute;
-  bottom: 2%;
 }
 </style>

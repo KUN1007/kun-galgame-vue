@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+</script>
 
 <template>
   <div class="root">
@@ -13,10 +15,7 @@
       </div>
     </div>
     <!-- 版权 -->
-    <div class="copyright">
-      <span>Copyright © 2023 KUNgalgame</span>
-      <span>All rights reserved | Version 0.01</span>
-    </div>
+    <KUNGalgameFooter style="margin-bottom: 20px; white-space: nowrap" />
   </div>
 </template>
 
@@ -34,6 +33,7 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--kungalgame-white);
+  color: var(--kungalgame-font-color-3);
 }
 .container {
   /* 固定宽高 */
@@ -93,9 +93,5 @@
       }
     }
   }
-}
-.copyright {
-  margin-bottom: 20px;
-  white-space: nowrap;
 }
 </style>
