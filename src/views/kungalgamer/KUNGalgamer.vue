@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
-// 导入背景图片
-import { currBackground } from '@/hooks/useBackgroundPicture'
 // 导入左侧交互部分
 import NavBar from './components/NavBar.vue'
 // 导入头部
@@ -11,7 +9,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
-  <div class="root" :style="{ backgroundImage: currBackground }">
+  <div class="root">
     <KUNGalgameTopBar />
     <!-- 信息区域容器 -->
     <div class="container">
@@ -35,11 +33,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   min-height: 800px;
   display: flex;
   flex-direction: column;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: var(--kungalgame-white);
 }
 /* 页面头部 */
 .container {

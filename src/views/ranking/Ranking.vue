@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
-// 导入背景图片
-import { currBackground } from '@/hooks/useBackgroundPicture'
 import Form from './components/Form.vue'
 import Temp from './components/Temp.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -9,7 +7,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 <template>
   <!-- 根容器 -->
-  <div class="root" :style="{ backgroundImage: currBackground }">
+  <div class="root">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区 -->
@@ -27,12 +25,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   min-width: 1000px;
   min-height: 1000px;
-  background-color: var(--kungalgame-white);
 }
 /* 内容区 */
 .article {
