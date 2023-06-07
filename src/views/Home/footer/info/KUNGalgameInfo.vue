@@ -1,11 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 import { Icon } from '@iconify/vue'
-export default {
-  name: 'KUNGalgameInfo',
-  components: {
-    Icon,
-  },
-}
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
@@ -64,11 +59,7 @@ export default {
             </ul>
           </div>
           <!-- 版权描述,版本号 -->
-          <div class="kungalgame-footer-copyright">
-            <p>
-              Copyright © 2023 KUNgalgame All rights reserved | Version 0.01
-            </p>
-          </div>
+          <KUNGalgameFooter style="margin: 0 auto" />
         </div>
       </div>
       <!-- 右侧的网站信息容器 -->
@@ -169,12 +160,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-/* 版权描述,版本号 */
-.kungalgame-footer-copyright {
-  display: flex;
-  justify-content: center;
-  font-size: smaller;
 }
 /* 右侧的网站信息容器 */
 .kungalgame-footer-right-wrap {

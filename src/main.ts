@@ -14,20 +14,15 @@ import { setupRouterGuard } from '@/router/guard'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 // 引入 Pinia
 import { setupPinia } from '@/store/index'
+// 引入样式
+import '@/styles/index.scss'
 
 // 获取 App 实例
 const app = createApp(App)
 
+// 使用 pinia
 setupPinia(app)
-
-import '@/styles/index.scss'
-
-app
-  .use(router)
-  //   .use(store)
-  .use(i18n)
-  .use(VueQueryPlugin)
-  .mount('#app')
-
 // 使用路由守卫
 setupRouterGuard(router)
+
+app.use(router).use(i18n).use(VueQueryPlugin).mount('#app')

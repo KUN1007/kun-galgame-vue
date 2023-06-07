@@ -4,6 +4,7 @@ import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { useMutation } from '@tanstack/vue-query'
 import { useRouter } from 'vue-router'
 import { request } from '@/utils/request'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 const isShowPanel = ref('')
 const loginForm = reactive({
@@ -189,10 +190,9 @@ const handleRegister = () => {
     </div>
 
     <!-- 版权 -->
-    <div class="copyright">
-      <span>Copyright © 2023 KUNgalgame</span>
-      <span>All rights reserved | Version 0.01</span>
-    </div>
+    <KUNGalgameFooter
+      style="position: absolute; bottom: 2%; white-space: nowrap"
+    />
   </div>
 </template>
 
@@ -205,8 +205,8 @@ const handleRegister = () => {
   min-height: 500px;
   min-width: 800px;
   background: linear-gradient(
-    var(--kungalgame-pink-0),
-    var(--kungalgame-blue-0)
+    var(--kungalgame-trans-pink-0),
+    var(--kungalgame-trans-blue-0)
   );
   background-repeat: no-repeat;
   position: relative;
@@ -370,7 +370,7 @@ const handleRegister = () => {
 }
 .btn:hover {
   background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-trans-white-5);
+  color: var(--kungalgame-white);
 }
 /* 交互页面的盒子 */
 .overlay__panel {
@@ -397,13 +397,13 @@ const handleRegister = () => {
 }
 .overlay__panel .btn:hover {
   background-color: var(--kungalgame-red-4);
-  color: var(--kungalgame-trans-white-5);
+  color: var(--kungalgame-white);
 }
 
 .overlay__panel h2 {
   margin-top: 150px;
   font-size: medium;
-  color: #333;
+  color: var(--kungalgame-font-color-2);
 }
 .overlay__panel h2 span {
   color: var(--kungalgame-red-4);
@@ -462,14 +462,11 @@ const handleRegister = () => {
   padding: 0.9rem 0.9rem;
   margin: 0.5rem 0;
   width: 100%;
+  background-color: var(--kungalgame-white);
+  color: var(--kungalgame-font-color-3);
 }
 .input:focus {
   border-bottom: 1.5px solid var(--kungalgame-blue-4);
   transition: 0.2s linear;
-}
-.copyright {
-  position: absolute;
-  bottom: 2%;
-  white-space: nowrap;
 }
 </style>

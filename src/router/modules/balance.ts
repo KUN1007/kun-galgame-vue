@@ -1,6 +1,6 @@
-import type { KUNRouteType } from '@/router/types'
+import { type RouteRecordRaw } from 'vue-router'
 
-const balance: KUNRouteType[] = [
+const balance: RouteRecordRaw[] = [
   // KUNGalgame 收支公示
   {
     name: 'Balance',

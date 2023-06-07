@@ -1,11 +1,10 @@
-import { createWebHistory, createRouter } from 'vue-router'
-import { KUNRouteType } from './types'
-import { noCertRoutes, WHITE_LIST } from './router'
+import { type RouteRecordRaw, createWebHistory, createRouter } from 'vue-router'
+import { constantRoutes, WHITE_LIST } from './router'
 import { asyncRoutes } from './router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...noCertRoutes, ...asyncRoutes] as KUNRouteType[],
+  routes: [...constantRoutes, ...asyncRoutes] as RouteRecordRaw[],
 })
 
 export function resetRouter() {

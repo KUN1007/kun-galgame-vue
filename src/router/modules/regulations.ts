@@ -1,6 +1,6 @@
-import type { KUNRouteType } from '@/router/types'
+import { type RouteRecordRaw } from 'vue-router'
 
-const bylaw: KUNRouteType[] = [
+const bylaw: RouteRecordRaw[] = [
   // KUNGalgame 执行条例
   {
     name: 'Bylaw',

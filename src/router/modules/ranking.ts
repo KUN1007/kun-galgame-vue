@@ -1,6 +1,6 @@
-import type { KUNRouteType } from '@/router/types'
+import { type RouteRecordRaw } from 'vue-router'
 
-const ranking: KUNRouteType[] = [
+const ranking: RouteRecordRaw[] = [
   // KUNGalgame 排行榜
   {
     name: 'Ranking',
