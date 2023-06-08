@@ -14,7 +14,6 @@ onMounted(async () => {
     const count = 17 // 获取的帖子数量
 
     const fetchedTopics = await getTopicRangeApi(start, count)
-    console.log(fetchedTopics)
 
     topics.value = fetchedTopics
   } catch (error) {
@@ -25,13 +24,23 @@ onMounted(async () => {
 
 <template>
   <div class="topic-container">
-    <div v-for="topic in topics" :key="topic.topicId">
+    <!-- 该状态为 2 则帖子处于被推状态 -->
+    <div
+      v-for="topic in topics"
+      :key="topic.topicId"
+      :class="topic.topicStatus === 2 ? 'kungalgame-comet-surround' : ''"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
       <SingleTopic :data="topic" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use '@/styles/effect/effect.scss';
 /* 帖子区容器 */
 .topic-container {
   /* 帖子区域占文章总区域的宽度 */
@@ -52,5 +61,13 @@ onMounted(async () => {
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
+  div {
+    margin-bottom: 5px;
+  }
+}
+.kungalgame-comet-surround {
+  padding: 0;
+  flex-shrink: 0;
+  border: 2px solid var(--kungalgame-red-2);
 }
 </style>

@@ -1,17 +1,20 @@
 <script setup lang="ts">
-const props = defineProps(['kungalgamer'])
-console.log(props)
+defineProps(['kungalgamer'])
 </script>
 <template>
   <!-- 帖子发布者个人信息 -->
   <div class="kungalgamer">
     <!-- 发布者头像 -->
     <div class="avatar">
+      <!-- TODO: 这里换成后端的用户图片接口，我不想用 express 雕花了 -->
+      <!-- <a href="#"><img :src="$props.kungalgamer.avatar" alt="鲲" /></a> -->
       <a href="#"><img src="@/assets/images/topic.jpg" alt="鲲" /></a>
     </div>
     <!-- 发布者姓名 -->
     <div class="name">
-      <a href="#"><span>鲲最可爱！</span></a>
+      <a href="#"
+        ><span>{{ $props.kungalgamer.name }}</span></a
+      >
     </div>
   </div>
 </template>

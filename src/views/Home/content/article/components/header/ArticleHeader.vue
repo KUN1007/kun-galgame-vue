@@ -31,6 +31,7 @@ import SortTopic from './SortTopic.vue'
   flex-shrink: 0;
   border-bottom: 1px solid var(--kungalgame-trans-blue-4);
   color: var(--kungalgame-font-color-3);
+  z-index: 1;
 }
 
 /* 更多 */
