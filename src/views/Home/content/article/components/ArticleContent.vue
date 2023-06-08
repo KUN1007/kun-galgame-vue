@@ -1,31 +1,36 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { getTopicRangeApi } from '@/api/topic/index'
+import { KUNGalgameTopic } from '@/api/topic/types/topic'
 import SingleTopic from './SingleTopic.vue'
+
+// 在组件中定义响应式的帖子数据
+const topics = ref<KUNGalgameTopic[]>([])
+
+// 在组件挂载时调用 fetchTopics 获取帖子数据
+onMounted(async () => {
+  try {
+    const start = 0 // 起始位置
+    const count = 17 // 获取的帖子数量
+
+    const fetchedTopics = await getTopicRangeApi(start, count)
+    console.log(fetchedTopics)
+
+    topics.value = fetchedTopics
+  } catch (error) {
+    console.error('Error fetching topics:', error)
+  }
+})
 </script>
 
 <template>
   <div class="topic-container">
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
-    <SingleTopic />
+    <div v-for="topic in topics" :key="topic.topicId">
+      <SingleTopic :data="topic" />
+    </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 /* 帖子区容器 */
 .topic-container {

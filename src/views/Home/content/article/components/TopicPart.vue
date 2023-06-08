@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+defineProps(['data'])
 </script>
 <template>
   <!-- 帖子信息 -->
@@ -9,15 +11,25 @@ import { Icon } from '@iconify/vue'
       <!-- 帖子的标题 -->
       <div class="topic-title">
         <div class="topic-title-container">
-          <a href="#"><span>啊这可海星</span></a>
+          <span>{{ $props.data.topicTitle }}</span>
         </div>
       </div>
       <!-- 帖子发布日期 -->
       <div class="topic-status">
         <ul>
-          <li><Icon icon="ic:outline-remove-red-eye" />1007</li>
-          <li><Icon icon="line-md:thumbs-up-twotone" />1007</li>
-          <li><Icon icon="ri:reply-line" />1007</li>
+          <li>
+            <Icon icon="ic:outline-remove-red-eye" />{{
+              $props.data.topicViews
+            }}
+          </li>
+          <li>
+            <Icon icon="line-md:thumbs-up-twotone" />{{
+              $props.data.topicLikes
+            }}
+          </li>
+          <li>
+            <Icon icon="ri:reply-line" />{{ $props.data.topicReplyCount }}
+          </li>
         </ul>
       </div>
       <!-- 帖子的状态，点赞数等 -->
@@ -29,7 +41,7 @@ import { Icon } from '@iconify/vue'
     <div class="topic-introduction">
       <div class="topic-introduction-text">
         <p>
-          鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲鲲
+          {{ $props.data.topicContent }}
         </p>
       </div>
     </div>
