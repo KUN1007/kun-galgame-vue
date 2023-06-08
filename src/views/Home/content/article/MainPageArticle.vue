@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ArticleHeader from './header/ArticleHeader.vue'
+import ArticleHeader from './components/header/ArticleHeader.vue'
 import ArticleContent from './content/ArticleContent.vue'
 </script>
 
