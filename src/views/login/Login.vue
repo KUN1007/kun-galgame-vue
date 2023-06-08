@@ -20,7 +20,7 @@ const router = useRouter()
 
 // 登录请求
 const loginMutation = useMutation(async (data: any) => {
-  const res = await request('http://127.0.0.1:10007/api/login', {
+  const res: Response = await request('http://127.0.0.1:10007/api/login', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
@@ -30,7 +30,7 @@ const loginMutation = useMutation(async (data: any) => {
 
 // 注册请求
 const registerMutation = useMutation(async (data: any) => {
-  const res = await request('http://127.0.0.1:10007/api/register', {
+  const res: Response = await request('http://127.0.0.1:10007/api/register', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },

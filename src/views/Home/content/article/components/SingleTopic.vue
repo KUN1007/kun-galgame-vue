@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import UserPart from './UserPart.vue'
 import TopicPart from './TopicPart.vue'
+
+const props = defineProps(['data'])
 </script>
+
 <template>
   <div class="topic">
-    <UserPart />
+    <UserPart :kungalgamer="props.data.topicAuthor" />
+    <!-- TODO: 进入指定帖子的路由 -->
     <router-link to="/topic">
-      <TopicPart />
+      <TopicPart :data="props.data" />
     </router-link>
   </div>
 </template>
+
 <style lang="scss" scoped>
 /* 单个帖子 */
 .topic {
