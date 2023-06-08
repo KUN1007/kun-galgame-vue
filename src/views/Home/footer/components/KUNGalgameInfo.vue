@@ -42,6 +42,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   margin: 0 auto;
   /* 信息区域最小宽度 */
   min-width: 700px;
+  width: 80%;
   /* 为了左右两部分设置弹性盒 */
   display: flex;
 }

@@ -16,18 +16,21 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
       </div>
       <!-- 联系方式 -->
       <div class="content">
-        <div>
+        <a href="https://t.me/kungalgame" target="_blank">
           <span>Telegram</span>
-          <Icon class="icon" icon="line-md:telegram" />
-        </div>
-        <div>
+          <Icon class="icon" icon="line-md:telegram"
+        /></a>
+        <a
+          href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=hlXYbLM8MqOm9WzE22ZodNiQJ3nc1Bu2&authKey=7xfTYC1atV5loXyWNv9VOTOaf5ZzR9BdCFcMNJWdmyukck8%2FDLSF3%2FrHgyiY48pT&noverify=0&group_code=726477957"
+          target="_blank"
+        >
           <span>QQ</span>
-          <Icon class="icon" icon="bi:tencent-qq" />
-        </div>
-        <div>
+          <Icon class="icon" icon="bi:tencent-qq"
+        /></a>
+        <a href="https://space.bilibili.com/1748455574" target="_blank">
           <span>Bilibili</span>
-          <Icon class="icon" icon="ri:bilibili-line" />
-        </div>
+          <Icon class="icon" icon="ri:bilibili-line"
+        /></a>
       </div>
       <BackToPrevious />
       <!-- 版权 -->
@@ -110,13 +113,14 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 .content {
   display: flex;
   font-size: 20px;
-  & > div {
+  & > a {
     /* 固定宽度 */
     width: 110px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: var(--kungalgame-font-color-3);
   }
   span {
     margin-bottom: 20px;

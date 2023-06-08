@@ -126,6 +126,7 @@ const handleRecover = () => {
   display: flex;
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-1);
+  overflow: hidden;
 }
 .container {
   position: relative;

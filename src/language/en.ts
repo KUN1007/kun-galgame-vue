@@ -54,7 +54,7 @@ export default {
         balance: 'Profit and Loss',
         acgngame: 'ACGNGAME',
         shinnku: `Shinnku's Visual Novel`,
-        ymgal: '月幕galgame',
+        ymgal: 'YM galgame',
       },
       describe: {
         title: 'KUN Visual Novel',
