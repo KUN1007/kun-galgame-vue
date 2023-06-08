@@ -203,8 +203,8 @@ const topics = [
         },
       ],
     },
-    /* 两种状态, 0正常, 1 封禁 */
-    topicStatus: 0,
+    /* 两种状态, 0正常, 1 封禁，2 被推 */
+    topicStatus: 2,
     topicIsEdited: false,
     topicAuthor: {
       avatar: './assets/images/KUN.jpg',
@@ -925,7 +925,7 @@ const topics = [
       ],
     },
     /* 两种状态, 0正常, 1 封禁 */
-    topicStatus: 0,
+    topicStatus: 2,
     topicIsEdited: false,
     topicAuthor: {
       avatar: './assets/images/KUN.jpg',

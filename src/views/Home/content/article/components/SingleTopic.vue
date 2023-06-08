@@ -3,6 +3,8 @@ import UserPart from './UserPart.vue'
 import TopicPart from './TopicPart.vue'
 
 const props = defineProps(['data'])
+
+const isUpvote = props.data.topicStatus === 2 ? 'kungalgame-comet-surround' : ''
 </script>
 
 <template>
@@ -23,7 +25,6 @@ const props = defineProps(['data'])
   flex-shrink: 0;
   border-radius: 3px;
   background-color: var(--kungalgame-trans-white-5);
-  margin-bottom: 3px;
   display: flex;
   &:hover {
     background-color: var(--kungalgame-white);
