@@ -39,8 +39,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 信息展示部分的容器,目的是把左侧的信息和右侧的网站介绍分开 */
 .kungalgame-footer-info-wrap {
   margin: 0 auto;
-  /* 信息区域总宽度 61.8% */
-  width: 61.8%;
   /* 信息区域最小宽度 */
   min-width: 700px;
   /* 为了左右两部分设置弹性盒 */

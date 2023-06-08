@@ -54,45 +54,41 @@ const list = [
     alt: 'azkhx',
   },
 ]
-
-const backgroundColor = 'var()'
 </script>
 
 <template>
-  <div class="content-wrapper">
-    <div class="visual-wrapper">
-      <!-- 头部 -->
-      <KUNGalgameTopBar />
-      <!-- 帖子池容器 -->
-      <div class="pool-container">
-        <KUNGalgameSearchBox style="width: 100%; height: 40px" />
-        <Tags />
-        <!-- 帖子池内容区容器 -->
-        <div class="content-container">
-          <!-- 帖子池单个帖子列容器 -->
-          <div class="single-topic-column-container">
-            <Waterfall
-              :list="list"
-              :background-color="'#00000000'"
-              :breakpoints="{
-                800: {
-                  rowPerView: 4,
-                },
-                576: {
-                  rowPerView: 3,
-                },
-              }"
-            >
-              <template #item="{ item, url, index }">
-                <Topic />
-              </template>
-            </Waterfall>
-          </div>
+  <div class="visual-wrapper">
+    <!-- 头部 -->
+    <KUNGalgameTopBar />
+    <!-- 帖子池容器 -->
+    <div class="pool-container">
+      <KUNGalgameSearchBox style="width: 100%; height: 40px" />
+      <Tags />
+      <!-- 帖子池内容区容器 -->
+      <div class="content-container">
+        <!-- 帖子池单个帖子列容器 -->
+        <div class="single-topic-column-container">
+          <Waterfall
+            :list="list"
+            :background-color="'#00000000'"
+            :breakpoints="{
+              800: {
+                rowPerView: 4,
+              },
+              576: {
+                rowPerView: 3,
+              },
+            }"
+          >
+            <template #item="{ item, url, index }">
+              <Topic />
+            </template>
+          </Waterfall>
         </div>
       </div>
-      <!-- 右侧的功能栏 -->
-      <div class="kungalgame-right-bar"></div>
     </div>
+    <!-- 右侧的功能栏 -->
+    <div class="kungalgame-right-bar"></div>
   </div>
 </template>
 

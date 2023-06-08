@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import SingleTopic from './components/SingleTopic.vue'
+import SingleTopic from './SingleTopic.vue'
 
-import singleTopic from './topic'
+import singleTopic from '@/types/home/topic'
 
 // 接受父组件 AsideActive 的传值
 const props = defineProps(['isHotTopic'])

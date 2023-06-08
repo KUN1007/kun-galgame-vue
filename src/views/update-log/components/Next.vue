@@ -59,7 +59,7 @@ import { Icon } from '@iconify/vue'
 .github {
   margin-top: 10px;
   color: var(--kungalgame-blue-4);
-  border-bottom: 2px solid var(--kungalgame-trans-white-5);
+  border-bottom: 2px solid var(--kungalgame-trans-white-9);
   cursor: pointer;
   &:hover {
     border-bottom: 2px solid var(--kungalgame-blue-4);

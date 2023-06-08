@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { historyVersion } from './history'
+import { historyVersion } from '@/types/update-log/history'
 </script>
 
 <template>

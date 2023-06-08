@@ -1,4 +1,32 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface FooterInfoItem {
+  index: number
+  name: string
+}
+
+interface FooterInfo {
+  index: number
+  title: string
+  list: FooterInfoItem[]
+}
+
+const info: FooterInfo[] = [
+  {
+    index: 1,
+    title: '其它交流',
+    list: [
+      {
+        index: 1,
+        name: '日常交流',
+      },
+      {
+        index: 2,
+        name: '闲聊灌水',
+      },
+    ],
+  },
+]
+</script>
 
 <template>
   <div class="footer-left-top-info">

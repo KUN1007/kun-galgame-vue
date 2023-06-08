@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { tags } from './tags'
+import { tags } from '@/types/pool/tags'
 </script>
 
 <template>
