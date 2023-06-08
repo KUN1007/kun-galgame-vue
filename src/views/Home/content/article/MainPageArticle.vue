@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ArticleHeader from './components/header/ArticleHeader.vue'
-import ArticleContent from './content/ArticleContent.vue'
+import ArticleContent from './components/ArticleContent.vue'
 </script>
 
 <template>
@@ -28,8 +28,6 @@ import ArticleContent from './content/ArticleContent.vue'
   /* 左侧文章区的总大小 */
   width: 100%;
   height: 100%;
-  /* 盒子的边显示在内侧 */
-  box-sizing: border-box;
   /* 文章区边上的颜色 */
   border: 1px solid var(--kungalgame-trans-blue-4);
   background-color: var(--kungalgame-trans-blue-0);
