@@ -70,26 +70,23 @@ const info: FooterInfo[] = [
       },
     ],
   },
+]
+
+const link: FooterInfoItem[] = [
   {
-    index: 4,
-    title: `friend`,
-    list: [
-      {
-        index: 1,
-        name: `acgngame`,
-        router: `http://www.acgngames.net`,
-      },
-      {
-        index: 2,
-        name: `shinnku`,
-        router: `http://www.shinnku.com`,
-      },
-      {
-        index: 3,
-        name: `ymgal`,
-        router: `http://www.ymgal.games`,
-      },
-    ],
+    index: 1,
+    name: `acgngame`,
+    router: `http://acgngames.net`,
+  },
+  {
+    index: 2,
+    name: `shinnku`,
+    router: `http://shinnku.com`,
+  },
+  {
+    index: 3,
+    name: `ymgal`,
+    router: `http://www.ymgal.games`,
   },
 ]
 </script>
@@ -107,6 +104,19 @@ const info: FooterInfo[] = [
           <RouterLink :to="yuyu.router">{{
             $t(`mainPage.footer.item['${yuyu.name}']`)
           }}</RouterLink>
+        </li>
+      </ul>
+    </div>
+    <div class="catalog">
+      <!-- 每个信息类别的标题 -->
+      <h2>
+        <span>{{ $t(`mainPage.footer.title.friend`) }}</span>
+      </h2>
+      <ul class="function" v-for="azkhx in link" :key="azkhx.index">
+        <li>
+          <a :href="azkhx.router" target="_blank">{{
+            $t(`mainPage.footer.item['${azkhx.name}']`)
+          }}</a>
         </li>
       </ul>
     </div>
