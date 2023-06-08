@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FooterWave from './wave/FooterWave.vue'
+import Wave from './components/Wave.vue'
 import KUNGalgameInfo from './components/KUNGalgameInfo.vue'
 </script>
 
@@ -7,7 +7,7 @@ import KUNGalgameInfo from './components/KUNGalgameInfo.vue'
   <div class="footer">
     <!-- footer 的内部容器 -->
     <div class="kungalgame-footer-wrap">
-      <FooterWave />
+      <Wave />
       <KUNGalgameInfo />
     </div>
   </div>

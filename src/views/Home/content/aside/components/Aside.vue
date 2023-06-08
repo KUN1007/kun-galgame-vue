@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 导入功能区的单个项目
-import asideItem from '../aside-item'
+import asideItem from '@/types/home/aside-item'
 </script>
 
 <template>

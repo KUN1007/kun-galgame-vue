@@ -2,7 +2,7 @@
   这里是楼主的其他帖子组件
  -->
 <script setup lang="ts">
-import { asideTopic } from './topic'
+import { asideTopic } from '@/types/topic/topic'
 
 // 接受父组件传值,若是楼主的帖子则变色
 defineProps(['isMasterTopics'])
