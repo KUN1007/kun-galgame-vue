@@ -1,13 +1,10 @@
 import { createI18n } from 'vue-i18n'
+// 读取本地存储中的语言配置
+import { lang } from '@/utils/localStorageLang'
+
 // 引入语言文件
 import zh from './zh'
 import en from './en'
-
-// 读取本地存储中的语言配置
-const localStorageString = localStorage.getItem('KUNGalgame-settings')
-const lang = localStorageString
-  ? JSON.parse(localStorageString).showKUNGalgameLanguage
-  : 'en'
 
 const i18n = createI18n({
   locale: lang,
