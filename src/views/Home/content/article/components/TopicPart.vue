@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
+// 导入 i18n 格式化时间的函数
+import { formatTime } from '@/utils/formatTime'
+
 defineProps(['data'])
 </script>
 <template>
@@ -34,7 +37,7 @@ defineProps(['data'])
       </div>
       <!-- 帖子的状态，点赞数等 -->
       <div class="topic-post-date">
-        <span>10小时前</span>
+        <span>{{ formatTime($props.data.topicPublishTime) }}</span>
       </div>
     </div>
     <!-- 帖子的预览介绍 -->
