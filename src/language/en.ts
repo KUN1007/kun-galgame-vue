@@ -36,6 +36,35 @@ export default {
       hot: `Today's Hot Topic`,
       new: `Today's New Topic`,
     },
+    footer: {
+      title: {
+        communicate: 'Other Topic',
+        technique: 'Technique',
+        about: 'About Us',
+        friend: 'Links',
+      },
+      item: {
+        daily: 'Daily Communication',
+        chat: 'Chatting',
+        execute: 'Visual Novel Execute',
+        globalization: 'Visual Novel Globalization',
+        make: 'Visual Novel Making',
+        privacy: 'Privacy',
+        principle: 'Principle',
+        balance: 'Profit and Loss',
+        acgngame: 'ACGNGAME',
+        shinnku: `Shinnku's Visual Novel`,
+        ymgal: '月幕galgame',
+      },
+      describe: {
+        title: 'KUN Visual Novel',
+        kun1: 'The CUTEST Visual Forum In The World!',
+        kun2: 'To Create The Best Atmosphere',
+        kun3: 'NO ADs Forever',
+        kun4: 'Free Forever',
+      },
+      contact: 'Contact Us',
+    },
   },
   topic: {
     aside: {

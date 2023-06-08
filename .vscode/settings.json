@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "ACGNGAME",
     "axios",
     "azkhx",
     "Bilibili",
@@ -16,6 +17,7 @@
     "non-moe",
     "persistedstate",
     "Pinia",
+    "shinnku",
     "signin",
     "sina",
     "tanstack",
@@ -23,6 +25,7 @@
     "Upvotes",
     "VARCHAR",
     "weixin",
+    "ymgal",
     "yuyu"
   ],
   "i18n-ally.localesPaths": ["src/language"],

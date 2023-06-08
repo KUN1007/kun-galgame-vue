@@ -2,6 +2,7 @@
 interface FooterInfoItem {
   index: number
   name: string
+  router: string
 }
 
 interface FooterInfo {
@@ -13,15 +14,80 @@ interface FooterInfo {
 const info: FooterInfo[] = [
   {
     index: 1,
-    title: '其它交流',
+    title: `communicate`,
     list: [
       {
         index: 1,
-        name: '日常交流',
+        name: `daily`,
+        router: `/pool/index`,
       },
       {
         index: 2,
-        name: '闲聊灌水',
+        name: `chat`,
+        router: `/contact`,
+      },
+    ],
+  },
+  {
+    index: 2,
+    title: `technique`,
+    list: [
+      {
+        index: 1,
+        name: `execute`,
+        router: `/technique/index`,
+      },
+      {
+        index: 2,
+        name: `globalization`,
+        router: `/technique/index`,
+      },
+      {
+        index: 3,
+        name: `make`,
+        router: `/technique/index`,
+      },
+    ],
+  },
+  {
+    index: 3,
+    title: `about`,
+    list: [
+      {
+        index: 1,
+        name: `privacy`,
+        router: `/privacy`,
+      },
+      {
+        index: 2,
+        name: `principle`,
+        router: `/kungalgame/index`,
+      },
+      {
+        index: 3,
+        name: `balance`,
+        router: `/balance/index`,
+      },
+    ],
+  },
+  {
+    index: 4,
+    title: `friend`,
+    list: [
+      {
+        index: 1,
+        name: `acgngame`,
+        router: `http://www.acgngames.net`,
+      },
+      {
+        index: 2,
+        name: `shinnku`,
+        router: `http://www.shinnku.com`,
+      },
+      {
+        index: 3,
+        name: `ymgal`,
+        router: `http://www.ymgal.games`,
       },
     ],
   },
@@ -29,38 +95,19 @@ const info: FooterInfo[] = [
 </script>
 
 <template>
-  <div class="footer-left-top-info">
+  <div class="info">
     <!-- 非 galgame 交流 -->
-    <div class="footer-catalog-wrap">
+    <div class="catalog" v-for="kun in info" :key="kun.index">
       <!-- 每个信息类别的标题 -->
-      <h2 class="kungalgame-footer-catalog-title">
-        <span>其它交流</span>
+      <h2>
+        <span>{{ $t(`mainPage.footer.title['${kun.title}']`) }}</span>
       </h2>
-      <ul class="function">
-        <li><a href="#">日常交流</a></li>
-        <li><a href="#">闲聊灌水</a></li>
-      </ul>
-    </div>
-    <!-- 技术相关 -->
-    <div class="footer-catalog-wrap">
-      <h2 class="kungalgame-footer-catalog-title">
-        <span>技术相关</span>
-      </h2>
-      <ul class="function">
-        <li><a href="#">galgame运行相关</a></li>
-        <li><a href="#">galgame汉化相关</a></li>
-        <li><a href="#">galgame制作相关</a></li>
-      </ul>
-    </div>
-    <!-- 关于我们 -->
-    <div class="footer-catalog-wrap">
-      <h2 class="kungalgame-footer-catalog-title">
-        <span>关于我们</span>
-      </h2>
-      <ul class="function">
-        <li><a href="#">隐私政策</a></li>
-        <li><a href="#">运营理念</a></li>
-        <li><a href="#">收支公示</a></li>
+      <ul class="function" v-for="yuyu in kun.list" :key="yuyu.index">
+        <li>
+          <RouterLink :to="yuyu.router">{{
+            $t(`mainPage.footer.item['${yuyu.name}']`)
+          }}</RouterLink>
+        </li>
       </ul>
     </div>
   </div>
@@ -68,12 +115,12 @@ const info: FooterInfo[] = [
 
 <style lang="scss" scoped>
 /* 左侧顶部的信息 */
-.footer-left-top-info {
+.info {
   display: flex;
   justify-content: center;
 }
 /* 顶部的三个 ul */
-.footer-catalog-wrap {
+.catalog {
   width: 1px;
   flex-grow: 1;
   display: flex;
@@ -81,14 +128,14 @@ const info: FooterInfo[] = [
   color: var(--kungalgame-font-color-2);
   font-size: small;
 }
-.footer-catalog-wrap ul li {
-  margin: 5px 0;
-}
-.footer-catalog-wrap ul li a {
-  flex-grow: 1;
+.function {
   color: var(--kungalgame-font-color-2);
-}
-.footer-catalog-wrap ul {
-  color: var(--kungalgame-font-color-2);
+  li {
+    margin: 5px 0;
+    a {
+      flex-grow: 1;
+      color: var(--kungalgame-font-color-2);
+    }
+  }
 }
 </style>
