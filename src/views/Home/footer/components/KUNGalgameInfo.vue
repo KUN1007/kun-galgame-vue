@@ -7,16 +7,17 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 <template>
   <!-- 头部下面的信息展示部分,目的是使信息区域居中且占比 61.8 -->
-  <div class="kungalgame-footer-info">
+  <div class="kungalgame-info">
     <!-- 信息展示部分的容器,目的是把左侧的信息和右侧的网站介绍分开 -->
-    <div class="kungalgame-footer-info-wrap">
+    <div class="container">
       <!-- 左侧的信息容器 -->
-      <div class="kungalgame-footer-left-wrap">
+      <div class="top">
         <!-- 左侧顶部的信息 -->
 
         <List />
         <!-- 左侧下方的信息 -->
-        <div class="footer-left-bottom-info">
+        <div class="bottom">
+          <!-- 联系方式 -->
           <Contacts />
           <!-- 版权描述,版本号 -->
           <KUNGalgameFooter style="margin: 0 auto" />
@@ -30,14 +31,14 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 <style lang="scss" scoped>
 /* 头部下面的信息展示部分,目的是使信息区域居中且占比 61.8 */
-.kungalgame-footer-info {
+.kungalgame-info {
   /* 信息区域的增长 */
   flex-grow: 1;
   display: flex;
   background-color: var(--kungalgame-trans-blue-2);
 }
 /* 信息展示部分的容器,目的是把左侧的信息和右侧的网站介绍分开 */
-.kungalgame-footer-info-wrap {
+.container {
   margin: 0 auto;
   /* 信息区域最小宽度 */
   min-width: 700px;
@@ -45,7 +46,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   display: flex;
 }
 /* 左侧的信息容器 */
-.kungalgame-footer-left-wrap {
+.top {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -53,7 +54,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   flex-grow: 2;
 }
 /* 左侧下方的信息 */
-.footer-left-bottom-info {
+.bottom {
   display: flex;
   flex-direction: column;
 }

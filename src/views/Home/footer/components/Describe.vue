@@ -1,18 +1,41 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface Info {
+  index: number
+  name: string
+}
+
+const info: Info[] = [
+  {
+    index: 1,
+    name: 'kun1',
+  },
+  {
+    index: 2,
+    name: 'kun2',
+  },
+  {
+    index: 3,
+    name: 'kun3',
+  },
+  {
+    index: 4,
+    name: 'kun4',
+  },
+]
+</script>
 
 <template>
   <!-- 右侧的网站信息容器 -->
   <div class="kungalgame-footer-right-wrap">
     <!-- 网站名 -->
     <div class="kungalgame">
-      <span>KUNgalgame</span>
+      <span>{{ $t('mainPage.footer.describe.title') }}</span>
     </div>
     <!-- 网站描述 -->
     <div class="kungalgame-describe">
-      <span>世界上最萌的 galgame 论坛!</span>
-      <span>KUNgalgame以营造最良好的氛围为理念</span>
-      <span>KUNgalgame永远不会有广告</span>
-      <span>KUNgalgame永远不会收费</span>
+      <span v-for="kun in info" :key="kun.index">{{
+        $t(`mainPage.footer.describe['${kun.name}']`)
+      }}</span>
     </div>
   </div>
 </template>

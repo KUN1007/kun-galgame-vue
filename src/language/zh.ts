@@ -36,6 +36,35 @@ export default {
       hot: `今日热门话题`,
       new: `今日最新话题`,
     },
+    footer: {
+      title: {
+        communicate: '其它交流',
+        technique: '技术相关',
+        about: '关于我们',
+        friend: '友情链接',
+      },
+      item: {
+        daily: '日常交流',
+        chat: '闲聊灌水',
+        execute: 'galgame运行相关',
+        globalization: 'galgame汉化相关',
+        make: 'galgame制作相关',
+        privacy: '隐私政策',
+        principle: '运营理念',
+        balance: '收支公示',
+        acgngame: 'ACGNGAME',
+        shinnku: '失落的小站',
+        ymgal: '月幕galgame',
+      },
+      describe: {
+        title: '鲲galgame',
+        kun1: '世界上最萌的 galgame 论坛！',
+        kun2: '鲲galgame以营造最良好的氛围为理念',
+        kun3: '鲲galgame永远不会有广告',
+        kun4: '鲲galgame永远不会收费',
+      },
+      contact: '联系我们',
+    },
   },
   topic: {
     aside: {
