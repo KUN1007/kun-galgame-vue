@@ -152,7 +152,9 @@ const validateTagName = (tagName: string) => {
 .selected-tag {
   border: 1px solid var(--kungalgame-blue-1);
   margin: 5px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   white-space: nowrap;
   font-size: 14px;
   padding: 3px;
@@ -160,6 +162,10 @@ const validateTagName = (tagName: string) => {
   span {
     cursor: pointer;
   }
+}
+
+.close-btn {
+  margin: 0 5px;
 }
 
 /* 标签输入框 */
