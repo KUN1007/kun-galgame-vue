@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FooterWave from './wave/FooterWave.vue'
-import KUNGalgameInfo from './info/KUNGalgameInfo.vue'
+import KUNGalgameInfo from './components/KUNGalgameInfo.vue'
 </script>
 
 <template>
