@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import UserPart from './components/UserPart.vue'
-import TopicPart from './components/TopicPart.vue'
+import UserPart from './UserPart.vue'
+import TopicPart from './TopicPart.vue'
 </script>
 <template>
   <div class="topic">

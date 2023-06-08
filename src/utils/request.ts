@@ -1,9 +1,10 @@
 // request.ts
 
-export async function request(
+export async function request<T>(
   url: string,
   options: RequestInit = {}
-): Promise<Response> {
+): Promise<T> {
   const response = await fetch(url, options)
-  return response
+  const data = await response.json()
+  return data as T
 }

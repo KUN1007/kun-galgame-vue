@@ -35,7 +35,7 @@ const users = [
     token: 'azkhx',
     avatar: './assets/images/topic.jpg',
     registrationTime: Date.now(),
-    cutePoints: 11000,
+    moemoePoints: 11000,
     bio: '啊这可海星',
     likesCount: 1007,
     commentsCount: 20,

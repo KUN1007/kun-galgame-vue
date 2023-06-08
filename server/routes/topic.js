@@ -18,6 +18,8 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
+    /* 帖子的回复数 */
+    topicReplyCount: 1,
     topicPartition: ['galgame'],
     topicReplies: {
       reply: [
@@ -27,7 +29,7 @@ const topics = [
           replier: {
             avatar: './assets/images/topic.jpg',
             name: '鲲鲲鲲',
-            cutenessPoints: 107,
+            moemoePoints: 107,
           },
           repliedTo: 'KUN',
           isEdited: true,
@@ -67,14 +69,13 @@ const topics = [
               commentContent: '鲲鲲鲲鲲鲲,啊这可海星',
             },
           ],
-          replyCount: 1,
         },
         {
           replyId: 2,
           replier: {
             avatar: './assets/images/topic.jpg',
             name: 'KUN',
-            cutenessPoints: 107,
+            moemoePoints: 107,
           },
           repliedTo: 'KUN',
           isEdited: true,
@@ -96,17 +97,16 @@ const topics = [
               commentContent: '鲲鲲鲲鲲鲲,啊这可海星',
             },
           ],
-          replyCount: 1,
         },
       ],
-      replyCount: 1,
     },
-    topicStatus: '正常',
+    /* 两种状态, 0正常, 1 封禁 */
+    topicStatus: 0,
     topicIsEdited: false,
     topicAuthor: {
       avatar: './assets/images/KUN.jpg',
       name: 'KUN',
-      cutenessPoints: 1007,
+      moemoePoints: 1007,
     },
   },
   {
@@ -121,6 +121,8 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
+    /* 帖子的回复数 */
+    topicReplyCount: 1,
     topicPartition: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
@@ -130,7 +132,7 @@ const topics = [
           replier: {
             avatar: './assets/images/topic.jpg',
             name: '鲲鲲鲲',
-            cutenessPoints: 107,
+            moemoePoints: 107,
           },
           repliedTo: 'KUN',
           isEdited: true,
@@ -170,14 +172,13 @@ const topics = [
               commentContent: '鲲鲲鲲鲲鲲,啊这可海星',
             },
           ],
-          replyCount: 1,
         },
         {
           replyId: 2,
           replier: {
             avatar: './assets/images/topic.jpg',
             name: 'KUN',
-            cutenessPoints: 107,
+            moemoePoints: 107,
           },
           repliedTo: 'KUN',
           isEdited: true,
@@ -199,30 +200,30 @@ const topics = [
               commentContent: '鲲鲲鲲鲲鲲,啊这可海星',
             },
           ],
-          replyCount: 1,
         },
       ],
-      replyCount: 1,
     },
-    topicStatus: '正常',
+    /* 两种状态, 0正常, 1 封禁 */
+    topicStatus: 0,
     topicIsEdited: false,
     topicAuthor: {
       avatar: './assets/images/KUN.jpg',
       name: 'KUN',
-      cutenessPoints: 1007,
+      moemoePoints: 1007,
     },
   },
 ]
 
 // 获取指定帖子的路由
 router.get('/:id', (req, res) => {
-  const topicId = parseInt(req.params.id)
-  const topic = topics.find((topic) => topic.topicId === topicId)
+  const id = parseInt(req.params.id)
+  const topic = topics.find((topic) => topic.topicId === id)
 
   if (topic) {
-    res.json(topic)
+    const { topicReplies, ...topicData } = topic
+    res.json(topicData)
   } else {
-    res.status(404).json({ error: 'Topic Not Found!' })
+    res.status(404).json({ error: 'Topic not found' })
   }
 })
 
