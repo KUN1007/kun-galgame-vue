@@ -65,6 +65,8 @@ onMounted(async () => {
     margin-bottom: 5px;
   }
 }
+
+/* 规范一下样式 */
 .kungalgame-comet-surround {
   padding: 0;
   flex-shrink: 0;
