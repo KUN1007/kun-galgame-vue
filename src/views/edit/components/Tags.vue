@@ -100,7 +100,7 @@ const validateTagName = (tagName: string) => {
         <!-- 已选择的标签显示容器 -->
         <span v-for="tag in selectedTags" :key="tag.index" class="selected-tag">
           {{ tag.name }}
-          <span class="close-btn" @click="() => handleTagClose(tag)">×</span>
+          <span class="close-btn" @click="handleTagClose(tag)">×</span>
         </span>
       </div>
       <!-- 标签输入框 -->

@@ -189,7 +189,7 @@ const handleRecover = () => {
   border: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-white-9);
   option {
-    background-color: var(--kungalgame-trans-white-9);
+    background-color: var(--kungalgame-white);
   }
 }
 .page-width {
