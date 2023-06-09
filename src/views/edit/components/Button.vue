@@ -1,10 +1,24 @@
 <script setup lang="ts">
 import KUNGalgameAlert from '@/components/KUNGalgameAlert/KUNGalgameAlert.vue'
 
+import { props } from '@/components/KUNGalgameAlert/types'
+
+import { provide } from 'vue'
+
+// 如果用户点击确定或者取消处理的函数
 const getAlertValue = (value: boolean) => {
   // 这里待定 TODO:
   console.log(value)
 }
+
+const alertInfo: props = {
+  type: 'alert',
+  info: '确认发布吗',
+  isShowCancel: true,
+  status: getAlertValue,
+}
+
+provide('info', alertInfo)
 </script>
 
 <template>
@@ -22,11 +36,7 @@ const getAlertValue = (value: boolean) => {
   <div class="btn-container">
     <!-- 确认按钮 -->
 
-    <KUNGalgameAlert
-      :info="'确认发布吗？'"
-      :isShowCancel="true"
-      @value="getAlertValue"
-    >
+    <KUNGalgameAlert>
       <button class="confirm-btn">确认发布</button>
     </KUNGalgameAlert>
     <!-- 保存按钮 -->
