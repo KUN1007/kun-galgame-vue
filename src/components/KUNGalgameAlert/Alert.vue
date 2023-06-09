@@ -1,13 +1,23 @@
+<!-- 爷组件使用：
+const alertInfo: props = {
+  type: 'alert',
+  info: '确认发布吗',
+  isShowCancel: true,
+  status: getAlertValue,
+}
+
+provide('info', alertInfo)
+-->
 <script setup lang="ts">
 // 接受爷组件的注入
 import { inject } from 'vue'
 // 导入接收类型
 import { props } from './types'
 
-const info = inject<props>('info')
+const alert = inject<props>('alert')
 
 // 接受父组件的传值
-const props = defineProps(['show'])
+const props = defineProps(['show', 'type'])
 
 const emit = defineEmits(['update'])
 
@@ -15,29 +25,29 @@ const emit = defineEmits(['update'])
 const handleClose = () => {
   emit('update', false)
   // 点击关闭则给父组件返回 false
-  info?.status(false)
+  alert?.status?.(false)
 }
 
 // 确定提示
 const handleConfirm = () => {
   emit('update', false)
   // 点击确定则给父组件返回 true
-  info?.status(true)
+  alert?.status?.(true)
 }
 </script>
 
 <template>
-  <Teleport to="body" :disabled="info?.type !== 'alert'">
+  <Teleport to="body" :disabled="props.type !== 'alert'">
     <Transition name="alert">
       <div v-if="props.show" class="mask">
         <div class="container">
           <div class="header">
-            <h3>{{ info?.info }}</h3>
+            <h3>{{ alert?.info }}</h3>
           </div>
 
           <div class="footer">
             <button
-              v-if="info?.isShowCancel"
+              v-if="alert?.isShowCancel"
               class="button"
               @click="handleClose"
             >
@@ -103,15 +113,6 @@ const handleConfirm = () => {
     transition: 0.1s;
   }
 }
-
-/*
- * 对于 transition="modal" 的元素来说
- * 当通过 Vue.js 切换它们的可见性时
- * 以下样式会被自动应用。
- *
- * 你可以简单地通过编辑这些样式
- * 来体验该模态框的过渡效果。
- */
 
 .alert-enter-from {
   opacity: 0;
