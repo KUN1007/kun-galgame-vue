@@ -42,7 +42,7 @@ const handleConfirm = () => {
       <div v-if="props.show" class="mask">
         <div class="container">
           <div class="header">
-            <h3>{{ alert?.info }}</h3>
+            <h3>{{ $t(`${alert?.info}`) }}</h3>
           </div>
 
           <div class="footer">

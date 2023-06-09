@@ -111,4 +111,8 @@ export default {
     confirm: 'OK',
     cancel: 'Cancel',
   },
+  AlertInfo: {
+    publish: 'Confirm to publish?',
+    draft: 'The draft has been saved successfully!',
+  },
 }

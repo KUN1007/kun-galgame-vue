@@ -3,7 +3,7 @@ import KUNGalgameAlert from '@/components/KUNGalgameAlert/KUNGalgameAlert.vue'
 
 import { props } from '@/components/KUNGalgameAlert/types'
 
-import { provide } from 'vue'
+import { type Ref, provide, ref } from 'vue'
 
 // 如果用户点击确定或者取消处理的函数
 const getAlertValue = (value: boolean) => {
@@ -12,18 +12,44 @@ const getAlertValue = (value: boolean) => {
 }
 
 const alert: props = {
-  info: '确认发布吗',
+  info: 'AlertInfo.publish',
   isShowCancel: true,
   status: getAlertValue,
 }
 
 const info: props = {
-  info: '草稿已经保存成功！',
+  info: 'AlertInfo.draft',
   isShowCancel: true,
 }
 
 provide('alert', alert)
 provide('info', info)
+
+interface Button {
+  index: number
+  name: string
+  isActive: Ref<boolean>
+}
+
+const button: Button[] = [
+  {
+    index: 1,
+    name: 'galgame',
+    isActive: ref(false),
+  },
+  {
+    index: 2,
+    name: '技术交流',
+    isActive: ref(false),
+  },
+  {
+    index: 3,
+    name: '其它',
+    isActive: ref(false),
+  },
+]
+
+const buttonStatus = ref(false)
 </script>
 
 <template>
@@ -31,10 +57,16 @@ provide('info', info)
   <div class="topic-group">
     <div>点击选择帖子的分区（可多选）:</div>
     <!-- 分类容器的按钮集合 -->
-    <div class="group-btn">
-      <button>galgame</button>
-      <button>技术交流</button>
-      <button>其它</button>
+    <div class="group-btn" :class="buttonStatus ? 'selected-btn' : ''">
+      <button
+        class="btn"
+        v-for="kun in button"
+        :key="kun.index"
+        @click="kun.isActive.value = !kun.isActive.value"
+        :class="{ active: kun.isActive.value }"
+      >
+        {{ kun.name }}
+      </button>
     </div>
   </div>
   <!-- 按钮的容器 -->
@@ -65,14 +97,14 @@ provide('info', info)
   margin: 20px 0;
 }
 /* 单个按钮的样式 */
-.group-btn > button {
+.btn {
   height: 30px;
   width: 20%;
   font-size: 17px;
   cursor: pointer;
-  border: 1px solid var(--kungalgame-purple-4);
-  background-color: var(--kungalgame-trans-purple-1);
-  color: var(--kungalgame-purple-4);
+  border: 1px solid var(--kungalgame-blue-1);
+  background-color: var(--kungalgame-trans-blue-0);
+  color: var(--kungalgame-blue-4);
 }
 /* 按钮的容器 */
 .btn-container {
@@ -119,5 +151,12 @@ provide('info', info)
 .save-btn:active {
   background-color: var(--kungalgame-orange-2);
   transform: scale(0.8);
+}
+
+/* 被选中按钮的样式 */
+.active {
+  transition: 0.2s;
+  background-color: var(--kungalgame-blue-4);
+  color: var(--kungalgame-white);
 }
 </style>
