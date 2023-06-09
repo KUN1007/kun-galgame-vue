@@ -1,34 +1,43 @@
-<!-- 注意这个组件必须用 provide 和 inject 的方式使用，因为有子组件 -->
 <script setup lang="ts">
-import { ref } from 'vue'
-import Alert from './Alert.vue'
+// 接受爷组件的注入
+import { inject } from 'vue'
+// 导入接收类型
+import { props } from './types'
 
-const show = ref(false)
+const info = inject<props>('info')
 
-const updateStatus = (value: boolean) => {
-  show.value = value
+// 接受父组件的传值
+const props = defineProps(['show'])
+
+const emit = defineEmits(['update'])
+
+// 关闭提示
+const handleClose = () => {
+  emit('update', false)
+  // 点击关闭则给父组件返回 false
+  info?.status(false)
+}
+
+// 确定提示
+const handleConfirm = () => {
+  emit('update', false)
+  // 点击确定则给父组件返回 true
+  info?.status(true)
 }
 </script>
 
 <template>
-  <div class="alert" @click="show = true">
-    <slot></slot>
-  </div>
-
-  <Alert :show="show" @update="updateStatus" />
-
-  <!-- 不是 info 的话就不启用这个 teleport -->
-  <!-- <Teleport to="body" :disabled="props.type !== 'info'">
+  <Teleport to="body" :disabled="info?.type !== 'alert'">
     <Transition name="alert">
-      <div v-if="show" class="mask">
+      <div v-if="props.show" class="mask">
         <div class="container">
           <div class="header">
-            <h3>{{ props.info }}</h3>
+            <h3>{{ info?.info }}</h3>
           </div>
 
           <div class="footer">
             <button
-              v-if="props.isShowCancel"
+              v-if="info?.isShowCancel"
               class="button"
               @click="handleClose"
             >
@@ -41,14 +50,10 @@ const updateStatus = (value: boolean) => {
         </div>
       </div>
     </Transition>
-  </Teleport> -->
+  </Teleport>
 </template>
 
 <style lang="scss" scoped>
-.alert {
-  width: 100%;
-  height: 100%;
-}
 .mask {
   position: fixed;
   z-index: 9999;

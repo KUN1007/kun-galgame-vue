@@ -7,8 +7,8 @@
   <!-- 版权描述,版本号 -->
   <div class="footer">
     <span
-      >Copyright © 2023 KUNgalgame<span> </span> All rights reserved | Version
-      0.01</span
+      >Copyright © 2023 KUNGalgame<span> </span> All rights reserved | Version
+      0.6.17</span
     >
   </div>
 </template>
