@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KUNGalgameAlert from '@/components/KUNGalgameAlert/KUNGalgameAlert.vue'
+
+const getAlertValue = (value: boolean) => {
+  // 这里待定 TODO:
+  console.log(value)
+}
+</script>
 
 <template>
   <!-- 话题分类的容器 -->
@@ -14,7 +21,14 @@
   <!-- 按钮的容器 -->
   <div class="btn-container">
     <!-- 确认按钮 -->
-    <button class="confirm-btn">确认发布</button>
+
+    <KUNGalgameAlert
+      :info="'确认发布吗？'"
+      :isShowCancel="true"
+      @value="getAlertValue"
+    >
+      <button class="confirm-btn">确认发布</button>
+    </KUNGalgameAlert>
     <!-- 保存按钮 -->
     <button class="save-btn">保存草稿</button>
   </div>
@@ -73,10 +87,6 @@
 .confirm-btn:hover {
   background-color: var(--kungalgame-blue-4);
   transition: 0.1s;
-}
-.confirm-btn:active {
-  background-color: var(--kungalgame-blue-2);
-  transform: scale(0.8);
 }
 /* 保存按钮的样式 */
 .save-btn {

@@ -106,4 +106,9 @@ export default {
   contact: {
     title: 'Join / Contact Us',
   },
+  // 非页面组件这里统一用大驼峰
+  ComponentAlert: {
+    confirm: 'OK',
+    cancel: 'Cancel',
+  },
 }
