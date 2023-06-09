@@ -2,6 +2,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Alert from './Alert.vue'
+import Info from './Info.vue'
+
+defineProps(['type'])
 
 const show = ref(false)
 
@@ -15,40 +18,22 @@ const updateStatus = (value: boolean) => {
     <slot></slot>
   </div>
 
-  <Alert :show="show" @update="updateStatus" />
+  <Alert
+    :show="show"
+    :type="$props.type"
+    @update="updateStatus"
+    v-if="$props.type === 'alert'"
+  />
 
-  <!-- 不是 info 的话就不启用这个 teleport -->
-  <!-- <Teleport to="body" :disabled="props.type !== 'info'">
-    <Transition name="alert">
-      <div v-if="show" class="mask">
-        <div class="container">
-          <div class="header">
-            <h3>{{ props.info }}</h3>
-          </div>
-
-          <div class="footer">
-            <button
-              v-if="props.isShowCancel"
-              class="button"
-              @click="handleClose"
-            >
-              {{ $t('ComponentAlert.cancel') }}
-            </button>
-            <button class="button" @click="handleConfirm">
-              {{ $t('ComponentAlert.confirm') }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </Transition>
-  </Teleport> -->
+  <Info
+    :show="show"
+    :type="$props.type"
+    @update="updateStatus"
+    v-if="$props.type === 'info'"
+  />
 </template>
 
 <style lang="scss" scoped>
-.alert {
-  width: 100%;
-  height: 100%;
-}
 .mask {
   position: fixed;
   z-index: 9999;

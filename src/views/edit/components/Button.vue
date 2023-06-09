@@ -11,14 +11,19 @@ const getAlertValue = (value: boolean) => {
   console.log(value)
 }
 
-const alertInfo: props = {
-  type: 'alert',
+const alert: props = {
   info: '确认发布吗',
   isShowCancel: true,
   status: getAlertValue,
 }
 
-provide('info', alertInfo)
+const info: props = {
+  info: '草稿已经保存成功！',
+  isShowCancel: true,
+}
+
+provide('alert', alert)
+provide('info', info)
 </script>
 
 <template>
@@ -36,11 +41,13 @@ provide('info', alertInfo)
   <div class="btn-container">
     <!-- 确认按钮 -->
 
-    <KUNGalgameAlert>
+    <KUNGalgameAlert :type="'alert'">
       <button class="confirm-btn">确认发布</button>
     </KUNGalgameAlert>
     <!-- 保存按钮 -->
-    <button class="save-btn">保存草稿</button>
+    <KUNGalgameAlert :type="'info'">
+      <button class="save-btn">保存草稿</button>
+    </KUNGalgameAlert>
   </div>
 </template>
 
@@ -79,11 +86,12 @@ provide('info', alertInfo)
 /* 单个按钮的样式 */
 .btn-container button {
   height: 40px;
-  width: 27%;
+  width: 200px;
   font-size: 20px;
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
+  flex-shrink: 0;
   &:hover {
     color: var(--kungalgame-white);
   }

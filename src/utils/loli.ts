@@ -3,15 +3,14 @@
 // 读取 JSON 文件数据
 import loliData from '@/assets/images/ren/ren.json'
 
-// 获取本地图片文件
+/* 随机数 */
+import getRandomNum from './randomNum'
+
+// 获取本地图片文件，注意这里不能用 @ 作为基础路径，只能用 ..
 const getAssetsFile = (url: number) => {
   return new URL(`../assets/images/ren/${url}.png`, import.meta.url).href
 }
 
-/* 随机数 */
-const getRandomNum = (lowerValue: number, upperValue: number) => {
-  return Math.floor(Math.random() * (upperValue - lowerValue + 1) + lowerValue)
-}
 /* 随机汗水 ？ */
 // const randomSweat = getRandomNum(0, 1)
 /* 随机眉毛 */
