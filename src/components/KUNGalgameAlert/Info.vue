@@ -41,7 +41,7 @@ const emit = defineEmits(['update'])
           appear
         >
           <div class="lass">
-            <span>{{ name + $t('') }}</span>
+            <span>{{ name }}</span>
           </div>
         </Transition>
         <div class="avatar">
@@ -52,7 +52,7 @@ const emit = defineEmits(['update'])
           appear
         >
           <!-- 啊哈哈哈！想不到吧这里参考的是糖调写的 -->
-          <div class="info">{{ `「 ${info?.info} 」` }}</div>
+          <div class="info">{{ `「 ${$t(`${info?.info}`)} 」` }}</div>
         </Transition>
         <div class="close" @click="emit('update', false)">
           <Icon icon="line-md:close" />

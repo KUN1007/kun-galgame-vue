@@ -111,4 +111,8 @@ export default {
     confirm: '确定',
     cancel: '取消',
   },
+  AlertInfo: {
+    publish: '确认发布吗？',
+    draft: '草稿已经保存成功！',
+  },
 }
