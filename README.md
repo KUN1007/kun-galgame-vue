@@ -44,24 +44,29 @@ Tips: 网站目前正在建设中······
 但是我们在重构的时候增加了大量的内容，并且将图标由`fontawesome`改为了`iconify`，所以外观可能会不同，这里仅展示主页预览
 
 ![](https://github.com/KUN1007/KUNGalGame-vue/blob/rebuild-color/introduction/images/preview.png)
+![](https://github.com/KUN1007/KUNGalGame-vue/blob/rebuild-color/introduction/images/preview-dark.png)
 
 ### 启动方法
-
-#### 前端
 
 `git clone https://github.com/KUN1007/KUNGalGame-vue`
 
 `cd KUNGalGame-vue`
-
-`pnpm i`
-
-`vite dev`
 
 #### 服务端
 
 `cd server `
 
 `pnpm start`
+
+#### 前端
+
+`cd ..`
+
+`pnpm i`
+
+`vite dev`
+
+请注意，请先启动服务端，这样才有模拟的数据
 
 .
 
