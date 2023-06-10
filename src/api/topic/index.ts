@@ -1,17 +1,17 @@
-import { request } from '@/utils/request'
+import { fetchGet } from '@/utils/request'
 
 import { KUNGalgameTopic } from './types/topic'
 
 export async function getTopicApi(id: number) {
-  return await request<KUNGalgameTopic>(`/topic/${id}`)
+  return await fetchGet<KUNGalgameTopic>(`/topic/${id}`)
 }
 
 export async function getTopicReplyApi(id: number) {
-  return await request<KUNGalgameTopic>(`/topic/reply/${id}`)
+  return await fetchGet<KUNGalgameTopic>(`/topic/reply/${id}`)
 }
 
 export async function getTopicCommentApi(id: number) {
-  return await request<KUNGalgameTopic>(`/topic/comment/${id}`)
+  return await fetchGet<KUNGalgameTopic>(`/topic/comment/${id}`)
 }
 
 // 获取指定范围内的帖子数据
@@ -20,15 +20,9 @@ export async function getTopicRangeApi(
   count: number
 ): Promise<KUNGalgameTopic[]> {
   const url = `http://127.0.0.1:10007/topic/topics/kun?start=${start}&count=${count}`
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
 
   try {
-    const response = await request<KUNGalgameTopic[]>(url, options)
+    const response = await fetchGet<KUNGalgameTopic[]>(url)
     return response
   } catch (error) {
     console.error('Error fetching topics:', error)
