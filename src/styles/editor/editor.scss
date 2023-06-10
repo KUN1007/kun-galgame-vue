@@ -12,6 +12,14 @@
   }
 }
 
+s {
+  text-decoration: line-through;
+}
+
+* {
+  text-shadow: none;
+}
+
 :root {
   // textarea - css vars
   --w-e-textarea-bg-color: var(--kungalgame-white);
