@@ -1,8 +1,29 @@
 <script setup lang="ts">
+import { reactive, ref } from 'vue'
 import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import WangEditor from '@/components/WangEditor.vue'
-import Footer from './components/Footer.vue'
+import Tags from './components/Tags.vue'
+import Button from './components/Button.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+const emit = defineEmits(['tags', 'article'])
+
+interface Topic {
+  id: ''
+  time: ''
+  authorId: ''
+}
+
+const topicInfo = reactive({
+  title: '',
+  articleHtml: '',
+  articleText: '',
+  tags: [],
+})
+
+const submit = () => {
+  // 在这里执行表单提交的逻辑，可以发送网络请求等操作
+}
 </script>
 
 <template>
@@ -10,22 +31,27 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 内容区容器 -->
-    <div class="container">
+    <form class="container" @submit.prevent="submit">
       <!-- 内容区容器 -->
-      <div class="content-wrapper">
+      <div class="content">
         <!-- 内容区的头部 -->
-        <div class="content-header">
+        <div class="header">
           <!-- 帖子的标题 -->
-          <div class="topic-title">
+          <div class="title">
             <input type="text" placeholder="请输入帖子的标题（40字以内）" />
           </div>
         </div>
         <!-- 编辑器 -->
-        <WangEditor class="editor" />
+        <WangEditor class="editor" @html="" />
       </div>
 
-      <Footer />
-    </div>
+      <!-- 内容区的底部 -->
+      <div class="content-footer">
+        <Tags />
+
+        <Button />
+      </div>
+    </form>
     <!-- 版权 -->
     <KUNGalgameFooter style="margin: 0 auto" />
     <span style="margin: 0 auto">Editor powered by wangEditor</span>
@@ -33,9 +59,10 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </template>
 
 <style lang="scss" scoped>
-.content-wrapper {
+.content {
   margin: 0 auto;
 }
+
 .root {
   height: 100vh;
   min-height: 1100px;
@@ -43,6 +70,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   display: flex;
   flex-direction: column;
 }
+
 /* 内容部分的总容器 */
 .container {
   width: 80%;
@@ -55,19 +83,22 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   border: 1px solid var(--kungalgame-blue-1);
   padding: 10px;
 }
+
 /* 容器的顶部 */
-.content-header {
+.header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 /* 帖子的发布标题 */
-.topic-title {
+.title {
   width: 100%;
 }
+
 /* 帖子标题的输入框 */
-.topic-title input {
+.title input {
   color: var(--kungalgame-font-color-2);
   /* 距离外轮廓的距离 */
   padding: 7px;
@@ -80,8 +111,17 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   background-color: var(--kungalgame-white);
   margin-bottom: 10px;
 }
+
 /* 标题输入框 focus 之后的样式 */
-.topic-title input:focus {
+.title input:focus {
   box-shadow: 0px 0px 5px var(--kungalgame-blue-4);
+}
+
+.content-footer {
+  /* 距离内容区的距离 */
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

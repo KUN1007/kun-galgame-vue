@@ -13,7 +13,11 @@ const handlePublish = async () => {
   const res = await info.alert('AlertInfo.publish', true)
   // TODO:
   // 这里实现用户的点击确认取消逻辑
-  console.log(res)
+  if (res) {
+    info.info('AlertInfo.publishSuccess')
+  } else {
+    info.info('AlertInfo.publishCancel')
+  }
 }
 
 const handleSave = () => {
@@ -29,7 +33,7 @@ const handleSave = () => {
     <div>点击选择帖子的分区（可多选）:</div>
     <!-- 分类容器的按钮集合 -->
     <div class="group-btn" :class="buttonStatus ? 'selected-btn' : ''">
-      <button
+      <span
         class="btn"
         v-for="kun in button"
         :key="kun.index"
@@ -37,7 +41,7 @@ const handleSave = () => {
         :class="{ active: kun.isActive.value }"
       >
         {{ kun.name }}
-      </button>
+      </span>
     </div>
   </div>
   <!-- 按钮的容器 -->
@@ -73,6 +77,9 @@ const handleSave = () => {
   border: 1px solid var(--kungalgame-blue-1);
   background-color: var(--kungalgame-trans-blue-0);
   color: var(--kungalgame-blue-4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* 按钮的容器 */
 .btn-container {
