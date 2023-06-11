@@ -1,6 +1,6 @@
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-type FetchOptions = {
+export type FetchOptions = {
   method: HttpMethod
   headers?: Record<string, string>
   body?: BodyInit

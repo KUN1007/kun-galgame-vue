@@ -9,48 +9,37 @@ const alertInfo: props = {
 provide('info', alertInfo)
 -->
 <script setup lang="ts">
-// 接受爷组件的注入
-import { inject } from 'vue'
-// 导入接收类型
-import { props } from './types'
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { storeToRefs } from 'pinia'
 
-const alert = inject<props>('alert')
-
-// 接受父组件的传值
-const props = defineProps(['show', 'type'])
-
-const emit = defineEmits(['update'])
+const { showAlert, alertMsg, isShowCancel } = storeToRefs(
+  useKUNGalgameMessageStore()
+)
 
 // 关闭提示
 const handleClose = () => {
-  emit('update', false)
-  // 点击关闭则给父组件返回 false
-  alert?.status?.(false)
+  showAlert.value = false
+  useKUNGalgameMessageStore().handleClose()
 }
 
 // 确定提示
 const handleConfirm = () => {
-  emit('update', false)
-  // 点击确定则给父组件返回 true
-  alert?.status?.(true)
+  showAlert.value = false
+  useKUNGalgameMessageStore().handleConfirm()
 }
 </script>
 
 <template>
-  <Teleport to="body" :disabled="props.type !== 'alert'">
+  <Teleport to="body" :disabled="showAlert">
     <Transition name="alert">
-      <div v-if="props.show" class="mask">
+      <div v-if="showAlert" class="mask">
         <div class="container">
           <div class="header">
-            <h3>{{ $t(`${alert?.info}`) }}</h3>
+            <h3>{{ $t(`${alertMsg}`) }}</h3>
           </div>
 
           <div class="footer">
-            <button
-              v-if="alert?.isShowCancel"
-              class="button"
-              @click="handleClose"
-            >
+            <button v-if="isShowCancel" class="button" @click="handleClose">
               {{ $t('ComponentAlert.cancel') }}
             </button>
             <button class="button" @click="handleConfirm">

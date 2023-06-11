@@ -3,7 +3,7 @@ import { ref, reactive } from 'vue'
 import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { useMutation } from '@tanstack/vue-query'
 import { useRouter } from 'vue-router'
-import { request } from '@/utils/request'
+import { fetchPost } from '@/utils/request'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 const isShowPanel = ref('')
@@ -20,7 +20,7 @@ const router = useRouter()
 
 // 登录请求
 const loginMutation = useMutation(async (data: any) => {
-  const res: Response = await request('http://127.0.0.1:10007/api/login', {
+  const res: Response = await fetchPost('http://127.0.0.1:10007/api/login', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
@@ -30,7 +30,7 @@ const loginMutation = useMutation(async (data: any) => {
 
 // 注册请求
 const registerMutation = useMutation(async (data: any) => {
-  const res: Response = await request('http://127.0.0.1:10007/api/register', {
+  const res: Response = await fetchPost('http://127.0.0.1:10007/api/register', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },

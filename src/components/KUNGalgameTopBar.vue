@@ -15,11 +15,8 @@ const KUNGalgameSettingsPanel = defineAsyncComponent(
   () => import('./setting-panel/KUNGalgameSettingPanel.vue')
 )
 
-// 接收设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-
 // 使设置面板的数据变为响应式
-const { showKUNGalgamePanel } = storeToRefs(settingsStore)
+const { showKUNGalgamePanel } = storeToRefs(useKUNGalgameSettingsStore())
 
 // 顶部导航栏单个项目的接口
 interface topBar {

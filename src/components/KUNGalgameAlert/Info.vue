@@ -9,11 +9,12 @@ const alertInfo: props = {
 provide('info', alertInfo)
 -->
 <script setup lang="ts">
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { storeToRefs } from 'pinia'
+
+const { showInfo, infoMsg } = storeToRefs(useKUNGalgameMessageStore())
+
 import { Icon } from '@iconify/vue'
-// 接受爷组件的注入
-import { inject } from 'vue'
-// 导入接收类型
-import { props } from './types'
 // 导入图片地址
 import img from './loli'
 // 导入动画
@@ -21,21 +22,18 @@ import 'animate.css'
 
 const { loli, name } = img
 
-const info = inject<props>('info')
-
-// 接受父组件的传值
-const props = defineProps(['show', 'type'])
-
-const emit = defineEmits(['update'])
+const handleClose = () => {
+  showInfo.value = false
+}
 </script>
 
 <template>
-  <Teleport to="body" :disabled="props.type !== 'info'">
+  <Teleport to="body" :disabled="showInfo">
     <Transition
       enter-active-class="animate__animated animate__fadeInUp animate__faster"
       leave-active-class="animate__animated animate__fadeOutDown animate__faster"
     >
-      <div class="container" v-if="props.show">
+      <div class="container" v-if="showInfo">
         <Transition
           enter-active-class="animate__animated animate__swing"
           appear
@@ -52,9 +50,9 @@ const emit = defineEmits(['update'])
           appear
         >
           <!-- 啊哈哈哈！想不到吧这里参考的是糖调写的 -->
-          <div class="info">{{ `「 ${$t(`${info?.info}`)} 」` }}</div>
+          <div class="info">{{ `「 ${$t(`${infoMsg}`)} 」` }}</div>
         </Transition>
-        <div class="close" @click="emit('update', false)">
+        <div class="close" @click="handleClose">
           <Icon icon="line-md:close" />
         </div>
       </div>
