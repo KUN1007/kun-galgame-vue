@@ -106,6 +106,18 @@ export default {
   contact: {
     title: '加入 / 联系我们',
   },
+  edit: {
+    title: '请输入帖子的标题（40字以内）',
+    tags: '请输入帖子的关键词',
+    hint: `提示：（单个关键词 14 个字符以内，至少选择一个、最多 7 个）, 您可以输入文字按下 ' Enter ' 创建关键词`,
+    hot: '热门关键词（点击选择）:',
+    categories: '点击选择帖子的分区（可多选）:',
+    btnGalgame: 'Galgame',
+    btnTechnique: '技术交流',
+    others: '其它',
+    publish: '确认发布',
+    draft: '保存草稿',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: '确定',
@@ -113,6 +125,8 @@ export default {
   },
   AlertInfo: {
     publish: '确认发布吗？',
+    publishSuccess: '发布成功',
+    publishCancel: '取消发布',
     draft: '草稿已经保存成功！',
   },
 }

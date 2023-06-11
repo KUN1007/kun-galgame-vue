@@ -6,6 +6,7 @@ import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
+const props = defineProps(['html', 'text'])
 // 覆盖编辑器原生样式
 import '@/styles/editor/editor.scss'
 
@@ -13,7 +14,8 @@ import '@/styles/editor/editor.scss'
 const editorRef = shallowRef()
 
 // 内容 HTML
-const valueHtml = ref('')
+const valueHtml = ref(props.html)
+const valueText = ref(props.text)
 
 // 模拟 ajax 异步获取内容
 onMounted(() => {

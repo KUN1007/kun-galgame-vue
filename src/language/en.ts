@@ -106,6 +106,19 @@ export default {
   contact: {
     title: 'Join / Contact Us',
   },
+  edit: {
+    title: 'Please input title, limit is 40 characters',
+    tags: 'Please input topic keywords',
+    hint: `Hint: (A single keyword should be within 14 characters, choose at least one and up to 7 keywords). You can enter text and press 'Enter' to create a keyword.`,
+    hot: 'Popular Keywords (Click to Select): ',
+    categories:
+      'Click to select post categories (multiple selections allowed): ',
+    btnGalgame: 'Visual Novel',
+    btnTechnique: 'Technical Discussions',
+    others: 'Others',
+    publish: 'Confirm Publish',
+    draft: 'Save Draft',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: 'OK',
@@ -113,6 +126,8 @@ export default {
   },
   AlertInfo: {
     publish: 'Confirm to publish?',
+    publishSuccess: 'Publish Successfully',
+    publishCancel: 'Cancel Publish',
     draft: 'The draft has been saved successfully!',
   },
 }

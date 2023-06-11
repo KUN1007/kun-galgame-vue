@@ -94,7 +94,7 @@ const validateTagName = (tagName: string) => {
 
 <template>
   <!-- 标签的总容器 -->
-  <div class="container">
+  <div class="container-a">
     <div class="input-container">
       <div class="tags-container">
         <!-- 已选择的标签显示容器 -->
@@ -132,7 +132,7 @@ const validateTagName = (tagName: string) => {
 
 <style lang="scss" scoped>
 /* 标签的总容器 */
-.container {
+.container-a {
   width: 100%;
 }
 
