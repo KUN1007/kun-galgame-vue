@@ -1,55 +1,26 @@
 <script setup lang="ts">
-import KUNGalgameAlert from '@/components/KUNGalgameAlert/KUNGalgameAlert.vue'
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
-import { props } from '@/components/KUNGalgameAlert/types'
+const info = useKUNGalgameMessageStore()
 
-import { type Ref, provide, ref } from 'vue'
+import { button } from './button'
 
-// 如果用户点击确定或者取消处理的函数
-const getAlertValue = (value: boolean) => {
-  // 这里待定 TODO:
-  console.log(value)
-}
-
-const alert: props = {
-  info: 'AlertInfo.publish',
-  isShowCancel: true,
-  status: getAlertValue,
-}
-
-const info: props = {
-  info: 'AlertInfo.draft',
-  isShowCancel: true,
-}
-
-provide('alert', alert)
-provide('info', info)
-
-interface Button {
-  index: number
-  name: string
-  isActive: Ref<boolean>
-}
-
-const button: Button[] = [
-  {
-    index: 1,
-    name: 'galgame',
-    isActive: ref(false),
-  },
-  {
-    index: 2,
-    name: '技术交流',
-    isActive: ref(false),
-  },
-  {
-    index: 3,
-    name: '其它',
-    isActive: ref(false),
-  },
-]
+import { ref } from 'vue'
 
 const buttonStatus = ref(false)
+
+const handlePublish = async () => {
+  const res = await info.alert('AlertInfo.publish', true)
+  // TODO:
+  // 这里实现用户的点击确认取消逻辑
+  console.log(res)
+}
+
+const handleSave = () => {
+  // TODO:
+  // 这里实现用户的保存逻辑
+  info.info('AlertInfo.draft')
+}
 </script>
 
 <template>
@@ -73,13 +44,10 @@ const buttonStatus = ref(false)
   <div class="btn-container">
     <!-- 确认按钮 -->
 
-    <KUNGalgameAlert :type="'alert'">
-      <button class="confirm-btn">确认发布</button>
-    </KUNGalgameAlert>
+    <button class="confirm-btn" @click="handlePublish">确认发布</button>
+
     <!-- 保存按钮 -->
-    <KUNGalgameAlert :type="'info'">
-      <button class="save-btn">保存草稿</button>
-    </KUNGalgameAlert>
+    <button class="save-btn" @click="handleSave">保存草稿</button>
   </div>
 </template>
 
