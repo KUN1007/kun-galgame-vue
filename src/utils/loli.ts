@@ -4,7 +4,7 @@
 import loliData from '@/assets/images/ren/ren.json'
 
 /* 随机数 */
-import getRandomNum from './randomNum'
+import { randomNum } from './random'
 
 // 获取本地图片文件，注意这里不能用 @ 作为基础路径，只能用 ..
 const getAssetsFile = (url: number) => {
@@ -12,21 +12,21 @@ const getAssetsFile = (url: number) => {
 }
 
 /* 随机汗水 ？ */
-// const randomSweat = getRandomNum(0, 1)
+// const randomSweat = randomNum(0, 1)
 /* 随机眉毛 */
-const randomBrow = getRandomNum(1, 18)
+const randomBrow = randomNum(1, 18)
 
 /* 随机眼睛 */
-const randomEye = getRandomNum(19, 36)
+const randomEye = randomNum(19, 36)
 
 /* 随机嘴巴 */
-const randomMouth = getRandomNum(37, 56)
+const randomMouth = randomNum(37, 56)
 
 /* 随机腮红 */
-const randomFace = getRandomNum(57, 62)
+const randomFace = randomNum(57, 62)
 
 /* 随机衣服 */
-const randomSkirt = getRandomNum(63, 72)
+const randomSkirt = randomNum(63, 72)
 
 // 定义一个 loli 对象
 const loli = {

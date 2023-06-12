@@ -68,8 +68,8 @@ const isOthersTopic = props.isOthersTopic
 <style lang="scss" scoped>
 /* 楼主帖子底部 */
 .footer {
+  padding: 10px 0;
   width: 100%;
-  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,6 +110,12 @@ const isOthersTopic = props.isOthersTopic
       justify-content: center;
       align-items: center;
     }
+  }
+}
+
+@media (max-width: 700px) {
+  .footer {
+    flex-direction: column;
   }
 }
 </style>

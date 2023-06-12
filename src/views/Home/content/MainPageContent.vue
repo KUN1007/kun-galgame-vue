@@ -20,7 +20,7 @@ const width = computed(() => {
     <div class="main-container">
       <!-- 内容区容器 -->
       <div class="content-container">
-        <MainPageAside />
+        <MainPageAside class="aside" />
         <MainPageArticle />
       </div>
     </div>
@@ -42,8 +42,6 @@ const width = computed(() => {
 /* 可视内容部分宽度 */
 .content-container {
   width: v-bind(width);
-  /* 可视页面的最小宽度 */
-  min-width: 700px;
   height: 100%;
   margin: 0 auto;
   /* 可视内容区为弹性盒 */
@@ -57,5 +55,27 @@ const width = computed(() => {
   border-radius: 5px;
   padding: 5px;
   border: 1px solid var(--kungalgame-blue-0);
+}
+
+@media (max-width: 1000px) {
+  .aside {
+    display: none;
+  }
+  .content-container {
+    width: 70%;
+    border: none;
+    background-color: var(--kungalgame-trans-white-9);
+  }
+}
+
+@media (max-width: 700px) {
+  .aside {
+    display: none;
+  }
+  .content-container {
+    width: 95%;
+    border: none;
+    background-color: var(--kungalgame-trans-white-9);
+  }
 }
 </style>

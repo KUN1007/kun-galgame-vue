@@ -1,38 +1,52 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps(['data', 'itemStyle'])
+import { randomNum } from '@/utils/random'
+
+const randomColor = `rgba(${randomNum(0, 100)}, ${randomNum(
+  0,
+  100
+)}, ${randomNum(0, 255)}, ${Math.random().toFixed(2)})`
+
+const randomTransColor = (
+  color1: number,
+  color2: number,
+  color3: number,
+  trans: number
+) => {
+  return `rgba(${randomNum(200, color1)}, ${randomNum(
+    200,
+    color2
+  )}, ${randomNum(200, color3)}, ${randomNum(50, trans) / 100})`
+}
+</script>
 
 <template>
   <!-- 单个帖子容器 -->
-  <div class="single-topic-container">
+  <div class="topic">
     <!-- 帖子的标题 -->
-    <div class="topic-title">
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+    <div class="title">
+      {{ props.data.title }}
     </div>
     <!-- 帖子的内容区 -->
-    <div class="topic-content">
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-    </div>
+    <div class="content">{{ props.data.content }}</div>
     <!-- 帖子的状态 -->
-    <div class="topic-status">
+    <div class="status">
       <!-- 浏览数 -->
-      <span><i class="fa-regular fa-eye"></i>10007</span>
+      <span><i class="fa-regular fa-eye"></i>{{ props.data.view }}</span>
       <!-- 点赞数 -->
-      <span><i class="fa-regular fa-thumbs-up"></i>10007</span>
+      <span><i class="fa-regular fa-thumbs-up"></i>{{ props.data.like }}</span>
     </div>
     <!-- 发帖时间 -->
-    <div class="topic-post-time">
+    <div class="time">
       <i class="fa-solid fa-hourglass-half"></i>
-      <div>10月7日-10:07:00 发布</div>
+      <div>{{ props.data.time }} 发布</div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 /* 帖子池单个帖子 */
-.single-topic-container {
+.topic {
   /* 单个帖子距下方的距离 */
   margin-bottom: 7px;
   /* 竖直方向弹性布局 */
@@ -41,15 +55,16 @@
   /* 圆角 */
   border-radius: 7px;
   /* Scss random color */
-  background-color: azure;
-  border: 1px solid black;
+  background-color: v-bind(randomTransColor(255, 255, 255, 100));
+  border: 1px solid v-bind(randomTransColor(255, 255, 255, 100));
+  color: var(--kungalgame-font-color-3);
   cursor: pointer;
 }
-.single-topic-container:hover {
+.topic:hover {
   background-color: var(--kungalgame-blue-1);
 }
 /* 帖子的标题 */
-.topic-title {
+.title {
   /* 标题显示两行、超出部分隐藏 */
   overflow: hidden; /* 超出部分隐藏 */
   text-overflow: ellipsis; /* 显示省略号 */
@@ -64,14 +79,14 @@
   color: var(--kungalgame-font-color-2);
 }
 /* 帖子的内容区 */
-.topic-content {
+.content {
   overflow: hidden;
   font-size: 14px;
   padding: 0 10px;
   margin: 7px 0;
 }
 /* 帖子的状态 */
-.topic-status {
+.status {
   display: flex;
   justify-content: space-around;
   margin-bottom: 10px;
@@ -79,10 +94,10 @@
   overflow: hidden;
   flex-wrap: wrap;
 }
-.topic-status i {
+.status i {
   color: var(--kungalgame-red-4);
 }
-.topic-post-time {
+.time {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +108,7 @@
   overflow: hidden;
   white-space: nowrap;
 }
-.topic-post-time i {
+.time i {
   margin: 0 5px;
   color: var(--kungalgame-purple-5);
 }

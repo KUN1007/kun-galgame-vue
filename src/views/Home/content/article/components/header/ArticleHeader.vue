@@ -61,4 +61,10 @@ import SortTopic from './SortTopic.vue'
 .all-topic {
   font-size: 18px;
 }
+
+@media (max-width: 1000px) {
+  .more {
+    display: none;
+  }
+}
 </style>

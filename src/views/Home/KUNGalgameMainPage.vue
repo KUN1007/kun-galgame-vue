@@ -21,6 +21,5 @@ import MainPageFooter from './footer/MainPageFooter.vue'
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-width: 800px;
 }
 </style>

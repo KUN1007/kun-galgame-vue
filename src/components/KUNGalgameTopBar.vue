@@ -133,6 +133,7 @@ onBeforeMount(() => {
   position: relative;
   z-index: 1007;
   margin-bottom: 7px;
+  flex-shrink: 0;
 }
 .nav-top {
   display: flex;
@@ -249,6 +250,11 @@ $navNumber: v-bind(navItemNum);
 
 @media (max-width: 1000px) {
   span {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .top-bar {
     display: none;
   }
 }

@@ -138,4 +138,13 @@ import Reply from './Reply.vue'
   border-bottom: 1px solid var(--kungalgame-blue-1);
   padding-bottom: 7px;
 }
+
+@media (max-width: 1000px) {
+  .top {
+    flex-direction: column;
+  }
+  .bottom {
+    flex-direction: column;
+  }
+}
 </style>

@@ -3,6 +3,7 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import Tags from './components/Tags.vue'
 import Topic from './components/Topic.vue'
+import Grid from './components/Grid.vue'
 </script>
 
 <template>
@@ -17,7 +18,7 @@ import Topic from './components/Topic.vue'
       <div class="content-container">
         <!-- 帖子池单个帖子列容器 -->
         <div class="single-topic-column-container">
-          <Topic />
+          <Grid />
         </div>
       </div>
     </div>
@@ -47,18 +48,6 @@ import Topic from './components/Topic.vue'
   backdrop-filter: blur(5px);
   background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
-}
-/* 帖子池内容区容器 */
-.content-container {
-  display: flex;
-}
-/* 帖子池单个帖子列容器 */
-.single-topic-column-container {
-  /* 根据页面宽度增长 */
-  width: 1px;
-  flex-grow: 1;
-  /* 5 行的行距 */
-  margin: 5px;
 }
 /* 右侧的功能栏 */
 .kungalgame-right-bar {
