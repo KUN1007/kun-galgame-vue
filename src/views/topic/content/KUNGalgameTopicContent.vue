@@ -6,13 +6,13 @@
   页面被拆成 3 个大组件，这是帖子部分
  -->
 <script setup lang="ts">
-import TopicMaster from './master/TopicMaster.vue';
-import TopicOthers from './others/TopicOthers.vue';
+import TopicMaster from './master/TopicMaster.vue'
+import TopicOthers from './others/TopicOthers.vue'
 </script>
 <template>
   <div class="content-right-part">
-    <TopicMaster/>
-    <TopicOthers/>
+    <TopicMaster />
+    <TopicOthers />
   </div>
 </template>
 <style scoped>
@@ -24,7 +24,5 @@ import TopicOthers from './others/TopicOthers.vue';
   /* 右侧内容区为弹性盒（用户可以一直向下滑） */
   display: flex;
   flex-direction: column;
-  /* 右侧部分距离左侧的距离 */
-  margin-left: 10px;
 }
 </style>

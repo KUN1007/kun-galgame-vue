@@ -16,6 +16,7 @@
 .master-topic-header {
   width: 100%;
   height: 70px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,9 +31,5 @@
   font-weight: bold;
   /* 文字间距 */
   letter-spacing: 1px;
-  /* 文字不换行 */
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 </style>

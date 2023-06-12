@@ -121,4 +121,10 @@ import Floor from '../components/Floor.vue'
   align-items: center;
   border-bottom: 1px solid var(--kungalgame-blue-1);
 }
+
+@media (max-width: 1000px) {
+  .content-top {
+    flex-direction: column;
+  }
+}
 </style>

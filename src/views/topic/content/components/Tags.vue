@@ -28,6 +28,7 @@ import { Icon } from '@iconify/vue'
   /* 单个标签的盒子 */
   ul {
     display: flex;
+    flex-wrap: wrap;
     li {
       margin-left: 5px;
       font-size: small;

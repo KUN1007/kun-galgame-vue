@@ -14,7 +14,7 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
     <div class="topic-wrapper">
       <!-- 下方可视内容区的容器 -->
       <div class="content-wrapper">
-        <KUNGalgameTopicAside />
+        <KUNGalgameTopicAside class="aside" style="margin-right: 10px" />
         <KUNGalgameTopicContent />
       </div>
     </div>
@@ -26,7 +26,6 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  min-width: 1040px;
 }
 /* 下面帖子详情区的容器 */
 .topic-wrapper {
@@ -47,5 +46,14 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
   border-radius: 5px;
   padding: 5px;
   box-sizing: border-box;
+}
+
+@media (max-width: 1000px) {
+  .aside {
+    display: none;
+  }
+  .content-wrapper {
+    padding: 0;
+  }
 }
 </style>
