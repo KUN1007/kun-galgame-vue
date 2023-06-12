@@ -1,49 +1,66 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+</script>
 
 <template>
   <!-- 右侧部分 -->
   <div class="bar">
-    <div class="triangle"></div>
     <!-- 对帖子进行排序 -->
     <div class="sort">
       <div>排序</div>
       <!-- 左侧部分 -->
       <div class="func">
         <!-- 按照浏览数排序 -->
-        <div><i class="fa-regular fa-eye"></i> 按照浏览数排序</div>
+        <div><Icon icon="ic:outline-remove-red-eye" /> 按照浏览数排序</div>
         <!-- 按照点赞数排序 -->
-        <div><i class="fa-regular fa-thumbs-up"></i> 按照点赞数排序</div>
+        <div><Icon icon="line-md:thumbs-up-twotone" /> 按照点赞数排序</div>
         <!-- 按照时间排序 -->
-        <div><i class="fa-solid fa-hourglass-half"></i> 按照时间排序</div>
+        <div>
+          <Icon class="hourglass" icon="eos-icons:hourglass" /> 按照时间排序
+        </div>
       </div>
-      <div><i class="fa-solid fa-arrow-down-wide-short"></i></div>
+      <div><Icon icon="bi:sort-down" /></div>
     </div>
     <!-- 返回顶部 -->
     <div class="top">
       <div>顶部</div>
-      <div><i class="fa-solid fa-arrows-up-to-line"></i></div>
+      <div><Icon icon="line-md:arrow-close-up"></Icon></div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+/* 右侧的功能栏 */
+.bar {
+  /* 位置 fix */
+  position: fixed;
+  bottom: 50px;
+  right: 17px;
+  z-index: 7;
+  /* 居中 */
+  display: flex;
+  flex-direction: column;
+}
+
 /* 功能栏的左侧 */
 .func {
   position: absolute;
   white-space: nowrap;
-  right: 50px;
+  right: 51px;
   cursor: pointer;
   display: none;
-  background-color: var(--kungalgame-blue-2);
+  background-color: var(--kungalgame-trans-white-2);
+  border: 1px solid var(--kungalgame-blue-1);
+  top: 0;
 }
 .func > div {
-  padding: 7px;
+  padding: 8px;
 }
 .func > div:hover {
-  background-color: var(--kungalgame-red-2);
+  background-color: var(--kungalgame-trans-pink-1);
 }
 /* 排序 hover 出现 */
-.kungalgame-right-bar .sort:hover .func {
+.sort:hover .func {
   display: block;
 }
 /* 图标字体的颜色 */
@@ -55,19 +72,6 @@
 .func div:last-child i {
   margin-right: 14px;
 }
-/* 右侧部分 */
-.bar {
-  position: relative;
-}
-.triangle {
-  position: absolute;
-  border-width: 10px;
-  border-style: solid;
-  border-color: transparent;
-  border-bottom-color: var(--kungalgame-trans-white-5);
-  top: 50px;
-  right: 14px;
-}
 /* 排序 */
 .sort,
 .top {
@@ -76,12 +80,11 @@
   align-items: center;
   height: 50px;
   padding: 0 9px;
-  background-color: var(--kungalgame-blue-2);
   box-shadow: var(--shadow);
   cursor: pointer;
-}
-.top {
-  background-color: var(--kungalgame-red-1);
+  background-color: var(--kungalgame-trans-white-2);
+  border: 1px solid var(--kungalgame-blue-1);
+  color: var(--kungalgame-font-color-3);
 }
 .top {
   margin-top: 11px;

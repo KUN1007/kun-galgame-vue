@@ -120,7 +120,7 @@ defineProps(['data'])
 .topic-post-date {
   width: 45px;
   font-size: x-small;
-  color: var(--kungalgame-gray-4);
+  color: var(--kungalgame-font-color-0);
   /* 居中 */
   display: flex;
   justify-content: center;

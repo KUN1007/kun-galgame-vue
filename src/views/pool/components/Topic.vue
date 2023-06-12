@@ -63,7 +63,7 @@ import { onMounted, watch } from 'vue'
     </div>
     <!-- 发帖时间 -->
     <div class="time">
-      <i class="fa-solid fa-hourglass-half"></i>
+      <Icon class="hourglass" icon="eos-icons:hourglass" />
       <div>{{ props.data.time }} 发布</div>
     </div>
   </div>
@@ -83,6 +83,7 @@ import { onMounted, watch } from 'vue'
   color: var(--kungalgame-font-color-3);
   cursor: pointer;
   box-shadow: var(--shadow);
+  max-width: 300px;
 }
 .topic:hover {
   background-color: var(--kungalgame-trans-white-2);
@@ -136,6 +137,6 @@ import { onMounted, watch } from 'vue'
 }
 .time i {
   margin: 0 5px;
-  color: var(--kungalgame-purple-5);
+  color: var(--kungalgame-purple-4);
 }
 </style>

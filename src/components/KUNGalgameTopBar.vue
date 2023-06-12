@@ -200,7 +200,7 @@ $navNumber: v-bind(navItemNum);
         left: calc(100% / $navNumber * 3);
       }
       &:nth-child(5):hover ~ .top-bar-box {
-        background-color: var(--kungalgame-purple-3);
+        background-color: var(--kungalgame-purple-4);
         left: calc(100% / $navNumber * 4);
       }
     }

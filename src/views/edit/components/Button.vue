@@ -115,16 +115,16 @@ const handleSave = () => {
 }
 /* 保存按钮的样式 */
 .save-btn {
-  color: var(--kungalgame-orange-4);
-  background-color: var(--kungalgame-trans-orange-1);
-  border: 1px solid var(--kungalgame-orange-4);
+  color: var(--kungalgame-pink-4);
+  background-color: var(--kungalgame-trans-pink-1);
+  border: 1px solid var(--kungalgame-pink-4);
 }
 .save-btn:hover {
-  background-color: var(--kungalgame-orange-4);
+  background-color: var(--kungalgame-pink-4);
   transition: 0.1s;
 }
 .save-btn:active {
-  background-color: var(--kungalgame-orange-2);
+  background-color: var(--kungalgame-pink-3);
   transform: scale(0.8);
 }
 

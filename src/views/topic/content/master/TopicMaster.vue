@@ -25,7 +25,7 @@ import Floor from '../components/Floor.vue'
 <template>
   <!-- 楼主帖子容器 -->
   <div class="container">
-    <Floor />
+    <Floor :width="'70px'" :font="'37px'" />
     <!-- 楼主帖子内容区的容器 -->
     <div class="content-container">
       <TopicHeader />
