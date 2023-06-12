@@ -1,13 +1,3 @@
-<!-- 爷组件使用：
-const alertInfo: props = {
-  type: 'alert',
-  info: '确认发布吗',
-  isShowCancel: true,
-  status: getAlertValue,
-}
-
-provide('info', alertInfo)
--->
 <script setup lang="ts">
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { storeToRefs } from 'pinia'
