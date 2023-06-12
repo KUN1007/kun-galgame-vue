@@ -54,7 +54,9 @@ const submit = () => {
     </form>
     <!-- 版权 -->
     <KUNGalgameFooter style="margin: 0 auto" />
-    <span style="margin: 0 auto">Editor powered by wangEditor</span>
+    <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)"
+      >Editor powered by wangEditor</span
+    >
   </div>
 </template>
 

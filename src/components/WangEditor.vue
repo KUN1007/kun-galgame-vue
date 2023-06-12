@@ -3,6 +3,7 @@
  -->
 <script setup lang="ts">
 import '@wangeditor/editor/dist/css/style.css'
+import '@/styles/editor/editor.scss'
 import { IDomEditor } from '@wangeditor/editor'
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'

@@ -12,7 +12,7 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
       <div class="page-title">技术交流</div>
       <!-- 侧边的搜索框 -->
       <div class="search">
-        <KUNGalgameSearchBox style="height: 40px; width: 100%" />
+        <KUNGalgameSearchBox style="height: 40px; width: 100%; border: none" />
       </div>
       <!-- 推荐标签 -->
       <div class="recommend">

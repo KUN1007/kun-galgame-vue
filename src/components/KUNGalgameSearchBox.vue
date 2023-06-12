@@ -51,6 +51,7 @@ defineProps(['isMainPage'])
   /* 页面缩小不换行 */
   white-space: nowrap;
   background-color: var(--kungalgame-trans-blue-2);
+  border: 1px solid var(--kungalgame-blue-4);
   flex-grow: 2;
   /* 相对于二级菜单定位 */
   position: relative;
@@ -91,7 +92,7 @@ defineProps(['isMainPage'])
   background-color: var(--kungalgame-trans-white-5);
   color: var(--kungalgame-font-color-3);
   &::placeholder {
-    color: var(--kungalgame-font-color-2);
+    color: var(--kungalgame-font-color-1);
   }
 }
 /* 搜索按钮 */

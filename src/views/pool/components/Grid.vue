@@ -33,7 +33,7 @@ const randomStyle = () => {
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-auto-rows: minmax(100px, 3fr);
-  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, 320px);
+  gap: 10px;
 }
 </style>

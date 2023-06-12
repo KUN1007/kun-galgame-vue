@@ -1,23 +1,44 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
+import { ref } from 'vue'
+
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgameMode } = storeToRefs(settingsStore)
+
+const light = `rgba(${randomNum(200, 255)}, ${randomNum(200, 255)}, ${randomNum(
+  200,
+  255
+)}, ${randomNum(30, 70) / 100})`
+
+const dark = `rgba(${randomNum(0, 55)}, ${randomNum(0, 55)}, ${randomNum(
+  0,
+  55
+)}, ${randomNum(30, 70) / 100})`
+
+const color = ref(light)
+
+onMounted(() => {
+  if (showKUNGalgameMode.value === 'dark') {
+    color.value = dark
+  } else {
+    color.value = light
+  }
+
+  watch(showKUNGalgameMode, () => {
+    if (showKUNGalgameMode.value === 'dark') {
+      color.value = dark
+    } else {
+      color.value = light
+    }
+  })
+})
+
 const props = defineProps(['data', 'itemStyle'])
 import { randomNum } from '@/utils/random'
-
-const randomColor = `rgba(${randomNum(0, 100)}, ${randomNum(
-  0,
-  100
-)}, ${randomNum(0, 255)}, ${Math.random().toFixed(2)})`
-
-const randomTransColor = (
-  color1: number,
-  color2: number,
-  color3: number,
-  trans: number
-) => {
-  return `rgba(${randomNum(200, color1)}, ${randomNum(
-    200,
-    color2
-  )}, ${randomNum(200, color3)}, ${randomNum(50, trans) / 100})`
-}
+import { onMounted, watch } from 'vue'
 </script>
 
 <template>
@@ -32,9 +53,13 @@ const randomTransColor = (
     <!-- 帖子的状态 -->
     <div class="status">
       <!-- 浏览数 -->
-      <span><i class="fa-regular fa-eye"></i>{{ props.data.view }}</span>
+      <span
+        ><Icon icon="ic:outline-remove-red-eye" />{{ props.data.view }}</span
+      >
       <!-- 点赞数 -->
-      <span><i class="fa-regular fa-thumbs-up"></i>{{ props.data.like }}</span>
+      <span
+        ><Icon icon="line-md:thumbs-up-twotone" />{{ props.data.like }}</span
+      >
     </div>
     <!-- 发帖时间 -->
     <div class="time">
@@ -52,16 +77,15 @@ const randomTransColor = (
   /* 竖直方向弹性布局 */
   display: flex;
   flex-direction: column;
-  /* 圆角 */
-  border-radius: 7px;
   /* Scss random color */
-  background-color: v-bind(randomTransColor(255, 255, 255, 100));
-  border: 1px solid v-bind(randomTransColor(255, 255, 255, 100));
+  background-color: v-bind(color);
+  border: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
   cursor: pointer;
+  box-shadow: var(--shadow);
 }
 .topic:hover {
-  background-color: var(--kungalgame-blue-1);
+  background-color: var(--kungalgame-trans-white-2);
 }
 /* 帖子的标题 */
 .title {
@@ -77,6 +101,7 @@ const randomTransColor = (
   padding: 0 7px;
   font-weight: bold;
   color: var(--kungalgame-font-color-2);
+  flex-shrink: 0;
 }
 /* 帖子的内容区 */
 .content {
@@ -88,6 +113,7 @@ const randomTransColor = (
 /* 帖子的状态 */
 .status {
   display: flex;
+  flex-shrink: 0;
   justify-content: space-around;
   margin-bottom: 10px;
   /* 窗口缩小不换行 */

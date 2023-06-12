@@ -40,7 +40,6 @@ import Aside from './components/Aside.vue'
   height: 1500px;
   display: flex;
   flex-direction: column;
-  min-width: 800px;
 }
 /* 内容区 */
 .content {
@@ -49,8 +48,6 @@ import Aside from './components/Aside.vue'
   height: 1400px;
   /* 占总页面的宽度 */
   width: 95%;
-  /* 最小宽度 */
-  min-width: 700px;
   /* 水平垂直居中 */
   margin: 0 auto;
   display: flex;
