@@ -3,7 +3,9 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import Tags from './components/Tags.vue'
 import Topic from './components/Topic.vue'
-import Grid from './components/Grid.vue'
+import Bar from './components/Bar.vue'
+
+import { topic } from './components/topic'
 </script>
 
 <template>
@@ -15,10 +17,18 @@ import Grid from './components/Grid.vue'
       <KUNGalgameSearchBox style="width: 100%; height: 40px" />
       <Tags />
 
-      <Grid />
+      <div class="topic-container">
+        <Topic
+          v-for="kun in topic"
+          class="item"
+          :key="kun.index"
+          :data="kun"
+          :class="`item-${kun.index}`"
+        />
+      </div>
     </div>
-    <!-- 右侧的功能栏 -->
-    <div class="bar"></div>
+
+    <Bar />
   </div>
 </template>
 
@@ -45,15 +55,11 @@ import Grid from './components/Grid.vue'
   background-color: var(--kungalgame-trans-white-5);
   padding: 5px;
 }
-/* 右侧的功能栏 */
-.bar {
-  /* 位置 fix */
-  position: fixed;
-  top: 70%;
-  /* 距离右侧的距离 */
-  right: 1%;
-  z-index: 7;
-  /* 居中 */
-  display: flex;
+
+.topic-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: minmax(100px, 320px);
+  gap: 10px;
 }
 </style>

@@ -131,7 +131,7 @@ defineProps(['isMainPage'])
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-red-1);
   border-radius: 7px;
-  box-shadow: 0 1px 6px var(--kungalgame-gray-2);
+  box-shadow: var(--shadow);
 }
 /* 搜索历史 title 的文字 */
 .title {
@@ -161,7 +161,7 @@ defineProps(['isMainPage'])
   & > div {
     padding: 7px 3px;
     margin: 2px 0;
-    background-color: var(--kungalgame-trans-gray-1);
+    background-color: var(--kungalgame-trans-blue-0);
     cursor: pointer;
     &:hover {
       background-color: var(--kungalgame-trans-blue-1);

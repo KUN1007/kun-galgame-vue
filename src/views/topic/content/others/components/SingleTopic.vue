@@ -4,6 +4,8 @@
   里面包含着每个人的回复和下方回复这个人的评论
  -->
 <script setup lang="ts">
+// 导入楼层组件
+import Floor from '../../components/Floor.vue'
 // 导入评论组件
 import Comments from '../components/Comments.vue'
 // 导入 Footer 组件
@@ -24,9 +26,7 @@ import Reply from './Reply.vue'
 
 <template>
   <!-- 楼层标志 -->
-  <div class="floor">
-    <button class="count">F99</button>
-  </div>
+  <Floor :width="'50px'" :font="'18px'" style="margin-bottom: -25px" />
   <!-- 其他人帖子内容区的容器 -->
   <div class="container">
     <!-- 其它人回帖的内容区 -->
@@ -60,40 +60,6 @@ import Reply from './Reply.vue'
 </template>
 
 <style lang="scss" scoped>
-/* 其它人的楼层 */
-.floor {
-  /* 标志在最左边 */
-  margin-left: 100%;
-  /* 定位 */
-  margin-bottom: -25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* 位于内容上方 */
-  z-index: 1;
-}
-/* 其他人的楼层样式 */
-.count {
-  border: none;
-  /* 大小 */
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: linear-gradient(
-    var(--kungalgame-blue-1),
-    var(--kungalgame-red-1)
-  );
-  opacity: 0.7;
-  font-size: 18px;
-  font-weight: bold;
-  font-style: oblique;
-  color: var(--kungalgame-red-1);
-  text-shadow: -1px 0 var(--kungalgame-blue-5), 0 -1px var(--kungalgame-blue-5),
-    1px 0 var(--kungalgame-blue-5), 0 1px var(--kungalgame-blue-5),
-    1px 1px var(--kungalgame-black), -1px -1px var(--kungalgame-black),
-    -1px 1px var(--kungalgame-black), 1px -1px var(--kungalgame-black),
-    4px 2px 2px var(--kungalgame-red-4);
-}
 /* 其他人帖子内容区容器 */
 .container {
   width: 100%;
