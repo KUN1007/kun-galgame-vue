@@ -18,6 +18,7 @@ import { tags } from '@/types/pool/tags'
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
+  margin: 10px 0;
 }
 /* 热门帖子标签 */
 .nav-tags {
@@ -27,10 +28,11 @@ import { tags } from '@/types/pool/tags'
   font-size: 14px;
   margin: 2px;
   padding: 2px;
-  background-color: var(--kungalgame-trans-blue-3);
+  background-color: var(--kungalgame-trans-blue-1);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--kungalgame-font-color-3);
 }
 </style>

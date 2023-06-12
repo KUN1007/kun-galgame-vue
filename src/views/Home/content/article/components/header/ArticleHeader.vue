@@ -12,7 +12,7 @@ import SortTopic from './SortTopic.vue'
     <SortTopic />
 
     <!-- 搜索框 -->
-    <KUNGalgameSearchBox :isMainPage="true" />
+    <KUNGalgameSearchBox :isMainPage="true" style="border: none" />
     <!-- 交互区域进入全部话题 -->
     <RouterLink to="/pool/index" class="more">
       <span>全部帖子</span>

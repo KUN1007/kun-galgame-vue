@@ -34,24 +34,13 @@ const topBarItem: topBar[] = [
   { index: 5, name: 'return', router: '/kun' },
 ]
 
-// 初始进入页面 header 没有附加样式
-let topicStyle = {}
-
 // 接受父组件的传值
-const props = defineProps(['isMainPage', 'isTopicPage', 'isAboutPage'])
+const props = defineProps(['isMainPage'])
 
 const isMain = props.isMainPage
-const isTopicPage = props.isTopicPage
 // 如果是主页的话删除 “返回主页” 项目
 if (isMain) {
   topBarItem.pop()
-}
-// 如果是帖子页的话定位为 sticky，距离底部 10px
-if (isTopicPage) {
-  topicStyle = {
-    top: 0,
-    position: 'sticky',
-  }
 }
 
 // 根据导航条的项目个数操作 css 中导航条的宽度
@@ -69,7 +58,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="header" :style="topicStyle">
+  <div class="header">
     <!-- 顶部左侧交互栏 -->
     <div class="nav-top">
       <div class="kungal-info">
@@ -100,17 +89,14 @@ onBeforeMount(() => {
       </router-link>
     </div>
   </div>
-  <div class="settings-panel" :style="topicStyle">
+  <div class="settings-panel">
     <transition
       name="kungalgame-panel"
       enter-active-class="animate__animated animate__jackInTheBox animate__faster"
       leave-active-class="animate__animated animate__fadeOutRight animate__faster"
     >
       <KeepAlive>
-        <KUNGalgameSettingsPanel
-          v-if="showKUNGalgamePanel"
-          :isTopicPage="isTopicPage"
-        />
+        <KUNGalgameSettingsPanel v-if="showKUNGalgamePanel" />
       </KeepAlive>
     </transition>
   </div>

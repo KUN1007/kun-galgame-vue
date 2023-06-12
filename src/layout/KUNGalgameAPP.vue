@@ -54,6 +54,5 @@ import { currBackground } from '@/hooks/useBackgroundPicture'
   background-size: cover;
   background-attachment: fixed;
   background-color: var(--kungalgame-white);
-  min-width: 300px;
 }
 </style>

@@ -7,31 +7,27 @@ import Grid from './components/Grid.vue'
 </script>
 
 <template>
-  <div class="visual-wrapper">
+  <div class="pool">
     <!-- 头部 -->
     <KUNGalgameTopBar />
     <!-- 帖子池容器 -->
     <div class="pool-container">
       <KUNGalgameSearchBox style="width: 100%; height: 40px" />
       <Tags />
-      <!-- 帖子池内容区容器 -->
-      <div class="content-container">
-        <!-- 帖子池单个帖子列容器 -->
-        <div class="single-topic-column-container">
-          <Grid />
-        </div>
-      </div>
+
+      <Grid />
     </div>
     <!-- 右侧的功能栏 -->
-    <div class="kungalgame-right-bar"></div>
+    <div class="bar"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.visual-wrapper {
+.pool {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 /* 帖子池容器 */
 .pool-container {
@@ -47,10 +43,10 @@ import Grid from './components/Grid.vue'
   /* 毛玻璃背景 */
   backdrop-filter: blur(5px);
   background-color: var(--kungalgame-trans-white-5);
-  border-radius: 7px;
+  padding: 5px;
 }
 /* 右侧的功能栏 */
-.kungalgame-right-bar {
+.bar {
   /* 位置 fix */
   position: fixed;
   top: 70%;
