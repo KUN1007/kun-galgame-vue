@@ -13,26 +13,31 @@ const navBar: nav[] = [
   },
   {
     index: 2,
+    name: '更改信息',
+    router: '/kungalgamer/kungalgamer/settings',
+  },
+  {
+    index: 3,
     name: '邮箱密码',
     router: '/kungalgamer/kungalgamer/password',
   },
   {
-    index: 3,
+    index: 4,
     name: '发过的帖',
     router: '/kungalgamer/kungalgamer/topic',
   },
   {
-    index: 4,
+    index: 5,
     name: '回过的贴',
     router: '/kungalgamer/kungalgamer/topic',
   },
   {
-    index: 5,
+    index: 6,
     name: '赞过的帖',
     router: '/kungalgamer/kungalgamer/topic',
   },
   {
-    index: 6,
+    index: 7,
     name: '推过的帖',
     router: '/kungalgamer/kungalgamer/topic',
   },
