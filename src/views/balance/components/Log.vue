@@ -4,7 +4,7 @@ defineProps(['isIncome'])
 </script>
 
 <template>
-  <!-- 单条Z收入记录 -->
+  <!-- 单条收入记录 -->
   <div v-for="kun in FSLog" :key="kun.index" v-if="$props.isIncome">
     <div
       class="log"

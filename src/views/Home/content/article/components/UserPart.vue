@@ -21,7 +21,7 @@ defineProps(['kungalgamer'])
 <style lang="scss" scoped>
 /* 发帖人信息 */
 .kungalgamer {
-  width: 70px;
+  width: 60px;
   height: 100%;
   /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */
   display: flex;

@@ -92,6 +92,6 @@ import { Icon } from '@iconify/vue'
 .sort i,
 .top i {
   margin-top: 5px;
-  color: var(--kungalgame-red-6);
+  color: var(--kungalgame-red-4);
 }
 </style>

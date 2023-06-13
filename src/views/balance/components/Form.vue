@@ -31,7 +31,6 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
 <style lang="scss" scoped>
 /* 收入 */
 .form {
-  /* 占 49%，目的是使得中间留下间隔 */
   /* 固定高度 */
   width: 460px;
   margin: 0 10px;
