@@ -75,7 +75,7 @@ onBeforeMount(() => {
             }}</router-link>
           </li>
           <!-- 顶部板块下部的 hover 效果 -->
-          <div class="top-bar-box"></div>
+          <div class="box"></div>
         </ul>
       </div>
     </div>
@@ -153,13 +153,13 @@ $navNumber: v-bind(navItemNum);
     align-items: center;
     display: flex;
     right: 5%;
-    .top-bar-box {
+    .box {
       border-radius: 2px;
       bottom: 0;
       height: 7px;
       left: 0;
       position: absolute;
-      transition: 0.5s;
+      transition: left 0.5s;
       width: calc(100% / $navNumber);
     }
     a {
@@ -180,27 +180,29 @@ $navNumber: v-bind(navItemNum);
         border-radius: 2px;
         transition: 0.5s;
       }
-      &:nth-child(1):hover ~ .top-bar-box {
+      &:nth-child(1):hover ~ .box {
         background-color: var(--kungalgame-red-3);
         left: calc(100% / $navNumber * 0);
       }
 
-      &:nth-child(2):hover ~ .top-bar-box {
-        background-color: var(--kungalgame-yellow-3);
+      &:nth-child(2):hover ~ .box {
+        background-color: var(--kungalgame-blue-3);
         left: calc(100% / $navNumber * 1);
       }
 
-      &:nth-child(3):hover ~ .top-bar-box {
-        background-color: var(--kungalgame-blue-3);
+      &:nth-child(3):hover ~ .box {
+        background-color: var(--kungalgame-yellow-3);
         left: calc(100% / $navNumber * 2);
       }
 
-      &:nth-child(4):hover ~ .top-bar-box {
-        background-color: var(--kungalgame-green-3);
+      &:nth-child(4):hover ~ .box {
+        filter: hue-rotate(240deg);
+        background-color: var(--kungalgame-blue-3);
         left: calc(100% / $navNumber * 3);
       }
-      &:nth-child(5):hover ~ .top-bar-box {
-        background-color: var(--kungalgame-purple-4);
+      &:nth-child(5):hover ~ .box {
+        filter: hue-rotate(60deg);
+        background-color: var(--kungalgame-blue-3);
         left: calc(100% / $navNumber * 4);
       }
     }

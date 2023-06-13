@@ -20,7 +20,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame'],
+    topicCategory: ['galgame'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -123,7 +123,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -226,7 +226,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -329,7 +329,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -432,7 +432,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -535,7 +535,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -638,7 +638,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -741,7 +741,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -844,7 +844,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -947,7 +947,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1050,7 +1050,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1153,7 +1153,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1256,7 +1256,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1359,7 +1359,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1462,7 +1462,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1565,7 +1565,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1668,7 +1668,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1771,7 +1771,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1874,7 +1874,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复
@@ -1977,7 +1977,7 @@ const topics = [
     topicDislikes: 17,
     /* 帖子的回复数 */
     topicReplyCount: 1,
-    topicPartition: ['galgame', '技术交流'],
+    topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
         // 存放了所有帖子的回复

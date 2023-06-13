@@ -81,7 +81,7 @@ export interface KUNGalgameTopic {
   //   帖子的回复数
   topicReplyCount: 1
   //   帖子的分区
-  topicPartition: string[]
+  topicCategory: string[]
   //   帖子的状态
   topicStatus: number
   //   帖子是否被重新编辑
