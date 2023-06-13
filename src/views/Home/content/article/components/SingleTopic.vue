@@ -24,6 +24,7 @@ const isUpvote = props.data.topicStatus === 2 ? 'kungalgame-comet-surround' : ''
   height: 70px;
   flex-shrink: 0;
   border-radius: 3px;
+  padding: 5px;
   background-color: var(--kungalgame-trans-white-5);
   display: flex;
   &:hover {
