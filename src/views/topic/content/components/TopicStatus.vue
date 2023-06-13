@@ -8,14 +8,19 @@
 
 <style lang="scss" scoped>
 div {
+  display: flex;
   font-size: 12px;
   margin-left: 10px;
   color: var(--kungalgame-font-color-3);
 }
 /* 帖子状态 */
 span {
-  padding: 0 1px;
-  background-color: var(--kungalgame-green-3);
+  width: 30px;
+  padding: 1px;
+  background-color: var(--kungalgame-green-4);
   color: var(--kungalgame-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

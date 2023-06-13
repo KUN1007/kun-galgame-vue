@@ -118,6 +118,7 @@ import { calculateTotalAmount } from './log'
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   span {
     padding: 5px;
     background-color: var(--kungalgame-red-4);
@@ -133,7 +134,9 @@ import { calculateTotalAmount } from './log'
     background-color: var(--kungalgame-green-4);
   }
   & > div:last-child {
-    background-color: var(--kungalgame-green-2);
+    padding: 5px;
+    color: var(--kungalgame-white);
+    background-color: var(--kungalgame-green-4);
   }
 }
 </style>

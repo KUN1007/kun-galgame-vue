@@ -13,7 +13,7 @@ interface Topic {
   // 帖子标签
   tags: Tag[]
   // 帖子分区
-  partition: string[]
+  category: string[]
 }
 
 export const useKUNGalgameEditStore = defineStore({
@@ -23,6 +23,6 @@ export const useKUNGalgameEditStore = defineStore({
     title: '',
     article: '',
     tags: [],
-    partition: [],
+    category: [],
   }),
 })
