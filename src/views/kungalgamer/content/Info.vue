@@ -33,11 +33,6 @@
           啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
           啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
         </div>
-        <!-- 更改签名 -->
-        <div class="change-btn">
-          <button>更改签名</button>
-          <button>确定更改</button>
-        </div>
       </ul>
     </div>
   </div>
@@ -76,26 +71,5 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-/* 更改签名 */
-.change-btn {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-/* 用户更改签名的按钮 */
-.change-btn button {
-  height: 30px;
-  width: 49%;
-  border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-0);
-  cursor: pointer;
-  color: var(--kungalgame-font-color-3);
-}
-.change-btn button:hover {
-  background-color: var(--kungalgame-trans-blue-4);
-}
-.change-btn button:active {
-  background-color: var(--kungalgame-trans-blue-0);
 }
 </style>

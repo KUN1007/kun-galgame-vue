@@ -24,7 +24,16 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'info',
             component: () => import('@/views/kungalgamer/content/Info.vue'),
             meta: {
-              title: 'KUN | info',
+              title: 'KUN | Info',
+              permission: 'kun',
+            },
+          },
+          {
+            name: 'Settings',
+            path: 'settings',
+            component: () => import('@/views/kungalgamer/content/Settings.vue'),
+            meta: {
+              title: 'KUN | Settings',
               permission: 'kun',
             },
           },
@@ -33,7 +42,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'password',
             component: () => import('@/views/kungalgamer/content/Password.vue'),
             meta: {
-              title: 'KUN | password',
+              title: 'KUN | Password',
               permission: 'kun',
             },
           },
@@ -43,7 +52,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'KUN | topic',
+              title: 'KUN | Topic',
               permission: 'kun',
             },
           },
