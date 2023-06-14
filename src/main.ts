@@ -10,8 +10,6 @@ import 'animate.css'
 import i18n from '@/language/i18n'
 // 引入路由守卫
 import { setupRouterGuard } from '@/router/guard'
-// 引入 TanStack Query V4
-import { VueQueryPlugin } from '@tanstack/vue-query'
 // 引入 Pinia
 import { setupPinia } from '@/store/index'
 // 引入样式
@@ -25,4 +23,4 @@ setupPinia(app)
 // 使用路由守卫
 setupRouterGuard(router)
 
-app.use(router).use(i18n).use(VueQueryPlugin).mount('#app')
+app.use(router).use(i18n).mount('#app')

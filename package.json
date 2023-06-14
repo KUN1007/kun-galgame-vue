@@ -18,7 +18,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^4.29.11",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "animate.css": "^4.1.1",
