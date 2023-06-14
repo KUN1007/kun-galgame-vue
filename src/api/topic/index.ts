@@ -19,7 +19,7 @@ export async function getTopicRangeApi(
   start: number,
   count: number
 ): Promise<KUNGalgameTopic[]> {
-  const url = `http://127.0.0.1:10007/topic/topics/kun?start=${start}&count=${count}`
+  const url = `/topic/topics/kun?start=${start}&count=${count}`
 
   try {
     const response = await fetchGet<KUNGalgameTopic[]>(url)

@@ -159,7 +159,7 @@ $navNumber: v-bind(navItemNum);
       height: 7px;
       left: 0;
       position: absolute;
-      transition: left 0.5s;
+      transition: 0.5s;
       width: calc(100% / $navNumber);
     }
     a {
