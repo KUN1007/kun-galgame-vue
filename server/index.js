@@ -1,28 +1,31 @@
 const express = require('express')
+const path = require('path')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
+const staticPath = path.join(__dirname, '.')
 
 // 使用cors中间件来允许跨域请求
 app.use(cors())
 app.use(bodyParser.json())
+app.use(express.static(staticPath))
 
 const port = 10007 // 端口号
 
 // 用户路由
-const userRoutes = require('./routes/user')
+const userRoutes = require('./src/routes/user')
 
 // 帖子路由
-const topicRoutes = require('./routes/topic')
+const topicRoutes = require('./src/routes/topic')
 
 // 登录路由
-const loginRoutes = require('./routes/login')
+const loginRoutes = require('./src/routes/login')
 
 // 注册路由
-const registerRoutes = require('./routes/register')
+const registerRoutes = require('./src/routes/register')
 
 // 上传图片路由
-const uploadImagesRoutes = require('./routes/upload-image')
+const uploadImagesRoutes = require('./src/routes/upload-image')
 
 app.use('/kungalgamer', userRoutes)
 app.use('/topic', topicRoutes)

@@ -75,16 +75,15 @@ function saveFiles(req, time = 0) {
 
       // 遍历所有上传来的图片
       objForEach(files, (name, file) => {
-        console.log('name...', name)
-        console.log('file.name...', file.name)
+        console.log(file)
 
         // 图片临时位置
-        const tempFilePath = file.path
+        const tempFilePath = file.filepath
         // 图片名称和路径
-        const fileName = genRandomFileName(file.name || name) // 为文件名增加一个随机数，防止同名文件覆盖
-        console.log('fileName...', fileName)
+        const fileName = genRandomFileName(file.originalFilename || name) // 为文件名增加一个随机数，防止同名文件覆盖
+
         const fullFileName = path.join(storePath, fileName)
-        console.log('fullFileName...', fullFileName)
+
         // 将临时文件保存为正式文件
         fs.renameSync(tempFilePath, fullFileName)
         // 存储链接
