@@ -7,6 +7,7 @@ interface FooterInfoItem {
 
 interface FooterInfo {
   index: number
+  mobile?: string
   title: string
   list: FooterInfoItem[]
 }
@@ -15,6 +16,7 @@ const info: FooterInfo[] = [
   {
     index: 1,
     title: `communicate`,
+    mobile: 'mobile',
     list: [
       {
         index: 1,
@@ -94,7 +96,13 @@ const link: FooterInfoItem[] = [
 <template>
   <div class="info">
     <!-- 非 galgame 交流 -->
-    <div class="catalog" v-for="kun in info" :key="kun.index">
+    <!-- 这里为了适配手机端,带有 mobile 属性的节点将会媒体查询时被隐藏 -->
+    <div
+      class="catalog"
+      v-for="kun in info"
+      :key="kun.index"
+      :class="kun.mobile"
+    >
       <!-- 每个信息类别的标题 -->
       <h2>
         <span>{{ $t(`mainPage.footer.title['${kun.title}']`) }}</span>
@@ -146,6 +154,12 @@ const link: FooterInfoItem[] = [
       flex-grow: 1;
       color: var(--kungalgame-font-color-2);
     }
+  }
+}
+
+@media (max-width: 1000px) {
+  .mobile {
+    display: none;
   }
 }
 </style>

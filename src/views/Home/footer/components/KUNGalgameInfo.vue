@@ -18,9 +18,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         <!-- 左侧下方的信息 -->
         <div class="bottom">
           <!-- 联系方式 -->
-          <Contacts />
+          <Contacts class="contacts" />
           <!-- 版权描述,版本号 -->
-          <KUNGalgameFooter style="margin: 0 auto" />
+          <KUNGalgameFooter class="footer" />
         </div>
       </div>
 
@@ -58,9 +58,21 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   flex-direction: column;
 }
 
+.footer {
+  margin: 0 auto;
+}
+
 @media (max-width: 1000px) {
-  .top {
-    display: none;
+  .contacts {
+    margin: 20px 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .footer {
+    margin: 20px 0;
+  }
+  .container {
+    flex-direction: column;
   }
 }
 </style>

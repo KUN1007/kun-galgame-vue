@@ -14,7 +14,7 @@ export const useKUNGalgamerStore = defineStore({
   persist: true,
   state: (): UserState => ({
     id: ref<number>(0),
-    token: ref<string>(''),
+    token: ref<string>('KUNGalgamer'),
     roles: ref<string>(''),
   }),
   getters: {},
