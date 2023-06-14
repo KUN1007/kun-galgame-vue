@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
-import { useMutation } from '@tanstack/vue-query'
 import { useRouter } from 'vue-router'
 import { fetchPost } from '@/utils/request'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -19,24 +18,24 @@ const useStore = useKUNGalgamerStore()
 const router = useRouter()
 
 // 登录请求
-const loginMutation = useMutation(async (data: any) => {
+const login = async (data: any) => {
   const res: Response = await fetchPost('http://127.0.0.1:10007/api/login', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
   })
   return await res.json()
-})
+}
 
 // 注册请求
-const registerMutation = useMutation(async (data: any) => {
+const register = async (data: any) => {
   const res: Response = await fetchPost('http://127.0.0.1:10007/api/register', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
   })
   return await res.json()
-})
+}
 
 // 点击登录，面板滑动
 const handleClickSignIn = () => {
@@ -48,49 +47,9 @@ const handleClickRegister = () => {
   isShowPanel.value = 'right-panel-active'
 }
 
-const handleLogin = () => {
-  const { email, password } = loginForm
-  if (email && password) {
-    loginMutation.mutate(
-      { email, password },
-      {
-        onSuccess: (response: any) => {
-          if (response.success) {
-            const token = response.token
-            useStore.setToken(token)
-            router.push({ path: '/' })
-          } else {
-            console.log('登录失败:', response.error)
-          }
-        },
-      }
-    )
-  } else {
-    console.log('请输入有效的邮箱和密码')
-  }
-}
+const handleLogin = () => {}
 
-const handleRegister = () => {
-  const { username, email, password, verificationCode } = loginForm
-  if (username && email && password && verificationCode) {
-    registerMutation.mutate(
-      { username, email, password, verificationCode },
-      {
-        onSuccess: (response: any) => {
-          if (response.success) {
-            console.log('注册成功')
-            // 执行其他操作，例如跳转到登录页面等
-          } else {
-            console.log('注册失败:', response.error)
-            // 执行其他操作，例如显示错误提示等
-          }
-        },
-      }
-    )
-  } else {
-    console.log('请填写完整的注册信息')
-  }
-}
+const handleRegister = () => {}
 </script>
 
 <template>
