@@ -129,5 +129,6 @@ export default {
     publishSuccess: 'Publish Successfully',
     publishCancel: 'Cancel Publish',
     draft: 'The draft has been saved successfully!',
+    login: 'Login Successfully! Welcome to KUN Visual Novel ~ ',
   },
 }

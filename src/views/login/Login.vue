@@ -2,40 +2,23 @@
 import { ref, reactive } from 'vue'
 import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
-import { fetchPost } from '@/utils/request'
+
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+// 使用全局通知
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
+
+const info = useKUNGalgameMessageStore()
 
 const isShowPanel = ref('')
 const loginForm = reactive({
   username: '',
-  email: '',
   password: '',
-  verificationCode: '',
 })
 
 const useStore = useKUNGalgamerStore()
 
 const router = useRouter()
-
-// 登录请求
-const login = async (data: any) => {
-  const res: Response = await fetchPost('http://127.0.0.1:10007/api/login', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' },
-  })
-  return await res.json()
-}
-
-// 注册请求
-const register = async (data: any) => {
-  const res: Response = await fetchPost('http://127.0.0.1:10007/api/register', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' },
-  })
-  return await res.json()
-}
 
 // 点击登录，面板滑动
 const handleClickSignIn = () => {
@@ -47,7 +30,14 @@ const handleClickRegister = () => {
   isShowPanel.value = 'right-panel-active'
 }
 
-const handleLogin = () => {}
+const handleLogin = () => {
+  useStore.login(loginForm).then((res) => {
+    if (res.success) {
+      router.push('/')
+      info.info('AlertInfo.login')
+    }
+  })
+}
 
 const handleRegister = () => {}
 </script>
@@ -60,7 +50,7 @@ const handleRegister = () => {}
         <form action="#" class="form" id="form1" @submit.prevent="handleLogin">
           <h2 class="form__title">登陆</h2>
           <input
-            v-model="loginForm.email"
+            v-model="loginForm.username"
             type="email"
             placeholder="用户名或邮箱"
             class="input"

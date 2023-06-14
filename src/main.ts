@@ -18,9 +18,9 @@ import '@/styles/index.scss'
 // 获取 App 实例
 const app = createApp(App)
 
-// 使用 pinia
-setupPinia(app)
 // 使用路由守卫
 setupRouterGuard(router)
+// 使用 pinia
+setupPinia(app)
 
 app.use(router).use(i18n).mount('#app')

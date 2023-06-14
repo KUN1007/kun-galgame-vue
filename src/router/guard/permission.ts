@@ -11,7 +11,7 @@ import { asyncRoutes } from '../router'
 export const createPermission = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
     const useStore = useKUNGalgamerStore()
-    const { getToken: token } = storeToRefs(useStore)
+    const { token } = storeToRefs(useStore)
     const getRoute = asyncRoutes
 
     // 白名单

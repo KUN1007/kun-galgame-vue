@@ -128,5 +128,6 @@ export default {
     publishSuccess: '发布成功',
     publishCancel: '取消发布',
     draft: '草稿已经保存成功！',
+    login: '登陆成功!欢迎来到 鲲 Galgame ~ ',
   },
 }
