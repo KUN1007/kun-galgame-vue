@@ -6,6 +6,13 @@ import NavBar from './components/NavBar.vue'
 import Header from './components/Header.vue'
 // 导入通用 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+// 导入请求函数
+import { getSingleKUNGalgamerApi } from '@/api/kungalgamer/index'
+
+getSingleKUNGalgamerApi(1).then((userData) => {
+  console.log(userData)
+})
 </script>
 
 <template>
