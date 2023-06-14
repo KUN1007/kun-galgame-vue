@@ -20,7 +20,7 @@ export function storeReset() {
   const settingsStore = useKUNGalgameSettingsStore()
 
   userStore.$reset()
-  settingsStore.$reset
+  settingsStore.$reset()
 }
 
 export { store }

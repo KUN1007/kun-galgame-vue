@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 // 注册
-router.post('/api/register', (req, res) => {
+router.post('/', (req, res) => {
   // 获取请求 body 内容
   const { username, email, password, verificationCode } = req.body
 
