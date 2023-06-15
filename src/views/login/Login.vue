@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
@@ -144,7 +144,6 @@ const handleClickRegister = () => {
   top: 0;
   transition: transform 0.6s ease-in-out;
   width: 50%;
-  z-index: 100;
 }
 
 .overlay {

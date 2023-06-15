@@ -23,8 +23,6 @@ export const useKUNGalgamerStore = defineStore({
       this.token = token
     },
     login(loginData: LoginData): Promise<LoginResponseData> {
-      console.log(1)
-
       return new Promise((resolve, reject) => {
         postLoginDataApi({
           username: loginData.username,
