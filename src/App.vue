@@ -1,5 +1,9 @@
 <!-- App -->
 <script setup lang="ts">
+// 导入通知和提示组件
+import Alert from '@/components/KUNGalgameAlert/Alert.vue'
+import Info from '@/components/KUNGalgameAlert/Info.vue'
+
 import { onBeforeMount } from 'vue'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -21,6 +25,11 @@ onBeforeMount(() => {
 </script>
 
 <template>
+  <!-- 全局警告组件 -->
+  <Alert />
+
+  <!-- 全局通知组件 -->
+  <Info />
   <RouterView />
 </template>
 
