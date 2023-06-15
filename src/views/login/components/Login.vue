@@ -8,6 +8,11 @@ import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 导入人机验证组件
 import Capture from '@/components/capture/Capture.vue'
 
+// 定义标志位
+const isFirstLoad = ref(false)
+// 定义人机验证的标志
+const isShowValidate = ref(false)
+
 const router = useRouter()
 
 const info = useKUNGalgameMessageStore()
@@ -28,17 +33,14 @@ const handleLogin = () => {
   })
 }
 
-// 定义标志位
-const isFirstLoad = ref(false)
-// 定义人机验证的标志
-const isShowValidate = ref(false)
-
 const handleVerify = async (result: boolean) => {
   // 跳过首次加载页面
   if (isFirstLoad.value) {
-    // 处理人机校验完成后的逻辑
-    isShowValidate.value = false
-    info.info('验证通过')
+    if (result) {
+      // 处理人机校验完成后的逻辑
+      isShowValidate.value = false
+      info.info('AlertInfo.capture')
+    }
   } else {
     isFirstLoad.value = true
   }

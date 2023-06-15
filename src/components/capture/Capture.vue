@@ -33,6 +33,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const containerRef = ref<HTMLDivElement | null>(null)
 const characters = ref(generateRandomCharacters())
@@ -55,7 +57,7 @@ emits('validate', false)
 
 // 获得随机 26 个字符
 function generateRandomCharacters(): Character[] {
-  const chars = '小只可爱软萌鲲'
+  const chars = t('AlertInfo.captureText')
   const randomChars: Character[] = []
 
   // 创建一个 Set 集合用于去重

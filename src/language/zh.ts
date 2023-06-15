@@ -130,4 +130,8 @@ export default {
     draft: '草稿已经保存成功！',
     login: '登陆成功!欢迎来到 鲲 Galgame ~ ',
   },
+  CaptureInfo: {
+    capture: '人机身份验证通过',
+    text: '闭月羞花出水芙蓉亭亭玉立小只可爱软萌鲲',
+  },
 }

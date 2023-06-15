@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 // 读取本地存储中的语言配置
-import { lang } from '@/utils/localStorageLang'
+import { lang } from '@/utils/getDefaultEnv'
 
 const language = lang === 'en' ? true : false
 

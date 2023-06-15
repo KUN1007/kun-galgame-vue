@@ -1,6 +1,9 @@
 // KUNGalgame 设置面板的 store
 import { defineStore } from 'pinia'
 
+// 网站的默认设置
+import { lang, mode } from '@/utils/getDefaultEnv'
+
 // 设置面板配置
 interface KUNGalgameSettings {
   // 是否显示设置面板
@@ -23,8 +26,8 @@ export const useKUNGalgameSettingsStore = defineStore({
   // 默认值
   state: (): KUNGalgameSettings => ({
     showKUNGalgamePanel: false,
-    showKUNGalgameMode: 'light',
-    showKUNGalgameLanguage: 'en',
+    showKUNGalgameMode: mode,
+    showKUNGalgameLanguage: lang,
     showKUNGalgameMainPageWidth: '61.8',
     showKUNGalgameBackground: 'none',
     showKUNGalgameCustomBackground: '',
