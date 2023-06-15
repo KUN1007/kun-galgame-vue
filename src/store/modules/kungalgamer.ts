@@ -24,6 +24,7 @@ export const useKUNGalgamerStore = defineStore({
     },
     login(loginData: LoginData): Promise<LoginResponseData> {
       return new Promise((resolve, reject) => {
+        // 这里是向后端发请求的函数
         postLoginDataApi({
           username: loginData.username,
           password: loginData.password,
@@ -32,7 +33,7 @@ export const useKUNGalgamerStore = defineStore({
             if (res.token) {
               this.setToken(res.token)
             } else {
-              throw new Error('可能是服务器的错误')
+              throw new Error('500 Server ERROR')
             }
             resolve(res)
           })
