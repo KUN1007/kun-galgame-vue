@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
 // 读取本地存储中的语言配置
-import { lang } from '@/utils/localStorageLang'
+import { lang } from '@/utils/getDefaultEnv'
 
 // 引入语言文件
 import zh from './zh'

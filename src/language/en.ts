@@ -131,4 +131,8 @@ export default {
     draft: 'The draft has been saved successfully!',
     login: 'Login Successfully! Welcome to KUN Visual Novel ~ ',
   },
+  CaptureInfo: {
+    capture: 'Human-machine identity verification successful.',
+    text: 'abcdefghijklmnopqrstuvwxyz',
+  },
 }

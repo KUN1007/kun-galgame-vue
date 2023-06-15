@@ -8,7 +8,10 @@ router.post('/', (req, res) => {
   const { username, password } = req.body
 
   // 登录逻辑
-  if (username === 'kun@kungal.com' && password === '1007') {
+  if (
+    (username === 'kun@kungal.com' && password === '1007') ||
+    (username === 'kun' && password === '1007')
+  ) {
     // 登陆成功
     const token = 'KUNGalgame'
     res.json({ success: true, token })
