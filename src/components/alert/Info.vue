@@ -52,7 +52,7 @@ const handleClose = () => {
 
 <style lang="scss" scoped>
 .container {
-  height: 120px;
+  min-height: 120px;
   width: 100%;
   color: var(--kungalgame-font-color-3);
   background-color: var(--kungalgame-trans-white-5);
@@ -94,6 +94,7 @@ const handleClose = () => {
 .info {
   margin-top: 20px;
   margin-left: 150px;
+  margin-right: 50px;
   font-size: 20px;
   color: var(--kungalgame-white);
   text-shadow: 0 1px var(--kungalgame-font-color-3),
