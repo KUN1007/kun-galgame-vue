@@ -8,7 +8,8 @@ const topics = [
   // 帖子的数组
   {
     topicId: 1,
-    topicTitle: '啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星',
+    topicTitle:
+      '啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星',
     topicFloorCount: 1,
     topicContent: '<h1>啊这可海星</h1>',
     topicPublishTime: Date.now(),
@@ -111,7 +112,7 @@ const topics = [
   },
   {
     topicId: 2,
-    topicTitle: '啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星',
+    topicTitle: '啊这可海星',
     topicFloorCount: 1,
     topicContent: '<h1>啊这可海星</h1>',
     topicPublishTime: Date.now(),

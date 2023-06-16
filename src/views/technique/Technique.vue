@@ -3,6 +3,28 @@ import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
 import SingleTopic from './components/SingleTopic.vue'
 import Pagination from './components/Pagination.vue'
 import Aside from './components/Aside.vue'
+
+import { ref, onMounted } from 'vue'
+import { getTopicRangeApi } from '@/api/topic/index'
+import { KUNGalgameTopic } from '@/api/topic/types/topic'
+
+// 在组件中定义响应式的帖子数据
+const topics = ref<KUNGalgameTopic[]>([])
+
+// 在组件挂载时调用 fetchTopics 获取帖子数据
+onMounted(async () => {
+  try {
+    const start = 0 // 起始位置
+    const count = 17 // 获取的帖子数量
+
+    // TODO: 这里接口获取到的数据太多了，其实获取 title，like，view，comment，text 这几个字段就足够了
+    const fetchedTopics = await getTopicRangeApi(start, count)
+
+    topics.value = fetchedTopics
+  } catch (error) {
+    console.error('Error fetching topics:', error)
+  }
+})
 </script>
 
 <template>
@@ -11,23 +33,14 @@ import Aside from './components/Aside.vue'
     <KUNGalgameTopBar />
     <!-- 内容区 -->
     <div class="content">
-      <Aside />
+      <Aside class="aside" />
       <!-- 文章容器 -->
       <div class="article">
         <!-- 所有文章的容器 -->
         <div class="article-container">
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
-          <SingleTopic />
+          <div class="topic" v-for="topic in topics" :key="topic.topicId">
+            <SingleTopic :data="topic" />
+          </div>
         </div>
         <Pagination />
       </div>
@@ -83,5 +96,22 @@ import Aside from './components/Aside.vue'
   grid-template-rows: repeat(5, 255px);
   /* 设置 grid 布局的块间距，gap 取代了之前的 grid-gap */
   gap: 10px;
+}
+
+.topic {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1000px) {
+  .aside {
+    display: none;
+  }
+  .article {
+    margin-left: 0;
+  }
+  .content {
+    padding: 0;
+  }
 }
 </style>
