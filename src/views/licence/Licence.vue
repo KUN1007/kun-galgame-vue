@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import BackToPrevious from '@/components/BackToPrevious.vue'
+</script>
 
 <template>
   <div class="root">
@@ -18,6 +20,7 @@
         <p>4. 因用户账号被盗等造成的损失，KUNGalgame 概不承担</p>
         <p>协议版本 2019/10/07</p>
       </div>
+      <BackToPrevious />
       <!-- 版权 -->
       <div class="copyright">
         <span>Copyright © 2023 KUNgalgame</span>
