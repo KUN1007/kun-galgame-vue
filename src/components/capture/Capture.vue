@@ -15,15 +15,16 @@
             </div>
           </div>
           <div class="msg">
-            <div v-if="isVerified" class="pass">验证通过</div>
-            <div v-else-if="errorCount > 0" class="error">
-              点击错误，请重新点击
+            <div v-if="errorCount > 0" class="error">
+              {{ $t('AlertInfo.capture.error') }}
             </div>
             <div class="hint" v-if="!isVerified">
-              请按顺序点击以下字符:
+              {{ $t('AlertInfo.capture.order') }}
               {{ characters.map((char) => char.value).join(' ') }}
             </div>
-            <div class="refresh" @click="resetCharacters">点击刷新</div>
+            <div class="refresh" @click="resetCharacters">
+              {{ $t('AlertInfo.capture.refresh') }}
+            </div>
           </div>
         </div>
       </div>
@@ -55,9 +56,9 @@ interface Character {
 
 emits('validate', false)
 
-// 获得随机 26 个字符
+// 获得随机字符
 function generateRandomCharacters(): Character[] {
-  const chars = t('AlertInfo.captureText')
+  const chars = t('AlertInfo.capture.text')
   const randomChars: Character[] = []
 
   // 创建一个 Set 集合用于去重
@@ -84,6 +85,7 @@ function generateRandomCharacters(): Character[] {
   return randomChars
 }
 
+// 获取字符的随机位置
 function getRandomCoordinate(): number {
   const minCoordinate = 50
   const maxCoordinate = 150
@@ -93,6 +95,7 @@ function getRandomCoordinate(): number {
   )
 }
 
+// 处理字符被点击
 const handleCharacterClick = (char: Character): Promise<boolean> => {
   return new Promise<boolean>((resolve, reject) => {
     clickedCharacters.value += char.value
@@ -110,6 +113,7 @@ const handleCharacterClick = (char: Character): Promise<boolean> => {
   })
 }
 
+// 重置字符，防止位置重合和 .
 function resetCharacters() {
   characters.value = generateRandomCharacters()
   clickedCharacters.value = ''

@@ -118,20 +118,41 @@ export default {
     publish: '确认发布',
     draft: '保存草稿',
   },
+  login: {
+    loginTitle: '登录',
+    forget: '忘记密码? 点击发送重置邮件',
+    loginUsername: '用户名或邮箱',
+    loginPassword: '密码',
+    capture: '点击进行人机身份验证',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: '确定',
     cancel: '取消',
   },
   AlertInfo: {
-    publish: '确认发布吗？',
-    publishSuccess: '发布成功',
-    publishCancel: '取消发布',
-    draft: '草稿已经保存成功！',
-    login: '登陆成功!欢迎来到 鲲 Galgame ~ ',
-  },
-  CaptureInfo: {
-    capture: '人机身份验证通过',
-    text: '闭月羞花出水芙蓉亭亭玉立小只可爱软萌鲲',
+    edit: {
+      publish: '确认发布吗？',
+      publishSuccess: '发布成功',
+      publishCancel: '取消发布',
+      draft: '草稿已经保存成功！',
+    },
+    login: {
+      login: '登陆成功!欢迎来到 鲲 Galgame ~ ',
+      emptyUsername: '用户名不可为空',
+      emptyPassword: '密码不可为空',
+      invalidPassword:
+        '非法的密码格式，密码的长度为 6 到 17 位，必须包含至少一个英文字符和一个数字，可以选择性的包含 \\w!@#$%^&*()-+= 等特殊字符',
+      invalidUsername:
+        '非法的用户名，用户名为 1 到 17 位，可以包含：中文、英文、数字、下划线、波浪线',
+    },
+    capture: {
+      click: '请点击上方完成人机身份验证',
+      success: '人机身份验证通过 ~ ',
+      text: '闭月羞花出水芙蓉亭亭玉立小只可爱软萌鲲',
+      order: '请按顺序点击以下字符',
+      refresh: '刷新',
+      error: '点击错误，请重新点击',
+    },
   },
 }

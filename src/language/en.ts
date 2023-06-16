@@ -119,20 +119,41 @@ export default {
     publish: 'Confirm Publish',
     draft: 'Save Draft',
   },
+  login: {
+    loginTitle: 'Login',
+    forget: 'Forgot your password? Click here to send a password reset email',
+    loginUsername: 'Username or email',
+    loginPassword: 'Password',
+    capture: 'Click to proceed with the human verification process',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: 'OK',
     cancel: 'Cancel',
   },
   AlertInfo: {
-    publish: 'Confirm to publish?',
-    publishSuccess: 'Publish Successfully',
-    publishCancel: 'Cancel Publish',
-    draft: 'The draft has been saved successfully!',
-    login: 'Login Successfully! Welcome to KUN Visual Novel ~ ',
-  },
-  CaptureInfo: {
-    capture: 'Human-machine identity verification successful.',
-    text: 'abcdefghijklmnopqrstuvwxyz',
+    edit: {
+      publish: 'Confirm to publish?',
+      publishSuccess: 'Publish Successfully',
+      publishCancel: 'Cancel Publish',
+      draft: 'The draft has been saved successfully!',
+    },
+    login: {
+      success: 'Login Successfully! Welcome to KUN Visual Novel ~ ',
+      emptyUsername: 'Username cannot be empty',
+      emptyPassword: 'Password cannot be empty',
+      invalidPassword:
+        'Invalid password format. Password must be 6 to 17 characters long and must include at least one letter and one number. It can optionally include special characters such as \\w!@#$%^&()-+=',
+      invalidUsername:
+        'Invalid username. Username should be 1 to 17 characters long and can include: Chinese characters, English letters, numbers, underscore, and tilde (~)',
+    },
+    capture: {
+      click: 'Please click above to complete the human verification',
+      success: 'Human-machine identity verification successful',
+      text: 'abcdefghijklmnopqrstuvwxyz',
+      order: 'Please click the characters in order',
+      refresh: 'Refresh',
+      error: 'Click error, please click again',
+    },
   },
 }
