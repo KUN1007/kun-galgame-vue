@@ -11,6 +11,10 @@ import Capture from '@/components/capture/Capture.vue'
 // 导入验证表单是否合法的函数
 import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 
+// 导入 i18n
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 // 定义人机验证的标志
 const isShowValidate = ref(false)
 // 定义人机验证是否完成的标志
@@ -32,7 +36,7 @@ const handleVerify = (result: boolean) => {
   if (result) {
     // 处理人机校验完成后的逻辑
     isShowValidate.value = false
-    info.info('CaptureInfo.capture')
+    info.info(t('AlertInfo.capture.success'))
     isCaptureComplete.value = true
   }
 }
@@ -41,11 +45,11 @@ const isEmptyInput = () => {
   // 如果输入的字段为空
   if (!loginForm.username.trim()) {
     // 提示用户输入的名字为空
-    info.info('用户名不可为空')
+    info.info(t('AlertInfo.login.emptyUsername'))
     return false
   } else if (!loginForm.password.trim()) {
     // 提示用户输入的密码为空
-    info.info('密码不可为空')
+    info.info(t('AlertInfo.login.emptyPassword'))
     return false
   } else {
     return true
@@ -64,16 +68,12 @@ const isValidInput = (): boolean => {
       return true
     } else {
       // 如果密码非法的话返回非法密码
-      info.info(
-        `非法的密码格式，密码的长度为 6 到 17 位，必须包含至少一个英文字符和一个数字，可以选择性的包含 \\w!@#$%^&*()-+= 等特殊字符`
-      )
+      info.info(t('AlertInfo.login.invalidPassword'))
       return false
     }
   } else {
     // 输入的用户名或邮箱错误时的逻辑
-    info.info(
-      `非法的用户名，用户名为 1 到 17 位，可以包含：中文、英文、数字、下划线、波浪线 `
-    )
+    info.info(t('AlertInfo.login.invalidUsername'))
     return false
   }
 }
@@ -84,7 +84,7 @@ const handleLogin = () => {
   if (isValidInput()) {
     // 未完成人机身份验证提示信息，直接返回
     if (!isCaptureComplete.value) {
-      info.info('请点击上方完成人机身份验证')
+      info.info(t('AlertInfo.capture.click'))
       return
     }
     // 所有的验证都通过了再向后端发送请求
@@ -92,7 +92,7 @@ const handleLogin = () => {
       // 如果请求成功跳转到主页
       if (res.success) {
         router.push('/')
-        info.info('AlertInfo.login')
+        info.info(t('AlertInfo.login.success'))
       }
     })
   }
@@ -104,24 +104,26 @@ const handleLogin = () => {
   <div class="login">
     <Capture @validate="handleVerify" :isShowValidate="isShowValidate" />
     <form class="form" @submit.prevent="handleLogin">
-      <h2 class="title">登陆</h2>
+      <h2 class="title">{{ $t('login.loginTitle') }}</h2>
       <input
         v-model="loginForm.username"
         type="text"
-        placeholder="用户名或邮箱"
+        :placeholder="$t('login.loginUsername')"
         class="input"
       />
       <input
         v-model="loginForm.password"
         type="password"
-        placeholder="密码"
+        :placeholder="$t('login.loginPassword')"
         class="input"
       />
-      <span class="forget">忘记密码? 点击发送重置邮件</span>
-      <span @click="isShowValidate = true" class="capture"
-        >点击进行人机身份验证</span
-      >
-      <button class="btn" type="submit">登陆</button>
+      <span class="forget">{{ $t('login.forget') }}</span>
+      <span @click="isShowValidate = true" class="capture">{{
+        $t('login.capture')
+      }}</span>
+      <button class="btn" type="submit">
+        {{ $t('login.loginTitle') }}
+      </button>
     </form>
   </div>
 </template>
@@ -188,6 +190,7 @@ const handleLogin = () => {
 
 .btn {
   position: absolute;
+  margin-top: 1.5rem;
   bottom: 7%;
   border-radius: 50px;
   background-color: var(--kungalgame-trans-white-5);
@@ -205,10 +208,6 @@ const handleLogin = () => {
 .btn:hover {
   background-color: var(--kungalgame-blue-4);
   color: var(--kungalgame-white);
-}
-
-.form > .btn {
-  margin-top: 1.5rem;
 }
 
 .btn:active {
