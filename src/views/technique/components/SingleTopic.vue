@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+const props = defineProps(['data'])
+
+// TODO: 后端接口字段名还未定，不能确定
 </script>
 
 <template>
@@ -11,16 +15,10 @@ import { Icon } from '@iconify/vue'
     <span></span>
     <span></span>
     <!-- 帖子的标题 -->
-    <div class="topic-title">啊这可海星</div>
+    <div class="topic-title">{{ props.data.topicTitle }}</div>
     <!-- 帖子的内容预览 -->
     <div class="topic-content">
-      <p>
-        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-        啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-      </p>
+      <p>{{ props.data.topicContent }}</p>
     </div>
     <!-- 帖子的状态 -->
     <div class="topic-status">
@@ -33,22 +31,9 @@ import { Icon } from '@iconify/vue'
     </div>
     <!-- 帖子的标签 -->
     <div class="topic-tags">
+      <Icon class="icon" icon="ant-design:tag-twotone" />
       <!-- 单个标签 -->
-      <span
-        ><Icon
-          class="icon"
-          icon="ant-design:tag-twotone"
-        />啊这可海星啊这可海星</span
-      >
-      <span>啊这可海星啊这可海星</span>
-      <span>啊这可海星</span>
-      <span>啊这可海星</span>
-      <span>啊这可海星</span>
-      <span>啊这可海星</span>
-      <span>啊这可海星</span>
-      <span>啊这可海星</span>
-      <span>啊这可海星</span>
-      <span>啊这可海星</span>
+      <span v-for="kun in props.data.topicTags">{{ kun }}</span>
     </div>
   </div>
 </template>
@@ -58,8 +43,6 @@ import { Icon } from '@iconify/vue'
 .topic {
   border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 5px;
-  /* 帖子内容距离边的距离 */
-  padding: 0 10px;
   background-color: var(--kungalgame-trans-white-2);
   /* 相对于底部状态的定位 */
   position: relative;
@@ -67,6 +50,7 @@ import { Icon } from '@iconify/vue'
   /* 隐藏 hover 的颜色露出 */
   overflow: hidden;
   box-sizing: border-box;
+  max-width: 350px;
 }
 /* 单个帖子 hover */
 .topic:hover {
@@ -160,8 +144,8 @@ import { Icon } from '@iconify/vue'
 }
 /* 帖子标题 */
 .topic-title {
-  height: 30px;
-  font-size: 20px;
+  padding: 10px;
+  font-size: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -174,19 +158,22 @@ import { Icon } from '@iconify/vue'
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 11;
+  -webkit-line-clamp: 10;
   overflow: hidden;
   -webkit-box-orient: vertical;
+  padding: 0 10px;
 }
 /* 帖子的状态 */
 .topic-status {
   height: 30px;
-  width: 90%;
+  width: 100%;
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* 相对于帖子绝对定位 */
   position: absolute;
+  background-color: var(--kungalgame-trans-white-2);
   bottom: 0;
 }
 /* 帖子的标签 */

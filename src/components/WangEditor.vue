@@ -60,7 +60,6 @@ const editorConfig = {
 
 const handleCreated = (editor: IDomEditor) => {
   editorRef.value = editor
-  console.log(editor.getConfig())
 }
 
 onMounted(() => {
