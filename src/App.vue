@@ -1,8 +1,8 @@
 <!-- App -->
 <script setup lang="ts">
 // 导入通知和提示组件
-import Alert from '@/components/KUNGalgameAlert/Alert.vue'
-import Info from '@/components/KUNGalgameAlert/Info.vue'
+import Alert from '@/components/alert/Alert.vue'
+import Info from '@/components/alert/Info.vue'
 
 import { onBeforeMount } from 'vue'
 // 导入设置面板 store
