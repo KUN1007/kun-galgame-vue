@@ -63,39 +63,38 @@ const isValidInput = (): boolean => {
     return false
   }
   if (isValidEmail(loginForm.username) || isValidName(loginForm.username)) {
-    // 输入的用户名正确时（为用户名或邮箱）
-    if (isValidPassword(loginForm.password)) {
-      return true
-    } else {
-      // 如果密码非法的话返回非法密码
-      info.info(t('AlertInfo.login.invalidPassword'))
-      return false
-    }
-  } else {
     // 输入的用户名或邮箱错误时的逻辑
     info.info(t('AlertInfo.login.invalidUsername'))
     return false
   }
+  // 输入的用户名不正确时（为用户名或邮箱）
+  if (!isValidPassword(loginForm.password)) {
+    // 如果密码非法的话返回非法密码
+    info.info(t('AlertInfo.login.invalidPassword'))
+    return false
+  }
+  return true
 }
 
 // 处理用户点击登陆时的逻辑
 const handleLogin = () => {
   // 保证输入格式和人机验证通过才能发送登录请求
-  if (isValidInput()) {
-    // 未完成人机身份验证提示信息，直接返回
-    if (!isCaptureComplete.value) {
-      info.info(t('AlertInfo.capture.click'))
-      return
-    }
-    // 所有的验证都通过了再向后端发送请求
-    useStore.login(loginForm).then((res) => {
-      // 如果请求成功跳转到主页
-      if (res.success) {
-        router.push('/')
-        info.info(t('AlertInfo.login.success'))
-      }
-    })
+  if (!isValidInput()) {
+    return
   }
+  // 未完成人机身份验证提示信息，直接返回
+  if (!isCaptureComplete.value) {
+    info.info(t('AlertInfo.capture.click'))
+    return
+  }
+  // 所有的验证都通过了再向后端发送请求
+  useStore.login(loginForm).then((res) => {
+    // 如果请求成功跳转到主页
+    if (res.success) {
+      router.push('/')
+      info.info(t('AlertInfo.login.success'))
+    }
+  })
 }
 </script>
 
