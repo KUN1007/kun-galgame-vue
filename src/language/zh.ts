@@ -57,7 +57,7 @@ export default {
         ymgal: '月幕galgame',
       },
       describe: {
-        title: '鲲galgame',
+        title: '鲲Galgame',
         kun1: '世界上最萌的 galgame 论坛！',
         kun2: '鲲galgame以营造最良好的氛围为理念',
         kun3: '鲲galgame永远不会有广告',

@@ -19,7 +19,7 @@ defineEmits(['showKUNGalgameHamburger'])
       <span>{{ $t('header.name') }}</span>
     </div>
     <!-- 交互栏目 -->
-    <div class="item">
+    <div class="item" style="font-size: 17px">
       <span v-for="kun in topBarItem" :key="kun.index">
         <RouterLink :to="kun.router">{{
           $t(`header['${kun.name}']`)
@@ -28,7 +28,7 @@ defineEmits(['showKUNGalgameHamburger'])
     </div>
 
     <!-- 白天黑夜模式切换组件 -->
-    <Mode />
+    <Mode style="font-size: 20px" />
 
     <!-- 语言切换组件 -->
     <SwitchLanguage style="font-size: 20px; margin-bottom: 40px" />
@@ -45,7 +45,7 @@ defineEmits(['showKUNGalgameHamburger'])
 <style lang="scss" scoped>
 .container {
   height: 400px;
-  width: 222px;
+  width: 277px;
   position: fixed;
   padding: 10px;
   top: 0;
@@ -81,29 +81,7 @@ defineEmits(['showKUNGalgameHamburger'])
     margin-right: 10px;
   }
   span {
-    font-size: 17px;
-  }
-}
-
-.mode {
-  margin: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 20px;
-}
-.mode-container {
-  width: 60%;
-  display: flex;
-  justify-content: space-around;
-  li {
-    cursor: pointer;
-  }
-  li:nth-child(1) {
-    color: var(--kungalgame-red-4);
-  }
-  li:nth-child(2) {
-    color: var(--kungalgame-blue-4);
+    font-size: 20px;
   }
 }
 
