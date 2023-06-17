@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import WangEditor from '@/components/WangEditor.vue'
 import Tags from './components/Tags.vue'
 import Button from './components/Button.vue'

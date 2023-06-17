@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 // 导入 Aside

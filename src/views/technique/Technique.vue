@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import SingleTopic from './components/SingleTopic.vue'
 import Pagination from './components/Pagination.vue'
 import Aside from './components/Aside.vue'

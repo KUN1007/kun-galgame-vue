@@ -2,7 +2,7 @@
   KUNGalgame 的帖子页面
  -->
 <script setup lang="ts">
-import KUNGalgameTopBar from '../../components/KUNGalgameTopBar.vue'
+import KUNGalgameTopBar from '../../components/TopBar/KUNGalgameTopBar.vue'
 import KUNGalgameTopicAside from './aside/KUNGalgameTopicAside.vue'
 import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
 </script>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import Next from './components/Next.vue'
 import History from './components/History.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
