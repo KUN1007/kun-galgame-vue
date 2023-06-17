@@ -45,8 +45,9 @@ import asideItem from '@/types/home/aside-item'
       background-color: var(--kungalgame-trans-blue-2);
     }
     a {
-      writing-mode: vertical-rl;
-      text-orientation: upright;
+      writing-mode: vertical-lr;
+      text-orientation: sideways;
+      transform: rotate(180deg);
       width: 100%;
       height: 100%;
       display: flex;

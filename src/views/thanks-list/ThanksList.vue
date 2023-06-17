@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
@@ -7,8 +6,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 <template>
   <!-- 根容器 -->
   <div class="root">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 内容区容器 -->
     <div class="container">
       <!-- 页面标题 -->

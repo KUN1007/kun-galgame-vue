@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
   <div class="root">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 总容器 -->
     <div class="container">
       <!-- 文章容器 -->

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import WangEditor from '@/components/WangEditor.vue'
 import Tags from './components/Tags.vue'
 import Button from './components/Button.vue'
@@ -28,8 +27,6 @@ const submit = () => {
 
 <template>
   <div class="root">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 内容区容器 -->
     <form class="container" @submit.prevent="submit">
       <!-- 内容区容器 -->

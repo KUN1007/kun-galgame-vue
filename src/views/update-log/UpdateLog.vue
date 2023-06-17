@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import Next from './components/Next.vue'
 import History from './components/History.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -7,8 +6,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 <template>
   <div class="root">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 内容区容器 -->
     <div class="container">
       <!-- 内容区 -->

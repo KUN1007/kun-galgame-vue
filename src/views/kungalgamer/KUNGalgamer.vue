@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 // 导入左侧交互部分
 import NavBar from './components/NavBar.vue'
 // 导入头部
@@ -17,7 +16,6 @@ getSingleKUNGalgamerApi(1).then((userData) => {
 
 <template>
   <div class="root">
-    <KUNGalgameTopBar />
     <!-- 信息区域容器 -->
     <div class="container">
       <Header />

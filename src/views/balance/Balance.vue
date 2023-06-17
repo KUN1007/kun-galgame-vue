@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import Form from './components/Form.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 // 导入临时数据
@@ -8,8 +7,6 @@ import { calculateTotalAmount } from './log'
 
 <template>
   <div class="root">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 文章部分 -->
     <div class="article">
       <!-- 页面标题 -->

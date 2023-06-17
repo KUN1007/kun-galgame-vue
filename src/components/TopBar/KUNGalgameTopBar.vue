@@ -1,14 +1,14 @@
 <script setup lang="ts">
 // 导入 Vue 函数
-import { defineAsyncComponent, onBeforeMount, onBeforeUnmount } from 'vue'
+import { defineAsyncComponent, onBeforeUpdate, ref } from 'vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入 css 动画
 import 'animate.css'
-// 导入设置面板 store
-import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
-
-import { storeToRefs } from 'pinia'
+// 导入导航栏的单个项目
+import { topBarItem } from './topBarItem'
+// 导入手机版 hamburger
+import Hamburger from './Hamburger.vue'
 
 // 异步导入设置面板，提升首页加载速度
 const KUNGalgameSettingsPanel = defineAsyncComponent(
@@ -16,55 +16,37 @@ const KUNGalgameSettingsPanel = defineAsyncComponent(
 )
 
 // 使设置面板的数据变为响应式
-const { showKUNGalgamePanel } = storeToRefs(useKUNGalgameSettingsStore())
+const showKUNGalgamePanel = ref(false)
 
-// 顶部导航栏单个项目的接口
-interface topBar {
-  index: number
-  name: string
-  router: string
-}
-
-// 顶部导航栏的项目（这里一定要加上 '/' 不然子路由会出问题！！！）
-const topBarItem: topBar[] = [
-  { index: 1, name: 'pool', router: '/pool/index' },
-  { index: 2, name: 'create', router: '/edit/index' },
-  { index: 3, name: 'technique', router: '/technique/index' },
-  { index: 4, name: 'about', router: '/kungalgame/index' },
-  { index: 5, name: 'return', router: '/kun' },
-]
-
-// 接受父组件的传值
-const props = defineProps(['isMainPage'])
-
-const isMain = props.isMainPage
-// 如果是主页的话删除 “返回主页” 项目
-if (isMain) {
-  topBarItem.pop()
-}
-
-// 根据导航条的项目个数操作 css 中导航条的宽度
-let navItemNum = topBarItem.length
-const navItemNumString = navItemNum + '00px'
-
-// 在路由跳转时关闭设置面板
-onBeforeUnmount(() => {
-  showKUNGalgamePanel.value = false
-})
-// 在页面刷新时关闭设置面板
-onBeforeMount(() => {
-  showKUNGalgamePanel.value = false
-})
+// 根据导航条的项目个数操作 css 中导航条的宽度，这里必须要这样写，因为用了 css v-bind
+const navItemNum = topBarItem.length
+const navItemLength = `${navItemNum}00px`
 </script>
 
 <template>
   <div class="header">
     <!-- 顶部左侧交互栏 -->
     <div class="nav-top">
-      <div class="kungal-info">
+      <div class="hamburger">
+        <Icon icon="line-md:menu-fold-right" />
+        <transition
+          name="kungalgame-panel"
+          enter-active-class="animate__animated animate__fadeInLeft animate__faster"
+          leave-active-class="animate__animated animate__fadeOutLeft animate__faster"
+        >
+          <KeepAlive>
+            <Hamburger v-if="showKUNGalgamePanel" />
+          </KeepAlive>
+        </transition>
+      </div>
+      <div class="kungalgame">
         <!-- 网站的名字和网站图标 -->
-        <img src="../assets/images/favicon.png" alt="KUNgal" />
-        <span>{{ $t('header.name') }}</span>
+        <RouterLink to="/kun"
+          ><img src="../../assets/images/favicon.png" alt="KUNgal"
+        /></RouterLink>
+        <RouterLink to="/kun">
+          <span>{{ $t('header.name') }}</span>
+        </RouterLink>
       </div>
       <div class="top-bar">
         <ul>
@@ -85,7 +67,7 @@ onBeforeMount(() => {
         ><Icon icon="uiw:setting-o"
       /></span>
       <router-link to="/kungalgamer">
-        <img src="../assets/images/KUN.jpg" alt="KUN" />
+        <img src="../../assets/images/KUN.jpg" alt="KUN" />
       </router-link>
     </div>
   </div>
@@ -96,7 +78,10 @@ onBeforeMount(() => {
       leave-active-class="animate__animated animate__fadeOutRight animate__faster"
     >
       <KeepAlive>
-        <KUNGalgameSettingsPanel v-if="showKUNGalgamePanel" />
+        <KUNGalgameSettingsPanel
+          v-if="showKUNGalgamePanel"
+          @close="showKUNGalgamePanel = false"
+        />
       </KeepAlive>
     </transition>
   </div>
@@ -121,11 +106,20 @@ onBeforeMount(() => {
   margin-bottom: 7px;
   flex-shrink: 0;
 }
+
+.hamburger {
+  display: none;
+  margin-top: 10px;
+  margin-left: 50px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 .nav-top {
   display: flex;
   align-items: center;
 }
-.kungal-info {
+.kungalgame {
   display: flex;
   align-items: center;
   img {
@@ -148,7 +142,7 @@ $navNumber: v-bind(navItemNum);
 .top-bar {
   position: relative;
   text-align: center;
-  width: v-bind(navItemNumString);
+  width: v-bind(navItemLength);
   ul {
     align-items: center;
     display: flex;
@@ -244,6 +238,12 @@ $navNumber: v-bind(navItemNum);
 @media (max-width: 700px) {
   .top-bar {
     display: none;
+  }
+  .kungalgame {
+    display: none;
+  }
+  .hamburger {
+    display: block;
   }
 }
 </style>

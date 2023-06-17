@@ -2,16 +2,12 @@
   KUNGalgame 的帖子页面
  -->
 <script setup lang="ts">
-import KUNGalgameTopBar from '../../components/TopBar/KUNGalgameTopBar.vue'
 import KUNGalgameTopicAside from './aside/KUNGalgameTopicAside.vue'
 import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
 </script>
 <template>
   <!-- 总容器 -->
   <div class="main-wrapper">
-    <div style="position: sticky; top: 0; z-index: 1007">
-      <KUNGalgameTopBar />
-    </div>
     <!-- 下面帖子详情区的容器 -->
     <div class="topic-wrapper">
       <!-- 下方可视内容区的容器 -->

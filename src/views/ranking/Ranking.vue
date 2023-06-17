@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import Form from './components/Form.vue'
 import Temp from './components/Temp.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -8,8 +7,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 <template>
   <!-- 根容器 -->
   <div class="root">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 内容区 -->
     <div class="article">
       <Form />
