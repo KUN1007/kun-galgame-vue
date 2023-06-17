@@ -20,6 +20,8 @@ const {
   showKUNGalgameLanguage,
 } = storeToRefs(settingsStore)
 
+const emits = defineEmits(['close'])
+
 /*
  * 网站的语言设置
  */
@@ -32,6 +34,11 @@ const handleChangeLanguage = () => {
 /* 恢复所有设置为默认 */
 const handleRecover = () => {
   settingsStore.restoreSettings()
+}
+
+/* 关闭设置面板 */
+const handelCloseSettingsPanel = () => {
+  emits('close', false)
 }
 </script>
 
@@ -108,7 +115,7 @@ const handleRecover = () => {
     <!-- 关闭面板 -->
     <div class="close">
       <!-- showKUNGalgamePanel 存在于 settings 里,false 为关闭设置面板 -->
-      <Icon @click="showKUNGalgamePanel = false" icon="line-md:close" />
+      <Icon @click="handelCloseSettingsPanel" icon="line-md:close" />
     </div>
   </div>
 </template>

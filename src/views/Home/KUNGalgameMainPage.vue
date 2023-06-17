@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import MainPageContent from './content/MainPageContent.vue'
 import MainPageFooter from './footer/MainPageFooter.vue'
 </script>
@@ -7,7 +6,6 @@ import MainPageFooter from './footer/MainPageFooter.vue'
 <template>
   <!-- 可视部分的容器 -->
   <div class="visual-wrapper">
-    <KUNGalgameTopBar :isMainPage="true" />
     <MainPageContent />
     <MainPageFooter />
   </div>

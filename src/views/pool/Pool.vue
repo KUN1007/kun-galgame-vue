@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import Tags from './components/Tags.vue'
 import Topic from './components/Topic.vue'
@@ -10,8 +9,6 @@ import { topic } from './components/topic'
 
 <template>
   <div class="pool">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 帖子池容器 -->
     <div class="pool-container">
       <KUNGalgameSearchBox style="width: 100%; height: 40px" />

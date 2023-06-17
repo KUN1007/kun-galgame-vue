@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import SingleTopic from './components/SingleTopic.vue'
 import Pagination from './components/Pagination.vue'
 import Aside from './components/Aside.vue'
@@ -29,8 +28,6 @@ onMounted(async () => {
 
 <template>
   <div class="root">
-    <!-- 头部 -->
-    <KUNGalgameTopBar />
     <!-- 内容区 -->
     <div class="content">
       <Aside class="aside" />
