@@ -10,20 +10,20 @@ import { ref } from 'vue'
 const buttonStatus = ref(false)
 
 const handlePublish = async () => {
-  const res = await info.alert('AlertInfo.publish', true)
+  const res = await info.alert('AlertInfo.edit.publish', true)
   // TODO:
   // 这里实现用户的点击确认取消逻辑
   if (res) {
-    info.info('AlertInfo.publishSuccess')
+    info.info('AlertInfo.edit.publishSuccess')
   } else {
-    info.info('AlertInfo.publishCancel')
+    info.info('AlertInfo.edit.publishCancel')
   }
 }
 
 const handleSave = () => {
   // TODO:
   // 这里实现用户的保存逻辑
-  info.info('AlertInfo.draft')
+  info.info('AlertInfo.edit.draft')
 }
 </script>
 
