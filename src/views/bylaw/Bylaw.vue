@@ -91,7 +91,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  min-width: 800px;
   min-height: 1100px;
 }
 /* 总容器 */
@@ -174,5 +173,12 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 .topic > ul li {
   margin: 5px 0;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
 }
 </style>

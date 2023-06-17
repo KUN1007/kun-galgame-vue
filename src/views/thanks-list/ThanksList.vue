@@ -93,7 +93,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 .container {
   /* 固定宽高 */
-  width: 900px;
+  max-width: 900px;
   height: 1300px;
   /* 居中 */
   margin: auto;

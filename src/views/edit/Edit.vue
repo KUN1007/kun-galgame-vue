@@ -39,7 +39,7 @@ const submit = () => {
           </div>
         </div>
         <!-- 编辑器 -->
-        <WangEditor class="editor" @html="" />
+        <WangEditor class="editor" />
       </div>
 
       <!-- 内容区的底部 -->
@@ -64,8 +64,7 @@ const submit = () => {
 
 .root {
   height: 100vh;
-  min-height: 1100px;
-  min-width: 900px;
+  min-height: 1200px;
   display: flex;
   flex-direction: column;
 }
@@ -122,5 +121,11 @@ const submit = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 100%;
+  }
 }
 </style>

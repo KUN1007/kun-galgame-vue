@@ -268,4 +268,11 @@ a {
   list-style: inside;
   text-indent: 4em;
 }
+
+@media (max-width: 1000px) {
+  .content-container {
+    width: 100%;
+    padding: 0;
+  }
+}
 </style>
