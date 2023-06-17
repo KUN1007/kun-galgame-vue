@@ -54,15 +54,12 @@ import { calculateTotalAmount } from './log'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  min-width: 1100px;
-  min-height: 600px;
+  min-height: 800px;
   color: var(--kungalgame-font-color-3);
 }
 /* 文章部分 */
 .article {
-  /* 固定宽高 */
-  width: 1000px;
-  height: 500px;
+  min-height: 500px;
   /* 居中 */
   margin: auto;
   background-color: var(--kungalgame-trans-white-5);
@@ -134,6 +131,13 @@ import { calculateTotalAmount } from './log'
     padding: 5px;
     color: var(--kungalgame-white);
     background-color: var(--kungalgame-green-4);
+  }
+}
+
+@media (max-width: 1000px) {
+  .content {
+    flex-direction: column;
+    width: 100%;
   }
 }
 </style>

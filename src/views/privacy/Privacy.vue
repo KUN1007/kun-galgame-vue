@@ -35,7 +35,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         <BackToPrevious />
       </div>
       <!-- 版权 -->
-      <KUNGalgameFooter style="position: absolute; bottom: -40px" />
+      <KUNGalgameFooter style="position: absolute; bottom: -60px" />
     </div>
   </div>
 </template>
@@ -44,8 +44,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 .root {
   height: 100vh;
   width: 100vw;
-  min-width: 700px;
-  min-height: 600px;
   background: linear-gradient(
     var(--kungalgame-trans-pink-1),
     var(--kungalgame-trans-blue-1)
@@ -58,8 +56,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 内容区容器 */
 .container {
   /* 固定宽高 */
-  width: 600px;
-  height: 500px;
+  max-width: 600px;
+  max-height: 500px;
   /* 居中 */
   margin: auto;
   position: relative;
@@ -85,7 +83,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 /* 单个项目之间的距离 */
 .list > li {
-  margin: 7px 0;
+  margin-bottom: 30px;
   list-style: inside;
 }
 /* 页面的标题 */

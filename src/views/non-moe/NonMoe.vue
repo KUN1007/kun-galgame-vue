@@ -32,14 +32,13 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   height: 100vh;
   display: flex;
   flex-direction: column;
-  min-width: 800px;
   min-height: 750px;
 }
 /* 根容器 */
 .container {
   /* 固定宽高 */
   height: 600px;
-  width: 700px;
+  max-width: 800px;
   /* 居中 */
   margin: auto;
   background-color: var(--kungalgame-trans-white-5);
@@ -69,8 +68,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 /* 文章部分 */
 .article {
-  width: 600px;
-  flex-shrink: 0;
   background-color: var(--kungalgame-trans-white-5);
   border-left: 1px solid var(--kungalgame-red-4);
   display: flex;
@@ -80,6 +77,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 文章标题 */
 .article-title {
   margin: 20px 0;
+  padding: 0 20px;
   font-size: 20px;
 }
 /* 内容区容器 */
