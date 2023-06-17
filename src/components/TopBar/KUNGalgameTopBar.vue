@@ -12,7 +12,7 @@ import { storeToRefs } from 'pinia'
 
 // 异步导入设置面板，提升首页加载速度
 const KUNGalgameSettingsPanel = defineAsyncComponent(
-  () => import('./setting-panel/KUNGalgameSettingPanel.vue')
+  () => import('../setting-panel/KUNGalgameSettingPanel.vue')
 )
 
 // 使设置面板的数据变为响应式

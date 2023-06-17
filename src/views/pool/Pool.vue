@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import KUNGalgameTopBar from '@/components/KUNGalgameTopBar.vue'
+import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import Tags from './components/Tags.vue'
 import Topic from './components/Topic.vue'
