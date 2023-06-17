@@ -8,7 +8,7 @@
   <div class="footer">
     <span
       >Copyright © 2023 KUNGalgame<span> </span> All rights reserved | Version
-      0.6.17</span
+      0.7.0</span
     >
   </div>
 </template>

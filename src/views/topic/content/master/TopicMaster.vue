@@ -65,10 +65,6 @@ import Floor from '../components/Floor.vue'
   margin-bottom: 5px;
   /* TODO: */
   /* 楼主帖子背景图 */
-  /*   background-image: url(../../img/bg-dark.png; */
-  // background-repeat: no-repeat;
-  // background-position: center;
-  // background-size: cover;
 }
 /* 楼主帖子内容区的容器 */
 .content-container {
