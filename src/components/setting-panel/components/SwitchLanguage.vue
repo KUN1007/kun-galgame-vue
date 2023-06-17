@@ -2,6 +2,7 @@
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+import { watch } from 'vue'
 // 导入 i18n
 import { useI18n } from 'vue-i18n'
 
@@ -14,19 +15,15 @@ const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
  */
 const { locale } = useI18n({ useScope: 'global' })
 
-const handleChangeLanguage = () => {
+watch(showKUNGalgameLanguage, () => {
   locale.value = showKUNGalgameLanguage.value
-}
+})
 </script>
 
 <template>
   <div class="set-lang">
     <span>{{ $t('header.settings.language') }}</span>
-    <select
-      class="select"
-      v-model="showKUNGalgameLanguage"
-      @change="handleChangeLanguage"
-    >
+    <select class="select" v-model="showKUNGalgameLanguage">
       <option value="en">English</option>
       <option value="zh">中文</option>
     </select>

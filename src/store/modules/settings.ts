@@ -6,8 +6,6 @@ import { lang, mode } from '@/utils/getDefaultEnv'
 
 // 设置面板配置
 interface KUNGalgameSettings {
-  // 是否显示设置面板
-  showKUNGalgamePanel: boolean
   // 白天黑夜模式切换
   showKUNGalgameMode: string
   // 网站显示语言
@@ -25,7 +23,6 @@ export const useKUNGalgameSettingsStore = defineStore({
   persist: true,
   // 默认值
   state: (): KUNGalgameSettings => ({
-    showKUNGalgamePanel: false,
     showKUNGalgameMode: mode,
     showKUNGalgameLanguage: lang,
     showKUNGalgameMainPageWidth: '61.8',
@@ -35,7 +32,6 @@ export const useKUNGalgameSettingsStore = defineStore({
   actions: {
     // 恢复出厂设置()
     restoreSettings() {
-      this.showKUNGalgamePanel = false
       this.setKUNGalgameTheme('light')
       this.showKUNGalgameLanguage = 'en'
       this.showKUNGalgameMainPageWidth = '61.8'

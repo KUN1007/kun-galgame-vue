@@ -13,24 +13,12 @@ import Background from './components/Background.vue'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// 导入 i18n
-import { useI18n } from 'vue-i18n'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameMainPageWidth, showKUNGalgameLanguage } =
-  storeToRefs(settingsStore)
+const { showKUNGalgameMainPageWidth } = storeToRefs(settingsStore)
 
 const emits = defineEmits(['close'])
-
-/*
- * 网站的语言设置
- */
-const { locale } = useI18n({ useScope: 'global' })
-
-const handleChangeLanguage = () => {
-  locale.value = showKUNGalgameLanguage.value
-}
 
 /* 恢复所有设置为默认 */
 const handleRecover = () => {
