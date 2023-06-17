@@ -1,26 +1,36 @@
 <script setup lang="ts">
 // 导入 Vue 函数
-import { defineAsyncComponent, onBeforeUpdate, ref } from 'vue'
+import { defineAsyncComponent, ref } from 'vue'
 // 导入图标
 import { Icon } from '@iconify/vue'
 // 导入 css 动画
 import 'animate.css'
 // 导入导航栏的单个项目
 import { topBarItem } from './topBarItem'
-// 导入手机版 hamburger
-import Hamburger from './Hamburger.vue'
+import { onBeforeRouteLeave } from 'vue-router'
+// 异步导入手机版 hamburger，提升首页加载速度
+const Hamburger = defineAsyncComponent(() => import('./Hamburger.vue'))
 
 // 异步导入设置面板，提升首页加载速度
 const KUNGalgameSettingsPanel = defineAsyncComponent(
   () => import('../setting-panel/KUNGalgameSettingPanel.vue')
 )
 
-// 使设置面板的数据变为响应式
+// 显示设置面板的状态值
 const showKUNGalgamePanel = ref(false)
+
+// 显示手机模式 hamburger 的状态值
+const showKUNGalgameHamburger = ref(false)
 
 // 根据导航条的项目个数操作 css 中导航条的宽度，这里必须要这样写，因为用了 css v-bind
 const navItemNum = topBarItem.length
 const navItemLength = `${navItemNum}00px`
+
+// 路由离开之前销毁 SettingsPanel 和 Hamburger
+onBeforeRouteLeave(() => {
+  showKUNGalgamePanel.value = false
+  showKUNGalgameHamburger.value = false
+})
 </script>
 
 <template>
@@ -28,14 +38,20 @@ const navItemLength = `${navItemNum}00px`
     <!-- 顶部左侧交互栏 -->
     <div class="nav-top">
       <div class="hamburger">
-        <Icon icon="line-md:menu-fold-right" />
+        <Icon
+          icon="line-md:menu-fold-right"
+          v-if="!showKUNGalgameHamburger"
+          @click="showKUNGalgameHamburger = !showKUNGalgameHamburger"
+        />
         <transition
-          name="kungalgame-panel"
           enter-active-class="animate__animated animate__fadeInLeft animate__faster"
           leave-active-class="animate__animated animate__fadeOutLeft animate__faster"
         >
           <KeepAlive>
-            <Hamburger v-if="showKUNGalgamePanel" />
+            <Hamburger
+              v-if="showKUNGalgameHamburger"
+              @showKUNGalgameHamburger="showKUNGalgameHamburger = false"
+            />
           </KeepAlive>
         </transition>
       </div>
@@ -73,7 +89,6 @@ const navItemLength = `${navItemNum}00px`
   </div>
   <div class="settings-panel">
     <transition
-      name="kungalgame-panel"
       enter-active-class="animate__animated animate__jackInTheBox animate__faster"
       leave-active-class="animate__animated animate__fadeOutRight animate__faster"
     >
@@ -105,6 +120,7 @@ const navItemLength = `${navItemNum}00px`
   z-index: 1007;
   margin-bottom: 7px;
   flex-shrink: 0;
+  color: var(--kungalgame-font-color-3);
 }
 
 .hamburger {

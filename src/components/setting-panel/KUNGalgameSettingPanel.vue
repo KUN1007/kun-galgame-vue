@@ -4,6 +4,10 @@
 import { Icon } from '@iconify/vue'
 // 引入看板娘组件
 import Loli from './components/Loli.vue'
+// 导入模式切换组件
+import Mode from './components/Mode.vue'
+// 导入语言切换组件
+import SwitchLanguage from './components/SwitchLanguage.vue'
 // 引入背景设置组件
 import Background from './components/Background.vue'
 // 导入设置面板 store
@@ -14,11 +18,8 @@ import { useI18n } from 'vue-i18n'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const {
-  showKUNGalgamePanel,
-  showKUNGalgameMainPageWidth,
-  showKUNGalgameLanguage,
-} = storeToRefs(settingsStore)
+const { showKUNGalgameMainPageWidth, showKUNGalgameLanguage } =
+  storeToRefs(settingsStore)
 
 const emits = defineEmits(['close'])
 
@@ -50,37 +51,12 @@ const handelCloseSettingsPanel = () => {
         <span>{{ $t('header.settings.name') }}</span>
         <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
-      <div class="mode">
-        <!-- 白天 / 黑夜模式切换 -->
-        <span>{{ $t('header.settings.mode') }}</span>
-        <div class="mode-container">
-          <li>
-            <Icon
-              class="sun"
-              icon="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
-              @click="settingsStore.setKUNGalgameTheme('')"
-            />
-          </li>
-          <li>
-            <Icon
-              class="moon"
-              icon="line-md:sunny-outline-to-moon-loop-transition"
-              @click="settingsStore.setKUNGalgameTheme('dark')"
-            />
-          </li>
-        </div>
-      </div>
-      <div class="set-lang">
-        <span>{{ $t('header.settings.language') }}</span>
-        <select
-          class="select"
-          v-model="showKUNGalgameLanguage"
-          @change="handleChangeLanguage"
-        >
-          <option value="en">English</option>
-          <option value="zh">中文</option>
-        </select>
-      </div>
+
+      <!-- 模式切换组件 -->
+      <Mode />
+
+      <!-- 语言切换组件 -->
+      <SwitchLanguage />
       <div>
         <!-- 设置主页的宽度 -->
         <div class="width-container">
@@ -162,43 +138,7 @@ const handelCloseSettingsPanel = () => {
     transform: rotate(360deg);
   }
 }
-.mode {
-  margin: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.mode-container {
-  font-size: 25px;
-  width: 60%;
-  display: flex;
-  justify-content: space-around;
-  li {
-    cursor: pointer;
-  }
-  li:nth-child(1) {
-    color: var(--kungalgame-red-4);
-  }
-  li:nth-child(2) {
-    color: var(--kungalgame-blue-4);
-  }
-}
-// 语言设置
-.set-lang {
-  display: flex;
-  justify-content: space-between;
-}
-// 语言的选择框
-.select {
-  width: 100px;
-  font-size: 16px;
-  color: var(--kungalgame-font-color-3);
-  border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-white-9);
-  option {
-    background-color: var(--kungalgame-white);
-  }
-}
+
 .page-width {
   font-size: 15px;
   display: flex;
@@ -212,10 +152,7 @@ const handelCloseSettingsPanel = () => {
   height: 10px;
   margin: 20px 0;
 }
-/* 固定看板娘 */
-.set-lang {
-  margin-bottom: 20px;
-}
+
 .width-container {
   display: flex;
   justify-content: space-between;
@@ -242,13 +179,9 @@ const handelCloseSettingsPanel = () => {
   margin: 20px;
   cursor: pointer;
 }
-@media (max-width: 700px) {
-  .loli {
-    display: none;
-  }
+@media (max-width: 1000px) {
   .root {
-    width: 300px;
-    transition: 0.3s;
+    display: none;
   }
 }
 @media (max-height: 600px) {
