@@ -6,7 +6,7 @@ import KUNGalgameInfo from './components/KUNGalgameInfo.vue'
 <template>
   <div class="footer">
     <!-- footer 的内部容器 -->
-    <div class="kungalgame-footer-wrap">
+    <div class="container">
       <Wave />
       <KUNGalgameInfo />
     </div>
@@ -21,8 +21,9 @@ import KUNGalgameInfo from './components/KUNGalgameInfo.vue'
   display: flex;
   flex-direction: column;
 }
+
 /* footer 总容器的 flex */
-.kungalgame-footer-wrap {
+.container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;

@@ -26,7 +26,7 @@ const info: Info[] = [
 
 <template>
   <!-- 右侧的网站信息容器 -->
-  <div class="kungalgame-footer-right-wrap">
+  <div class="introduction">
     <!-- 网站名 -->
     <div class="kungalgame">
       <span>{{ $t('mainPage.footer.describe.title') }}</span>
@@ -42,7 +42,7 @@ const info: Info[] = [
 
 <style lang="scss" scoped>
 /* 右侧的网站信息容器 */
-.kungalgame-footer-right-wrap {
+.introduction {
   display: flex;
   flex-direction: column;
   justify-content: center;

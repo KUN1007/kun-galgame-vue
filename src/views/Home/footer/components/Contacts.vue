@@ -41,21 +41,25 @@ import { Icon } from '@iconify/vue'
   color: var(--kungalgame-font-color-2);
   font-size: small;
 }
+
 .kungalgame-contact h2 {
   margin-right: 20px;
   font-size: medium;
 }
+
 .kungalgame-contact ul {
   display: flex;
   align-items: center;
   flex-grow: 1;
 }
+
 .kungalgame-contact ul li {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .kungalgame-contact ul li a {
   font-size: 17px;
   color: var(--kungalgame-font-color-2);
