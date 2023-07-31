@@ -1,6 +1,6 @@
 {
-  "name": "kungal-vue",
-  "private": true,
+  "name": "kun-galgame-vue",
+  "private": false,
   "version": "0.0.0",
   "description": "世界上最萌的 galgame 论坛",
   "author": {
@@ -51,5 +51,5 @@
     "gal",
     "visual novel"
   ],
-  "license": "MIT"
+  "license": "LGPL-3.0-or-later"
 }
