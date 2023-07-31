@@ -1,34 +1,19 @@
-# kun-galgame-vue
+# KUNGalgame 论坛的 Vue 前端重构版本
 
 .
 
+## 截止到 18/06/2023，两个月的时间，200 多次 commit，我们几乎完成了所有的静态页面，接下来我们将会对网站的后端进行编写
+
+.
 ## 介绍
 
-
-
-这是 KUNGalgame 论坛的前端，这是第一个版本，我们使用 `vue` 框架编写，之后我们会使用 `svelte` 框架重构
-
-
-
-后端项目第一个版本的地址为 [kun-galgame-koa](https://github.com/KUN1007/kun-galgame-koa)
-
-
-
-
-
-## 关于该网站
-
-
-
-KUNGalgame —— 世界上最萌的 Galgame 论坛！
-
-
+KUNGalgame  ——  世界上最萌的 Galgame 论坛！
 
 为营造最良好的 Galgame 讨论环境为目的进行努力！
 
-
-
 Tips: 网站目前正在建设中······
+
+
 
 ## 运营理念
 
@@ -63,13 +48,12 @@ Tips: 网站目前正在建设中······
 
 .
 #### Web 端浏览器
-![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/docs/images/preview.png)
-![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/docs/images/preview-dark.png)
+![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/introduction/images/preview.png)
+![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/introduction/images/preview-dark.png)
 .
-
 #### 手机端浏览器
-![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/docs/images/mobile-preview.png)
-![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/docs/images/mobile-preview-dark.png)
+![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/introduction/images/mobile-preview.png)
+![](https://github.com/KUN1007/KUNGalGame-vue/blob/layout/introduction/images/mobile-preview-dark.png)
 
 ### 启动方法
 
