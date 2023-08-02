@@ -3,7 +3,7 @@ import SingleTopic from './components/SingleTopic.vue'
 import Pagination from './components/Pagination.vue'
 import Aside from './components/Aside.vue'
 
-import { ref, onMounted } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import { getTopicRangeApi } from '@/api/topic/index'
 import { KUNGalgameTopic } from '@/api/topic/types/topic'
 
@@ -11,15 +11,13 @@ import { KUNGalgameTopic } from '@/api/topic/types/topic'
 const topics = ref<KUNGalgameTopic[]>([])
 
 // 在组件挂载时调用 fetchTopics 获取帖子数据
-onMounted(async () => {
+onBeforeMount(async () => {
   try {
     const start = 0 // 起始位置
     const count = 17 // 获取的帖子数量
 
     // TODO: 这里接口获取到的数据太多了，其实获取 title，like，view，comment，text 这几个字段就足够了
-    const fetchedTopics = await getTopicRangeApi(start, count)
-
-    topics.value = fetchedTopics
+    topics.value = await getTopicRangeApi(start, count)
   } catch (error) {
     console.error('Error fetching topics:', error)
   }
