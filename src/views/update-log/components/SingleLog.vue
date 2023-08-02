@@ -1,13 +1,30 @@
 <script setup lang="ts">
-import { historyVersion } from '@/types/update-log/history'
+import { getUpdateLogApi } from '@/api/update-log/index'
+import { KUNGalgameUpdateLog } from '@/api/update-log/types/updateLog'
+import { ref, onBeforeMount } from 'vue'
+
+// 在组件中定义响应式的帖子数据
+const topics = ref<KUNGalgameUpdateLog[]>([])
+
+// 在组件挂载时调用 fetchTopics 获取帖子数据
+onBeforeMount(async () => {
+  try {
+    topics.value = await getUpdateLogApi()
+  } catch (error) {
+    console.log('Error fetching updateLogs:', error)
+  }
+})
+
+console.log(topics)
 </script>
 
 <template>
   <!-- 单个项目 -->
-  <li v-for="kun in historyVersion" :key="kun.index">
+  <li v-for="kun in topics" :key="kun.upid">
     <!-- 更新内容 -->
-    <div v-for="yuyu in kun.describe" :key="yuyu.index">
-      <p>{{ yuyu.text }}</p>
+    <!-- <div v-for="yuyu in kun.describe" :key="yuyu.index"> -->
+    <div>
+      <p>{{ kun.description }}</p>
     </div>
     <!-- 更新时间和版本 -->
     <div class="time">
