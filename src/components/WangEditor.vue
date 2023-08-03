@@ -8,12 +8,13 @@ import { IDomEditor } from '@wangeditor/editor'
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
-const props = defineProps(['height'])
+const props = defineProps(['height', 'isShowToolbar', 'isShowAdvance'])
+
 const editorHeight = `height: ${props.height}px`
 
 const editorRef = shallowRef<IDomEditor | undefined>(undefined)
 
-const valueHtml = ref('<p>hello</p>')
+const valueHtml = ref('<p>Hello</p>')
 
 // 编辑器相关配置
 const editorConfig = {
@@ -44,7 +45,7 @@ const handleCreated = (editor: IDomEditor) => {
 onMounted(() => {
   // 模拟 ajax 异步设置 value
   setTimeout(() => {
-    valueHtml.value = '<p>hello world</p>' // 测试 v-model
+    valueHtml.value = '<p>KUN IS THE CUTEST!</p>' // 测试 v-model
   }, 2000)
 })
 
@@ -59,7 +60,12 @@ onBeforeUnmount(() => {
 <template>
   <!-- 编辑器 -->
   <div class="editor—wrapper">
-    <Toolbar class="toolbar-container" :editor="editorRef" />
+    <Toolbar
+      class="toolbar-container"
+      :editor="editorRef"
+      :mode="$props.isShowAdvance ? 'default' : 'simple'"
+      v-if="props.isShowToolbar"
+    />
     <Editor
       :style="editorHeight"
       v-model="valueHtml"

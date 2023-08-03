@@ -3,8 +3,7 @@ import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
 const info = useKUNGalgameMessageStore()
 
-import { button } from './button'
-
+// 点击发布帖子
 const handlePublish = async () => {
   const res = await info.alert('AlertInfo.edit.publish', true)
   // TODO:
@@ -16,11 +15,14 @@ const handlePublish = async () => {
   }
 }
 
+// 点击保存帖子
 const handleSave = () => {
   // TODO:
   // 这里实现用户的保存逻辑
   info.info('AlertInfo.edit.draft')
 }
+
+const handleShowAdvance = () => {}
 </script>
 
 <template>
@@ -32,6 +34,9 @@ const handleSave = () => {
 
     <!-- 保存按钮 -->
     <button class="save-btn" @click="handleSave">保存草稿</button>
+
+    <!-- 高级选项按钮 -->
+    <button class="advance-btn" @click="handleShowAdvance">高级选项</button>
   </div>
 </template>
 
@@ -42,11 +47,11 @@ const handleSave = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* 距离最底端的距离 */
-  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 /* 单个按钮的样式 */
 .btn-container button {
+  margin: 10px 0;
   height: 40px;
   width: 200px;
   font-size: 20px;
@@ -80,6 +85,20 @@ const handleSave = () => {
 }
 .save-btn:active {
   background-color: var(--kungalgame-pink-3);
+  transform: scale(0.8);
+}
+/* 高级选项按钮的样式 */
+.advance-btn {
+  color: var(--kungalgame-red-5);
+  background-color: var(--kungalgame-trans-red-1);
+  border: 1px solid var(--kungalgame-red-5);
+}
+.advance-btn:hover {
+  background-color: var(--kungalgame-red-5);
+  transition: 0.1s;
+}
+.advance-btn:active {
+  background-color: var(--kungalgame-red-3);
   transform: scale(0.8);
 }
 </style>

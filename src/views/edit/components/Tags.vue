@@ -111,6 +111,7 @@ const validateTagName = (tagName: string) => {
         @keydown.enter="handleTagInput"
       />
     </div>
+
     <div class="tips">
       提示：（单个关键词 14 个字符以内，至少选择一个、最多 7 个）,
       您可以输入文字按下 ' Enter ' 创建关键词
@@ -180,6 +181,9 @@ const validateTagName = (tagName: string) => {
   display: flex;
   min-width: 300px;
   color: var(--kungalgame-font-color-3);
+  &:focus {
+    box-shadow: 0px 0px 5px var(--kungalgame-blue-4);
+  }
 }
 
 /* 提示 */
