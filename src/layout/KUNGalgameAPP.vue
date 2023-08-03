@@ -3,12 +3,29 @@
 // 导入动画
 import 'animate.css'
 
+import { defineAsyncComponent } from 'vue'
+
 import { currBackground } from '@/hooks/useBackgroundPicture'
 
 import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
+
+// 导入帖子页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+
+// 异步导入帖子页回复面板，提升首页加载速度
+const ReplyPanel = defineAsyncComponent(
+  () => import('@/views/topic/content/components/ReplyPanel.vue')
+)
+
+// 使用帖子页面的 store
+const settingsStore = useKUNGalgameTopicStore()
+const { isEdit } = storeToRefs(settingsStore)
 </script>
 
 <template>
+  <!-- 回复面板组件 -->
+  <ReplyPanel :isReply="!isEdit" v-if="isEdit" />
   <!-- #default 是 v-slot 的简写，route 就是路由，Component 是一个 v-node -->
   <div class="app" :style="{ backgroundImage: currBackground }">
     <div class="top-bar">

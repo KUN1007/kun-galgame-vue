@@ -3,10 +3,24 @@
 import { Icon } from '@iconify/vue'
 // 引入流光环绕的特效
 import '@/styles/effect/effect.scss'
+
+// 导入帖子页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+
+// 使用帖子页面的 store
+const settingsStore = useKUNGalgameTopicStore()
+const { isEdit } = storeToRefs(settingsStore)
+
 // 接受父组件的传值
 const props = defineProps(['isOthersTopic'])
 
 const isOthersTopic = props.isOthersTopic
+
+const handelReply = () => {
+  isEdit.value = !isEdit.value
+}
 </script>
 
 <template>
@@ -37,7 +51,7 @@ const isOthersTopic = props.isOthersTopic
       <ul>
         <li>
           <!-- 对所有此类元素应用样式 -->
-          <div class="kungalgame-comet-surround">
+          <div class="kungalgame-comet-surround" @click="handelReply">
             <span></span>
             <span></span>
             <span></span>
