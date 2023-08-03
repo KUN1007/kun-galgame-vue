@@ -58,7 +58,7 @@ export default {
       },
       describe: {
         title: 'KUN Visual Novel',
-        kun1: 'The CUTEST Visual Forum In The World!',
+        kun1: 'The CUTEST Visual Novel Forum In The World!',
         kun2: 'To Create The Best Atmosphere',
         kun3: 'NO ADs Forever',
         kun4: 'Free Forever',

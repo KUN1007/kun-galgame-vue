@@ -20,6 +20,7 @@ const dark = `rgba(${randomNum(0, 55)}, ${randomNum(0, 55)}, ${randomNum(
 
 const color = ref(light)
 
+// 初始化色彩
 onMounted(() => {
   if (showKUNGalgameMode.value === 'dark') {
     color.value = dark
