@@ -117,7 +117,7 @@ onBeforeRouteLeave(() => {
   justify-content: space-between;
   /* 相对于设置面板定位 */
   position: relative;
-  z-index: 1007;
+  z-index: 1;
   margin-bottom: 7px;
   flex-shrink: 0;
   color: var(--kungalgame-font-color-3);
