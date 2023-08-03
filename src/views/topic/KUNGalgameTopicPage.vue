@@ -4,8 +4,40 @@
 <script setup lang="ts">
 import KUNGalgameTopicAside from './aside/KUNGalgameTopicAside.vue'
 import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
+
+// 异步导入回复面板
+import { defineAsyncComponent, onBeforeMount } from 'vue'
+
+// 导入帖子页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+
+// 使用帖子页面的 store
+const settingsStore = useKUNGalgameTopicStore()
+const { isShowAdvance, isEdit } = storeToRefs(settingsStore)
+
+const ReplyPanel = defineAsyncComponent(
+  () => import('@/views/topic/content/components/ReplyPanel.vue')
+)
+
+// 在页面跳转和刷新时重置回复面板状态
+const resetPanelStatus = () => {
+  isEdit.value = false
+  isShowAdvance.value = false
+}
+
+onBeforeRouteLeave(() => {
+  resetPanelStatus()
+})
+
+onBeforeMount(() => {
+  resetPanelStatus()
+})
 </script>
 <template>
+  <!-- 回复面板组件 -->
+  <ReplyPanel />
   <!-- 总容器 -->
   <div class="main-wrapper">
     <!-- 下面帖子详情区的容器 -->
