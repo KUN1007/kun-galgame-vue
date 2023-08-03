@@ -2,7 +2,7 @@
 import { reactive, ref } from 'vue'
 import WangEditor from '@/components/WangEditor.vue'
 import Tags from './components/Tags.vue'
-import Button from './components/Button.vue'
+import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 const emit = defineEmits(['tags', 'article'])
@@ -39,14 +39,19 @@ const submit = () => {
           </div>
         </div>
         <!-- 编辑器 -->
-        <WangEditor class="editor" :height="400" />
+        <WangEditor
+          class="editor"
+          :height="400"
+          :isShowToolbar="true"
+          :isShowAdvance="true"
+        />
       </div>
 
       <!-- 内容区的底部 -->
       <div class="content-footer">
         <Tags />
 
-        <Button />
+        <Footer />
       </div>
     </form>
     <!-- 版权 -->

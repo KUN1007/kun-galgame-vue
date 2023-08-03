@@ -9,6 +9,8 @@ interface Tag {
 interface Topic {
   // 是否正在被编辑
   isEdit: boolean
+  // 是否显示高级编辑模式
+  isShowAdvance: boolean
   // 帖子标题
   title: string
   // 帖子内容
@@ -22,6 +24,7 @@ export const useKUNGalgameTopicStore = defineStore({
   persist: true,
   state: (): Topic => ({
     isEdit: false,
+    isShowAdvance: false,
     title: '',
     article: '',
     tags: [],

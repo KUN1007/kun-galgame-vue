@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// 导入按钮
+import Button from './Button.vue'
+
 import { button } from './button'
 
 import { ref } from 'vue'
@@ -23,6 +26,9 @@ const buttonStatus = ref(false)
       </span>
     </div>
   </div>
+
+  <!-- 发布按钮 -->
+  <Button />
 </template>
 
 <style lang="scss" scoped>

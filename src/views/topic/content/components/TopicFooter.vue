@@ -7,7 +7,6 @@ import '@/styles/effect/effect.scss'
 // 导入帖子页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
-import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 // 使用帖子页面的 store
 const settingsStore = useKUNGalgameTopicStore()
