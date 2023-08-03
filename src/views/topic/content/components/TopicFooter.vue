@@ -18,7 +18,7 @@ const props = defineProps(['isOthersTopic'])
 const isOthersTopic = props.isOthersTopic
 
 const handelReply = () => {
-  isEdit.value = !isEdit.value
+  isEdit.value = true
 }
 </script>
 

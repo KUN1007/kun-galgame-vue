@@ -1,4 +1,10 @@
 <script setup lang="ts">
+// 导入图标
+import { Icon } from '@iconify/vue'
+
+// 导入动画
+import 'animate.css'
+
 // 导入 Vue 异步函数
 import { defineAsyncComponent } from 'vue'
 
@@ -19,37 +25,54 @@ import { storeToRefs } from 'pinia'
 
 // 使用帖子页面的 store
 const settingsStore = useKUNGalgameTopicStore()
-const { isShowAdvance } = storeToRefs(settingsStore)
+const { isShowAdvance, isEdit } = storeToRefs(settingsStore)
 
-const props = defineProps(['isReply'])
+const handelClosePanel = () => {
+  isShowAdvance.value = false
+  isEdit.value = false
+}
 </script>
 
 <template>
-  <Teleport to="body" :disabled="props.isReply">
-    <div class="root">
-      <div class="container">
-        <!-- 回复面板回复给谁 -->
-        <div class="title"><h3>回复给 @ 啊这可海星（楼主）</h3></div>
-        <!-- 回复的编辑器 -->
-        <div class="content">
-          <WangEditor :height="300" :isShowToolbar="isShowAdvance" />
-        </div>
-        <!-- 回复的页脚 -->
-        <div class="footer">
-          <Tags
-            style="margin-top: 10px; margin-bottom: 10px"
-            v-if="isShowAdvance"
-          />
-          <ReplyPanelBtn />
+  <Teleport to="body" :disabled="isEdit">
+    <Transition
+      enter-active-class="animate__animated animate__bounceInUp animate__faster"
+      leave-active-class="animate__animated animate__fadeOutDown animate__faster"
+    >
+      <div class="root" v-if="isEdit">
+        <div class="container">
+          <!-- 回复面板回复给谁 -->
+          <div class="title">
+            <h3>回复给 @ <span>啊这可海星</span>（楼主）</h3>
+            <Icon
+              @click="handelClosePanel"
+              class="close"
+              icon="line-md:close"
+            />
+          </div>
+          <!-- 回复的编辑器 -->
+          <div class="content">
+            <WangEditor :height="300" :isShowToolbar="isShowAdvance" />
+          </div>
+          <!-- 回复的页脚 -->
+          <div class="footer">
+            <Tags
+              style="margin-top: 10px; margin-bottom: 10px"
+              v-if="isShowAdvance"
+            />
+            <ReplyPanelBtn />
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
   </Teleport>
 </template>
 
 <style lang="scss" scoped>
-.title {
-  margin-bottom: 10px;
+.close {
+  font-size: 30px;
+  cursor: pointer;
+  color: var(--kungalgame-font-color-1);
 }
 .root {
   position: fixed;
@@ -59,6 +82,7 @@ const props = defineProps(['isReply'])
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 }
 .container {
   width: 90%;
@@ -69,5 +93,20 @@ const props = defineProps(['isReply'])
   border-radius: 5px;
   border: 1px solid var(--kungalgame-blue-4);
   box-shadow: var(--shadow);
+}
+
+.title {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  span {
+    cursor: pointer;
+    color: var(--kungalgame-blue-5);
+    border-bottom: 2px solid var(--kungalgame-white-9);
+    &:hover {
+      border-bottom: 2px solid var(--kungalgame-blue-5);
+    }
+  }
 }
 </style>
