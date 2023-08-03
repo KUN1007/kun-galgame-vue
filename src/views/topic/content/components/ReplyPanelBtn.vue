@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
+// 导入帖子页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+
+// 使用帖子页面的 store
+const settingsStore = useKUNGalgameTopicStore()
+const { isShowAdvance } = storeToRefs(settingsStore)
+
 const info = useKUNGalgameMessageStore()
 
 // 点击发布帖子
@@ -22,7 +30,9 @@ const handleSave = () => {
   info.info('AlertInfo.edit.draft')
 }
 
-const handleShowAdvance = () => {}
+const handleShowAdvance = () => {
+  isShowAdvance.value = !isShowAdvance.value
+}
 </script>
 
 <template>

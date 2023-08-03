@@ -1,12 +1,25 @@
 <script setup lang="ts">
+// 导入 Vue 异步函数
+import { defineAsyncComponent } from 'vue'
+
 // 导入编辑器
 import WangEditor from '@/components/WangEditor.vue'
 
-// 导入帖子标签
-import Tags from '@/views/edit/components/Tags.vue'
+// 异步导入帖子标签
+const Tags = defineAsyncComponent(
+  () => import('@/views/edit/components/Tags.vue')
+)
 
 // 导入回复按钮
 import ReplyPanelBtn from './ReplyPanelBtn.vue'
+
+// 导入帖子页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+
+// 使用帖子页面的 store
+const settingsStore = useKUNGalgameTopicStore()
+const { isShowAdvance } = storeToRefs(settingsStore)
 
 const props = defineProps(['isReply'])
 </script>
@@ -19,11 +32,14 @@ const props = defineProps(['isReply'])
         <div class="title"><h3>回复给 @ 啊这可海星（楼主）</h3></div>
         <!-- 回复的编辑器 -->
         <div class="content">
-          <WangEditor :height="300" />
+          <WangEditor :height="300" :isShowToolbar="isShowAdvance" />
         </div>
         <!-- 回复的页脚 -->
         <div class="footer">
-          <Tags style="margin-top: 10px; margin-bottom: 10px" />
+          <Tags
+            style="margin-top: 10px; margin-bottom: 10px"
+            v-if="isShowAdvance"
+          />
           <ReplyPanelBtn />
         </div>
       </div>

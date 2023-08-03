@@ -60,11 +60,12 @@ onBeforeUnmount(() => {
 <template>
   <!-- 编辑器 -->
   <div class="editor—wrapper">
+    <!-- 这里不能用 v-if，否则加载不出来 toolBar -->
     <Toolbar
       class="toolbar-container"
       :editor="editorRef"
       :mode="$props.isShowAdvance ? 'default' : 'simple'"
-      v-if="props.isShowToolbar"
+      v-show="props.isShowToolbar"
     />
     <Editor
       :style="editorHeight"
