@@ -32,9 +32,11 @@ const handleClose = () => {
             <span>{{ name }}</span>
           </div>
         </Transition>
+
         <div class="avatar">
           <img :src="loli" />
         </div>
+
         <Transition
           enter-active-class="animate__animated animate__bounceInRight animate__faster"
           appear
@@ -42,6 +44,7 @@ const handleClose = () => {
           <!-- 啊哈哈哈！想不到吧这里参考的是糖调写的 -->
           <div class="info">{{ `「 ${$t(`${infoMsg}`)} 」` }}</div>
         </Transition>
+
         <div class="close" @click="handleClose">
           <Icon icon="line-md:close" />
         </div>
@@ -79,7 +82,7 @@ const handleClose = () => {
     text-align: center;
     background-color: var(--kungalgame-trans-white-2);
     font-size: 24px;
-    /* 这里将人物名字的形装裁剪成六边形 */
+    /* 这里将人物名字的形状裁剪成六边形 */
     clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
   }
 }
