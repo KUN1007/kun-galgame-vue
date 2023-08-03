@@ -11,7 +11,7 @@ import { defineAsyncComponent, onBeforeMount } from 'vue'
 // 导入帖子页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
-import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+import { onBeforeRouteLeave } from 'vue-router'
 
 // 使用帖子页面的 store
 const settingsStore = useKUNGalgameTopicStore()
@@ -35,6 +35,7 @@ onBeforeMount(() => {
   resetPanelStatus()
 })
 </script>
+
 <template>
   <!-- 回复面板组件 -->
   <ReplyPanel />
@@ -50,6 +51,7 @@ onBeforeMount(() => {
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 /* 页面总容器 */
 .main-wrapper {
