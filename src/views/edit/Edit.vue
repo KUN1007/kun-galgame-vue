@@ -39,7 +39,7 @@ const submit = () => {
           </div>
         </div>
         <!-- 编辑器 -->
-        <WangEditor class="editor" />
+        <WangEditor class="editor" :height="400" />
       </div>
 
       <!-- 内容区的底部 -->
