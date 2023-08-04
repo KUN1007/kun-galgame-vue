@@ -11,15 +11,17 @@ import { Icon } from '@iconify/vue'
       <span>鲲最可爱！</span>
     </div>
     <!-- 其它信息 -->
-    <div class="m-p-t-r">
+    <div class="detail">
       <!-- 萌萌点 -->
-      <span>MP: 1007</span>
+      <span>MOE: 1007</span>
       <!-- 点赞数 -->
       <span><Icon icon="line-md:thumbs-up-twotone" />1007</span>
       <!-- 贴子数 -->
       <span><Icon icon="line-md:text-box-multiple-twotone" />1007</span>
-      <!-- 回复数 -->
+      <!-- 回帖数 -->
       <span><Icon icon="ri:reply-line" />1007</span>
+      <!-- 评论数 -->
+      <span><Icon icon="fa-regular:comment-dots" />1007</span>
     </div>
   </div>
 </template>
@@ -49,5 +51,13 @@ import { Icon } from '@iconify/vue'
 /* 用户的名字 */
 .avatar-name span {
   margin-left: 5px;
+}
+.detail {
+  display: flex;
+  span {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
 }
 </style>

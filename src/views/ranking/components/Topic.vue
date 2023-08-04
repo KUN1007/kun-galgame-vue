@@ -10,11 +10,13 @@ import { Icon } from '@iconify/vue'
       啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
     </div>
     <!-- 帖子的其它信息 -->
-    <div class="v-l-c-t">
+    <div class="detail">
       <!-- 浏览数 -->
       <span><Icon icon="ic:outline-remove-red-eye" />1007</span>
       <!-- 点赞数 -->
       <span><Icon icon="line-md:thumbs-up-twotone" />1007</span>
+      <!-- 回帖数 -->
+      <span><Icon icon="ri:reply-line" />1007</span>
       <!-- 评论数 -->
       <span><Icon icon="fa-regular:comment-dots" />1007</span>
       <!-- 推贴数 -->
@@ -44,9 +46,12 @@ import { Icon } from '@iconify/vue'
 .v-l-c-t {
   flex-shrink: 0;
 }
-/* 版权 */
-.copyright {
-  margin: 0 auto;
-  margin-bottom: 20px;
+.detail {
+  display: flex;
+  span {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
 }
 </style>
