@@ -175,6 +175,10 @@ const props = defineProps(['data'])
   position: absolute;
   background-color: var(--kungalgame-trans-white-2);
   bottom: 0;
+  div {
+    display: flex;
+    align-items: center;
+  }
 }
 /* 帖子的标签 */
 .topic-tags {
