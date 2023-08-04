@@ -121,6 +121,10 @@ import { onMounted, watch } from 'vue'
   /* 窗口缩小不换行 */
   overflow: hidden;
   flex-wrap: wrap;
+  span {
+    display: flex;
+    align-items: center;
+  }
 }
 .status i {
   color: var(--kungalgame-red-4);

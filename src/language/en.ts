@@ -121,7 +121,7 @@ export default {
   },
   login: {
     loginTitle: 'Login',
-    forget: 'Forgot your password? Click here to send a password reset email',
+    forget: 'Forgot your password? Click here to send reset email',
     loginUsername: 'Username or email',
     loginPassword: 'Password',
     capture: 'Click to proceed with the human verification process',
