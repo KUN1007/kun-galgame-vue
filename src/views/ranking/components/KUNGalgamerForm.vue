@@ -17,6 +17,8 @@ import KUNgalgamer from './KUNGalgamer.vue'
       <div class="topic">按发帖数排序</div>
       <!-- 回贴数 -->
       <div class="reply">按回贴数排序</div>
+      <!-- 评论数 -->
+      <div class="comment">按评论数排序</div>
     </div>
     <!-- 单个用户的容器 -->
     <div class="kungalgamer-container">
@@ -58,7 +60,8 @@ import KUNgalgamer from './KUNGalgamer.vue'
 .moemoepoint,
 .praise,
 .topic,
-.reply {
+.reply,
+.comment {
   height: 30px;
   width: 100%;
   border: 1px solid var(--kungalgame-pink-4);
@@ -68,7 +71,8 @@ import KUNgalgamer from './KUNGalgamer.vue'
 }
 .praise,
 .topic,
-.reply {
+.reply,
+.comment {
   border-left: none;
 }
 /* 单个用户的容器 */

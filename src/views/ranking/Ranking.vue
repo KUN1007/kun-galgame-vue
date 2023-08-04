@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Form from './components/Form.vue'
-import Temp from './components/Temp.vue'
+import KUNGalgamerForm from './components/KUNGalgamerForm.vue'
+import TopicForm from './components/TopicForm.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
@@ -9,8 +9,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   <div class="root">
     <!-- 内容区 -->
     <div class="article">
-      <Form />
-      <Temp />
+      <KUNGalgamerForm />
+      <TopicForm />
     </div>
     <!-- 版权 -->
     <KUNGalgameFooter style="margin: 20px auto" />
