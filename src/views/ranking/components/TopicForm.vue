@@ -14,7 +14,7 @@ import Topic from './Topic.vue'
       <!-- 点赞数 -->
       <div class="like">按点赞数排序</div>
       <!-- 按回复数排序 -->
-      <div class="reply">按回复数排序</div>
+      <div class="reply">按回帖数排序</div>
       <!-- 按回复数排序 -->
       <div class="comment">按评论数排序</div>
       <!-- 按推贴数排序 -->
