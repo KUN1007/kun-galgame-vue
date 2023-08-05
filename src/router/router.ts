@@ -26,7 +26,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/donate',
     component: () => import('@/views/donate/Donate.vue'),
     meta: {
-      title: '捐助我们',
+      title: '赞助我们',
     },
   },
 

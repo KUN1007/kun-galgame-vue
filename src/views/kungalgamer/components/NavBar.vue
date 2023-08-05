@@ -13,7 +13,7 @@ const navBar: nav[] = [
   },
   {
     index: 2,
-    name: '更改信息',
+    name: '信息设置',
     router: '/kungalgamer/kungalgamer/settings',
   },
   {
@@ -39,6 +39,11 @@ const navBar: nav[] = [
   {
     index: 7,
     name: '推过的帖',
+    router: '/kungalgamer/kungalgamer/topic',
+  },
+  {
+    index: 8,
+    name: '评论列表',
     router: '/kungalgamer/kungalgamer/topic',
   },
 ]
