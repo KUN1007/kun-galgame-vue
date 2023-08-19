@@ -18,6 +18,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "animate.css": "^4.1.1",
     "dayjs": "^1.11.9",
@@ -29,7 +30,7 @@
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
-    "@types/node": "^20.4.6",
+    "@types/node": "^20.4.8",
     "@vitejs/plugin-vue": "^4.2.3",
     "cross-env": "^7.0.3",
     "rollup-plugin-visualizer": "^5.9.2",

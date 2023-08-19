@@ -1,4 +1,4 @@
-<!-- 重新编辑帖子信息显示 -->
+<!-- 重新编辑话题信息显示 -->
 <script setup lang="ts"></script>
 
 <template>

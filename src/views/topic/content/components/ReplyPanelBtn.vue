@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
-// 导入帖子页面 store
+// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 使用帖子页面的 store
+// 使用话题页面的 store
 const settingsStore = useKUNGalgameTopicStore()
 const { isShowAdvance } = storeToRefs(settingsStore)
 
 const info = useKUNGalgameMessageStore()
 
-// 点击发布帖子
+// 点击发布话题
 const handlePublish = async () => {
   const res = await info.alert('AlertInfo.edit.publish', true)
   // TODO:
@@ -23,7 +23,7 @@ const handlePublish = async () => {
   }
 }
 
-// 点击保存帖子
+// 点击保存话题
 const handleSave = () => {
   // TODO:
   // 这里实现用户的保存逻辑

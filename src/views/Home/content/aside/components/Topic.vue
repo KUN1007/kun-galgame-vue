@@ -12,14 +12,14 @@ let titleName = isHotTopic ? 'hot' : 'new'
 </script>
 
 <template>
-  <!-- 侧边栏动态推送今日热度帖子 -->
+  <!-- 侧边栏动态推送今日热度话题 -->
   <div class="topic-wrap">
-    <!-- 今日热度帖子的标题名 -->
+    <!-- 今日热度话题的标题名 -->
     <!-- 这里调用全局注册的 i18n 函数 $t 对名字进行渲染 -->
     <div class="title" :class="titleName">
       {{ $t(`mainPage.asideActive['${titleName}']`) }}
     </div>
-    <!-- 热门帖子的目录 -->
+    <!-- 热门话题的目录 -->
     <!-- 这里使用了父组件传过来的 isHotTopic 数据 -->
     <template v-for="kun in singleTopic" :key="kun.index">
       <span class="topic-content" v-if="isHotTopic" :class="`hot-bg`">
@@ -37,13 +37,13 @@ let titleName = isHotTopic ? 'hot' : 'new'
 </template>
 
 <style lang="scss" scoped>
-/* 侧边栏动态推送帖子的总容器 */
+/* 侧边栏动态推送话题的总容器 */
 .topic-wrap {
   width: 100%;
   height: 100%;
-  /* 热门帖子距离最新帖子的距离 */
+  /* 热门话题距离最新话题的距离 */
   margin-bottom: 5px;
-  /* 今日热门帖子区域为竖直弹性盒 */
+  /* 今日热门话题区域为竖直弹性盒 */
   display: flex;
   flex-direction: column;
 }
@@ -59,11 +59,11 @@ let titleName = isHotTopic ? 'hot' : 'new'
   overflow: hidden;
   white-space: nowrap;
 }
-/* 展示热门帖子的区域 */
+/* 展示热门话题的区域 */
 .topic-content {
   height: 100%;
 
-  /* 热门帖子标题部分为弹性盒 */
+  /* 热门话题标题部分为弹性盒 */
   display: flex;
   flex-direction: column;
   a {

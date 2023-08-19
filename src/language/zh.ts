@@ -1,8 +1,8 @@
 export default {
   header: {
     name: '鲲Galgame',
-    pool: '所有帖子',
-    create: '发布帖子',
+    pool: '所有话题',
+    create: '发布话题',
     technique: '技术交流',
     about: '关于我们',
     return: '返回主页',
@@ -26,7 +26,7 @@ export default {
   mainPage: {
     asideActive: {
       fold: '折叠左侧区域',
-      create: '发布帖子',
+      create: '发布话题',
       update: '更新日志',
       balance: '收支公示',
       ranking: '排行榜单',
@@ -72,8 +72,8 @@ export default {
       timeSort: '按时间排序',
       likeSort: '按点赞排序',
       commentSort: '按评论排序',
-      tags: '相同标签下的其它帖子',
-      master: '楼主的其它帖子',
+      tags: '相同标签下的其它话题',
+      master: '楼主的其它话题',
     },
   },
   update: {
@@ -107,11 +107,11 @@ export default {
     title: '加入 / 联系我们',
   },
   edit: {
-    title: '请输入帖子的标题（40字以内）',
-    tags: '请输入帖子的关键词',
+    title: '请输入话题的标题（40字以内）',
+    tags: '请输入话题的关键词',
     hint: `提示：（单个关键词 14 个字符以内，至少选择一个、最多 7 个）, 您可以输入文字按下 ' Enter ' 创建关键词`,
     hot: '热门关键词（点击选择）:',
-    categories: '点击选择帖子的分区（可多选）:',
+    categories: '点击选择话题的分区（可多选）:',
     btnGalgame: 'Galgame',
     btnTechnique: '技术交流',
     others: '其它',

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <!-- 单个帖子 -->
+  <!-- 单个话题 -->
   <div class="topic">
     <div class="topic-title">
       啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
@@ -11,12 +11,12 @@
 </template>
 
 <style lang="scss" scoped>
-/* 单个帖子的样式 */
+/* 单个话题的样式 */
 .topic {
   width: 100%;
-  /* 单个帖子高度 */
+  /* 单个话题高度 */
   height: 30px;
-  /* 帖子之间的距离 */
+  /* 话题之间的距离 */
   padding: 2px;
   margin: 5px 0;
   display: flex;
@@ -31,7 +31,7 @@
   border-bottom: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-blue-1);
 }
-/* 单个帖子的标题 */
+/* 单个话题的标题 */
 .topic-title {
   /* 单行显示，溢出省略号 */
   display: inline-block;

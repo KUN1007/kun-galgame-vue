@@ -107,7 +107,7 @@ const validateTagName = (tagName: string) => {
       <input
         class="input"
         type="text"
-        placeholder="请输入帖子的关键词"
+        placeholder="请输入话题的关键词"
         @keydown.enter="handleTagInput"
       />
     </div>

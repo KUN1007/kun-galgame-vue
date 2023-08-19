@@ -1,5 +1,5 @@
 <!-- 
-  KUNGalgame 的帖子页面
+  KUNGalgame 的话题页面
  -->
 <script setup lang="ts">
 import KUNGalgameTopicAside from './aside/KUNGalgameTopicAside.vue'
@@ -8,12 +8,12 @@ import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
 // 异步导入回复面板
 import { defineAsyncComponent, onBeforeMount } from 'vue'
 
-// 导入帖子页面 store
+// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 import { onBeforeRouteLeave } from 'vue-router'
 
-// 使用帖子页面的 store
+// 使用话题页面的 store
 const settingsStore = useKUNGalgameTopicStore()
 const { isShowAdvance, isEdit } = storeToRefs(settingsStore)
 
@@ -41,7 +41,7 @@ onBeforeMount(() => {
   <ReplyPanel />
   <!-- 总容器 -->
   <div class="main-wrapper">
-    <!-- 下面帖子详情区的容器 -->
+    <!-- 下面话题详情区的容器 -->
     <div class="topic-wrapper">
       <!-- 下方可视内容区的容器 -->
       <div class="content-wrapper">
@@ -59,7 +59,7 @@ onBeforeMount(() => {
   flex-shrink: 0;
   flex-direction: column;
 }
-/* 下面帖子详情区的容器 */
+/* 下面话题详情区的容器 */
 .topic-wrapper {
   display: flex;
   flex-shrink: 0;

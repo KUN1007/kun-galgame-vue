@@ -3,7 +3,7 @@
 <template>
   <!-- 上部区域的左边 -->
   <div class="reply">
-    <!-- TODO: 跳转到页面中帖子的位置 -->
+    <!-- TODO: 跳转到页面中话题的位置 -->
     <span>回复给@<router-link to="#">啊这可海星啊这</router-link></span>
   </div>
 </template>

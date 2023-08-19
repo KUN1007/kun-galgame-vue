@@ -9,9 +9,9 @@ const isHotTopic = props.isHotTopic
 
 <template>
   <div class="new-topic">
-    <!-- 热门帖子的标题 -->
+    <!-- 热门话题的标题 -->
     <div class="title">{{ title }}</div>
-    <!-- 热门帖子的热度值 -->
+    <!-- 热门话题的热度值 -->
     <div class="new" v-if="!isHotTopic">
       <Icon icon="svg-spinners:clock" />
       <span>{{ time }}</span>
@@ -24,7 +24,7 @@ const isHotTopic = props.isHotTopic
 </template>
 
 <style lang="scss" scoped>
-/* 单个新帖子的样式 */
+/* 单个新话题的样式 */
 .new-topic {
   width: 100%;
   display: flex;
@@ -34,7 +34,7 @@ const isHotTopic = props.isHotTopic
   color: var(--kungalgame-font-color-3);
   align-items: center;
   cursor: pointer;
-  /* 单个新帖子的 hover */
+  /* 单个新话题的 hover */
   &:hover {
     box-shadow: var(--kungalgame-shadow-1);
   }
@@ -42,17 +42,17 @@ const isHotTopic = props.isHotTopic
     box-shadow: var(--kungalgame-shadow-2);
   }
 }
-/* 单个帖子的标题样式 */
+/* 单个话题的标题样式 */
 .title {
-  /* 单个帖子标题左侧的一段距离 */
+  /* 单个话题标题左侧的一段距离 */
   padding-left: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* 设置帖子的字体大小 */
+  /* 设置话题的字体大小 */
   font-size: smaller;
 }
-/* 设置单个帖子右侧的热度值盒子 */
+/* 设置单个话题右侧的热度值盒子 */
 .new {
   /* 时间距离右侧的距离 */
   margin-right: 10px;

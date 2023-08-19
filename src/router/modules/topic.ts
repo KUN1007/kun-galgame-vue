@@ -3,7 +3,7 @@ import { type RouteRecordRaw } from 'vue-router'
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
 const topic: RouteRecordRaw[] = [
-  // KUNgalgame 帖子详情页
+  // KUNgalgame 话题详情页
   {
     path: '/topic',
     component: Layout,
@@ -16,7 +16,7 @@ const topic: RouteRecordRaw[] = [
         component: () => import('@/views/topic/KUNGalgameTopicPage.vue'),
         meta: {
           permission: 'kungalgamer',
-          title: '帖子',
+          title: '话题',
         },
       },
     ],

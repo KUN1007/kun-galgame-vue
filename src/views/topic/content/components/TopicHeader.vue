@@ -1,10 +1,10 @@
-<!-- 帖子的头部区域，标题等 -->
+<!-- 话题的头部区域，标题等 -->
 <script setup lang="ts"></script>
 
 <template>
-  <!-- 楼主帖子头部 -->
+  <!-- 楼主话题头部 -->
   <div class="master-topic-header">
-    <!-- 楼主帖子标题 -->
+    <!-- 楼主话题标题 -->
     <div class="master-topic-title">
       啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
     </div>
@@ -12,7 +12,7 @@
 </template>
 
 <style lang="scss" scoped>
-/* 楼主帖子头部 */
+/* 楼主话题头部 */
 .master-topic-header {
   width: 100%;
   height: 70px;
@@ -25,7 +25,7 @@
   border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
 }
-/* 楼主帖子标题 */
+/* 楼主话题标题 */
 .master-topic-title {
   font-size: 17px;
   font-weight: bold;

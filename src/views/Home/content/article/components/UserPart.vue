@@ -2,7 +2,7 @@
 defineProps(['kungalgamer'])
 </script>
 <template>
-  <!-- 帖子发布者个人信息 -->
+  <!-- 话题发布者个人信息 -->
   <div class="kungalgamer">
     <!-- 发布者头像 -->
     <div class="avatar">
@@ -23,11 +23,11 @@ defineProps(['kungalgamer'])
 .kungalgamer {
   width: 60px;
   height: 100%;
-  /* 单个帖子左右两部分发布人信息和帖子概览均为竖向弹性盒 */
+  /* 单个话题左右两部分发布人信息和话题概览均为竖向弹性盒 */
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  /* 发帖人信息距离帖子概览的距离 */
+  /* 发帖人信息距离话题概览的距离 */
   margin: 0 5px;
 }
 .avatar,

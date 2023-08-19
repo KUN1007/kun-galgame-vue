@@ -29,9 +29,9 @@ const props = defineProps(['isActive'])
       </span>
     </div>
   </div>
-  <!-- 热门帖子板块 -->
+  <!-- 热门话题板块 -->
   <Topic v-show="props.isActive" :isHotTopic="true" />
-  <!-- 新帖子板块 -->
+  <!-- 新话题板块 -->
   <!-- 这个 style 使侧边栏和内容区等高 -->
   <Topic v-show="props.isActive" :isHotTopic="false" style="margin-bottom: 0" />
 </template>
@@ -45,10 +45,10 @@ const props = defineProps(['isActive'])
   display: flex;
   flex-direction: column;
 }
-/* 发布帖子 */
+/* 发布话题 */
 .new-article {
   width: 100%;
-  /* 发布帖子的按钮相对于功能区盒子的占比 */
+  /* 发布话题的按钮相对于功能区盒子的占比 */
   flex-grow: 1;
   flex-shrink: 0;
   /* 发布按钮样式 */

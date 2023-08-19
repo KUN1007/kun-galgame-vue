@@ -11,7 +11,7 @@ import { defineAsyncComponent } from 'vue'
 // 导入编辑器
 import WangEditor from '@/components/WangEditor.vue'
 
-// 异步导入帖子标签
+// 异步导入话题标签
 const Tags = defineAsyncComponent(
   () => import('@/views/edit/components/Tags.vue')
 )
@@ -19,11 +19,11 @@ const Tags = defineAsyncComponent(
 // 导入回复按钮
 import ReplyPanelBtn from './ReplyPanelBtn.vue'
 
-// 导入帖子页面 store
+// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 使用帖子页面的 store
+// 使用话题页面的 store
 const settingsStore = useKUNGalgameTopicStore()
 const { isShowAdvance, isEdit } = storeToRefs(settingsStore)
 

@@ -3,10 +3,10 @@ import { getUpdateLogApi } from '@/api/update-log/index'
 import { KUNGalgameUpdateLog } from '@/api/update-log/types/updateLog'
 import { ref, onBeforeMount } from 'vue'
 
-// 在组件中定义响应式的帖子数据
+// 在组件中定义响应式的话题数据
 const topics = ref<KUNGalgameUpdateLog[]>([])
 
-// 在组件挂载时调用 fetchTopics 获取帖子数据
+// 在组件挂载时调用 fetchTopics 获取话题数据
 onBeforeMount(async () => {
   try {
     topics.value = await getUpdateLogApi()

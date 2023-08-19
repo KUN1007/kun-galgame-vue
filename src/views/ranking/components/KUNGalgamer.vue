@@ -18,7 +18,7 @@ import { Icon } from '@iconify/vue'
       <span><Icon icon="line-md:thumbs-up-twotone" />1007</span>
       <!-- 贴子数 -->
       <span><Icon icon="line-md:text-box-multiple-twotone" />1007</span>
-      <!-- 回帖数 -->
+      <!-- 回复数 -->
       <span><Icon icon="ri:reply-line" />1007</span>
       <!-- 评论数 -->
       <span><Icon icon="fa-regular:comment-dots" />1007</span>

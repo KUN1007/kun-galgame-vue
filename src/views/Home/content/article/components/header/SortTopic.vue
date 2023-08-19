@@ -59,7 +59,7 @@ const navSortItem: Sort[] = [
 </template>
 
 <style lang="scss" scoped>
-/* 筛选、搜索帖子、更多 */
+/* 筛选、搜索话题、更多 */
 .container {
   height: 100%;
   width: 1px;

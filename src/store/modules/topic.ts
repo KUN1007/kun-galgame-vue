@@ -1,4 +1,4 @@
-/* 帖子详情的 store */
+/* 话题详情的 store */
 import { defineStore } from 'pinia'
 
 interface Tag {
@@ -11,11 +11,11 @@ interface Topic {
   isEdit: boolean
   // 是否显示高级编辑模式
   isShowAdvance: boolean
-  // 帖子标题
+  // 话题标题
   title: string
-  // 帖子内容
+  // 话题内容
   article: string
-  // 帖子标签
+  // 话题标签
   tags: Tag[]
 }
 

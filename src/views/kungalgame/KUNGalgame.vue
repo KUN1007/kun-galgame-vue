@@ -83,7 +83,7 @@ import Aside from './components/Aside.vue'
           </p>
           <br />
           <ul class="list">
-            <li>Twitter.com（推特） - 帖子详情页</li>
+            <li>Twitter.com（推特） - 话题详情页</li>
             <li>github.com（github） - 配色</li>
             <li>bbs.kfmax.com（绯月） - 用户信息分类</li>
             <li>......等等</li>
@@ -107,9 +107,9 @@ import Aside from './components/Aside.vue'
           <p>
             Galgame 论坛意味着
             <strong
-              >我们只以 galgame 为主，在首页的帖子中仅含有和 galgame
+              >我们只以 galgame 为主，在首页的话题中仅含有和 galgame
               有关的一切话题 </strong
-            >，其它话题全部位于<span class="skip">帖子池</span>中
+            >，其它话题全部位于<span class="skip">话题池</span>中
           </p>
           <h3>2. 以营造最良好的氛围为理念</h3>
           <p>紧接上一条，在整个网站编写之前，我在设计图上写了这些：</p>
@@ -131,8 +131,8 @@ import Aside from './components/Aside.vue'
           </p>
           <h3>3. 永远不会有广告</h3>
           <p>
-            字面意思，<strong>网站永远不会出现任何形式的广告</strong>，我们觉得一个好的论坛不应该有任何广告的构成，如果发现了类似于广告的情况，请踩这个帖子，因为累计
-            10 人将会封禁帖子
+            字面意思，<strong>网站永远不会出现任何形式的广告</strong>，我们觉得一个好的论坛不应该有任何广告的构成，如果发现了类似于广告的情况，请踩这个话题，因为累计
+            10 人将会封禁话题
           </p>
           <h3>4. 永远不会收费</h3>
           <p>

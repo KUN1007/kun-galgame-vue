@@ -1,10 +1,10 @@
-<!-- 把所有帖子的所有 Tag 组合起来形成的一个区域 -->
+<!-- 把所有话题的所有 Tag 组合起来形成的一个区域 -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 </script>
 
 <template>
-  <!-- 帖子的标签 -->
+  <!-- 话题的标签 -->
   <div class="tags">
     <!-- 标签的图标字体 -->
     <Icon class="tag" icon="mingcute:tag-2-fill" />
@@ -19,7 +19,7 @@ import { Icon } from '@iconify/vue'
 </template>
 
 <style lang="scss" scoped>
-/* 帖子的标签 */
+/* 话题的标签 */
 .tags {
   display: flex;
   justify-content: center;

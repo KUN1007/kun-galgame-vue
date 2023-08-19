@@ -6,13 +6,13 @@ interface Tag {
 }
 
 interface Topic {
-  // 帖子标题
+  // 话题标题
   title: string
-  // 帖子内容
+  // 话题内容
   article: string
-  // 帖子标签
+  // 话题标签
   tags: Tag[]
-  // 帖子分区
+  // 话题分区
   category: string[]
 }
 

@@ -12,7 +12,7 @@ const buttonStatus = ref(false)
 <template>
   <!-- 话题分类的容器 -->
   <div class="topic-group">
-    <div>点击选择帖子的分区（可多选）:</div>
+    <div>点击选择话题的分区（可多选）:</div>
     <!-- 分类容器的按钮集合 -->
     <div class="group-btn" :class="buttonStatus ? 'selected-btn' : ''">
       <span

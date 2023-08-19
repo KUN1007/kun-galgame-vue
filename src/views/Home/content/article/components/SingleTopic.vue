@@ -10,7 +10,7 @@ const isUpvote = props.data.topicStatus === 2 ? 'kungalgame-comet-surround' : ''
 <template>
   <div class="topic">
     <UserPart :kungalgamer="props.data.topicAuthor" />
-    <!-- TODO: 进入指定帖子的路由 -->
+    <!-- TODO: 进入指定话题的路由 -->
     <router-link to="/topic">
       <TopicPart :data="props.data" />
     </router-link>
@@ -18,7 +18,7 @@ const isUpvote = props.data.topicStatus === 2 ? 'kungalgame-comet-surround' : ''
 </template>
 
 <style lang="scss" scoped>
-/* 单个帖子 */
+/* 单个话题 */
 .topic {
   width: 100%;
   height: 70px;

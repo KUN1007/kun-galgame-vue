@@ -26,9 +26,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
             <ul>
               <li>1. 每个注册用户初始拥有 1007 萌萌点</li>
               <li>2. 每天登录自动获得随机 1 ~ 7 萌萌点</li>
-              <li>3. 帖子每被点赞 1 次，获得 1 萌萌点</li>
-              <li>4. 帖子每被评论 1 次，获得 1 萌萌点</li>
-              <li>5. 帖子每被推 1 次，获得 17 萌萌点</li>
+              <li>3. 话题每被点赞 1 次，获得 1 萌萌点</li>
+              <li>4. 话题每被评论 1 次，获得 1 萌萌点</li>
+              <li>5. 话题每被推 1 次，获得 17 萌萌点</li>
               <li>6. 每日前 7 次回复获得 1 萌萌点</li>
               <li>7. 每日前 3 次点赞获得 1 萌萌点</li>
             </ul>
@@ -37,8 +37,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
           <div class="deduct">
             <div class="title-2">- 扣除方法</div>
             <ul>
-              <li>1. 帖子每被踩 1 次，扣除 3 萌萌点</li>
-              <li>2. 单个帖子每被踩 10 次，若审核无误，扣除 100 萌萌点</li>
+              <li>1. 话题每被踩 1 次，扣除 3 萌萌点</li>
+              <li>2. 单个话题每被踩 10 次，若审核无误，扣除 100 萌萌点</li>
               <li>3. 用户推贴一次将会被扣除 17 萌萌点，可以重复推贴</li>
             </ul>
           </div>
@@ -54,25 +54,25 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
             </li>
           </ul>
         </div>
-        <!-- 帖子 -->
+        <!-- 话题 -->
         <div class="topic">
-          <div class="title-1">帖子</div>
+          <div class="title-1">话题</div>
           <ul>
             <li>
               1.
-              每个位于主页的帖子处于“动态推送状态”，一旦该帖子受到包括“点赞”“评论”“推贴”的影响时，该贴将会被置为顶贴
+              每个位于主页的话题处于“动态推送状态”，一旦该话题受到包括“点赞”“评论”“推贴”的影响时，该贴将会被置为顶贴
             </li>
             <li>
-              2. 帖子热度值计算公式：热度值 = 10 + 评论数 × 3 + 点赞数 × 7 +
+              2. 话题热度值计算公式：热度值 = 10 + 评论数 × 3 + 点赞数 × 7 +
               推贴数 × 1007 – 发帖经过小时数 / 3 – 踩 × 7
             </li>
-            <li>3. 帖子热度值超过 1007 会获得“流光”样式</li>
+            <li>3. 话题热度值超过 1007 会获得“流光”样式</li>
             <li>
-              4. 一旦单个帖子“踩”的数量达到 10，该帖子会被系统屏蔽，交由管理审核
+              4. 一旦单个话题“踩”的数量达到 10，该话题会被系统屏蔽，交由管理审核
             </li>
             <li>
-              5. 每天晚上 12: 00 帖子池会清空一轮，留下昨天帖子热度值最高的 17
-              个帖子，热度值相同则都被推送
+              5. 每天晚上 12: 00 话题池会清空一轮，留下昨天话题热度值最高的 17
+              个话题，热度值相同则都被推送
             </li>
           </ul>
         </div>
@@ -167,7 +167,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 .kungalgamer > ul li {
   margin: 5px 0;
 }
-/* 帖子 */
+/* 话题 */
 .topic > ul {
   margin-left: 20px;
 }

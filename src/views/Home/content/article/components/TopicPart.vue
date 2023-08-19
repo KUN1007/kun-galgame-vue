@@ -7,17 +7,17 @@ import { formatTime } from '@/utils/formatTime'
 defineProps(['data'])
 </script>
 <template>
-  <!-- 帖子信息 -->
+  <!-- 话题信息 -->
   <div class="topic-info">
-    <!-- 帖子的概览信息 -->
+    <!-- 话题的概览信息 -->
     <div class="topic-summary">
-      <!-- 帖子的标题 -->
+      <!-- 话题的标题 -->
       <div class="topic-title">
         <div class="topic-title-container">
           <span>{{ $props.data.topicTitle }}</span>
         </div>
       </div>
-      <!-- 帖子发布日期 -->
+      <!-- 话题发布日期 -->
       <div class="topic-status">
         <ul>
           <li>
@@ -35,12 +35,12 @@ defineProps(['data'])
           </li>
         </ul>
       </div>
-      <!-- 帖子的状态，点赞数等 -->
+      <!-- 话题的状态，点赞数等 -->
       <div class="topic-post-date">
         <span>{{ formatTime($props.data.topicPublishTime) }}</span>
       </div>
     </div>
-    <!-- 帖子的预览介绍 -->
+    <!-- 话题的预览介绍 -->
     <div class="topic-introduction">
       <div class="topic-introduction-text">
         <p>
@@ -51,27 +51,27 @@ defineProps(['data'])
   </div>
 </template>
 <style lang="scss" scoped>
-/* 帖子信息 */
+/* 话题信息 */
 .topic-info {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-/* 帖子的概览信息 */
+/* 话题的概览信息 */
 .topic-summary,
 .topic-introduction {
   width: 100%;
   height: 1px;
 }
-/* 帖子展示的头部 */
+/* 话题展示的头部 */
 .topic-summary {
   flex-grow: 1;
   /* 头部三个小部分为弹性盒 */
   display: flex;
   justify-content: space-between;
 }
-/* 帖子的头部信息，标题日期等 */
+/* 话题的头部信息，标题日期等 */
 .topic-title {
   height: 100%;
   width: 1px;
@@ -90,12 +90,12 @@ defineProps(['data'])
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* 帖子标题的字体颜色 */
+/* 话题标题的字体颜色 */
 .topic-title span {
   color: var(--kungalgame-font-color-3);
   font-weight: 500;
 }
-/* 帖子点赞数等信息 */
+/* 话题点赞数等信息 */
 .topic-status {
   display: flex;
   justify-content: end;
@@ -129,7 +129,7 @@ defineProps(['data'])
   overflow: hidden;
   white-space: nowrap;
 }
-/* 帖子的预览介绍 */
+/* 话题的预览介绍 */
 .topic-introduction {
   flex-grow: 2;
   display: flex;

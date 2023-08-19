@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue'
 <template>
   <!-- 右侧部分 -->
   <div class="bar">
-    <!-- 对帖子进行排序 -->
+    <!-- 对话题进行排序 -->
     <div class="sort">
       <div>排序</div>
       <!-- 左侧部分 -->

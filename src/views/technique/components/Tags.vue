@@ -8,7 +8,7 @@ import { tagsList } from './tags'
   <!-- 热门标签池 -->
   <div class="tags-container">
     <div>热门标签</div>
-    <!-- 单个帖子容器 -->
+    <!-- 单个话题容器 -->
     <ul class="tags">
       <!-- 单个标签，最大输入文字为 10 个 -->
       <li v-for="kun in tagsList" :key="kun.index">
