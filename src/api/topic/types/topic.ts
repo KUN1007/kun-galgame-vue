@@ -8,7 +8,7 @@ export interface KUNGalgameAuthor {
   moemoePoints: number
 }
 
-// 帖子评论接口
+// 话题评论接口
 export interface KUNGalgameTopicComment {
   // 评论 ID
   commentId: number
@@ -26,7 +26,7 @@ export interface KUNGalgameTopicComment {
   commentContent: string
 }
 
-// 帖子回复接口
+// 话题回复接口
 export interface KUNGalgameTopicReply {
   // 回复的 ID
   replyId: number
@@ -54,38 +54,38 @@ export interface KUNGalgameTopicReply {
   replyCount: number
 }
 
-// 单个帖子信息接口
+// 单个话题信息接口
 export interface KUNGalgameTopic {
-  // 帖子 ID
+  // 话题 ID
   topicId: number
-  //   帖子标题
+  //   话题标题
   topicTitle: string
-  //   帖子的楼层数
+  //   话题的楼层数
   topicFloorCount: number
-  //   帖子的内容
+  //   话题的内容
   topicContent: string
-  //   帖子的发布时间
+  //   话题的发布时间
   topicPublishTime: number
-  //   帖子的热度值
+  //   话题的热度值
   topicPopularity: number
-  //   帖子的标签
+  //   话题的标签
   topicTags: string[]
-  //   帖子的被推数
+  //   话题的被推数
   topicUpvotes: number
-  //   帖子的点击数
+  //   话题的点击数
   topicViews: number
-  //   帖子的点赞数
+  //   话题的点赞数
   topicLikes: number
-  //   帖子的点踩数
+  //   话题的点踩数
   topicDislikes: number
-  //   帖子的回复数
+  //   话题的回复数
   topicReplyCount: 1
-  //   帖子的分区
+  //   话题的分区
   topicCategory: string[]
-  //   帖子的状态
+  //   话题的状态
   topicStatus: number
-  //   帖子是否被重新编辑
+  //   话题是否被重新编辑
   topicIsEdited: false
-  //   帖子的发布者
+  //   话题的发布者
   topicAuthor: KUNGalgameAuthor
 }

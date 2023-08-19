@@ -1,14 +1,14 @@
-<!-- 帖子的底部区域，推贴，回帖，点赞等 -->
+<!-- 话题的底部区域，推贴，回复，点赞等 -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 // 引入流光环绕的特效
 import '@/styles/effect/effect.scss'
 
-// 导入帖子页面 store
+// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 使用帖子页面的 store
+// 使用话题页面的 store
 const settingsStore = useKUNGalgameTopicStore()
 const { isEdit } = storeToRefs(settingsStore)
 
@@ -23,7 +23,7 @@ const handelReply = () => {
 </script>
 
 <template>
-  <!-- 楼主帖子底部 -->
+  <!-- 楼主话题底部 -->
   <div class="footer">
     <!-- 底部左侧部分（点赞、推贴、踩） -->
     <div class="left">
@@ -55,7 +55,7 @@ const handelReply = () => {
             <span></span>
             <span></span>
             <span></span>
-            回帖
+            回复
           </div>
         </li>
         <!-- 分享 -->
@@ -79,7 +79,7 @@ const handelReply = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 楼主帖子底部 */
+/* 楼主话题底部 */
 .footer {
   padding: 10px 0;
   width: 100%;

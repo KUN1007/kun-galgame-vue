@@ -3,24 +3,24 @@ import Topic from './Topic.vue'
 </script>
 
 <template>
-  <!-- 帖子排行 -->
+  <!-- 话题排行 -->
   <div class="topic-ranking">
-    <!-- 帖子排行标题 -->
-    <div class="topic-title">最萌的帖子</div>
-    <!-- 帖子排行的交互 -->
+    <!-- 话题排行标题 -->
+    <div class="topic-title">最萌的话题</div>
+    <!-- 话题排行的交互 -->
     <div class="topic-nav">
       <!-- 浏览数 -->
       <div class="view">按浏览数排序</div>
       <!-- 点赞数 -->
       <div class="like">按点赞数排序</div>
       <!-- 按回复数排序 -->
-      <div class="reply">按回帖数排序</div>
+      <div class="reply">按回复数排序</div>
       <!-- 按回复数排序 -->
       <div class="comment">按评论数排序</div>
       <!-- 按推贴数排序 -->
       <div class="top">按推贴数排序</div>
     </div>
-    <!-- 单个帖子的容器 -->
+    <!-- 单个话题的容器 -->
     <div class="topic-container">
       <Topic />
     </div>
@@ -28,11 +28,11 @@ import Topic from './Topic.vue'
 </template>
 
 <style lang="scss" scoped>
-/* 帖子排行 */
+/* 话题排行 */
 .topic-ranking {
   width: 50%;
 }
-/* 帖子排行标题 */
+/* 话题排行标题 */
 .topic-title {
   font-size: 30px;
   color: var(--kungalgame-blue-4);
@@ -42,7 +42,7 @@ import Topic from './Topic.vue'
   align-items: center;
   margin-bottom: 20px;
 }
-/* 帖子排行的交互 */
+/* 话题排行的交互 */
 .topic-nav {
   display: flex;
   justify-content: space-around;
@@ -72,7 +72,7 @@ import Topic from './Topic.vue'
 .top {
   border-left: none;
 }
-/* 单个帖子的容器 */
+/* 单个话题的容器 */
 .topic-container {
   height: 650px;
   border: 1px solid var(--kungalgame-blue-4);

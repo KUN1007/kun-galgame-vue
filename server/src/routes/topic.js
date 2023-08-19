@@ -5,7 +5,7 @@ const router = express.Router()
 
 // 模拟一个 topics 数组
 const topics = [
-  // 帖子的数组
+  // 话题的数组
   {
     topicId: 1,
     topicTitle:
@@ -19,12 +19,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -122,12 +122,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -225,12 +225,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -328,12 +328,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -431,12 +431,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -534,12 +534,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -637,12 +637,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -740,12 +740,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -843,12 +843,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -946,12 +946,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1049,12 +1049,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1152,12 +1152,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1255,12 +1255,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1358,12 +1358,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1461,12 +1461,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1564,12 +1564,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1667,12 +1667,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1770,12 +1770,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1873,12 +1873,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -1976,12 +1976,12 @@ const topics = [
     topicViews: 10007,
     topicLikes: 1007,
     topicDislikes: 17,
-    /* 帖子的回复数 */
+    /* 话题的回复数 */
     topicReplyCount: 1,
     topicCategory: ['galgame', '技术交流'],
     topicReplies: {
       reply: [
-        // 存放了所有帖子的回复
+        // 存放了所有话题的回复
         {
           replyId: 1,
           replier: {
@@ -2069,7 +2069,7 @@ const topics = [
   },
 ]
 
-// 发布时间排序前 17 的帖子
+// 发布时间排序前 17 的话题
 function getTopicsInRange(start, count) {
   const sortedTopics = topics.sort(
     (a, b) => b.topicPublishTime - a.topicPublishTime
@@ -2082,7 +2082,7 @@ function getTopicsInRange(start, count) {
   return topicsInRange
 }
 
-// 获取发布时间前 17 位的帖子路由
+// 获取发布时间前 17 位的话题路由
 router.get('/topics/kun', (req, res) => {
   const start = parseInt(req.query.start) || 0
   const count = parseInt(req.query.count) || 17
@@ -2092,7 +2092,7 @@ router.get('/topics/kun', (req, res) => {
   res.json(topic)
 })
 
-// 获取指定帖子的路由
+// 获取指定话题的路由
 router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id)
   const topic = topics.find((topic) => topic.topicId === id)
@@ -2105,7 +2105,7 @@ router.get('/:id', (req, res) => {
   }
 })
 
-// 获取帖子回复的路由
+// 获取话题回复的路由
 router.get('/reply/:id', (req, res) => {
   const replyId = parseInt(req.params.id)
   let targetReply
@@ -2131,7 +2131,7 @@ router.get('/reply/:id', (req, res) => {
 router.get('/reply/comment/:id', (req, res) => {
   const replyId = Number(req.params.id)
 
-  // 在帖子数据中查找指定回复
+  // 在话题数据中查找指定回复
   const reply = topics
     .flatMap((topic) => topic.topicReplies.reply)
     .find((reply) => reply.replyId === replyId)

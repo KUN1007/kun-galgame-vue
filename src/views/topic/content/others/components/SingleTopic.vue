@@ -1,5 +1,5 @@
 <!-- 
-  这是单个人回复楼主的帖子，是一个单独的组件
+  这是单个人回复楼主的话题，是一个单独的组件
 
   里面包含着每个人的回复和下方回复这个人的评论
  -->
@@ -14,7 +14,7 @@ import TopicFooter from '../../components/TopicFooter.vue'
 import Time from '../../components/Time.vue'
 // 导入标签组件
 import Tags from '../../components/Tags.vue'
-// 导入帖子内容
+// 导入话题内容
 import TopicContent from '../../components/TopicContent.vue'
 // 导入重新编辑
 import Rewrite from '../../components/Rewrite.vue'
@@ -27,15 +27,15 @@ import Reply from './Reply.vue'
 <template>
   <!-- 楼层标志 -->
   <Floor :width="'50px'" :font="'18px'" style="margin-bottom: -25px" />
-  <!-- 其他人帖子内容区的容器 -->
+  <!-- 其他人话题内容区的容器 -->
   <div class="container">
-    <!-- 其它人回帖的内容区 -->
+    <!-- 其它人回复的内容区 -->
     <div class="content">
-      <!-- 其他人回帖的上部 -->
+      <!-- 其他人回复的上部 -->
       <div class="article">
-        <!-- 其它人回帖的上部左侧区域 -->
+        <!-- 其它人回复的上部左侧区域 -->
         <KUNGalgamerInfo />
-        <!-- 其它人回帖的上部右侧区域 -->
+        <!-- 其它人回复的上部右侧区域 -->
         <div class="right">
           <!-- 右侧的上部区域 -->
           <div class="top">
@@ -47,20 +47,20 @@ import Reply from './Reply.vue'
           <TopicContent />
         </div>
       </div>
-      <!-- 其他人回帖的下部 -->
+      <!-- 其他人回复的下部 -->
       <div class="bottom">
         <Tags />
         <Time />
       </div>
     </div>
-    <!-- 其它人回帖的底部 -->
+    <!-- 其它人回复的底部 -->
     <TopicFooter :isOthersTopic="true" />
     <Comments />
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 其他人帖子内容区容器 */
+/* 其他人话题内容区容器 */
 .container {
   width: 100%;
   display: flex;
@@ -71,19 +71,19 @@ import Reply from './Reply.vue'
   background-color: var(--kungalgame-trans-white-5);
   box-shadow: var(--shadow);
 }
-/* 其它人回帖的内容区 */
+/* 其它人回复的内容区 */
 .content {
   width: 100%;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
 }
-/* 其他人回帖的上部 */
+/* 其他人回复的上部 */
 .article {
   display: flex;
   flex-grow: 1;
 }
-/* 其它人回帖的上部右侧区域 */
+/* 其它人回复的上部右侧区域 */
 .right {
   display: flex;
   flex-direction: column;
@@ -96,7 +96,7 @@ import Reply from './Reply.vue'
   margin: 10px 0;
   letter-spacing: 1px;
 }
-/* 其他人回帖的下部 */
+/* 其他人回复的下部 */
 .bottom {
   display: flex;
   justify-content: space-between;

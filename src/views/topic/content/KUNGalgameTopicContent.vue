@@ -1,9 +1,9 @@
 <!-- 
-  KUNGalgame 的帖子界面
+  KUNGalgame 的话题界面
 
-  右边展示的所有帖子，可以一直向下滚动
+  右边展示的所有话题，可以一直向下滚动
 
-  页面被拆成 3 个大组件，这是帖子部分
+  页面被拆成 3 个大组件，这是话题部分
  -->
 <script setup lang="ts">
 import TopicMaster from './master/TopicMaster.vue'

@@ -59,7 +59,7 @@ getSingleKUNGalgamerApi(1).then((userData) => {
   color: var(--kungalgame-font-color-3);
 }
 .content {
-  /* 使帖子不溢出 */
+  /* 使话题不溢出 */
   height: 1px;
   flex-grow: 1;
   display: flex;

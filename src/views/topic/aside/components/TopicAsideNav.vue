@@ -1,5 +1,5 @@
 <!-- 
-  这里是帖子部分的功能区，有返回顶部等功能
+  这里是话题部分的功能区，有返回顶部等功能
  -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
@@ -34,7 +34,7 @@ const asideNavItem: navItem[] = [
 </template>
 
 <style lang="scss" scoped>
-/* 帖子详情页的交互 */
+/* 话题详情页的交互 */
 .nav {
   height: 100px;
   display: flex;

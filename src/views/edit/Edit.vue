@@ -33,9 +33,9 @@ const submit = () => {
       <div class="content">
         <!-- 内容区的头部 -->
         <div class="header">
-          <!-- 帖子的标题 -->
+          <!-- 话题的标题 -->
           <div class="title">
-            <input type="text" placeholder="请输入帖子的标题（40字以内）" />
+            <input type="text" placeholder="请输入话题的标题（40字以内）" />
           </div>
         </div>
         <!-- 编辑器 -->
@@ -95,12 +95,12 @@ const submit = () => {
   align-items: center;
 }
 
-/* 帖子的发布标题 */
+/* 话题的发布标题 */
 .title {
   width: 100%;
 }
 
-/* 帖子标题的输入框 */
+/* 话题标题的输入框 */
 .title input {
   color: var(--kungalgame-font-color-2);
   /* 距离外轮廓的距离 */

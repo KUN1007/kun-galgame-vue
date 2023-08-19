@@ -15,7 +15,7 @@ import SortTopic from './SortTopic.vue'
     <KUNGalgameSearchBox :isMainPage="true" style="border: none" />
     <!-- 交互区域进入全部话题 -->
     <RouterLink to="/pool/index" class="more">
-      <span>全部帖子</span>
+      <span>全部话题</span>
       <Icon class="all-topic" icon="line-md:chevron-triple-right" />
     </RouterLink>
   </div>

@@ -43,15 +43,15 @@ import { onMounted, watch } from 'vue'
 </script>
 
 <template>
-  <!-- 单个帖子容器 -->
+  <!-- 单个话题容器 -->
   <div class="topic">
-    <!-- 帖子的标题 -->
+    <!-- 话题的标题 -->
     <div class="title">
       {{ props.data.title }}
     </div>
-    <!-- 帖子的内容区 -->
+    <!-- 话题的内容区 -->
     <div class="content">{{ props.data.content }}</div>
-    <!-- 帖子的状态 -->
+    <!-- 话题的状态 -->
     <div class="status">
       <!-- 浏览数 -->
       <span
@@ -71,9 +71,9 @@ import { onMounted, watch } from 'vue'
 </template>
 
 <style lang="scss" scoped>
-/* 帖子池单个帖子 */
+/* 话题池单个话题 */
 .topic {
-  /* 单个帖子距下方的距离 */
+  /* 单个话题距下方的距离 */
   margin-bottom: 7px;
   /* 竖直方向弹性布局 */
   display: flex;
@@ -89,7 +89,7 @@ import { onMounted, watch } from 'vue'
 .topic:hover {
   background-color: var(--kungalgame-trans-white-2);
 }
-/* 帖子的标题 */
+/* 话题的标题 */
 .title {
   /* 标题显示两行、超出部分隐藏 */
   overflow: hidden; /* 超出部分隐藏 */
@@ -105,14 +105,14 @@ import { onMounted, watch } from 'vue'
   color: var(--kungalgame-font-color-2);
   flex-shrink: 0;
 }
-/* 帖子的内容区 */
+/* 话题的内容区 */
 .content {
   overflow: hidden;
   font-size: 14px;
   padding: 0 10px;
   margin: 7px 0;
 }
-/* 帖子的状态 */
+/* 话题的状态 */
 .status {
   display: flex;
   flex-shrink: 0;

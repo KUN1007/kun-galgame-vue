@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, watch } from 'vue'
+import { ref } from 'vue'
 
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
@@ -8,6 +8,8 @@ import Login from './components/Login.vue'
 
 // 导入注册面板
 import Register from './components/Register.vue'
+
+import Settings from './components/Settings.vue'
 
 const isShowPanel = ref('')
 
@@ -23,6 +25,7 @@ const handleClickRegister = () => {
 </script>
 
 <template>
+  <Settings />
   <div class="root">
     <div class="container" :class="isShowPanel">
       <!-- 登录面板 -->
@@ -72,7 +75,6 @@ const handleClickRegister = () => {
     var(--kungalgame-trans-pink-0),
     var(--kungalgame-trans-blue-0)
   );
-  background-repeat: no-repeat;
   position: relative;
   background-color: var(--kungalgame-white);
 }

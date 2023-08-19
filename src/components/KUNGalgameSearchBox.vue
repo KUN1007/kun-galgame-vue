@@ -12,7 +12,7 @@ defineProps(['isMainPage'])
       <!-- 搜索框内容 -->
       <div class="content">
         <!-- 框体 -->
-        <input type="search" class="input" placeholder="搜索帖子" />
+        <input type="search" class="input" placeholder="搜索话题" />
       </div>
       <!-- 搜索框图标 -->
       <div class="search-btn">
@@ -42,7 +42,7 @@ defineProps(['isMainPage'])
 </template>
 
 <style lang="scss" scoped>
-/* 搜索帖子 */
+/* 搜索话题 */
 .container {
   height: 39px;
   width: 1px;

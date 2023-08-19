@@ -9,7 +9,7 @@ import { topic } from './components/topic'
 
 <template>
   <div class="pool">
-    <!-- 帖子池容器 -->
+    <!-- 话题池容器 -->
     <div class="pool-container">
       <KUNGalgameSearchBox style="width: 100%; height: 40px" />
       <Tags />
@@ -36,7 +36,7 @@ import { topic } from './components/topic'
   flex-direction: column;
   overflow-y: scroll;
 }
-/* 帖子池容器 */
+/* 话题池容器 */
 .pool-container {
   /* 占页面的宽度比例 */
   width: 90%;

@@ -15,7 +15,7 @@ const port = 10007 // 端口号
 // 用户路由
 const userRoutes = require('./src/routes/user')
 
-// 帖子路由
+// 话题路由
 const topicRoutes = require('./src/routes/topic')
 
 // 登录路由

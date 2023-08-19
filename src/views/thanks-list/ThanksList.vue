@@ -23,7 +23,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
           <li>bbs.kfmax.com（绯月） - 用户信息分类</li>
           <li>StackOverflow （StackOverflow） - 页面板块的阴影</li>
           <li>ChatGPT （OpenAI ChatGPT） - 各种技术问题</li>
-          <li>Google（谷歌） - 帖子详情页面</li>
+          <li>Google（谷歌） - 话题详情页面</li>
           <li>YouTube （油管） - 技术交流页面</li>
           <li>Adobe （Adobe） - 底部 Footer</li>
           <li>Codepen 中的众多案例 – 全部页面均有涉及</li>

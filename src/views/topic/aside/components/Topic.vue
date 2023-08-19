@@ -1,15 +1,15 @@
 <!-- 
-  这里是楼主的其他帖子组件
+  这里是楼主的其他话题组件
  -->
 <script setup lang="ts">
 import { asideTopic } from '@/types/topic/topic'
 
-// 接受父组件传值,若是楼主的帖子则变色
+// 接受父组件传值,若是楼主的话题则变色
 defineProps(['isMasterTopics'])
 </script>
 
 <template>
-  <!-- 楼主的其它帖子 -->
+  <!-- 楼主的其它话题 -->
   <div class="topic" :class="$props.isMasterTopics ? 'master' : ''">
     <ul>
       <li>
@@ -27,7 +27,7 @@ defineProps(['isMasterTopics'])
 </template>
 
 <style lang="scss" scoped>
-/* 楼主的其它帖子 */
+/* 楼主的其它话题 */
 .topic {
   width: 100%;
   height: 1px;
@@ -79,14 +79,14 @@ defineProps(['isMasterTopics'])
       &:nth-child(1) {
         /* 左侧没有 border，没有 hover */
         border-left: 0;
-        /* 相对于单个帖子标题的比例 */
+        /* 相对于单个话题标题的比例 */
         flex-grow: 2;
         line-height: 40px;
         font-size: 14px;
         font-weight: bold;
         color: var(--kungalgame-font-color-2);
         background-color: var(--kungalgame-trans-blue-1);
-        /* 与单个帖子标题的分割线 */
+        /* 与单个话题标题的分割线 */
         border-bottom: 1px solid var(--kungalgame-blue-1);
         /* 水平居中 */
         justify-content: center;
@@ -106,7 +106,7 @@ defineProps(['isMasterTopics'])
       /* 左侧没有 border，没有 hover */
       border-left: 0;
       background-color: var(--kungalgame-trans-pink-1);
-      /* 与单个帖子标题的分割线 */
+      /* 与单个话题标题的分割线 */
       border-bottom: 1px solid var(--kungalgame-trans-pink-2);
     }
   }

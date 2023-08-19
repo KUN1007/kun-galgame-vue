@@ -7,29 +7,29 @@ const props = defineProps(['data'])
 </script>
 
 <template>
-  <!-- 单个帖子 -->
+  <!-- 单个话题 -->
   <div class="topic">
-    <!-- 帖子 hover 后的边 -->
+    <!-- 话题 hover 后的边 -->
     <span></span>
     <span></span>
     <span></span>
     <span></span>
-    <!-- 帖子的标题 -->
+    <!-- 话题的标题 -->
     <div class="topic-title">{{ props.data.topicTitle }}</div>
-    <!-- 帖子的内容预览 -->
+    <!-- 话题的内容预览 -->
     <div class="topic-content">
       <p>{{ props.data.topicContent }}</p>
     </div>
-    <!-- 帖子的状态 -->
+    <!-- 话题的状态 -->
     <div class="topic-status">
-      <!-- 帖子的点击数 -->
+      <!-- 话题的点击数 -->
       <div class="view"><Icon icon="ic:outline-remove-red-eye" />1007</div>
-      <!-- 帖子的点赞数 -->
+      <!-- 话题的点赞数 -->
       <div class="like"><Icon icon="line-md:thumbs-up-twotone" />1007</div>
-      <!-- 帖子的回复数 -->
+      <!-- 话题的回复数 -->
       <div class="reply"><Icon icon="fa-regular:comment-dots" />1007</div>
     </div>
-    <!-- 帖子的标签 -->
+    <!-- 话题的标签 -->
     <div class="topic-tags">
       <Icon class="icon" icon="ant-design:tag-twotone" />
       <!-- 单个标签 -->
@@ -39,7 +39,7 @@ const props = defineProps(['data'])
 </template>
 
 <style lang="scss" scoped>
-/* 单个帖子 */
+/* 单个话题 */
 .topic {
   border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 5px;
@@ -52,7 +52,7 @@ const props = defineProps(['data'])
   box-sizing: border-box;
   max-width: 350px;
 }
-/* 单个帖子 hover */
+/* 单个话题 hover */
 .topic:hover {
   box-shadow: var(--shadow);
   /* 放大、旋转 */
@@ -60,7 +60,7 @@ const props = defineProps(['data'])
   transition: 0.2s;
   z-index: 1009;
 }
-/* 帖子边的光效 */
+/* 话题边的光效 */
 .topic:hover > span {
   position: absolute;
   display: block;
@@ -142,7 +142,7 @@ const props = defineProps(['data'])
     bottom: 100%;
   }
 }
-/* 帖子标题 */
+/* 话题标题 */
 .topic-title {
   padding: 10px;
   font-size: 17px;
@@ -150,7 +150,7 @@ const props = defineProps(['data'])
   justify-content: center;
   align-items: center;
 }
-/* 帖子内容预览 */
+/* 话题内容预览 */
 .topic-content {
   font-size: 13px;
   max-height: 200px;
@@ -163,7 +163,7 @@ const props = defineProps(['data'])
   -webkit-box-orient: vertical;
   padding: 0 10px;
 }
-/* 帖子的状态 */
+/* 话题的状态 */
 .topic-status {
   height: 30px;
   width: 100%;
@@ -171,7 +171,7 @@ const props = defineProps(['data'])
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* 相对于帖子绝对定位 */
+  /* 相对于话题绝对定位 */
   position: absolute;
   background-color: var(--kungalgame-trans-white-2);
   bottom: 0;
@@ -180,9 +180,9 @@ const props = defineProps(['data'])
     align-items: center;
   }
 }
-/* 帖子的标签 */
+/* 话题的标签 */
 .topic-tags {
-  /* 占满单个帖子区域 */
+  /* 占满单个话题区域 */
   width: 100%;
   font-size: 12px;
   padding: 7px;
@@ -211,7 +211,7 @@ const props = defineProps(['data'])
   color: var(--kungalgame-red-4);
   margin-right: 5px;
 }
-/* 单个帖子 hover 时显示帖子标签 */
+/* 单个话题 hover 时显示话题标签 */
 .topic:hover .topic-tags {
   background-color: var(--kungalgame-trans-blue-0);
   backdrop-filter: blur(5px);

@@ -1,4 +1,4 @@
-<!-- 这个部分为帖子的楼层信息，标记帖子为多少楼 -->
+<!-- 这个部分为话题的楼层信息，标记话题为多少楼 -->
 <script setup lang="ts">
 const { width, font } = defineProps(['width', 'font'])
 </script>

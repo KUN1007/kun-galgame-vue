@@ -1,35 +1,35 @@
 <!-- 
-  这是 KUNGalgame 帖子展示区域楼主帖子的区域，楼主的帖子将会被展示在这里，位于帖子展示区域最上方
+  这是 KUNGalgame 话题展示区域楼主话题的区域，楼主的话题将会被展示在这里，位于话题展示区域最上方
  -->
 <script setup lang="ts">
-// 楼主帖子的 Footer
+// 楼主话题的 Footer
 import TopicFooter from '../components/TopicFooter.vue'
-// 楼主帖子的状态
+// 楼主话题的状态
 import TopicStatus from '../components/TopicStatus.vue'
-// 楼主帖子是否重新编辑
+// 楼主话题是否重新编辑
 import Rewrite from '../components/Rewrite.vue'
-// 楼主帖子的内容
+// 楼主话题的内容
 import TopicContent from '../components/TopicContent.vue'
 // 楼主的信息
 import KUNGalgamerInfo from '../components/KUNGalgamerInfo.vue'
 // 楼主的发帖时间
 import Time from '../components/Time.vue'
-// 楼主帖子的标签
+// 楼主话题的标签
 import Tags from '../components/Tags.vue'
-// 楼主帖子的头部，标题
+// 楼主话题的头部，标题
 import TopicHeader from '../components/TopicHeader.vue'
 // 楼主标志
 import Floor from '../components/Floor.vue'
 </script>
 
 <template>
-  <!-- 楼主帖子容器 -->
+  <!-- 楼主话题容器 -->
   <div class="container">
     <Floor :width="'70px'" :font="'37px'" />
-    <!-- 楼主帖子内容区的容器 -->
+    <!-- 楼主话题内容区的容器 -->
     <div class="content-container">
       <TopicHeader />
-      <!-- 楼主帖子内容区 -->
+      <!-- 楼主话题内容区 -->
       <div class="content">
         <!-- 内容区的顶部 -->
         <div class="content-top">
@@ -53,20 +53,20 @@ import Floor from '../components/Floor.vue'
 </template>
 
 <style lang="scss" scoped>
-/* 楼主帖子容器 */
+/* 楼主话题容器 */
 .container {
   width: 100%;
-  /* 楼主帖子最小高度 */
+  /* 楼主话题最小高度 */
   min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* 楼主帖子距离其它人帖子的距离 */
+  /* 楼主话题距离其它人话题的距离 */
   margin-bottom: 5px;
   /* TODO: */
-  /* 楼主帖子背景图 */
+  /* 楼主话题背景图 */
 }
-/* 楼主帖子内容区的容器 */
+/* 楼主话题内容区的容器 */
 .content-container {
   width: 100%;
   display: flex;
@@ -80,7 +80,7 @@ import Floor from '../components/Floor.vue'
   box-sizing: border-box;
 }
 
-/* 楼主帖子内容区 */
+/* 楼主话题内容区 */
 .content {
   width: 100%;
   display: flex;
@@ -100,7 +100,7 @@ import Floor from '../components/Floor.vue'
   box-sizing: border-box;
 }
 
-/* 楼主的帖子和楼主的信息容器 */
+/* 楼主的话题和楼主的信息容器 */
 .content-center {
   width: 100%;
   display: flex;

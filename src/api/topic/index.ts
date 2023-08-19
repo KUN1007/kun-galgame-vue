@@ -14,7 +14,7 @@ export async function getTopicCommentApi(id: number) {
   return await fetchGet<KUNGalgameTopic>(`/topic/comment/${id}`)
 }
 
-// 获取指定范围内的帖子数据
+// 获取指定范围内的话题数据
 export async function getTopicRangeApi(
   start: number,
   count: number
