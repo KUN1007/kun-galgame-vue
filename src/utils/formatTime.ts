@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
 
 // 读取本地存储中的语言配置
-import { lang } from '@/utils/getDefaultEnv'
+import { KUNGalgameLanguage } from '@/utils/getDefaultEnv'
 
-const language = lang === 'en' ? true : false
+const language = KUNGalgameLanguage === 'en' ? true : false
 
 /* 这里老问题不可以用 vue-i18n 的 t 函数，因为不在 setup 里面
     mins, years 之类的就不用了，有点丑 */

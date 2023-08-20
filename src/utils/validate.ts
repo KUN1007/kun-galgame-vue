@@ -13,7 +13,7 @@ export const isValidEmail = (email: string) => {
 
 // 匹配 1 到 17 位数 中文、英文、数字、下划线、~ 的用户名
 export const isValidName = (name: string) => {
-  const regex = /^[\u4e00-\u9fa5a-zA-Z0-9_~]{1,17}$/
+  const regex = /^[\u4E00-\u9FFFa-zA-Z0-9_~]{1,17}$/
   return regex.test(name)
 }
 

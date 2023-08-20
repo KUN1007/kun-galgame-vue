@@ -142,10 +142,10 @@ export default {
       success: 'Login Successfully! Welcome to KUN Visual Novel ~ ',
       emptyUsername: 'Username cannot be empty',
       emptyPassword: 'Password cannot be empty',
-      invalidPassword:
-        'Invalid password format. Password must be 6 to 17 characters long and must include at least one letter and one number. It can optionally include special characters such as \\w!@#$%^&()-+=',
       invalidUsername:
         'Invalid username. Username should be 1 to 17 characters long and can include: Chinese characters, English letters, numbers, underscore, and tilde (~)',
+      invalidPassword:
+        'Invalid password format. Password must be 6 to 17 characters long and must include at least one letter and one number. It can optionally include special characters such as \\w!@#$%^&()-+=',
     },
     capture: {
       click: 'Please click above to complete the human verification',
