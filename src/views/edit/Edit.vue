@@ -28,7 +28,7 @@ const submit = () => {
 <template>
   <div class="root">
     <!-- 内容区容器 -->
-    <form class="container" @submit.prevent="submit">
+    <div class="container" @submit.prevent="submit">
       <!-- 内容区容器 -->
       <div class="content">
         <!-- 内容区的头部 -->
@@ -53,7 +53,7 @@ const submit = () => {
 
         <Footer />
       </div>
-    </form>
+    </div>
     <!-- 版权 -->
     <KUNGalgameFooter style="margin: 0 auto" />
     <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)"

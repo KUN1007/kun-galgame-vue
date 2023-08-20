@@ -1,12 +1,12 @@
-import { LoginRequestData, LoginResponseData } from './types/login'
 import { fetchPost } from '@/utils/request'
+import type * as Login from './types/login'
 
 // 获取用户登录数据
 export const postLoginDataApi = async (
-  loginData: LoginRequestData
-): Promise<LoginResponseData> => {
+  loginData: Login.LoginRequestData
+): Promise<Login.LoginResponseData> => {
   try {
-    const response = await fetchPost<LoginResponseData>(
+    const response = await fetchPost<Login.LoginResponseData>(
       '/login/login',
       loginData
     )

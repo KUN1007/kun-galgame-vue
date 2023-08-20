@@ -7,6 +7,11 @@ import '@/styles/editor/editor.scss'
 import { IDomEditor } from '@wangeditor/editor'
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
+
+import { storeToRefs } from 'pinia'
+
+const topicData = storeToRefs(useKUNGalgameEditStore())
 
 const props = defineProps(['height', 'isShowToolbar', 'isShowAdvance'])
 
@@ -38,16 +43,7 @@ const editorConfig = {
   },
 }
 
-const handleCreated = (editor: IDomEditor) => {
-  editorRef.value = editor
-}
-
-onMounted(() => {
-  // 模拟 ajax 异步设置 value
-  setTimeout(() => {
-    valueHtml.value = '<p>KUN IS THE CUTEST!</p>' // 测试 v-model
-  }, 2000)
-})
+const handleCreated = (editor: IDomEditor) => {}
 
 // 组件销毁时，也及时销毁编辑器
 onBeforeUnmount(() => {
@@ -55,6 +51,13 @@ onBeforeUnmount(() => {
   if (editor == null) return
   editor.destroy()
 })
+
+const handleChange = (editor: IDomEditor) => {
+  editorRef.value = editor
+  setTimeout(() => {
+    console.log(editor.getHtml())
+  }, 1000)
+}
 </script>
 
 <template>
@@ -72,6 +75,7 @@ onBeforeUnmount(() => {
       v-model="valueHtml"
       :defaultConfig="editorConfig"
       @onCreated="handleCreated"
+      @onChange="handleChange"
     />
   </div>
 </template>
