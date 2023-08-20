@@ -6,7 +6,7 @@ export interface LoginRequestData {
   password: string
 }
 
-// 登录相应数据的格式
+// 登录响应数据的格式
 export type LoginResponseData = KUNGalgameResponseData<{
   uid: number
   avatar: string

@@ -1,20 +1,23 @@
+import { fetchPost } from '@/utils/request'
+import type * as Edit from './types/edit'
 
-import { fetchGet } from '@/utils/request'
-
-export async function getSingleKUNGalgamerApi(
-  id: number
-): Promise<KUNGalgamer> {
+export async function createNewTopicApi(
+  newTopicData: Edit.CreateTopicRequestData
+): Promise<Edit.CreateTopicResponseData> {
   try {
-    const url = `/kungalgamer/${id}`
+    const url = `/edit/topic`
 
-    // 调用fetchGet函数
-    const response = await fetchGet<KUNGalgamer>(url)
+    // 调用 fetchPost 函数
+    const response = await fetchPost<Edit.CreateTopicResponseData>(
+      url,
+      newTopicData
+    )
 
-    // 返回获取的用户数据
+    // 返回创建好的话题数据
     return response
   } catch (error) {
     // 处理错误
     console.error(error)
-    throw new Error('Failed to fetch user data')
+    throw new Error('Failed to create new topic')
   }
 }
