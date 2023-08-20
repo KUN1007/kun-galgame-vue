@@ -6,7 +6,10 @@ export const postLoginDataApi = async (
   loginData: LoginRequestData
 ): Promise<LoginResponseData> => {
   try {
-    const response = await fetchPost<LoginResponseData>('/login', loginData)
+    const response = await fetchPost<LoginResponseData>(
+      '/login/login',
+      loginData
+    )
     return response
   } catch (error) {
     alert(

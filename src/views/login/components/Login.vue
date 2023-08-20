@@ -28,7 +28,7 @@ const useStore = useKUNGalgamerStore()
 
 // 用户登录的表单
 const loginForm = reactive({
-  username: '',
+  name: '',
   password: '',
 })
 
@@ -41,9 +41,9 @@ const handleVerify = (result: boolean) => {
   }
 }
 
-const isEmptyInput = () => {
+const isEmptyInput = (): boolean => {
   // 如果输入的字段为空
-  if (!loginForm.username.trim()) {
+  if (!loginForm.name.trim()) {
     // 提示用户输入的名字为空
     info.info(t('AlertInfo.login.emptyUsername'))
     return false
@@ -62,12 +62,12 @@ const isValidInput = (): boolean => {
   if (!isEmptyInput()) {
     return false
   }
-  if (isValidEmail(loginForm.username) || isValidName(loginForm.username)) {
-    // 输入的用户名或邮箱错误时的逻辑
+  if (!isValidName(loginForm.name) && !isValidEmail(loginForm.name)) {
+    // 输入的用户名格式错误时的逻辑
     info.info(t('AlertInfo.login.invalidUsername'))
     return false
   }
-  // 输入的用户名不正确时（为用户名或邮箱）
+  // 输入的密码格式不正确时（为用户名或邮箱）
   if (!isValidPassword(loginForm.password)) {
     // 如果密码非法的话返回非法密码
     info.info(t('AlertInfo.login.invalidPassword'))
@@ -90,7 +90,7 @@ const handleLogin = () => {
   // 所有的验证都通过了再向后端发送请求
   useStore.login(loginForm).then((res) => {
     // 如果请求成功跳转到主页
-    if (res.success) {
+    if (res.code === 200) {
       router.push('/')
       info.info(t('AlertInfo.login.success'))
     }
@@ -105,7 +105,7 @@ const handleLogin = () => {
     <form class="form" @submit.prevent="handleLogin">
       <h2 class="title">{{ $t('login.loginTitle') }}</h2>
       <input
-        v-model="loginForm.username"
+        v-model="loginForm.name"
         type="text"
         :placeholder="$t('login.loginUsername')"
         class="input"

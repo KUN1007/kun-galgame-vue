@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia'
 
 // 网站的默认设置
-import { lang, mode } from '@/utils/getDefaultEnv'
+import { KUNGalgameLanguage, mode } from '@/utils/getDefaultEnv'
 
 // 设置面板配置
 interface KUNGalgameSettings {
@@ -24,7 +24,7 @@ export const useKUNGalgameSettingsStore = defineStore({
   // 默认值
   state: (): KUNGalgameSettings => ({
     showKUNGalgameMode: mode,
-    showKUNGalgameLanguage: lang,
+    showKUNGalgameLanguage: KUNGalgameLanguage,
     showKUNGalgameMainPageWidth: '61.8',
     showKUNGalgameBackground: 'none',
     showKUNGalgameCustomBackground: '',
