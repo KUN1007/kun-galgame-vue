@@ -29,12 +29,12 @@ const info: Info[] = [
   <div class="introduction">
     <!-- 网站名 -->
     <div class="kungalgame">
-      <span>{{ $t('mainPage.footer.describe.title') }}</span>
+      <span>{{ $tm('mainPage.footer.describe.title') }}</span>
     </div>
     <!-- 网站描述 -->
     <div class="kungalgame-describe">
       <span v-for="kun in info" :key="kun.index">{{
-        $t(`mainPage.footer.describe['${kun.name}']`)
+        $tm(`mainPage.footer.describe['${kun.name}']`)
       }}</span>
     </div>
   </div>

@@ -103,25 +103,25 @@ const handleLogin = () => {
   <div class="login">
     <Capture @validate="handleVerify" :isShowValidate="isShowValidate" />
     <form class="form" @submit.prevent="handleLogin">
-      <h2 class="title">{{ $t('login.loginTitle') }}</h2>
+      <h2 class="title">{{ $tm('login.loginTitle') }}</h2>
       <input
         v-model="loginForm.name"
         type="text"
-        :placeholder="$t('login.loginUsername')"
+        :placeholder="$tm('login.loginUsername')"
         class="input"
       />
       <input
         v-model="loginForm.password"
         type="password"
-        :placeholder="$t('login.loginPassword')"
+        :placeholder="$tm('login.loginPassword')"
         class="input"
       />
-      <span class="forget">{{ $t('login.forget') }}</span>
+      <span class="forget">{{ $tm('login.forget') }}</span>
       <span @click="isShowValidate = true" class="capture">{{
-        $t('login.capture')
+        $tm('login.capture')
       }}</span>
       <button class="btn" type="submit">
-        {{ $t('login.loginTitle') }}
+        {{ $tm('login.loginTitle') }}
       </button>
     </form>
   </div>

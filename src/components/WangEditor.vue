@@ -7,23 +7,31 @@ import '@/styles/editor/editor.scss'
 import { IDomEditor } from '@wangeditor/editor'
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+// 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-
+// 导入过滤 xss 的工具
+import DOMPurify from 'dompurify'
+// 导入编辑界面的 store
 import { storeToRefs } from 'pinia'
-
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
+// 定义父组件传参
 const props = defineProps(['height', 'isShowToolbar', 'isShowAdvance'])
 
+// 自定义编辑区域高度
 const editorHeight = `height: ${props.height}px`
 
+// 创建编辑器，必须用 shallowRef
 const editorRef = shallowRef<IDomEditor | undefined>(undefined)
 
-const valueHtml = ref('<p>Hello</p>')
+// 编辑器内的内容
+const valueHtml = ref('')
+// 编辑器文字计数
+const textCount = ref(0)
 
 // 编辑器相关配置
 const editorConfig = {
-  placeholder: '请输入内容...',
+  placeholder: 'Moe Moe Moe!',
   readOnly: false,
   MENU_CONF: {
     uploadImage: {
@@ -55,8 +63,10 @@ onBeforeUnmount(() => {
 const handleChange = (editor: IDomEditor) => {
   editorRef.value = editor
   setTimeout(() => {
-    console.log(editor.getHtml())
-  }, 1000)
+    // 过滤 xss
+    topicData.content.value = DOMPurify.sanitize(editor.getHtml())
+  }, 3000)
+  textCount.value = editor.getText().trim().length
 }
 </script>
 
@@ -77,6 +87,7 @@ const handleChange = (editor: IDomEditor) => {
       @onCreated="handleCreated"
       @onChange="handleChange"
     />
+    <span class="count">{{ textCount + ` ${$tm('edit.word')}` }}</span>
   </div>
 </template>
 
@@ -93,5 +104,20 @@ const handleChange = (editor: IDomEditor) => {
 }
 .toolbar-container {
   border-bottom: 1px solid var(--kungalgame-blue-4);
+}
+
+.count {
+  right: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  color: var(--kungalgame-font-color-0);
+  background-color: var(--kungalgame-white);
+}
+
+@media (max-width: 700px) {
+  .toolbar-container {
+    display: none;
+  }
 }
 </style>

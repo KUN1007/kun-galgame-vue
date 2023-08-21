@@ -48,10 +48,10 @@ const handleCustomBackground = () => {
 
 <template>
   <div class="kungalgame-background">
-    <div class="bg-settings">{{ $t('header.settings.background') }}</div>
+    <div class="bg-settings">{{ $tm('header.settings.background') }}</div>
     <ul class="kungalgame-background-container">
       <li>
-        <span>{{ $t('header.settings.preset') }}</span>
+        <span>{{ $tm('header.settings.preset') }}</span>
         <!-- 预设背景集 -->
         <ul class="kungalgame-restore-bg">
           <li v-for="kun in backgroundImages" :key="kun.index">
@@ -65,18 +65,18 @@ const handleCustomBackground = () => {
       </li>
       <!-- 用户自定义背景 -->
       <li>
-        <span>{{ $t('header.settings.custom') }}</span>
+        <span>{{ $tm('header.settings.custom') }}</span>
         <div class="kungalgamer-bg">
-          <span>{{ $t('header.settings.url') }}</span>
+          <span>{{ $tm('header.settings.url') }}</span>
           <div class="bg-url-input">
             <input type="text" v-model="url" required />
             <button @click="handleCustomBackground">
-              {{ $t('header.settings.confirm') }}
+              {{ $tm('header.settings.confirm') }}
             </button>
           </div>
         </div>
         <button class="restore-bg" @click="restoreBackground">
-          {{ $t('header.settings.restore') }}
+          {{ $tm('header.settings.restore') }}
         </button>
       </li>
     </ul>

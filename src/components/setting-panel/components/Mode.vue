@@ -11,7 +11,7 @@ const settingsStore = useKUNGalgameSettingsStore()
 <template>
   <div class="mode">
     <!-- 白天 / 黑夜模式切换 -->
-    <span>{{ $t('header.settings.mode') }}</span>
+    <span>{{ $tm('header.settings.mode') }}</span>
     <div class="mode-container">
       <li>
         <Icon

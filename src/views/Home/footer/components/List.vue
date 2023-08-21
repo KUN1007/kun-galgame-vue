@@ -105,12 +105,12 @@ const link: FooterInfoItem[] = [
     >
       <!-- 每个信息类别的标题 -->
       <h2>
-        <span>{{ $t(`mainPage.footer.title['${kun.title}']`) }}</span>
+        <span>{{ $tm(`mainPage.footer.title['${kun.title}']`) }}</span>
       </h2>
       <ul class="function" v-for="yuyu in kun.list" :key="yuyu.index">
         <li>
           <RouterLink :to="yuyu.router">{{
-            $t(`mainPage.footer.item['${yuyu.name}']`)
+            $tm(`mainPage.footer.item['${yuyu.name}']`)
           }}</RouterLink>
         </li>
       </ul>
@@ -118,12 +118,12 @@ const link: FooterInfoItem[] = [
     <div class="catalog">
       <!-- 每个信息类别的标题 -->
       <h2>
-        <span>{{ $t(`mainPage.footer.title.friend`) }}</span>
+        <span>{{ $tm(`mainPage.footer.title.friend`) }}</span>
       </h2>
       <ul class="function" v-for="azkhx in link" :key="azkhx.index">
         <li>
           <a :href="azkhx.router" target="_blank">{{
-            $t(`mainPage.footer.item['${azkhx.name}']`)
+            $tm(`mainPage.footer.item['${azkhx.name}']`)
           }}</a>
         </li>
       </ul>

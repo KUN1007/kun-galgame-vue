@@ -6,19 +6,19 @@ import { Icon } from '@iconify/vue'
   <!-- 更新的内容 -->
   <div class="article-next">
     <div class="describe">
-      <div>{{ $t('update.update') }}</div>
+      <div>{{ $tm('update.update') }}</div>
       <p>1. 添加数据统计页面</p>
       <p>2. 修复关于我们页面布局</p>
       <p>3. 其他细节修复</p>
     </div>
     <!-- 更新预览 -->
     <div class="preview">
-      <div>{{ $t('update.info') }}</div>
+      <div>{{ $tm('update.info') }}</div>
       <a
         class="github"
         href="https://github.com/KUN1007/KUNGalGame-vue"
         target="_blank"
-        >{{ $t('update.visit') }}</a
+        >{{ $tm('update.visit') }}</a
       >
       <a href="https://github.com/KUN1007/KUNGalGame-vue" target="_blank">
         <Icon class="icon" icon="raphael:github"
@@ -26,7 +26,7 @@ import { Icon } from '@iconify/vue'
     </div>
     <!-- 预计更新时间 -->
     <div class="time">
-      <span>{{ $t('update.time') }}: 2019/10/7</span>
+      <span>{{ $tm('update.time') }}: 2019/10/7</span>
     </div>
   </div>
 </template>

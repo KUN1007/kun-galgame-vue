@@ -15,9 +15,9 @@ let titleName = isHotTopic ? 'hot' : 'new'
   <!-- 侧边栏动态推送今日热度话题 -->
   <div class="topic-wrap">
     <!-- 今日热度话题的标题名 -->
-    <!-- 这里调用全局注册的 i18n 函数 $t 对名字进行渲染 -->
+    <!-- 这里调用全局注册的 i18n 函数 $tm 对名字进行渲染 -->
     <div class="title" :class="titleName">
-      {{ $t(`mainPage.asideActive['${titleName}']`) }}
+      {{ $tm(`mainPage.asideActive['${titleName}']`) }}
     </div>
     <!-- 热门话题的目录 -->
     <!-- 这里使用了父组件传过来的 isHotTopic 数据 -->

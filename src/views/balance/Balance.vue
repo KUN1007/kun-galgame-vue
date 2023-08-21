@@ -10,7 +10,7 @@ import { calculateTotalAmount } from './log'
     <!-- 文章部分 -->
     <div class="article">
       <!-- 页面标题 -->
-      <div class="title">{{ $t('balance.pl') }}</div>
+      <div class="title">{{ $tm('balance.pl') }}</div>
       <!-- 内容区 -->
       <div class="content">
         <!-- 是收入表的话就渲染为蓝色 -->
@@ -26,19 +26,19 @@ import { calculateTotalAmount } from './log'
         >
           <div>
             <!-- i18n -->
-            {{ $t('balance.status') }}:
+            {{ $tm('balance.status') }}:
             <span>{{
               calculateTotalAmount() >= 0
-                ? $t('balance.surplusStatus')
-                : $t('balance.deficitStatus')
+                ? $tm('balance.surplusStatus')
+                : $tm('balance.deficitStatus')
             }}</span>
           </div>
           <div>
             <!-- i18n -->
             {{
               calculateTotalAmount() >= 0
-                ? $t('balance.surplusAmount')
-                : $t('balance.deficitAmount')
+                ? $tm('balance.surplusAmount')
+                : $tm('balance.deficitAmount')
             }}: {{ calculateTotalAmount() }} CNY
           </div>
         </div>

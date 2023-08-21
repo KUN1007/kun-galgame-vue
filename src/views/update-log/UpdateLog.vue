@@ -13,13 +13,13 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         <!-- 下个版本计划更新 -->
         <div class="next-ver">
           <!-- 标题 -->
-          <div class="title">{{ $t('update.next') }}</div>
+          <div class="title">{{ $tm('update.next') }}</div>
           <Next />
         </div>
         <!-- 历史版本 -->
         <div class="history-ver">
           <!-- 标题 -->
-          <div class="title">{{ $t('update.history') }}</div>
+          <div class="title">{{ $tm('update.history') }}</div>
           <!-- 历史更新的内容 -->
           <History />
         </div>

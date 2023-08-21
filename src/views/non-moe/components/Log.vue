@@ -18,7 +18,7 @@ import { Icon } from '@iconify/vue'
       </div>
       <div class="result">
         <Icon class="warning" icon="line-md:alert" />
-        <span>{{ $t('nonMoe.moemoepoint') }} - {{ kun.result }}</span>
+        <span>{{ $tm('nonMoe.moemoepoint') }} - {{ kun.result }}</span>
       </div>
     </div>
   </div>

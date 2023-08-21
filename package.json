@@ -22,6 +22,7 @@
     "@wangeditor/editor-for-vue": "^5.1.12",
     "animate.css": "^4.1.1",
     "dayjs": "^1.11.9",
+    "dompurify": "^3.0.5",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
     "vue": "^3.3.4",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
+    "@types/dompurify": "^3.0.2",
     "@types/node": "^20.4.8",
     "@vitejs/plugin-vue": "^4.2.3",
     "cross-env": "^7.0.3",

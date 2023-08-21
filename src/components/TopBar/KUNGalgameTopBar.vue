@@ -61,7 +61,7 @@ onBeforeRouteLeave(() => {
           ><img src="../../assets/images/favicon.png" alt="KUNgal"
         /></RouterLink>
         <RouterLink to="/kun">
-          <span>{{ $t('header.name') }}</span>
+          <span>{{ $tm('header.name') }}</span>
         </RouterLink>
       </div>
       <div class="top-bar">
@@ -69,7 +69,7 @@ onBeforeRouteLeave(() => {
           <!-- 顶部单个板块 -->
           <li v-for="kun in topBarItem" :key="kun.index">
             <router-link :to="{ path: kun.router }">{{
-              $t(`header['${kun.name}']`)
+              $tm(`header['${kun.name}']`)
             }}</router-link>
           </li>
           <!-- 顶部板块下部的 hover 效果 -->

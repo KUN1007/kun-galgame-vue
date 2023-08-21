@@ -30,10 +30,10 @@ const handleConfirm = () => {
 
           <div class="footer">
             <button v-if="isShowCancel" class="button" @click="handleClose">
-              {{ $t('ComponentAlert.cancel') }}
+              {{ $tm('ComponentAlert.cancel') }}
             </button>
             <button class="button" @click="handleConfirm">
-              {{ $t('ComponentAlert.confirm') }}
+              {{ $tm('ComponentAlert.confirm') }}
             </button>
           </div>
         </div>

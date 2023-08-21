@@ -36,7 +36,7 @@ const handelCloseSettingsPanel = () => {
   <div class="root">
     <div class="container">
       <div class="title">
-        <span>{{ $t('header.settings.name') }}</span>
+        <span>{{ $tm('header.settings.name') }}</span>
         <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
 
@@ -48,7 +48,7 @@ const handelCloseSettingsPanel = () => {
       <div>
         <!-- 设置主页的宽度 -->
         <div class="width-container">
-          <span>{{ $t('header.settings.width') }}</span>
+          <span>{{ $tm('header.settings.width') }}</span>
           <span>{{ showKUNGalgameMainPageWidth }}%</span>
         </div>
         <div class="page-width">
@@ -68,7 +68,7 @@ const handelCloseSettingsPanel = () => {
 
       <div>
         <button class="reset" @click="handleRecover">
-          {{ $t('header.settings.recover') }}
+          {{ $tm('header.settings.recover') }}
         </button>
       </div>
     </div>

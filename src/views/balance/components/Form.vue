@@ -12,14 +12,14 @@ const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
   <!-- 收入 -->
   <div class="form" :class="$props.isIncome ? '' : 'expenditure-form'">
     <!-- 标题 -->
-    <div class="title">{{ $t(`balance['${title}']`) }}</div>
+    <div class="title">{{ $tm(`balance['${title}']`) }}</div>
     <!-- 收入记录的容器 -->
     <div class="container">
       <Log :isIncome="$props.isIncome" />
     </div>
     <!-- 总收入 -->
     <div class="sum">
-      {{ $t(`balance['${total}']`) }}:
+      {{ $tm(`balance['${total}']`) }}:
       {{
         $props.isIncome ? calculateTotalIncome() : calculateTotalExpenditure()
       }}
