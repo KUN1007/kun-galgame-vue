@@ -1,12 +1,12 @@
 import { type Ref, ref } from 'vue'
 
-interface Button {
+export interface Category {
   index: number
   name: string
   isActive: Ref<boolean>
 }
 
-export const button: Button[] = [
+export const category: Category[] = [
   {
     index: 1,
     name: 'galgame',

@@ -5,12 +5,13 @@
 import '@wangeditor/editor/dist/css/style.css'
 import '@/styles/editor/editor.scss'
 import { IDomEditor } from '@wangeditor/editor'
-import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
+import { onBeforeUnmount, ref, shallowRef } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 // 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入过滤 xss 的工具
 import DOMPurify from 'dompurify'
+
 // 导入编辑界面的 store
 import { storeToRefs } from 'pinia'
 const topicData = storeToRefs(useKUNGalgameEditStore())
@@ -107,9 +108,10 @@ const handleChange = (editor: IDomEditor) => {
 }
 
 .count {
-  right: 50px;
+  padding: 3px 7px;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: end;
   color: var(--kungalgame-font-color-0);
   background-color: var(--kungalgame-white);
