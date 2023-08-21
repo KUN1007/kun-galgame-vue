@@ -5,15 +5,14 @@
 import '@wangeditor/editor/dist/css/style.css'
 import '@/styles/editor/editor.scss'
 import { IDomEditor } from '@wangeditor/editor'
-import { onBeforeUnmount, ref, shallowRef } from 'vue'
+import { onBeforeMount, onBeforeUnmount, ref, shallowRef } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 // 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { storeToRefs } from 'pinia'
 // 导入过滤 xss 的工具
 import DOMPurify from 'dompurify'
 
-// 导入编辑界面的 store
-import { storeToRefs } from 'pinia'
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
 // 定义父组件传参
@@ -54,6 +53,13 @@ const editorConfig = {
 
 const handleCreated = (editor: IDomEditor) => {}
 
+// 挂载之前载入数据，如果不保存，则不载入
+onBeforeMount(() => {
+  if (topicData.isSave.value) {
+    valueHtml.value = topicData.content.value
+  }
+})
+
 // 组件销毁时，也及时销毁编辑器
 onBeforeUnmount(() => {
   const editor = editorRef.value
@@ -61,12 +67,15 @@ onBeforeUnmount(() => {
   editor.destroy()
 })
 
+// 编辑器文本改变时自动保存数据
 const handleChange = (editor: IDomEditor) => {
   editorRef.value = editor
+  // 防抖
   setTimeout(() => {
     // 过滤 xss
     topicData.content.value = DOMPurify.sanitize(editor.getHtml())
-  }, 3000)
+  }, 1007)
+  // 计算用户输入了多少个字符
   textCount.value = editor.getText().trim().length
 }
 </script>

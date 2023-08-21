@@ -15,6 +15,8 @@ interface Topic {
   tags: Array<string>
   // 话题分区
   category: Array<string>
+  // 是否保存
+  isSave: boolean
 }
 
 export const useKUNGalgameEditStore = defineStore({
@@ -25,28 +27,10 @@ export const useKUNGalgameEditStore = defineStore({
     content: '',
     tags: [],
     category: [],
+    isSave: false,
   }),
   getters: {},
   actions: {
-    // 保存草稿
-    saveTopicDraft(
-      title: string,
-      content: string,
-      tags: Array<string>,
-      category: Array<string>
-    ) {
-      this.title = title
-      this.content = content
-      this.tags = tags
-      this.category = category
-    },
-    // 清空草稿
-    clearTopicDraft() {
-      this.title = ''
-      this.content = ''
-      this.tags = []
-      this.category = []
-    },
     // 创建话题
     createNewTopic(
       createTopicRequestData: CreateTopicRequestData

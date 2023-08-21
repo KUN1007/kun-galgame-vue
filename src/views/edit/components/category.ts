@@ -3,23 +3,19 @@ import { type Ref, ref } from 'vue'
 export interface Category {
   index: number
   name: string
-  isActive: Ref<boolean>
 }
 
 export const category: Category[] = [
   {
     index: 1,
-    name: 'galgame',
-    isActive: ref(false),
+    name: 'Galgame',
   },
   {
     index: 2,
-    name: '技术交流',
-    isActive: ref(false),
+    name: 'Technique',
   },
   {
     index: 3,
-    name: '其它',
-    isActive: ref(false),
+    name: 'Others',
   },
 ]

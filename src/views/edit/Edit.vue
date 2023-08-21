@@ -1,41 +1,63 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import WangEditor from '@/components/WangEditor.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
-const emit = defineEmits(['tags', 'article'])
+// 导入编辑帖子的 store
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { storeToRefs } from 'pinia'
 
-interface Topic {
-  id: ''
-  time: ''
-  authorId: ''
-}
+const topicData = storeToRefs(useKUNGalgameEditStore())
 
-const topicInfo = reactive({
-  title: '',
-  articleHtml: '',
-  articleText: '',
-  tags: [],
+// 话题标题的文字
+const topicTitle = ref('')
+// 标题的最大长度
+const maxInputLength = 40
+
+onBeforeMount(() => {
+  if (topicData.isSave.value) {
+    topicTitle.value = topicData.title.value
+  }
 })
 
-const submit = () => {
-  // 在这里执行表单提交的逻辑，可以发送网络请求等操作
+// 处理用户输入
+const handelInput = () => {
+  // 标题不能超过 40 字
+  if (topicTitle.value.length > maxInputLength) {
+    topicTitle.value = topicTitle.value.slice(0, maxInputLength)
+  }
+
+  // 用户输入了纯空格
+  if (topicTitle.value.trim() === '') {
+    return
+  }
+
+  // 防抖
+  setTimeout(() => {
+    topicData.title.value = topicTitle.value
+  }, 1007)
 }
 </script>
 
 <template>
   <div class="root">
     <!-- 内容区容器 -->
-    <div class="container" @submit.prevent="submit">
+    <div class="container">
       <!-- 内容区容器 -->
       <div class="content">
         <!-- 内容区的头部 -->
         <div class="header">
           <!-- 话题的标题 -->
           <div class="title">
-            <input type="text" placeholder="请输入话题的标题（40字以内）" />
+            <input
+              type="text"
+              placeholder="请输入话题的标题（40字以内）"
+              v-model="topicTitle"
+              @input="handelInput"
+              :maxlength="maxInputLength"
+            />
           </div>
         </div>
         <!-- 编辑器 -->
@@ -76,6 +98,7 @@ const submit = () => {
 
 /* 内容部分的总容器 */
 .container {
+  transition: all 0.2s;
   width: 80%;
   max-width: 1500px;
   margin: 0 auto;
