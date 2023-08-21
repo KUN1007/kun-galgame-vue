@@ -1,53 +1,39 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onBeforeMount } from 'vue'
+// 导入编辑帖子的 store
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { storeToRefs } from 'pinia'
 
-interface Tag {
-  index: number
-  name: string
-}
+const topicData = storeToRefs(useKUNGalgameEditStore())
 
 // 临时数据，将会从后端返回 7 个热门 tag
-const tags: Tag[] = [
-  {
-    index: 1,
-    name: '啊这可海星',
-  },
-  {
-    index: 2,
-    name: '啊这可海星',
-  },
-  {
-    index: 3,
-    name: '啊这可海星',
-  },
-  {
-    index: 4,
-    name: '啊这可海星啊这可海星',
-  },
-  {
-    index: 5,
-    name: '啊这可海星',
-  },
-  {
-    index: 6,
-    name: '啊这可海星啊这可海星',
-  },
-  {
-    index: 7,
-    name: '啊这可海星',
-  },
+const tags = [
+  '啊这可海星',
+  '啊这可海星',
+  '啊这',
+  '啊这可海星az',
+  '啊这可海星啊这可海星',
+  '鲲鲲鲲',
 ]
 
 // 选中的 tag
-const selectedTags = ref<Tag[]>([])
+const selectedTags = ref<string[]>([])
+
+// 组件挂载之前载入 store 里的数据
+onBeforeMount(() => {
+  // 如果用户保存了草稿则载入
+  if (topicData.isSave.value) {
+    selectedTags.value = topicData.tags.value
+  }
+})
 
 // 点击 tag 触发回调
-const handleTagClick = (tag: Tag) => {
+const handleTagClick = (tag: string) => {
   selectedTags.value.push(tag)
 }
 
 // 点击取消选中 tag
-const handleTagClose = (tag: Tag) => {
+const handleTagClose = (tag: string) => {
   const index = selectedTags.value.indexOf(tag)
   if (index > -1) {
     selectedTags.value.splice(index, 1)
@@ -55,13 +41,14 @@ const handleTagClose = (tag: Tag) => {
 }
 
 // 被选中后还留下的 tag
-const remainingTags = computed<Tag[]>(() => {
+const remainingTags = computed<string[]>(() => {
   return tags.filter((tag) => !selectedTags.value.includes(tag))
 })
 
 // 输入框事件，按下 enter 创建 tag，创建 tag 时长度不超过 17，个数不超过 7
 const handleTagInput = (event: KeyboardEvent) => {
   const inputElement = event.target as HTMLInputElement
+  // 单个 tag
   const tagName = inputElement.value.trim()
 
   // 按下 enter 创建
@@ -70,13 +57,18 @@ const handleTagInput = (event: KeyboardEvent) => {
     tagName.length > 0 &&
     selectedTags.value.length < 7
   ) {
-    const tag: Tag = {
-      index: selectedTags.value.length + 1,
-      name: validateTagName(tagName),
-    }
+    const tag = validateTagName(tagName)
 
+    // 创建新 tag
     selectedTags.value.push(tag)
     inputElement.value = ''
+  } else if (
+    event.key === 'Backspace' &&
+    inputElement.value === '' &&
+    selectedTags.value.length > 0
+  ) {
+    // 按下 Backspace 键时，删除最后一个 tag
+    selectedTags.value.pop()
   }
 }
 
@@ -90,6 +82,11 @@ const validateTagName = (tagName: string) => {
 
   return validatedName
 }
+
+// 监测 selectedTags 的变化，保存用户选中的 tag
+watch(selectedTags.value, () => {
+  topicData.tags.value = selectedTags.value
+})
 </script>
 
 <template>
@@ -98,8 +95,8 @@ const validateTagName = (tagName: string) => {
     <div class="input-container">
       <div class="tags-container">
         <!-- 已选择的标签显示容器 -->
-        <span v-for="tag in selectedTags" :key="tag.index" class="selected-tag">
-          {{ tag.name }}
+        <span v-for="tag in selectedTags" class="selected-tag">
+          {{ tag }}
           <span class="close-btn" @click="handleTagClose(tag)">×</span>
         </span>
       </div>
@@ -108,7 +105,7 @@ const validateTagName = (tagName: string) => {
         class="input"
         type="text"
         placeholder="请输入话题的关键词"
-        @keydown.enter="handleTagInput"
+        @keyup="handleTagInput"
       />
     </div>
 
@@ -120,12 +117,8 @@ const validateTagName = (tagName: string) => {
     <div class="tags-info">热门关键词（点击选择）:</div>
     <!-- 标签容器 -->
     <div class="tags">
-      <span
-        v-for="tag in remainingTags"
-        :key="tag.index"
-        @click="() => handleTagClick(tag)"
-      >
-        {{ tag.name }}
+      <span v-for="tag in remainingTags" @click="() => handleTagClick(tag)">
+        {{ tag }}
       </span>
     </div>
   </div>
@@ -158,7 +151,7 @@ const validateTagName = (tagName: string) => {
   align-items: center;
   white-space: nowrap;
   font-size: 14px;
-  padding: 3px;
+  padding: 2px;
   background-color: var(--kungalgame-trans-red-1);
   span {
     cursor: pointer;
@@ -177,7 +170,7 @@ const validateTagName = (tagName: string) => {
   flex-grow: 1;
   box-sizing: border-box;
   border: none;
-  padding: 5px;
+  padding: 7px;
   display: flex;
   min-width: 300px;
   color: var(--kungalgame-font-color-3);

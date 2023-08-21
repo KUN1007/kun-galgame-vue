@@ -22,7 +22,7 @@ const emits = defineEmits(['close'])
 
 /* 恢复所有设置为默认 */
 const handleRecover = () => {
-  settingsStore.restoreSettings()
+  settingsStore.$reset()
 }
 
 /* 关闭设置面板 */

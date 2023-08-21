@@ -30,14 +30,6 @@ export const useKUNGalgameSettingsStore = defineStore({
     showKUNGalgameCustomBackground: '',
   }),
   actions: {
-    // 恢复出厂设置()
-    restoreSettings() {
-      this.setKUNGalgameTheme('light')
-      this.showKUNGalgameLanguage = 'en'
-      this.showKUNGalgameMainPageWidth = '61.8'
-      this.showKUNGalgameBackground = 'none'
-      this.showKUNGalgameCustomBackground = ''
-    },
     // 设置主题，只有两种模式 light 和 dark，light 为 ''
     setKUNGalgameTheme(theme: string) {
       this.showKUNGalgameMode = theme
