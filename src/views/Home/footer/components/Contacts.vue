@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue'
 <template>
   <!-- 下方上面的联系我们 -->
   <div class="kungalgame-contact">
-    <h2>{{ $t('mainPage.footer.contact') }}</h2>
+    <h2>{{ $tm('mainPage.footer.contact') }}</h2>
     <!-- QQ, 微信, telegram 的图标列表 -->
     <ul>
       <li>

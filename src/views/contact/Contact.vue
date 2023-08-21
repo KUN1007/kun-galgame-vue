@@ -11,7 +11,7 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
     <div class="container">
       <div class="title">
         <!-- 页面的标题 -->
-        <div class="contact-us">{{ $t('contact.title') }}</div>
+        <div class="contact-us">{{ $tm('contact.title') }}</div>
         <div class="kungalgame">KUNGalgame</div>
       </div>
       <!-- 联系方式 -->

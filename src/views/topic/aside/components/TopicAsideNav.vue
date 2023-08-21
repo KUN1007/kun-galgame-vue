@@ -26,7 +26,7 @@ const asideNavItem: navItem[] = [
     <ul>
       <li v-for="kun in asideNavItem" :key="kun.index">
         <Icon class="icon" :icon="kun.icon" />{{
-          $t(`topic.aside['${kun.name}']`)
+          $tm(`topic.aside['${kun.name}']`)
         }}
       </li>
     </ul>

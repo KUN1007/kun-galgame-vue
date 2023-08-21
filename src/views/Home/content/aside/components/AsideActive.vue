@@ -15,7 +15,7 @@ const props = defineProps(['isActive'])
       <!-- 发布新文章的按钮 -->
       <router-link to="/edit/index">
         <button class="btn-new-article">
-          {{ $t('mainPage.asideActive.create') }}
+          {{ $tm('mainPage.asideActive.create') }}
         </button>
       </router-link>
     </div>
@@ -24,7 +24,7 @@ const props = defineProps(['isActive'])
       <!-- 侧边栏单个项目 -->
       <span v-for="kun in asideItem" :key="kun.index">
         <router-link :to="{ path: kun.router }">{{
-          $t(`mainPage.asideActive['${kun.name}']`)
+          $tm(`mainPage.asideActive['${kun.name}']`)
         }}</router-link>
       </span>
     </div>

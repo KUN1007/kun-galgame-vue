@@ -8,12 +8,12 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     <!-- 内容区容器 -->
     <div class="container">
       <!-- 页面标题 -->
-      <div class="title">{{ $t('nonMoe.log') }}</div>
+      <div class="title">{{ $tm('nonMoe.log') }}</div>
       <!-- 文章部分 -->
       <div class="article">
         <!-- 文章标题 -->
         <div class="article-title">
-          {{ $t('nonMoe.title') }}
+          {{ $tm('nonMoe.title') }}
         </div>
         <!-- 内容区容器 -->
         <div class="content">

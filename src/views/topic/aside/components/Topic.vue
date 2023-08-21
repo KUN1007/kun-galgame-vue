@@ -15,8 +15,8 @@ defineProps(['isMasterTopics'])
       <li>
         {{
           $props.isMasterTopics
-            ? $t('topic.aside.master')
-            : $t('topic.aside.tags')
+            ? $tm('topic.aside.master')
+            : $tm('topic.aside.tags')
         }}
       </li>
       <li v-for="kun in asideTopic" :key="kun.index">

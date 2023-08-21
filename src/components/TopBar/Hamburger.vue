@@ -16,13 +16,13 @@ defineEmits(['showKUNGalgameHamburger'])
   <div class="container">
     <div class="kungalgame">
       <img src="../../assets/images/favicon.png" alt="KUNGalgame" />
-      <span>{{ $t('header.name') }}</span>
+      <span>{{ $tm('header.name') }}</span>
     </div>
     <!-- 交互栏目 -->
     <div class="item" style="font-size: 17px">
       <span v-for="kun in topBarItem" :key="kun.index">
         <RouterLink :to="kun.router">{{
-          $t(`header['${kun.name}']`)
+          $tm(`header['${kun.name}']`)
         }}</RouterLink>
       </span>
     </div>

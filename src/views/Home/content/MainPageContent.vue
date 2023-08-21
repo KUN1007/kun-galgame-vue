@@ -42,6 +42,7 @@ const width = computed(() => {
 /* 可视内容部分宽度 */
 .content-container {
   width: v-bind(width);
+  transition: all 0.2s;
   height: 100%;
   margin: 0 auto;
   /* 可视内容区为弹性盒 */

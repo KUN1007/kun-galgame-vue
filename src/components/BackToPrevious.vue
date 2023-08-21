@@ -7,7 +7,7 @@ const router = useRouter()
 <template>
   <!-- 返回主页 -->
   <div class="return" @click="router.back()">
-    <span>{{ `< ${$t('back.back')}` }}</span>
+    <span>{{ `< ${$tm('back.back')}` }}</span>
   </div>
 </template>
 

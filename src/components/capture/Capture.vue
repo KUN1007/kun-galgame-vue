@@ -16,14 +16,14 @@
           </div>
           <div class="msg">
             <div v-if="errorCount > 0" class="error">
-              {{ $t('AlertInfo.capture.error') }}
+              {{ $tm('AlertInfo.capture.error') }}
             </div>
             <div class="hint" v-if="!isVerified">
-              {{ $t('AlertInfo.capture.order') }}
+              {{ $tm('AlertInfo.capture.order') }}
               {{ characters.map((char) => char.value).join(' ') }}
             </div>
             <div class="refresh" @click="resetCharacters">
-              {{ $t('AlertInfo.capture.refresh') }}
+              {{ $tm('AlertInfo.capture.refresh') }}
             </div>
           </div>
         </div>

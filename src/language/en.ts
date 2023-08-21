@@ -108,6 +108,7 @@ export default {
   },
   edit: {
     title: 'Please input title, limit is 40 characters',
+    word: 'Words',
     tags: 'Please input topic keywords',
     hint: `Hint: (A single keyword should be within 14 characters, choose at least one and up to 7 keywords). You can enter text and press 'Enter' to create a keyword.`,
     hot: 'Popular Keywords (Click to Select): ',
