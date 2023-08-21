@@ -3,8 +3,6 @@ import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
 const info = useKUNGalgameMessageStore()
 
-import { button } from './button'
-
 const handlePublish = async () => {
   const res = await info.alert('AlertInfo.edit.publish', true)
   // TODO:
@@ -83,3 +81,4 @@ const handleSave = () => {
   transform: scale(0.8);
 }
 </style>
+./Category

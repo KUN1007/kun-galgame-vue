@@ -1,12 +1,47 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 // 导入按钮
 import Button from './Button.vue'
+// 导入编辑帖子的 store
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
+// 导入帖子的分类
+import { Category, category } from './category'
+// 导入编辑界面的 store
+import { storeToRefs } from 'pinia'
 
-import { button } from './button'
+const topicData = storeToRefs(useKUNGalgameEditStore())
 
-import { ref } from 'vue'
-
+// 定义分类是否被选中
 const buttonStatus = ref(false)
+
+// 定义被选中的分类的数组
+const selectedCategories = ref<string[]>([])
+
+// 当用户点击分类时的逻辑
+const handleClickCategory = (kun: Category) => {
+  // 如果选择了 1，同时已选择了 3，则不允许选中 1
+  if (kun.index === 1 && selectedCategories.value.includes('其它')) {
+    return
+  }
+  // 如果选择了 3，同时已选择了 1，则不允许选中 3
+  if (kun.index === 3 && selectedCategories.value.includes('galgame')) {
+    return
+  }
+  // 样式改变
+  kun.isActive.value = !kun.isActive.value
+  // 改变选中数组的逻辑
+  if (kun.isActive.value) {
+    selectedCategories.value.push(kun.name)
+  } else {
+    const index = selectedCategories.value.indexOf(kun.name)
+    if (index !== -1) {
+      selectedCategories.value.splice(index, 1)
+    }
+  }
+
+  // 将选中的 category 给 pinia 的 store
+  topicData.category.value = selectedCategories.value
+}
 </script>
 
 <template>
@@ -17,9 +52,9 @@ const buttonStatus = ref(false)
     <div class="group-btn" :class="buttonStatus ? 'selected-btn' : ''">
       <span
         class="btn"
-        v-for="kun in button"
+        v-for="kun in category"
         :key="kun.index"
-        @click="kun.isActive.value = !kun.isActive.value"
+        @click="handleClickCategory(kun)"
         :class="{ active: kun.isActive.value }"
       >
         {{ kun.name }}
