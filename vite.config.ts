@@ -3,10 +3,12 @@ import path from 'path'
 import vue from '@vitejs/plugin-vue'
 // 引入 Rollup Plugin Visualizer 打包可视化工具
 import { visualizer } from 'rollup-plugin-visualizer'
+// 导入 vite tsx 支持
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), visualizer() as PluginOption],
+  plugins: [vue(), visualizer() as PluginOption, vueJsx()],
   /* src 别名为 @ */
   resolve: {
     alias: {

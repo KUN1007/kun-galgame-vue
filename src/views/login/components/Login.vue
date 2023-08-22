@@ -13,7 +13,7 @@ import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 
 // 导入 i18n
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+const { t, tm } = useI18n()
 
 // 定义人机验证的标志
 const isShowValidate = ref(false)
@@ -36,7 +36,7 @@ const handleVerify = (result: boolean) => {
   if (result) {
     // 处理人机校验完成后的逻辑
     isShowValidate.value = false
-    info.info(t('AlertInfo.capture.success'))
+    info.info(tm('AlertInfo.capture.success'))
     isCaptureComplete.value = true
   }
 }
@@ -45,11 +45,11 @@ const isEmptyInput = (): boolean => {
   // 如果输入的字段为空
   if (!loginForm.name.trim()) {
     // 提示用户输入的名字为空
-    info.info(t('AlertInfo.login.emptyUsername'))
+    info.info(tm('AlertInfo.login.emptyUsername'))
     return false
   } else if (!loginForm.password.trim()) {
     // 提示用户输入的密码为空
-    info.info(t('AlertInfo.login.emptyPassword'))
+    info.info(tm('AlertInfo.login.emptyPassword'))
     return false
   } else {
     return true
@@ -64,13 +64,13 @@ const isValidInput = (): boolean => {
   }
   if (!isValidName(loginForm.name) && !isValidEmail(loginForm.name)) {
     // 输入的用户名格式错误时的逻辑
-    info.info(t('AlertInfo.login.invalidUsername'))
+    info.info(tm('AlertInfo.login.invalidUsername'))
     return false
   }
   // 输入的密码格式不正确时（为用户名或邮箱）
   if (!isValidPassword(loginForm.password)) {
     // 如果密码非法的话返回非法密码
-    info.info(t('AlertInfo.login.invalidPassword'))
+    info.info(tm('AlertInfo.login.invalidPassword'))
     return false
   }
   return true
@@ -84,7 +84,7 @@ const handleLogin = () => {
   }
   // 未完成人机身份验证提示信息，直接返回
   if (!isCaptureComplete.value) {
-    info.info(t('AlertInfo.capture.click'))
+    info.info(tm('AlertInfo.capture.click'))
     return
   }
   // 所有的验证都通过了再向后端发送请求
@@ -92,7 +92,8 @@ const handleLogin = () => {
     // 如果请求成功跳转到主页
     if (res.code === 200) {
       router.push('/')
-      info.info(t('AlertInfo.login.success'))
+      info.info(tm('AlertInfo.login.success'))
+    } else {
     }
   })
 }
@@ -107,13 +108,13 @@ const handleLogin = () => {
       <input
         v-model="loginForm.name"
         type="text"
-        :placeholder="$tm('login.loginUsername')"
+        :placeholder="($tm('login.loginUsername') as string)"
         class="input"
       />
       <input
         v-model="loginForm.password"
         type="password"
-        :placeholder="$tm('login.loginPassword')"
+        :placeholder="($tm('login.loginPassword') as string)"
         class="input"
       />
       <span class="forget">{{ $tm('login.forget') }}</span>
