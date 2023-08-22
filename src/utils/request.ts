@@ -23,6 +23,7 @@ const fetchRequest = async <T>(
     const data: T = await response.json()
     return data
   } catch (error) {
+    console.error('Fetch Error:', error)
     throw new Error('Request Error!')
   }
 }

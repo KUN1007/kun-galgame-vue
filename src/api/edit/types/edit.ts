@@ -2,9 +2,9 @@ export interface CreateTopicRequestData {
   title: string
   content: string
   time: string
-  tags: Array<string>
-  category: Array<string>
-  uid: number
+  tags: string
+  category: string
+  uid: string
 }
 
 export interface KUNGalgameTopic {

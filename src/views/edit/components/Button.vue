@@ -1,37 +1,58 @@
 <script setup lang="ts">
+// 全局消息组件
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { toRaw } from 'vue'
 // 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
+// 导入用户 store
+import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
-const info = useKUNGalgameMessageStore()
+const message = useKUNGalgameMessageStore()
 
 const handlePublish = async () => {
-  const res = await info.alert('AlertInfo.edit.publish', true)
+  const res = await message.alert('AlertInfo.edit.publish', true)
   // TODO:
   // 这里实现用户的点击确认取消逻辑
   if (res) {
     // 坑，storeToRefs 不等于 vue 中的 ref 或者 reactive，不能用 toRaw
-    const a = toRaw(useKUNGalgameEditStore().$state)
+    const rawData = toRaw(useKUNGalgameEditStore().$state)
 
     // 发送给后端的数据
-    console.log(JSON.stringify(a))
+    const topicToCreate = {
+      title: rawData.title,
+      content: rawData.content,
+      time: Date.now().toString(),
+      tags: JSON.stringify(rawData.tags),
+      category: JSON.stringify(rawData.category),
+      uid: useKUNGalgamerStore().uid.toString(),
+    }
 
-    info.info('AlertInfo.edit.publishSuccess')
+    try {
+      // 后端返回的创建好的话题数据
+      const createdTopic = await useKUNGalgameEditStore().createNewTopic(
+        topicToCreate
+      )
+
+      console.log(createdTopic)
+    } catch (error) {
+      console.log(error)
+    }
+
+    message.info('AlertInfo.edit.publishSuccess')
     // 清除数据，并不再保存数据，因为此时该话题已被发布，这里使用 pinia 自带的 $reset 重置状态
     useKUNGalgameEditStore().$reset()
   } else {
-    info.info('AlertInfo.edit.publishCancel')
+    message.info('AlertInfo.edit.publishCancel')
   }
 }
 
 const handleSave = () => {
   // 这个值为 true 的时候每次页面加载的时候都会预加载上一次的话题数据
   topicData.isSave.value = true
-  info.info('AlertInfo.edit.draft')
+  message.info('AlertInfo.edit.draft')
 }
 </script>
 
