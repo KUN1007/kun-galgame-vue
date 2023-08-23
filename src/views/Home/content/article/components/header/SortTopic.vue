@@ -53,6 +53,10 @@ const navSortItem: Sort[] = [
         <div v-for="kun in navSortItem" :key="kun.index">
           <Icon class="icon-item" :icon="kun.icon" />{{ kun.name }}
         </div>
+        <div class="sort-order">
+          <span><Icon icon="tdesign:order-ascending" /></span
+          ><span><Icon icon="tdesign:order-descending" /></span>
+        </div>
       </div>
     </div>
   </div>
@@ -122,5 +126,27 @@ const navSortItem: Sort[] = [
   color: var(--kungalgame-font-color-2);
   padding-right: 3px;
   font-size: 17px;
+}
+
+/* 按照升序还是降序排列 */
+.sort-order {
+  width: 100%;
+  display: flex;
+  cursor: default;
+  span {
+    color: var(--kungalgame-blue-4);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    &:hover {
+      transition: all 0.2s;
+      color: var(--kungalgame-red-4);
+    }
+    &:nth-child(2) {
+      border-left: 1px solid var(--kungalgame-trans-blue-4);
+    }
+  }
 }
 </style>

@@ -18,7 +18,8 @@ export interface NewTopic {
 
 export interface HomeTopicRequestData {
   sortField:
-    | 'updatedAt'
+    | 'created'
+    | 'updated'
     | 'time'
     | 'views'
     | 'likes'

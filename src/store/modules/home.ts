@@ -12,7 +12,7 @@ export const useKUNGalgameHomeStore = defineStore({
   id: 'home',
   persist: true,
   state: (): HomeTopicRequestData => ({
-    sortField: 'updatedAt',
+    sortField: 'updated',
     sortOrder: 'desc',
     page: 1,
     limit: 17,
