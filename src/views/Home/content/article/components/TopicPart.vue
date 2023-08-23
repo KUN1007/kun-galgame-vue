@@ -14,37 +14,31 @@ defineProps(['data'])
       <!-- 话题的标题 -->
       <div class="topic-title">
         <div class="topic-title-container">
-          <span>{{ $props.data.topicTitle }}</span>
+          <span>{{ $props.data.title }}</span>
         </div>
       </div>
       <!-- 话题发布日期 -->
       <div class="topic-status">
         <ul>
           <li>
-            <Icon icon="ic:outline-remove-red-eye" />{{
-              $props.data.topicViews
-            }}
+            <Icon icon="ic:outline-remove-red-eye" />{{ $props.data.views }}
           </li>
           <li>
-            <Icon icon="line-md:thumbs-up-twotone" />{{
-              $props.data.topicLikes
-            }}
+            <Icon icon="line-md:thumbs-up-twotone" />{{ $props.data.likes }}
           </li>
-          <li>
-            <Icon icon="ri:reply-line" />{{ $props.data.topicReplyCount }}
-          </li>
+          <li><Icon icon="ri:reply-line" />{{ $props.data.replies }}</li>
         </ul>
       </div>
       <!-- 话题的状态，点赞数等 -->
       <div class="topic-post-date">
-        <span>{{ formatTime($props.data.topicPublishTime) }}</span>
+        <span>{{ formatTime(parseInt($props.data.time)) }}</span>
       </div>
     </div>
     <!-- 话题的预览介绍 -->
     <div class="topic-introduction">
       <div class="topic-introduction-text">
         <p>
-          {{ $props.data.topicContent }}
+          {{ $props.data.content }}
         </p>
       </div>
     </div>
