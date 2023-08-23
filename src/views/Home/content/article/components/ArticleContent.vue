@@ -1,42 +1,45 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { getTopicRangeApi } from '@/api/topic/index'
-import { KUNGalgameTopic } from '@/api/topic/types/topic'
 import SingleTopic from './SingleTopic.vue'
 
+import {
+  HomeTopic,
+  HomeTopicRequestData,
+  HomeTopicResponseData,
+} from '@/api/home/types/home'
+
+// 导入用户 store
+import { useKUNGalgameHomeStore } from '@/store/modules/home'
+import { storeToRefs } from 'pinia'
+
 // 在组件中定义响应式的话题数据
-const topics = ref<KUNGalgameTopic[]>([])
+const topics = ref<HomeTopic[]>([])
 
 // 在组件挂载时调用 fetchTopics 获取话题数据
 onMounted(async () => {
-  try {
-    const start = 0 // 起始位置
-    const count = 17 // 获取的话题数量
+  const fetchedTopics = await useKUNGalgameHomeStore().getHomeTopic()
 
-    const fetchedTopics = await getTopicRangeApi(start, count)
-
-    topics.value = fetchedTopics
-  } catch (error) {
-    console.error('Error fetching topics:', error)
-  }
+  topics.value = fetchedTopics.data
 })
 </script>
 
 <template>
-  <div class="topic-container">
-    <!-- 该状态为 2 则话题处于被推状态 -->
-    <div
-      v-for="topic in topics"
-      :key="topic.topicId"
-      :class="topic.topicStatus === 2 ? 'kungalgame-comet-surround' : ''"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <SingleTopic :data="topic" />
+  <KeepAlive>
+    <div class="topic-container">
+      <!-- 该状态为 2 则话题处于被推状态 -->
+      <div
+        v-for="topic in topics"
+        :key="topic.tid"
+        :class="topic.upvotes ? 'kungalgame-comet-surround' : ''"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <SingleTopic :data="topic" />
+      </div>
     </div>
-  </div>
+  </KeepAlive>
 </template>
 
 <style lang="scss" scoped>

@@ -3,13 +3,11 @@ import UserPart from './UserPart.vue'
 import TopicPart from './TopicPart.vue'
 
 const props = defineProps(['data'])
-
-const isUpvote = props.data.topicStatus === 2 ? 'kungalgame-comet-surround' : ''
 </script>
 
 <template>
   <div class="topic">
-    <UserPart :kungalgamer="props.data.topicAuthor" />
+    <UserPart :kungalgamer="props.data.uid" />
     <!-- TODO: 进入指定话题的路由 -->
     <router-link to="/topic">
       <TopicPart :data="props.data" />

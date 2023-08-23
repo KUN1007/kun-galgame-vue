@@ -1,6 +1,6 @@
 /* 编辑区的 store */
 import { defineStore } from 'pinia'
-import { createNewTopicApi } from '@/api/edit/index'
+import { postNewTopicApi } from '@/api/edit/index'
 import {
   CreateTopicRequestData,
   CreateTopicResponseData,
@@ -36,7 +36,7 @@ export const useKUNGalgameEditStore = defineStore({
       createTopicRequestData: CreateTopicRequestData
     ): Promise<CreateTopicResponseData> {
       return new Promise((resolve, reject) => {
-        createNewTopicApi(createTopicRequestData)
+        postNewTopicApi(createTopicRequestData)
           .then((res) => {
             resolve(res)
           })

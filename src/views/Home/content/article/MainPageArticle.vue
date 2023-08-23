@@ -34,8 +34,6 @@ import ArticleContent from './components/ArticleContent.vue'
   border-radius: 5px;
   display: flex;
   /* 文章区所有组件居中 */
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
   overflow: hidden;
 }

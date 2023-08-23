@@ -1,7 +1,7 @@
 import { fetchPost } from '@/utils/request'
 import type * as Edit from './types/edit'
 
-export async function createNewTopicApi(
+export async function postNewTopicApi(
   newTopicData: Edit.CreateTopicRequestData
 ): Promise<Edit.CreateTopicResponseData> {
   try {

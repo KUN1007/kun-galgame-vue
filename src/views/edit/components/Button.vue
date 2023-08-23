@@ -14,7 +14,6 @@ const message = useKUNGalgameMessageStore()
 
 const handlePublish = async () => {
   const res = await message.alert('AlertInfo.edit.publish', true)
-  // TODO:
   // 这里实现用户的点击确认取消逻辑
   if (res) {
     // 坑，storeToRefs 不等于 vue 中的 ref 或者 reactive，不能用 toRaw
