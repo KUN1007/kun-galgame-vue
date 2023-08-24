@@ -19,7 +19,7 @@ import { Icon } from '@iconify/vue'
       <span><Icon icon="ri:reply-line" />1007</span>
       <!-- 评论数 -->
       <span><Icon icon="fa-regular:comment-dots" />1007</span>
-      <!-- 推贴数 -->
+      <!-- 推话题数 -->
       <span><Icon icon="bi:rocket" />1007</span>
     </div>
   </div>

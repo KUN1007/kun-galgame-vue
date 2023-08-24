@@ -121,7 +121,7 @@ defineProps(['isMainPage'])
   width: 100%;
   /* 相对于 nav 的搜索区域绝对定位 */
   position: absolute;
-  /* 紧贴搜索区定位 */
+  /* 紧话题搜索区定位 */
   top: 39px;
   left: 0;
   /* 无 hover 时不显示搜索历史 */

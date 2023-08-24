@@ -135,7 +135,7 @@ const handleCustomBackground = () => {
   display: flex;
   flex-direction: column;
 }
-/* url 的粘贴框 */
+/* url 的粘话题框 */
 .bg-url-input {
   display: flex;
   justify-content: center;
@@ -147,7 +147,7 @@ const handleCustomBackground = () => {
     height: 25px;
     border: 1px solid var(--kungalgame-blue-4);
     background-color: var(--kungalgame-trans-white-9);
-    /* 粘贴框的 focus */
+    /* 粘话题框的 focus */
     &:focus {
       outline: none;
       background-color: var(--kungalgame-trans-blue-0);

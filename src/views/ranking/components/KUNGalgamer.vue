@@ -16,7 +16,7 @@ import { Icon } from '@iconify/vue'
       <span>MOE: 1007</span>
       <!-- 点赞数 -->
       <span><Icon icon="line-md:thumbs-up-twotone" />1007</span>
-      <!-- 贴子数 -->
+      <!-- 话题数 -->
       <span><Icon icon="line-md:text-box-multiple-twotone" />1007</span>
       <!-- 回复数 -->
       <span><Icon icon="ri:reply-line" />1007</span>
