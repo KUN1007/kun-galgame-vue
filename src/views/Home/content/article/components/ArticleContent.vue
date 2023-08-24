@@ -4,7 +4,7 @@ import SingleTopic from './SingleTopic.vue'
 
 import { HomeTopic } from '@/api/home/types/home'
 
-// 导入用户 store
+// 导入主页 store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 
@@ -18,7 +18,7 @@ requestData.category.value = `["Galgame"]`
 
 // 在组件挂载时调用 fetchTopics 获取话题数据（watch 大法好！）
 watch(
-  [requestData.sortField, requestData.sortOrder],
+  [requestData.keywords, requestData.sortField, requestData.sortOrder],
   async () => {
     topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
   },
@@ -86,9 +86,9 @@ watch(
   transition: all 0.5s ease;
 }
 
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
 .list-leave-active {
-  position: absolute;
+  opacity: 0; /* 逐渐消失 */
+  height: 0; /* 高度逐渐减少 */
+  margin-top: 0; /* 确保没有上边距 */
 }
 </style>

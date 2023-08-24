@@ -1,5 +1,22 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+// 导入用户 store
+import { useKUNGalgameHomeStore } from '@/store/modules/home'
+import { storeToRefs } from 'pinia'
+
+// 导入防抖函数
+import { debounce } from '@/utils/debounce'
+import { ref } from 'vue'
+
+const requestData = storeToRefs(useKUNGalgameHomeStore())
+
+const inputValue = ref('')
+
+// 定义防抖处理函数
+const debouncedSearch = debounce((inputValue: string) => {
+  requestData.keywords.value = inputValue
+}, 300) // 300 毫秒的防抖延迟
 </script>
 
 <template>
@@ -10,7 +27,13 @@ import { Icon } from '@iconify/vue'
       <!-- 搜索框内容 -->
       <div class="content">
         <!-- 框体 -->
-        <input type="search" class="input" placeholder="搜索话题" />
+        <input
+          v-model="inputValue"
+          type="search"
+          class="input"
+          placeholder="搜索话题"
+          @input="debouncedSearch(inputValue)"
+        />
       </div>
       <!-- 搜索框图标 -->
       <div class="search-btn">
