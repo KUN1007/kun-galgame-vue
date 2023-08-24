@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-// 接受父组件传值,若是主页则显示搜索历史
-defineProps(['isMainPage'])
 </script>
 
 <template>
@@ -20,7 +18,7 @@ defineProps(['isMainPage'])
       </div>
     </form>
     <!-- 搜索历史容器 -->
-    <div class="history" v-if="$props.isMainPage">
+    <div class="history">
       <!-- 搜索历史标题 -->
       <div class="title">
         <span>搜索历史</span>
@@ -30,9 +28,25 @@ defineProps(['isMainPage'])
       <div class="history-container">
         <div>
           <span
+            >啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星<Icon
+              class="delete"
+              icon="line-md:close-circle"
+            />
+          </span>
+        </div>
+        <div>
+          <span
             >啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星<Icon
               class="delete"
-              icon="line-md:close-circle-twotone"
+              icon="line-md:close-circle"
+            />
+          </span>
+        </div>
+        <div>
+          <span
+            >啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星<Icon
+              class="delete"
+              icon="line-md:close-circle"
             />
           </span>
         </div>
@@ -58,12 +72,9 @@ defineProps(['isMainPage'])
   display: flex;
   box-sizing: border-box;
   color: var(--kungalgame-font-color-3);
-  &:hover {
-    background-color: var(--kungalgame-trans-white-5);
-    /* hover 时显示搜索历史 */
-    & .history {
-      display: flex;
-    }
+  /* hover 时显示搜索历史 */
+  &:hover .history {
+    display: flex;
   }
 }
 /* 搜索框表单 */
@@ -80,6 +91,9 @@ defineProps(['isMainPage'])
 /* 搜索内容区 */
 .content {
   width: 100%;
+  &:hover {
+    background-color: var(--kungalgame-white);
+  }
 }
 /* 框体 */
 .input {
@@ -110,10 +124,10 @@ defineProps(['isMainPage'])
   box-sizing: border-box;
   font-size: 18px;
   &:hover {
-    background-color: var(--kungalgame-red-2);
+    background-color: var(--kungalgame-red-1);
   }
   &:active {
-    background-color: var(--kungalgame-red-3);
+    background-color: var(--kungalgame-red-2);
   }
 }
 /* 搜索历史的容器 */
@@ -161,12 +175,11 @@ defineProps(['isMainPage'])
   & > div {
     padding: 7px 3px;
     margin: 2px 0;
-    background-color: var(--kungalgame-trans-blue-0);
     cursor: pointer;
     &:hover {
-      background-color: var(--kungalgame-trans-blue-1);
-      & .delete {
-        display: block;
+      color: var(--kungalgame-blue-4);
+      .delete {
+        display: flex;
       }
     }
   }
@@ -178,11 +191,14 @@ defineProps(['isMainPage'])
 }
 /* 删除按钮 */
 .delete {
-  top: 10%;
-  right: 1%;
-  font-size: medium;
+  width: 30px;
+  right: 0;
+  font-size: 17px;
   position: absolute;
+  justify-content: center;
+  align-items: center;
   color: var(--kungalgame-font-color-0);
+  background-color: var(--kungalgame-white);
   display: none;
 }
 </style>
