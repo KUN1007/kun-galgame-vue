@@ -16,36 +16,42 @@ interface Sort {
 const navSortItem: Sort[] = [
   {
     index: 1,
+    icon: 'line-md:rotate-270',
+    name: '恢复默认排序',
+    sortField: 'updated',
+  },
+  {
+    index: 2,
     icon: 'svg-spinners:clock',
     name: '按照时间排序',
     sortField: 'time',
   },
   {
-    index: 2,
+    index: 3,
     icon: 'bi:fire',
     name: '按热度值排序',
     sortField: 'popularity',
   },
   {
-    index: 3,
+    index: 4,
     icon: 'ic:outline-remove-red-eye',
     name: '按浏览数排序',
     sortField: 'views',
   },
   {
-    index: 4,
+    index: 5,
     icon: 'line-md:thumbs-up-twotone',
     name: '按点赞数排序',
     sortField: 'likes',
   },
   {
-    index: 5,
+    index: 6,
     icon: 'ri:reply-line',
     name: '按回复数排序',
     sortField: 'replies',
   },
   {
-    index: 6,
+    index: 7,
     icon: 'fa-regular:comment-dots',
     name: '按评论数排序',
     sortField: 'comments',
@@ -154,7 +160,7 @@ const orderDescending = () => {
 .icon-item {
   color: var(--kungalgame-font-color-2);
   padding-right: 3px;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 /* 按照升序还是降序排列 */

@@ -15,8 +15,8 @@ import KUNgalgamer from './KUNGalgamer.vue'
       <div class="praise">按获赞数排序</div>
       <!-- 发布主题数 -->
       <div class="topic">按发帖数排序</div>
-      <!-- 回贴数 -->
-      <div class="reply">按回贴数排序</div>
+      <!-- 回复数 -->
+      <div class="reply">按回话题数排序</div>
       <!-- 评论数 -->
       <div class="comment">按评论数排序</div>
     </div>

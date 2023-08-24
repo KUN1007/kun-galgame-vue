@@ -23,27 +23,27 @@ const navBar: nav[] = [
   },
   {
     index: 4,
-    name: '发过的帖',
+    name: '发的话题',
     router: '/kungalgamer/kungalgamer/topic',
   },
   {
     index: 5,
-    name: '回过的贴',
+    name: '赞的话题',
     router: '/kungalgamer/kungalgamer/topic',
   },
   {
     index: 6,
-    name: '赞过的帖',
+    name: '推的话题',
     router: '/kungalgamer/kungalgamer/topic',
   },
   {
     index: 7,
-    name: '推过的帖',
+    name: '发的回复',
     router: '/kungalgamer/kungalgamer/topic',
   },
   {
     index: 8,
-    name: '评论列表',
+    name: '发的评论',
     router: '/kungalgamer/kungalgamer/topic',
   },
 ]

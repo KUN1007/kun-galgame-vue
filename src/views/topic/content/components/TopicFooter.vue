@@ -1,4 +1,4 @@
-<!-- 话题的底部区域，推贴，回复，点赞等 -->
+<!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 // 引入流光环绕的特效
@@ -25,10 +25,10 @@ const handelReply = () => {
 <template>
   <!-- 楼主话题底部 -->
   <div class="footer">
-    <!-- 底部左侧部分（点赞、推贴、踩） -->
+    <!-- 底部左侧部分（点赞、推话题、踩） -->
     <div class="left">
       <ul>
-        <!-- 推贴 -->
+        <!-- 推话题 -->
         <li>
           <span class="icon"><Icon icon="bi:rocket" /></span>
           1007
@@ -87,7 +87,7 @@ const handelReply = () => {
   justify-content: space-between;
   align-items: center;
 }
-/* 底部左侧部分（点赞、推贴、踩） */
+/* 底部左侧部分（点赞、推话题、踩） */
 .left ul {
   display: flex;
   justify-content: center;

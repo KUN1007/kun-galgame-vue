@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import SingleTopic from './SingleTopic.vue'
 
-import {
-  HomeTopic,
-  HomeTopicRequestData,
-  HomeTopicResponseData,
-} from '@/api/home/types/home'
+import { HomeTopic } from '@/api/home/types/home'
 
 // 导入用户 store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'

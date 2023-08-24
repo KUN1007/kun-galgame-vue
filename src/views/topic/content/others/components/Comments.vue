@@ -1,5 +1,5 @@
 <!-- 
-  这是回复贴下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
+  这是回复话题下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
  -->
 <script setup lang="ts">
 import SingleComment from './SingleComment.vue'

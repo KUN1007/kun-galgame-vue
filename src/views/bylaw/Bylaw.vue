@@ -39,7 +39,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
             <ul>
               <li>1. 话题每被踩 1 次，扣除 3 萌萌点</li>
               <li>2. 单个话题每被踩 10 次，若审核无误，扣除 100 萌萌点</li>
-              <li>3. 用户推贴一次将会被扣除 17 萌萌点，可以重复推贴</li>
+              <li>3. 用户推话题一次将会被扣除 17 萌萌点，可以重复推话题</li>
             </ul>
           </div>
         </div>
@@ -48,7 +48,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
           <div class="title-1">用户</div>
           <ul>
             <li><strong>1. 萌萌点低于 1000 的用户将会被删除账户</strong></li>
-            <li>2. 萌萌点低于 1100 的用户无法使用“推贴”功能</li>
+            <li>2. 萌萌点低于 1100 的用户无法使用“推话题”功能</li>
             <li>
               3. 连续 “踩” 10 次将会被删除账户（我们希望少一点批评，多一点赞美）
             </li>
@@ -60,11 +60,11 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
           <ul>
             <li>
               1.
-              每个位于主页的话题处于“动态推送状态”，一旦该话题受到包括“点赞”“评论”“推贴”的影响时，该贴将会被置为顶贴
+              每个位于主页的话题处于“动态推送状态”，一旦该话题受到包括“点赞”“评论”“推话题”的影响时，该话题将会被置顶
             </li>
             <li>
               2. 话题热度值计算公式：热度值 = 10 + 评论数 × 3 + 点赞数 × 7 +
-              推贴数 × 1007 – 发帖经过小时数 / 3 – 踩 × 7
+              推话题数 × 1007 – 发表经过小时数 / 3 – 踩 × 7
             </li>
             <li>3. 话题热度值超过 1007 会获得“流光”样式</li>
             <li>

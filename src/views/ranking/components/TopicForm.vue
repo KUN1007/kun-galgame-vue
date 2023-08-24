@@ -17,8 +17,8 @@ import Topic from './Topic.vue'
       <div class="reply">按回复数排序</div>
       <!-- 按回复数排序 -->
       <div class="comment">按评论数排序</div>
-      <!-- 按推贴数排序 -->
-      <div class="top">按推贴数排序</div>
+      <!-- 按推话题数排序 -->
+      <div class="top">按推数排序</div>
     </div>
     <!-- 单个话题的容器 -->
     <div class="topic-container">
