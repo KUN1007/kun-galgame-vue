@@ -16,11 +16,11 @@ import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
     </div>
     <!-- <RouterView /> -->
     <RouterView #default="{ route, Component }">
-      <Transition
+      <!-- <Transition
         :enter-active-class="`animate__animated ${route.meta.transition}`"
-      >
-        <component :is="Component"></component>
-      </Transition>
+      > -->
+      <component :is="Component"></component>
+      <!-- </Transition> -->
     </RouterView>
   </div>
 </template>

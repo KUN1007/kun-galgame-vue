@@ -21,12 +21,18 @@ defineProps(['data'])
       <div class="topic-status">
         <ul>
           <li>
-            <Icon icon="ic:outline-remove-red-eye" />{{ $props.data.views }}
+            <Icon icon="ic:outline-remove-red-eye" /><span>{{
+              $props.data.views
+            }}</span>
           </li>
           <li>
-            <Icon icon="line-md:thumbs-up-twotone" />{{ $props.data.likes }}
+            <Icon icon="line-md:thumbs-up-twotone" /><span>{{
+              $props.data.likes
+            }}</span>
           </li>
-          <li><Icon icon="ri:reply-line" />{{ $props.data.replies }}</li>
+          <li>
+            <Icon icon="ri:reply-line" /><span>{{ $props.data.replies }}</span>
+          </li>
         </ul>
       </div>
       <!-- 话题的状态，点赞数等 -->
@@ -96,19 +102,20 @@ defineProps(['data'])
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-}
-/* 设置点赞、评论、查看字体和位置 */
-.topic-status ul {
-  display: flex;
-  color: var(--kungalgame-font-color-2);
-  font-size: smaller;
-}
-/* 点赞、评论、查看之间的距离 */
-.topic-status ul li {
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+  ul {
+    display: flex;
+    color: var(--kungalgame-font-color-2);
+    font-size: smaller;
+    li {
+      margin-left: 5px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      span {
+        margin-left: 3px;
+      }
+    }
+  }
 }
 /* 发帖日期 */
 .topic-post-date {

@@ -1,12 +1,16 @@
 <script setup lang="ts">
 // 导入图标
 import { Icon } from '@iconify/vue'
+import { useKUNGalgameHomeStore } from '@/store/modules/home'
+import { storeToRefs } from 'pinia'
+
+const homeStore = storeToRefs(useKUNGalgameHomeStore())
 
 interface Sort {
   index: number
   icon: string
   name: string
-  event: string
+  sortField: string
 }
 
 const navSortItem: Sort[] = [
@@ -14,33 +18,51 @@ const navSortItem: Sort[] = [
     index: 1,
     icon: 'svg-spinners:clock',
     name: '按照时间排序',
-    event: 'handleTimeSort',
+    sortField: 'time',
   },
   {
     index: 2,
-    icon: 'ic:outline-remove-red-eye',
-    name: '按照浏览数排序',
-    event: 'handelViewSort',
+    icon: 'bi:fire',
+    name: '按热度值排序',
+    sortField: 'popularity',
   },
   {
     index: 3,
-    icon: 'line-md:thumbs-up-twotone',
-    name: '按照点赞数排序',
-    event: 'handleLikeSort',
+    icon: 'ic:outline-remove-red-eye',
+    name: '按浏览数排序',
+    sortField: 'views',
   },
   {
     index: 4,
-    icon: 'fa-regular:comment-dots',
-    name: '按评论数排序',
-    event: 'handleCommentSort',
+    icon: 'line-md:thumbs-up-twotone',
+    name: '按点赞数排序',
+    sortField: 'likes',
   },
   {
     index: 5,
-    icon: 'bi:fire',
-    name: '按照热度值排序',
-    event: 'handleHotSort',
+    icon: 'ri:reply-line',
+    name: '按回复数排序',
+    sortField: 'replies',
+  },
+  {
+    index: 6,
+    icon: 'fa-regular:comment-dots',
+    name: '按评论数排序',
+    sortField: 'comments',
   },
 ]
+
+const handleSortByField = (sortField: string) => {
+  homeStore.sortField.value = sortField
+}
+
+const orderAscending = () => {
+  homeStore.sortOrder.value = 'asc'
+}
+
+const orderDescending = () => {
+  homeStore.sortOrder.value = 'desc'
+}
 </script>
 
 <template>
@@ -50,12 +72,19 @@ const navSortItem: Sort[] = [
     <!-- 排序的二级菜单 -->
     <div class="sort-container">
       <div class="sort-submenu">
-        <div v-for="kun in navSortItem" :key="kun.index">
+        <div
+          v-for="kun in navSortItem"
+          :key="kun.index"
+          @click="handleSortByField(kun.sortField)"
+        >
           <Icon class="icon-item" :icon="kun.icon" />{{ kun.name }}
         </div>
         <div class="sort-order">
-          <span><Icon icon="tdesign:order-ascending" /></span
-          ><span><Icon icon="tdesign:order-descending" /></span>
+          <span @click="orderAscending"
+            ><Icon icon="tdesign:order-ascending" /></span
+          ><span @click="orderDescending"
+            ><Icon icon="tdesign:order-descending"
+          /></span>
         </div>
       </div>
     </div>
