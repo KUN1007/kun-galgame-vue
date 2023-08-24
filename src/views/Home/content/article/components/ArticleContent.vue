@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import SingleTopic from './SingleTopic.vue'
 
 import {
@@ -12,20 +12,24 @@ import {
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 
+const requestData = storeToRefs(useKUNGalgameHomeStore())
+
 // 在组件中定义响应式的话题数据
 const topics = ref<HomeTopic[]>([])
 
-// 在组件挂载时调用 fetchTopics 获取话题数据
-onMounted(async () => {
-  const fetchedTopics = await useKUNGalgameHomeStore().getHomeTopic()
-
-  topics.value = fetchedTopics.data
-})
+// 在组件挂载时调用 fetchTopics 获取话题数据（watch 大法好！）
+watch(
+  [requestData.sortField, requestData.sortOrder],
+  async () => {
+    topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
-  <KeepAlive>
-    <div class="topic-container">
+  <div class="topic-container">
+    <TransitionGroup name="list" tag="div">
       <!-- 该状态为 2 则话题处于被推状态 -->
       <div
         v-for="topic in topics"
@@ -36,10 +40,11 @@ onMounted(async () => {
         <span></span>
         <span></span>
         <span></span>
+
         <SingleTopic :data="topic" />
       </div>
-    </div>
-  </KeepAlive>
+    </TransitionGroup>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -74,5 +79,17 @@ onMounted(async () => {
   padding: 0;
   flex-shrink: 0;
   border: 2px solid var(--kungalgame-red-2);
+}
+
+.list-move, /* 对移动中的元素应用的过渡 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+/* 确保将离开的元素从布局流中删除
+  以便能够正确地计算移动的动画。 */
+.list-leave-active {
+  position: absolute;
 }
 </style>

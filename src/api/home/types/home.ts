@@ -17,15 +17,7 @@ export interface NewTopic {
 }
 
 export interface HomeTopicRequestData {
-  sortField:
-    | 'created'
-    | 'updated'
-    | 'time'
-    | 'views'
-    | 'likes'
-    | 'replies'
-    | 'comments'
-    | 'popularity'
+  sortField: string
   sortOrder: 'asc' | 'desc'
   page: number
   limit: number
