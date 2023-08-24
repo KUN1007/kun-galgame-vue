@@ -12,6 +12,8 @@ import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 // 导入过滤 xss 的工具
 import DOMPurify from 'dompurify'
+// 导入防抖函数
+import { debounce } from '@/utils/debounce'
 
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
@@ -70,11 +72,14 @@ onBeforeUnmount(() => {
 // 编辑器文本改变时自动保存数据
 const handleChange = (editor: IDomEditor) => {
   editorRef.value = editor
-  // 防抖
-  setTimeout(() => {
+  // 创建一个防抖处理函数
+  const debouncedUpdateContent = debounce(() => {
     // 过滤 xss
     topicData.content.value = DOMPurify.sanitize(editor.getHtml())
   }, 1007)
+
+  // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
+  debouncedUpdateContent()
   // 计算用户输入了多少个字符
   textCount.value = editor.getText().trim().length
 }

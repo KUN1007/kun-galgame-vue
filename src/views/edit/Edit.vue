@@ -9,6 +9,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 
+// 导入防抖函数
+import { debounce } from '@/utils/debounce'
+
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
 // 话题标题的文字
@@ -34,10 +37,14 @@ const handelInput = () => {
     return
   }
 
-  // 防抖
-  setTimeout(() => {
+  // 创建一个防抖处理函数
+  const debouncedInput = debounce(() => {
+    // 过滤 xss
     topicData.title.value = topicTitle.value
-  }, 1007)
+  }, 300)
+
+  // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
+  debouncedInput()
 }
 </script>
 
