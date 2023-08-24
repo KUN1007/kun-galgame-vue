@@ -12,20 +12,33 @@ export const useKUNGalgameHomeStore = defineStore({
   id: 'home',
   persist: true,
   state: (): HomeTopicRequestData => ({
-    sortField: 'updated',
-    sortOrder: 'desc',
+    /**
+     * @param {String} keywords - 搜索关键词，不填默认全部
+     * @param {Array} category - 话题的分类，目前有三种，Galgame, Technique, Others
+     * @param {Number} page - 分页页数
+     * @param {Number} limit - 每页的数据数
+     * @param {String} sortField - 按照哪个字段排序
+     * @param {String} sortOrder - 排序的顺序，有 `asc`, `desc`
+     * @returns {HomeTopicResponseData} topicData
+     */
+    keywords: '',
+    category: '',
     page: 1,
     limit: 17,
+    sortField: 'updated',
+    sortOrder: 'desc',
   }),
   getters: {},
   actions: {
     // 获取首页话题
     getHomeTopic(): Promise<HomeTopicResponseData> {
       const requestData = {
-        sortField: this.sortField,
-        sortOrder: this.sortOrder,
+        keywords: this.keywords,
+        category: this.category,
         page: this.page,
         limit: this.limit,
+        sortField: this.sortField,
+        sortOrder: this.sortOrder,
       }
       return new Promise((resolve, reject) => {
         getHomeTopicApi(requestData)

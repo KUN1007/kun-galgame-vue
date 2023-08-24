@@ -4,7 +4,11 @@ import { Icon } from '@iconify/vue'
 // 导入 i18n 格式化时间的函数
 import { formatTime } from '@/utils/formatTime'
 
-defineProps(['data'])
+import { getPlainText } from '@/utils/getPlainText'
+
+const props = defineProps(['data'])
+
+const plainText = getPlainText(props.data.content)
 </script>
 <template>
   <!-- 话题信息 -->
@@ -14,7 +18,7 @@ defineProps(['data'])
       <!-- 话题的标题 -->
       <div class="topic-title">
         <div class="topic-title-container">
-          <span>{{ $props.data.title }}</span>
+          <span>{{ props.data.title }}</span>
         </div>
       </div>
       <!-- 话题发布日期 -->
@@ -22,29 +26,29 @@ defineProps(['data'])
         <ul>
           <li>
             <Icon icon="ic:outline-remove-red-eye" /><span>{{
-              $props.data.views
+              props.data.views
             }}</span>
           </li>
           <li>
             <Icon icon="line-md:thumbs-up-twotone" /><span>{{
-              $props.data.likes
+              props.data.likes
             }}</span>
           </li>
           <li>
-            <Icon icon="ri:reply-line" /><span>{{ $props.data.replies }}</span>
+            <Icon icon="ri:reply-line" /><span>{{ props.data.replies }}</span>
           </li>
         </ul>
       </div>
       <!-- 话题的状态，点赞数等 -->
       <div class="topic-post-date">
-        <span>{{ formatTime(parseInt($props.data.time)) }}</span>
+        <span>{{ formatTime(parseInt(props.data.time)) }}</span>
       </div>
     </div>
     <!-- 话题的预览介绍 -->
     <div class="topic-introduction">
       <div class="topic-introduction-text">
         <p>
-          {{ $props.data.content }}
+          {{ plainText }}
         </p>
       </div>
     </div>

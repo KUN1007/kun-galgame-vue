@@ -17,10 +17,12 @@ export interface NewTopic {
 }
 
 export interface HomeTopicRequestData {
-  sortField: string
-  sortOrder: 'asc' | 'desc'
+  keywords: string
+  category: string
   page: number
   limit: number
+  sortField: string
+  sortOrder: 'asc' | 'desc'
 }
 
 export interface HomeTopic {
@@ -33,6 +35,9 @@ export interface HomeTopic {
   time: string
   content: string
   upvotes: number
+  tags: Array<string>
+  category: Array<string>
+  popularity: number
   uid: UserInfo
 }
 
