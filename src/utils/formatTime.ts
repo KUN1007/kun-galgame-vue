@@ -4,10 +4,10 @@ dayjs.extend(relativeTime)
 
 const languageOptions = {
   en: {
-    second: 'second',
-    seconds: 'seconds',
-    minute: 'minute',
-    minutes: 'minutes',
+    second: 'sec',
+    seconds: 'secs',
+    minute: 'min',
+    minutes: 'mins',
     hour: 'hour',
     hours: 'hours',
     day: 'day',
@@ -42,6 +42,7 @@ function replaceTimeUnits(input: string, language: string) {
     (languageOptions as Record<string, any>)[language] || languageOptions.en
 
   const replacements: Record<string, string> = {
+    a: '1', // 将 "a" 替换为 "1"
     second: languageOption.second,
     seconds: languageOption.seconds,
     minute: languageOption.minute,
@@ -84,6 +85,10 @@ export function formatTimeDifference(pastTime: number, language: string) {
     } else {
       return now.to(pastTime, true)
     }
+  }
+
+  if (time() === 'a few seconds') {
+    return language === 'en' ? 'a few secs ago' : '几秒前'
   }
 
   const cnTime = replaceTimeUnits(time(), language).replace(/s\b/g, '') + hint
