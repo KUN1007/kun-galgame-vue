@@ -2,6 +2,8 @@
 import { Icon } from '@iconify/vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import SortTopic from './SortTopic.vue'
+
+const category = `["Galgame"]`
 </script>
 
 <template>
@@ -11,8 +13,8 @@ import SortTopic from './SortTopic.vue'
 
     <SortTopic />
 
-    <!-- 搜索框 -->
-    <KUNGalgameSearchBox :isMainPage="true" style="border: none" />
+    <!-- 搜索框，主页只有 Galgame -->
+    <KUNGalgameSearchBox :category="category" style="border: none" />
     <!-- 交互区域进入全部话题 -->
     <RouterLink to="/pool/index" class="more">
       <span>全部话题</span>
