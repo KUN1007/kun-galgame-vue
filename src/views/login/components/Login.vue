@@ -13,7 +13,7 @@ import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 
 // 导入 i18n
 import { useI18n } from 'vue-i18n'
-const { t, tm } = useI18n()
+const { tm } = useI18n()
 
 // 定义人机验证的标志
 const isShowValidate = ref(false)
