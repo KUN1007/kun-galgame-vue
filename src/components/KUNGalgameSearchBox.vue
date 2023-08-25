@@ -2,7 +2,7 @@
 import { Icon } from '@iconify/vue'
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
-import { ref, computed } from 'vue'
+import { ref, computed, onBeforeMount } from 'vue'
 // 导入用户 store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
@@ -10,14 +10,29 @@ import { storeToRefs } from 'pinia'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 // 使用设置面板的 store
 const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
-const { keywords, searchHistory } = storeToRefs(useKUNGalgameHomeStore())
+const { keywords, searchHistory, category } = storeToRefs(
+  useKUNGalgameHomeStore()
+)
 
+// 输入框的值
 const inputValue = ref('')
+// 是否显示搜索历史
 const isShowSearchHistory = ref(false)
+// 输入框被激活之后的样式
 const inputActiveClass = ref({})
-
+// placeholder 的文字提示
 const placeholder = computed(() => {
   return showKUNGalgameLanguage.value === 'en' ? 'Search Topics' : '搜索话题'
+})
+
+// 定义 props，这里的作用是告诉输入框在哪个分类中搜索话题
+const props = defineProps(['category'])
+
+// 初始化搜索框内容，不然刷新页面 input 内依然有内容
+// 将搜索的话题类别赋值，因为搜索框会在三个页面渲染，对应三个分类
+onBeforeMount(() => {
+  keywords.value = ''
+  category.value = props.category
 })
 
 // 定义防抖处理函数
@@ -44,18 +59,25 @@ const handleInputBlur = () => {
   }, 100)
 }
 
+// 搜索函数逻辑
+const search = () => {
+  debouncedSearch(inputValue.value)
+  if (!searchHistory.value.includes(inputValue.value)) {
+    // 仅当数组中没有相同元素时才将元素推入数组
+    searchHistory.value.push(inputValue.value)
+  }
+}
+
 // 用户点击 enter 时
 const handleClickEnter = (event: KeyboardEvent) => {
   event.preventDefault()
-  handleClickSearch()
-  searchHistory.value.push(inputValue.value)
+  search()
 }
 
 // 点击搜索按钮搜索逻辑
 const handleClickSearch = () => {
   if (inputValue.value.trim()) {
-    debouncedSearch(inputValue.value)
-    searchHistory.value.push(inputValue.value)
+    search()
   }
 }
 
