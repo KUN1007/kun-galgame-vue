@@ -8,10 +8,26 @@ import {
   HomeTopicResponseData,
 } from '@/api/home/types/home'
 
+interface HomeStore {
+  keywords: string
+  category: string
+  page: number
+  limit: number
+  sortField: string
+  sortOrder: string
+
+  // 其它的 store
+  // 是否激活主页的左侧交互面板
+  isActiveMainPageAside: boolean
+
+  // 搜索历史存储
+  searchHistory: string[]
+}
+
 export const useKUNGalgameHomeStore = defineStore({
   id: 'home',
   persist: true,
-  state: () => ({
+  state: (): HomeStore => ({
     // 搜索框的 store
     /**
      * @param {String} keywords - 搜索关键词，不填默认全部
@@ -30,7 +46,11 @@ export const useKUNGalgameHomeStore = defineStore({
     sortOrder: 'desc',
 
     // 其它的 store
+    // 是否激活主页的左侧交互面板
     isActiveMainPageAside: true,
+
+    // 搜索历史存储
+    searchHistory: [],
   }),
   getters: {},
   actions: {
