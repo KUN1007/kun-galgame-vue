@@ -7,7 +7,7 @@ import type * as Home from './types/home'
 const homeURLs = {
   home: `/home/topic`,
   navHot: `/home/nav/hot`,
-  navNew: `/home/nav/hot`,
+  navNew: `/home/nav/new`,
 }
 
 // 首页话题列表
@@ -45,7 +45,7 @@ export async function getHomeNavHotTopicApi(): Promise<Home.HotTopicResponseData
 }
 
 // 首页今日最新话题
-export async function getHomeNewHotTopicApi(): Promise<Home.NewTopicResponseData> {
+export async function getHomeNavNewTopicApi(): Promise<Home.NewTopicResponseData> {
   try {
     // 调用 fetchPost 函数
     const response = await fetchGet<Home.NewTopicResponseData>(homeURLs.navNew)

@@ -2,7 +2,14 @@
 import { Icon } from '@iconify/vue'
 
 // 导入 i18n 格式化时间的函数
-import { formatTime } from '@/utils/formatTime'
+import { formatTimeDifference } from '@/utils/formatTime'
+
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
 
 import { getPlainText } from '@/utils/getPlainText'
 
@@ -41,7 +48,12 @@ const plainText = getPlainText(props.data.content)
       </div>
       <!-- 话题的状态，点赞数等 -->
       <div class="topic-post-date">
-        <span>{{ formatTime(parseInt(props.data.time)) }}</span>
+        <span>{{
+          formatTimeDifference(
+            parseInt(props.data.time),
+            showKUNGalgameLanguage
+          )
+        }}</span>
       </div>
     </div>
     <!-- 话题的预览介绍 -->
@@ -123,7 +135,7 @@ const plainText = getPlainText(props.data.content)
 }
 /* 发帖日期 */
 .topic-post-date {
-  width: 45px;
+  width: 55px;
   font-size: x-small;
   color: var(--kungalgame-font-color-0);
   /* 居中 */

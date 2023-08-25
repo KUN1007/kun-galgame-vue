@@ -1,14 +1,27 @@
 <script setup lang="ts">
-import SingleTopic from './SingleTopic.vue'
+import { onMounted, ref } from 'vue'
+import { Icon } from '@iconify/vue'
 
-import singleTopic from '@/types/home/topic'
+import { HotTopic, NewTopic } from '@/api/home/types/home'
+import { getHomeNavHotTopicApi, getHomeNavNewTopicApi } from '@/api/home/index'
 
-// 接受父组件 AsideActive 的传值
-const props = defineProps(['isHotTopic'])
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
 
-const isHotTopic = props.isHotTopic
+const navHotTopic = ref<HotTopic[]>()
+const navNewTopic = ref<NewTopic[]>()
 
-let titleName = isHotTopic ? 'hot' : 'new'
+onMounted(async () => {
+  const responseHotData = await getHomeNavHotTopicApi()
+  navHotTopic.value = responseHotData.data
+
+  const responseNewData = await getHomeNavNewTopicApi()
+  navNewTopic.value = responseNewData.data
+})
 </script>
 
 <template>
@@ -16,23 +29,38 @@ let titleName = isHotTopic ? 'hot' : 'new'
   <div class="topic-wrap">
     <!-- 今日热度话题的标题名 -->
     <!-- 这里调用全局注册的 i18n 函数 $tm 对名字进行渲染 -->
-    <div class="title" :class="titleName">
-      {{ $tm(`mainPage.asideActive['${titleName}']`) }}
+    <div class="title-hot">
+      {{ $tm(`mainPage.asideActive.hot`) }}
     </div>
     <!-- 热门话题的目录 -->
     <!-- 这里使用了父组件传过来的 isHotTopic 数据 -->
-    <template v-for="kun in singleTopic" :key="kun.index">
-      <span class="topic-content" v-if="isHotTopic" :class="`hot-bg`">
-        <router-link :to="{ path: kun.router }">
-          <SingleTopic :data="kun.data" :isHotTopic="isHotTopic" />
-        </router-link>
-      </span>
-      <span class="topic-content" v-if="!isHotTopic" :class="`new-bg`">
-        <router-link :to="{ path: kun.router }">
-          <SingleTopic :data="kun.data" :isHotTopic="isHotTopic" />
-        </router-link>
-      </span>
-    </template>
+    <span class="topic-content hot-bg" v-for="kun in navHotTopic">
+      <router-link :to="{ path: `/topic/${kun.tid}` }">
+        <div class="topic">
+          <div class="title">{{ kun.title }}</div>
+          <div class="hot">
+            <Icon icon="bi:fire" />
+            <span>{{ kun.popularity }}</span>
+          </div>
+        </div>
+      </router-link>
+    </span>
+
+    <!-- 今日最新话题 -->
+    <div class="title-new">
+      {{ $tm(`mainPage.asideActive.new`) }}
+    </div>
+    <span class="topic-content new-bg" v-for="kun in navNewTopic">
+      <router-link :to="{ path: `/topic/${kun.tid}` }">
+        <div class="topic">
+          <div class="title">{{ kun.title }}</div>
+          <div class="new">
+            <Icon icon="svg-spinners:clock" />
+            <span>{{ kun.time }}</span>
+          </div>
+        </div>
+      </router-link>
+    </span>
   </div>
 </template>
 
@@ -41,14 +69,14 @@ let titleName = isHotTopic ? 'hot' : 'new'
 .topic-wrap {
   width: 100%;
   height: 100%;
-  /* 热门话题距离最新话题的距离 */
-  margin-bottom: 5px;
+
   /* 今日热门话题区域为竖直弹性盒 */
   display: flex;
   flex-direction: column;
 }
 /* 标题六个字的样式 */
-.title {
+.title-new,
+.title-hot {
   height: 100%;
   /* 设置（今日热门话题）居中 */
   display: flex;
@@ -72,18 +100,82 @@ let titleName = isHotTopic ? 'hot' : 'new'
     width: 100%;
   }
 }
-.hot {
+.title-hot {
   border: 3px dashed var(--kungalgame-trans-blue-1);
   border-bottom: none;
 }
-.new {
+.title-new {
   border: 3px dashed var(--kungalgame-trans-pink-1);
   border-bottom: none;
+  margin-top: 5px;
 }
 .hot-bg {
   background-color: var(--kungalgame-trans-blue-1);
 }
 .new-bg {
   background-color: var(--kungalgame-trans-pink-1);
+}
+
+/* 单个新话题的样式 */
+.topic {
+  width: 100%;
+  display: flex;
+  /* 设置空白左右居中 */
+  justify-content: space-between;
+  height: 100%;
+  color: var(--kungalgame-font-color-3);
+  align-items: center;
+  cursor: pointer;
+  /* 单个新话题的 hover */
+  &:hover {
+    box-shadow: var(--kungalgame-shadow-1);
+  }
+  &:active {
+    box-shadow: var(--kungalgame-shadow-2);
+  }
+}
+/* 单个话题的标题样式 */
+.title {
+  /* 单个话题标题左侧的一段距离 */
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 设置话题的字体大小 */
+  font-size: smaller;
+}
+/* 设置单个话题右侧的热度值盒子 */
+.new {
+  /* 时间距离右侧的距离 */
+  margin-right: 10px;
+  display: flex;
+  /* 右侧热度区域不换行 */
+  white-space: nowrap;
+  align-items: center;
+  /* 设置 fa 图标字体的颜色 */
+  color: var(--kungalgame-purple-4);
+  span {
+    width: 36px;
+    font-size: xx-small;
+    /* 右侧区域距离最右侧的距离 */
+    margin-left: 5px;
+    color: var(--kungalgame-font-color-3);
+  }
+}
+
+/* 右侧区域的大小 */
+.hot {
+  /* 热度值距离右侧的距离 */
+  margin-right: 10px;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  color: var(--kungalgame-red-4);
+  span {
+    width: 38px;
+    font-size: small;
+    margin-left: 5px;
+    color: var(--kungalgame-font-color-3);
+  }
 }
 </style>
