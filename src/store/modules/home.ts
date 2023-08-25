@@ -11,7 +11,8 @@ import {
 export const useKUNGalgameHomeStore = defineStore({
   id: 'home',
   persist: true,
-  state: (): HomeTopicRequestData => ({
+  state: () => ({
+    // 搜索框的 store
     /**
      * @param {String} keywords - 搜索关键词，不填默认全部
      * @param {Array} category - 话题的分类，目前有三种，Galgame, Technique, Others
@@ -27,12 +28,15 @@ export const useKUNGalgameHomeStore = defineStore({
     limit: 17,
     sortField: 'updated',
     sortOrder: 'desc',
+
+    // 其它的 store
+    isActiveMainPageAside: true,
   }),
   getters: {},
   actions: {
     // 获取首页话题
     getHomeTopic(): Promise<HomeTopicResponseData> {
-      const requestData = {
+      const requestData: HomeTopicRequestData = {
         keywords: this.keywords,
         category: this.category,
         page: this.page,
