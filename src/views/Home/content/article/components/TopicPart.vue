@@ -8,8 +8,7 @@ import { formatTimeDifference } from '@/utils/formatTime'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 // 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
+const settingsStore = storeToRefs(useKUNGalgameSettingsStore())
 
 import { getPlainText } from '@/utils/getPlainText'
 
@@ -51,7 +50,7 @@ const plainText = getPlainText(props.data.content)
         <span>{{
           formatTimeDifference(
             parseInt(props.data.time),
-            showKUNGalgameLanguage
+            settingsStore.showKUNGalgameLanguage.value
           )
         }}</span>
       </div>
