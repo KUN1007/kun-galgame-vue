@@ -162,7 +162,6 @@ onMounted(async () => {
   /* 设置 fa 图标字体的颜色 */
   color: var(--kungalgame-purple-4);
   span {
-    width: 38px;
     font-size: xx-small;
     /* 右侧区域距离最右侧的距离 */
     margin-left: 5px;
@@ -179,7 +178,6 @@ onMounted(async () => {
   align-items: center;
   color: var(--kungalgame-red-4);
   span {
-    width: 38px;
     font-size: small;
     margin-left: 5px;
     color: var(--kungalgame-font-color-3);

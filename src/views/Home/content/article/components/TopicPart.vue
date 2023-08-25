@@ -134,7 +134,7 @@ const plainText = getPlainText(props.data.content)
 }
 /* 发帖日期 */
 .topic-post-date {
-  width: 55px;
+  width: 60px;
   font-size: x-small;
   color: var(--kungalgame-font-color-0);
   /* 居中 */
