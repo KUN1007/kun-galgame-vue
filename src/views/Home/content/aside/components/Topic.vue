@@ -9,8 +9,10 @@ import { getHomeNavHotTopicApi, getHomeNavNewTopicApi } from '@/api/home/index'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 // 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
+const settingsStore = storeToRefs(useKUNGalgameSettingsStore())
+
+// 导入 i18n 格式化时间的函数
+import { formatTimeDifference } from '@/utils/formatTime'
 
 const navHotTopic = ref<HotTopic[]>()
 const navNewTopic = ref<NewTopic[]>()
@@ -56,7 +58,12 @@ onMounted(async () => {
           <div class="title">{{ kun.title }}</div>
           <div class="new">
             <Icon icon="svg-spinners:clock" />
-            <span>{{ kun.time }}</span>
+            <span>{{
+              formatTimeDifference(
+                parseInt(kun.time),
+                settingsStore.showKUNGalgameLanguage.value
+              )
+            }}</span>
           </div>
         </div>
       </router-link>
@@ -155,7 +162,7 @@ onMounted(async () => {
   /* 设置 fa 图标字体的颜色 */
   color: var(--kungalgame-purple-4);
   span {
-    width: 36px;
+    width: 38px;
     font-size: xx-small;
     /* 右侧区域距离最右侧的距离 */
     margin-left: 5px;
