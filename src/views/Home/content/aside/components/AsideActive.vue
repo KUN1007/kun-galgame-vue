@@ -29,18 +29,16 @@ const props = defineProps(['isActive'])
       </span>
     </div>
   </div>
-  <!-- 热门话题板块 -->
-  <Topic v-show="props.isActive" :isHotTopic="true" />
-  <!-- 新话题板块 -->
-  <!-- 这个 style 使侧边栏和内容区等高 -->
-  <Topic v-show="props.isActive" :isHotTopic="false" style="margin-bottom: 0" />
+
+  <!-- 左侧交互话题板块 -->
+  <Topic v-show="props.isActive" />
 </template>
 
 <style lang="scss" scoped>
 /* 侧边栏功能区 */
 .item-box {
   width: 100%;
-  height: 600px;
+  height: 300px;
   /* 设置六个功能（模式、排行、背景等）分布的弹性盒 */
   display: flex;
   flex-direction: column;
