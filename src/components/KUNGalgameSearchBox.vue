@@ -57,22 +57,6 @@ const debouncedSearch = debounce((inputValue: string) => {
             />
           </span>
         </div>
-        <div>
-          <span
-            >啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星<Icon
-              class="delete"
-              icon="line-md:close-circle"
-            />
-          </span>
-        </div>
-        <div>
-          <span
-            >啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星<Icon
-              class="delete"
-              icon="line-md:close-circle"
-            />
-          </span>
-        </div>
       </div>
     </div>
   </div>

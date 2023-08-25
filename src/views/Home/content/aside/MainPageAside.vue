@@ -7,28 +7,20 @@ import AsideActive from './components/AsideActive.vue'
 
 import Aside from './components/Aside.vue'
 
-// 用户点击折叠左侧区域
-const asideBarStatus = (): boolean => {
-  if (localStorage.getItem('KUNGalgame-main-page-aside') === 'true') {
-    return true
-  } else {
-    return false
-  }
-}
+// 导入用户 store
+import { useKUNGalgameHomeStore } from '@/store/modules/home'
+import { storeToRefs } from 'pinia'
 
-const isActive = ref<boolean>(asideBarStatus())
+const { isActiveMainPageAside } = storeToRefs(useKUNGalgameHomeStore())
+
 const asideWidth = ref('240px')
 const handleFold = () => {
-  isActive.value = !isActive.value
+  isActiveMainPageAside.value = !isActiveMainPageAside.value
 }
 watch(
-  isActive,
+  isActiveMainPageAside,
   () => {
-    localStorage.setItem(
-      'KUNGalgame-main-page-aside',
-      isActive.value.toString()
-    )
-    asideWidth.value = isActive.value ? '240px' : '40px'
+    asideWidth.value = isActiveMainPageAside.value ? '240px' : '40px'
   },
   { immediate: true }
 )
@@ -40,20 +32,26 @@ watch(
     <!-- 侧边栏交互 -->
     <div class="nav-aside" @click="handleFold">
       <!-- fa 箭头图标字体 -->
-      <Icon icon="line-md:arrow-left" style="font-size: 17px" v-if="isActive" />
+      <Icon
+        icon="line-md:arrow-left"
+        style="font-size: 17px"
+        v-if="isActiveMainPageAside"
+      />
       <Icon
         icon="line-md:arrow-right"
         style="font-size: 17px"
-        v-if="!isActive"
+        v-if="!isActiveMainPageAside"
       />
-      <span v-if="isActive">{{ $tm('mainPage.asideActive.fold') }}</span>
+      <span v-if="isActiveMainPageAside">{{
+        $tm('mainPage.asideActive.fold')
+      }}</span>
     </div>
-    <div class="item-active" v-if="isActive">
-      <AsideActive :isActive="isActive" />
+    <div class="item-active" v-if="isActiveMainPageAside">
+      <AsideActive :isActive="isActiveMainPageAside" />
     </div>
 
-    <div class="item" v-if="!isActive">
-      <Aside :isActive="!isActive" v-if="!isActive" />
+    <div class="item" v-if="!isActiveMainPageAside">
+      <Aside :isActive="!isActiveMainPageAside" v-if="!isActiveMainPageAside" />
     </div>
   </div>
 </template>

@@ -22,7 +22,7 @@ export interface HomeTopicRequestData {
   page: number
   limit: number
   sortField: string
-  sortOrder: 'asc' | 'desc'
+  sortOrder: string
 }
 
 export interface HomeTopic {
