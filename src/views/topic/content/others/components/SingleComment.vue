@@ -67,6 +67,7 @@ import { Icon } from '@iconify/vue'
 .describe {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 }
 /* 顶部左侧名字 */
 .name {
@@ -91,7 +92,6 @@ import { Icon } from '@iconify/vue'
 /* 单个评论 */
 .text {
   font-size: 12px;
-  margin-right: 10px;
   text-indent: 25px;
   /* 标题显示两行、超出部分隐藏 */
   overflow: hidden; /* 超出部分隐藏 */

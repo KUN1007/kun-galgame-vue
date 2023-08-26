@@ -4,8 +4,6 @@
   里面包含着每个人的回复和下方回复这个人的评论
  -->
 <script setup lang="ts">
-// 导入楼层组件
-import Floor from '../../components/Floor.vue'
 // 导入评论组件
 import Comments from '../components/Comments.vue'
 // 导入 Footer 组件
@@ -22,11 +20,13 @@ import Rewrite from '../../components/Rewrite.vue'
 import KUNGalgamerInfo from '../../components/KUNGalgamerInfo.vue'
 // 导入回复人,被回复人
 import Reply from './Reply.vue'
+
+import 'animate.css'
 </script>
 
 <template>
   <!-- 楼层标志 -->
-  <Floor :width="'50px'" :font="'18px'" style="margin-bottom: -25px" />
+  <div class="floor"><span>F1</span></div>
   <!-- 其他人话题内容区的容器 -->
   <div class="container">
     <!-- 其它人回复的内容区 -->
@@ -60,6 +60,27 @@ import Reply from './Reply.vue'
 </template>
 
 <style lang="scss" scoped>
+.floor {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-weight: bold;
+  font-style: oblique;
+  color: var(--kungalgame-red-3);
+  padding: 5px;
+  border-bottom: none;
+  /* 这里的阴影只能这么绘制 */
+  filter: drop-shadow(2px 4px 3px var(--kungalgame-trans-blue-4));
+  span {
+    transform: rotate(10deg) translateY(10px) translateX(30px);
+    padding: 0 30px;
+    text-align: center;
+    background-color: var(--kungalgame-trans-white-2);
+    font-size: 20px;
+    /* 这里将人物名字的形状裁剪成六边形 */
+    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+  }
+}
 /* 其他人话题内容区容器 */
 .container {
   width: 100%;

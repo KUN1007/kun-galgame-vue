@@ -6,7 +6,7 @@ const { width, font } = defineProps(['width', 'font'])
 <template>
   <!-- 楼主标志 -->
   <div class="floor">
-    <button class="btn">F0</button>
+    <span class="btn">F0</span>
   </div>
 </template>
 
@@ -28,8 +28,8 @@ const { width, font } = defineProps(['width', 'font'])
 .btn {
   border: none;
   /* 大小 */
-  width: v-bind(width);
-  height: v-bind(width);
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   letter-spacing: 2px;
   background: linear-gradient(
@@ -37,7 +37,7 @@ const { width, font } = defineProps(['width', 'font'])
     var(--kungalgame-red-1)
   );
   opacity: 0.8;
-  font-size: v-bind(font);
+  font-size: 18px;
   font-weight: bold;
   font-style: oblique;
   color: var(--kungalgame-red-1);

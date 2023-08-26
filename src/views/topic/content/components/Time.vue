@@ -18,6 +18,7 @@ import { Icon } from '@iconify/vue'
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   font-size: small;
   /* 文字间距 */
   letter-spacing: 1px;
