@@ -55,6 +55,7 @@ onBeforeMount(() => {
 <style lang="scss" scoped>
 /* 页面总容器 */
 .main-wrapper {
+  min-height: 1500px;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;

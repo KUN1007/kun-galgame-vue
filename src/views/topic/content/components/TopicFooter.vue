@@ -28,6 +28,11 @@ const handelReply = () => {
     <!-- 底部左侧部分（点赞、推话题、踩） -->
     <div class="left">
       <ul>
+        <!-- 查看数量 -->
+        <li>
+          <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
+          1007
+        </li>
         <!-- 推话题 -->
         <li>
           <span class="icon"><Icon icon="bi:rocket" /></span>
@@ -99,7 +104,11 @@ const handelReply = () => {
     align-items: center;
     font-size: 14px;
     margin-left: 17px;
-    &:nth-child(1) span {
+    span {
+      display: flex;
+      margin-right: 3px;
+    }
+    &:nth-child(2) span {
       color: var(--kungalgame-red-4);
     }
   }

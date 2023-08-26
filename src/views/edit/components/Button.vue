@@ -7,6 +7,10 @@ import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入用户 store
 import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
+// 导入路由
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
@@ -29,16 +33,16 @@ const handlePublish = async () => {
       uid: useKUNGalgamerStore().uid.toString(),
     }
 
-    try {
-      // 后端返回的创建好的话题数据
-      const createdTopic = await useKUNGalgameEditStore().createNewTopic(
-        topicToCreate
-      )
+    // 后端返回的创建好的话题数据
+    const createdTopic = await useKUNGalgameEditStore().createNewTopic(
+      topicToCreate
+    )
 
-      console.log(createdTopic)
-    } catch (error) {
-      console.log(error)
-    }
+    // 获取创建好话题的 tid
+    const tid = createdTopic.data.tid
+
+    // 将用户 push 进对应 tid 话题的详情页面
+    router.push({ name: 'Topic', params: { tid } })
 
     message.info('AlertInfo.edit.publishSuccess')
     // 清除数据，并不再保存数据，因为此时该话题已被发布，这里使用 pinia 自带的 $reset 重置状态

@@ -6,13 +6,13 @@
   页面被拆成 3 个大组件，这是话题部分
  -->
 <script setup lang="ts">
-import TopicMaster from './master/TopicMaster.vue'
-import TopicOthers from './others/TopicOthers.vue'
+import Master from './components/Master.vue'
+import Reply from './components/Reply.vue'
 </script>
 <template>
   <div class="content-right-part">
-    <TopicMaster />
-    <TopicOthers />
+    <Master />
+    <!-- <Reply /> -->
   </div>
 </template>
 <style scoped>

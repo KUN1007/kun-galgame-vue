@@ -18,8 +18,6 @@ import Time from '../components/Time.vue'
 import Tags from '../components/Tags.vue'
 // 楼主话题的头部，标题
 import TopicHeader from '../components/TopicHeader.vue'
-// 楼主标志
-import Floor from '../components/Floor.vue'
 </script>
 
 <template>
