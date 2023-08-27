@@ -38,9 +38,9 @@ onBeforeMount(() => {
 
 <template>
   <!-- 回复面板组件 -->
-  <ReplyPanel />
   <!-- 总容器 -->
   <div class="main-wrapper">
+    <ReplyPanel />
     <!-- 下面话题详情区的容器 -->
     <div class="topic-wrapper">
       <!-- 下方可视内容区的容器 -->

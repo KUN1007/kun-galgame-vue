@@ -12,24 +12,30 @@ import TopicFooter from './../components/TopicFooter.vue'
 import Time from './../components/Time.vue'
 // 导入标签组件
 import Tags from './../components/Tags.vue'
-// 导入话题内容
-import TopicContent from './../components/TopicContent.vue'
 // 导入重新编辑
 import Rewrite from './../components/Rewrite.vue'
 // 导入发帖人个人信息
 import KUNGalgamerInfo from './../components/KUNGalgamerInfo.vue'
 
-const props = defineProps<{
-  replyIDs: number[]
+import { TopicReply } from '@/api/index'
+
+defineProps<{
+  repliesData: TopicReply[]
 }>()
 </script>
 
 <template>
   <!-- 其它人的回复 -->
-  <div class="other-topic-container">
+  <div
+    class="other-topic-container"
+    v-for="(reply, index) in repliesData"
+    :key="index"
+  >
     <!-- 每个人的单个话题 -->
     <!-- 楼层标志 -->
-    <div class="floor"><span>F1</span></div>
+    <div class="floor">
+      <span>F{{ reply.floor }}</span>
+    </div>
     <!-- 其他人话题内容区的容器 -->
     <div class="container">
       <!-- 其它人回复的内容区 -->
@@ -37,7 +43,7 @@ const props = defineProps<{
         <!-- 其他人回复的上部 -->
         <div class="article">
           <!-- 其它人回复的上部左侧区域 -->
-          <KUNGalgamerInfo />
+          <KUNGalgamerInfo :user="reply.r_user" />
           <!-- 其它人回复的上部右侧区域 -->
           <div class="right">
             <!-- 右侧的上部区域 -->
@@ -46,24 +52,35 @@ const props = defineProps<{
               <div class="reply">
                 <!-- TODO: 跳转到页面中话题的位置 -->
                 <span
-                  >回复给@<router-link to="#">啊这可海星啊这</router-link></span
+                  >回复给 @
+                  <router-link to="#">{{
+                    reply.to_user.name
+                  }}</router-link></span
                 >
               </div>
               <!-- 上部区域的右边 -->
-              <Rewrite />
+              <Rewrite v-if="reply.edited" :time="reply.edited" />
             </div>
             <!-- 右侧部分分文本 -->
-            <TopicContent />
+            <div class="text" v-html="reply.content"></div>
           </div>
         </div>
         <!-- 其他人回复的下部 -->
         <div class="bottom">
-          <Tags />
-          <Time />
+          <Tags :tags="reply.tags" />
+          <Time :time="reply.time" />
         </div>
       </div>
       <!-- 其它人回复的底部 -->
-      <TopicFooter :isOthersTopic="true" />
+      <TopicFooter
+        :isOthersTopic="true"
+        :info="{
+          likes: reply.likes,
+          dislikes: reply.dislikes,
+          replies: reply.cid.length,
+          upvotes: reply.upvote,
+        }"
+      />
       <Comments />
     </div>
   </div>
@@ -161,6 +178,14 @@ const props = defineProps<{
       text-decoration-thickness: 2px;
     }
   }
+}
+
+/* 内容区右侧的话题展示区 */
+.text {
+  font-size: 15px;
+  padding: 17px;
+  border-left: 1px solid var(--kungalgame-blue-1);
+  color: var(--kungalgame-font-color-3);
 }
 
 @media (max-width: 1000px) {

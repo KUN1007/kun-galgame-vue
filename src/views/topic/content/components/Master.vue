@@ -6,8 +6,6 @@
 import TopicFooter from '../components/TopicFooter.vue'
 // 楼主话题是否重新编辑
 import Rewrite from '../components/Rewrite.vue'
-// 楼主话题的内容
-import TopicContent from '../components/TopicContent.vue'
 // 楼主的信息
 import KUNGalgamerInfo from '../components/KUNGalgamerInfo.vue'
 // 楼主的发帖时间
@@ -15,9 +13,9 @@ import Time from '../components/Time.vue'
 // 楼主话题的标签
 import Tags from '../components/Tags.vue'
 
-import { TopicDetailResponseData } from '@/api/topic/types/topic'
+import { TopicDetail } from '@/api/topic/types/topic'
 const topicData = defineProps<{
-  topicData: TopicDetailResponseData
+  topicData: TopicDetail
 }>()
 
 const {
@@ -34,9 +32,7 @@ const {
   edited,
   user,
   rid,
-} = topicData.topicData?.data
-
-console.log(topicData.topicData.data)
+} = topicData.topicData
 </script>
 
 <template>
@@ -74,7 +70,7 @@ console.log(topicData.topicData.data)
       <!-- 话题的点赞数等信息 -->
       <TopicFooter
         :isOthersTopic="false"
-        :topicInfo="{ views, likes, dislikes, replies, upvotes }"
+        :info="{ views, likes, dislikes, replies, upvotes }"
       />
     </div>
   </div>
@@ -96,6 +92,7 @@ console.log(topicData.topicData.data)
 }
 /* 楼主话题内容区的容器 */
 .content-container {
+  flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;

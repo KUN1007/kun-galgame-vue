@@ -41,8 +41,15 @@ const handlePublish = async () => {
     // 获取创建好话题的 tid
     const tid = createdTopic.data.tid
 
+    console.log(tid)
+
     // 将用户 push 进对应 tid 话题的详情页面
-    router.push({ name: 'Topic', params: { tid } })
+    router.push({
+      name: 'Topic',
+      params: {
+        tid: tid,
+      },
+    })
 
     message.info('AlertInfo.edit.publishSuccess')
     // 清除数据，并不再保存数据，因为此时该话题已被发布，这里使用 pinia 自带的 $reset 重置状态

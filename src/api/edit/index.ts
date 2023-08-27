@@ -15,7 +15,7 @@ export async function postEditNewTopicApi(
       newTopicData
     )
 
-    // 返回创建好的话题数据
+    // 返回创建好的话题 tid
     return response
   } catch (error) {
     // 处理错误

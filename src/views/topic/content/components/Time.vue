@@ -2,8 +2,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-const props = defineProps<{
-  time: number
+defineProps<{
+  time?: number
 }>()
 </script>
 
