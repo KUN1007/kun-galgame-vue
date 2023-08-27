@@ -5,12 +5,12 @@ const editURLs = {
   create: `/edit/topic`,
 }
 
-export async function postNewTopicApi(
-  newTopicData: Edit.CreateTopicRequestData
-): Promise<Edit.CreateTopicResponseData> {
+export async function postEditNewTopicApi(
+  newTopicData: Edit.EditCreateTopicRequestData
+): Promise<Edit.EditCreateTopicResponseData> {
   try {
     // 调用 fetchPost 函数
-    const response = await fetchPost<Edit.CreateTopicResponseData>(
+    const response = await fetchPost<Edit.EditCreateTopicResponseData>(
       editURLs.create,
       newTopicData
     )

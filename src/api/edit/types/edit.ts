@@ -1,4 +1,4 @@
-export interface CreateTopicRequestData {
+export interface EditCreateTopicRequestData {
   title: string
   content: string
   time: number
@@ -7,7 +7,7 @@ export interface CreateTopicRequestData {
   uid: string
 }
 
-export interface KUNGalgameTopic {
+export interface EditKUNGalgameTopic {
   tid: number
   // title: string
   // content: string
@@ -29,4 +29,5 @@ export interface KUNGalgameTopic {
 }
 
 // 创建话题响应数据的格式
-export type CreateTopicResponseData = KUNGalgameResponseData<KUNGalgameTopic>
+export type EditCreateTopicResponseData =
+  KUNGalgameResponseData<EditKUNGalgameTopic>

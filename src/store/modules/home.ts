@@ -1,12 +1,9 @@
 /* 主页的 store */
 import { defineStore } from 'pinia'
 
-import { getHomeTopicApi } from '@/api/home/index'
+import { getHomeTopicApi } from '@/api/index'
 
-import {
-  HomeTopicRequestData,
-  HomeTopicResponseData,
-} from '@/api/home/types/home'
+import { HomeTopicRequestData, HomeTopicResponseData } from '@/api/index'
 
 interface HomeStore {
   keywords: string

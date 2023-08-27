@@ -3,8 +3,8 @@
  */
 import { defineStore } from 'pinia'
 import { type Ref, ref } from 'vue'
-import { LoginRequestData, LoginResponseData } from '@/api/type'
-import { postLoginDataApi } from '@/api/login/index'
+import { LoginRequestData, LoginResponseData } from '@/api/index'
+import { postLoginDataApi } from '@/api/index'
 
 interface UserState {
   uid: Ref<number>
