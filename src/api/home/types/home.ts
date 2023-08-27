@@ -13,7 +13,7 @@ export interface HotTopic {
 export interface NewTopic {
   tid: number
   title: string
-  time: string
+  time: number
 }
 
 export interface HomeTopicRequestData {
@@ -32,7 +32,7 @@ export interface HomeTopic {
   likes: number
   replies: number
   comments: number
-  time: string
+  time: number
   content: string
   upvotes: number
   tags: Array<string>

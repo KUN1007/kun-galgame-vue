@@ -1,7 +1,7 @@
 export interface CreateTopicRequestData {
   title: string
   content: string
-  time: string
+  time: number
   tags: string
   category: string
   uid: string
@@ -15,7 +15,7 @@ export interface KUNGalgameTopic {
   // tags: Array<string>
   // category: Array<string>
   // rid: Array<number>
-  // time: string
+  // time: number
   // popularity: number
   // upvotes: number
   // views: number

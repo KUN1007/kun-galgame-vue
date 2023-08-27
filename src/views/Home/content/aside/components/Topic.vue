@@ -60,7 +60,7 @@ onMounted(async () => {
             <Icon icon="svg-spinners:clock" />
             <span>{{
               formatTimeDifference(
-                parseInt(kun.time),
+                kun.time,
                 settingsStore.showKUNGalgameLanguage.value
               )
             }}</span>
