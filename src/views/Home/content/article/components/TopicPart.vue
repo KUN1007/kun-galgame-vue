@@ -49,7 +49,7 @@ const plainText = getPlainText(props.data.content)
       <div class="topic-post-date">
         <span>{{
           formatTimeDifference(
-            parseInt(props.data.time),
+            props.data.time,
             settingsStore.showKUNGalgameLanguage.value
           )
         }}</span>

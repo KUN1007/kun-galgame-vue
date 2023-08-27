@@ -6,13 +6,16 @@
   页面被拆成 3 个大组件，这是话题部分
  -->
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import Master from './components/Master.vue'
 import Reply from './components/Reply.vue'
+
+onMounted(() => {})
 </script>
 <template>
   <div class="content-right-part">
     <Master />
-    <!-- <Reply /> -->
+    <Reply />
   </div>
 </template>
 <style scoped>
