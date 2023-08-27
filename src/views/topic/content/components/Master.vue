@@ -14,9 +14,13 @@ import Time from '../components/Time.vue'
 import Tags from '../components/Tags.vue'
 
 import { TopicDetail } from '@/api/topic/types/topic'
+import { computed, onMounted, ref } from 'vue'
+
 const topicData = defineProps<{
   topicData: TopicDetail
 }>()
+
+const width = ref('')
 
 const {
   tid,
@@ -33,6 +37,12 @@ const {
   user,
   rid,
 } = topicData.topicData
+
+onMounted(() => {
+  width.value = computed(() => {
+    return 100 + '%'
+  }).value
+})
 </script>
 
 <template>
@@ -58,6 +68,7 @@ const {
         <div class="content-center">
           <KUNGalgamerInfo v-if="user" :user="user" />
           <!-- 内容区右侧的话题展示区，这里富文本必须用 v-html，已经确定文本经过三次处理 -->
+          <!-- 这里用的 v-html，样式是页面刷新后才会有的，所以必须动态绑定样式 -->
           <div class="text" v-html="content"></div>
         </div>
         <!-- 内容区的底部 -->
@@ -128,9 +139,7 @@ const {
 
 /* 楼主话题内容区 */
 .content {
-  width: 100%;
   display: flex;
-  flex-shrink: 0;
   flex-direction: column;
 }
 /* 内容区的顶部 */
@@ -151,17 +160,24 @@ const {
 .content-center {
   width: 100%;
   display: flex;
-  flex-shrink: 0;
   border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
 }
+
 /* 内容区右侧的话题展示区 */
 .text {
+  width: 100%;
   font-size: 15px;
   padding: 17px;
   border-left: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
+  /* 逆天操作！我自己发明的！ */
+  :deep(*) {
+    max-width: v-bind(width);
+    overflow-y: scroll;
+  }
 }
+
 /* 内容区的底部 */
 .content-bottom {
   width: 100%;

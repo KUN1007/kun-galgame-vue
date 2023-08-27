@@ -6,7 +6,7 @@ const { objForEach } = require('../util')
 
 const { PROTOCOL, PORT, IP } = {
   PROTOCOL: 'http',
-  PORT: '10007',
+  PORT: '10008',
   IP: '127.0.0.1',
 }
 

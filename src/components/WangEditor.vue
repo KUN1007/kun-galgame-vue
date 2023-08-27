@@ -37,7 +37,7 @@ const editorConfig = {
   readOnly: false,
   MENU_CONF: {
     uploadImage: {
-      server: 'http://127.0.0.1:10007/upload/img',
+      server: 'http://127.0.0.1:10008/upload/img',
 
       timeout: 5 * 1000, // 5s
 

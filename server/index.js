@@ -10,7 +10,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static(staticPath))
 
-const port = 10007 // 端口号
+const port = 10008 // 端口号
 
 // 用户路由
 const userRoutes = require('./src/routes/user')
