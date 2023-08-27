@@ -13,11 +13,7 @@ const props = defineProps<{
     <!-- 标签的图标字体 -->
     <Icon class="tag" icon="mingcute:tag-2-fill" />
     <ul>
-      <li>啊这可海星</li>
-      <li>啊这可海星</li>
-      <li>啊这可海星</li>
-      <li>啊这可海星</li>
-      <li>啊这可海星</li>
+      <li v-for="(tag, index) in tags" :key="index">{{ tag }}</li>
     </ul>
   </div>
 </template>
@@ -29,18 +25,23 @@ const props = defineProps<{
   justify-content: center;
   align-items: center;
   color: var(--kungalgame-font-color-3);
+  flex-shrink: 0;
+  flex-grow: 1;
   /* 单个标签的盒子 */
   ul {
+    flex-grow: 1;
+    max-height: 100px;
+    width: 300px;
     display: flex;
     flex-wrap: wrap;
+    overflow-y: scroll;
     li {
-      margin-left: 5px;
+      margin: 5px;
       font-size: small;
       padding: 2px;
-      background-color: var(--kungalgame-blue-0);
-      overflow: hidden;
-      white-space: nowrap;
-      border-radius: 5px;
+      background-color: var(--kungalgame-trans-blue-0);
+      border: 1px solid var(--kungalgame-blue-1);
+      overflow-y: scroll;
       cursor: pointer;
       &:hover {
         background-color: var(--kungalgame-red-0);

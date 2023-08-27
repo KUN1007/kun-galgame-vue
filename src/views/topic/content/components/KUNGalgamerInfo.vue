@@ -18,10 +18,12 @@ const props = defineProps<{
       <!-- 头像图片 TODO: -->
       <img src="@/assets/images/KUN.jpg" alt="KUN" />
     </div>
-    <!-- 名字 -->
-    <div class="name">{{ user.name }}</div>
-    <!-- 萌萌点 -->
-    <div class="moemoepoint">{{ user.moemoepoint }}</div>
+    <div class="info">
+      <!-- 名字 -->
+      <div class="name">{{ user.name }}</div>
+      <!-- 萌萌点 -->
+      <div class="moemoepoint">{{ user.moemoepoint }}</div>
+    </div>
   </div>
 </template>
 
@@ -49,11 +51,29 @@ const props = defineProps<{
   display: flex;
   justify-content: center;
   margin-top: 17px;
+  font-size: 23px;
 }
 /* 萌萌点 */
 .moemoepoint {
   margin-top: 10px;
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .kungalgamer {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 27px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--kungalgame-blue-1);
+    border-top: 1px solid var(--kungalgame-blue-1);
+  }
+  .info {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }
 </style>

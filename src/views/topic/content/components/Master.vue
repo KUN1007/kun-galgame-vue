@@ -136,7 +136,7 @@ const {
 /* 内容区的顶部 */
 .content-top {
   width: 100%;
-  height: 40px;
+  max-height: 100px;
   display: flex;
   text-align: center;
   /* 时间和标签分居两侧 */
@@ -144,6 +144,7 @@ const {
   /* 下面的分割线 */
   border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
+  flex-grow: 1;
 }
 
 /* 楼主的话题和楼主的信息容器 */
@@ -189,6 +190,12 @@ const {
 
 @media (max-width: 1000px) {
   .content-top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .content-center {
     flex-direction: column;
   }
 }

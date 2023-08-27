@@ -111,7 +111,8 @@ const handelReply = () => {
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    margin-left: 17px;
+    margin: 17px;
+    margin-right: 0;
     span {
       display: flex;
       margin-right: 3px;
