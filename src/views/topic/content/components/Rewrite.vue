@@ -1,5 +1,10 @@
 <!-- 重新编辑话题信息显示 -->
-<script setup lang="ts"></script>
+<!-- 我就要把这个组件拆出来！因为是！Rewrite！啊哈哈哈（我不会告诉你这个实际上应该命名 Reedit） -->
+<script setup lang="ts">
+const props = defineProps<{
+  time: number
+}>()
+</script>
 
 <template>
   <!-- 是否重新编辑 -->

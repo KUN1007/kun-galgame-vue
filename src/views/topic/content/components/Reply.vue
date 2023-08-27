@@ -18,6 +18,10 @@ import TopicContent from './../components/TopicContent.vue'
 import Rewrite from './../components/Rewrite.vue'
 // 导入发帖人个人信息
 import KUNGalgamerInfo from './../components/KUNGalgamerInfo.vue'
+
+const props = defineProps<{
+  replyIDs: number[]
+}>()
 </script>
 
 <template>

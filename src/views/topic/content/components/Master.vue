@@ -4,8 +4,6 @@
 <script setup lang="ts">
 // 楼主话题的 Footer
 import TopicFooter from '../components/TopicFooter.vue'
-// 楼主话题的状态
-import TopicStatus from '../components/TopicStatus.vue'
 // 楼主话题是否重新编辑
 import Rewrite from '../components/Rewrite.vue'
 // 楼主话题的内容
@@ -16,8 +14,29 @@ import KUNGalgamerInfo from '../components/KUNGalgamerInfo.vue'
 import Time from '../components/Time.vue'
 // 楼主话题的标签
 import Tags from '../components/Tags.vue'
-// 楼主话题的头部，标题
-import TopicHeader from '../components/TopicHeader.vue'
+
+import { TopicDetailResponseData } from '@/api/topic/types/topic'
+const topicData = defineProps<{
+  topicData: TopicDetailResponseData
+}>()
+
+const {
+  tid,
+  title,
+  views,
+  likes,
+  dislikes,
+  replies,
+  time,
+  content,
+  upvotes,
+  tags,
+  edited,
+  user,
+  rid,
+} = topicData.topicData?.data
+
+console.log(topicData.topicData.data)
 </script>
 
 <template>
@@ -25,26 +44,38 @@ import TopicHeader from '../components/TopicHeader.vue'
   <div class="container">
     <!-- 楼主话题内容区的容器 -->
     <div class="content-container">
-      <TopicHeader />
+      <!-- 楼主话题头部 -->
+      <div class="header">
+        <!-- 楼主话题标题 -->
+        <div class="title">
+          {{ title }}
+        </div>
+      </div>
       <!-- 楼主话题内容区 -->
       <div class="content">
         <!-- 内容区的顶部 -->
         <div class="content-top">
-          <Tags />
-          <Time />
+          <Tags v-if="tags" :tags="tags" />
+          <Time v-if="time" :time="time" />
         </div>
         <!-- 内容区的中部 -->
         <div class="content-center">
-          <KUNGalgamerInfo />
-          <TopicContent />
+          <KUNGalgamerInfo v-if="user" :user="user" />
+          <!-- 内容区右侧的话题展示区，这里富文本必须用 v-html，已经确定文本经过三次处理 -->
+          <div class="text" v-html="content"></div>
         </div>
         <!-- 内容区的底部 -->
         <div class="content-bottom">
-          <TopicStatus />
-          <Rewrite />
+          <!-- 话题状态 -->
+          <div>话题状态：<span>正常</span></div>
+          <Rewrite v-if="edited" :time="edited" />
         </div>
       </div>
-      <TopicFooter />
+      <!-- 话题的点赞数等信息 -->
+      <TopicFooter
+        :isOthersTopic="false"
+        :topicInfo="{ views, likes, dislikes, replies, upvotes }"
+      />
     </div>
   </div>
 </template>
@@ -77,6 +108,27 @@ import TopicHeader from '../components/TopicHeader.vue'
   box-sizing: border-box;
 }
 
+/* 楼主话题头部 */
+.header {
+  width: 100%;
+  height: 70px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kungalgame-font-color-3);
+  font-size: 17px;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
+  box-sizing: border-box;
+}
+/* 楼主话题标题 */
+.title {
+  font-size: 17px;
+  font-weight: bold;
+  /* 文字间距 */
+  letter-spacing: 1px;
+}
+
 /* 楼主话题内容区 */
 .content {
   width: 100%;
@@ -105,6 +157,13 @@ import TopicHeader from '../components/TopicHeader.vue'
   border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
 }
+/* 内容区右侧的话题展示区 */
+.text {
+  font-size: 15px;
+  padding: 17px;
+  border-left: 1px solid var(--kungalgame-blue-1);
+  color: var(--kungalgame-font-color-3);
+}
 /* 内容区的底部 */
 .content-bottom {
   width: 100%;
@@ -113,6 +172,22 @@ import TopicHeader from '../components/TopicHeader.vue'
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--kungalgame-blue-1);
+  div {
+    display: flex;
+    font-size: 12px;
+    margin-left: 10px;
+    color: var(--kungalgame-font-color-3);
+    /* 话题状态 */
+    span {
+      width: 30px;
+      padding: 1px;
+      background-color: var(--kungalgame-green-4);
+      color: var(--kungalgame-white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
 @media (max-width: 1000px) {

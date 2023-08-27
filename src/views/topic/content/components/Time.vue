@@ -1,6 +1,10 @@
 <!-- 发帖的时间 -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+const props = defineProps<{
+  time: number
+}>()
 </script>
 
 <template>

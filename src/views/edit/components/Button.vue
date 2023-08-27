@@ -27,7 +27,7 @@ const handlePublish = async () => {
     const topicToCreate = {
       title: rawData.title,
       content: rawData.content,
-      time: Date.now().toString(),
+      time: Date.now(),
       tags: JSON.stringify(rawData.tags),
       category: JSON.stringify(rawData.category),
       uid: useKUNGalgamerStore().uid.toString(),

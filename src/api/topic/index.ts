@@ -1,31 +1,21 @@
 import { fetchGet } from '@/utils/request'
+import * as Topic from './types/topic'
 
-import { KUNGalgameTopic } from './types/topic'
-
-export async function getTopicApi(id: number) {
-  return await fetchGet<KUNGalgameTopic>(`/topic/${id}`)
+const topicURLs = {
+  getTopicByTid: `/topic/detail`,
 }
 
-export async function getTopicReplyApi(id: number) {
-  return await fetchGet<KUNGalgameTopic>(`/topic/reply/${id}`)
-}
-
-export async function getTopicCommentApi(id: number) {
-  return await fetchGet<KUNGalgameTopic>(`/topic/comment/${id}`)
-}
-
-// 获取指定范围内的话题数据
-export async function getTopicRangeApi(
-  start: number,
-  count: number
-): Promise<KUNGalgameTopic[]> {
-  const url = `/topic/topics/kun?start=${start}&count=${count}`
-
+export async function getTopicByTid(
+  tid: number
+): Promise<Topic.TopicDetailResponseData> {
   try {
-    const response = await fetchGet<KUNGalgameTopic[]>(url)
+    const url = `${topicURLs.getTopicByTid}/${tid}`
+
+    const response = await fetchGet<Topic.TopicDetailResponseData>(url)
+
     return response
   } catch (error) {
-    console.error('Error fetching topics:', error)
-    throw error
+    console.log(error)
+    throw new Error('Failed to fetch topic')
   }
 }
