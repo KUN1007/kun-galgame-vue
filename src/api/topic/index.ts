@@ -7,7 +7,7 @@ const topicURLs = {
 }
 
 // 获取单个话题
-export async function getTopicByTid(
+export async function getTopicByTidApi(
   tid: number
 ): Promise<Topic.TopicDetailResponseData> {
   try {
@@ -23,8 +23,8 @@ export async function getTopicByTid(
 }
 
 // 根据话题 id 获取话题回复
-export async function getRepliesByPid(
-  request: Topic.ReplyRequestData
+export async function getRepliesByPidApi(
+  request: Topic.TopicReplyRequestData
 ): Promise<Topic.TopicReplyResponseData> {
   try {
     const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply`
@@ -39,8 +39,8 @@ export async function getRepliesByPid(
 }
 
 // 获取一个回复下面的评论
-export async function getCommentsByReplyRid(
-  request: Topic.ReplyRequestData
+export async function getCommentsByReplyRidApi(
+  request: Topic.TopicReplyRequestData
 ): Promise<Topic.TopicReplyResponseData> {
   try {
     const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply`

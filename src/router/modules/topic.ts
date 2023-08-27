@@ -7,11 +7,10 @@ const topic: RouteRecordRaw[] = [
   {
     path: '/topic',
     component: Layout,
-    redirect: '/topic/:tid',
     children: [
       {
         name: 'Topic',
-        path: 'index',
+        path: ':tid',
         // 路由懒加载
         component: () => import('@/views/topic/KUNGalgameTopicPage.vue'),
         // 使路由参数作为组件的 props 传递

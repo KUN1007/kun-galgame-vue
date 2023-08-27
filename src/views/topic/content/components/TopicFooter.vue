@@ -15,12 +15,13 @@ const { isEdit } = storeToRefs(settingsStore)
 // 接受父组件的传值
 defineProps<{
   isOthersTopic?: boolean
-  topicInfo?: {
-    views: number
+  info?: {
+    views?: number
     likes: number
     dislikes: number
     replies: number
     upvotes: number
+    components?: number
   }
 }>()
 
@@ -38,22 +39,22 @@ const handelReply = () => {
         <!-- 查看数量 -->
         <li>
           <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
-          {{ topicInfo?.views }}
+          {{ info?.views }}
         </li>
         <!-- 推话题 -->
         <li>
           <span class="icon"><Icon icon="bi:rocket" /></span>
-          {{ topicInfo?.upvotes }}
+          {{ info?.upvotes }}
         </li>
         <!-- 点赞 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-up-twotone" /></span>
-          {{ topicInfo?.likes }}
+          {{ info?.likes }}
         </li>
         <!-- 踩 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-down-twotone" /></span>
-          {{ topicInfo?.dislikes }}
+          {{ info?.dislikes }}
         </li>
       </ul>
     </div>

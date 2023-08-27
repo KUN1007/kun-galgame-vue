@@ -1,8 +1,12 @@
 /* 话题详情的 store */
 import { defineStore } from 'pinia'
 
-import { getRepliesByPid } from '@/api/index'
-import { TopicReplyRequestData, TopicReplyResponseData } from '@/api/index'
+import { getRepliesByPidApi, getTopicByTidApi } from '@/api/index'
+import {
+  TopicDetailResponseData,
+  TopicReplyRequestData,
+  TopicReplyResponseData,
+} from '@/api/index'
 
 // 回复的缓存
 interface ReplyDraft {
@@ -59,6 +63,18 @@ export const useKUNGalgameTopicStore = defineStore({
     },
   }),
   actions: {
+    // 获取单个话题
+    getTopicByTid(tid: number): Promise<TopicDetailResponseData> {
+      return new Promise((resolve, reject) => {
+        getTopicByTidApi(tid)
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
     // 获取回复
     getReplies(tid: number): Promise<TopicReplyResponseData> {
       return new Promise((resolve, reject) => {
@@ -69,7 +85,7 @@ export const useKUNGalgameTopicStore = defineStore({
           sortField: this.replyRequest.sortField,
           sortOrder: this.replyRequest.sortOrder,
         }
-        getRepliesByPid(requestData)
+        getRepliesByPidApi(requestData)
           .then((res) => {
             resolve(res)
           })

@@ -31,6 +31,7 @@ const props = defineProps<{
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  margin-bottom: 20px;
   color: var(--kungalgame-font-color-3);
 }
 /* 头像 */

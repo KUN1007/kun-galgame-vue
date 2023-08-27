@@ -42,13 +42,16 @@ export interface TopicReplyRequestData {
 export interface TopicReply {
   rid: number
   tid: number
+  floor: number
   r_user: TopicUserInfo
   to_user: TopicToUserInfo
-  edited: string
+  edited: number
   content: string
+  upvote: number
   likes: number
   dislikes: number
-  tags: string
+  tags: string[]
+  time: number
   cid: number[]
 }
 
@@ -58,5 +61,5 @@ export interface TopicComment {}
 // 获取单个话题响应数据的格式
 export type TopicDetailResponseData = KUNGalgameResponseData<TopicDetail>
 
-// 单个话题回复响应数据的格式
-export type TopicReplyResponseData = KUNGalgameResponseData<TopicReply>
+// 单个话题回复响应数据的格式，返回的是多条回复数据，是一个数组
+export type TopicReplyResponseData = KUNGalgameResponseData<TopicReply[]>
