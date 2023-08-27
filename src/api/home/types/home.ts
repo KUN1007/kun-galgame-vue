@@ -1,16 +1,16 @@
-interface UserInfo {
+interface HomeUserInfo {
   uid: number
   avatar: string
   name: string
 }
 
-export interface HotTopic {
+export interface HomeHotTopic {
   tid: number
   title: string
   popularity: number
 }
 
-export interface NewTopic {
+export interface HomeNewTopic {
   tid: number
   title: string
   time: number
@@ -38,16 +38,16 @@ export interface HomeTopic {
   tags: Array<string>
   category: Array<string>
   popularity: number
-  uid: UserInfo
+  uid: HomeUserInfo
 }
 
 // 首页响应数据的格式
 
 // 左侧热门话题 10 个
-export type HotTopicResponseData = KUNGalgameResponseData<HotTopic[]>
+export type HomeHotTopicResponseData = KUNGalgameResponseData<HomeHotTopic[]>
 
 // 左侧最新话题 10 个
-export type NewTopicResponseData = KUNGalgameResponseData<NewTopic[]>
+export type HomeNewTopicResponseData = KUNGalgameResponseData<HomeNewTopic[]>
 
 // 中间展示的话题
 export type HomeTopicResponseData = KUNGalgameResponseData<HomeTopic[]>

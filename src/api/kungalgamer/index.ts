@@ -1,9 +1,7 @@
 import { KUNGalgamer } from './types/kungalgamer'
 import { fetchGet } from '@/utils/request'
 
-export async function getSingleKUNGalgamerApi(
-  id: number
-): Promise<KUNGalgamer> {
+export async function getKUNGalgamerInfoApi(id: number): Promise<KUNGalgamer> {
   try {
     const url = `/kungalgamer/${id}`
 

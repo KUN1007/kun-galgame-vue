@@ -1,5 +1,5 @@
 // 话题主，回复主的信息
-export interface UserInfo {
+export interface TopicUserInfo {
   uid: number
   name: string
   avatar: string
@@ -7,7 +7,7 @@ export interface UserInfo {
 }
 
 // 被回复的用户信息
-export interface ToUserInfo {
+export interface TopicToUserInfo {
   uid: number
   name: string
 }
@@ -25,16 +25,25 @@ export interface TopicDetail {
   upvotes: number
   tags: string[]
   edited: number
-  user: UserInfo
+  user: TopicUserInfo
   rid: number[]
+}
+
+// 回复的请求数据
+export interface TopicReplyRequestData {
+  tid: number
+  page?: number
+  limit?: number
+  sortField: string
+  sortOrder: string
 }
 
 // 回复的数据
 export interface TopicReply {
   rid: number
   tid: number
-  r_user: UserInfo
-  to_user: ToUserInfo
+  r_user: TopicUserInfo
+  to_user: TopicToUserInfo
   edited: string
   content: string
   likes: number
@@ -42,6 +51,9 @@ export interface TopicReply {
   tags: string
   cid: number[]
 }
+
+// 评论的数据
+export interface TopicComment {}
 
 // 获取单个话题响应数据的格式
 export type TopicDetailResponseData = KUNGalgameResponseData<TopicDetail>

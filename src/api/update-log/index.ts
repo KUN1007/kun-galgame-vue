@@ -1,7 +1,7 @@
 import { fetchGet } from '@/utils/request'
 
-import { KUNGalgameUpdateLog } from './types/updateLog'
+import { UpdateLog } from './types/updateLog'
 
-export async function getUpdateLogApi(): Promise<KUNGalgameUpdateLog[]> {
-  return await fetchGet<KUNGalgameUpdateLog[]>(`/update/logs`)
+export async function getUpdateLogApi(): Promise<UpdateLog[]> {
+  return await fetchGet<UpdateLog[]>(`/update/logs`)
 }

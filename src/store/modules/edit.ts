@@ -1,10 +1,10 @@
 /* 编辑区的 store */
 import { defineStore } from 'pinia'
-import { postNewTopicApi } from '@/api/edit/index'
+import { postEditNewTopicApi } from '@/api/index'
 import {
-  CreateTopicRequestData,
-  CreateTopicResponseData,
-} from '@/api/edit/types/edit'
+  EditCreateTopicRequestData,
+  EditCreateTopicResponseData,
+} from '@/api/index'
 
 interface Topic {
   // 话题标题
@@ -33,10 +33,10 @@ export const useKUNGalgameEditStore = defineStore({
   actions: {
     // 创建话题
     createNewTopic(
-      createTopicRequestData: CreateTopicRequestData
-    ): Promise<CreateTopicResponseData> {
+      createTopicRequestData: EditCreateTopicRequestData
+    ): Promise<EditCreateTopicResponseData> {
       return new Promise((resolve, reject) => {
-        postNewTopicApi(createTopicRequestData)
+        postEditNewTopicApi(createTopicRequestData)
           .then((res) => {
             resolve(res)
           })

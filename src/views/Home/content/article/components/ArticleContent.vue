@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import SingleTopic from './SingleTopic.vue'
 
-import { HomeTopic } from '@/api/home/types/home'
+import { HomeTopic } from '@/api/index'
 
 // 导入主页 store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'

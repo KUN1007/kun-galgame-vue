@@ -31,10 +31,12 @@ export async function getHomeTopicApi(
 }
 
 // 首页今日热门话题
-export async function getHomeNavHotTopicApi(): Promise<Home.HotTopicResponseData> {
+export async function getHomeNavHotTopicApi(): Promise<Home.HomeHotTopicResponseData> {
   try {
     // 调用 fetchPost 函数
-    const response = await fetchGet<Home.HotTopicResponseData>(homeURLs.navHot)
+    const response = await fetchGet<Home.HomeHotTopicResponseData>(
+      homeURLs.navHot
+    )
 
     return response
   } catch (error) {
@@ -45,10 +47,12 @@ export async function getHomeNavHotTopicApi(): Promise<Home.HotTopicResponseData
 }
 
 // 首页今日最新话题
-export async function getHomeNavNewTopicApi(): Promise<Home.NewTopicResponseData> {
+export async function getHomeNavNewTopicApi(): Promise<Home.HomeNewTopicResponseData> {
   try {
     // 调用 fetchPost 函数
-    const response = await fetchGet<Home.NewTopicResponseData>(homeURLs.navNew)
+    const response = await fetchGet<Home.HomeNewTopicResponseData>(
+      homeURLs.navNew
+    )
 
     return response
   } catch (error) {

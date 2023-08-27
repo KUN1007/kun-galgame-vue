@@ -1,5 +1,5 @@
 // 更新日志的数据接口
-export interface KUNGalgameUpdateLog {
+export interface UpdateLog {
   // 更新描述
   description: string
   // 更新发布时间
