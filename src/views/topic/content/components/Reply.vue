@@ -196,4 +196,10 @@ defineProps<{
     flex-direction: column;
   }
 }
+
+@media (max-width: 700px) {
+  .article {
+    flex-direction: column;
+  }
+}
 </style>

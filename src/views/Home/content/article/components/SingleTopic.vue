@@ -9,7 +9,7 @@ const props = defineProps(['data'])
   <div class="topic">
     <UserPart :kungalgamer="props.data.uid" />
     <!-- TODO: 进入指定话题的路由 -->
-    <router-link to="/topic">
+    <router-link :to="`/topic/${props.data.tid}`">
       <TopicPart :data="props.data" />
     </router-link>
   </div>
