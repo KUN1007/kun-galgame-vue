@@ -6,18 +6,27 @@
   页面被拆成 3 个大组件，这是话题部分
  -->
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import Master from './components/Master.vue'
 import Reply from './components/Reply.vue'
 
-onMounted(() => {})
+import { getTopicByTid } from '@/api/topic/index'
+import { TopicDetailResponseData } from '@/api/topic/types/topic'
+
+const topicData = ref<TopicDetailResponseData>()
+onMounted(async () => {
+  const res = await getTopicByTid(1)
+  topicData.value = res
+})
 </script>
+
 <template>
   <div class="content-right-part">
-    <Master />
-    <Reply />
+    <Master v-if="topicData" :topicData="topicData" />
+    <Reply v-if="topicData" :replyIDs="topicData.data.rid" />
   </div>
 </template>
+
 <style scoped>
 /* 右侧内容区 */
 .content-right-part {

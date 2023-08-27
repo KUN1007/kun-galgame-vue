@@ -1,6 +1,10 @@
 <!-- 把所有话题的所有 Tag 组合起来形成的一个区域 -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+const props = defineProps<{
+  tags: string[]
+}>()
 </script>
 
 <template>

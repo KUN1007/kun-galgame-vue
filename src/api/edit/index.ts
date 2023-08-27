@@ -1,15 +1,17 @@
 import { fetchPost } from '@/utils/request'
 import type * as Edit from './types/edit'
 
+const editURLs = {
+  create: `/edit/topic`,
+}
+
 export async function postNewTopicApi(
   newTopicData: Edit.CreateTopicRequestData
 ): Promise<Edit.CreateTopicResponseData> {
   try {
-    const url = `/edit/topic`
-
     // 调用 fetchPost 函数
     const response = await fetchPost<Edit.CreateTopicResponseData>(
-      url,
+      editURLs.create,
       newTopicData
     )
 

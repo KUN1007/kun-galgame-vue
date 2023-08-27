@@ -1,48 +1,56 @@
 <!-- 这个部分为发帖人的个人信息展示部分 -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{
+  user: {
+    uid: number
+    name: string
+    avatar: string
+    moemoepoint: number
+  }
+}>()
+</script>
 
 <template>
-  <!-- 内容区左侧楼主的信息 -->
-  <div class="master-topic-content-center-left">
-    <!-- 楼主的头像 -->
-    <div class="master-avatar">
-      <!-- 楼主的头像图片 -->
+  <!-- 内容区左侧用户的信息 -->
+  <div class="kungalgamer">
+    <!-- 头像 -->
+    <div class="avatar">
+      <!-- 头像图片 TODO: -->
       <img src="@/assets/images/KUN.jpg" alt="KUN" />
     </div>
-    <!-- 楼主的名字 -->
-    <div class="master-name">啊这可海星啊这</div>
-    <!-- 楼主的萌萌点 -->
-    <div class="master-moemoepoint">1007</div>
+    <!-- 名字 -->
+    <div class="name">{{ user.name }}</div>
+    <!-- 萌萌点 -->
+    <div class="moemoepoint">{{ user.moemoepoint }}</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 内容区左侧楼主的信息 */
-.master-topic-content-center-left {
+/* 内容区左侧用户信息 */
+.kungalgamer {
   display: flex;
   flex-direction: column;
   padding: 0 20px;
   color: var(--kungalgame-font-color-3);
 }
-/* 楼主的头像 */
-.master-avatar {
+/* 头像 */
+.avatar {
   /* 图像加载不出来时页面不塌陷 */
   width: 100px;
   margin-top: 17px;
+  img {
+    width: 100px;
+  }
 }
-/* 楼主的头像图片 */
-.master-avatar img {
-  width: 100px;
-}
-/* 楼主的名字 */
-.master-name {
+/* 名字 */
+.name {
   font-size: small;
   display: flex;
   justify-content: center;
   margin-top: 17px;
 }
-/* 楼主的萌萌点 */
-.master-moemoepoint {
+/* 萌萌点 */
+.moemoepoint {
   margin-top: 10px;
   display: flex;
   justify-content: center;

@@ -24,7 +24,7 @@ export interface TopicDetail {
   content: string
   upvotes: number
   tags: string[]
-  edited: string
+  edited: number
   user: UserInfo
   rid: number[]
 }
@@ -42,3 +42,9 @@ export interface TopicReply {
   tags: string
   cid: number[]
 }
+
+// 获取单个话题响应数据的格式
+export type TopicDetailResponseData = KUNGalgameResponseData<TopicDetail>
+
+// 单个话题回复响应数据的格式
+export type TopicReplyResponseData = KUNGalgameResponseData<TopicReply>

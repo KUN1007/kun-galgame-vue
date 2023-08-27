@@ -13,9 +13,16 @@ const settingsStore = useKUNGalgameTopicStore()
 const { isEdit } = storeToRefs(settingsStore)
 
 // 接受父组件的传值
-const props = defineProps(['isOthersTopic'])
-
-const isOthersTopic = props.isOthersTopic
+defineProps<{
+  isOthersTopic?: boolean
+  topicInfo?: {
+    views: number
+    likes: number
+    dislikes: number
+    replies: number
+    upvotes: number
+  }
+}>()
 
 const handelReply = () => {
   isEdit.value = true
@@ -31,22 +38,22 @@ const handelReply = () => {
         <!-- 查看数量 -->
         <li>
           <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
-          1007
+          {{ topicInfo?.views }}
         </li>
         <!-- 推话题 -->
         <li>
           <span class="icon"><Icon icon="bi:rocket" /></span>
-          1007
+          {{ topicInfo?.upvotes }}
         </li>
         <!-- 点赞 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-up-twotone" /></span>
-          1007
+          {{ topicInfo?.likes }}
         </li>
         <!-- 踩 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-down-twotone" /></span>
-          1007
+          {{ topicInfo?.dislikes }}
         </li>
       </ul>
     </div>
