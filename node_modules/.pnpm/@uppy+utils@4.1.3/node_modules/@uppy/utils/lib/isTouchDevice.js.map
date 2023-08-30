@@ -1,0 +1,1 @@
+{"version":3,"sources":["isTouchDevice.js"],"names":["isTouchDevice","window","navigator"],"mappings":";;AAAe,SAASA,aAAT,GAA0B;AACvC,SAAO,kBAAkBC,MAAlB,IAA4B,oBAAoBC,SAAvD;AACD;;iBAFuBF,a","sourcesContent":["export default function isTouchDevice () {\n  return 'ontouchstart' in window || 'maxTouchPoints' in navigator\n}\n"]}

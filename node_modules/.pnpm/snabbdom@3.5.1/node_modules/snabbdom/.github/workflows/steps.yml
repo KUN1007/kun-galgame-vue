@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request_target:
+  push:
+    branches:
+      - master
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm ci
+
+      - run: npm run test:ci
+        env:
+          BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
+          BROWSER_STACK_ACCESS_KEY: ${{ secrets. BROWSER_STACK_ACCESS_KEY }}

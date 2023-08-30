@@ -1,0 +1,30 @@
+{
+  "name": "mime-match",
+  "version": "1.0.2",
+  "description": "A simple function to check whether a mimetype matches the specified mimetype (with wildcard support)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "gendocs": "gendocs > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/mime-match.git"
+  },
+  "keywords": [
+    "mime",
+    "wildcard"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/mime-match/issues"
+  },
+  "homepage": "https://github.com/DamonOehlman/mime-match",
+  "dependencies": {
+    "wildcard": "^1.1.0"
+  },
+  "devDependencies": {
+    "tape": "^4.5.1"
+  }
+}

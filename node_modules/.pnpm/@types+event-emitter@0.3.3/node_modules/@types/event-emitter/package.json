@@ -1,0 +1,23 @@
+{
+    "name": "@types/event-emitter",
+    "version": "0.3.3",
+    "description": "TypeScript definitions for event-emitter",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Karol Janyst",
+            "url": "https://github.com/LKay",
+            "githubUsername": "LKay"
+        }
+    ],
+    "main": "",
+    "types": "index",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "2624bfb0d5301d56eecaa2775882336300b65edd44ecdc49c552ec1f615ccc95",
+    "typeScriptVersion": "2.0"
+}
