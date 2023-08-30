@@ -1,6 +1,9 @@
 <script setup lang="ts">
-// 全局消息组件
+// 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
+// Vue 函数
 import { toRaw } from 'vue'
 // 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
@@ -9,15 +12,35 @@ import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 // 导入路由
 import { useRouter } from 'vue-router'
+// 导入将富文本变成纯文本的函数
+import { getPlainText } from '@/utils/getPlainText'
+// 导入请求数据格式
+import {
+  EditCreateTopicRequestData,
+  EditCreateTopicResponseData,
+} from '@/api/index'
 
 const router = useRouter()
 
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
-const message = useKUNGalgameMessageStore()
+const messageStore = useKUNGalgameMessageStore()
+
+const checkPublish = (topicData: EditCreateTopicRequestData) => {
+  if (!topicData.title.trim()) {
+    // 标题为空的话，警告
+    message('Title cannot be empty!', '标题不可为空！', 'warn')
+    return false
+  } else if (topicData.content.trim()) {
+    console.log(getPlainText(topicData.content.trim()).length)
+    return true
+  } else {
+    return true
+  }
+}
 
 const handlePublish = async () => {
-  const res = await message.alert('AlertInfo.edit.publish', true)
+  const res = await messageStore.alert('AlertInfo.edit.publish', true)
   // 这里实现用户的点击确认取消逻辑
   if (res) {
     // 坑，storeToRefs 不等于 vue 中的 ref 或者 reactive，不能用 toRaw
@@ -28,41 +51,41 @@ const handlePublish = async () => {
       title: rawData.title,
       content: rawData.content,
       time: Date.now(),
-      tags: JSON.stringify(rawData.tags),
-      category: JSON.stringify(rawData.category),
-      uid: useKUNGalgamerStore().uid.toString(),
+      tags: rawData.tags,
+      category: rawData.category,
+      uid: useKUNGalgamerStore().uid,
     }
 
-    // 后端返回的创建好的话题数据
-    const createdTopic = await useKUNGalgameEditStore().createNewTopic(
-      topicToCreate
-    )
+    // 检查提交数据是否合法
+    if (checkPublish(topicToCreate)) {
+      // 后端返回的创建好的话题数据
+      const createdTopic: EditCreateTopicResponseData =
+        await useKUNGalgameEditStore().createNewTopic(topicToCreate)
 
-    // 获取创建好话题的 tid
-    const tid = createdTopic.data.tid
+      // 获取创建好话题的 tid
+      const tid = createdTopic.data.tid
 
-    console.log(tid)
+      // 将用户 push 进对应 tid 话题的详情页面
+      router.push({
+        name: 'Topic',
+        params: {
+          tid: tid,
+        },
+      })
 
-    // 将用户 push 进对应 tid 话题的详情页面
-    router.push({
-      name: 'Topic',
-      params: {
-        tid: tid,
-      },
-    })
-
-    message.info('AlertInfo.edit.publishSuccess')
-    // 清除数据，并不再保存数据，因为此时该话题已被发布，这里使用 pinia 自带的 $reset 重置状态
-    useKUNGalgameEditStore().$reset()
+      messageStore.info('AlertInfo.edit.publishSuccess')
+      // 清除数据，并不再保存数据，因为此时该话题已被发布，这里使用 pinia 自带的 $reset 重置状态
+      useKUNGalgameEditStore().$reset()
+    }
   } else {
-    message.info('AlertInfo.edit.publishCancel')
+    messageStore.info('AlertInfo.edit.publishCancel')
   }
 }
 
 const handleSave = () => {
   // 这个值为 true 的时候每次页面加载的时候都会预加载上一次的话题数据
   topicData.isSave.value = true
-  message.info('AlertInfo.edit.draft')
+  messageStore.info('AlertInfo.edit.draft')
 }
 </script>
 

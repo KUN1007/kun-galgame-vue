@@ -1,14 +1,25 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
-const { message, type} = defineProps([
-  'message',
-  'type',
-])
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+
+const props = defineProps<{
+  messageCN: string
+  messageEN: string
+  type: `warn` | `success` | `error` | `info`
+}>()
+
+const message =
+  settingsStore.showKUNGalgameLanguage === 'en'
+    ? props.messageEN
+    : props.messageCN
 
 const messageClass = (type: string): string => {
-  if (type === 'warning') {
+  if (type === 'warn') {
     return `animate__animated animate__headShake ${type}`
   } else if (type === 'success') {
     return `animate__animated animate__bounceInDown ${type}`
@@ -25,7 +36,7 @@ const messageClass = (type: string): string => {
 <template>
   <div class="container">
     <div class="message" :class="messageClass(type)">
-      <span class="icon" v-if="type === 'warning'"
+      <span class="icon" v-if="type === 'warn'"
         ><Icon icon="line-md:alert"
       /></span>
       <span class="icon" v-else-if="type === 'success'"
@@ -62,7 +73,7 @@ const messageClass = (type: string): string => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 17px;
+  padding: 1vh 10vw;
   box-shadow: var(--shadow);
   z-index: 9999;
   span {
@@ -77,7 +88,7 @@ const messageClass = (type: string): string => {
   margin-right: 17px;
 }
 
-.warning {
+.warn {
   border: 1px solid var(--kungalgame-yellow-3);
   .icon {
     color: var(--kungalgame-yellow-3);
