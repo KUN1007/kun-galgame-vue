@@ -1,3 +1,0 @@
-import Editor from './components/Editor.vue';
-import Toolbar from './components/Toolbar.vue';
-export { Editor, Toolbar };

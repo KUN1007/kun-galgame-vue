@@ -1,1 +1,0 @@
-{"version":3,"sources":["toArray.js"],"names":["Array","from"],"mappings":";;AAAA;AACA;AACA;iBACeA,KAAK,CAACC,I","sourcesContent":["/**\n * Converts list into array\n */\nexport default Array.from\n"]}
