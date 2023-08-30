@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps(['kungalgamer'])
 </script>
+
 <template>
   <!-- 话题发布者个人信息 -->
   <div class="kungalgamer">
@@ -41,20 +42,20 @@ defineProps(['kungalgamer'])
   flex-grow: 3;
   display: flex;
   justify-content: center;
+  a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  img {
+    padding: 2px;
+    border-radius: 50%;
+    /* 页面缩小时头像缩小 */
+    display: inline-block;
+  }
 }
-.avatar a {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-grow: 1;
-}
-/* 头像图片样式设置 */
-.avatar img {
-  padding: 2px;
-  border-radius: 50%;
-  /* 页面缩小时头像缩小 */
-  display: inline-block;
-}
+
 /* 发帖人昵称位置设置 */
 .name {
   border-top: 1px solid var(--kungalgame-blue-1);
