@@ -1,0 +1,69 @@
+@import '@uppy/core/src/_variables.scss';
+
+$focus-shadow: 0 0 0 3px rgba($blue, 0.5);
+
+@mixin clearfix() {
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+@mixin zoom() {
+  transform: scale(1.05);
+}
+
+@mixin reset-button() {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1;
+  background: none;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+@mixin highlight-focus() {
+  @include clear-focus();
+
+  &:hover {
+    color: darken($blue, 10%);
+  }
+
+  &:focus {
+    background-color: $highlight;
+  }
+
+  [data-uppy-theme="dark"] &:focus {
+    background-color: $gray-800;
+  }
+}
+
+@mixin blue-border-focus() {
+  @include clear-focus();
+
+  &:focus {
+    box-shadow: $focus-shadow;
+  }
+}
+
+@mixin blue-border-focus--dark() {
+  @include clear-focus();
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($lightblue, 0.85);
+  }
+}
+
+@mixin clear-focus() {
+  &:focus {
+    outline: none;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}

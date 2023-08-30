@@ -45,5 +45,6 @@
     "yuyu"
   ],
   "i18n-ally.localesPaths": ["src/language"],
-  "vue.codeActions.enabled": false
+  "vue.codeActions.enabled": false,
+  "nuxt.isNuxtApp": false
 }
