@@ -8,19 +8,18 @@ import TopicFooter from '../components/TopicFooter.vue'
 import Rewrite from '../components/Rewrite.vue'
 // 楼主的信息
 import KUNGalgamerInfo from '../components/KUNGalgamerInfo.vue'
+// 话题内容展示区
+import Content from './Content.vue'
 // 楼主的发帖时间
 import Time from '../components/Time.vue'
 // 楼主话题的标签
 import Tags from '../components/Tags.vue'
 
 import { TopicDetail } from '@/api/topic/types/topic'
-import { computed, onMounted, ref } from 'vue'
 
 const topicData = defineProps<{
   topicData: TopicDetail
 }>()
-
-const width = ref('')
 
 const {
   tid,
@@ -37,12 +36,6 @@ const {
   user,
   rid,
 } = topicData.topicData
-
-onMounted(() => {
-  width.value = computed(() => {
-    return 100 + '%'
-  }).value
-})
 </script>
 
 <template>
@@ -67,9 +60,9 @@ onMounted(() => {
         <!-- 内容区的中部 -->
         <div class="content-center">
           <KUNGalgamerInfo v-if="user" :user="user" />
-          <!-- 内容区右侧的话题展示区，这里富文本必须用 v-html，已经确定文本经过三次处理 -->
-          <!-- 这里用的 v-html，样式是页面刷新后才会有的，所以必须动态绑定样式 -->
-          <div class="text" v-html="content"></div>
+
+          <!-- 富文本内容展示区域 -->
+          <Content :content="content" />
         </div>
         <!-- 内容区的底部 -->
         <div class="content-bottom">
@@ -110,7 +103,6 @@ onMounted(() => {
   flex-shrink: 0;
   border: 1px solid var(--kungalgame-blue-1);
   border-radius: 5px;
-  overflow: hidden;
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-5);
   box-sizing: border-box;
@@ -162,20 +154,6 @@ onMounted(() => {
   display: flex;
   border-bottom: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
-}
-
-/* 内容区右侧的话题展示区 */
-.text {
-  width: 100%;
-  font-size: 15px;
-  padding: 17px;
-  border-left: 1px solid var(--kungalgame-blue-1);
-  color: var(--kungalgame-font-color-3);
-  /* 逆天操作！我自己发明的！ */
-  :deep(*) {
-    max-width: v-bind(width);
-    overflow-y: scroll;
-  }
 }
 
 /* 内容区的底部 */
