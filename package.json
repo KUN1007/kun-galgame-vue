@@ -3,45 +3,13 @@
   "private": false,
   "version": "0.0.0",
   "description": "世界上最萌的 galgame 论坛",
-  "author": {
-    "name": "kun",
-    "email": "kungalgame@gamil.com"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/KUN1007/KUNGalGame-vue.git"
   },
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@wangeditor/editor": "^5.1.23",
-    "@wangeditor/editor-for-vue": "^5.1.12",
-    "animate.css": "^4.1.1",
-    "dayjs": "^1.11.9",
-    "dompurify": "^3.0.5",
-    "pinia": "^2.1.6",
-    "pinia-plugin-persistedstate": "^3.2.0",
-    "vue": "^3.3.4",
-    "vue-i18n": "^9.2.2",
-    "vue-router": "^4.2.4"
-  },
-  "devDependencies": {
-    "@iconify/vue": "^4.1.1",
-    "@types/dompurify": "^3.0.2",
-    "@types/node": "^20.4.8",
-    "@vitejs/plugin-vue": "^4.2.3",
-    "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "cross-env": "^7.0.3",
-    "rollup-plugin-visualizer": "^5.9.2",
-    "sass": "^1.64.2",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.8",
-    "vite-plugin-mock": "^3.0.0",
-    "vue-tsc": "^1.8.8"
+  "author": {
+    "name": "kun",
+    "email": "kungalgame@gamil.com"
   },
   "keywords": [
     "kun",
