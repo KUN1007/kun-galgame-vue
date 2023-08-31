@@ -1,0 +1,20 @@
+{
+    "folders": [
+        {
+            "path": "./"
+        },
+        {
+            "path": "./docs"
+        },
+        {
+            "path": "./project/server"
+        },
+        {
+            "path": "./project/VitePage"
+        }
+
+    ],
+    "settings": {
+        "nuxt.isNuxtApp": false
+    }
+}
