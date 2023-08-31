@@ -1,22 +1,32 @@
 {
-    "compilerOptions": {
-        "target": "ES2017",
-        "module": "esnext",
-        "lib": ["ESNext", "DOM", "DOM.Iterable"],
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "declaration": true,
-        "declarationDir": "./types",
-        "resolveJsonModule": true,
-        "baseUrl": ".",
-        "skipLibCheck": true,
-        "skipDefaultLibCheck": true,
-        "noUnusedLocals": true,
-        "jsx": "react-jsx"
-    },
-    "include": ["vitest.config.ts", "*.d.ts", "project", "project/**"],
-    "exclude": ["node_modules", "**/**/*.md", "**/dist", "test", "docs", "dist"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    // ts 严格模式
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "typeRoots": ["node_modules/@types", "./typings"],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  // ts 的包含编译文件
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  "exclude": ["node_modules", "dist"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
