@@ -9,7 +9,7 @@ import 'animate.css'
 import { defineAsyncComponent } from 'vue'
 
 // 导入编辑器
-import KUNGalgameEditor from '@/components/editor/KUNGalgameEditor.vue'
+import WangEditor from '@/components/WangEditor.vue'
 
 // 异步导入话题标签
 const Tags = defineAsyncComponent(
@@ -52,7 +52,7 @@ const handelClosePanel = () => {
           </div>
           <!-- 回复的编辑器 -->
           <div class="content">
-            <KUNGalgameEditor />
+            <WangEditor :height="300" :isShowToolbar="isShowAdvance" />
           </div>
           <!-- 回复的页脚 -->
           <div class="footer">

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 
+import '@wangeditor/editor/dist/css/style.css'
+import '@/styles/editor/editor.scss'
+
 const width = ref('')
 
 defineProps<{
@@ -17,12 +20,14 @@ onMounted(() => {
 <template>
   <!-- 内容区右侧的话题展示区，这里富文本必须用 v-html，已经确定文本经过三次处理 -->
   <!-- 这里用的 v-html，样式是页面刷新后才会有的，所以必须动态绑定样式 -->
-  <div class="text" v-html="content"></div>
+  <div class="w-e-text-container">
+    <div v-html="content" data-slate-editor></div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 /* 内容区右侧的话题展示区 */
-.text {
+.w-e-text-container {
   width: 82%;
   font-size: 15px;
   padding: 17px;
@@ -35,7 +40,7 @@ onMounted(() => {
 }
 
 @media (max-width: 700px) {
-  .text {
+  .w-e-text-container {
     width: 100%;
   }
 }
