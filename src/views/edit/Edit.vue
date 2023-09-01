@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
-import WangEditor from '@/components/WangEditor.vue'
+import Milkdown from '@/components/Milkdown/MilkdownProvider.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -68,12 +68,7 @@ const handelInput = () => {
           </div>
         </div>
         <!-- 编辑器 -->
-        <WangEditor
-          class="editor"
-          :height="400"
-          :isShowToolbar="true"
-          :isShowAdvance="true"
-        />
+        <Milkdown />
       </div>
 
       <!-- 内容区的底部 -->
