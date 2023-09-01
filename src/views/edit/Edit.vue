@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
-import Milkdown from '@/components/Milkdown/MilkdownProvider.vue'
+import KUNGalgameEditor from '@/components/editor/KUNGalgameEditor.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -68,7 +68,7 @@ const handelInput = () => {
           </div>
         </div>
         <!-- 编辑器 -->
-        <Milkdown />
+        <KUNGalgameEditor />
       </div>
 
       <!-- 内容区的底部 -->
