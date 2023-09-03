@@ -51,7 +51,7 @@ const handelInput = () => {
   <div class="title">
     <input
       type="text"
-      placeholder="请输入话题的标题（40字以内）"
+      placeholder="标题"
       v-model="topicTitle"
       @input="handelInput"
       :maxlength="maxInputLength"
@@ -62,11 +62,13 @@ const handelInput = () => {
 <style lang="scss" scoped>
 /* 话题的发布标题 */
 .title {
+  padding: 10px;
   width: 100%;
 }
 
 /* 话题标题的输入框 */
 .title input {
+  background-color: var(--kungalgame-white-9);
   color: var(--kungalgame-font-color-2);
   /* 距离外轮廓的距离 */
   padding: 7px;
@@ -76,11 +78,7 @@ const handelInput = () => {
   /* 标题输入字体大小 */
   font-size: 40px;
   border: none;
-  margin-bottom: 10px;
-}
-
-/* 标题输入框 focus 之后的样式 */
-.title input:focus {
-  box-shadow: 0px 0px 5px var(--kungalgame-blue-4);
+  /* 光标样式 */
+  caret-shape: block;
 }
 </style>
