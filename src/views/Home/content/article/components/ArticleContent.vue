@@ -83,9 +83,18 @@ watch(
   transition: all 0.5s ease;
 }
 
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+}
+
+/* 确保将离开的元素从布局流中删除
+  以便能够正确地计算移动的动画。 */
 .list-leave-active {
-  opacity: 0; /* 逐渐消失 */
-  height: 0; /* 高度逐渐减少 */
-  margin-top: 0; /* 确保没有上边距 */
+  /**
+   * 宽度为单个话题总宽度减去用户部分的宽度，这里为 2 + 5 + 60 + 5 + 2 = 74px
+   */
+  width: calc(100% - 74px);
+  position: absolute;
 }
 </style>
