@@ -7,6 +7,20 @@ import {
 } from '@/api/index'
 
 interface Topic {
+  /**
+   * 编辑器相关
+   * @param {number} editorHeight - 编辑器高度
+   */
+  editorHeight: number
+
+  /**
+   * 话题相关
+   * @param {string} title - 话题标题
+   * @param {string} content - 话题内容（富文本）
+   * @param {Array<string>} tags - 话题标签
+   * @param {Array<string>} category - 话题类别
+   * @param {boolean} isSave - 是否保存话题草稿
+   */
   // 话题标题
   title: string
   // 话题内容
@@ -23,6 +37,7 @@ export const useKUNGalgameEditStore = defineStore({
   id: 'edit',
   persist: true,
   state: (): Topic => ({
+    editorHeight: 300,
     title: '',
     content: '',
     tags: [],

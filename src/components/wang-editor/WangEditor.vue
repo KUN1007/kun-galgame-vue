@@ -8,7 +8,9 @@ import {
   onBeforeUnmount,
   ref,
   shallowRef,
+  computed,
 } from 'vue'
+
 // 编辑器本体配置
 import '@wangeditor/editor/dist/css/style.css'
 import '@/styles/editor/editor.scss'
@@ -23,6 +25,9 @@ import { Toolbar } from '@wangeditor/editor-for-vue'
 const Title = defineAsyncComponent(
   () => import('@/components/wang-editor/Title.vue')
 )
+
+// 导入 Footer
+import EditorFooter from './EditorFooter.vue'
 
 // 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
@@ -44,11 +49,12 @@ const props = defineProps<{
 }>()
 
 // 自定义编辑区域高度
-const editorHeight = `height: ${props.height}px`
 
 // 创建编辑器，必须用 shallowRef
 const editorRef = shallowRef<IDomEditor | undefined>(undefined)
 
+// 编辑器的高度
+const editorHeight = computed(() => `height: ${topicData.editorHeight.value}px`)
 // 编辑器内的内容
 const valueHtml = ref('')
 // 编辑器文字计数
@@ -122,7 +128,10 @@ const handleChange = (editor: IDomEditor) => {
 <template>
   <!-- 编辑器 -->
   <div class="editor—wrapper">
+    <!-- 话题 title -->
     <Title />
+
+    <!-- 编辑器工具栏 -->
     <!-- 这里不能用 v-if，否则加载不出来 toolBar -->
     <Toolbar
       class="toolbar"
@@ -131,11 +140,13 @@ const handleChange = (editor: IDomEditor) => {
       :mode="$props.isShowAdvance ? 'default' : 'simple'"
       v-show="props.isShowToolbar"
     />
+
     <div class="hint hint1">
       <span class="box1"></span>
       <span class="filling"></span>
       <span class="box2"></span>
     </div>
+    <!-- 编辑器本体 -->
     <Editor
       class="wang-editor"
       :style="editorHeight"
@@ -149,7 +160,12 @@ const handleChange = (editor: IDomEditor) => {
       <span class="filling"></span>
       <span class="box4"></span>
     </div>
-    <span class="count">{{ textCount + ` ${$tm('edit.word')}` }}</span>
+
+    <!-- 编辑器 footer -->
+    <EditorFooter
+      :textCount="textCount"
+      :editorHeight="topicData.editorHeight.value"
+    />
   </div>
 </template>
 
@@ -160,7 +176,7 @@ const handleChange = (editor: IDomEditor) => {
   /* 编辑器的宽度 */
   width: 100%;
   margin: 0 auto;
-  z-index: 9999;
+  z-index: 1008;
   background-color: var(--kungalgame-trans-white-5);
   backdrop-filter: blur(5px);
 }
@@ -219,20 +235,11 @@ const handleChange = (editor: IDomEditor) => {
 }
 
 .wang-editor {
+  transition: all 0.2s;
   width: 80%;
   max-width: 1080px;
   margin: 0 auto;
   margin-bottom: 30px;
-}
-
-.count {
-  padding: 3px 7px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  color: var(--kungalgame-font-color-0);
-  background-color: var(--kungalgame-trans-white-9);
 }
 
 @media (max-width: 700px) {

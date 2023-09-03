@@ -45,6 +45,7 @@ const handelCloseSettingsPanel = () => {
 
       <!-- 语言切换组件 -->
       <SwitchLanguage />
+
       <div>
         <!-- 设置主页的宽度 -->
         <div class="width-container">
@@ -63,6 +64,7 @@ const handelCloseSettingsPanel = () => {
           /><span>90%</span>
         </div>
       </div>
+
       <!-- 背景设置组件 -->
       <Background />
 
