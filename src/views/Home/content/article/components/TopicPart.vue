@@ -20,15 +20,13 @@ const plainText = getPlainText(props.data.content)
   <!-- 话题信息 -->
   <div class="topic-info">
     <!-- 话题的概览信息 -->
-    <div class="topic-summary">
+    <div class="summary">
       <!-- 话题的标题 -->
-      <div class="topic-title">
-        <div class="topic-title-container">
-          <span>{{ props.data.title }}</span>
-        </div>
+      <div class="title">
+        <span>{{ props.data.title }}</span>
       </div>
       <!-- 话题发布日期 -->
-      <div class="topic-status">
+      <div class="status">
         <ul>
           <li>
             <Icon icon="ic:outline-remove-red-eye" /><span>{{
@@ -44,24 +42,24 @@ const plainText = getPlainText(props.data.content)
             <Icon icon="ri:reply-line" /><span>{{ props.data.replies }}</span>
           </li>
         </ul>
-      </div>
-      <!-- 话题的状态，点赞数等 -->
-      <div class="topic-post-date">
-        <span>{{
-          formatTimeDifference(
-            props.data.time,
-            settingsStore.showKUNGalgameLanguage.value
-          )
-        }}</span>
+
+        <!-- 话题的状态，点赞数等 -->
+        <div class="time">
+          <span>{{
+            formatTimeDifference(
+              props.data.time,
+              settingsStore.showKUNGalgameLanguage.value
+            )
+          }}</span>
+        </div>
       </div>
     </div>
+
     <!-- 话题的预览介绍 -->
-    <div class="topic-introduction">
-      <div class="topic-introduction-text">
-        <p>
-          {{ plainText }}
-        </p>
-      </div>
+    <div class="introduction">
+      <p>
+        {{ plainText }}
+      </p>
     </div>
   </div>
 </template>
@@ -72,50 +70,33 @@ const plainText = getPlainText(props.data.content)
   height: 100%;
   display: flex;
   flex-direction: column;
+  color: var(--kungalgame-font-color-3);
 }
-/* 话题的概览信息 */
-.topic-summary,
-.topic-introduction {
-  width: 100%;
-  height: 1px;
-}
+
 /* 话题展示的头部 */
-.topic-summary {
-  flex-grow: 1;
+.summary {
+  width: 100%;
   /* 头部三个小部分为弹性盒 */
   display: flex;
   justify-content: space-between;
 }
 /* 话题的头部信息，标题日期等 */
-.topic-title {
+.title {
+  width: 100%;
   height: 100%;
-  width: 1px;
-}
-/* 发帖标题 */
-.topic-title {
-  flex-grow: 5;
   /* 超出不换行省略 */
   display: flex;
   align-items: center;
-}
-/* 设置标题容器不换行显示省略号 */
-.topic-title-container {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* 话题标题的字体颜色 */
-.topic-title span {
-  color: var(--kungalgame-font-color-3);
-  font-weight: 500;
-}
+
 /* 话题点赞数等信息 */
-.topic-status {
+.status {
   display: flex;
-  justify-content: end;
   align-items: center;
-  overflow: hidden;
   white-space: nowrap;
   ul {
     display: flex;
@@ -133,7 +114,7 @@ const plainText = getPlainText(props.data.content)
   }
 }
 /* 发帖日期 */
-.topic-post-date {
+.time {
   width: 60px;
   font-size: x-small;
   color: var(--kungalgame-font-color-0);
@@ -146,14 +127,10 @@ const plainText = getPlainText(props.data.content)
   white-space: nowrap;
 }
 /* 话题的预览介绍 */
-.topic-introduction {
-  flex-grow: 2;
+.introduction {
+  width: 100%;
   display: flex;
   align-items: center;
-}
-/* 文本域盒子 */
-.topic-introduction-text {
-  width: 100%;
   /* 设置文本超过两行就显示省略号 */
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,10 +139,10 @@ const plainText = getPlainText(props.data.content)
   overflow: hidden;
   -webkit-box-orient: vertical;
   cursor: pointer;
-}
-/* 发帖预览信息的字体 */
-.topic-introduction-text p {
-  font-size: 14px;
-  color: var(--kungalgame-font-color-2);
+  p {
+    width: 100%;
+    font-size: 14px;
+    color: var(--kungalgame-font-color-2);
+  }
 }
 </style>
