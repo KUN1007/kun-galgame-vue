@@ -122,22 +122,33 @@ const handleChange = (editor: IDomEditor) => {
 <template>
   <!-- 编辑器 -->
   <div class="editor—wrapper">
+    <Title />
     <!-- 这里不能用 v-if，否则加载不出来 toolBar -->
     <Toolbar
-      class="toolbar-container"
+      class="toolbar"
       :editor="editorRef"
       :defaultConfig="toolbarConfig"
       :mode="$props.isShowAdvance ? 'default' : 'simple'"
       v-show="props.isShowToolbar"
     />
-    <Title />
+    <div class="hint hint1">
+      <span class="box1"></span>
+      <span class="filling"></span>
+      <span class="box2"></span>
+    </div>
     <Editor
+      class="wang-editor"
       :style="editorHeight"
       v-model="valueHtml"
       :defaultConfig="editorConfig"
       @onCreated="handleCreated"
       @onChange="handleChange"
     />
+    <div class="hint">
+      <span class="box3"></span>
+      <span class="filling"></span>
+      <span class="box4"></span>
+    </div>
     <span class="count">{{ textCount + ` ${$tm('edit.word')}` }}</span>
   </div>
 </template>
@@ -150,6 +161,68 @@ const handleChange = (editor: IDomEditor) => {
   width: 100%;
   margin: 0 auto;
   z-index: 9999;
+  background-color: var(--kungalgame-trans-white-5);
+  backdrop-filter: blur(5px);
+}
+
+.toolbar {
+  width: 100%;
+  z-index: 1007;
+  border-top: 1px solid var(--kungalgame-blue-1);
+  border-bottom: 1px solid var(--kungalgame-blue-1);
+  background-color: var(--kungalgame-trans-blue-0);
+  :deep(*) {
+    background-color: var(--kungalgame-trans-white-9);
+  }
+  /* 头部下方阴影 */
+  box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
+}
+
+.hint {
+  margin: 0 auto;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  border-bottom: none;
+  border-top: none;
+  & > span {
+    width: 40px;
+    height: 100%;
+    border: 1.5px solid var(--kungalgame-blue-2);
+  }
+  .filling {
+    border: none;
+    max-width: 1080px;
+    width: 80%;
+  }
+  .box1 {
+    border-top: none;
+    border-left: none;
+  }
+  .box2 {
+    border-top: none;
+    border-right: none;
+  }
+  .box3 {
+    border-bottom: none;
+    border-left: none;
+  }
+  .box4 {
+    border-bottom: none;
+    border-right: none;
+  }
+}
+
+.hint1 {
+  margin-top: 10px;
+}
+
+.wang-editor {
+  width: 80%;
+  max-width: 1080px;
+  margin: 0 auto;
+  margin-bottom: 30px;
 }
 
 .count {
@@ -159,12 +232,16 @@ const handleChange = (editor: IDomEditor) => {
   align-items: center;
   justify-content: end;
   color: var(--kungalgame-font-color-0);
-  background-color: var(--kungalgame-white-9);
+  background-color: var(--kungalgame-trans-white-9);
 }
 
 @media (max-width: 700px) {
-  .toolbar-container {
+  .toolbar {
     display: none;
+  }
+  .wang-editor {
+    margin: 0 auto;
+    width: 100%;
   }
 }
 </style>
