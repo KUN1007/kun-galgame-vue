@@ -4,8 +4,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 /* 引入 vue-router */
 import router from './router'
-// 引入 css 动画
-import 'animate.css'
 // 引入 i18n
 import i18n from '@/language/i18n'
 // 引入路由守卫
