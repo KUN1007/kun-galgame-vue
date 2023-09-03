@@ -29,12 +29,12 @@ u {
 
 :root {
   /* textarea - css vars */
-  --w-e-textarea-bg-color: var(--kungalgame-white);
+  --w-e-textarea-bg-color: var(--kungalgame-white-9);
   --w-e-textarea-color: var(--kungalgame-font-color-3);
   --w-e-textarea-border-color: var(--kungalgame-blue-1);
   --w-e-textarea-slight-border-color: var(--kungalgame-blue-4);
   --w-e-textarea-slight-color: var(--kungalgame-font-color-0);
-  --w-e-textarea-slight-bg-color: var(--kungalgame-white);
+  --w-e-textarea-slight-bg-color: var(--kungalgame-white-9);
   --w-e-textarea-selected-border-color: var(--kungalgame-blue-1);
   /* 选中的元素，如选中了分割线 */
   --w-e-textarea-handler-bg-color: var(--kungalgame-blue-4);
@@ -42,9 +42,9 @@ u {
 
   /* toolbar - css vars */
   --w-e-toolbar-color: var(--kungalgame-font-color-1);
-  --w-e-toolbar-bg-color: var(--kungalgame-white);
+  --w-e-toolbar-bg-color: var(--kungalgame-trans-blue-0);
   --w-e-toolbar-active-color: var(--kungalgame-font-color-3);
-  --w-e-toolbar-active-bg-color: var(--kungalgame-white);
+  --w-e-toolbar-active-bg-color: var(--kungalgame-trans-blue-1);
   --w-e-toolbar-disabled-color: var(--kungalgame-red-4);
   --w-e-toolbar-border-color: var(--kungalgame-blue-4);
 

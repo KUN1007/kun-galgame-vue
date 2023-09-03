@@ -5,7 +5,7 @@ import 'animate.css'
 
 import { currBackground } from '@/hooks/useBackgroundPicture'
 
-import KUNGalgameTopBar from '@/components/TopBar/KUNGalgameTopBar.vue'
+import KUNGalgameTopBar from '@/components/top-bar/KUNGalgameTopBar.vue'
 </script>
 
 <template>
