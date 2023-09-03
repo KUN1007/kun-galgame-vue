@@ -10,8 +10,10 @@ interface Topic {
   /**
    * 编辑器相关
    * @param {number} editorHeight - 编辑器高度
+   * @param {boolean} isShowAdvance - 是否显示编辑器高级选项
    */
   editorHeight: number
+  isShowAdvance: boolean
 
   /**
    * 话题相关
@@ -37,12 +39,14 @@ export const useKUNGalgameEditStore = defineStore({
   id: 'edit',
   persist: true,
   state: (): Topic => ({
+    isSave: false,
+    isShowAdvance: false,
+
     editorHeight: 300,
     title: '',
     content: '',
     tags: [],
     category: [],
-    isSave: false,
   }),
   getters: {},
   actions: {
