@@ -33,9 +33,8 @@ const props = defineProps(['data'])
   &:last-child {
     margin-bottom: 0;
   }
-  /**
-   * 宽度为单个话题总宽度减去用户部分的宽度，这里为 2 + 5 + 60 + 5 + 2 = 74px
-   */
+  /** 宽度为单个话题总宽度减去用户部分的宽度
+      这里为 2 + 5 + 60 + 5 + 2 = 74px */
   a {
     width: calc(100% - 74px);
   }

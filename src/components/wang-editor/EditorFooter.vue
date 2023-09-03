@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 // 引入图标字体
 import { Icon } from '@iconify/vue'
+// 导入模式切换按钮
+import SwitchButton from './SwitchButton.vue'
 
 // 引入 css 动画
 import 'animate.css'
@@ -63,6 +65,13 @@ const handelClickSettings = () => {
           />
           <span>500 px</span>
         </div>
+
+        <!-- 是否显示编辑器高级选项 -->
+        <div class="editor-advance-title">
+          <span> 高级选项 </span>
+          <!-- 切换按钮 -->
+          <SwitchButton />
+        </div>
       </div>
     </Transition>
   </div>
@@ -93,7 +102,6 @@ const handelClickSettings = () => {
 }
 
 .settings-menu {
-  height: 100px;
   padding: 10px;
   z-index: 1009;
   position: absolute;
@@ -104,6 +112,24 @@ const handelClickSettings = () => {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+
+  .editor-height-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 17px;
+  }
+
+  .editor-advance-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 17px;
+  }
+
+  .editor-height {
+    margin-bottom: 20px;
+  }
 }
 
 .count {
