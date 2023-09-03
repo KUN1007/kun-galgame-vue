@@ -9,7 +9,7 @@ import 'animate.css'
 import { defineAsyncComponent } from 'vue'
 
 // 导入编辑器
-import WangEditor from '@/components/WangEditor.vue'
+import WangEditor from '@/components/wang-editor/WangEditor.vue'
 
 // 异步导入话题标签
 const Tags = defineAsyncComponent(

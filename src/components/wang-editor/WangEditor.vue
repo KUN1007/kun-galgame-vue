@@ -2,14 +2,32 @@
     编辑器实例共用组件
  -->
 <script setup lang="ts">
+import {
+  defineAsyncComponent,
+  onBeforeMount,
+  onBeforeUnmount,
+  ref,
+  shallowRef,
+} from 'vue'
+// 编辑器本体配置
 import '@wangeditor/editor/dist/css/style.css'
 import '@/styles/editor/editor.scss'
-import { IDomEditor } from '@wangeditor/editor'
-import { onBeforeMount, onBeforeUnmount, ref, shallowRef } from 'vue'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { IDomEditor, IEditorConfig } from '@wangeditor/editor'
+import { Editor } from '@wangeditor/editor-for-vue'
+
+// 编辑器菜单配置
+import { IToolbarConfig } from '@wangeditor/editor'
+import { Toolbar } from '@wangeditor/editor-for-vue'
+
+// 导入标题
+const Title = defineAsyncComponent(
+  () => import('@/components/wang-editor/Title.vue')
+)
+
 // 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
+
 // 导入过滤 xss 的工具
 import DOMPurify from 'dompurify'
 // 导入防抖函数
@@ -18,7 +36,12 @@ import { debounce } from '@/utils/debounce'
 const topicData = storeToRefs(useKUNGalgameEditStore())
 
 // 定义父组件传参
-const props = defineProps(['height', 'isShowToolbar', 'isShowAdvance'])
+const props = defineProps<{
+  height: number
+  isShowToolbar: boolean
+  isShowAdvance: boolean
+  isShowTitle: boolean
+}>()
 
 // 自定义编辑区域高度
 const editorHeight = `height: ${props.height}px`
@@ -32,7 +55,7 @@ const valueHtml = ref('')
 const textCount = ref(0)
 
 // 编辑器相关配置
-const editorConfig = {
+const editorConfig: Partial<IEditorConfig> = {
   placeholder: 'Moe Moe Moe!',
   readOnly: false,
   MENU_CONF: {
@@ -53,7 +76,18 @@ const editorConfig = {
   },
 }
 
-const handleCreated = (editor: IDomEditor) => {}
+const keys: string[] = []
+
+// 工具栏相关配置
+const toolbarConfig: Partial<IToolbarConfig> = {
+  excludeKeys: ['uploadVideo'].concat(keys),
+}
+
+const handleCreated = (editor: IDomEditor) => {
+  console.log(editor.getAllMenuKeys())
+
+  editorRef.value = editor // 记录 editor 实例，重要！
+}
 
 // 挂载之前载入数据，如果不保存，则不载入
 onBeforeMount(() => {
@@ -92,9 +126,11 @@ const handleChange = (editor: IDomEditor) => {
     <Toolbar
       class="toolbar-container"
       :editor="editorRef"
+      :defaultConfig="toolbarConfig"
       :mode="$props.isShowAdvance ? 'default' : 'simple'"
       v-show="props.isShowToolbar"
     />
+    <Title />
     <Editor
       :style="editorHeight"
       v-model="valueHtml"
@@ -109,16 +145,11 @@ const handleChange = (editor: IDomEditor) => {
 <style lang="scss" scoped>
 /* 编辑器的样式 */
 .editor—wrapper {
-  /* 编辑器的 border */
-  border: 1px solid var(--kungalgame-blue-4);
   box-sizing: border-box;
   /* 编辑器的宽度 */
   width: 100%;
   margin: 0 auto;
-  z-index: 1008; /* 按需定义 */
-}
-.toolbar-container {
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  z-index: 9999;
 }
 
 .count {
@@ -128,7 +159,7 @@ const handleChange = (editor: IDomEditor) => {
   align-items: center;
   justify-content: end;
   color: var(--kungalgame-font-color-0);
-  background-color: var(--kungalgame-white);
+  background-color: var(--kungalgame-white-9);
 }
 
 @media (max-width: 700px) {
