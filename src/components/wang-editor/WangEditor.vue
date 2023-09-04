@@ -20,6 +20,7 @@ import { Editor } from '@wangeditor/editor-for-vue'
 // 编辑器菜单配置
 import { IToolbarConfig } from '@wangeditor/editor'
 import { Toolbar } from '@wangeditor/editor-for-vue'
+import { keysToExclude } from './keysToExclude'
 
 // 导入标题
 const Title = defineAsyncComponent(
@@ -38,7 +39,9 @@ import DOMPurify from 'dompurify'
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
 
-const topicData = storeToRefs(useKUNGalgameEditStore())
+const { editorHeight, isShowAdvance, isSave, content } = storeToRefs(
+  useKUNGalgameEditStore()
+)
 
 // 定义父组件传参
 const props = defineProps<{
@@ -54,7 +57,7 @@ const props = defineProps<{
 const editorRef = shallowRef<IDomEditor | undefined>(undefined)
 
 // 编辑器的高度
-const editorHeight = computed(() => `height: ${topicData.editorHeight.value}px`)
+const editorHeightStyle = computed(() => `height: ${editorHeight.value}px`)
 // 编辑器内的内容
 const valueHtml = ref('')
 // 编辑器文字计数
@@ -82,23 +85,23 @@ const editorConfig: Partial<IEditorConfig> = {
   },
 }
 
-const keys: string[] = []
-
 // 工具栏相关配置
 const toolbarConfig: Partial<IToolbarConfig> = {
-  excludeKeys: ['uploadVideo'].concat(keys),
+  // 是否显示高级模式，显示则不排除 keys
+  excludeKeys: isShowAdvance.value ? ['uploadVideo'] : keysToExclude,
 }
 
 const handleCreated = (editor: IDomEditor) => {
-  console.log(editor.getAllMenuKeys())
-
   editorRef.value = editor // 记录 editor 实例，重要！
+  editor.on('modalOrPanelShow', (modalOrPanel) => {
+    console.log(modalOrPanel)
+  })
 }
 
 // 挂载之前载入数据，如果不保存，则不载入
 onBeforeMount(() => {
-  if (topicData.isSave.value) {
-    valueHtml.value = topicData.content.value
+  if (isSave.value) {
+    valueHtml.value = content.value
   }
 })
 
@@ -115,7 +118,7 @@ const handleChange = (editor: IDomEditor) => {
   // 创建一个防抖处理函数
   const debouncedUpdateContent = debounce(() => {
     // 过滤 xss
-    topicData.content.value = DOMPurify.sanitize(editor.getHtml())
+    content.value = DOMPurify.sanitize(editor.getHtml())
   }, 1007)
 
   // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
@@ -149,7 +152,7 @@ const handleChange = (editor: IDomEditor) => {
     <!-- 编辑器本体 -->
     <Editor
       class="wang-editor"
-      :style="editorHeight"
+      :style="editorHeightStyle"
       v-model="valueHtml"
       :defaultConfig="editorConfig"
       @onCreated="handleCreated"
@@ -162,10 +165,7 @@ const handleChange = (editor: IDomEditor) => {
     </div>
 
     <!-- 编辑器 footer -->
-    <EditorFooter
-      :textCount="textCount"
-      :editorHeight="topicData.editorHeight.value"
-    />
+    <EditorFooter :textCount="textCount" :editorHeight="editorHeight" />
   </div>
 </template>
 
@@ -177,8 +177,7 @@ const handleChange = (editor: IDomEditor) => {
   width: 100%;
   margin: 0 auto;
   z-index: 1008;
-  background-color: var(--kungalgame-trans-white-5);
-  backdrop-filter: blur(5px);
+  background-color: var(--kungalgame-trans-white-2);
 }
 
 .toolbar {

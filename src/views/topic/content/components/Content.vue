@@ -28,7 +28,8 @@ onMounted(() => {
 <style lang="scss" scoped>
 /* 内容区右侧的话题展示区 */
 .w-e-text-container {
-  width: 82%;
+  /** 100 + 20 + 20 + 1 = 141px */
+  width: calc(100% - 141px);
   font-size: 15px;
   padding: 17px;
   border-left: 1px solid var(--kungalgame-blue-1);
