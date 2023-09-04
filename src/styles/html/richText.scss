@@ -1,0 +1,71 @@
+/**
+ * 这是渲染 wangEditor 输出的富文本的样式
+ * 需要注意的是，.kungalgame-topic-content 这个类名被全局注册了
+ */
+.kungalgame-topic-content {
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-top: 20px;
+  overflow-x: auto;
+  * {
+    max-width: 100%;
+    overflow-y: scroll;
+  }
+
+  a {
+    color: var(--kungalgame-blue-5);
+    border-bottom: 1.5px solid var(--kungalgame-trans-white-9);
+    &:hover {
+      border-bottom: 1.5px solid var(--kungalgame-blue-5);
+    }
+  }
+
+  span {
+    text-shadow: none;
+  }
+}
+
+.kungalgame-topic-content p,
+.kungalgame-topic-content li {
+  white-space: pre-wrap; /* 保留空格 */
+}
+
+.kungalgame-topic-content blockquote {
+  border-left: 8px solid var(--kungalgame-blue-1);
+  padding: 10px 10px;
+  margin: 10px 0;
+  background-color: var(--kungalgame-trans-blue-0);
+}
+
+.kungalgame-topic-content code {
+  font-family: monospace;
+  background-color: var(--kungalgame-trans-blue-0);
+  padding: 3px;
+  border-radius: 3px;
+}
+.kungalgame-topic-content pre > code {
+  display: block;
+  padding: 10px;
+}
+
+.kungalgame-topic-content table {
+  border-collapse: collapse;
+}
+.kungalgame-topic-content td,
+.kungalgame-topic-content th {
+  border: 1px solid var(--kungalgame-blue-4);
+  min-width: 50px;
+  height: 20px;
+}
+.kungalgame-topic-content th {
+  background-color: var(--kungalgame-trans-blue-0);
+}
+
+.kungalgame-topic-content ul,
+.kungalgame-topic-content ol {
+  padding-left: 20px;
+}
+
+.kungalgame-topic-content input[type='checkbox'] {
+  margin-right: 5px;
+}

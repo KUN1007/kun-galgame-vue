@@ -177,7 +177,6 @@ const handleChange = (editor: IDomEditor) => {
   width: 100%;
   margin: 0 auto;
   z-index: 1008;
-  background-color: var(--kungalgame-trans-white-2);
 }
 
 .toolbar {

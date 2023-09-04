@@ -22,22 +22,9 @@ u {
   text-decoration: underline;
 }
 
-/* 设置为 none，不然黑夜模式代码块会花屏 */
-* {
-  text-shadow: none;
-}
-
 /* 不显示分割线 */
 .w-e-bar-divider {
   display: none;
-}
-
-a {
-  color: var(--kungalgame-blue-5);
-  border-bottom: 1.5px solid var(--kungalgame-trans-white-9);
-  &:hover {
-    border-bottom: 1.5px solid var(--kungalgame-blue-5);
-  }
 }
 
 :root {

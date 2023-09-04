@@ -32,6 +32,7 @@ const checkPublish = (topicData: EditCreateTopicRequestData) => {
     message('Title cannot be empty!', '标题不可为空！', 'warn')
     return false
   } else if (topicData.content.trim()) {
+    // TODO:
     console.log(getPlainText(topicData.content.trim()).length)
     return true
   } else {
