@@ -24,8 +24,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import '@/styles/html/richText.scss';
-
 /* 内容区右侧的话题展示区 */
 .kungalgame-topic-content {
   /** 100 + 20 + 20 + 1 = 141px */
@@ -41,6 +39,8 @@ onMounted(() => {
   padding: 0 10px;
   margin-top: 20px;
   overflow-x: auto;
+
+  /* 下面的代码调整富文本区域的格式 */
   :deep(*) {
     max-width: 100%;
     overflow-y: scroll;
@@ -123,35 +123,48 @@ onMounted(() => {
   }
 
   :deep(.toolbar) {
-    top: 10px;
+    top: 17px;
     right: 10px;
     display: flex;
     & > .toolbar-item {
       /* 这里直接根据 DOM 结构写的，写的不是很明了，要怪就怪写 prism 插件的人吧 hhh */
       button,
       & > span {
-        background-color: var(--kungalgame-trans-white-9);
-        border: 1px solid var(--kungalgame-blue-4);
-        color: var(--kungalgame-blue-4);
+        transition: all 0.2s;
         box-shadow: unset;
         margin-left: 10px;
         border-radius: 0;
         padding: 2px 5px;
+      }
+      & > span {
+        color: var(--kungalgame-pink-4);
+        border: 1px solid var(--kungalgame-pink-4);
+        background-color: var(--kungalgame-trans-white-5);
         &:hover {
-          background-color: var(--kungalgame-blue-4);
+          background-color: var(--kungalgame-pink-4);
           color: var(--kungalgame-white);
         }
       }
       button {
         cursor: pointer;
+        background-color: var(--kungalgame-trans-white-9);
+        border: 1px solid var(--kungalgame-blue-4);
+        color: var(--kungalgame-blue-4);
+        &:hover {
+          background-color: var(--kungalgame-blue-4);
+          color: var(--kungalgame-white);
+        }
         &:focus {
-          color: var(--kungalgame-red-4);
+          color: var(--kungalgame-pink-4);
+          border: 1px solid var(--kungalgame-pink-4);
+          background-color: var(--kungalgame-trans-white-5);
         }
       }
     }
   }
 }
 
+/* 适配手机端 */
 @media (max-width: 700px) {
   .kungalgame-topic-content {
     width: 100%;
