@@ -84,7 +84,7 @@ const handleRefreshPage = () => location.reload()
   padding: 10px;
   z-index: 1009;
   position: absolute;
-  bottom: 50px;
+  top: 470px;
   background-color: var(--kungalgame-white);
   border: 1px solid var(--kungalgame-blue-1);
   box-shadow: var(--shadow);

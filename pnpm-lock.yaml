@@ -26,6 +26,9 @@ dependencies:
   pinia-plugin-persistedstate:
     specifier: ^3.2.0
     version: 3.2.0(pinia@2.1.6)
+  prismjs:
+    specifier: ^1.29.0
+    version: 1.29.0
   vue:
     specifier: ^3.3.4
     version: 3.3.4
@@ -46,6 +49,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.4.8
     version: 20.4.8
+  '@types/prismjs':
+    specifier: ^1.26.0
+    version: 1.26.0
   '@vitejs/plugin-vue':
     specifier: ^4.2.3
     version: 4.2.3(vite@4.4.8)(vue@3.3.4)
@@ -70,6 +76,9 @@ devDependencies:
   vite-plugin-mock:
     specifier: ^3.0.0
     version: 3.0.0(esbuild@0.18.19)(mockjs@1.1.0)(vite@4.4.8)
+  vite-plugin-prismjs:
+    specifier: ^0.0.8
+    version: 0.0.8(prismjs@1.29.0)
   vue-tsc:
     specifier: ^1.8.8
     version: 1.8.8(typescript@5.1.6)
@@ -712,6 +721,10 @@ packages:
     resolution: {integrity: sha512-0mHckf6D2DiIAzh8fM8f3HQCvMKDpK94YQ0DSVkfWTG9BZleYIWudw9cJxX8oCk9bM+vAkDyujDV6dmKHbvQpg==}
     dev: true
 
+  /@types/prismjs@1.26.0:
+    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==}
+    dev: true
+
   /@types/trusted-types@2.0.3:
     resolution: {integrity: sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==}
     dev: true
@@ -1145,6 +1158,14 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
+    dev: true
+
+  /babel-plugin-prismjs@2.1.0(prismjs@1.29.0):
+    resolution: {integrity: sha512-ehzSKYfeAz4U78zi/sfwsjDPlq0LvDKxNefcZTJ/iKBu+plsHsLqZhUeGf1+82LAcA35UZGbU6ksEx2Utphc/g==}
+    peerDependencies:
+      prismjs: ^1.18.0
+    dependencies:
+      prismjs: 1.29.0
     dev: true
 
   /balanced-match@1.0.2:
@@ -1828,7 +1849,6 @@ packages:
   /prismjs@1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
     engines: {node: '>=6'}
-    dev: false
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -2066,6 +2086,17 @@ packages:
       vite: 4.4.8(@types/node@20.4.8)(sass@1.64.2)
     transitivePeerDependencies:
       - esbuild
+      - supports-color
+    dev: true
+
+  /vite-plugin-prismjs@0.0.8(prismjs@1.29.0):
+    resolution: {integrity: sha512-mBPPMS/hwVUArdqCtp/oajZT7iq1qwJDDCciNZ3R5+Q5tQUuUHXtDKuZHYnklPLElNbENf2FyuOtC4FrgxQRAA==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@babel/core': 7.22.10
+      babel-plugin-prismjs: 2.1.0(prismjs@1.29.0)
+    transitivePeerDependencies:
+      - prismjs
       - supports-color
     dev: true
 
