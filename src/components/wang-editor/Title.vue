@@ -78,7 +78,5 @@ const handelInput = () => {
   /* 标题输入字体大小 */
   font-size: 40px;
   border: none;
-  /* 光标样式 */
-  caret-shape: block;
 }
 </style>

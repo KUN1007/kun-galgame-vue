@@ -27,14 +27,27 @@ u {
   text-shadow: none;
 }
 
+/* 不显示分割线 */
+.w-e-bar-divider {
+  display: none;
+}
+
+a {
+  color: var(--kungalgame-blue-5);
+  border-bottom: 1.5px solid var(--kungalgame-trans-white-9);
+  &:hover {
+    border-bottom: 1.5px solid var(--kungalgame-blue-5);
+  }
+}
+
 :root {
   /* textarea - css vars */
   --w-e-textarea-bg-color: var(--kungalgame-white-9);
   --w-e-textarea-color: var(--kungalgame-font-color-3);
-  --w-e-textarea-border-color: var(--kungalgame-blue-1);
+  --w-e-textarea-border-color: var(--kungalgame-blue-4);
   --w-e-textarea-slight-border-color: var(--kungalgame-blue-4);
   --w-e-textarea-slight-color: var(--kungalgame-font-color-0);
-  --w-e-textarea-slight-bg-color: var(--kungalgame-white-9);
+  --w-e-textarea-slight-bg-color: var(--kungalgame-trans-blue-0);
   --w-e-textarea-selected-border-color: var(--kungalgame-blue-1);
   /* 选中的元素，如选中了分割线 */
   --w-e-textarea-handler-bg-color: var(--kungalgame-blue-4);

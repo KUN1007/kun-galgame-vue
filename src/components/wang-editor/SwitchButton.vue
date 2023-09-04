@@ -1,6 +1,7 @@
 <!-- KUNGalgame 通用切换按钮 -->
 
 <script setup lang="ts">
+import { watch } from 'vue'
 // 导入编辑界面 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
@@ -9,15 +10,14 @@ import { storeToRefs } from 'pinia'
 const settingsStore = useKUNGalgameEditStore()
 const { isShowAdvance } = storeToRefs(settingsStore)
 
-// 用户点击切换编辑器 toolbar 工具
-const toggleEditorMode = () => {
-  isShowAdvance.value = !isShowAdvance.value
-}
+// 监听 store 中的状态变化，保持按钮状态与 store 同步
+watch(isShowAdvance, (newValue) => {
+  isShowAdvance.value = newValue
+})
 </script>
 
 <template>
-  <input type="checkbox" id="switch" /><label
-    @click="toggleEditorMode"
+  <input type="checkbox" id="switch" v-model="isShowAdvance" /><label
     for="switch"
     >Toggle</label
   >
