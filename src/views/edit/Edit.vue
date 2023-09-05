@@ -16,6 +16,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         :isShowToolbar="true"
         :isShowAdvance="true"
         :isShowTitle="true"
+        :isShowSettings="true"
       />
 
       <!-- 内容区的底部 -->

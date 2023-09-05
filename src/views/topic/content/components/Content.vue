@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import prismjs from 'prismjs'
 import 'prismjs/themes/prism.css'
-
-const html = ref<HTMLInputElement | null>(null)
 
 defineProps<{
   content: string
@@ -19,7 +17,7 @@ onMounted(() => {
   <!-- 内容区右侧的话题展示区，这里富文本必须用 v-html，已经确定文本经过三次处理 -->
   <!-- 这里用的 v-html，样式是页面刷新后才会有的，所以必须动态绑定样式 -->
   <div class="kungalgame-topic-content">
-    <div v-html="content" ref="html"></div>
+    <div v-html="content"></div>
   </div>
 </template>
 
