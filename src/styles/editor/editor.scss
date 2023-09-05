@@ -1,32 +1,5 @@
 /* wangEditor5 使用了 Shadow DOM，不能直接修改颜色，在全局覆盖 */
 
-.w-e-scroll {
-  &::-webkit-scrollbar {
-    display: inline;
-    width: 6px;
-    height: 0;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--kungalgame-blue-4);
-    border-radius: 3px;
-  }
-}
-
-/* 删除线，不然会不显示 */
-s {
-  text-decoration: line-through;
-}
-
-/* 下划线，不然会不显示 */
-u {
-  text-decoration: underline;
-}
-
-/* 不显示分割线 */
-.w-e-bar-divider {
-  display: none;
-}
-
 :root {
   /* textarea - css vars */
   --w-e-textarea-bg-color: var(--kungalgame-white-9);

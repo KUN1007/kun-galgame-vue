@@ -93,9 +93,6 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 
 const handleCreated = (editor: IDomEditor) => {
   editorRef.value = editor // 记录 editor 实例，重要！
-  editor.on('modalOrPanelShow', (modalOrPanel) => {
-    console.log(modalOrPanel)
-  })
 }
 
 // 挂载之前载入数据，如果不保存，则不载入
@@ -238,6 +235,33 @@ const handleChange = (editor: IDomEditor) => {
   max-width: 1080px;
   margin: 0 auto;
   margin-bottom: 30px;
+
+  :deep(.w-e-scroll) {
+    &::-webkit-scrollbar {
+      display: inline;
+      width: 6px;
+      height: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--kungalgame-blue-4);
+      border-radius: 3px;
+    }
+  }
+
+  /* 删除线，不然会不显示 */
+  :deep(s) {
+    text-decoration: line-through;
+  }
+
+  /* 下划线，不然会不显示 */
+  :deep(u) {
+    text-decoration: underline;
+  }
+
+  /* 不显示分割线 */
+  :deep(.w-e-bar-divider) {
+    display: none;
+  }
 }
 
 @media (max-width: 700px) {
