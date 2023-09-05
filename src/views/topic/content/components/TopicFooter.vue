@@ -1,5 +1,6 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
+import { nextTick } from 'vue'
 import { Icon } from '@iconify/vue'
 // 引入流光环绕的特效
 import '@/styles/effect/effect.scss'
@@ -25,7 +26,8 @@ defineProps<{
   }
 }>()
 
-const handelReply = () => {
+const handelReply = async () => {
+  await nextTick()
   isEdit.value = true
 }
 </script>

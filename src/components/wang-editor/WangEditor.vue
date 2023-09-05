@@ -44,11 +44,19 @@ const { editorHeight, isShowAdvance, isSave, content } = storeToRefs(
 )
 
 // 定义父组件传参
+/**
+ * @param {number} height - 编辑器的高度
+ * @param {boolean} isShowToolbar - 是否显示工具栏
+ * @param {boolean} isShowAdvance - 是否显示高级编辑模式
+ * @param {boolean} isShowTitle - 是否显示标题
+ * @param {boolean} isShowSettings - 是否显示编辑器设置
+ */
 const props = defineProps<{
   height: number
   isShowToolbar: boolean
   isShowAdvance: boolean
   isShowTitle: boolean
+  isShowSettings: boolean
 }>()
 
 // 自定义编辑区域高度
@@ -68,6 +76,7 @@ const editorConfig: Partial<IEditorConfig> = {
   placeholder: 'Moe Moe Moe!',
   readOnly: false,
   MENU_CONF: {
+    // 上传图片
     uploadImage: {
       server: 'http://127.0.0.1:10008/upload/img',
 
@@ -129,7 +138,7 @@ const handleChange = (editor: IDomEditor) => {
   <!-- 编辑器 -->
   <div class="editor—wrapper">
     <!-- 话题 title -->
-    <Title />
+    <Title v-if="isShowTitle" />
 
     <!-- 编辑器工具栏 -->
     <!-- 这里不能用 v-if，否则加载不出来 toolBar -->
@@ -141,7 +150,7 @@ const handleChange = (editor: IDomEditor) => {
       v-show="props.isShowToolbar"
     />
 
-    <div class="hint hint1">
+    <div class="hint hint1" v-if="isShowSettings">
       <span class="box1"></span>
       <span class="filling"></span>
       <span class="box2"></span>
@@ -155,14 +164,18 @@ const handleChange = (editor: IDomEditor) => {
       @onCreated="handleCreated"
       @onChange="handleChange"
     />
-    <div class="hint">
+    <div class="hint" v-if="isShowSettings">
       <span class="box3"></span>
       <span class="filling"></span>
       <span class="box4"></span>
     </div>
 
     <!-- 编辑器 footer -->
-    <EditorFooter :textCount="textCount" :editorHeight="editorHeight" />
+    <EditorFooter
+      :textCount="textCount"
+      :editorHeight="editorHeight"
+      :isShowSettings="isShowSettings"
+    />
   </div>
 </template>
 

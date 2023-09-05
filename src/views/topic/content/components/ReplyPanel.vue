@@ -56,9 +56,10 @@ const handelClosePanel = () => {
           <div class="content">
             <WangEditor
               :height="300"
-              :isShowToolbar="isShowAdvance"
+              :is-show-toolbar="isShowAdvance"
               :is-show-advance="false"
               :is-show-title="false"
+              :is-show-settings="false"
             />
           </div>
           <!-- 回复的页脚 -->
