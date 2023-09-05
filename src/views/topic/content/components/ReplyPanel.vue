@@ -9,7 +9,9 @@ import 'animate.css'
 import { defineAsyncComponent } from 'vue'
 
 // 导入编辑器
-import WangEditor from '@/components/wang-editor/WangEditor.vue'
+const WangEditor = defineAsyncComponent(
+  () => import('@/components/wang-editor/WangEditor.vue')
+)
 
 // 异步导入话题标签
 const Tags = defineAsyncComponent(
@@ -52,7 +54,12 @@ const handelClosePanel = () => {
           </div>
           <!-- 回复的编辑器 -->
           <div class="content">
-            <WangEditor :height="300" :isShowToolbar="isShowAdvance" />
+            <WangEditor
+              :height="300"
+              :isShowToolbar="isShowAdvance"
+              :is-show-advance="false"
+              :is-show-title="false"
+            />
           </div>
           <!-- 回复的页脚 -->
           <div class="footer">
