@@ -833,7 +833,6 @@
   background-color: var(--kungalgame-trans-white-2);
 }
 .ql-toolbar.ql-snow {
-  border: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 8px;
@@ -933,4 +932,13 @@
 }
 .ql-container.ql-snow {
   border: 1px solid var(--kungalgame-blue-1);
+}
+
+/* 被 reset css 覆盖的样式 */
+u {
+  text-decoration: underline;
+}
+
+s {
+  text-decoration: line-through;
 }

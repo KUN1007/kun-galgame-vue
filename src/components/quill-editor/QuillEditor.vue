@@ -5,10 +5,11 @@ import {
   ref,
   onBeforeMount,
   onBeforeUnmount,
+  onMounted,
 } from 'vue'
 import { QuillEditor } from '@vueup/vue-quill'
 
-// 自定义 quill 的两个主题
+// 自定义 quill 的两个主题，第二个主题暂时懒得动
 import '@/styles/editor/editor.snow.scss'
 // import '@vueup/vue-quill/dist/vue-quill.bubble.css'
 
@@ -42,6 +43,7 @@ const { editorHeight, mode, theme, isSave, content } = storeToRefs(
  * @param {boolean} isShowSettings - 是否显示编辑器设置
  */
 const props = defineProps<{
+  height?: number
   isShowToolbar: boolean
   isShowAdvance: boolean
   isShowTitle: boolean
@@ -52,7 +54,14 @@ const props = defineProps<{
 const editorRef = ref()
 
 // 编辑器的高度
-const editorHeightStyle = computed(() => `height: ${editorHeight.value}px`)
+const editorHeightStyle = computed(
+  () => `height: ${props.height ? props.height : editorHeight.value}px`
+)
+// 编辑器的工具栏是否显示
+const isShowEditorToolbar = computed(() =>
+  props.isShowToolbar ? 'block' : 'none'
+)
+
 // 编辑器内的内容
 const valueHtml = ref('')
 // 编辑器文字计数
@@ -67,16 +76,25 @@ const editorOptions = {
 const onEditorReady = () => {}
 
 // 工具栏相关配置
+const toolbarOptions = {
+  container: [
+    ['bold', 'italic', 'underline', 'strike'],
+    ['markdown'], // Add this.
+  ],
+  handlers: {
+    // Add this.
+    markdown: function () {},
+  },
+}
 
 // 挂载之前载入数据，如果不保存，则不载入
 onBeforeMount(() => {
   if (isSave.value) {
     valueHtml.value = content.value
   }
-})
 
-// 组件销毁时，也及时销毁编辑器
-onBeforeUnmount(() => {})
+  // 如果不显示高级选项则隐藏工具栏
+})
 
 // 编辑器文本改变时自动保存数据
 const handleTextChange = () => {
@@ -107,7 +125,7 @@ const handleTextChange = () => {
       :content="valueHtml"
       :style="editorHeightStyle"
       :theme="theme"
-      toolbar="full"
+      :toolbar="mode"
       :options="editorOptions"
       @textChange="handleTextChange"
       @ready="onEditorReady"
@@ -136,6 +154,7 @@ const handleTextChange = () => {
   background-color: var(--kungalgame-trans-blue-0);
   /* 头部下方阴影 */
   box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
+  display: v-bind(isShowEditorToolbar);
 }
 
 /* 编辑器体的样式 */
@@ -165,6 +184,16 @@ const handleTextChange = () => {
   }
   .ql-editor {
     padding: 0;
+    &::-webkit-scrollbar {
+      display: inline;
+      width: 4px;
+      height: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+      cursor: default;
+      background: var(--kungalgame-blue-4);
+      border-radius: 2px;
+    }
     &::before {
       left: 0;
     }
@@ -175,7 +204,7 @@ const handleTextChange = () => {
       bottom: 0;
       transform: translateX(-20px) translateY(27px);
       color: var(--kungalgame-trans-white-5);
-      text-shadow: 1px 1px 1px var(--kungalgame-blue-2);
+      text-shadow: 1px 1px 1px var(--kungalgame-pink-3);
       font-style: oblique;
     }
   }

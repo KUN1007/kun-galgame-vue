@@ -26,6 +26,9 @@ defineProps<{
 const isRefreshPage = ref(false)
 
 // 点击高级选项时提醒用户刷新页面
+watch(mode, () => {
+  isRefreshPage.value = !isRefreshPage.value
+})
 
 const handleRefreshPage = () => location.reload()
 </script>
@@ -69,8 +72,14 @@ const handleRefreshPage = () => location.reload()
             </span>
           </Transition>
         </div>
+
         <!-- 切换按钮 -->
-        <SwitchButton />
+        <select class="select" v-model="mode">
+          <option value="minimal">最小配置</option>
+          <option value="">默认配置</option>
+          <option value="essential">基本配置</option>
+          <option value="full">最高配置</option>
+        </select>
       </div>
     </div>
   </Transition>
@@ -78,10 +87,11 @@ const handleRefreshPage = () => location.reload()
 
 <style lang="scss" scoped>
 .settings-menu {
+  width: 277px;
   padding: 10px;
   z-index: 1009;
   position: absolute;
-  top: 470px;
+  margin-bottom: 190px;
   background-color: var(--kungalgame-white);
   border: 1px solid var(--kungalgame-blue-1);
   box-shadow: var(--shadow);
@@ -106,6 +116,8 @@ const handleRefreshPage = () => location.reload()
 
 .editor-height {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .editor-advance {
@@ -123,6 +135,19 @@ const handleRefreshPage = () => location.reload()
       margin-right: 10px;
       font-size: 17px;
     }
+  }
+}
+
+// 编辑器模式的选择框
+.select {
+  width: 100px;
+  font-size: 16px;
+  margin-left: 20px;
+  color: var(--kungalgame-font-color-3);
+  border: 1px solid var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-white-9);
+  option {
+    background-color: var(--kungalgame-white);
   }
 }
 

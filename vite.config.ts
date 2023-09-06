@@ -5,42 +5,10 @@ import vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
 // 导入 vite tsx 支持
 import vueJsx from '@vitejs/plugin-vue-jsx'
-// 导入 prismjs 高亮
-import { prismjsPlugin } from 'vite-plugin-prismjs'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    visualizer() as PluginOption,
-    vueJsx(),
-    prismjsPlugin({
-      // 这里和 wangEditor 适配
-      languages: [
-        'jsx',
-        'typescript',
-        'markup',
-        'go',
-        'php',
-        'c',
-        'python',
-        'java',
-        'cpp',
-        'csharp',
-        'visual-basic',
-        'sql',
-        'ruby',
-        'swift',
-        'bash',
-        'markdown',
-        'lua',
-        'groovy',
-      ],
-      plugins: ['show-language', 'toolbar', 'copy-to-clipboard'],
-      theme: 'okaidia',
-      css: true,
-    }),
-  ],
+  plugins: [vue(), visualizer() as PluginOption, vueJsx()],
   /* src 别名为 @ */
   resolve: {
     alias: {
