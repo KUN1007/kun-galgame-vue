@@ -100,12 +100,6 @@ const handleTextChange = () => {
     <!-- 话题 title -->
     <Title v-if="isShowTitle" />
 
-    <div class="hint hint1" v-if="isShowSettings">
-      <span class="box1"></span>
-      <span class="filling"></span>
-      <span class="box2"></span>
-    </div>
-
     <!-- 编辑器主体 -->
     <QuillEditor
       ref="editorRef"
@@ -113,18 +107,12 @@ const handleTextChange = () => {
       :content="valueHtml"
       :style="editorHeightStyle"
       :theme="theme"
-      :toolbar="mode"
+      toolbar="full"
       :options="editorOptions"
       @textChange="handleTextChange"
       @ready="onEditorReady"
       @click.prevent
     />
-
-    <div class="hint" v-if="isShowSettings">
-      <span class="box3"></span>
-      <span class="filling"></span>
-      <span class="box4"></span>
-    </div>
 
     <!-- 编辑器 footer -->
     <EditorFooter
@@ -143,65 +131,53 @@ const handleTextChange = () => {
 
 /* 工具栏的样式 */
 :deep(.ql-toolbar) {
-  border: none;
+  border-top: 1px solid var(--kungalgame-blue-1);
+  border-bottom: 1px solid var(--kungalgame-blue-1);
+  background-color: var(--kungalgame-trans-blue-0);
+  /* 头部下方阴影 */
+  box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
 }
 
 /* 编辑器体的样式 */
 :deep(.ql-container) {
+  transition: all 0.2s;
   width: 80%;
+  max-width: 1080px;
   border: none;
   margin: 0 auto;
-  margin-top: 40px;
   font-size: 17px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  &::before {
+    content: '∟';
+    position: absolute;
+    font-size: 40px;
+    transform: translateX(-20px) translateY(-20px) rotate(90deg);
+    color: var(--kungalgame-blue-2);
+  }
+  &::after {
+    content: '∟';
+    position: absolute;
+    right: 0;
+    font-size: 40px;
+    transform: translateX(20px) translateY(-20px) rotate(-90deg);
+    color: var(--kungalgame-blue-2);
+  }
   .ql-editor {
     padding: 0;
     &::before {
       left: 0;
     }
+    &::after {
+      content: '♡ Yuki Yuki';
+      font-size: 22px;
+      position: absolute;
+      bottom: 0;
+      transform: translateX(-20px) translateY(27px);
+      color: var(--kungalgame-trans-white-5);
+      text-shadow: 1px 1px 1px var(--kungalgame-blue-2);
+      font-style: oblique;
+    }
   }
-}
-
-/* 提示线 */
-.hint {
-  margin: 0 auto;
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  border-bottom: none;
-  border-top: none;
-  & > span {
-    width: 30px;
-    height: 100%;
-    border: 1.5px solid var(--kungalgame-blue-2);
-  }
-  .filling {
-    border: none;
-    max-width: 1080px;
-    width: 80%;
-  }
-  .box1 {
-    border-top: none;
-    border-left: none;
-  }
-  .box2 {
-    border-top: none;
-    border-right: none;
-  }
-  .box3 {
-    border-bottom: none;
-    border-left: none;
-  }
-  .box4 {
-    border-bottom: none;
-    border-right: none;
-  }
-}
-
-.hint1 {
-  margin-top: 10px;
-  position: absolute;
-  width: 80%;
-  top: 200px;
 }
 </style>

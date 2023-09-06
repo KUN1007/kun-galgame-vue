@@ -1,7 +1,7 @@
 .ql-container {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 17px;
   height: 100%;
   margin: 0px;
   position: relative;
@@ -75,7 +75,7 @@
 }
 .ql-editor ul[data-checked='true'] > li::before,
 .ql-editor ul[data-checked='false'] > li::before {
-  color: #777;
+  color: var(--kungalgame-font-color-0);
   cursor: pointer;
   pointer-events: all;
 }
@@ -380,8 +380,9 @@
 .ql-editor .ql-align-right {
   text-align: right;
 }
+/* placeholder 的颜色 */
 .ql-editor.ql-blank::before {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--kungalgame-font-color-0);
   content: attr(data-placeholder);
   font-style: italic;
   left: 15px;
@@ -429,7 +430,7 @@
 .ql-snow .ql-toolbar .ql-picker-label:hover,
 .ql-snow.ql-toolbar .ql-picker-item:hover,
 .ql-snow .ql-toolbar .ql-picker-item:hover {
-  background-color: #f3f4f6;
+  background-color: var(--kungalgame-trans-blue-1);
 }
 .ql-snow.ql-toolbar button.ql-active,
 .ql-snow .ql-toolbar button.ql-active,
@@ -437,8 +438,8 @@
 .ql-snow .ql-toolbar .ql-picker-label.ql-active,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-  background-color: #dbeafe;
-  color: #2563eb;
+  background-color: var(--kungalgame-blue-0);
+  color: var(--kungalgame-blue-4);
 }
 .ql-snow.ql-toolbar button.ql-active .ql-fill,
 .ql-snow .ql-toolbar button.ql-active .ql-fill,
@@ -452,7 +453,7 @@
 .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
-  fill: #2563eb;
+  fill: var(--kungalgame-blue-4);
 }
 .ql-snow.ql-toolbar button.ql-active .ql-stroke,
 .ql-snow .ql-toolbar button.ql-active .ql-stroke,
@@ -466,24 +467,25 @@
 .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
-  stroke: #2563eb;
+  stroke: var(--kungalgame-blue-4);
 }
+/* 未知属性，貌似和鼠标有关 */
 @media (pointer: coarse) {
   .ql-snow.ql-toolbar button:hover:not(.ql-active),
   .ql-snow .ql-toolbar button:hover:not(.ql-active) {
-    color: #4b5563;
+    color: var(--kungalgame-blue-4);
   }
   .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-fill,
   .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-fill,
   .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill,
   .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill {
-    fill: #4b5563;
+    fill: var(--kungalgame-blue-4);
   }
   .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke,
   .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke,
   .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter,
   .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter {
-    stroke: #4b5563;
+    stroke: var(--kungalgame-blue-4);
   }
 }
 .ql-snow {
@@ -519,22 +521,23 @@
   content: '';
   display: table;
 }
+/* toolbar 图标的颜色 */
 .ql-snow .ql-stroke {
   fill: none;
-  stroke: #4b5563;
+  stroke: var(--kungalgame-font-color-1);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2;
 }
 .ql-snow .ql-stroke-miter {
   fill: none;
-  stroke: #4b5563;
+  stroke: var(--kungalgame-font-color-1);
   stroke-miterlimit: 10;
   stroke-width: 2;
 }
 .ql-snow .ql-fill,
 .ql-snow .ql-stroke.ql-fill {
-  fill: #4b5563;
+  fill: var(--kungalgame-blue-4);
 }
 .ql-snow .ql-empty {
   fill: none;
@@ -579,15 +582,17 @@
 .ql-snow .ql-editor a {
   text-decoration: underline;
 }
+
+/* 引用的颜色 */
 .ql-snow .ql-editor blockquote {
-  border-left: 4px solid #ccc;
+  border-left: 4px solid var(--kungalgame-blue-2);
+  background-color: var(--kungalgame-trans-blue-0);
   margin-bottom: 5px;
   margin-top: 5px;
   padding-left: 16px;
 }
 .ql-snow .ql-editor code,
 .ql-snow .ql-editor pre {
-  background-color: #f0f0f0;
   border-radius: 3px;
 }
 .ql-snow .ql-editor pre {
@@ -600,19 +605,21 @@
   font-size: 85%;
   padding: 2px 4px;
 }
+/* 代码块颜色 */
 .ql-snow .ql-editor pre.ql-syntax {
-  background-color: #23241f;
-  color: #f8f8f2;
+  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid var(--kungalgame-blue-4);
   overflow: visible;
 }
 .ql-snow .ql-editor img {
   max-width: 100%;
 }
+/* 展开列表的颜色 */
 .ql-snow .ql-picker {
-  color: #4b5563;
+  color: var(--kungalgame-blue-4);
   display: inline-block;
   float: left;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 500;
   height: 24px;
   position: relative;
@@ -634,7 +641,7 @@
   line-height: 22px;
 }
 .ql-snow .ql-picker-options {
-  background-color: #fff;
+  background-color: var(--kungalgame-trans-white-2);
   display: none;
   min-width: 100%;
   position: absolute;
@@ -646,14 +653,14 @@
   padding: 5px 8px;
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-label {
-  color: #d1d5db;
+  color: var(--kungalgame-blue-4);
   z-index: 2;
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill {
-  fill: #d1d5db;
+  fill: var(--kungalgame-blue-1);
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke {
-  stroke: #d1d5db;
+  stroke: var(--kungalgame-blue-4);
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-options {
   display: block;
@@ -820,13 +827,13 @@
   font-size: 32px;
 }
 .ql-snow .ql-color-picker.ql-background .ql-picker-item {
-  background-color: #fff;
+  background-color: var(--kungalgame-trans-white-2);
 }
 .ql-snow .ql-color-picker.ql-color .ql-picker-item {
-  background-color: #000;
+  background-color: var(--kungalgame-trans-white-2);
 }
 .ql-toolbar.ql-snow {
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--kungalgame-blue-1);
   box-sizing: border-box;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 8px;
@@ -839,26 +846,29 @@
 }
 .ql-toolbar.ql-snow .ql-picker-options {
   border: 1px solid transparent;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
+  box-shadow: var(--shadow);
 }
+/* 选中列表的样式 */
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
-  border-color: #d1d5db;
+  background-color: var(--kungalgame-trans-blue-1);
 }
+/* 选中列表的展开选项样式 */
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
-  border-color: #d1d5db;
+  border-color: var(--kungalgame-blue-1);
 }
+/* 选中颜色的边框颜色 */
 .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item.ql-selected,
 .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item:hover {
-  border-color: #000;
+  border-color: var(--kungalgame-blue-4);
 }
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
   border-top: 0px;
 }
 .ql-snow .ql-tooltip {
-  background-color: #fff;
-  border: 1px solid #d1d5db;
-  box-shadow: 0px 0px 5px #d1d5db;
-  color: #4b5563;
+  background-color: var(--kungalgame-trans-white-2);
+  border: 1px solid var(--kungalgame-blue-1);
+  box-shadow: var(--shadow);
+  color: var(--kungalgame-font-color-1);
   padding: 5px 12px;
   white-space: nowrap;
 }
@@ -869,7 +879,8 @@
 }
 .ql-snow .ql-tooltip input[type='text'] {
   display: none;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--kungalgame-blue-1);
+  background-color: var(--kungalgame-trans-white-9);
   font-size: 13px;
   height: 26px;
   margin: 0px;
@@ -884,7 +895,7 @@
   vertical-align: top;
 }
 .ql-snow .ql-tooltip a.ql-action::after {
-  border-right: 1px solid #d1d5db;
+  border-right: 1px solid var(--kungalgame-blue-1);
   content: 'Edit';
   margin-left: 16px;
   padding-right: 8px;
@@ -918,8 +929,8 @@
   content: 'Enter video:';
 }
 .ql-snow a {
-  color: #2563eb;
+  color: var(--kungalgame-blue-4);
 }
 .ql-container.ql-snow {
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--kungalgame-blue-1);
 }
