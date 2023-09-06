@@ -14,7 +14,7 @@ import { storeToRefs } from 'pinia'
 
 // 使用编辑界面的 store
 const settingsStore = useKUNGalgameEditStore()
-const { isShowAdvance } = storeToRefs(settingsStore)
+const { mode } = storeToRefs(settingsStore)
 
 const { editorHeight } = storeToRefs(useKUNGalgameEditStore())
 
@@ -26,9 +26,6 @@ defineProps<{
 const isRefreshPage = ref(false)
 
 // 点击高级选项时提醒用户刷新页面
-watch(isShowAdvance, () => {
-  isRefreshPage.value = !isRefreshPage.value
-})
 
 const handleRefreshPage = () => location.reload()
 </script>
@@ -61,7 +58,7 @@ const handleRefreshPage = () => location.reload()
       <div class="editor-advance-title">
         <div class="editor-advance">
           <Transition mode="out-in" name="slide-up">
-            <span v-if="!isRefreshPage"> 高级编辑模式 </span>
+            <span v-if="!isRefreshPage"> 编辑器模式 </span>
             <span
               @click="handleRefreshPage"
               class="refresh"
