@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import WangEditor from '@/components/wang-editor/WangEditor.vue'
+// 引入编辑器
+import QuillEditor from '@/components/quill-editor/QuillEditor.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -10,9 +11,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     <!-- 内容区容器 -->
     <div class="container">
       <!-- 编辑器 -->
-      <WangEditor
+      <QuillEditor
         class="editor"
-        :height="500"
         :isShowToolbar="true"
         :isShowAdvance="true"
         :isShowTitle="true"
@@ -29,7 +29,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     <!-- 版权 -->
     <KUNGalgameFooter style="margin: 0 auto; padding-top: 20px" />
     <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)"
-      >Editor powered by wangEditor</span
+      >Editor powered by quill</span
     >
   </div>
 </template>

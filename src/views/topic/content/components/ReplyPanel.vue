@@ -9,8 +9,8 @@ import 'animate.css'
 import { defineAsyncComponent } from 'vue'
 
 // 导入编辑器
-const WangEditor = defineAsyncComponent(
-  () => import('@/components/wang-editor/WangEditor.vue')
+const QuillEditor = defineAsyncComponent(
+  () => import('@/components/quill-editor/QuillEditor.vue')
 )
 
 // 异步导入话题标签
@@ -54,8 +54,7 @@ const handelClosePanel = () => {
           </div>
           <!-- 回复的编辑器 -->
           <div class="content">
-            <WangEditor
-              :height="300"
+            <QuillEditor
               :is-show-toolbar="isShowAdvance"
               :is-show-advance="false"
               :is-show-title="false"
