@@ -55,6 +55,7 @@ const handelClosePanel = () => {
           <!-- 回复的编辑器 -->
           <div class="content">
             <QuillEditor
+              :height="200"
               :is-show-toolbar="isShowAdvance"
               :is-show-advance="false"
               :is-show-title="false"

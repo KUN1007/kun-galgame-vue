@@ -1,23 +1,18 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import prismjs from 'prismjs'
-import 'prismjs/themes/prism.css'
+// 导入编辑器的样式
+// 自定义 quill 的两个主题
+import '@/styles/editor/editor.snow.scss'
 
 defineProps<{
   content: string
 }>()
-
-onMounted(() => {
-  // 高亮渲染
-  prismjs.highlightAll()
-})
 </script>
 
 <template>
   <!-- 内容区右侧的话题展示区，这里富文本必须用 v-html，已经确定文本经过三次处理 -->
   <!-- 这里用的 v-html，样式是页面刷新后才会有的，所以必须动态绑定样式 -->
-  <div class="kungalgame-topic-content">
-    <div v-html="content"></div>
+  <div class="kungalgame-topic-content ql-container ql-snow">
+    <div class="ql-editor ql-blank" v-html="content"></div>
   </div>
 </template>
 
@@ -28,8 +23,8 @@ onMounted(() => {
   width: calc(100% - 141px);
   font-size: 15px;
   padding: 17px;
-  border-left: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
+  border: none !important;
 }
 
 .kungalgame-topic-content {
@@ -56,108 +51,18 @@ onMounted(() => {
     text-shadow: none;
   }
 
-  /* 下面全部是 wangEditor 原生样式 */
-
-  :deep(p, li) {
-    white-space: pre-wrap; /* 保留空格 */
-  }
-
-  :deep(blockquote) {
-    border-left: 8px solid var(--kungalgame-blue-1);
-    padding: 10px 10px;
-    margin: 10px 0;
-    background-color: var(--kungalgame-trans-blue-0);
-  }
-
-  :deep(pre > code) {
-    display: block;
-    padding: 10px;
-  }
-
-  :deep(code) {
-    font-family: monospace;
-    background-color: var(--kungalgame-trans-blue-0);
-    padding: 3px;
-    border-radius: 3px;
-    text-shadow: none;
-    box-shadow: var(--shadow);
-  }
-
-  :deep(table) {
-    border-collapse: collapse;
-  }
-
-  :deep(td, th) {
-    border: 1px solid var(--kungalgame-blue-4);
-    min-width: 50px;
-    height: 20px;
-  }
-
-  :deep(th) {
-    background-color: var(--kungalgame-trans-blue-0);
-  }
-
-  :deep(ul, ol) {
-    padding-left: 20px;
-  }
-
-  :deep(input[type='checkbox']) {
-    margin-right: 5px;
-  }
-
-  /**
-   * 过滤 prism 相关样式的代码
-   */
-
-  /* 这一步把 prism 的背景过滤掉 */
   :deep(pre) {
-    padding: 0;
-    border: 1px solid var(--kungalgame-blue-4);
-    background-color: var(--kungalgame-trans-white-9);
-  }
-
-  :deep(.token) {
-    background-color: var(--kungalgame-trans-white-9);
-  }
-
-  :deep(.toolbar) {
-    top: 17px;
-    right: 10px;
-    display: flex;
-    & > .toolbar-item {
-      /* 这里直接根据 DOM 结构写的，写的不是很明了，要怪就怪写 prism 插件的人吧 hhh */
-      button,
-      & > span {
-        transition: all 0.2s;
-        box-shadow: unset;
-        margin-left: 10px;
-        border-radius: 0;
-        padding: 2px 5px;
-      }
-      & > span {
-        color: var(--kungalgame-pink-4);
-        border: 1px solid var(--kungalgame-pink-4);
-        background-color: var(--kungalgame-trans-white-5);
-        &:hover {
-          background-color: var(--kungalgame-pink-4);
-          color: var(--kungalgame-white);
-        }
-      }
-      button {
-        cursor: pointer;
-        background-color: var(--kungalgame-trans-white-9);
-        border: 1px solid var(--kungalgame-blue-4);
-        color: var(--kungalgame-blue-4);
-        &:hover {
-          background-color: var(--kungalgame-blue-4);
-          color: var(--kungalgame-white);
-        }
-        &:focus {
-          color: var(--kungalgame-pink-4);
-          border: 1px solid var(--kungalgame-pink-4);
-          background-color: var(--kungalgame-trans-white-5);
-        }
-      }
+    &::before {
+      content: '< code >';
+      color: var(--kungalgame-font-color-0);
+      background-color: var(--kungalgame-trans-white-5);
+      border: 1px solid var(--kungalgame-blue-1);
+      padding: 0 5px;
+      border-radius: 3px;
+      position: absolute;
+      font-size: 17px;
+      top: 20px;
+      right: 28px;
     }
   }
 }
