@@ -10,10 +10,12 @@ interface Topic {
   /**
    * 编辑器相关
    * @param {number} editorHeight - 编辑器高度
-   * @param {boolean} isShowAdvance - 是否显示编辑器高级选项
+   * @param {'' | 'essential' | 'minimal' | 'full'} mode - 编辑器 toolbar 模式
+   * @param {'snow' | 'bubble'} theme - 编辑器主题
    */
   editorHeight: number
-  isShowAdvance: boolean
+  mode: '' | 'essential' | 'minimal' | 'full'
+  theme: 'snow' | 'bubble'
 
   /**
    * 话题相关
@@ -40,7 +42,8 @@ export const useKUNGalgameEditStore = defineStore({
   persist: true,
   state: (): Topic => ({
     isSave: false,
-    isShowAdvance: false,
+    mode: '',
+    theme: 'snow',
 
     editorHeight: 300,
     title: '',

@@ -43,6 +43,7 @@
     "Upvotes",
     "VARCHAR",
     "VNDB",
+    "vueup",
     "weixin",
     "ymgal",
     "yuyu"
