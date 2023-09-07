@@ -24,6 +24,20 @@ export default {
     back: 'Back',
   },
   mainPage: {
+    header: {
+      filter: 'Filter',
+      search: 'Search Topics',
+      all: 'All Topics',
+      history: 'Search History',
+      clear: 'Clear all history',
+      updated: 'Restore default',
+      time: 'Sort by time',
+      popularity: 'Sort by popularity',
+      views: 'Sort by views',
+      likes: 'Sort by likes',
+      replies: 'Sort by replies',
+      comments: 'Sort by comments',
+    },
     asideActive: {
       fold: 'Fold Aside',
       create: 'CREATE NEW!',

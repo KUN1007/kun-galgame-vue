@@ -24,6 +24,20 @@ export default {
     back: '返回',
   },
   mainPage: {
+    header: {
+      filter: '筛选',
+      search: '搜索话题',
+      all: '全部话题',
+      history: '搜索历史',
+      clear: '清除所有历史',
+      updated: '恢复默认排序',
+      time: '按照时间排序',
+      popularity: '按热度值排序',
+      views: '按浏览数排序',
+      likes: '按点赞数排序',
+      replies: '按回复数排序',
+      comments: '按评论数排序',
+    },
     asideActive: {
       fold: '折叠左侧区域',
       create: '发布话题',

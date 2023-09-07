@@ -17,7 +17,7 @@ const category = `["Galgame"]`
     <KUNGalgameSearchBox :category="category" style="border: none" />
     <!-- 交互区域进入全部话题 -->
     <RouterLink to="/pool/index" class="more">
-      <span>全部话题</span>
+      <span>{{ $tm('mainPage.header.all') }}</span>
       <Icon class="all-topic" icon="line-md:chevron-triple-right" />
     </RouterLink>
   </div>
@@ -62,6 +62,7 @@ const category = `["Galgame"]`
 }
 .all-topic {
   font-size: 18px;
+  margin-left: 7px;
 }
 
 @media (max-width: 1000px) {

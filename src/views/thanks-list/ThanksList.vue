@@ -59,23 +59,27 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         <br />
         <br />
         <p>
-          我们的网站会秉承萌萌（美好）、开源、免费的<span class="skip"
-            >建立原则</span
-          >，不断完善和更新，您可以在 github 看到我们的项目：
+          我们的网站会秉承萌萌（美好）、开源、免费的
+          <span class="skip"> 建立原则</span>
+          ，不断完善和更新，您可以在 github 看到我们的项目：
         </p>
         <br />
         <br />
         <p>纯 HTML + CSS 实现：<span class="skip">kungalgame-pure-css</span></p>
         <p>
-          Vue + Vite + ts + pinia 实现：<span class="skip">kungalgame-vue</span>
+          前端 Vue + Vite + ts + pinia 实现：
+          <span class="skip">kun-galgame-vue</span>
+        </p>
+        <p>
+          后端 Koa2 + redis + mongoose + mongodb 实现：
+          <span class="skip">kun-galgame-koa</span>
         </p>
         <br />
         <br />
-        <p>后端由于安全因素，暂不开源，后续如果技术过硬，我们仍然会开源！</p>
         <br />
         <br />
         <p>
-          不嫌弃的话，您可以给上面两个 github 的项目点一个
+          不嫌弃的话，您可以给上面三个 github 的项目点一个
           star，当作对我们的支持。
         </p>
       </div>

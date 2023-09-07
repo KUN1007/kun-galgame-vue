@@ -20,10 +20,6 @@ const inputValue = ref('')
 const isShowSearchHistory = ref(false)
 // 输入框被激活之后的样式
 const inputActiveClass = ref({})
-// placeholder 的文字提示
-const placeholder = computed(() => {
-  return showKUNGalgameLanguage.value === 'en' ? 'Search Topics' : '搜索话题'
-})
 
 // 定义 props，这里的作用是告诉输入框在哪个分类中搜索话题
 const props = defineProps(['category'])
@@ -110,7 +106,7 @@ const handleDeleteHistory = (historyIndex: number) => {
           type="search"
           class="input"
           :style="inputActiveClass"
-          :placeholder="placeholder"
+          :placeholder="`${$tm('mainPage.header.search')}`"
           @focus="handleInputFocus"
           @blur="handleInputBlur"
           @input="debouncedSearch(inputValue)"
@@ -126,8 +122,10 @@ const handleDeleteHistory = (historyIndex: number) => {
     <div v-if="isShowSearchHistory" class="history">
       <!-- 搜索历史标题 -->
       <div class="title">
-        <span>搜索历史</span>
-        <span @click="clearSearchHistory">清除所有历史</span>
+        <span>{{ $tm('mainPage.header.history') }}</span>
+        <span @click="clearSearchHistory">
+          {{ $tm('mainPage.header.clear') }}
+        </span>
       </div>
       <!-- 搜索历史 -->
       <div class="history-container">
