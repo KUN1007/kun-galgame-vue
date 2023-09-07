@@ -62,7 +62,7 @@ const handleRefreshPage = () => location.reload()
       <div class="editor-advance">
         <div class="editor-advance-title">
           <Transition mode="out-in" name="slide-up">
-            <span v-if="!isRefreshPage"> 编辑器模式 </span>
+            <span v-if="!isRefreshPage"> 编辑器配置 </span>
             <span
               @click="handleRefreshPage"
               class="refresh"

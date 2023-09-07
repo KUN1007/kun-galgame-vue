@@ -94,9 +94,6 @@ watch(
 /* 确保将离开的元素从布局流中删除
   以便能够正确地计算移动的动画。 */
 .list-leave-active {
-  /** 宽度为单个话题总宽度减去用户部分的宽度
-      这里为 2 + 5 + 60 + 5 + 2 = 74px */
-  width: calc(100% - 74px);
   position: absolute;
 }
 </style>

@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  defineAsyncComponent,
-  computed,
-  ref,
-  onBeforeMount,
-  onBeforeUnmount,
-  onMounted,
-} from 'vue'
+import { defineAsyncComponent, computed, ref, onBeforeMount } from 'vue'
 import { QuillEditor } from '@vueup/vue-quill'
 
 // 自定义 quill 的两个主题，第二个主题暂时懒得动
@@ -51,7 +44,7 @@ const props = defineProps<{
 }>()
 
 // 编辑器实例
-const editorRef = ref()
+const editorRef = ref<typeof QuillEditor>()
 
 // 编辑器的高度
 const editorHeightStyle = computed(
@@ -75,18 +68,6 @@ const editorOptions = {
 // 编辑器实例创建时
 const onEditorReady = () => {}
 
-// 工具栏相关配置
-const toolbarOptions = {
-  container: [
-    ['bold', 'italic', 'underline', 'strike'],
-    ['markdown'], // Add this.
-  ],
-  handlers: {
-    // Add this.
-    markdown: function () {},
-  },
-}
-
 // 挂载之前载入数据，如果不保存，则不载入
 onBeforeMount(() => {
   if (isSave.value) {
@@ -97,18 +78,18 @@ onBeforeMount(() => {
 })
 
 // 编辑器文本改变时自动保存数据
-const handleTextChange = () => {
+const handleTextChange = async () => {
   // 创建一个防抖处理函数
   const debouncedUpdateContent = debounce(() => {
     // 过滤 xss
-    content.value = DOMPurify.sanitize(editorRef.value.getHTML())
+    content.value = DOMPurify.sanitize(editorRef.value?.getHTML())
   }, 1007)
 
   // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
   debouncedUpdateContent()
 
   // 计算用户输入了多少个字符
-  const length = computed(() => editorRef.value.getText().trim().length)
+  const length = computed(() => editorRef.value?.getText().trim().length)
   textCount.value = length.value
 }
 </script>
