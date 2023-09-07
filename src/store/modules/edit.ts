@@ -33,6 +33,8 @@ interface Topic {
   tags: Array<string>
   // 话题分区
   category: Array<string>
+  // 是否显示热门关键词
+  isShowHotKeywords: boolean
   // 是否保存
   isSave: boolean
 }
@@ -41,15 +43,16 @@ export const useKUNGalgameEditStore = defineStore({
   id: 'edit',
   persist: true,
   state: (): Topic => ({
-    isSave: false,
+    editorHeight: 300,
     mode: '',
     theme: 'snow',
 
-    editorHeight: 300,
     title: '',
     content: '',
     tags: [],
     category: [],
+    isSave: false,
+    isShowHotKeywords: true,
   }),
   getters: {},
   actions: {

@@ -4,10 +4,12 @@ import { ref, computed, watch, onBeforeMount } from 'vue'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 
-const topicData = storeToRefs(useKUNGalgameEditStore())
+const { tags, isSave, isShowHotKeywords } = storeToRefs(
+  useKUNGalgameEditStore()
+)
 
 // 临时数据，将会从后端返回 7 个热门 tag
-const tags = [
+const hotTags = [
   '啊这可海星',
   '啊这可海星',
   '啊这',
@@ -22,8 +24,8 @@ const selectedTags = ref<string[]>([])
 // 组件挂载之前载入 store 里的数据
 onBeforeMount(() => {
   // 如果用户保存了草稿则载入
-  if (topicData.isSave.value) {
-    selectedTags.value = topicData.tags.value
+  if (isSave.value) {
+    selectedTags.value = tags.value
   }
 })
 
@@ -42,7 +44,7 @@ const handleTagClose = (tag: string) => {
 
 // 被选中后还留下的 tag
 const remainingTags = computed<string[]>(() => {
-  return tags.filter((tag) => !selectedTags.value.includes(tag))
+  return hotTags.filter((tag) => !selectedTags.value.includes(tag))
 })
 
 // 输入框事件，按下 enter 创建 tag，创建 tag 时长度不超过 17，个数不超过 7
@@ -85,7 +87,7 @@ const validateTagName = (tagName: string) => {
 
 // 监测 selectedTags 的变化，保存用户选中的 tag
 watch(selectedTags.value, () => {
-  topicData.tags.value = selectedTags.value
+  tags.value = selectedTags.value
 })
 </script>
 
@@ -113,13 +115,17 @@ watch(selectedTags.value, () => {
       提示：（单个关键词 14 个字符以内，至少选择一个、最多 7 个）,
       您可以输入文字按下 ' Enter ' 创建关键词
     </div>
-    <!-- 标签的提示词 -->
-    <div class="tags-info">热门关键词（点击选择）:</div>
-    <!-- 标签容器 -->
-    <div class="tags">
-      <span v-for="tag in remainingTags" @click="() => handleTagClick(tag)">
-        {{ tag }}
-      </span>
+
+    <!-- 热门 tags -->
+    <div class="hot-tags" v-if="isShowHotKeywords">
+      <!-- 标签的提示词 -->
+      <div class="tags-info">热门关键词（点击选择）:</div>
+      <!-- 标签容器 -->
+      <div class="tags">
+        <span v-for="tag in remainingTags" @click="() => handleTagClick(tag)">
+          {{ tag }}
+        </span>
+      </div>
     </div>
   </div>
 </template>

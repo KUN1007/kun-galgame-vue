@@ -185,11 +185,6 @@ $navNumber: v-bind(navItemNum);
       font-weight: bold;
       line-height: 58px;
       width: 100%;
-      &:hover {
-        background-color: var(--kungalgame-blue-0);
-        border-radius: 2px;
-        transition: 0.5s;
-      }
       &:nth-child(1):hover ~ .box {
         background-color: var(--kungalgame-red-3);
         left: calc(100% / $navNumber * 0);

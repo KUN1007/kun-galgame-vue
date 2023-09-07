@@ -10,6 +10,9 @@ import 'animate.css'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 
+// 导入关键词显示切换按钮
+import SwitchButton from './SwitchButton.vue'
+
 // 使用编辑界面的 store
 const settingsStore = useKUNGalgameEditStore()
 const { mode } = storeToRefs(settingsStore)
@@ -56,8 +59,8 @@ const handleRefreshPage = () => location.reload()
       </div>
 
       <!-- 是否显示编辑器高级选项 -->
-      <div class="editor-advance-title">
-        <div class="editor-advance">
+      <div class="editor-advance">
+        <div class="editor-advance-title">
           <Transition mode="out-in" name="slide-up">
             <span v-if="!isRefreshPage"> 编辑器模式 </span>
             <span
@@ -78,6 +81,12 @@ const handleRefreshPage = () => location.reload()
           <option value="essential">基本配置</option>
           <option value="full">最高配置</option>
         </select>
+      </div>
+
+      <!-- 是否显示热门关键词 -->
+      <div class="keywords">
+        <div class="keywords-title">热门关键词显示</div>
+        <SwitchButton />
       </div>
     </div>
   </Transition>
@@ -100,14 +109,16 @@ const handleRefreshPage = () => location.reload()
   .editor-height-title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
     font-size: 17px;
   }
 
-  .editor-advance-title {
+  .editor-advance {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 20px;
     font-size: 17px;
   }
 }
@@ -116,9 +127,10 @@ const handleRefreshPage = () => location.reload()
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.editor-advance {
+.editor-advance-title {
   display: flex;
   flex-direction: column;
   .refresh {
@@ -147,6 +159,14 @@ const handleRefreshPage = () => location.reload()
   option {
     background-color: var(--kungalgame-white);
   }
+}
+
+// 是否显示热门关键词
+.keywords {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
 }
 
 .slide-up-enter-active,
