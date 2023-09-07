@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { defineAsyncComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
+
+// 导入路由
+import { useRouter } from 'vue-router'
+
 // 引入图标字体
 import { Icon } from '@iconify/vue'
 
@@ -21,12 +25,30 @@ defineProps<{
   isShowSettings: boolean
 }>()
 
+const router = useRouter()
+
 // 是否显示编辑器设置面板
 const isShowSettingsMenu = ref(false)
+// 设置面板被激活后的样式
+const settingsPanelActive = ref('')
+// 根据鼠标的坐标调整背景色
+const x = ref(0)
+// 是否显示信息提示
+const isShowInfo = ref(false)
+
+// 当鼠标移动时
+const onMousemove = (e: MouseEvent) => {
+  x.value = e.clientX
+}
 
 // 点击设置按钮
 const handelClickSettings = () => {
   isShowSettingsMenu.value = !isShowSettingsMenu.value
+  if (isShowSettingsMenu.value) {
+    settingsPanelActive.value = 'settings-icon-active'
+  } else {
+    settingsPanelActive.value = ''
+  }
 }
 </script>
 
@@ -37,14 +59,32 @@ const handelClickSettings = () => {
       <span
         @click="handelClickSettings"
         class="settings-icon"
+        :class="settingsPanelActive"
         v-if="isShowSettings"
       >
         <Icon icon="uiw:setting-o" />
       </span>
 
-      <span class="help">
+      <span class="help" @click="isShowInfo = true">
         <Icon icon="line-md:question-circle" />
       </span>
+      <div
+        v-if="isShowInfo"
+        @mousemove="onMousemove"
+        @mouseleave="isShowInfo = false"
+        class="info"
+        :style="{ backgroundColor: `hsl(${x}, 77%, 77%)` }"
+      >
+        <ul>
+          <li>话题的标题长度需要在 1 到 40 字之间</li>
+          <li>您可以点击左侧的设置调整编辑器的模式</li>
+          <li>网站的代码是手写的，错误在所难免</li>
+          <li>
+            如果您遇到错误，请
+            <span @click="router.push('/contact')"> 联系我们</span>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- 文字计数 -->
@@ -69,18 +109,72 @@ const handelClickSettings = () => {
   font-size: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   .settings-icon {
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .help {
+    cursor: pointer;
     margin-left: 20px;
     color: var(--kungalgame-font-color-1);
     font-size: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .info {
+    padding: 3px;
+    color: var(--kungalgame-font-color-2);
+    position: absolute;
+    left: 200px;
+    transition: 0.3s background-color ease;
+    border-radius: 5px;
+    margin-bottom: 100px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--kungalgame-blue-1);
+      background-color: var(--kungalgame-white);
+      padding: 5px;
+      border-radius: 5px;
+      li {
+        &::before {
+          content: '❆ ';
+          color: var(--kungalgame-pink-3);
+        }
+        cursor: default;
+        font-size: 15px;
+        line-height: 27px;
+        span {
+          cursor: pointer;
+          color: var(--kungalgame-blue-4);
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 }
 
 .count {
   color: var(--kungalgame-font-color-0);
   background-color: var(--kungalgame-trans-white-9);
+}
+
+// 激活时使设置按钮保持旋转
+.settings-icon-active {
+  animation: settings 3s linear infinite;
+}
+@keyframes settings {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

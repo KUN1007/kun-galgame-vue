@@ -52,18 +52,26 @@ defineProps<{
   }
 
   :deep(pre) {
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
     &::before {
+      display: flex;
+      justify-content: end;
       content: '< code >';
       color: var(--kungalgame-font-color-0);
       background-color: var(--kungalgame-trans-white-5);
       border: 1px solid var(--kungalgame-blue-1);
       padding: 0 5px;
       border-radius: 3px;
-      position: absolute;
       font-size: 17px;
       top: 20px;
       right: 28px;
     }
+  }
+
+  :deep(blockquote) {
+    padding: 7px 10px;
   }
 }
 
