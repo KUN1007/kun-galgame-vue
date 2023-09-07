@@ -81,6 +81,9 @@ import Topic from './Topic.vue'
   flex-direction: column;
   margin-left: 10px;
   overflow-y: scroll;
+  /* 兼容火狐 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
 }
 /* 滚动条的样式 */
 .topic-container::-webkit-scrollbar {

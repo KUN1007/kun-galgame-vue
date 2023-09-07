@@ -20,6 +20,8 @@ const hotTags = [
 
 // 选中的 tag
 const selectedTags = ref<string[]>([])
+// input 框是否为 focus 状态
+const isInputFocus = ref(false)
 
 // 组件挂载之前载入 store 里的数据
 onBeforeMount(() => {
@@ -108,7 +110,11 @@ watch(selectedTags.value, () => {
         type="text"
         placeholder="请输入话题的关键词"
         @keyup="handleTagInput"
+        @focus="isInputFocus = true"
+        @blur="isInputFocus = false"
       />
+      <div class="box1"></div>
+      <div class="box2" :class="isInputFocus ? 'box-active' : ''"></div>
     </div>
 
     <div class="tips">
@@ -137,11 +143,19 @@ watch(selectedTags.value, () => {
 }
 
 .input-container {
+  &::before {
+    content: '☪';
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    color: var(--kungalgame-blue-3);
+  }
   width: 100%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  border: 1px solid var(--kungalgame-blue-4);
+  margin-bottom: 10px;
 }
 
 .tags-container {
@@ -180,9 +194,28 @@ watch(selectedTags.value, () => {
   display: flex;
   min-width: 300px;
   color: var(--kungalgame-font-color-3);
-  &:focus {
-    box-shadow: 0px 0px 5px var(--kungalgame-blue-4);
-  }
+}
+
+.box1 {
+  height: 2px;
+  width: 100%;
+  display: flex;
+  background-color: var(--kungalgame-blue-0);
+}
+
+.box2 {
+  position: relative;
+  transform: translateY(-2px);
+  transition: all 0.5s;
+  height: 2px;
+  width: 1px;
+  display: flex;
+  background-color: var(--kungalgame-blue-1);
+}
+
+.box-active {
+  width: 100%;
+  background-color: var(--kungalgame-blue-4);
 }
 
 /* 提示 */

@@ -10,9 +10,16 @@
   font-family: serif, system-ui;
   box-sizing: border-box;
 }
+
 :focus {
   outline: none;
 }
+
 *::-webkit-scrollbar {
   display: none;
+}
+
+/* 兼容火狐浏览器不显示滚动条 */
+* {
+  scrollbar-width: none; /* Firefox 64+ */
 }

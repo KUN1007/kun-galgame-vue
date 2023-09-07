@@ -72,7 +72,8 @@ const handleClickCategory = (kun: Category) => {
 /* 话题分类的容器 */
 .topic-group {
   width: 100%;
-  margin: 10px 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 /* 分类容器的按钮集合 */
 .group-btn {
