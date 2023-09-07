@@ -114,6 +114,7 @@ const handleSave = () => {
 }
 /* 单个按钮的样式 */
 .btn-container button {
+  transition: all 0.2s;
   height: 40px;
   width: 200px;
   font-size: 20px;
@@ -149,5 +150,11 @@ const handleSave = () => {
   background-color: var(--kungalgame-pink-3);
   transform: scale(0.8);
 }
+
+@media (max-width: 700px) {
+  .btn-container button {
+    width: 150px;
+    font-size: 17px;
+  }
+}
 </style>
-./Category

@@ -57,7 +57,6 @@ const handleShowAdvance = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 /* 单个按钮的样式 */
 .btn-container button {
@@ -110,5 +109,16 @@ const handleShowAdvance = () => {
 .advance-btn:active {
   background-color: var(--kungalgame-red-3);
   transform: scale(0.8);
+}
+
+/* 适配手机端 */
+@media (max-width: 700px) {
+  .advance-btn {
+    display: none;
+  }
+  .btn-container button {
+    width: 150px;
+    font-size: 17px;
+  }
 }
 </style>
