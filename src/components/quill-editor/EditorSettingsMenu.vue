@@ -2,8 +2,6 @@
 import { ref, watch } from 'vue'
 // 引入图标字体
 import { Icon } from '@iconify/vue'
-// 导入模式切换按钮
-import SwitchButton from './SwitchButton.vue'
 
 // 引入 css 动画
 import 'animate.css'
@@ -27,7 +25,7 @@ const isRefreshPage = ref(false)
 
 // 点击高级选项时提醒用户刷新页面
 watch(mode, () => {
-  isRefreshPage.value = !isRefreshPage.value
+  isRefreshPage.value = true
 })
 
 const handleRefreshPage = () => location.reload()

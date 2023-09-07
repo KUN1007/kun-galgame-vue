@@ -314,7 +314,7 @@
   background-color: #000;
 }
 .ql-editor .ql-bg-red {
-  background-color: #e60000;
+  background-color: var(--kungalgame-red-4);
 }
 .ql-editor .ql-bg-orange {
   background-color: #f90;
@@ -323,19 +323,19 @@
   background-color: #ff0;
 }
 .ql-editor .ql-bg-green {
-  background-color: #008a00;
+  background-color: var(--kungalgame-green-4);
 }
 .ql-editor .ql-bg-blue {
-  background-color: #06c;
+  background-color: var(--kungalgame-blue-4);
 }
 .ql-editor .ql-bg-purple {
-  background-color: #93f;
+  background-color: var(--kungalgame-purple-4);
 }
 .ql-editor .ql-color-white {
   color: #fff;
 }
 .ql-editor .ql-color-red {
-  color: #e60000;
+  color: var(--kungalgame-red-4);
 }
 .ql-editor .ql-color-orange {
   color: #f90;
@@ -344,13 +344,13 @@
   color: #ff0;
 }
 .ql-editor .ql-color-green {
-  color: #008a00;
+  color: var(--kungalgame-green-4);
 }
 .ql-editor .ql-color-blue {
-  color: #06c;
+  color: var(--kungalgame-blue-4);
 }
 .ql-editor .ql-color-purple {
-  color: #93f;
+  color: var(--kungalgame-purple-4);
 }
 .ql-editor .ql-font-serif {
   font-family: Georgia, Times New Roman, serif;
