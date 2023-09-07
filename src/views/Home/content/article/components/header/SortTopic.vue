@@ -4,59 +4,10 @@ import { Icon } from '@iconify/vue'
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 
+// 导入排序列表的字段
+import { navSortItem } from './navSortItem'
+
 const homeStore = storeToRefs(useKUNGalgameHomeStore())
-
-interface Sort {
-  index: number
-  icon: string
-  name: string
-  sortField: string
-}
-
-const navSortItem: Sort[] = [
-  {
-    index: 1,
-    icon: 'line-md:rotate-270',
-    name: '恢复默认排序',
-    sortField: 'updated',
-  },
-  {
-    index: 2,
-    icon: 'svg-spinners:clock',
-    name: '按照时间排序',
-    sortField: 'time',
-  },
-  {
-    index: 3,
-    icon: 'bi:fire',
-    name: '按热度值排序',
-    sortField: 'popularity',
-  },
-  {
-    index: 4,
-    icon: 'ic:outline-remove-red-eye',
-    name: '按浏览数排序',
-    sortField: 'views',
-  },
-  {
-    index: 5,
-    icon: 'line-md:thumbs-up-twotone',
-    name: '按点赞数排序',
-    sortField: 'likes',
-  },
-  {
-    index: 6,
-    icon: 'ri:reply-line',
-    name: '按回复数排序',
-    sortField: 'replies',
-  },
-  {
-    index: 7,
-    icon: 'fa-regular:comment-dots',
-    name: '按评论数排序',
-    sortField: 'comments',
-  },
-]
 
 const handleSortByField = (sortField: string) => {
   homeStore.sortField.value = sortField
@@ -73,7 +24,7 @@ const orderDescending = () => {
 
 <template>
   <div class="container">
-    <span>筛选</span>
+    <span>{{ $tm('mainPage.header.filter') }}</span>
     <Icon class="filter" icon="bi:sort-down" />
     <!-- 排序的二级菜单 -->
     <div class="sort-container">
@@ -83,14 +34,17 @@ const orderDescending = () => {
           :key="kun.index"
           @click="handleSortByField(kun.sortField)"
         >
-          <Icon class="icon-item" :icon="kun.icon" />{{ kun.name }}
+          <Icon class="icon-item" :icon="kun.icon" />{{
+            $tm(`mainPage.header.${kun.name}`)
+          }}
         </div>
         <div class="sort-order">
-          <span @click="orderAscending"
-            ><Icon icon="tdesign:order-ascending" /></span
-          ><span @click="orderDescending"
-            ><Icon icon="tdesign:order-descending"
-          /></span>
+          <span @click="orderAscending">
+            <Icon icon="tdesign:order-ascending" />
+          </span>
+          <span @click="orderDescending">
+            <Icon icon="tdesign:order-descending" />
+          </span>
         </div>
       </div>
     </div>
@@ -129,7 +83,7 @@ const orderDescending = () => {
 }
 .filter {
   font-size: 18px;
-  margin-left: 5px;
+  margin-left: 7px;
 }
 .sort-submenu {
   display: none;
