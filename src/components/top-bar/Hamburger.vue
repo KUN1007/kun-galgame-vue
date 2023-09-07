@@ -55,6 +55,7 @@ defineEmits(['showKUNGalgameHamburger'])
   box-shadow: var(--shadow);
   border-left: none;
   border-top: none;
+  border-radius: 0 5px 5px 5px;
   display: flex;
   flex-direction: column;
   color: var(--kungalgame-font-color-3);
