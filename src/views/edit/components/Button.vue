@@ -95,10 +95,14 @@ const handleSave = () => {
   <div class="btn-container">
     <!-- 确认按钮 -->
 
-    <button class="confirm-btn" @click="handlePublish">确认发布</button>
+    <button class="confirm-btn" @click="handlePublish">
+      {{ $tm('edit.publish') }}
+    </button>
 
     <!-- 保存按钮 -->
-    <button class="save-btn" @click="handleSave">保存草稿</button>
+    <button class="save-btn" @click="handleSave">
+      {{ $tm('edit.draft') }}
+    </button>
   </div>
 </template>
 

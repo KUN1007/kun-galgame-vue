@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
-import WangEditor from '@/components/wang-editor/WangEditor.vue'
-import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 // 导入编辑帖子的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
@@ -51,7 +49,7 @@ const handelInput = () => {
   <div class="title">
     <input
       type="text"
-      placeholder="标题"
+      :placeholder="`${$tm('edit.title')}`"
       v-model="topicTitle"
       @input="handelInput"
       :maxlength="maxInputLength"

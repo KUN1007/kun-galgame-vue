@@ -43,7 +43,7 @@ const handleRefreshPage = () => location.reload()
     <div v-if="isShowSettingsMenu" class="settings-menu">
       <!-- 编辑器高度设置 -->
       <div class="editor-height-title">
-        <span> 编辑器高度 </span>
+        <span> {{ $tm('edit.editorHeight') }} </span>
         <span>{{ editorHeight }} px</span>
       </div>
       <div class="editor-height">
@@ -62,30 +62,29 @@ const handleRefreshPage = () => location.reload()
       <div class="editor-advance">
         <div class="editor-advance-title">
           <Transition mode="out-in" name="slide-up">
-            <span v-if="!isRefreshPage"> 编辑器配置 </span>
+            <span v-if="!isRefreshPage"> {{ $tm('edit.editorMode') }} </span>
             <span
               @click="handleRefreshPage"
               class="refresh"
               v-else-if="isRefreshPage"
             >
-              <span>刷新页面生效</span>
-              <Icon icon="line-md:rotate-270" />
+              {{ $tm('edit.refresh') }}
             </span>
           </Transition>
         </div>
 
         <!-- 切换按钮 -->
         <select class="select" v-model="mode">
-          <option value="minimal">最小配置</option>
-          <option value="">默认配置</option>
-          <option value="essential">基本配置</option>
-          <option value="full">最高配置</option>
+          <option value="minimal">{{ $tm('edit.minimal') }}</option>
+          <option value="">{{ $tm('edit.default') }}</option>
+          <option value="essential">{{ $tm('edit.essential') }}</option>
+          <option value="full">{{ $tm('edit.full') }}</option>
         </select>
       </div>
 
       <!-- 是否显示热门关键词 -->
       <div class="keywords">
-        <div class="keywords-title">热门关键词提示</div>
+        <div class="keywords-title">{{ $tm('edit.tagsHint') }}</div>
         <SwitchButton />
       </div>
     </div>
@@ -136,14 +135,11 @@ const handleRefreshPage = () => location.reload()
   .refresh {
     display: flex;
     align-items: center;
-    font-size: 23px;
+    font-size: 17px;
     cursor: pointer;
+    color: var(--kungalgame-blue-4);
     &:hover {
-      color: var(--kungalgame-blue-4);
-    }
-    span {
-      margin-right: 10px;
-      font-size: 17px;
+      text-decoration: underline;
     }
   }
 }

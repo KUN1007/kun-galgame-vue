@@ -108,7 +108,7 @@ watch(selectedTags.value, () => {
       <input
         class="input"
         type="text"
-        placeholder="请输入话题的关键词"
+        :placeholder="`${$tm('edit.tags')}`"
         @keyup="handleTagInput"
         @focus="isInputFocus = true"
         @blur="isInputFocus = false"
@@ -117,15 +117,12 @@ watch(selectedTags.value, () => {
       <div class="box2" :class="isInputFocus ? 'box-active' : ''"></div>
     </div>
 
-    <div class="tips">
-      提示：（单个关键词 14 个字符以内，至少选择一个、最多 7 个）,
-      您可以输入文字按下 ' Enter ' 创建关键词
-    </div>
+    <div class="hint">{{ $tm('edit.hint') }}</div>
 
     <!-- 热门 tags -->
     <div class="hot-tags" v-if="isShowHotKeywords">
       <!-- 标签的提示词 -->
-      <div class="tags-info">热门关键词（点击选择）:</div>
+      <div class="tags-info">{{ $tm('edit.hot') }}</div>
       <!-- 标签容器 -->
       <div class="tags">
         <span v-for="tag in remainingTags" @click="() => handleTagClick(tag)">
@@ -219,7 +216,7 @@ watch(selectedTags.value, () => {
 }
 
 /* 提示 */
-.tips {
+.hint {
   font-size: small;
   color: var(--kungalgame-font-color-1);
 }
