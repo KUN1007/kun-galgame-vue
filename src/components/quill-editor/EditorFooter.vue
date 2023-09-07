@@ -76,12 +76,14 @@ const handelClickSettings = () => {
         :style="{ backgroundColor: `hsl(${x}, 77%, 77%)` }"
       >
         <ul>
-          <li>话题的标题长度需要在 1 到 40 字之间</li>
-          <li>您可以点击左侧的设置调整编辑器的模式</li>
-          <li>网站的代码是手写的，错误在所难免</li>
+          <li>{{ $tm('edit.help1') }}</li>
+          <li>{{ $tm('edit.help2') }}</li>
+          <li>{{ $tm('edit.help3') }}</li>
           <li>
-            如果您遇到错误，请
-            <span @click="router.push('/contact')"> 联系我们</span>
+            {{ $tm('edit.help4') }}
+            <span @click="router.push('/contact')">
+              {{ $tm('edit.contact') }}
+            </span>
           </li>
         </ul>
       </div>
@@ -167,6 +169,7 @@ const handelClickSettings = () => {
 
 // 激活时使设置按钮保持旋转
 .settings-icon-active {
+  color: var(--kungalgame-blue-4);
   animation: settings 3s linear infinite;
 }
 @keyframes settings {
