@@ -85,7 +85,7 @@ const handleRefreshPage = () => location.reload()
 
       <!-- 是否显示热门关键词 -->
       <div class="keywords">
-        <div class="keywords-title">热门关键词显示</div>
+        <div class="keywords-title">热门关键词提示</div>
         <SwitchButton />
       </div>
     </div>

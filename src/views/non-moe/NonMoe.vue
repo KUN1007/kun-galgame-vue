@@ -98,5 +98,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
+  /* 兼容火狐 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
 }
 </style>
