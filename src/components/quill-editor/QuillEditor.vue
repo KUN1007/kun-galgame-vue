@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { defineAsyncComponent, computed, ref, onBeforeMount } from 'vue'
+
+// 引入编辑器
 import { QuillEditor } from '@vueup/vue-quill'
+// 引入 quill module: for resizing and realigning images and iframe video
+import BlotFormatter from 'quill-blot-formatter'
 
 // 自定义 quill 的两个主题，第二个主题暂时懒得动
 import '@/styles/editor/editor.snow.scss'
@@ -35,6 +39,7 @@ const { editorHeight, mode, theme, isSave, content } = storeToRefs(
  * @param {boolean} isShowTitle - 是否显示标题
  * @param {boolean} isShowSettings - 是否显示编辑器设置
  */
+
 const props = defineProps<{
   height?: number
   isShowToolbar: boolean
@@ -45,6 +50,20 @@ const props = defineProps<{
 
 // 编辑器实例
 const editorRef = ref<typeof QuillEditor>()
+
+// 编辑器 modules
+const modules = {
+  name: 'blotFormatter',
+  module: BlotFormatter,
+  // see: https://github.com/Fandom-OSS/quill-blot-formatter/blob/master/src/Options.js
+  options: {
+    overlay: {
+      style: {
+        border: '2px solid var(--kungalgame-blue-3)',
+      },
+    },
+  },
+}
 
 // 编辑器的高度
 const editorHeightStyle = computed(
@@ -106,6 +125,7 @@ const handleTextChange = async () => {
       :content="valueHtml"
       :style="editorHeightStyle"
       :theme="theme"
+      :modules="modules"
       :toolbar="mode"
       :options="editorOptions"
       @textChange="handleTextChange"
@@ -190,6 +210,22 @@ const handleTextChange = async () => {
       color: var(--kungalgame-trans-white-5);
       text-shadow: 1px 1px 1px var(--kungalgame-pink-3);
       font-style: oblique;
+    }
+  }
+
+  /* BlotFormatter 插件的样式 */
+  .blot-formatter__toolbar-button {
+    margin: 0 5px;
+    border: none !important;
+    background: var(--kungalgame-trans-white-9) !important;
+    svg {
+      border: 1px solid var(--kungalgame-blue-4) !important;
+      background: var(--kungalgame-trans-white-2) !important;
+    }
+  }
+  .is-selected {
+    svg {
+      background: var(--kungalgame-trans-blue-1) !important;
     }
   }
 }

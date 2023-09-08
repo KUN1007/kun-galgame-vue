@@ -23,6 +23,9 @@ dependencies:
   pinia-plugin-persistedstate:
     specifier: ^3.2.0
     version: 3.2.0(pinia@2.1.6)
+  quill-blot-formatter:
+    specifier: ^1.0.5
+    version: 1.0.5(quill@1.3.7)
   vue:
     specifier: ^3.3.4
     version: 3.3.4
@@ -1118,6 +1121,11 @@ packages:
       regexp.prototype.flags: 1.5.0
     dev: false
 
+  /deepmerge@2.2.1:
+    resolution: {integrity: sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /define-lazy-prop@2.0.0:
     resolution: {integrity: sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og==}
     engines: {node: '>=8'}
@@ -1612,6 +1620,15 @@ packages:
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /quill-blot-formatter@1.0.5(quill@1.3.7):
+    resolution: {integrity: sha512-iVmuEdmMIpvERBnnDfosWul6VAVN6tqQRruUzAEwA9ZbQ/Ef7DTHGZDUR4KklXpxM+z50opFp6m1NhNdN6HJhw==}
+    peerDependencies:
+      quill: ^1.3.4
+    dependencies:
+      deepmerge: 2.2.1
+      quill: 1.3.7
+    dev: false
 
   /quill-delta@3.6.3:
     resolution: {integrity: sha512-wdIGBlcX13tCHOXGMVnnTVFtGRLoP0imqxM696fIPwIf5ODIYUHIvHbZcyvGlZFiFhK5XzDC2lpjbxRhnM05Tg==}

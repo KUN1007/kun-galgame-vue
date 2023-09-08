@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-// 引入图标字体
-import { Icon } from '@iconify/vue'
 
 // 引入 css 动画
 import 'animate.css'
