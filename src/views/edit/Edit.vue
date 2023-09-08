@@ -27,7 +27,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
       </div>
     </div>
     <!-- 版权 -->
-    <KUNGalgameFooter style="margin: 0 auto; padding-top: 20px" />
+    <KUNGalgameFooter style="margin: 0 auto; padding-top: 10px" />
     <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)"
       >Editor powered by quill</span
     >

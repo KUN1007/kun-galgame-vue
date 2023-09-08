@@ -140,7 +140,7 @@ export default {
     hint: `Hint: (A single keyword should be within 14 characters, choose at least one and up to 7 keywords). You can enter text and press \`Enter\` to create a keyword.`,
     hot: 'Popular Keywords (Click to Select) : ',
     categories:
-      'Click to select post categories (multiple selections allowed) : ',
+      'Click to select topic categories (multiple selections allowed) : ',
     btnGalgame: 'Visual Novel',
     btnTechnique: 'Technique',
     others: 'Others',
