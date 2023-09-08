@@ -59,7 +59,7 @@ const handleClickCategory = (kun: Category) => {
         @click="handleClickCategory(kun)"
         :class="{ active: selectedCategories.includes(kun.name) }"
       >
-        {{ kun.name }}
+        {{ $tm(`edit.${kun.name}`) }}
       </span>
     </div>
   </div>

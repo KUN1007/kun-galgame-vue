@@ -143,7 +143,7 @@ export default {
       'Click to select topic categories (multiple selections allowed) : ',
     btnGalgame: 'Visual Novel',
     btnTechnique: 'Technique',
-    others: 'Others',
+    btnOthers: 'Others',
     publish: 'Confirm Publish',
     draft: 'Save Draft',
   },
