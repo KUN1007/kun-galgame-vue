@@ -5,6 +5,8 @@ import { defineAsyncComponent, computed, ref, onBeforeMount } from 'vue'
 import { QuillEditor } from '@vueup/vue-quill'
 // 引入 quill module: for resizing and realigning images and iframe video
 import BlotFormatter from 'quill-blot-formatter'
+// 引入 module: 上传图片
+import ImageUploader from 'quill-image-uploader'
 
 // 自定义 quill 的两个主题，第二个主题暂时懒得动
 import '@/styles/editor/editor.snow.scss'
@@ -52,18 +54,35 @@ const props = defineProps<{
 const editorRef = ref<typeof QuillEditor>()
 
 // 编辑器 modules
-const modules = {
-  name: 'blotFormatter',
-  module: BlotFormatter,
-  // see: https://github.com/Fandom-OSS/quill-blot-formatter/blob/master/src/Options.js
-  options: {
-    overlay: {
-      style: {
-        border: '2px solid var(--kungalgame-blue-3)',
+const modules = [
+  // BlotFormatter
+  {
+    name: 'blotFormatter',
+    module: BlotFormatter,
+    // see: https://github.com/Fandom-OSS/quill-blot-formatter/blob/master/src/Options.js
+    options: {
+      overlay: {
+        style: {
+          border: '2px solid var(--kungalgame-blue-3)',
+        },
       },
     },
   },
-}
+  // ImageUploader
+  {
+    name: 'imageUploader',
+    module: ImageUploader,
+    options: {
+      upload: (file: File) => {
+        return new Promise((resolve, reject) => {
+          const formData = new FormData()
+          formData.append('image', file)
+          // 在这里发送请求
+        })
+      },
+    },
+  },
+]
 
 // 编辑器的高度
 const editorHeightStyle = computed(
@@ -187,13 +206,13 @@ const handleTextChange = async () => {
     padding: 0;
     &::-webkit-scrollbar {
       display: inline;
-      width: 4px;
+      width: 7px;
       height: 0;
     }
     &::-webkit-scrollbar-thumb {
       cursor: default;
       background: var(--kungalgame-blue-4);
-      border-radius: 2px;
+      border-radius: 3px;
     }
     /* 兼容火狐 */
     scrollbar-width: thin;
