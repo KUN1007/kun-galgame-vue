@@ -9,6 +9,9 @@ import BlotFormatter from 'quill-blot-formatter'
 import ImageUploader from 'quill-image-uploader'
 // 引入 module: URL、邮箱 自动识别
 import MagicUrl from 'quill-magic-url'
+// 引入 module: mention
+import Mention from 'quill-mention'
+import '@/styles/editor/editor.snow.scss'
 
 // 自定义 quill 的两个主题，第二个主题暂时懒得动
 import '@/styles/editor/editor.snow.scss'
@@ -30,7 +33,6 @@ import { storeToRefs } from 'pinia'
 import DOMPurify from 'dompurify'
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
-import kungalgame from '@/router/modules/kungalgame'
 
 const { editorHeight, mode, theme, isSave, content } = storeToRefs(
   useKUNGalgameEditStore()
@@ -55,6 +57,12 @@ const props = defineProps<{
 
 // 编辑器实例
 const editorRef = ref<typeof QuillEditor>()
+
+// 定义提及源数据的接口
+interface MentionItem {
+  id: number
+  value: string
+}
 
 // 编辑器 modules
 const modules = [
@@ -100,7 +108,76 @@ const modules = [
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     },
   },
+  // Mention
+  {
+    name: 'mention',
+    module: Mention,
+    options: {
+      // 允许的输入搜索字符
+      // allowedChars: /^[A-Za-z\s]*$/,
+      // 触发 mention 操作的关键词
+      mentionDenotationChars: ['@', '#'],
+      /**
+       * @param {string} searchTerm - 用户输入的搜索关键词
+       * @param {(items: MentionItem[]) => void} renderList - 渲染列表回调函数，需传入从后端获取的搜索结果数组
+       * @param {string} mentionChar - 触发 mention 操作的关键词
+       */
+      source: async function (
+        searchTerm: string,
+        renderList: (items: MentionItem[]) => void,
+        mentionChar: string
+      ) {
+        // 根据 mentionChar 的不同值执行不同的搜索逻辑
+        if (mentionChar === '@') {
+          // 执行对用户的搜索
+          const matchedUsers: MentionItem[] = await searchUsers(searchTerm)
+          renderList(matchedUsers)
+        } else if (mentionChar === '#') {
+          // 执行对话题的搜索
+          const matchedTopics: MentionItem[] = await searchTopics(searchTerm)
+          renderList(matchedTopics)
+        }
+      },
+    },
+  },
 ]
+
+// 模拟搜索用户的函数
+async function searchUsers(searchTerm: string): Promise<MentionItem[]> {
+  // 实际搜索逻辑
+  // 返回匹配的用户列表
+  return [
+    { id: 1, value: 'kun' },
+    { id: 2, value: 'yuyu' },
+    { id: 3, value: 'kun' },
+    { id: 4, value: 'yuyu' },
+    { id: 5, value: 'kun' },
+    { id: 6, value: 'yuyu' },
+    { id: 7, value: 'kun' },
+    { id: 8, value: 'yuyu' },
+    { id: 9, value: 'kun' },
+    { id: 10, value: 'yuyu' },
+    { id: 11, value: 'kun' },
+    { id: 12, value: 'yuyu' },
+    { id: 13, value: 'kun' },
+    { id: 14, value: 'yuyu' },
+    { id: 15, value: 'kun' },
+    { id: 16, value: 'yuyu' },
+  ]
+}
+
+// 模拟搜索话题的函数
+async function searchTopics(searchTerm: string): Promise<MentionItem[]> {
+  // 实际搜索逻辑
+  // 返回匹配的话题列表
+  return [
+    {
+      id: 1,
+      value: '啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星',
+    },
+    { id: 2, value: '鲲最可爱' },
+  ]
+}
 
 // 编辑器的高度
 const editorHeightStyle = computed(
@@ -250,7 +327,7 @@ const handleTextChange = async () => {
     }
   }
 
-  /* BlotFormatter 插件的样式 */
+  /* BlotFormatter 插件的样式，这里不用 !important 不行 */
   .blot-formatter__toolbar-button {
     margin: 0 5px;
     border: none !important;
@@ -264,6 +341,65 @@ const handleTextChange = async () => {
     svg {
       background: var(--kungalgame-trans-blue-1) !important;
     }
+  }
+
+  /* Mention 的样式 */
+  .ql-mention-list-container {
+    width: 270px;
+    border: 1px solid var(--kungalgame-blue-1);
+    border-radius: 4px;
+    background-color: var(--kungalgame-trans-white-2);
+    box-shadow: var(--shadow);
+    z-index: 9999;
+    overflow: auto;
+  }
+
+  .ql-mention-loading {
+    line-height: 44px;
+    padding: 0 20px;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+
+  .ql-mention-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .ql-mention-list-item {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    /* 居中、超过一行省略 */
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ql-mention-list-item.disabled {
+    cursor: auto;
+  }
+
+  .ql-mention-list-item.selected {
+    background-color: var(--kungalgame-trans-blue-1);
+    text-decoration: none;
+  }
+
+  .mention {
+    height: 24px;
+    width: 65px;
+    border-radius: 6px;
+    background-color: var(--kungalgame-trans-blue-1);
+    padding: 3px 0;
+    margin-right: 2px;
+    user-select: all;
+  }
+
+  .mention > span {
+    margin: 0 3px;
   }
 }
 </style>
