@@ -142,7 +142,7 @@ export default {
     categories: '点击选择话题的分区（可多选）:',
     btnGalgame: 'Galgame',
     btnTechnique: '技术交流',
-    others: '其它',
+    btnOthers: '其它',
     publish: '确认发布',
     draft: '保存草稿',
   },

@@ -7,6 +7,8 @@ import { QuillEditor } from '@vueup/vue-quill'
 import BlotFormatter from 'quill-blot-formatter'
 // 引入 module: 上传图片
 import ImageUploader from 'quill-image-uploader'
+// 引入 module: URL、邮箱 自动识别
+import MagicUrl from 'quill-magic-url'
 
 // 自定义 quill 的两个主题，第二个主题暂时懒得动
 import '@/styles/editor/editor.snow.scss'
@@ -28,6 +30,7 @@ import { storeToRefs } from 'pinia'
 import DOMPurify from 'dompurify'
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
+import kungalgame from '@/router/modules/kungalgame'
 
 const { editorHeight, mode, theme, isSave, content } = storeToRefs(
   useKUNGalgameEditStore()
@@ -80,6 +83,21 @@ const modules = [
           // 在这里发送请求
         })
       },
+    },
+  },
+  // MagicUrl
+  {
+    name: 'magicUrl',
+    module: MagicUrl,
+    options: {
+      // Regex used to check URLs during typing
+      urlRegularExpression:
+        /(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}(?:\/[^\s]*)?/,
+      // Regex used to check URLs on paste
+      globalRegularExpression: /(https?:\/\/|www\.|tel:)[\S]+/g,
+      mailRegularExpression: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      globalMailRegularExpression:
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     },
   },
 ]
