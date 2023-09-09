@@ -1,12 +1,18 @@
+/**
+ * 这个文件是 quill 的各种 module，太大的 module 比如 markdown 和 emoji 就不用了
+ */
+
+// 引入编辑器
+import { QuillEditor } from '@vueup/vue-quill'
 // 引入 quill module: for resizing and realigning images and iframe video
 import BlotFormatter from 'quill-blot-formatter'
-// 引入 module: 上传图片
-import ImageUploader from 'quill-image-uploader'
 // 引入 module: URL、邮箱 自动识别
 import MagicUrl from 'quill-magic-url'
 // 引入 module: mention
 import Mention from 'quill-mention'
 import '@/styles/editor/editor.snow.scss'
+// 引入 module: 压缩图片、上传图片（太好用了 www）
+import ImageCompress from 'quill-image-compress'
 
 // 定义提及源数据的接口
 interface MentionItem {
@@ -26,20 +32,6 @@ export const modules = [
         style: {
           border: '2px solid var(--kungalgame-blue-3)',
         },
-      },
-    },
-  },
-  // ImageUploader
-  {
-    name: 'imageUploader',
-    module: ImageUploader,
-    options: {
-      upload: (file: File) => {
-        return new Promise((resolve, reject) => {
-          const formData = new FormData()
-          formData.append('image', file)
-          // 在这里发送请求
-        })
       },
     },
   },
@@ -88,6 +80,37 @@ export const modules = [
           renderList(matchedTopics)
         }
       },
+    },
+  },
+  // ImageCompress
+  {
+    name: 'imageCompress',
+    module: ImageCompress,
+    options: {
+      quality: 0.77,
+      maxWidth: 1007,
+      maxHeight: 1007,
+      imageType: 'image/webp',
+      insertIntoEditor: (
+        imageBase64URL: string,
+        imageBlob: Blob,
+        editor: typeof QuillEditor
+      ) => {
+        const formData = new FormData()
+        formData.append('file', imageBlob)
+
+        fetch('127.0.0.1:10008/upload', { method: 'POST', body: formData })
+          .then((response) => response.text())
+          .then((result) => {
+            const range = editor.getSelection()
+            editor.insertEmbed(range.index, 'image', `${result}`, 'user')
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      },
+      // 临时开启一下控制台调试
+      debug: true,
     },
   },
 ]
