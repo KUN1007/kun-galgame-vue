@@ -25,14 +25,12 @@ defineProps<{
   padding: 17px;
   color: var(--kungalgame-font-color-3);
   border: none !important;
-}
-
-.kungalgame-topic-content {
-  border-radius: 5px;
   padding: 0 10px;
   margin-top: 20px;
   overflow-x: auto;
+}
 
+.kungalgame-topic-content {
   /* 下面的代码调整富文本区域的格式 */
   :deep(*) {
     max-width: 100%;
@@ -47,10 +45,7 @@ defineProps<{
     }
   }
 
-  :deep(span) {
-    text-shadow: none;
-  }
-
+  /* 代码块 */
   :deep(pre) {
     font-family: monospace;
     display: flex;
@@ -60,8 +55,6 @@ defineProps<{
       justify-content: end;
       content: '< code >';
       color: var(--kungalgame-font-color-0);
-      background-color: var(--kungalgame-trans-white-5);
-      border: 1px solid var(--kungalgame-blue-1);
       padding: 0 5px;
       border-radius: 3px;
       font-size: 17px;
@@ -70,8 +63,40 @@ defineProps<{
     }
   }
 
+  /* 引用 */
   :deep(blockquote) {
     padding: 7px 10px;
+  }
+
+  /* mention */
+  :deep(.mention[data-denotation-char='@']) {
+    margin-right: 2px;
+    cursor: pointer;
+    background-color: var(--kungalgame-pink-4);
+    color: var(--kungalgame-white);
+    padding: 5px;
+    & > span {
+      font-style: oblique;
+      & > span {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  :deep(.mention[data-denotation-char='#']) {
+    margin-right: 2px;
+    cursor: pointer;
+    background-color: var(--kungalgame-purple-4);
+    color: var(--kungalgame-white);
+    padding: 5px;
+    & > span {
+      font-style: oblique;
+      & > span {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+    }
   }
 }
 

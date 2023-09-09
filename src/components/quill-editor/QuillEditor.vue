@@ -261,11 +261,37 @@ const handleTextChange = async () => {
   .mention {
     height: 24px;
     width: 65px;
-    border-radius: 6px;
-    background-color: var(--kungalgame-trans-blue-1);
     padding: 3px 0;
     margin-right: 2px;
     user-select: all;
+  }
+
+  .mention[data-denotation-char='@'] {
+    cursor: pointer;
+    background-color: var(--kungalgame-pink-4);
+    color: var(--kungalgame-white);
+    padding: 5px;
+    & > span {
+      font-style: oblique;
+      & > span {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .mention[data-denotation-char='#'] {
+    cursor: pointer;
+    background-color: var(--kungalgame-purple-4);
+    color: var(--kungalgame-white);
+    padding: 5px;
+    & > span {
+      font-style: oblique;
+      & > span {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+    }
   }
 
   .mention > span {

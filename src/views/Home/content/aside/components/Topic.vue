@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
-import { HotTopic, NewTopic } from '@/api/home/types/home'
+import { HomeHotTopic, HomeNewTopic } from '@/api/home/types/home'
 import { getHomeNavHotTopicApi, getHomeNavNewTopicApi } from '@/api/home/index'
 
 // 导入设置面板 store
@@ -14,8 +14,8 @@ const settingsStore = storeToRefs(useKUNGalgameSettingsStore())
 // 导入 i18n 格式化时间的函数
 import { formatTimeDifference } from '@/utils/formatTime'
 
-const navHotTopic = ref<HotTopic[]>()
-const navNewTopic = ref<NewTopic[]>()
+const navHotTopic = ref<HomeHotTopic[]>()
+const navNewTopic = ref<HomeNewTopic[]>()
 
 onMounted(async () => {
   const responseHotData = await getHomeNavHotTopicApi()

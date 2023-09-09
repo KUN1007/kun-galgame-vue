@@ -99,6 +99,8 @@ export const modules = [
         const formData = new FormData()
         formData.append('file', imageBlob)
 
+        /* TODO: 这里要改成后端接口 */
+
         fetch('127.0.0.1:10008/upload', { method: 'POST', body: formData })
           .then((response) => response.text())
           .then((result) => {
@@ -110,7 +112,7 @@ export const modules = [
           })
       },
       // 临时开启一下控制台调试
-      debug: true,
+      debug: false,
     },
   },
 ]
