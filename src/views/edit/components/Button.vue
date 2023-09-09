@@ -12,8 +12,6 @@ import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 // 导入路由
 import { useRouter } from 'vue-router'
-// 导入将富文本变成纯文本的函数
-import { getPlainText } from '@/utils/getPlainText'
 // 导入请求数据格式
 import {
   EditCreateTopicRequestData,
@@ -22,7 +20,7 @@ import {
 
 const router = useRouter()
 
-const topicData = storeToRefs(useKUNGalgameEditStore())
+const { content, isSave } = storeToRefs(useKUNGalgameEditStore())
 
 const messageStore = useKUNGalgameMessageStore()
 
@@ -31,10 +29,18 @@ const checkPublish = (topicData: EditCreateTopicRequestData) => {
     // 标题为空的话，警告
     message('Title cannot be empty!', '标题不可为空！', 'warn')
     return false
-  } else if (topicData.content.trim()) {
-    // TODO:
-    console.log(getPlainText(topicData.content.trim()).length)
-    return true
+  } else if (!content.value.trim()) {
+    // 内容为空的话，警告
+    message('Content cannot be empty!', '内容不可为空！', 'warn')
+    return false
+  } else if (topicData.tags.length === 0) {
+    message('Please use at least one tag!', '请至少使用一个标签！', 'warn')
+  } else if (topicData.category.length === 0) {
+    message(
+      'Please select at least one category!',
+      '请至少选择一个分类！',
+      'warn'
+    )
   } else {
     return true
   }
@@ -85,7 +91,7 @@ const handlePublish = async () => {
 
 const handleSave = () => {
   // 这个值为 true 的时候每次页面加载的时候都会预加载上一次的话题数据
-  topicData.isSave.value = true
+  isSave.value = true
   messageStore.info('AlertInfo.edit.draft')
 }
 </script>

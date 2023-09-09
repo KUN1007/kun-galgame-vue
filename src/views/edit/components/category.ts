@@ -8,14 +8,14 @@ export interface Category {
 export const category: Category[] = [
   {
     index: 1,
-    name: 'btnGalgame',
+    name: 'Galgame',
   },
   {
     index: 2,
-    name: 'btnTechnique',
+    name: 'Technique',
   },
   {
     index: 3,
-    name: 'btnOthers',
+    name: 'Others',
   },
 ]
