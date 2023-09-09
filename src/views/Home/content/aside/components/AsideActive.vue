@@ -93,11 +93,10 @@ const props = defineProps(['isActive'])
     height: 100%;
     width: 100%;
     color: var(--kungalgame-font-color-2);
-    border-radius: 5px;
     /* 设置六个功能（模式、排行、背景等）的 hover */
     &:hover {
-      color: var(--kungalgame-font-color-3);
-      background-color: var(--kungalgame-trans-blue-1);
+      transition: color 0.2s;
+      color: var(--kungalgame-blue-4);
       cursor: pointer;
     }
   }
