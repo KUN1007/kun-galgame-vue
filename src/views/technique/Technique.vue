@@ -14,6 +14,17 @@ onBeforeMount(async () => {
     console.error('Error fetching topics:', error)
   }
 })
+
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const techniquePageWidth = computed(() => {
+  return showKUNGalgamePageWidth.value.Technique + '%'
+})
 </script>
 
 <template>
@@ -47,7 +58,8 @@ onBeforeMount(async () => {
   padding: 5px;
   height: 1400px;
   /* 占总页面的宽度 */
-  width: 95%;
+  transition: all 0.2s;
+  width: v-bind(techniquePageWidth);
   /* 水平垂直居中 */
   margin: 0 auto;
   display: flex;

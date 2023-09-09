@@ -4,6 +4,17 @@ import QuillEditor from '@/components/quill-editor/QuillEditor.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const editPageWidth = computed(() => {
+  return showKUNGalgamePageWidth.value.Edit + '%'
+})
 </script>
 
 <template>
@@ -46,7 +57,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 内容部分的总容器 */
 .container {
   transition: all 0.2s;
-  width: 80%;
+  width: v-bind(editPageWidth);
   max-width: 1500px;
   margin: 0 auto;
   /* 容器的阴影 */
