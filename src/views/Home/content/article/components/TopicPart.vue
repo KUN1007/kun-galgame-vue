@@ -25,7 +25,7 @@ const plainText = getPlainText(props.data.content)
       <div class="title">
         <span>{{ props.data.title }}</span>
       </div>
-      <!-- 话题发布日期 -->
+      <!-- 话题的状态，点赞数等 -->
       <div class="status">
         <ul>
           <li>
@@ -43,7 +43,7 @@ const plainText = getPlainText(props.data.content)
           </li>
         </ul>
 
-        <!-- 话题的状态，点赞数等 -->
+        <!-- 话题的发布日期 -->
         <div class="time">
           <span>{{
             formatTimeDifference(
@@ -115,7 +115,7 @@ const plainText = getPlainText(props.data.content)
 }
 /* 发帖日期 */
 .time {
-  width: 60px;
+  width: 77px;
   font-size: x-small;
   color: var(--kungalgame-font-color-0);
   /* 居中 */
