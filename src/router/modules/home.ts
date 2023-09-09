@@ -10,7 +10,7 @@ const index: RouteRecordRaw[] = [
     redirect: '/kun',
     children: [
       {
-        name: 'index',
+        name: 'KUN',
         path: 'kun',
         component: () => import('@/views/Home/KUNGalgameMainPage.vue'),
         meta: {

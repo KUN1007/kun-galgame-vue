@@ -4,27 +4,38 @@
 <script setup lang="ts">
 import KUNGalgameTopicAside from './aside/KUNGalgameTopicAside.vue'
 import KUNGalgameTopicContent from './content/KUNGalgameTopicContent.vue'
-
 // 异步导入回复面板
-import { defineAsyncComponent, onBeforeMount } from 'vue'
-
-// 导入话题页面 store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-import { storeToRefs } from 'pinia'
-import { onBeforeRouteLeave } from 'vue-router'
-
-// 使用话题页面的 store
-const settingsStore = useKUNGalgameTopicStore()
-const { isShowAdvance, isEdit } = storeToRefs(settingsStore)
-
 const ReplyPanel = defineAsyncComponent(
   () => import('@/views/topic/content/components/ReplyPanel.vue')
 )
 
-// 在页面跳转和刷新时重置回复面板状态
+import { defineAsyncComponent, onBeforeMount, computed } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
+
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+// 导入话题页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+
+import { storeToRefs } from 'pinia'
+
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+// 使用话题页面的 store
+const topicStore = useKUNGalgameTopicStore()
+
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const { isShowAdvance, isEdit } = storeToRefs(topicStore)
+
+/* 话题界面的页面宽度 */
+const topicPageWidth = computed(() => {
+  return showKUNGalgamePageWidth.value.Topic + '%'
+})
+
+// 在页面跳转和刷新时重置回复面板状态，关闭高级模式、关闭面板
 const resetPanelStatus = () => {
-  isEdit.value = false
   isShowAdvance.value = false
+  isEdit.value = false
 }
 
 onBeforeRouteLeave(() => {
@@ -67,7 +78,8 @@ onBeforeMount(() => {
 }
 /* 下方可视内容区的容器 */
 .content-wrapper {
-  width: 90%;
+  width: v-bind(topicPageWidth);
+  transition: all 0.2s;
   max-width: 1500px;
   height: 100%;
   margin: 0 auto;

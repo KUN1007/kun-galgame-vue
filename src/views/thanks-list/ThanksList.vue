@@ -1,6 +1,17 @@
 <script setup lang="ts">
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const thanksListPageWidth = computed(() => {
+  return showKUNGalgamePageWidth.value.ThanksList + '%'
+})
 </script>
 
 <template>
@@ -97,7 +108,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 .container {
   /* 固定宽高 */
-  max-width: 900px;
+  transition: all 0.2s;
+  width: v-bind(thanksListPageWidth);
   height: 1300px;
   /* 居中 */
   margin: auto;

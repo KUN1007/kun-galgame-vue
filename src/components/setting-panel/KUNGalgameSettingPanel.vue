@@ -8,15 +8,15 @@ import Loli from './components/Loli.vue'
 import Mode from './components/Mode.vue'
 // 导入语言切换组件
 import SwitchLanguage from './components/SwitchLanguage.vue'
+// 页面宽度调整组件
+import PageWidth from './components/PageWidth.vue'
 // 引入背景设置组件
 import Background from './components/Background.vue'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
-import { storeToRefs } from 'pinia'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameMainPageWidth } = storeToRefs(settingsStore)
 
 const emits = defineEmits(['close'])
 
@@ -46,24 +46,11 @@ const handelCloseSettingsPanel = () => {
       <!-- 语言切换组件 -->
       <SwitchLanguage />
 
-      <div>
-        <!-- 设置主页的宽度 -->
-        <div class="width-container">
-          <span>{{ $tm('header.settings.width') }}</span>
-          <span>{{ showKUNGalgameMainPageWidth }}%</span>
-        </div>
-        <div class="page-width">
-          <span>50%</span
-          ><input
-            class="main"
-            min="50"
-            max="90"
-            step="0.1"
-            type="range"
-            v-model="showKUNGalgameMainPageWidth"
-          /><span>90%</span>
-        </div>
-      </div>
+      <!-- 页面宽度调整组件 -->
+      <PageWidth />
+
+      <!-- 设置页面的字体 TODO: -->
+      <div class="font"></div>
 
       <!-- 背景设置组件 -->
       <Background />
@@ -128,24 +115,6 @@ const handelCloseSettingsPanel = () => {
   }
 }
 
-.page-width {
-  font-size: 15px;
-  display: flex;
-  span {
-    margin-top: 15px;
-  }
-}
-/* 主页页面宽度滑动条 */
-.main {
-  width: 100%;
-  height: 10px;
-  margin: 20px 0;
-}
-
-.width-container {
-  display: flex;
-  justify-content: space-between;
-}
 .reset {
   font-size: 15px;
   cursor: pointer;
@@ -168,6 +137,7 @@ const handelCloseSettingsPanel = () => {
   margin: 20px;
   cursor: pointer;
 }
+
 @media (max-width: 1000px) {
   .root {
     display: none;

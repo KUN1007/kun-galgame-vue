@@ -3,6 +3,17 @@
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 // 导入 Aside
 import Aside from './components/Aside.vue'
+
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const kungalgamePageWidth = computed(() => {
+  return showKUNGalgamePageWidth.value.KUNGalgame + '%'
+})
 </script>
 
 <template>
@@ -189,7 +200,8 @@ import Aside from './components/Aside.vue'
   border-radius: 7px;
   /* 固定高度 */
   height: 1300px;
-  width: 90%;
+  transition: all 0.2s;
+  width: v-bind(kungalgamePageWidth);
   max-width: 1300px;
   /* 居中 */
   margin: auto;

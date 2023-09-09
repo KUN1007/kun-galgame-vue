@@ -5,6 +5,17 @@ import Topic from './components/Topic.vue'
 import Bar from './components/Bar.vue'
 
 import { topic } from './components/topic'
+
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const poolPageWidth = computed(() => {
+  return showKUNGalgamePageWidth.value.Pool + '%'
+})
 </script>
 
 <template>
@@ -39,7 +50,8 @@ import { topic } from './components/topic'
 /* 话题池容器 */
 .pool-container {
   /* 占页面的宽度比例 */
-  width: 90%;
+  transition: all 0.2s;
+  width: v-bind(poolPageWidth);
   /* 居中 */
   margin: 0 auto;
   display: flex;

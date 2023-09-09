@@ -7,9 +7,9 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameMainPageWidth } = storeToRefs(settingsStore)
-const width = computed(() => {
-  return showKUNGalgameMainPageWidth.value + '%'
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const mainPageWidth = computed(() => {
+  return showKUNGalgamePageWidth.value.KUN + '%'
 })
 </script>
 
@@ -41,7 +41,7 @@ const width = computed(() => {
 }
 /* 可视内容部分宽度 */
 .content-container {
-  width: v-bind(width);
+  width: v-bind(mainPageWidth);
   transition: all 0.2s;
   height: 100%;
   margin: 0 auto;

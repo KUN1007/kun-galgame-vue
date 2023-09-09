@@ -79,8 +79,9 @@ const handelClickSettings = () => {
           <li>{{ $tm('edit.help1') }}</li>
           <li>{{ $tm('edit.help2') }}</li>
           <li>{{ $tm('edit.help3') }}</li>
+          <li>{{ $tm('edit.help4') }}</li>
           <li>
-            {{ $tm('edit.help4') }}
+            {{ $tm('edit.help5') }}
             <span @click="router.push('/contact')">
               {{ $tm('edit.contact') }}
             </span>
@@ -138,7 +139,6 @@ const handelClickSettings = () => {
     ul {
       display: flex;
       flex-direction: column;
-      border: 1px solid var(--kungalgame-blue-1);
       background-color: var(--kungalgame-white);
       padding: 5px;
       border-radius: 5px;

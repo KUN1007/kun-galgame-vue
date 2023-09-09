@@ -36,7 +36,7 @@ const props = defineProps<{
     flex-wrap: wrap;
     overflow-y: scroll;
     li {
-      margin: 5px;
+      margin: 3px;
       font-size: small;
       padding: 2px;
       background-color: var(--kungalgame-trans-blue-0);

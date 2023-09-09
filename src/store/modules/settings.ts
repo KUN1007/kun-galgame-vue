@@ -11,7 +11,7 @@ interface KUNGalgameSettings {
   // 网站显示语言
   showKUNGalgameLanguage: string
   // 主页宽度
-  showKUNGalgameMainPageWidth: string
+  showKUNGalgamePageWidth: Record<string, number>
   // 背景图
   showKUNGalgameBackground: string
   // 自定义背景图
@@ -25,7 +25,16 @@ export const useKUNGalgameSettingsStore = defineStore({
   state: (): KUNGalgameSettings => ({
     showKUNGalgameMode: mode,
     showKUNGalgameLanguage: KUNGalgameLanguage,
-    showKUNGalgameMainPageWidth: '61.8',
+    showKUNGalgamePageWidth: {
+      KUN: 61.8,
+      Topic: 90,
+      Edit: 90,
+      KUNGalgame: 90,
+      Pool: 90,
+      Bylaw: 90,
+      Technique: 90,
+      ThanksList: 90,
+    },
     showKUNGalgameBackground: 'none',
     showKUNGalgameCustomBackground: '',
   }),
