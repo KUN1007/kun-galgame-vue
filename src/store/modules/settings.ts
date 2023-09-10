@@ -20,6 +20,7 @@ interface KUNGalgameSettings {
   showKUNGalgameCustomBackground: string
 
   // 显示页面宽度还是显示字体设置
+  isShowPageWidth: boolean
 }
 
 export const useKUNGalgameSettingsStore = defineStore({
@@ -42,6 +43,8 @@ export const useKUNGalgameSettingsStore = defineStore({
     showKUNGalgameFontStyle: '',
     showKUNGalgameBackground: 'none',
     showKUNGalgameCustomBackground: '',
+
+    isShowPageWidth: true,
   }),
   actions: {
     // 设置主题，只有两种模式 light 和 dark，light 为 ''

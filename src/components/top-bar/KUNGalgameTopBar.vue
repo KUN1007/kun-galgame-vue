@@ -92,7 +92,7 @@ onBeforeRouteLeave(() => {
       enter-active-class="animate__animated animate__jackInTheBox animate__faster"
       leave-active-class="animate__animated animate__fadeOutRight animate__faster"
     >
-      <KeepAlive exclude="PageWidth">
+      <KeepAlive :exclude="['PageWidth', 'Font']">
         <KUNGalgameSettingsPanel
           v-if="showKUNGalgamePanel"
           @close="showKUNGalgamePanel = false"
