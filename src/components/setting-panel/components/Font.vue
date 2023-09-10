@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
@@ -26,15 +26,17 @@ const handleSetFont = () => {
   <!-- 设置某些页面的宽度 -->
   <div class="font">
     <div class="title">
-      <span>字体设置</span>
-      <span v-if="!showKUNGalgameFontStyle">默认</span>
-      <span v-else-if="showKUNGalgameFontStyle">
+      <span>{{ $tm('header.settings.font') }}</span>
+      <span v-if="showKUNGalgameFontStyle === 'system-ui'">
+        {{ $tm('header.settings.default') }}
+      </span>
+      <span v-else-if="showKUNGalgameFontStyle !== 'system-ui'">
         {{ showKUNGalgameFontStyle }}
       </span>
     </div>
     <div class="font-input">
       <input
-        placeholder="请在这里输入字体的名字"
+        :placeholder="`${$tm('header.settings.fontInput')}`"
         type="text"
         v-model="font"
         required
