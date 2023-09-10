@@ -14,6 +14,7 @@ export default {
       default: '系统默认',
       fontInput: '请在这里输入字体的名字',
       width: '页面宽度',
+      disabled: '该页面不允许调整宽度',
       background: '背景设置',
       preset: '点击使用我们预设的背景',
       custom: '自定义背景',

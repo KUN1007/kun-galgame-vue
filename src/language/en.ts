@@ -14,6 +14,7 @@ export default {
       default: 'System Default',
       fontInput: 'Input font name here',
       width: 'Page Width',
+      disabled: 'The page does not allow width adjustment',
       background: 'Background Setting',
       preset: 'Use our preset background',
       custom: 'Custom Background',
