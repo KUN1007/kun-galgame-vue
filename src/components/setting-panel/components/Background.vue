@@ -1,9 +1,13 @@
 <script setup lang="ts">
+// 导入 vue 函数
+import { ref } from 'vue'
+
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// 导入 vue 函数
-import { ref } from 'vue'
+
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
 
 import backgroundImages from './background'
 
@@ -34,13 +38,14 @@ const handelChangeImage = (index: number) => {
 
 // 自定义背景
 const url = ref('')
+
 const handleCustomBackground = () => {
   if (url.value) {
     showKUNGalgameCustomBackground.value = url.value
     showKUNGalgameBackground.value = '1007'
     url.value = ''
   } else {
-    console.log('null')
+    message('Please input valid image url', '请输入合法的图片链接', 'warn')
   }
 }
 // 恢复空白背景
@@ -63,6 +68,7 @@ const handleCustomBackground = () => {
           </li>
         </ul>
       </li>
+
       <!-- 用户自定义背景 -->
       <li>
         <span>{{ $tm('header.settings.custom') }}</span>
@@ -147,6 +153,7 @@ const handleCustomBackground = () => {
     height: 25px;
     border: 1px solid var(--kungalgame-blue-4);
     background-color: var(--kungalgame-trans-white-9);
+    color: var(--kungalgame-font-color-3);
     /* 粘话题框的 focus */
     &:focus {
       outline: none;

@@ -62,6 +62,7 @@ const messageClass = (type: string): string => {
   right: 0;
   width: 100%;
   display: flex;
+  z-index: 9999;
 }
 .message {
   margin: 0 auto;
@@ -75,7 +76,6 @@ const messageClass = (type: string): string => {
   justify-content: center;
   padding: 1vh 10vw;
   box-shadow: var(--shadow);
-  z-index: 9999;
   span {
     display: flex;
     align-items: center;

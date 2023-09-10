@@ -12,10 +12,14 @@ interface KUNGalgameSettings {
   showKUNGalgameLanguage: string
   // 主页宽度
   showKUNGalgamePageWidth: Record<string, number>
+  // 网站字体
+  showKUNGalgameFontStyle: string
   // 背景图
   showKUNGalgameBackground: string
   // 自定义背景图
   showKUNGalgameCustomBackground: string
+
+  // 显示页面宽度还是显示字体设置
 }
 
 export const useKUNGalgameSettingsStore = defineStore({
@@ -35,6 +39,7 @@ export const useKUNGalgameSettingsStore = defineStore({
       Technique: 90,
       ThanksList: 90,
     },
+    showKUNGalgameFontStyle: '',
     showKUNGalgameBackground: 'none',
     showKUNGalgameCustomBackground: '',
   }),
@@ -43,6 +48,17 @@ export const useKUNGalgameSettingsStore = defineStore({
     setKUNGalgameTheme(theme: string) {
       this.showKUNGalgameMode = theme
       document.documentElement.className = theme
+    },
+    // 设置字体，用户自己设置，默认为系统 UI
+    setKUNGalgameFontStyle(font: string) {
+      this.showKUNGalgameFontStyle = font
+      document.documentElement.style.fontFamily = font
+    },
+    // 恢复所有设置，由于调用了 document，所以 pinia 响应式不生效
+    setKUNGalgameSettingsRecover() {
+      this.$reset()
+      this.setKUNGalgameTheme('')
+      this.setKUNGalgameFontStyle('')
     },
   },
 })
