@@ -16,21 +16,28 @@ import Font from './components/Font.vue'
 import Background from './components/Background.vue'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
+const { isShowPageWidth } = storeToRefs(settingsStore)
 
+// 定义是否关闭设置面板的 emits
 const emits = defineEmits(['close'])
 
-/* 恢复所有设置为默认 */
+// 恢复所有设置为默认
 const handleRecover = () => {
   settingsStore.setKUNGalgameSettingsRecover()
 }
 
-/* 关闭设置面板 */
+// 关闭设置面板
 const handelCloseSettingsPanel = () => {
   emits('close', false)
 }
+
+// menu 被激活后的样式
+const activeClass = computed(() => (isShowPageWidth.value ? 'active' : ''))
 </script>
 
 <template>
@@ -48,11 +55,34 @@ const handelCloseSettingsPanel = () => {
       <!-- 语言切换组件 -->
       <SwitchLanguage />
 
-      <!-- 页面宽度调整组件 -->
-      <PageWidth />
+      <div class="switch">
+        <div class="menu">
+          <span
+            :class="isShowPageWidth ? 'active' : ''"
+            @click="isShowPageWidth = true"
+          >
+            页面宽度
+          </span>
+          <span
+            :class="isShowPageWidth ? '' : 'active'"
+            @click="isShowPageWidth = false"
+          >
+            字体设置
+          </span>
+        </div>
 
-      <!-- 设置页面的字体 -->
-      <Font />
+        <TransitionGroup name="item" tag="div">
+          <div class="item" v-if="isShowPageWidth">
+            <!-- 页面宽度调整组件 -->
+            <PageWidth />
+          </div>
+
+          <div class="item" v-else-if="!isShowPageWidth">
+            <!-- 设置页面的字体 -->
+            <Font />
+          </div>
+        </TransitionGroup>
+      </div>
 
       <!-- 背景设置组件 -->
       <Background />
@@ -117,6 +147,39 @@ const handelCloseSettingsPanel = () => {
   }
 }
 
+/* 切换设置选项的菜单 */
+.switch {
+  display: flex;
+  flex-direction: column;
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 17px;
+    border: 1px solid var(--kungalgame-blue-4);
+    span {
+      cursor: pointer;
+      width: 100%;
+      padding: 2px;
+      display: flex;
+      font-size: 15px;
+      justify-content: center;
+      color: var(--kungalgame-blue-4);
+      &:nth-child(1) {
+        border-right: 1px solid var(--kungalgame-blue-4);
+      }
+    }
+
+    .active {
+      background-color: var(--kungalgame-blue-4);
+      color: var(--kungalgame-white);
+    }
+  }
+  .item {
+    width: 100%;
+    height: 73px;
+  }
+}
+
 .reset {
   font-size: 15px;
   cursor: pointer;
@@ -131,6 +194,7 @@ const handelCloseSettingsPanel = () => {
     color: var(--kungalgame-white);
   }
 }
+
 .close {
   font-size: 25px;
   width: 270px;
@@ -138,6 +202,24 @@ const handelCloseSettingsPanel = () => {
   justify-content: end;
   margin: 20px;
   cursor: pointer;
+}
+
+.item-move, /* 对移动中的元素应用的过渡 */
+.item-enter-active,
+.item-leave-active {
+  transition: all 0.5s ease;
+}
+
+.item-enter-from,
+.item-leave-to {
+  opacity: 0;
+  transform: translateY(77px);
+}
+
+/* 确保将离开的元素从布局流中删除
+  以便能够正确地计算移动的动画。 */
+.item-leave-active {
+  position: absolute;
 }
 
 @media (max-width: 1000px) {

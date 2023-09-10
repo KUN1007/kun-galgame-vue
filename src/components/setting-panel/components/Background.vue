@@ -71,16 +71,27 @@ const handleCustomBackground = () => {
 
       <!-- 用户自定义背景 -->
       <li>
+        <!-- 标题 -->
         <span>{{ $tm('header.settings.custom') }}</span>
+
+        <!-- 输入框 -->
         <div class="kungalgamer-bg">
-          <span>{{ $tm('header.settings.url') }}</span>
           <div class="bg-url-input">
-            <input type="text" v-model="url" required />
+            <input
+              :placeholder="`${$tm('header.settings.url')}`"
+              type="text"
+              v-model="url"
+              required
+            />
+
+            <!-- 确定背景 url -->
             <button @click="handleCustomBackground">
               {{ $tm('header.settings.confirm') }}
             </button>
           </div>
         </div>
+
+        <!-- 重置空白背景 -->
         <button class="restore-bg" @click="restoreBackground">
           {{ $tm('header.settings.restore') }}
         </button>
@@ -118,7 +129,7 @@ const handleCustomBackground = () => {
   grid-template-rows: repeat(3, 50px);
   position: relative;
   /* 距离下方区域的距离 */
-  margin-bottom: 17px;
+  margin-bottom: 10px;
   /* 单个图片居中 */
   li {
     display: flex;

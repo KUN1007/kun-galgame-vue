@@ -66,6 +66,7 @@ onActivated(() => {
 
 <style lang="scss" scoped>
 .page-width {
+  width: 100%;
   font-size: 15px;
   display: flex;
   span {

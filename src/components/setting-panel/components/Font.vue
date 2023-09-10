@@ -33,7 +33,12 @@ const handleSetFont = () => {
       </span>
     </div>
     <div class="font-input">
-      <input type="text" v-model="font" required />
+      <input
+        placeholder="请在这里输入字体的名字"
+        type="text"
+        v-model="font"
+        required
+      />
       <button @click="handleSetFont">
         {{ $tm('header.settings.confirm') }}
       </button>
