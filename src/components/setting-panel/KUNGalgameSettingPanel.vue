@@ -10,6 +10,8 @@ import Mode from './components/Mode.vue'
 import SwitchLanguage from './components/SwitchLanguage.vue'
 // 页面宽度调整组件
 import PageWidth from './components/PageWidth.vue'
+// 字体设置组件
+import Font from './components/Font.vue'
 // 引入背景设置组件
 import Background from './components/Background.vue'
 // 导入设置面板 store
@@ -22,7 +24,7 @@ const emits = defineEmits(['close'])
 
 /* 恢复所有设置为默认 */
 const handleRecover = () => {
-  settingsStore.$reset()
+  settingsStore.setKUNGalgameSettingsRecover()
 }
 
 /* 关闭设置面板 */
@@ -49,8 +51,8 @@ const handelCloseSettingsPanel = () => {
       <!-- 页面宽度调整组件 -->
       <PageWidth />
 
-      <!-- 设置页面的字体 TODO: -->
-      <div class="font"></div>
+      <!-- 设置页面的字体 -->
+      <Font />
 
       <!-- 背景设置组件 -->
       <Background />
