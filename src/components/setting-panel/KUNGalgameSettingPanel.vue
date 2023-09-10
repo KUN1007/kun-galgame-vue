@@ -17,7 +17,6 @@ import Background from './components/Background.vue'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
@@ -35,9 +34,6 @@ const handleRecover = () => {
 const handelCloseSettingsPanel = () => {
   emits('close', false)
 }
-
-// menu 被激活后的样式
-const activeClass = computed(() => (isShowPageWidth.value ? 'active' : ''))
 </script>
 
 <template>
@@ -61,13 +57,13 @@ const activeClass = computed(() => (isShowPageWidth.value ? 'active' : ''))
             :class="isShowPageWidth ? 'active' : ''"
             @click="isShowPageWidth = true"
           >
-            页面宽度
+            {{ $tm('header.settings.width') }}
           </span>
           <span
             :class="isShowPageWidth ? '' : 'active'"
             @click="isShowPageWidth = false"
           >
-            字体设置
+            {{ $tm('header.settings.font') }}
           </span>
         </div>
 
@@ -164,6 +160,7 @@ const activeClass = computed(() => (isShowPageWidth.value ? 'active' : ''))
       font-size: 15px;
       justify-content: center;
       color: var(--kungalgame-blue-4);
+      transition: all 0.2s;
       &:nth-child(1) {
         border-right: 1px solid var(--kungalgame-blue-4);
       }

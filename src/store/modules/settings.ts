@@ -40,7 +40,7 @@ export const useKUNGalgameSettingsStore = defineStore({
       Technique: 90,
       ThanksList: 90,
     },
-    showKUNGalgameFontStyle: '',
+    showKUNGalgameFontStyle: 'system-ui',
     showKUNGalgameBackground: 'none',
     showKUNGalgameCustomBackground: '',
 
@@ -61,7 +61,7 @@ export const useKUNGalgameSettingsStore = defineStore({
     setKUNGalgameSettingsRecover() {
       this.$reset()
       this.setKUNGalgameTheme('')
-      this.setKUNGalgameFontStyle('')
+      this.setKUNGalgameFontStyle('system-ui')
     },
   },
 })

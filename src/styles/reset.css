@@ -23,7 +23,8 @@
   scrollbar-width: none; /* Firefox 64+ */
 }
 
-/* 这些元素默认不会继承字体，字体设置会出问题 */
-button {
+/* button, input, select, textarea 元素默认不会继承字体，字体设置会出问题 */
+button,
+select {
   font-family: inherit;
 }
