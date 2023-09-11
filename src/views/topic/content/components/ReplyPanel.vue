@@ -26,8 +26,7 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 // 使用话题页面的 store
-const settingsStore = useKUNGalgameTopicStore()
-const { isShowAdvance, isEdit } = storeToRefs(settingsStore)
+const { isShowAdvance, isEdit } = storeToRefs(useKUNGalgameTopicStore())
 
 const handelClosePanel = () => {
   isShowAdvance.value = false

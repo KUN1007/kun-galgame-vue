@@ -5,7 +5,7 @@ import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import message from '@/components/alert/Message'
 // Vue 函数
 import { toRaw } from 'vue'
-// 导入编辑帖子的 store
+// 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入用户 store
 import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
@@ -20,10 +20,10 @@ import {
 
 const router = useRouter()
 
-const { content, isSave } = storeToRefs(useKUNGalgameEditStore())
-
+const { content, isSaveTopic } = storeToRefs(useKUNGalgameEditStore())
 const messageStore = useKUNGalgameMessageStore()
 
+// 发布时检测用户输入是否合法
 const checkPublish = (topicData: EditCreateTopicRequestData) => {
   if (!topicData.title.trim()) {
     // 标题为空的话，警告
@@ -89,9 +89,10 @@ const handlePublish = async () => {
   }
 }
 
+// 用户点击保存话题的逻辑
 const handleSave = () => {
   // 这个值为 true 的时候每次页面加载的时候都会预加载上一次的话题数据
-  isSave.value = true
+  isSaveTopic.value = true
   messageStore.info('AlertInfo.edit.draft')
 }
 </script>

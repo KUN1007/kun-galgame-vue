@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineAsyncComponent, computed, ref, onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router'
 
 // 引入编辑器
 import { QuillEditor } from '@vueup/vue-quill'
@@ -18,8 +19,9 @@ const Title = defineAsyncComponent(
 // 导入 Footer
 import EditorFooter from './EditorFooter.vue'
 
-// 导入编辑帖子的 store
+// 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 // 导入过滤 xss 的工具
@@ -27,9 +29,17 @@ import DOMPurify from 'dompurify'
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
 
-const { editorHeight, mode, theme, isSave, content } = storeToRefs(
+// 话题编辑界面 store
+const { editorHeight, mode, theme, isSaveTopic, content } = storeToRefs(
   useKUNGalgameEditStore()
 )
+// 话题界面的 store，用于回复
+const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+
+// 当前的路由
+const route = useRoute()
+// 当前页面路由的名字
+const routeName = computed(() => route.name as string)
 
 // 定义父组件传参
 /**
@@ -73,19 +83,31 @@ const editorOptions = {
 // 编辑器实例创建时
 const onEditorReady = () => {}
 
-// 挂载之前载入数据，如果不保存，则不载入
 onBeforeMount(() => {
-  if (isSave.value) {
+  // 挂载之前载入话题数据，如果不保存，则不载入（并且当前必须在 Edit 界面）
+  if (isSaveTopic.value && routeName.value === 'Edit') {
     valueHtml.value = content.value
+  }
+  // 挂载之前载入回复数据，如果不保存，则不载入（并且当前必须在 topic 界面）
+  if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
+    valueHtml.value = replyDraft.value.content
   }
 })
 
 // 编辑器文本改变时自动保存数据
 const handleTextChange = async () => {
+  // 过滤 xss
+  const purifiedHtml = DOMPurify.sanitize(editorRef.value?.getHTML())
   // 创建一个防抖处理函数
   const debouncedUpdateContent = debounce(() => {
-    // 过滤 xss
-    content.value = DOMPurify.sanitize(editorRef.value?.getHTML())
+    // 如果是在 topic 界面则保存到回复的 store
+    if (routeName.value === 'Topic') {
+      replyDraft.value.content = purifiedHtml
+    }
+    // 否则保存在 edit 界面的 store
+    if (routeName.value === 'Edit') {
+      content.value = purifiedHtml
+    }
   }, 1007)
 
   // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
@@ -258,6 +280,7 @@ const handleTextChange = async () => {
     text-decoration: none;
   }
 
+  /* mention 插件的样式 */
   .mention {
     height: 24px;
     width: 65px;

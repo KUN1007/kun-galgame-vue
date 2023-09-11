@@ -4,7 +4,7 @@ import { ref, watch } from 'vue'
 // 引入 css 动画
 import 'animate.css'
 
-// 导入编辑帖子的 store
+// 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 

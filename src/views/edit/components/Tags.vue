@@ -1,12 +1,22 @@
 <script setup lang="ts">
-import { ref, computed, watch, onBeforeMount } from 'vue'
-// 导入编辑帖子的 store
+import { ref, computed, watch, onBeforeMount, onUpdated } from 'vue'
+import { useRoute } from 'vue-router'
+// 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-const { tags, isSave, isShowHotKeywords } = storeToRefs(
+// 当前页面的路由
+const route = useRoute()
+// 当前页面路由的名字
+const routeName = computed(() => route.name as string)
+
+// 话题编辑界面 store
+const { isShowHotKeywords, tags, isSaveTopic } = storeToRefs(
   useKUNGalgameEditStore()
 )
+// 话题界面的 store，用于回复
+const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 // 临时数据，将会从后端返回 7 个热门 tag
 const hotTags = [
@@ -25,9 +35,13 @@ const isInputFocus = ref(false)
 
 // 组件挂载之前载入 store 里的数据
 onBeforeMount(() => {
-  // 如果用户保存了草稿则载入
-  if (isSave.value) {
+  // 挂载之前载入话题数据，如果不保存，则不载入（并且当前必须在 edit 界面）
+  if (isSaveTopic.value && routeName.value === 'Edit') {
     selectedTags.value = tags.value
+  }
+  // 挂载之前载入回复数据，如果不保存，则不载入（并且当前必须在 topic 界面）
+  if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
+    selectedTags.value = replyDraft.value.tags
   }
 })
 
@@ -88,8 +102,15 @@ const validateTagName = (tagName: string) => {
 }
 
 // 监测 selectedTags 的变化，保存用户选中的 tag
-watch(selectedTags.value, () => {
-  tags.value = selectedTags.value
+watch(selectedTags, () => {
+  // 如果是在 topic 界面则保存到回复的 store
+  if (routeName.value === 'Topic') {
+    replyDraft.value.tags = selectedTags.value
+  }
+  // 否则保存在 edit 界面的 store
+  if (routeName.value === 'Edit') {
+    tags.value = selectedTags.value
+  }
 })
 </script>
 
@@ -113,6 +134,8 @@ watch(selectedTags.value, () => {
         @focus="isInputFocus = true"
         @blur="isInputFocus = false"
       />
+
+      <!-- 输入框 focus 的特效 -->
       <div class="box1"></div>
       <div class="box2" :class="isInputFocus ? 'box-active' : ''"></div>
     </div>

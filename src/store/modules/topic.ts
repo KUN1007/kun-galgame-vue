@@ -14,6 +14,9 @@ interface ReplyDraft {
   to_uid: number
   content: string
   tags: string[]
+
+  // 是否保存回复
+  isSaveReply: boolean
 }
 
 // 评论的缓存
@@ -48,6 +51,8 @@ export const useKUNGalgameTopicStore = defineStore({
       to_uid: 0,
       content: '',
       tags: [],
+
+      isSaveReply: false,
     },
     replyRequest: {
       tid: 0,
