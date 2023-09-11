@@ -7,6 +7,7 @@ const topic: RouteRecordRaw[] = [
   {
     path: '/topic',
     component: Layout,
+    redirect: '/kun',
     children: [
       {
         name: 'Topic',

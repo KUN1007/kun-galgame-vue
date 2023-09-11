@@ -7,21 +7,27 @@
  -->
 <script setup lang="ts">
 import TopicAsideNav from './components/TopicAsideNav.vue'
-import Topic from './components/Topic.vue'
+
+// 相同标签下的其它话题
+import TopicOtherTag from './components/TopicOtherTag.vue'
+
+// 楼主的其它话题
+import TopicMaster from './components/TopicMaster.vue'
+
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 <template>
-  <div class="content-left-part">
+  <div class="aside">
     <TopicAsideNav />
-    <Topic style="margin-bottom: 17px" />
-    <Topic :isMasterTopics="true" />
+    <TopicOtherTag style="margin-bottom: 17px" />
+    <TopicMaster />
     <KUNGalgameFooter />
   </div>
 </template>
 <style scoped>
 /* 左侧内容区 */
-.content-left-part {
+.aside {
   top: 70px;
   position: sticky;
   /* 左侧区域的总高度 */

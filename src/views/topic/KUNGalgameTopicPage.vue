@@ -50,10 +50,10 @@ onBeforeMount(() => {
 <template>
   <!-- 回复面板组件 -->
   <!-- 总容器 -->
-  <div class="main-wrapper">
+  <div class="root">
     <ReplyPanel />
     <!-- 下面话题详情区的容器 -->
-    <div class="topic-wrapper">
+    <div class="container">
       <!-- 下方可视内容区的容器 -->
       <div class="content-wrapper">
         <KUNGalgameTopicAside class="aside" style="margin-right: 10px" />
@@ -65,14 +65,14 @@ onBeforeMount(() => {
 
 <style lang="scss" scoped>
 /* 页面总容器 */
-.main-wrapper {
+.root {
   min-height: 1500px;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
 }
 /* 下面话题详情区的容器 */
-.topic-wrapper {
+.container {
   display: flex;
   flex-shrink: 0;
 }
