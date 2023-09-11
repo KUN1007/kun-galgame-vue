@@ -6,8 +6,9 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 // 使用话题页面的 store
-const settingsStore = useKUNGalgameTopicStore()
-const { isShowAdvance } = storeToRefs(settingsStore)
+const { isShowAdvance, replyDraft } = storeToRefs(
+  useKUNGalgameTopicStore()
+)
 
 const info = useKUNGalgameMessageStore()
 
@@ -25,11 +26,13 @@ const handlePublish = async () => {
 
 // 点击保存话题
 const handleSave = () => {
-  // TODO:
+  // 设置保存为 true
+  replyDraft.value.isSaveReply = true
   // 这里实现用户的保存逻辑
   info.info('AlertInfo.edit.draft')
 }
 
+// 显示高级编辑模式
 const handleShowAdvance = () => {
   isShowAdvance.value = !isShowAdvance.value
 }

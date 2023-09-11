@@ -2,13 +2,13 @@
 import { ref, onBeforeMount } from 'vue'
 // 导入按钮
 import Button from './Button.vue'
-// 导入编辑帖子的 store
+// 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// 导入帖子的分类
-import { Category, category } from './category'
+// 导入话题的分类
+import { Category, topicCategory } from './category'
 import { storeToRefs } from 'pinia'
 
-const topicData = storeToRefs(useKUNGalgameEditStore())
+const { isSaveTopic, category } = storeToRefs(useKUNGalgameEditStore())
 
 // 定义被选中的分类的数组
 const selectedCategories = ref<string[]>([])
@@ -16,8 +16,8 @@ const selectedCategories = ref<string[]>([])
 // 组件挂载之前载入 store 里的数据
 onBeforeMount(() => {
   // 如果用户保存了草稿则载入
-  if (topicData.isSave.value) {
-    selectedCategories.value = topicData.category.value
+  if (isSaveTopic.value) {
+    selectedCategories.value = category.value
   }
 })
 
@@ -42,7 +42,7 @@ const handleClickCategory = (kun: Category) => {
   }
 
   // 将选中的 category 给 pinia 的 store
-  topicData.category.value = selectedCategories.value
+  category.value = selectedCategories.value
 }
 </script>
 
@@ -54,7 +54,7 @@ const handleClickCategory = (kun: Category) => {
     <div class="group-btn">
       <span
         class="btn"
-        v-for="kun in category"
+        v-for="kun in topicCategory"
         :key="kun.index"
         @click="handleClickCategory(kun)"
         :class="{ active: selectedCategories.includes(kun.name) }"

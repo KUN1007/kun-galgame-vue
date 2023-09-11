@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 
-// 导入编辑帖子的 store
+// 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
 
-const topicData = storeToRefs(useKUNGalgameEditStore())
+const { isSaveTopic, title } = storeToRefs(useKUNGalgameEditStore())
 
 // 话题标题的文字
 const topicTitle = ref('')
@@ -16,8 +16,8 @@ const topicTitle = ref('')
 const maxInputLength = 40
 
 onBeforeMount(() => {
-  if (topicData.isSave.value) {
-    topicTitle.value = topicData.title.value
+  if (isSaveTopic.value) {
+    topicTitle.value = title.value
   }
 })
 
@@ -36,7 +36,7 @@ const handelInput = () => {
   // 创建一个防抖处理函数
   const debouncedInput = debounce(() => {
     // 过滤 xss
-    topicData.title.value = topicTitle.value
+    title.value = topicTitle.value
   }, 300)
 
   // 调用防抖处理函数，会在延迟时间内只执行一次更新操作

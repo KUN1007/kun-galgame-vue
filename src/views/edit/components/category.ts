@@ -1,11 +1,9 @@
-import { type Ref, ref } from 'vue'
-
 export interface Category {
   index: number
   name: string
 }
 
-export const category: Category[] = [
+export const topicCategory: Category[] = [
   {
     index: 1,
     name: 'Galgame',

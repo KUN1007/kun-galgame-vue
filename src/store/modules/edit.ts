@@ -35,8 +35,8 @@ interface Topic {
   category: Array<string>
   // 是否显示热门关键词
   isShowHotKeywords: boolean
-  // 是否保存
-  isSave: boolean
+  // 是否保存话题
+  isSaveTopic: boolean
 }
 
 export const useKUNGalgameEditStore = defineStore({
@@ -51,8 +51,8 @@ export const useKUNGalgameEditStore = defineStore({
     content: '',
     tags: [],
     category: [],
-    isSave: false,
     isShowHotKeywords: true,
+    isSaveTopic: false,
   }),
   getters: {},
   actions: {
