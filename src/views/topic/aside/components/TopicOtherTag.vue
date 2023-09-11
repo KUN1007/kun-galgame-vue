@@ -9,15 +9,11 @@ defineProps(['isMasterTopics'])
 </script>
 
 <template>
-  <!-- 楼主的其它话题 -->
-  <div class="topic" :class="$props.isMasterTopics ? 'master' : ''">
+  <!-- 相同标签下的其它话题 -->
+  <div class="other">
     <ul>
       <li>
-        {{
-          $props.isMasterTopics
-            ? $tm('topic.aside.master')
-            : $tm('topic.aside.tags')
-        }}
+        {{ $tm('topic.aside.tags') }}
       </li>
       <li v-for="kun in asideTopic" :key="kun.index">
         <router-link :to="kun.router">{{ kun.name }}</router-link>
@@ -28,7 +24,7 @@ defineProps(['isMasterTopics'])
 
 <style lang="scss" scoped>
 /* 楼主的其它话题 */
-.topic {
+.other {
   width: 100%;
   height: 1px;
   flex-grow: 4;
@@ -59,7 +55,7 @@ defineProps(['isMasterTopics'])
       &:hover {
         border-left: 4px solid var(--kungalgame-pink-3);
         background-color: var(--kungalgame-trans-blue-1);
-        transition: 0.3s;
+        transition: 0.2s;
       }
       a {
         /* 左右两侧的距离 */
@@ -91,23 +87,6 @@ defineProps(['isMasterTopics'])
         /* 水平居中 */
         justify-content: center;
       }
-    }
-  }
-}
-.master {
-  border: 1px solid var(--kungalgame-trans-pink-2);
-  background-color: var(--kungalgame-trans-pink-0);
-  ul > li {
-    &:hover {
-      border-left: 4px solid var(--kungalgame-blue-3);
-      background-color: var(--kungalgame-trans-pink-1);
-    }
-    &:nth-child(1) {
-      /* 左侧没有 border，没有 hover */
-      border-left: 0;
-      background-color: var(--kungalgame-trans-pink-1);
-      /* 与单个话题标题的分割线 */
-      border-bottom: 1px solid var(--kungalgame-trans-pink-2);
     }
   }
 }

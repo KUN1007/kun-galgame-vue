@@ -8,6 +8,7 @@ const index: RouteRecordRaw[] = [
     path: '/',
     component: Layout,
     redirect: '/kun',
+    alias: '/index',
     children: [
       {
         name: 'KUN',

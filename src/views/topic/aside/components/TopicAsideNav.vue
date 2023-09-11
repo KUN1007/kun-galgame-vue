@@ -11,7 +11,7 @@ interface navItem {
   name: string
 }
 
-// 顶部导航栏的项目
+// 导航栏的项目
 const asideNavItem: navItem[] = [
   { index: 1, icon: 'line-md:arrow-close-up', name: 'top' },
   { index: 2, icon: 'svg-spinners:clock', name: 'timeSort' },
