@@ -2,26 +2,25 @@
  * 用户的信息存储
  */
 import { defineStore } from 'pinia'
-import { type Ref, ref } from 'vue'
 import { LoginRequestData, LoginResponseData } from '@/api/index'
 import { postLoginDataApi } from '@/api/index'
 
 interface UserState {
-  uid: Ref<number>
-  avatar: Ref<string>
-  token: Ref<string>
-  refreshToken: Ref<string>
+  uid: number
+  avatar: string
+  token: string
+  refreshToken: string
 }
 
 // 这里用了 pinia-plugin-persistedstate，直接存储 token 即可
-export const useKUNGalgamerStore = defineStore({
+export const useKUNGalgameUserStore = defineStore({
   id: 'kungalgamer',
   persist: true,
   state: (): UserState => ({
-    uid: ref<number>(0),
-    avatar: ref<string>(''),
-    token: ref<string>(''),
-    refreshToken: ref<string>(''),
+    uid: 0,
+    avatar: '',
+    token: '',
+    refreshToken: '',
   }),
   getters: {},
   actions: {

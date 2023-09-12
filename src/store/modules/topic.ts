@@ -1,8 +1,16 @@
 /* 话题详情的 store */
 import { defineStore } from 'pinia'
 
-import { getRepliesByPidApi, getTopicByTidApi } from '@/api/index'
 import {
+  getRelatedTopicsByTagsApi,
+  getPopularTopicsByUserUidApi,
+  getRepliesByPidApi,
+  getTopicByTidApi,
+} from '@/api/index'
+import {
+  TopicAsideOtherTagRequestData,
+  TopicAsideMasterRequestData,
+  TopicAsideResponseData,
   TopicDetailResponseData,
   TopicReplyRequestData,
   TopicReplyResponseData,
@@ -68,6 +76,34 @@ export const useKUNGalgameTopicStore = defineStore({
     },
   }),
   actions: {
+    // 左侧相同标签下的其它话题
+    getRelatedTopicsByTags(
+      request: TopicAsideOtherTagRequestData
+    ): Promise<TopicAsideResponseData> {
+      return new Promise((resolve, reject) => {
+        getRelatedTopicsByTagsApi(request)
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    // 楼主的其它话题
+    getPopularTopicsByUserUid(
+      request: TopicAsideMasterRequestData
+    ): Promise<TopicAsideResponseData> {
+      return new Promise((resolve, reject) => {
+        getPopularTopicsByUserUidApi(request)
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
     // 获取单个话题
     getTopicByTid(tid: number): Promise<TopicDetailResponseData> {
       return new Promise((resolve, reject) => {
