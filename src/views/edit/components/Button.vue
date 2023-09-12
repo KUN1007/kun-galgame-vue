@@ -8,7 +8,7 @@ import { toRaw } from 'vue'
 // 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入用户 store
-import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 // 导入路由
 import { useRouter } from 'vue-router'
@@ -60,7 +60,7 @@ const handlePublish = async () => {
       time: Date.now(),
       tags: rawData.tags,
       category: rawData.category,
-      uid: useKUNGalgamerStore().uid,
+      uid: useKUNGalgameUserStore().uid,
     }
 
     // 检查提交数据是否合法

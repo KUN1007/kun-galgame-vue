@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
 // 使用全局通知
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
@@ -24,7 +24,7 @@ const router = useRouter()
 
 const info = useKUNGalgameMessageStore()
 
-const useStore = useKUNGalgamerStore()
+const useStore = useKUNGalgameUserStore()
 
 // 用户登录的表单
 const loginForm = reactive({

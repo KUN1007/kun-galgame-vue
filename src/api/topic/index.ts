@@ -1,9 +1,52 @@
 import { fetchGet } from '@/utils/request'
+// 将对象转为请求参数的函数
+import objectToQueryParams from '@/utils/objectToQueryParams'
+import * as Aside from './types/aside'
 import * as Topic from './types/topic'
 
 const topicURLs = {
+  // 左侧相同标签下的其它话题
+  getRelatedTopicsByTags: `/topic/nav/same`,
+  // 楼主的其它话题
+  getPopularTopicsByUserUid: `/topic/nav/master`,
+  // 获取单个话题
   getTopicByTid: `/topic/detail`,
+  // 根据话题 id 获取话题回复
   getRepliesByPid: `/topic/detail`,
+}
+
+// 左侧相同标签下的其它话题
+export async function getRelatedTopicsByTagsApi(
+  request: Aside.TopicAsideOtherTagRequestData
+): Promise<Aside.TopicAsideResponseData> {
+  try {
+    const queryParams = objectToQueryParams(request)
+    const url = `${topicURLs.getRelatedTopicsByTags}?${queryParams}`
+
+    const response = await fetchGet<Aside.TopicAsideResponseData>(url)
+
+    return response
+  } catch (error) {
+    console.log(error)
+    throw new Error('Failed to fetch aside other topic')
+  }
+}
+
+// 楼主的其它话题
+export async function getPopularTopicsByUserUidApi(
+  request: Aside.TopicAsideMasterRequestData
+): Promise<Aside.TopicAsideResponseData> {
+  try {
+    const queryParams = objectToQueryParams(request)
+    const url = `${topicURLs.getPopularTopicsByUserUid}?${queryParams}`
+
+    const response = await fetchGet<Aside.TopicAsideResponseData>(url)
+
+    return response
+  } catch (error) {
+    console.log(error)
+    throw new Error('Failed to fetch master other topic')
+  }
 }
 
 // 获取单个话题
@@ -34,7 +77,7 @@ export async function getRepliesByPidApi(
     return response
   } catch (error) {
     console.log(error)
-    throw new Error('Failed to fetch topic')
+    throw new Error('Failed to fetch replies')
   }
 }
 
@@ -50,6 +93,6 @@ export async function getCommentsByReplyRidApi(
     return response
   } catch (error) {
     console.log(error)
-    throw new Error('Failed to fetch topic')
+    throw new Error('Failed to fetch comments')
   }
 }

@@ -3,7 +3,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import type { App } from 'vue'
 
 // 导入用户 store
-import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
 // 导入网站设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -16,7 +16,7 @@ export function setupPinia(app: App<Element>) {
 }
 
 export function storeReset() {
-  const userStore = useKUNGalgamerStore()
+  const userStore = useKUNGalgameUserStore()
   const settingsStore = useKUNGalgameSettingsStore()
 
   userStore.$reset()

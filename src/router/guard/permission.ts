@@ -1,6 +1,6 @@
 import { Router } from 'vue-router'
 import { type RouteRecordRaw } from 'vue-router'
-import { useKUNGalgamerStore } from '@/store/modules/kungalgamer'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { WHITE_LIST } from '../router'
 import { storeToRefs } from 'pinia'
 import { unref } from 'vue'
@@ -10,7 +10,7 @@ import { asyncRoutes } from '../router'
 
 export const createPermission = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
-    const useStore = useKUNGalgamerStore()
+    const useStore = useKUNGalgameUserStore()
     const { token } = storeToRefs(useStore)
     const getRoute = asyncRoutes
 
