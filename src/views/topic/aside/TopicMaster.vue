@@ -24,8 +24,6 @@ const { uid } = storeToRefs(useKUNGalgameUserStore())
 const topicData = ref<TopicAside[]>()
 
 onMounted(async () => {
-  console.log(tid)
-
   topicData.value = (
     await useKUNGalgameTopicStore().getPopularTopicsByUserUid({
       uid: uid.value,

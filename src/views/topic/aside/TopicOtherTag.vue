@@ -2,31 +2,31 @@
   这里是楼主的其他话题组件
  -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, toRaw } from 'vue'
 
 import { TopicAside } from '@/api/index'
 
 // 导入 topic store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
-import { RouterLink, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-const tid = route.params.tid as string
+const tid = parseInt(route.params.tid as string)
 
 const props = defineProps<{
   tags: string[]
 }>()
 
+const tags = toRaw(props.tags)
+
 const topicData = ref<TopicAside[]>()
 
 onMounted(async () => {
-  console.log(tid)
-
   topicData.value = (
     await useKUNGalgameTopicStore().getRelatedTopicsByTags({
-      tags: props.tags,
+      tags: tags,
       tid: tid,
     })
   ).data
