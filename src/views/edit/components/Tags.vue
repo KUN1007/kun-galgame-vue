@@ -102,7 +102,7 @@ const validateTagName = (tagName: string) => {
 }
 
 // 监测 selectedTags 的变化，保存用户选中的 tag
-watch(selectedTags, () => {
+watch(selectedTags.value, () => {
   // 如果是在 topic 界面则保存到回复的 store
   if (routeName.value === 'Topic') {
     replyDraft.value.tags = selectedTags.value
