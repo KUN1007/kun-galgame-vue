@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 import SortTopic from './SortTopic.vue'
 
-const category = `["Galgame"]`
+const category = ['Galgame']
 </script>
 
 <template>

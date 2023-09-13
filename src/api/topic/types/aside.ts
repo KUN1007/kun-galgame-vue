@@ -9,7 +9,7 @@ export interface TopicAsideOtherTagRequestData {
   // 本话题的 tags
   tags: string[]
   // 当前话题的 tid，因为相同标签下的其它话题不包括本话题
-  tid: string
+  tid: number
 }
 
 export interface TopicAsideMasterRequestData {
