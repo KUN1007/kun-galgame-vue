@@ -159,7 +159,6 @@ onBeforeMount(() => {
   /* 右侧内容区为弹性盒（用户可以一直向下滑） */
   display: flex;
   flex-direction: column;
-  z-index: 1;
 }
 
 @media (max-width: 1000px) {

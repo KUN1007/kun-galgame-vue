@@ -22,13 +22,21 @@ const orderAscending = () => {
 const orderDescending = () => {
   replyRequest.value.sortOrder = 'desc'
 }
+
+const handleBackToTop = () => {
+  // 使用 window.scrollTo 方法将页面滚动到顶部
+  window.scrollTo({
+    top: 0, // 滚动到顶部的位置
+    behavior: 'smooth', // 平滑滚动效果
+  })
+}
 </script>
 
 <template>
   <div class="nav">
     <!-- 交互区容器 -->
     <div class="item">
-      <span>
+      <span @click="handleBackToTop">
         <Icon class="icon" icon="line-md:arrow-close-up" />{{
           $tm('topic.aside.top')
         }}

@@ -22,16 +22,11 @@ const props = defineProps<{
 /* 话题的标签 */
 .tags {
   display: flex;
-  justify-content: center;
   align-items: center;
   color: var(--kungalgame-font-color-3);
-  flex-shrink: 0;
-  flex-grow: 1;
   /* 单个标签的盒子 */
   ul {
-    flex-grow: 1;
-    max-height: 100px;
-    width: 300px;
+    max-height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
@@ -55,5 +50,6 @@ const props = defineProps<{
   font-size: 23px;
   margin: 0 20px;
   color: var(--kungalgame-blue-4);
+  flex-shrink: 0;
 }
 </style>
