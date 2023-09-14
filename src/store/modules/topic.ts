@@ -46,6 +46,9 @@ interface Topic {
   replyRequest: TopicReplyRequestData
   // 评论的缓存
   commentDraft: CommentDraft
+
+  // 当前页面话题的 tags，用于获取相关话题
+  currentTags: string[]
 }
 
 export const useKUNGalgameTopicStore = defineStore({
@@ -74,6 +77,8 @@ export const useKUNGalgameTopicStore = defineStore({
       to_uid: 0,
       content: '',
     },
+
+    currentTags: [],
   }),
   actions: {
     // 左侧相同标签下的其它话题
