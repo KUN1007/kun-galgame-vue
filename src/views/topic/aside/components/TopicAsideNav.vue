@@ -27,13 +27,13 @@ const orderDescending = () => {
 <template>
   <div class="nav">
     <!-- 交互区容器 -->
-    <ul>
-      <li>
+    <div class="item">
+      <span>
         <Icon class="icon" icon="line-md:arrow-close-up" />{{
           $tm('topic.aside.top')
         }}
-      </li>
-      <li
+      </span>
+      <span
         v-for="kun in asideNavItem"
         :key="kun.index"
         @click="handleSortReply(kun.sortField)"
@@ -41,11 +41,15 @@ const orderDescending = () => {
         <Icon class="icon" :icon="kun.icon" />{{
           $tm(`topic.aside['${kun.name}']`)
         }}
-      </li>
-    </ul>
-    <div>
-      <span @click="orderAscending">升序</span>
-      <span @click="orderDescending">降序</span>
+      </span>
+    </div>
+    <div class="sort-order">
+      <span @click="orderAscending">
+        <Icon icon="tdesign:order-ascending" />
+      </span>
+      <span @click="orderDescending">
+        <Icon icon="tdesign:order-descending" />
+      </span>
     </div>
   </div>
 </template>
@@ -53,26 +57,26 @@ const orderDescending = () => {
 <style lang="scss" scoped>
 /* 话题详情页的交互 */
 .nav {
-  height: 107px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   /* 左边第一个部分的边 */
   border: 1px solid var(--kungalgame-trans-red-4);
+  background-color: var(--kungalgame-trans-blue-0);
   box-shadow: var(--shadow);
   border-radius: 5px;
   /* 距离顶部的距离 */
   margin-bottom: 17px;
   /* 隐藏溢出的边角 */
   overflow: hidden;
-  ul {
+  .item {
     flex-grow: 1;
     display: flex;
-    background-color: var(--kungalgame-trans-blue-0);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    & > li {
+    & > span {
+      height: 40px;
       padding: 0 11px;
-      flex-grow: 1;
       display: flex;
       align-items: center;
       position: relative;
@@ -81,6 +85,10 @@ const orderDescending = () => {
       overflow: hidden;
       white-space: nowrap;
       cursor: pointer;
+      font-size: 15px;
+      &:nth-child(1) {
+        color: var(--kungalgame-blue-4);
+      }
       &::before {
         transform: scaleX(0);
         transform-origin: bottom right;
@@ -102,8 +110,29 @@ const orderDescending = () => {
     }
   }
 }
+
 .icon {
   margin-right: 4px;
   font-size: 17px;
+}
+
+/* 按照升序还是降序排列 */
+.sort-order {
+  width: 100%;
+  display: flex;
+  cursor: default;
+  span {
+    height: 27px;
+    color: var(--kungalgame-blue-4);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    &:hover {
+      transition: all 0.2s;
+      color: var(--kungalgame-red-4);
+    }
+  }
 }
 </style>

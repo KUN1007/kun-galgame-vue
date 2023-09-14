@@ -17,7 +17,7 @@
   height: 100vh;
   width: 100vw;
   min-width: 700px;
-  min-height: 600px;
+  min-height: 100vh;
   background: linear-gradient(
     var(--kungalgame-trans-pink-1),
     var(--kungalgame-trans-blue-1)
