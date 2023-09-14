@@ -146,6 +146,7 @@ onBeforeMount(() => {
   /* 设置背景的毛玻璃效果 */
   backdrop-filter: blur(5px);
   background-color: var(--kungalgame-trans-white-5);
+  border: 1px solid var(--kungalgame-blue-0);
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;

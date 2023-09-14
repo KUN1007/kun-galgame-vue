@@ -39,45 +39,50 @@ const {
 </script>
 
 <template>
-  <!-- 楼主话题容器 -->
-  <div class="container">
-    <!-- 楼主话题内容区的容器 -->
-    <div class="content-container">
-      <!-- 楼主话题头部 -->
-      <div class="header">
-        <!-- 楼主话题标题 -->
-        <div class="title">
-          {{ title }}
+  <Transition
+    enter-active-class="animate__animated animate__fadeInRight animate__faster"
+    appear
+  >
+    <!-- 楼主话题容器 -->
+    <div class="container">
+      <!-- 楼主话题内容区的容器 -->
+      <div class="content-container">
+        <!-- 楼主话题头部 -->
+        <div class="header">
+          <!-- 楼主话题标题 -->
+          <div class="title">
+            {{ title }}
+          </div>
         </div>
-      </div>
-      <!-- 楼主话题内容区 -->
-      <div class="content">
-        <!-- 内容区的顶部 -->
-        <div class="content-top">
-          <Tags v-if="tags" :tags="tags" />
-          <Time v-if="time" :time="time" />
-        </div>
-        <!-- 内容区的中部 -->
-        <div class="content-center">
-          <KUNGalgamerInfo v-if="user" :user="user" />
+        <!-- 楼主话题内容区 -->
+        <div class="content">
+          <!-- 内容区的顶部 -->
+          <div class="content-top">
+            <Tags v-if="tags" :tags="tags" />
+            <Time v-if="time" :time="time" />
+          </div>
+          <!-- 内容区的中部 -->
+          <div class="content-center">
+            <KUNGalgamerInfo v-if="user" :user="user" />
 
-          <!-- 富文本内容展示区域 -->
-          <Content :content="content" />
+            <!-- 富文本内容展示区域 -->
+            <Content :content="content" />
+          </div>
+          <!-- 内容区的底部 -->
+          <div class="content-bottom">
+            <!-- 话题状态 -->
+            <div>话题状态：<span>正常</span></div>
+            <Rewrite v-if="edited" :time="edited" />
+          </div>
         </div>
-        <!-- 内容区的底部 -->
-        <div class="content-bottom">
-          <!-- 话题状态 -->
-          <div>话题状态：<span>正常</span></div>
-          <Rewrite v-if="edited" :time="edited" />
-        </div>
+        <!-- 话题的点赞数等信息 -->
+        <TopicFooter
+          :isOthersTopic="false"
+          :info="{ views, likes, dislikes, replies, upvotes }"
+        />
       </div>
-      <!-- 话题的点赞数等信息 -->
-      <TopicFooter
-        :isOthersTopic="false"
-        :info="{ views, likes, dislikes, replies, upvotes }"
-      />
     </div>
-  </div>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
