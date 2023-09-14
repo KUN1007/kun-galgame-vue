@@ -10,19 +10,22 @@ defineProps<{
 </script>
 
 <template>
-  <div class="aside">
-    <TopicAsideNav />
-    <TopicOtherTag style="margin-bottom: 17px" :tags="$props.tags" />
-    <TopicMaster />
-    <KUNGalgameFooter />
-  </div>
+  <Transition
+    enter-active-class="animate__animated animate__fadeInLeft animate__faster"
+    appear
+  >
+    <div class="aside">
+      <TopicAsideNav />
+      <TopicOtherTag style="margin-bottom: 17px" :tags="$props.tags" />
+      <TopicMaster />
+      <KUNGalgameFooter />
+    </div>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
 /* 左侧内容区 */
 .aside {
-  top: 70px;
-  position: sticky;
   /* 左侧区域的总高度 */
   height: 940px;
   /* 左侧区域宽度 */

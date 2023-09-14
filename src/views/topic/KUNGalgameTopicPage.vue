@@ -71,14 +71,6 @@ const fetchTopicData = async () => {
   topicData.value = topicResponseData
 }
 
-const fetchReplyData = async () => {
-  // 懒加载获取单个话题下面的回复数据
-  const replyResponseData = (
-    await useKUNGalgameTopicStore().getReplies(tid.value)
-  ).data
-  repliesData.value = replyResponseData
-}
-
 /** 这里拿到的已经是后端返回回来的 data 数据了  */
 onMounted(async () => {
   await fetchTopicData()
@@ -120,18 +112,16 @@ onBeforeMount(() => {
   <!-- 总容器 -->
   <div class="root">
     <ReplyPanel />
-    <!-- 下面话题详情区的容器 -->
-    <div class="container">
-      <!-- 下方可视内容区的容器 -->
-      <div class="content-container">
-        <!-- 侧边栏 -->
-        <Aside v-if="topicData?.tags" :tags="topicData.tags" />
 
-        <!-- 内容区 -->
-        <div class="content">
-          <Master v-if="topicData" :topicData="topicData" />
-          <Reply v-if="repliesData" :repliesData="repliesData" />
-        </div>
+    <!-- 下方可视内容区的容器 -->
+    <div class="content-container">
+      <!-- 侧边栏 -->
+      <Aside v-if="topicData?.tags" :tags="topicData.tags" />
+
+      <!-- 内容区 -->
+      <div class="content">
+        <Master v-if="topicData" :topicData="topicData" />
+        <Reply v-if="repliesData" :repliesData="repliesData" />
       </div>
     </div>
   </div>
@@ -140,21 +130,16 @@ onBeforeMount(() => {
 <style lang="scss" scoped>
 /* 页面总容器 */
 .root {
-  min-height: 1500px;
+  min-height: calc(100vh - 65px);
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
 }
-/* 下面话题详情区的容器 */
-.container {
-  display: flex;
-  flex-shrink: 0;
-}
+
 /* 下方可视内容区的容器 */
 .content-container {
   width: v-bind(topicPageWidth);
   transition: all 0.2s;
-  max-width: 1500px;
   height: 100%;
   margin: 0 auto;
   display: flex;
@@ -174,6 +159,7 @@ onBeforeMount(() => {
   /* 右侧内容区为弹性盒（用户可以一直向下滑） */
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 @media (max-width: 1000px) {
