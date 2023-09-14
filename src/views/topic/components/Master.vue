@@ -184,7 +184,8 @@ const {
 
 @media (max-width: 1000px) {
   .content-top {
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
