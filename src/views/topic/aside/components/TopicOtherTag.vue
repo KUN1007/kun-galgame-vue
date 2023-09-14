@@ -9,8 +9,12 @@ import { TopicAside } from '@/api/index'
 
 // 导入 topic store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-// 当前页面的 tags
-const tags = useKUNGalgameTopicStore().currentTags
+
+const props = defineProps<{
+  tags: string[]
+}>()
+const tags = toRaw(props.tags)
+
 // 当前路由实例
 const route = useRoute()
 // 当前所在话题的 id
@@ -27,7 +31,9 @@ const fetchTopicData = async () => {
   ).data
 }
 
-fetchTopicData()
+onMounted(() => {
+  fetchTopicData()
+})
 </script>
 
 <template>
@@ -53,8 +59,8 @@ fetchTopicData()
   box-shadow: var(--shadow);
 
   /* 上方区域的配色 */
-  border: 1px solid var(--kungalgame-trans-pink-2);
-  background-color: var(--kungalgame-trans-pink-0);
+  border: 1px solid var(--kungalgame-blue-1);
+  background-color: var(--kungalgame-trans-blue-0);
 
   height: 340px;
   display: flex;
@@ -68,9 +74,9 @@ fetchTopicData()
     font-size: 14px;
     font-weight: bold;
     color: var(--kungalgame-font-color-2);
-    background-color: var(--kungalgame-trans-pink-1);
+    background-color: var(--kungalgame-trans-blue-1);
     /* 与单个话题标题的分割线 */
-    border-bottom: 1px solid var(--kungalgame-trans-pink-2);
+    border-bottom: 1px solid var(--kungalgame-blue-1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,8 +92,8 @@ fetchTopicData()
     /* 内边距盒子 */
     box-sizing: border-box;
     &:hover {
-      border-left: 4px solid var(--kungalgame-blue-3);
-      background-color: var(--kungalgame-trans-pink-1);
+      border-left: 4px solid var(--kungalgame-pink-3);
+      background-color: var(--kungalgame-trans-blue-1);
       transition: 0.2s;
     }
     a {
@@ -106,6 +112,9 @@ fetchTopicData()
       font-size: small;
       display: flex;
       align-items: center;
+      &:visited {
+        color: var(--kungalgame-purple-4);
+      }
     }
   }
 }

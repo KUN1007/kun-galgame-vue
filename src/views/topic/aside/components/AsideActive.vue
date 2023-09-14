@@ -3,12 +3,16 @@ import TopicAsideNav from './TopicAsideNav.vue'
 import TopicOtherTag from './TopicOtherTag.vue'
 import TopicMaster from './TopicMaster.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+defineProps<{
+  tags: string[]
+}>()
 </script>
 
 <template>
   <div class="aside">
     <TopicAsideNav />
-    <TopicOtherTag style="margin-bottom: 17px" />
+    <TopicOtherTag style="margin-bottom: 17px" :tags="$props.tags" />
     <TopicMaster />
     <KUNGalgameFooter />
   </div>

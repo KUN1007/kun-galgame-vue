@@ -23,19 +23,23 @@ const { uid } = storeToRefs(useKUNGalgameUserStore())
 
 const topicData = ref<TopicAside[]>()
 
-onMounted(async () => {
+const fetchTopicData = async () => {
   topicData.value = (
     await useKUNGalgameTopicStore().getPopularTopicsByUserUid({
       uid: uid.value,
       tid: tid,
     })
   ).data
+}
+
+onMounted(async () => {
+  fetchTopicData()
 })
 </script>
 
 <template>
   <!-- 楼主的其它话题 -->
-  <div class="master">
+  <div class="master" v-if="topicData?.length">
     <div class="title">
       {{ $tm('topic.aside.master') }}
     </div>
@@ -109,6 +113,9 @@ onMounted(async () => {
       font-size: small;
       display: flex;
       align-items: center;
+      &:visited {
+        color: var(--kungalgame-purple-4);
+      }
     }
   }
 }

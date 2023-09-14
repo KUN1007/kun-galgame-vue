@@ -9,6 +9,7 @@ import {
   onBeforeMount,
   computed,
   provide,
+  watch,
 } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 
@@ -42,7 +43,7 @@ const topicStore = useKUNGalgameTopicStore()
 const requestData = storeToRefs(useKUNGalgameTopicStore())
 
 const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
-const { isShowAdvance, isEdit, currentTags } = storeToRefs(topicStore)
+const { isShowAdvance, isEdit } = storeToRefs(topicStore)
 
 // 在组件挂载时调用 fetchTopics 获取话题数据（watch 大法好！）
 // watch(
@@ -82,9 +83,6 @@ const fetchReplyData = async () => {
 onMounted(async () => {
   await fetchTopicData()
   await fetchReplyData()
-  if (topicData.value?.tags) {
-    currentTags.value = topicData.value?.tags
-  }
 })
 
 /* 话题界面的页面宽度 */
@@ -117,7 +115,7 @@ onBeforeMount(() => {
       <!-- 下方可视内容区的容器 -->
       <div class="content-container">
         <!-- 侧边栏 -->
-        <Aside />
+        <Aside v-if="topicData?.tags" :tags="topicData.tags" />
 
         <!-- 内容区 -->
         <div class="content">
