@@ -7,20 +7,24 @@ import AsideActive from './components/AsideActive.vue'
 
 import AsideBase from './components/AsideBase.vue'
 
+defineProps<{
+  tags: string[]
+}>()
+
 // 导入用户 store
-import { useKUNGalgameHomeStore } from '@/store/modules/home'
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-const { isActiveMainPageAside } = storeToRefs(useKUNGalgameHomeStore())
+const { isActiveAside } = storeToRefs(useKUNGalgameTopicStore())
 
 const asideWidth = ref('240px')
 const handleFold = () => {
-  isActiveMainPageAside.value = !isActiveMainPageAside.value
+  isActiveAside.value = !isActiveAside.value
 }
 watch(
-  isActiveMainPageAside,
+  isActiveAside,
   () => {
-    asideWidth.value = isActiveMainPageAside.value ? '250px' : '40px'
+    asideWidth.value = isActiveAside.value ? '250px' : '40px'
   },
   { immediate: true }
 )
@@ -35,23 +39,21 @@ watch(
       <Icon
         icon="line-md:arrow-left"
         style="font-size: 17px"
-        v-if="isActiveMainPageAside"
+        v-if="isActiveAside"
       />
       <Icon
         icon="line-md:arrow-right"
         style="font-size: 17px"
-        v-if="!isActiveMainPageAside"
+        v-if="!isActiveAside"
       />
-      <span v-if="isActiveMainPageAside">{{
-        $tm('mainPage.asideActive.fold')
-      }}</span>
+      <span v-if="isActiveAside">{{ $tm('mainPage.asideActive.fold') }}</span>
     </div>
-    <div class="item-active" v-if="isActiveMainPageAside">
-      <AsideActive />
+    <div class="item-active" v-if="isActiveAside">
+      <AsideActive :tags="$props.tags" />
     </div>
 
-    <div class="item" v-if="!isActiveMainPageAside">
-      <AsideBase :isActive="!isActiveMainPageAside" />
+    <div class="item" v-if="!isActiveAside">
+      <AsideBase :isActive="!isActiveAside" />
     </div>
   </div>
 </template>
@@ -69,7 +71,7 @@ watch(
   display: flex;
   /* 方向为竖向 */
   flex-direction: column;
-  transition: 0.5s;
+  transition: 0.1s;
   span {
     white-space: nowrap;
   }

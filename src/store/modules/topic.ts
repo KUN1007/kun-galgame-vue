@@ -40,15 +40,14 @@ interface Topic {
   isEdit: boolean
   // 是否显示高级编辑模式
   isShowAdvance: boolean
+  // 是否激活左侧交互面板
+  isActiveAside: boolean
   // 回复的缓存
   replyDraft: ReplyDraft
   // 获取回复的请求接口格式
   replyRequest: TopicReplyRequestData
   // 评论的缓存
   commentDraft: CommentDraft
-
-  // 当前页面话题的 tags，用于获取相关话题
-  currentTags: string[]
 }
 
 export const useKUNGalgameTopicStore = defineStore({
@@ -57,6 +56,7 @@ export const useKUNGalgameTopicStore = defineStore({
   state: (): Topic => ({
     isEdit: false,
     isShowAdvance: false,
+    isActiveAside: false,
     replyDraft: {
       r_uid: 0,
       to_uid: 0,
@@ -77,8 +77,6 @@ export const useKUNGalgameTopicStore = defineStore({
       to_uid: 0,
       content: '',
     },
-
-    currentTags: [],
   }),
   actions: {
     // 左侧相同标签下的其它话题
