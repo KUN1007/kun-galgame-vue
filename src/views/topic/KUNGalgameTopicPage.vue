@@ -43,7 +43,7 @@ const topicStore = useKUNGalgameTopicStore()
 const requestData = storeToRefs(useKUNGalgameTopicStore())
 
 const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
-const { isShowAdvance, isEdit } = storeToRefs(topicStore)
+const { isShowAdvance, isEdit, replyRequest } = storeToRefs(topicStore)
 
 // 在组件挂载时调用 fetchTopics 获取话题数据（watch 大法好！）
 // watch(
@@ -82,8 +82,18 @@ const fetchReplyData = async () => {
 /** 这里拿到的已经是后端返回回来的 data 数据了  */
 onMounted(async () => {
   await fetchTopicData()
-  await fetchReplyData()
 })
+
+// 调用 fetchTopics 获取回复数据（watch 大法好！）
+watch(
+  () => [replyRequest.value.sortOrder, replyRequest.value.sortField],
+  async () => {
+    repliesData.value = (
+      await useKUNGalgameTopicStore().getReplies(tid.value)
+    ).data
+  },
+  { immediate: true }
+)
 
 /* 话题界面的页面宽度 */
 const topicPageWidth = computed(() => {

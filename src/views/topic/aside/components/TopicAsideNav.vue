@@ -3,27 +3,57 @@
  -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-
 import { asideNavItem } from './asideNavItem'
+
+// 导入 topic store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+
+const { replyRequest } = storeToRefs(useKUNGalgameTopicStore())
+
+const handleSortReply = (sortField: string) => {
+  replyRequest.value.sortField = sortField
+}
+
+const orderAscending = () => {
+  replyRequest.value.sortOrder = 'asc'
+}
+
+const orderDescending = () => {
+  replyRequest.value.sortOrder = 'desc'
+}
 </script>
 
 <template>
   <div class="nav">
     <!-- 交互区容器 -->
     <ul>
-      <li v-for="kun in asideNavItem" :key="kun.index">
+      <li>
+        <Icon class="icon" icon="line-md:arrow-close-up" />{{
+          $tm('topic.aside.top')
+        }}
+      </li>
+      <li
+        v-for="kun in asideNavItem"
+        :key="kun.index"
+        @click="handleSortReply(kun.sortField)"
+      >
         <Icon class="icon" :icon="kun.icon" />{{
           $tm(`topic.aside['${kun.name}']`)
         }}
       </li>
     </ul>
+    <div>
+      <span @click="orderAscending">升序</span>
+      <span @click="orderDescending">降序</span>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 /* 话题详情页的交互 */
 .nav {
-  height: 100px;
+  height: 107px;
   display: flex;
   justify-content: center;
   /* 左边第一个部分的边 */

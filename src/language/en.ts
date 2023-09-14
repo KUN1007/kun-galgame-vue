@@ -87,9 +87,11 @@ export default {
   topic: {
     aside: {
       top: 'Back Top',
+      floorSort: 'Floor Sort',
       timeSort: 'Time Sort',
       likeSort: 'Like Sort',
       commentSort: 'Reply Sort',
+      updatedSort: 'Update Sort',
       tags: 'Topics Under the Same Tags',
       master: 'Other Topics of The Master',
     },

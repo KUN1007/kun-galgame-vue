@@ -111,8 +111,8 @@ const {
 /* 楼主话题头部 */
 .header {
   width: 100%;
-  height: 70px;
-  padding: 0 10px;
+  min-height: 70px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

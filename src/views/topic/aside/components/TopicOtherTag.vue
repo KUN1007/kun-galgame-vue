@@ -31,14 +31,14 @@ const fetchTopicData = async () => {
   ).data
 }
 
-onMounted(() => {
+onMounted(async () => {
   fetchTopicData()
 })
 </script>
 
 <template>
   <!-- 相同标签下的其它话题 -->
-  <div class="other">
+  <div class="other" v-if="topicData?.length">
     <div class="title">
       {{ $tm('topic.aside.tags') }}
     </div>
@@ -112,9 +112,6 @@ onMounted(() => {
       font-size: small;
       display: flex;
       align-items: center;
-      &:visited {
-        color: var(--kungalgame-purple-4);
-      }
     }
   }
 }

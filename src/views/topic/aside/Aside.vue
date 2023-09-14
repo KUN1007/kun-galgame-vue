@@ -17,7 +17,7 @@ import { storeToRefs } from 'pinia'
 
 const { isActiveAside } = storeToRefs(useKUNGalgameTopicStore())
 
-const asideWidth = ref('240px')
+const asideWidth = ref('250px')
 const handleFold = () => {
   isActiveAside.value = !isActiveAside.value
 }

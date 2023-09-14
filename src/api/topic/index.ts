@@ -70,7 +70,8 @@ export async function getRepliesByPidApi(
   request: Topic.TopicReplyRequestData
 ): Promise<Topic.TopicReplyResponseData> {
   try {
-    const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply`
+    const queryParams = objectToQueryParams(request, 'tid')
+    const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply/?${queryParams}`
 
     const response = await fetchGet<Topic.TopicReplyResponseData>(url)
 
@@ -82,17 +83,17 @@ export async function getRepliesByPidApi(
 }
 
 // 获取一个回复下面的评论
-export async function getCommentsByReplyRidApi(
-  request: Topic.TopicReplyRequestData
-): Promise<Topic.TopicReplyResponseData> {
-  try {
-    const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply`
+// export async function getCommentsByReplyRidApi(
+//   request: Topic.TopicReplyRequestData
+// ): Promise<Topic.TopicReplyResponseData> {
+//   try {
+//     const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply`
 
-    const response = await fetchGet<Topic.TopicReplyResponseData>(url)
+//     const response = await fetchGet<Topic.TopicReplyResponseData>(url)
 
-    return response
-  } catch (error) {
-    console.log(error)
-    throw new Error('Failed to fetch comments')
-  }
-}
+//     return response
+//   } catch (error) {
+//     console.log(error)
+//     throw new Error('Failed to fetch comments')
+//   }
+// }

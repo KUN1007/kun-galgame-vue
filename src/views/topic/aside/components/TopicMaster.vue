@@ -113,9 +113,6 @@ onMounted(async () => {
       font-size: small;
       display: flex;
       align-items: center;
-      &:visited {
-        color: var(--kungalgame-purple-4);
-      }
     }
   }
 }

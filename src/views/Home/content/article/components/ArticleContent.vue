@@ -13,7 +13,7 @@ const requestData = storeToRefs(useKUNGalgameHomeStore())
 // 在组件中定义响应式的话题数据
 const topics = ref<HomeTopic[]>([])
 
-// 在组件挂载时调用 fetchTopics 获取话题数据（watch 大法好！）
+// 调用 fetchTopics 获取话题数据（watch 大法好！）
 watch(
   [requestData.keywords, requestData.sortField, requestData.sortOrder],
   async () => {

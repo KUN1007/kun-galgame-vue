@@ -42,10 +42,12 @@ interface Topic {
   isShowAdvance: boolean
   // 是否激活左侧交互面板
   isActiveAside: boolean
+
   // 回复的缓存
   replyDraft: ReplyDraft
   // 获取回复的请求接口格式
   replyRequest: TopicReplyRequestData
+
   // 评论的缓存
   commentDraft: CommentDraft
 }
@@ -67,8 +69,8 @@ export const useKUNGalgameTopicStore = defineStore({
     },
     replyRequest: {
       tid: 0,
-      page: 0,
-      limit: 0,
+      page: 1,
+      limit: 5,
       sortField: '',
       sortOrder: '',
     },
@@ -122,12 +124,13 @@ export const useKUNGalgameTopicStore = defineStore({
     // 获取回复
     getReplies(tid: number): Promise<TopicReplyResponseData> {
       return new Promise((resolve, reject) => {
+        // 这里的默认值用于初始化
         const requestData: TopicReplyRequestData = {
           tid: tid,
-          page: this.replyRequest.page,
-          limit: this.replyRequest.limit,
-          sortField: this.replyRequest.sortField,
-          sortOrder: this.replyRequest.sortOrder,
+          page: this.replyRequest.page || 1,
+          limit: this.replyRequest.limit || 5,
+          sortField: this.replyRequest.sortField || 'floor',
+          sortOrder: this.replyRequest.sortOrder || 'desc',
         }
         getRepliesByPidApi(requestData)
           .then((res) => {
