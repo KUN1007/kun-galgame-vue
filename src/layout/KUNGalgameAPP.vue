@@ -16,12 +16,12 @@ import KUNGalgameTopBar from '@/components/top-bar/KUNGalgameTopBar.vue'
     </div>
     <!-- <RouterView /> -->
     <RouterView #default="{ route, Component }">
-      <!-- <Transition
+      <Transition
         :enter-active-class="`animate__animated ${route.meta.transition}`"
-        > -->
-      <!-- 坑！这里必须要加 key，不然同一界面 vue router 会识别不出来页面的更新，导致页面不刷新 -->
-      <component :is="Component" :key="route.fullPath"></component>
-      <!-- </Transition> -->
+      >
+        <!-- 坑！这里必须要加 key，不然同一界面 vue router 会识别不出来页面的更新，导致页面不刷新 -->
+        <component :is="Component" :key="route.fullPath"></component>
+      </Transition>
     </RouterView>
   </div>
 </template>

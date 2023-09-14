@@ -17,6 +17,7 @@ const topic: RouteRecordRaw[] = [
         // 使路由参数作为组件的 props 传递
         props: true,
         meta: {
+          transition: 'animate__fadeIn animate__faster',
           permission: 'kungalgamer',
           title: '话题',
         },

@@ -87,9 +87,11 @@ export default {
   topic: {
     aside: {
       top: '返回到顶端',
+      floorSort: '按楼层排序',
       timeSort: '按时间排序',
       likeSort: '按点赞排序',
       commentSort: '按评论排序',
+      updatedSort: '按更新排序',
       tags: '相同标签下的其它话题',
       master: '楼主的其它话题',
     },

@@ -53,13 +53,14 @@ export const useKUNGalgameHomeStore = defineStore({
   actions: {
     // 获取首页话题
     getHomeTopic(): Promise<HomeTopicResponseData> {
+      // 这里的值用于初始化
       const requestData: HomeTopicRequestData = {
         keywords: this.keywords,
         category: this.category,
-        page: this.page,
-        limit: this.limit,
-        sortField: this.sortField,
-        sortOrder: this.sortOrder,
+        page: this.page || 1,
+        limit: this.limit || 17,
+        sortField: this.sortField || 'updated',
+        sortOrder: this.sortOrder || 'desc',
       }
       return new Promise((resolve, reject) => {
         getHomeTopicApi(requestData)
