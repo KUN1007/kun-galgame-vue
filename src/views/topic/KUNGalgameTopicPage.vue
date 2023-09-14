@@ -8,19 +8,12 @@ import {
   defineAsyncComponent,
   onBeforeMount,
   computed,
+  provide,
 } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 
-import TopicAsideNav from './aside/TopicAsideNav.vue'
-
-// 相同标签下的其它话题
-import TopicOtherTag from './aside/TopicOtherTag.vue'
-
-// 楼主的其它话题
-import TopicMaster from './aside/TopicMaster.vue'
-
-// 导入 Footer
-import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+// Aside
+import Aside from './aside/Aside.vue'
 import Master from './components/Master.vue'
 import Reply from './components/Reply.vue'
 // 异步导入回复面板
@@ -48,6 +41,9 @@ const topicStore = useKUNGalgameTopicStore()
 
 const requestData = storeToRefs(useKUNGalgameTopicStore())
 
+const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const { isShowAdvance, isEdit, currentTags } = storeToRefs(topicStore)
+
 // 在组件挂载时调用 fetchTopics 获取话题数据（watch 大法好！）
 // watch(
 //   [requestData.keywords, requestData.sortField, requestData.sortOrder],
@@ -63,28 +59,33 @@ const tid = computed(() => {
 
 // 单个话题数据
 const topicData = ref<TopicDetail>()
-
 // 单个话题的回复数据
 const repliesData = ref<TopicReply[]>([])
 
-/** 这里拿到的已经是后端返回回来的 data 数据了  */
-onMounted(async () => {
+const fetchTopicData = async () => {
   // 获取单个话题的数据
   const topicResponseData = (
     await useKUNGalgameTopicStore().getTopicByTid(tid.value)
   ).data
-
   topicData.value = topicResponseData
+}
 
+const fetchReplyData = async () => {
   // 懒加载获取单个话题下面的回复数据
   const replyResponseData = (
     await useKUNGalgameTopicStore().getReplies(tid.value)
   ).data
   repliesData.value = replyResponseData
-})
+}
 
-const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
-const { isShowAdvance, isEdit } = storeToRefs(topicStore)
+/** 这里拿到的已经是后端返回回来的 data 数据了  */
+onMounted(async () => {
+  await fetchTopicData()
+  await fetchReplyData()
+  if (topicData.value?.tags) {
+    currentTags.value = topicData.value?.tags
+  }
+})
 
 /* 话题界面的页面宽度 */
 const topicPageWidth = computed(() => {
@@ -115,17 +116,10 @@ onBeforeMount(() => {
     <div class="container">
       <!-- 下方可视内容区的容器 -->
       <div class="content-container">
-        <div class="aside">
-          <TopicAsideNav />
-          <TopicOtherTag
-            v-if="topicData?.tags"
-            style="margin-bottom: 17px"
-            :tags="topicData.tags"
-          />
-          <TopicMaster />
-          <KUNGalgameFooter />
-        </div>
+        <!-- 侧边栏 -->
+        <Aside />
 
+        <!-- 内容区 -->
         <div class="content">
           <Master v-if="topicData" :topicData="topicData" />
           <Reply v-if="repliesData" :repliesData="repliesData" />
@@ -163,23 +157,6 @@ onBeforeMount(() => {
   border-radius: 5px;
   padding: 5px;
   box-sizing: border-box;
-}
-
-/* 左侧内容区 */
-.aside {
-  top: 70px;
-  position: sticky;
-  /* 左侧区域的总高度 */
-  height: 940px;
-  /* 左侧区域宽度 */
-  width: 250px;
-  /* 左侧内容区为弹性盒，方便分成上下两部分 */
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: column;
-  box-sizing: border-box;
-  color: var(--kungalgame-font-color-3);
-  margin-right: 5px;
 }
 
 /* 右侧内容区 */
