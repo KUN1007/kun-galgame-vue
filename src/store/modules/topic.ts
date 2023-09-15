@@ -32,6 +32,9 @@ interface ReplyDraft {
 
   // 是否保存回复
   isSaveReply: boolean
+  // 回复发布的状态，如果状态有变化则将发布好的回复数据添加在回复数组里
+  // 这里与 true 和 false 无关，关心的是它的状态改变
+  publishStatus: boolean
 }
 
 // 评论的缓存
@@ -75,6 +78,7 @@ export const useKUNGalgameTopicStore = defineStore({
       tags: [],
 
       isSaveReply: false,
+      publishStatus: false,
     },
     replyRequest: {
       tid: 0,

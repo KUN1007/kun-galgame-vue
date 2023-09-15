@@ -6,21 +6,38 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 // 使用话题页面的 store
-const { isShowAdvance, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+const { isShowAdvance, replyDraft, isEdit } = storeToRefs(
+  useKUNGalgameTopicStore()
+)
 
 const info = useKUNGalgameMessageStore()
 
-// 点击发布话题
+// 检查回复是否合法
+const isValidReply = () => {}
+
+// 发布回复的函数
+const publishReply = async () => {
+  // 发布回复
+  await useKUNGalgameTopicStore().postNewReply()
+
+  // 改变发布状态，前端会新增回复的数据
+  replyDraft.value.publishStatus = !replyDraft.value.publishStatus
+  // 取消保存
+  replyDraft.value.isSaveReply = false
+  // 关闭面板
+  isEdit.value = false
+}
+
+// 点击发布回复
 const handlePublish = async () => {
   const res = await info.alert('AlertInfo.edit.publish', true)
   // 这里实现用户的点击确认取消逻辑
   if (res) {
-    // 发布回复
-    useKUNGalgameTopicStore().postNewReply()
-    // 取消保存
-    replyDraft.value.isSaveReply = false
+    publishReply()
+    // 发布成功提示
     info.info('AlertInfo.edit.publishSuccess')
   } else {
+    // 取消发布提示
     info.info('AlertInfo.edit.publishCancel')
   }
 }
