@@ -174,5 +174,16 @@ export const useKUNGalgameTopicStore = defineStore({
           })
       })
     },
+    // 设置回复草稿为原始值，用于发布按钮
+    resetReplyDraft() {
+      this.replyDraft.tid = 0
+      this.replyDraft.r_uid = 0
+      this.replyDraft.replyUserName = ''
+      this.replyDraft.to_uid = 0
+      this.replyDraft.content = ''
+      this.replyDraft.tags = []
+
+      this.replyDraft.isSaveReply = false
+    },
   },
 })
