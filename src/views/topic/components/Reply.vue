@@ -74,6 +74,7 @@ defineProps<{
           </div>
         </div>
         <!-- 其它人回复的底部 -->
+        <!-- isOthersTopic 区别楼主和回复的 footer,info 代表 footer 的点赞等信息，rUser 表示当前的回复用户信息 -->
         <TopicFooter
           :isOthersTopic="true"
           :info="{
@@ -82,6 +83,7 @@ defineProps<{
             replies: reply.cid.length,
             upvotes: reply.upvote,
           }"
+          :rUser="reply.r_user"
         />
         <Comments />
       </div>

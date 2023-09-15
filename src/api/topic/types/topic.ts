@@ -55,6 +55,15 @@ export interface TopicReply {
   cid: number[]
 }
 
+// 发表回复的请求数据
+export interface TopicCreateReplyRequestData {
+  tid: number
+  r_uid: number
+  to_uid: number
+  tags: string[]
+  content: string
+}
+
 // 评论的数据
 export interface TopicComment {}
 
@@ -63,3 +72,6 @@ export type TopicDetailResponseData = KUNGalgameResponseData<TopicDetail>
 
 // 单个话题回复响应数据的格式，返回的是多条回复数据，是一个数组
 export type TopicReplyResponseData = KUNGalgameResponseData<TopicReply[]>
+
+// 创建单个回复后返回的恢复数据
+export type TopicCreateReplyResponseData = KUNGalgameResponseData<TopicReply>

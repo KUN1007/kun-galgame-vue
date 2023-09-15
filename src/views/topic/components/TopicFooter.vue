@@ -1,20 +1,26 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
 import { nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
 // 引入流光环绕的特效
 import '@/styles/effect/effect.scss'
+
+import { TopicUserInfo } from '@/api'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
+// 当前的话题 tid
+const tid = parseInt(useRoute().params.tid as string)
+
 // 使用话题页面的 store
 const settingsStore = useKUNGalgameTopicStore()
-const { isEdit } = storeToRefs(settingsStore)
+const { isEdit, replyDraft } = storeToRefs(settingsStore)
 
 // 接受父组件的传值
-defineProps<{
+const props = defineProps<{
   isOthersTopic?: boolean
   info?: {
     views?: number
@@ -24,11 +30,16 @@ defineProps<{
     upvotes: number
     components?: number
   }
+  rUser: TopicUserInfo
 }>()
 
 const handelReply = async () => {
+  // 打开回复面板
   await nextTick()
   isEdit.value = true
+
+  // 保存必要信息，以便发表回复
+  replyDraft.value.r_uid = props.rUser?.uid
 }
 </script>
 

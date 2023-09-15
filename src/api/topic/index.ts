@@ -1,4 +1,4 @@
-import { fetchGet } from '@/utils/request'
+import { fetchGet, fetchPost } from '@/utils/request'
 // 将对象转为请求参数的函数
 import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as Aside from './types/aside'
@@ -13,6 +13,8 @@ const topicURLs = {
   getTopicByTid: `/topic/detail`,
   // 根据话题 id 获取话题回复
   getRepliesByPid: `/topic/detail`,
+  // 创建单个回复
+  postReplyByPidApi: `/topic/detail`,
 }
 
 // 左侧相同标签下的其它话题
@@ -97,3 +99,22 @@ export async function getRepliesByPidApi(
 //     throw new Error('Failed to fetch comments')
 //   }
 // }
+
+// 根据 pid 创建一个评论
+export async function postReplyByPidApi(
+  request: Topic.TopicCreateReplyRequestData
+): Promise<Topic.TopicCreateReplyResponseData> {
+  try {
+    const url = `${topicURLs.postReplyByPidApi}/${request.tid}/reply`
+
+    const response = await fetchPost<Topic.TopicCreateReplyResponseData>(
+      url,
+      request
+    )
+
+    return response
+  } catch (error) {
+    console.log(error)
+    throw new Error('Failed to create reply')
+  }
+}
