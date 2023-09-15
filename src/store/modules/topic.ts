@@ -6,6 +6,9 @@ import {
   getPopularTopicsByUserUidApi,
   getRepliesByPidApi,
   getTopicByTidApi,
+  TopicCreateReplyRequestData,
+  TopicCreateReplyResponseData,
+  postReplyByPidApi,
 } from '@/api/index'
 import {
   TopicAsideOtherTagRequestData,
@@ -18,7 +21,11 @@ import {
 
 // 回复的缓存
 interface ReplyDraft {
+  // 当前话题的 id
+  tid: number
   r_uid: number
+  // 回复给谁，用于回复面板展示
+  replyUserName: string
   to_uid: number
   content: string
   tags: string[]
@@ -60,7 +67,9 @@ export const useKUNGalgameTopicStore = defineStore({
     isShowAdvance: false,
     isActiveAside: false,
     replyDraft: {
+      tid: 0,
       r_uid: 0,
+      replyUserName: '',
       to_uid: 0,
       content: '',
       tags: [],
@@ -133,6 +142,26 @@ export const useKUNGalgameTopicStore = defineStore({
           sortOrder: this.replyRequest.sortOrder || 'desc',
         }
         getRepliesByPidApi(requestData)
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    // 创建回复
+    postNewReply(): Promise<TopicCreateReplyResponseData> {
+      return new Promise((resolve, reject) => {
+        // 这里的值用于初始化回复
+        const requestData: TopicCreateReplyRequestData = {
+          tid: this.replyDraft.tid,
+          r_uid: this.replyDraft.r_uid,
+          to_uid: this.replyDraft.to_uid,
+          tags: this.replyDraft.tags,
+          content: this.replyDraft.content,
+        }
+        postReplyByPidApi(requestData)
           .then((res) => {
             resolve(res)
           })
