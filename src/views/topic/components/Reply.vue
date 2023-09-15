@@ -26,69 +26,74 @@ defineProps<{
 
 <template>
   <!-- 其它人的回复 -->
-  <TransitionGroup class="trans-list" name="list" tag="div">
-    <!-- 这里使用 Math.random 的原因是 key 必须唯一 -->
-    <div
-      class="other-topic-container"
-      v-for="(reply, index) in repliesData"
-      :key="`${index}${Math.random()}`"
-    >
-      <!-- 每个人的单个话题 -->
-      <!-- 楼层标志 -->
-      <div class="floor">
-        <span>F{{ reply.floor }}</span>
-      </div>
-      <!-- 其他人话题内容区的容器 -->
-      <div class="container">
-        <!-- 其它人回复的内容区 -->
-        <div class="content">
-          <!-- 其他人回复的上部 -->
-          <div class="article">
-            <!-- 其它人回复的上部左侧区域 -->
-            <KUNGalgamerInfo :user="reply.r_user" />
-            <!-- 其它人回复的上部右侧区域 -->
-            <div class="right">
-              <!-- 右侧的上部区域 -->
-              <div class="top">
-                <!-- 上部区域的左边 -->
-                <div class="reply">
-                  <!-- TODO: 跳转到页面中话题的位置 -->
-                  <span
-                    >回复给 @
-                    <router-link to="#">{{
-                      reply.to_user.name
-                    }}</router-link></span
-                  >
+  <!-- 这里使用 Math.random 的原因是 key 必须唯一 -->
+  <Transition
+    enter-active-class="animate__animated animate__fadeInUp animate__faster"
+    appear
+  >
+    <div>
+      <div
+        class="other-topic-container"
+        v-for="(reply, index) in repliesData"
+        :key="`${index}${Math.random()}`"
+      >
+        <!-- 每个人的单个话题 -->
+        <!-- 楼层标志 -->
+        <div class="floor">
+          <span>F{{ reply.floor }}</span>
+        </div>
+        <!-- 其他人话题内容区的容器 -->
+        <div class="container">
+          <!-- 其它人回复的内容区 -->
+          <div class="content">
+            <!-- 其他人回复的上部 -->
+            <div class="article">
+              <!-- 其它人回复的上部左侧区域 -->
+              <KUNGalgamerInfo :user="reply.r_user" />
+              <!-- 其它人回复的上部右侧区域 -->
+              <div class="right">
+                <!-- 右侧的上部区域 -->
+                <div class="top">
+                  <!-- 上部区域的左边 -->
+                  <div class="reply">
+                    <!-- TODO: 跳转到页面中话题的位置 -->
+                    <span
+                      >回复给 @
+                      <router-link to="#">{{
+                        reply.to_user.name
+                      }}</router-link></span
+                    >
+                  </div>
+                  <!-- 上部区域的右边 -->
+                  <Rewrite v-if="reply.edited" :time="reply.edited" />
                 </div>
-                <!-- 上部区域的右边 -->
-                <Rewrite v-if="reply.edited" :time="reply.edited" />
+                <!-- 右侧部分分文本 -->
+                <div class="text" v-html="reply.content"></div>
               </div>
-              <!-- 右侧部分分文本 -->
-              <div class="text" v-html="reply.content"></div>
+            </div>
+            <!-- 其他人回复的下部 -->
+            <div class="bottom">
+              <Tags :tags="reply.tags" />
+              <Time :time="reply.time" />
             </div>
           </div>
-          <!-- 其他人回复的下部 -->
-          <div class="bottom">
-            <Tags :tags="reply.tags" />
-            <Time :time="reply.time" />
-          </div>
+          <!-- 其它人回复的底部 -->
+          <!-- isOthersTopic 区别楼主和回复的 footer,info 代表 footer 的点赞等信息，rUser 表示当前的回复用户信息 -->
+          <TopicFooter
+            :isOthersTopic="true"
+            :info="{
+              likes: reply.likes,
+              dislikes: reply.dislikes,
+              replies: reply.cid.length,
+              upvotes: reply.upvote,
+            }"
+            :rUser="reply.r_user"
+          />
+          <Comments />
         </div>
-        <!-- 其它人回复的底部 -->
-        <!-- isOthersTopic 区别楼主和回复的 footer,info 代表 footer 的点赞等信息，rUser 表示当前的回复用户信息 -->
-        <TopicFooter
-          :isOthersTopic="true"
-          :info="{
-            likes: reply.likes,
-            dislikes: reply.dislikes,
-            replies: reply.cid.length,
-            upvotes: reply.upvote,
-          }"
-          :rUser="reply.r_user"
-        />
-        <Comments />
       </div>
     </div>
-  </TransitionGroup>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
@@ -112,12 +117,11 @@ defineProps<{
   font-weight: bold;
   font-style: oblique;
   color: var(--kungalgame-red-3);
-  padding: 5px;
   border-bottom: none;
   /* 这里的阴影只能这么绘制 */
-  filter: drop-shadow(1px 2px 4px var(--kungalgame-trans-blue-4));
+  filter: drop-shadow(1px 2px 2px var(--kungalgame-trans-blue-4));
   span {
-    transform: rotate(10deg) translateY(10px) translateX(30px);
+    transform: rotate(10deg) translateY(40px);
     padding: 0 30px;
     text-align: center;
     background-color: var(--kungalgame-trans-white-2);
@@ -191,25 +195,6 @@ defineProps<{
   padding: 17px;
   border-left: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
-}
-
-.list-move, /* 对移动中的元素应用的过渡 */
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
-.list-leave-active {
-  transform: scale(0.5);
-  position: absolute;
 }
 
 @media (max-width: 1000px) {

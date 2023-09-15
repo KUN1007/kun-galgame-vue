@@ -9,8 +9,11 @@ import {
   onBeforeMount,
   computed,
   watch,
+  onBeforeUnmount,
 } from 'vue'
-import { onBeforeRouteLeave } from 'vue-router'
+import { onBeforeRouteLeave, useRoute } from 'vue-router'
+
+import { TopicDetail, TopicReply } from '@/api'
 
 // Aside
 import Aside from './aside/Aside.vue'
@@ -25,13 +28,9 @@ const ReplyPanel = defineAsyncComponent(
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-
 import { storeToRefs } from 'pinia'
 
-import { TopicDetail, TopicReply } from '@/api'
-
-import { useRoute } from 'vue-router'
-
+// 当前的路由
 const route = useRoute()
 
 // 使用设置面板的 store
@@ -51,18 +50,20 @@ const tid = computed(() => {
 const topicData = ref<TopicDetail>()
 // 单个话题的回复数据
 const repliesData = ref<TopicReply[]>([])
+// 页面的容器，用于计算是否到达底部
+const content = ref<HTMLElement>()
+// 当前的页数
+const currentPage = ref(1)
+// 是否加载，因为已经加载完了
+const isLoading = ref(true)
 
-const fetchTopicData = async () => {
+/** 这里拿到的已经是后端返回回来的 data 数据了  */
+onMounted(async () => {
   // 获取单个话题的数据
   const topicResponseData = (
     await useKUNGalgameTopicStore().getTopicByTid(tid.value)
   ).data
   topicData.value = topicResponseData
-}
-
-/** 这里拿到的已经是后端返回回来的 data 数据了  */
-onMounted(async () => {
-  await fetchTopicData()
 })
 
 // 调用 getReplies 获取回复数据（watch 大法好！）
@@ -73,13 +74,66 @@ watch(
     replyDraft.value.publishStatus,
   ],
   async () => {
-    repliesData.value = (
+    const replyResponseData = (
       await useKUNGalgameTopicStore().getReplies(tid.value)
     ).data
+    repliesData.value = replyResponseData
   },
   { immediate: true }
 )
 
+// 滚动事件处理函数
+const scrollHandler = async () => {
+  // 滚动到底部的处理逻辑
+  if (isScrollAtBottom() && isLoading.value) {
+    // 自动增加页数
+    currentPage.value++
+    // 获取下一页的回复数据
+
+    const lazyLoadReplies = await useKUNGalgameTopicStore().getReplies(
+      tid.value,
+      currentPage.value
+    )
+
+    // 判断是否已经将数据加载完，加载完则不需要加载了
+    if (!lazyLoadReplies.data.length) {
+      isLoading.value = false
+    }
+
+    // 将新加载的回复数据追加到已有的回复数据中
+    repliesData.value = [...repliesData.value, ...lazyLoadReplies.data]
+  }
+}
+
+// 判断是否滚动到底部
+const isScrollAtBottom = () => {
+  if (content.value) {
+    const scrollHeight = content.value.scrollHeight
+    const scrollTop = content.value.scrollTop
+    const clientHeight = content.value.clientHeight
+
+    return scrollHeight - scrollTop === clientHeight
+  }
+}
+
+// 在组件挂载后，添加滚动事件监听器
+onMounted(() => {
+  // 获取滚动元素的引用
+  const element = content.value
+
+  if (element) {
+    element.addEventListener('scroll', scrollHandler)
+  }
+})
+
+// 在组件卸载前，移除滚动事件监听器
+onBeforeUnmount(() => {
+  const element = content.value
+
+  if (element) {
+    element.removeEventListener('scroll', scrollHandler)
+  }
+})
 /* 话题界面的页面宽度 */
 const topicPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Topic + '%'
@@ -112,7 +166,7 @@ onBeforeMount(() => {
       <Aside v-if="topicData?.tags" :tags="topicData.tags" />
 
       <!-- 内容区 -->
-      <div class="content">
+      <div class="content" ref="content">
         <Master v-if="topicData" :topicData="topicData" />
         <Reply v-if="repliesData" :repliesData="repliesData" />
       </div>
@@ -133,7 +187,8 @@ onBeforeMount(() => {
 .content-container {
   width: v-bind(topicPageWidth);
   transition: all 0.2s;
-  height: 100%;
+  height: calc(100vh - 65px);
+  min-height: 500px;
   margin: 0 auto;
   display: flex;
   /* 设置背景的毛玻璃效果 */
@@ -144,6 +199,7 @@ onBeforeMount(() => {
   border-radius: 5px;
   padding: 5px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* 右侧内容区 */
@@ -153,6 +209,8 @@ onBeforeMount(() => {
   /* 右侧内容区为弹性盒（用户可以一直向下滑） */
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: visible;
 }
 
 @media (max-width: 1000px) {
