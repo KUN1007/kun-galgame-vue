@@ -6,18 +6,19 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 // 使用话题页面的 store
-const { isShowAdvance, replyDraft } = storeToRefs(
-  useKUNGalgameTopicStore()
-)
+const { isShowAdvance, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 const info = useKUNGalgameMessageStore()
 
 // 点击发布话题
 const handlePublish = async () => {
   const res = await info.alert('AlertInfo.edit.publish', true)
-  // TODO:
   // 这里实现用户的点击确认取消逻辑
   if (res) {
+    // 发布回复
+    useKUNGalgameTopicStore().postNewReply()
+    // 取消保存
+    replyDraft.value.isSaveReply = false
     info.info('AlertInfo.edit.publishSuccess')
   } else {
     info.info('AlertInfo.edit.publishCancel')
@@ -56,6 +57,7 @@ const handleShowAdvance = () => {
 <style lang="scss" scoped>
 /* 按钮的容器 */
 .btn-container {
+  padding: 10px;
   width: 100%;
   display: flex;
   justify-content: space-between;

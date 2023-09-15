@@ -64,7 +64,7 @@ const handelClosePanel = () => {
           <!-- 回复的页脚 -->
           <div class="footer">
             <Tags
-              style="margin-top: 10px; margin-bottom: 10px"
+              style="margin-top: 10px; padding: 10px"
               v-if="isShowAdvance"
             />
             <ReplyPanelBtn />
@@ -94,9 +94,10 @@ const handelClosePanel = () => {
 .container {
   width: 90%;
   max-width: 1000px;
+  max-height: 77vh;
+  overflow-y: scroll;
   color: var(--kungalgame-font-color-3);
   background-color: var(--kungalgame-white);
-  padding: 10px;
   border-radius: 5px;
   border: 1px solid var(--kungalgame-blue-4);
   box-shadow: var(--shadow);
@@ -107,6 +108,7 @@ const handelClosePanel = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px;
   span {
     cursor: pointer;
     color: var(--kungalgame-blue-5);
