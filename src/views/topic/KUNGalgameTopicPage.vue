@@ -8,7 +8,6 @@ import {
   defineAsyncComponent,
   onBeforeMount,
   computed,
-  provide,
   watch,
 } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
@@ -29,7 +28,7 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
 import { storeToRefs } from 'pinia'
 
-import { TopicDetail, TopicReply } from '@/api/index'
+import { TopicDetail, TopicReply } from '@/api'
 
 import { useRoute } from 'vue-router'
 
@@ -40,19 +39,9 @@ const settingsStore = useKUNGalgameSettingsStore()
 // 使用话题页面的 store
 const topicStore = useKUNGalgameTopicStore()
 
-const requestData = storeToRefs(useKUNGalgameTopicStore())
-
 const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
-const { isShowAdvance, isEdit, replyRequest } = storeToRefs(topicStore)
-
-// 在组件挂载时调用 fetchTopics 获取话题数据（watch 大法好！）
-// watch(
-//   [requestData.keywords, requestData.sortField, requestData.sortOrder],
-//   async () => {
-//     topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
-//   },
-//   { immediate: true }
-// )
+const { isShowAdvance, isEdit, replyDraft, replyRequest } =
+  storeToRefs(topicStore)
 
 const tid = computed(() => {
   return Number(route.params.tid)
@@ -76,9 +65,13 @@ onMounted(async () => {
   await fetchTopicData()
 })
 
-// 调用 fetchTopics 获取回复数据（watch 大法好！）
+// 调用 getReplies 获取回复数据（watch 大法好！）
 watch(
-  () => [replyRequest.value.sortOrder, replyRequest.value.sortField],
+  () => [
+    replyRequest.value.sortOrder,
+    replyRequest.value.sortField,
+    replyDraft.value.publishStatus,
+  ],
   async () => {
     repliesData.value = (
       await useKUNGalgameTopicStore().getReplies(tid.value)
