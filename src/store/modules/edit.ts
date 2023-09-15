@@ -70,5 +70,13 @@ export const useKUNGalgameEditStore = defineStore({
           })
       })
     },
+    resetTopicData() {
+      this.title = ''
+      this.content = ''
+      this.tags = []
+      this.category = []
+
+      this.isSaveTopic = false
+    },
   },
 })

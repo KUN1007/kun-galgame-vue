@@ -2,14 +2,14 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-const props = defineProps<{
+defineProps<{
   tags: string[]
 }>()
 </script>
 
 <template>
   <!-- 话题的标签 -->
-  <div class="tags">
+  <div class="tags" v-if="$props.tags.length">
     <!-- 标签的图标字体 -->
     <Icon class="tag" icon="mingcute:tag-2-fill" />
     <ul>

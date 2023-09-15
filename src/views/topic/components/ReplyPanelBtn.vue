@@ -23,7 +23,7 @@ const publishReply = async () => {
   // 改变发布状态，前端会新增回复的数据
   replyDraft.value.publishStatus = !replyDraft.value.publishStatus
   // 取消保存
-  replyDraft.value.isSaveReply = false
+  useKUNGalgameTopicStore().resetReplyDraft()
   // 关闭面板
   isEdit.value = false
 }
