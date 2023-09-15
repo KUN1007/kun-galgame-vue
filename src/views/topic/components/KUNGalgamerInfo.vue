@@ -67,7 +67,6 @@ const props = defineProps<{
     margin-top: 27px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--kungalgame-blue-1);
-    border-top: 1px solid var(--kungalgame-blue-1);
   }
   .info {
     margin-left: 50px;

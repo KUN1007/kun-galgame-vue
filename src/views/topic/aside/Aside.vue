@@ -61,8 +61,6 @@ watch(
 <style lang="scss" scoped>
 /* 侧边栏部分 */
 .aside {
-  top: 70px;
-  position: sticky;
   /* 侧边栏距离文章区域的距离 */
   margin-right: 5px;
   width: v-bind('asideWidth');
@@ -77,6 +75,8 @@ watch(
   span {
     white-space: nowrap;
   }
+  overflow-y: scroll;
+  flex-shrink: 0;
 }
 /* 侧边栏交互 */
 .nav-aside {

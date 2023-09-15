@@ -44,6 +44,11 @@ interface CommentDraft {
   content: string
 }
 
+// 获取回复的请求
+interface ReplyRequest {
+  sortField: string
+  sortOrder: 'asc' | 'desc'
+}
 // 话题页面的 store
 interface Topic {
   // 是否正在被编辑
@@ -56,7 +61,7 @@ interface Topic {
   // 回复的缓存
   replyDraft: ReplyDraft
   // 获取回复的请求接口格式
-  replyRequest: TopicReplyRequestData
+  replyRequest: ReplyRequest
 
   // 评论的缓存
   commentDraft: CommentDraft
@@ -81,11 +86,8 @@ export const useKUNGalgameTopicStore = defineStore({
       publishStatus: false,
     },
     replyRequest: {
-      tid: 0,
-      page: 1,
-      limit: 5,
       sortField: '',
-      sortOrder: '',
+      sortOrder: 'asc',
     },
     commentDraft: {
       c_uid: 0,
@@ -135,13 +137,17 @@ export const useKUNGalgameTopicStore = defineStore({
       })
     },
     // 获取回复
-    getReplies(tid: number): Promise<TopicReplyResponseData> {
+    getReplies(
+      tid: number,
+      page?: number,
+      limit?: number
+    ): Promise<TopicReplyResponseData> {
       return new Promise((resolve, reject) => {
         // 这里的默认值用于初始化
         const requestData: TopicReplyRequestData = {
           tid: tid,
-          page: this.replyRequest.page || 1,
-          limit: this.replyRequest.limit || 5,
+          page: page || 1,
+          limit: limit || 5,
           sortField: this.replyRequest.sortField || 'floor',
           sortOrder: this.replyRequest.sortOrder || 'desc',
         }
