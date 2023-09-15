@@ -10,19 +10,21 @@ import { TopicUserInfo } from '@/api'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+// 导入当前用户的 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
 // 当前的话题 tid
 const tid = parseInt(useRoute().params.tid as string)
 
 // 使用话题页面的 store
-const settingsStore = useKUNGalgameTopicStore()
-const { isEdit, replyDraft } = storeToRefs(settingsStore)
+const topicStore = useKUNGalgameTopicStore()
+const { isEdit, replyDraft } = storeToRefs(topicStore)
 
 // 接受父组件的传值
 const props = defineProps<{
   isOthersTopic?: boolean
-  info?: {
+  info: {
     views?: number
     likes: number
     dislikes: number
@@ -34,12 +36,15 @@ const props = defineProps<{
 }>()
 
 const handelReply = async () => {
+  // 保存必要信息，以便发表回复
+  replyDraft.value.tid = tid
+  replyDraft.value.r_uid = useKUNGalgameUserStore().uid
+  replyDraft.value.replyUserName = props.rUser.name
+  replyDraft.value.to_uid = props.rUser.uid
+
   // 打开回复面板
   await nextTick()
   isEdit.value = true
-
-  // 保存必要信息，以便发表回复
-  replyDraft.value.r_uid = props.rUser?.uid
 }
 </script>
 

@@ -79,6 +79,7 @@ const {
         <TopicFooter
           :isOthersTopic="false"
           :info="{ views, likes, dislikes, replies, upvotes }"
+          :r-user="user"
         />
       </div>
     </div>
