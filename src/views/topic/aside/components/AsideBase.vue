@@ -11,16 +11,22 @@ const { isScrollToTop, replyRequest } = storeToRefs(useKUNGalgameTopicStore())
 
 // 排序
 const handleSortReply = (sortField: string) => {
+  // 重置页数，是否加载等页面状态，否则会出现错误
+  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortField = sortField
 }
 
 // 升序排序
 const orderAscending = () => {
+  // 重置页数，是否加载等页面状态，否则会出现错误
+  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'asc'
 }
 
 // 降序排序
 const orderDescending = () => {
+  // 重置页数，是否加载等页面状态，否则会出现错误
+  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'desc'
 }
 

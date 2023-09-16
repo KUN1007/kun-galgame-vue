@@ -62,8 +62,8 @@ export const useKUNGalgameHomeStore = defineStore({
         category: this.category,
         page: this.page,
         limit: this.limit,
-        sortField: this.sortField || 'updated',
-        sortOrder: this.sortOrder || 'desc',
+        sortField: this.sortField,
+        sortOrder: this.sortOrder,
       }
       return new Promise((resolve, reject) => {
         getHomeTopicApi(requestData)

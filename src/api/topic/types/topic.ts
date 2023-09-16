@@ -19,7 +19,6 @@ export interface TopicDetail {
   views: number
   likes: number
   dislikes: number
-  replies: number
   time: number
   content: string
   upvotes: number

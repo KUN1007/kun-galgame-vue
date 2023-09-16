@@ -34,8 +34,14 @@ import { storeToRefs } from 'pinia'
 const route = useRoute()
 
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
-const { isShowAdvance, isEdit, replyDraft, replyRequest, isScrollToTop } =
-  storeToRefs(useKUNGalgameTopicStore())
+const {
+  isShowAdvance,
+  isEdit,
+  replyDraft,
+  replyRequest,
+  isScrollToTop,
+  isLoading,
+} = storeToRefs(useKUNGalgameTopicStore())
 
 const tid = computed(() => {
   return Number(route.params.tid)
@@ -47,19 +53,16 @@ const topicData = ref<TopicDetail>()
 const repliesData = ref<TopicReply[]>([])
 // 页面的容器，用于计算是否到达底部
 const content = ref<HTMLElement>()
-// 当前的页数
-const currentPage = ref(1)
-// 是否加载，因为已经加载完了
-const isLoading = ref(true)
 
-/** 这里拿到的已经是后端返回回来的 data 数据了  */
-onMounted(async () => {
-  // 获取单个话题的数据
-  const topicResponseData = (
-    await useKUNGalgameTopicStore().getTopicByTid(tid.value)
-  ).data
-  topicData.value = topicResponseData
-})
+// 获取话题详情的函数
+const getTopic = async (): Promise<TopicDetail> => {
+  return (await useKUNGalgameTopicStore().getTopicByTid(tid.value)).data
+}
+
+// 获取回复的函数
+const getReplies = async (): Promise<TopicReply[]> => {
+  return (await useKUNGalgameTopicStore().getReplies(tid.value)).data
+}
 
 // 调用 getReplies 获取回复数据（watch 大法好！）
 watch(
@@ -69,12 +72,8 @@ watch(
     replyDraft.value.publishStatus,
   ],
   async () => {
-    const replyResponseData = (
-      await useKUNGalgameTopicStore().getReplies(tid.value)
-    ).data
-    repliesData.value = replyResponseData
-  },
-  { immediate: true }
+    repliesData.value = await getReplies()
+  }
 )
 
 // 监视是否滚动到顶部
@@ -85,7 +84,7 @@ watch(isScrollToTop, () => {
       top: 0,
       behavior: 'smooth',
     })
-    // 讲滚动值还原
+    // 将滚动值还原
     isScrollToTop.value = false
   }
 })
@@ -95,21 +94,18 @@ const scrollHandler = async () => {
   // 滚动到底部的处理逻辑
   if (isScrollAtBottom() && isLoading.value) {
     // 自动增加页数
-    currentPage.value++
-    // 获取下一页的回复数据
+    replyRequest.value.page++
 
-    const lazyLoadReplies = await useKUNGalgameTopicStore().getReplies(
-      tid.value,
-      currentPage.value
-    )
+    // 获取下一页的回复数据
+    const lazyLoadReplies = await getReplies()
 
     // 判断是否已经将数据加载完，加载完则不需要加载了
-    if (!lazyLoadReplies.data.length) {
+    if (!lazyLoadReplies.length) {
       isLoading.value = false
     }
 
     // 将新加载的回复数据追加到已有的回复数据中
-    repliesData.value = [...repliesData.value, ...lazyLoadReplies.data]
+    repliesData.value = [...repliesData.value, ...lazyLoadReplies]
   }
 }
 
@@ -127,10 +123,19 @@ const isScrollAtBottom = () => {
 }
 
 // 在组件挂载后，添加滚动事件监听器
-onMounted(() => {
+onMounted(async () => {
+  // 挂载之前重置页数，是否加载等页面状态
+  useKUNGalgameTopicStore().resetPageStatus()
+
+  // 获取单个话题的数据
+  topicData.value = await getTopic()
+
+  // 获取回复的数据
+  repliesData.value = await getReplies()
+
   // 获取滚动元素的引用
   const element = content.value
-
+  // 获取到了则启动监听器，监听页面滚动行为
   if (element) {
     element.addEventListener('scroll', scrollHandler)
   }
@@ -139,11 +144,15 @@ onMounted(() => {
 // 在组件卸载前，移除滚动事件监听器
 onBeforeUnmount(() => {
   const element = content.value
-
+  // 如果获取到页面元素则销毁监听器
   if (element) {
     element.removeEventListener('scroll', scrollHandler)
   }
 })
+
+/**
+ * 其它操作，关闭回复面板和调整页面宽度等
+ */
 
 /* 话题界面的页面宽度 */
 const topicPageWidth = computed(() => {

@@ -12,14 +12,20 @@ import { storeToRefs } from 'pinia'
 const { isScrollToTop, replyRequest } = storeToRefs(useKUNGalgameTopicStore())
 
 const handleSortReply = (sortField: string) => {
+  // 重置页数，是否加载等页面状态，否则会出现错误
+  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortField = sortField
 }
 
 const orderAscending = () => {
+  // 重置页数，是否加载等页面状态，否则会出现错误
+  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'asc'
 }
 
 const orderDescending = () => {
+  // 重置页数，是否加载等页面状态，否则会出现错误
+  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'desc'
 }
 
