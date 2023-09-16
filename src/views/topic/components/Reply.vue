@@ -19,6 +19,12 @@ import KUNGalgamerInfo from './../components/KUNGalgamerInfo.vue'
 
 import { TopicReply } from '@/api/index'
 
+// 导入话题页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+
+const { scrollToReplyId } = storeToRefs(useKUNGalgameTopicStore())
+
 defineProps<{
   repliesData: TopicReply[]
 }>()
@@ -36,11 +42,12 @@ defineProps<{
         class="other-topic-container"
         v-for="(reply, index) in repliesData"
         :key="`${index}${Math.random()}`"
+        :id="`kungalgame-reply-${reply.rid}`"
       >
         <!-- 每个人的单个话题 -->
         <!-- 楼层标志 -->
         <div class="floor">
-          <span>F{{ reply.floor }}</span>
+          <span>K{{ reply.floor }}</span>
         </div>
         <!-- 其他人话题内容区的容器 -->
         <div class="container">
@@ -57,12 +64,12 @@ defineProps<{
                   <!-- 上部区域的左边 -->
                   <div class="reply">
                     <!-- TODO: 跳转到页面中话题的位置 -->
-                    <span
-                      >回复给 @
-                      <router-link to="#">{{
-                        reply.to_user.name
-                      }}</router-link></span
-                    >
+                    <span>
+                      回复给 @
+                      <span @click="scrollToReplyId = reply.rid">
+                        {{ reply.to_user.name }}
+                      </span>
+                    </span>
                   </div>
                   <!-- 上部区域的右边 -->
                   <Rewrite v-if="reply.edited" :time="reply.edited" />
@@ -84,8 +91,8 @@ defineProps<{
             :info="{
               likes: reply.likes,
               dislikes: reply.dislikes,
-              replies: reply.cid.length,
               upvotes: reply.upvote,
+              to_floor: reply.floor,
             }"
             :rUser="reply.r_user"
           />

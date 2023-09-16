@@ -27,7 +27,6 @@ const {
   views,
   likes,
   dislikes,
-  replies,
   time,
   content,
   upvotes,
@@ -78,7 +77,7 @@ const {
         <!-- 话题的点赞数等信息 -->
         <TopicFooter
           :isOthersTopic="false"
-          :info="{ views, likes, dislikes, replies, upvotes }"
+          :info="{ views, likes, dislikes, upvotes, to_floor: 0 }"
           :r-user="user"
         />
       </div>

@@ -11,10 +11,12 @@ export interface KUNGalgamer {
   bio: string
   upvotes: number
   like: number
+  dislike: number
   comment: number[]
   reply: number[]
   topic: number[]
   like_topic: number[]
+  dislike_topic: number[]
   upvotes_topic: number[]
   reply_topic: number[]
 }
