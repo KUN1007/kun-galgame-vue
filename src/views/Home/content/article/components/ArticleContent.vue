@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import {
+  ref,
+  watch,
+  onMounted,
+  onBeforeUnmount,
+  onBeforeMount,
+  nextTick,
+} from 'vue'
 import SingleTopic from './SingleTopic.vue'
 
 import { HomeTopic } from '@/api/index'
@@ -8,23 +15,82 @@ import { HomeTopic } from '@/api/index'
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 
-const requestData = storeToRefs(useKUNGalgameHomeStore())
+const { page, keywords, sortField, sortOrder, isLoading } = storeToRefs(
+  useKUNGalgameHomeStore()
+)
 
 // 在组件中定义响应式的话题数据
 const topics = ref<HomeTopic[]>([])
+// 页面的容器，用于计算是否到达底部
+const content = ref<HTMLElement>()
 
 // 调用 fetchTopics 获取话题数据（watch 大法好！）
-watch(
-  [requestData.keywords, requestData.sortField, requestData.sortOrder],
-  async () => {
-    topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
-  },
-  { immediate: true }
-)
+watch([keywords, sortField, sortOrder], async () => {
+  topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
+})
+
+// 滚动事件处理函数
+const scrollHandler = async () => {
+  // 滚动到底部的处理逻辑
+  if (isScrollAtBottom() && isLoading.value) {
+    // 自动增加页数
+    page.value++
+
+    const lazyLoadTopics = (await useKUNGalgameHomeStore().getHomeTopic()).data
+
+    // 判断是否已经将数据加载完，加载完则不需要加载了
+    if (!lazyLoadTopics.length) {
+      isLoading.value = false
+    }
+
+    // 将新加载的回复数据追加到已有的回复数据中
+    topics.value = [...topics.value, ...lazyLoadTopics]
+  }
+}
+
+// 判断是否滚动到底部
+const isScrollAtBottom = () => {
+  if (content.value) {
+    const scrollHeight = content.value.scrollHeight
+    const scrollTop = content.value.scrollTop
+    const clientHeight = content.value.clientHeight
+
+    // 使用误差范围来比较，因为 js 浮点数不精确
+    // 为什么是 1007 呢，因为我抽到鲲是在 10 月 7 日，啊哈哈哈
+    const errorMargin = 1.007
+    return Math.abs(scrollHeight - scrollTop - clientHeight) < errorMargin
+  }
+}
+
+onBeforeMount(async () => {
+  // 挂载之前重置页数，是否加载等页面状态
+  useKUNGalgameHomeStore().resetPageStatus()
+})
+
+// 在组件挂载后，添加滚动事件监听器
+onMounted(async () => {
+  // 获取滚动元素的引用
+  const element = content.value
+
+  if (element) {
+    element.addEventListener('scroll', scrollHandler)
+  }
+
+  topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
+})
+
+// 在组件卸载前，移除滚动事件监听器
+onBeforeUnmount(() => {
+  const element = content.value
+
+  if (element) {
+    element.removeEventListener('scroll', scrollHandler)
+  }
+})
 </script>
 
 <template>
-  <div class="topic-container">
+  <div class="topic-container" ref="content">
     <TransitionGroup name="list" tag="div">
       <!-- 该状态为 2 则话题处于被推状态 -->
       <div

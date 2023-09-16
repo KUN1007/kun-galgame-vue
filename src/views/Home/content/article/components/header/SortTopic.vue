@@ -7,18 +7,21 @@ import { storeToRefs } from 'pinia'
 // 导入排序列表的字段
 import { navSortItem } from './navSortItem'
 
-const homeStore = storeToRefs(useKUNGalgameHomeStore())
+const { sortField, sortOrder } = storeToRefs(useKUNGalgameHomeStore())
 
-const handleSortByField = (sortField: string) => {
-  homeStore.sortField.value = sortField
+const handleSortByField = (field: string) => {
+  useKUNGalgameHomeStore().resetPageStatus()
+  sortField.value = field
 }
 
 const orderAscending = () => {
-  homeStore.sortOrder.value = 'asc'
+  useKUNGalgameHomeStore().resetPageStatus()
+  sortOrder.value = 'asc'
 }
 
 const orderDescending = () => {
-  homeStore.sortOrder.value = 'desc'
+  useKUNGalgameHomeStore().resetPageStatus()
+  sortOrder.value = 'desc'
 }
 </script>
 

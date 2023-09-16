@@ -57,6 +57,8 @@ interface Topic {
   isShowAdvance: boolean
   // 是否激活左侧交互面板
   isActiveAside: boolean
+  // 是否滚动到顶部
+  isScrollToTop: boolean
 
   // 回复的缓存
   replyDraft: ReplyDraft
@@ -74,6 +76,7 @@ export const useKUNGalgameTopicStore = defineStore({
     isEdit: false,
     isShowAdvance: false,
     isActiveAside: false,
+    isScrollToTop: false,
     replyDraft: {
       tid: 0,
       r_uid: 0,

@@ -33,6 +33,8 @@ onBeforeMount(() => {
 
 // 定义防抖处理函数
 const debouncedSearch = debounce((inputValue: string) => {
+  // 搜索之前重置页数，是否加载等页面状态
+  useKUNGalgameHomeStore().resetPageStatus()
   keywords.value = inputValue
 }, 300) // 300 毫秒的防抖延迟
 
