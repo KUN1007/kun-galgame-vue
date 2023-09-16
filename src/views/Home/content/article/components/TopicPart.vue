@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
 // 导入 i18n 格式化时间的函数
@@ -12,9 +13,32 @@ const settingsStore = storeToRefs(useKUNGalgameSettingsStore())
 
 import { getPlainText } from '@/utils/getPlainText'
 
-const props = defineProps(['data'])
+import { HomeTopic } from '@/api'
 
-const plainText = getPlainText(props.data.content)
+const props = defineProps<{
+  topic: HomeTopic
+}>()
+
+const {
+  tid,
+  title,
+  views,
+  likes,
+  replies,
+  comments,
+  time,
+  content,
+  upvotes,
+  tags,
+  category,
+  popularity,
+} = props.topic
+
+const plainText = getPlainText(content)
+
+const getRepliesCount = computed(() => {
+  return replies.length + comments
+})
 </script>
 <template>
   <!-- 话题信息 -->
@@ -23,23 +47,21 @@ const plainText = getPlainText(props.data.content)
     <div class="summary">
       <!-- 话题的标题 -->
       <div class="title">
-        <span>{{ props.data.title }}</span>
+        <span>{{ title }}</span>
       </div>
       <!-- 话题的状态，点赞数等 -->
       <div class="status">
         <ul>
           <li>
-            <Icon icon="ic:outline-remove-red-eye" /><span>{{
-              props.data.views
-            }}</span>
+            <Icon icon="ic:outline-remove-red-eye" /><span>{{ views }}</span>
           </li>
           <li>
             <Icon icon="line-md:thumbs-up-twotone" /><span>{{
-              props.data.likes
+              likes.length
             }}</span>
           </li>
           <li>
-            <Icon icon="ri:reply-line" /><span>{{ props.data.replies }}</span>
+            <Icon icon="ri:reply-line" /><span>{{ getRepliesCount }}</span>
           </li>
         </ul>
 
@@ -47,7 +69,7 @@ const plainText = getPlainText(props.data.content)
         <div class="time">
           <span>{{
             formatTimeDifference(
-              props.data.time,
+              time,
               settingsStore.showKUNGalgameLanguage.value
             )
           }}</span>

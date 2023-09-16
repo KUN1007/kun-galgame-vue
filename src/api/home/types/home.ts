@@ -29,16 +29,16 @@ export interface HomeTopic {
   tid: number
   title: string
   views: number
-  likes: number
-  replies: number
+  likes: number[]
+  replies: number[]
   comments: number
   time: number
   content: string
-  upvotes: number
-  tags: Array<string>
-  category: Array<string>
+  upvotes: number[]
+  tags: string[]
+  category: string[]
   popularity: number
-  uid: HomeUserInfo
+  user: HomeUserInfo
 }
 
 // 首页响应数据的格式
