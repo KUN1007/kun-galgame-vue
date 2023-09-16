@@ -42,8 +42,8 @@ const {
     enter-active-class="animate__animated animate__fadeInRight animate__faster"
     appear
   >
-    <!-- 楼主话题容器 -->
-    <div class="container">
+    <!-- 楼主话题容器，这个 id 是方便点击跳转的 -->
+    <div class="container" :id="`kungalgame-reply-0`">
       <!-- 楼主话题内容区的容器 -->
       <div class="content-container">
         <!-- 楼主话题头部 -->

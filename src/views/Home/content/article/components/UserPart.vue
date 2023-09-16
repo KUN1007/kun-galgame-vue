@@ -1,5 +1,11 @@
 <script setup lang="ts">
-defineProps(['kungalgamer'])
+defineProps<{
+  user: {
+    uid: number
+    avatar: string
+    name: string
+  }
+}>()
 </script>
 
 <template>
@@ -14,7 +20,7 @@ defineProps(['kungalgamer'])
     <!-- 发布者姓名 -->
     <div class="name">
       <a href="#"
-        ><span>{{ $props.kungalgamer.name }}</span></a
+        ><span>{{ $props.user.name }}</span></a
       >
     </div>
   </div>

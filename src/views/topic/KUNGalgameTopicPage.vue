@@ -10,7 +10,7 @@ import {
   computed,
   watch,
   onBeforeUnmount,
-watchEffect,
+  watchEffect,
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 
@@ -55,6 +55,8 @@ const topicData = ref<TopicDetail>()
 const repliesData = ref<TopicReply[]>([])
 // 页面的容器，用于计算是否到达底部
 const content = ref<HTMLElement>()
+// 滚动到某个话题时触发动画
+const isExecuteScrollToReplyAnimate = ref(false)
 
 // 获取话题详情的函数
 const getTopic = async (): Promise<TopicDetail> => {
@@ -94,8 +96,19 @@ watch(isScrollToTop, () => {
 })
 
 // 监视用户想要跳转到哪个回复
-watchEffect(() => {
+watchEffect(async () => {
+  if (content.value) {
+    // 获取父元素下指定的子元素 id
+    const childElement = content.value.querySelector(
+      `#kungalgame-reply-${scrollToReplyId.value}`
+    ) as HTMLElement
 
+    // 滚动到指定位置并标识 style
+    if (childElement) {
+      childElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+    scrollToReplyId.value = -1
+  }
 })
 
 // 滚动事件处理函数
@@ -199,7 +212,11 @@ onBeforeMount(() => {
       <!-- 内容区 -->
       <div class="content" ref="content">
         <Master v-if="topicData" :topicData="topicData" />
-        <Reply v-if="repliesData" :repliesData="repliesData" />
+        <Reply
+          v-if="repliesData"
+          :repliesData="repliesData"
+          :isExecuteScrollToReplyAnimate="isExecuteScrollToReplyAnimate"
+        />
       </div>
     </div>
   </div>

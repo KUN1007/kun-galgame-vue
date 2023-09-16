@@ -42,7 +42,7 @@ defineProps<{
         class="other-topic-container"
         v-for="(reply, index) in repliesData"
         :key="`${index}${Math.random()}`"
-        :id="`kungalgame-reply-${reply.rid}`"
+        :id="`kungalgame-reply-${reply.floor}`"
       >
         <!-- 每个人的单个话题 -->
         <!-- 楼层标志 -->
@@ -63,12 +63,10 @@ defineProps<{
                 <div class="top">
                   <!-- 上部区域的左边 -->
                   <div class="reply">
-                    <!-- TODO: 跳转到页面中话题的位置 -->
-                    <span>
-                      回复给 @
-                      <span @click="scrollToReplyId = reply.rid">
-                        {{ reply.to_user.name }}
-                      </span>
+                    <!-- 跳转到页面中话题的位置 -->
+                    回复给 @
+                    <span @click="scrollToReplyId = reply.to_floor">
+                      {{ reply.to_user.name }}
                     </span>
                   </div>
                   <!-- 上部区域的右边 -->
@@ -186,9 +184,10 @@ defineProps<{
 .reply {
   font-size: 17px;
   color: var(--kungalgame-font-color-3);
-  a {
+  span {
     color: var(--kungalgame-blue-5);
     font-weight: 500;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
       text-decoration-thickness: 2px;

@@ -2,15 +2,19 @@
 import UserPart from './UserPart.vue'
 import TopicPart from './TopicPart.vue'
 
-const props = defineProps(['data'])
+import { HomeTopic } from '@/api'
+
+const props = defineProps<{
+  topic: HomeTopic
+}>()
 </script>
 
 <template>
   <div class="topic">
-    <UserPart :kungalgamer="props.data.uid" />
+    <UserPart :user="props.topic.user" />
     <!-- 进入指定话题的路由 -->
-    <router-link :to="`/topic/${props.data.tid}`">
-      <TopicPart :data="props.data" />
+    <router-link :to="`/topic/${props.topic.tid}`">
+      <TopicPart :topic="props.topic" />
     </router-link>
   </div>
 </template>

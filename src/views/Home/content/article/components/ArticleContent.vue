@@ -2,7 +2,7 @@
 import { ref, watch, onMounted, onBeforeUnmount, onBeforeMount } from 'vue'
 import SingleTopic from './SingleTopic.vue'
 
-import { HomeTopic } from '@/api/index'
+import { HomeTopic } from '@/api'
 
 // 导入主页 store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
@@ -97,14 +97,14 @@ onBeforeUnmount(() => {
       <div
         v-for="topic in topics"
         :key="topic.tid"
-        :class="topic.upvotes ? 'kungalgame-comet-surround' : ''"
+        :class="topic.upvotes.length ? 'kungalgame-comet-surround' : ''"
       >
         <span></span>
         <span></span>
         <span></span>
         <span></span>
 
-        <SingleTopic :data="topic" />
+        <SingleTopic :topic="topic" />
       </div>
     </TransitionGroup>
   </div>

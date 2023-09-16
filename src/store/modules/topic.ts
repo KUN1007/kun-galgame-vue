@@ -86,7 +86,8 @@ export const useKUNGalgameTopicStore = defineStore({
     isActiveAside: false,
     isScrollToTop: false,
     isLoading: true,
-    scrollToReplyId: 0,
+    // 回复 id 从 0 开始，-1 只是为了监测数据变化，用于 watchEffect
+    scrollToReplyId: -1,
 
     replyDraft: {
       tid: 0,
