@@ -12,6 +12,8 @@ interface HomeStore {
   limit: number
   sortField: string
   sortOrder: string
+  // 加载完了是否还需要加载
+  isLoading: boolean
 
   // 其它的 store
   // 是否激活主页的左侧交互面板
@@ -41,6 +43,7 @@ export const useKUNGalgameHomeStore = defineStore({
     limit: 17,
     sortField: 'updated',
     sortOrder: 'desc',
+    isLoading: true,
 
     // 其它的 store
     // 是否激活主页的左侧交互面板
@@ -57,8 +60,8 @@ export const useKUNGalgameHomeStore = defineStore({
       const requestData: HomeTopicRequestData = {
         keywords: this.keywords,
         category: this.category,
-        page: this.page || 1,
-        limit: this.limit || 17,
+        page: this.page,
+        limit: this.limit,
         sortField: this.sortField || 'updated',
         sortOrder: this.sortOrder || 'desc',
       }
@@ -71,6 +74,11 @@ export const useKUNGalgameHomeStore = defineStore({
             reject(error)
           })
       })
+    },
+    // 重置页数，是否加载，这样排序才能生效
+    resetPageStatus() {
+      this.page = 1
+      this.isLoading = true
     },
   },
 })

@@ -7,7 +7,7 @@ import { asideNavItem } from './asideNavItem'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-const { replyRequest } = storeToRefs(useKUNGalgameTopicStore())
+const { isScrollToTop, replyRequest } = storeToRefs(useKUNGalgameTopicStore())
 
 // 排序
 const handleSortReply = (sortField: string) => {
@@ -26,11 +26,7 @@ const orderDescending = () => {
 
 // 回到顶端
 const handleBackToTop = () => {
-  // 使用 window.scrollTo 方法将页面滚动到顶部
-  window.scrollTo({
-    top: 0, // 滚动到顶部的位置
-    behavior: 'smooth', // 平滑滚动效果
-  })
+  isScrollToTop.value = true
 }
 </script>
 

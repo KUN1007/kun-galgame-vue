@@ -33,14 +33,9 @@ import { storeToRefs } from 'pinia'
 // 当前的路由
 const route = useRoute()
 
-// 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-// 使用话题页面的 store
-const topicStore = useKUNGalgameTopicStore()
-
-const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
-const { isShowAdvance, isEdit, replyDraft, replyRequest } =
-  storeToRefs(topicStore)
+const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
+const { isShowAdvance, isEdit, replyDraft, replyRequest, isScrollToTop } =
+  storeToRefs(useKUNGalgameTopicStore())
 
 const tid = computed(() => {
   return Number(route.params.tid)
@@ -82,6 +77,19 @@ watch(
   { immediate: true }
 )
 
+// 监视是否滚动到顶部
+watch(isScrollToTop, () => {
+  if (content.value) {
+    // 将页面滚动到顶部
+    content.value.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+    // 讲滚动值还原
+    isScrollToTop.value = false
+  }
+})
+
 // 滚动事件处理函数
 const scrollHandler = async () => {
   // 滚动到底部的处理逻辑
@@ -112,7 +120,9 @@ const isScrollAtBottom = () => {
     const scrollTop = content.value.scrollTop
     const clientHeight = content.value.clientHeight
 
-    return scrollHeight - scrollTop === clientHeight
+    // 使用误差范围来比较，因为 js 浮点数不精确
+    const errorMargin = 1.007
+    return Math.abs(scrollHeight - scrollTop - clientHeight) < errorMargin
   }
 }
 
@@ -134,6 +144,7 @@ onBeforeUnmount(() => {
     element.removeEventListener('scroll', scrollHandler)
   }
 })
+
 /* 话题界面的页面宽度 */
 const topicPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Topic + '%'
@@ -145,10 +156,12 @@ const resetPanelStatus = () => {
   isEdit.value = false
 }
 
+// 页面离开时关闭回复面板
 onBeforeRouteLeave(() => {
   resetPanelStatus()
 })
 
+// 取消挂载时关闭回复面板
 onBeforeMount(() => {
   resetPanelStatus()
 })
