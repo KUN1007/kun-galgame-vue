@@ -10,6 +10,7 @@ import {
   computed,
   watch,
   onBeforeUnmount,
+watchEffect,
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 
@@ -41,6 +42,7 @@ const {
   replyRequest,
   isScrollToTop,
   isLoading,
+  scrollToReplyId,
 } = storeToRefs(useKUNGalgameTopicStore())
 
 const tid = computed(() => {
@@ -63,6 +65,8 @@ const getTopic = async (): Promise<TopicDetail> => {
 const getReplies = async (): Promise<TopicReply[]> => {
   return (await useKUNGalgameTopicStore().getReplies(tid.value)).data
 }
+
+// 滚动到某个回复的位置
 
 // 调用 getReplies 获取回复数据（watch 大法好！）
 watch(
@@ -87,6 +91,11 @@ watch(isScrollToTop, () => {
     // 将滚动值还原
     isScrollToTop.value = false
   }
+})
+
+// 监视用户想要跳转到哪个回复
+watchEffect(() => {
+
 })
 
 // 滚动事件处理函数
@@ -170,7 +179,7 @@ onBeforeRouteLeave(() => {
   resetPanelStatus()
 })
 
-// 取消挂载时关闭回复面板
+// 挂载之前关闭回复面板
 onBeforeMount(() => {
   resetPanelStatus()
 })

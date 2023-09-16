@@ -1,6 +1,8 @@
 <script setup lang="ts">
+// 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
@@ -17,6 +19,8 @@ const isValidReply = () => {}
 
 // 发布回复的函数
 const publishReply = async () => {
+  // 重置页数，是否加载等页面状态
+  useKUNGalgameTopicStore().resetPageStatus()
   // 发布回复
   await useKUNGalgameTopicStore().postNewReply()
 
@@ -35,10 +39,10 @@ const handlePublish = async () => {
   if (res) {
     publishReply()
     // 发布成功提示
-    info.info('AlertInfo.edit.publishSuccess')
+    message('Publish reply successfully!', '发布回复成功！', 'success')
   } else {
     // 取消发布提示
-    info.info('AlertInfo.edit.publishCancel')
+    message('Cancel publish reply', '取消发布回复', 'info')
   }
 }
 
@@ -47,7 +51,11 @@ const handleSave = () => {
   // 设置保存为 true
   replyDraft.value.isSaveReply = true
   // 这里实现用户的保存逻辑
-  info.info('AlertInfo.edit.draft')
+  message(
+    'The draft has been saved successfully!',
+    '草稿已经保存成功',
+    'success'
+  )
 }
 
 // 显示高级编辑模式

@@ -17,11 +17,11 @@ export interface TopicDetail {
   tid: number
   title: string
   views: number
-  likes: number
-  dislikes: number
+  likes: number[]
+  dislikes: number[]
   time: number
   content: string
-  upvotes: number
+  upvotes: number[]
   tags: string[]
   edited: number
   user: TopicUserInfo
@@ -41,14 +41,17 @@ export interface TopicReplyRequestData {
 export interface TopicReply {
   rid: number
   tid: number
+  // reply 所在的楼层
   floor: number
+  // 被回复的 reply 所在的楼层
+  to_floor: number
   r_user: TopicUserInfo
   to_user: TopicToUserInfo
   edited: number
   content: string
-  upvote: number
-  likes: number
-  dislikes: number
+  upvote: number[]
+  likes: number[]
+  dislikes: number[]
   tags: string[]
   time: number
   cid: number[]
@@ -59,6 +62,7 @@ export interface TopicCreateReplyRequestData {
   tid: number
   r_uid: number
   to_uid: number
+  to_floor: number
   tags: string[]
   content: string
 }

@@ -29,6 +29,8 @@ interface ReplyDraft {
   to_uid: number
   content: string
   tags: string[]
+  // 被回复的人的楼层数，用于跳转
+  to_floor: number
 
   // 是否保存回复
   isSaveReply: boolean
@@ -63,6 +65,8 @@ interface Topic {
   isScrollToTop: boolean
   // 加载完了是否还需要加载
   isLoading: boolean
+  // 要滚动到的回复 id
+  scrollToReplyId: number
 
   // 回复的缓存
   replyDraft: ReplyDraft
@@ -82,6 +86,7 @@ export const useKUNGalgameTopicStore = defineStore({
     isActiveAside: false,
     isScrollToTop: false,
     isLoading: true,
+    scrollToReplyId: 0,
 
     replyDraft: {
       tid: 0,
@@ -90,6 +95,7 @@ export const useKUNGalgameTopicStore = defineStore({
       to_uid: 0,
       content: '',
       tags: [],
+      to_floor: 0,
 
       isSaveReply: false,
       publishStatus: false,
@@ -175,6 +181,7 @@ export const useKUNGalgameTopicStore = defineStore({
           tid: this.replyDraft.tid,
           r_uid: this.replyDraft.r_uid,
           to_uid: this.replyDraft.to_uid,
+          to_floor: this.replyDraft.to_floor,
           tags: this.replyDraft.tags,
           content: this.replyDraft.content,
         }

@@ -95,6 +95,9 @@ export default {
       tags: 'Topics Under the Same Tags',
       master: 'Other Topics of The Master',
     },
+    panel: {
+      to: 'Reply To',
+    },
   },
   update: {
     next: 'Next Version',

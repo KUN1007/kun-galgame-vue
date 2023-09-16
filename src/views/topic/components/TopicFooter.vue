@@ -26,11 +26,11 @@ const props = defineProps<{
   isOthersTopic?: boolean
   info: {
     views?: number
-    likes: number
-    dislikes: number
-    replies: number
-    upvotes: number
-    components?: number
+    likes: number[]
+    dislikes: number[]
+    upvotes: number[]
+    // 被回复人的 floor
+    to_floor: number
   }
   rUser: TopicUserInfo
 }>()
@@ -41,6 +41,7 @@ const handelReply = async () => {
   replyDraft.value.r_uid = useKUNGalgameUserStore().uid
   replyDraft.value.replyUserName = props.rUser.name
   replyDraft.value.to_uid = props.rUser.uid
+  replyDraft.value.to_floor = props.info.to_floor
 
   // 打开回复面板
   await nextTick()
@@ -54,25 +55,25 @@ const handelReply = async () => {
     <!-- 底部左侧部分（点赞、推话题、踩） -->
     <div class="left">
       <ul>
-        <!-- 查看数量 -->
-        <li>
-          <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
-          {{ info?.views }}
-        </li>
         <!-- 推话题 -->
         <li>
           <span class="icon"><Icon icon="bi:rocket" /></span>
-          {{ info?.upvotes }}
+          {{ info?.upvotes?.length }}
+        </li>
+        <!-- 查看数量 -->
+        <li v-if="info.views">
+          <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
+          {{ info.views }}
         </li>
         <!-- 点赞 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-up-twotone" /></span>
-          {{ info?.likes }}
+          {{ info?.likes?.length }}
         </li>
         <!-- 踩 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-down-twotone" /></span>
-          {{ info?.dislikes }}
+          {{ info?.dislikes?.length }}
         </li>
       </ul>
     </div>
@@ -135,7 +136,7 @@ const handelReply = async () => {
       display: flex;
       margin-right: 3px;
     }
-    &:nth-child(2) span {
+    &:nth-child(1) span {
       color: var(--kungalgame-red-4);
     }
   }

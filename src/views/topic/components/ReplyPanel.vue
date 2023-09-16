@@ -6,7 +6,7 @@ import { Icon } from '@iconify/vue'
 import 'animate.css'
 
 // 导入 Vue 异步函数
-import { defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
 
 // 导入编辑器
 const QuillEditor = defineAsyncComponent(
@@ -26,7 +26,11 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 // 使用话题页面的 store
-const { isShowAdvance, isEdit } = storeToRefs(useKUNGalgameTopicStore())
+const { isShowAdvance, isEdit, replyDraft } = storeToRefs(
+  useKUNGalgameTopicStore()
+)
+
+const position = computed(() => {})
 
 const handelClosePanel = () => {
   isShowAdvance.value = false
@@ -44,7 +48,11 @@ const handelClosePanel = () => {
         <div class="container">
           <!-- 回复面板回复给谁 -->
           <div class="title">
-            <h3>回复给 @ <span>啊这可海星</span>（楼主）</h3>
+            <h3>
+              {{ $tm('topic.panel.to') + ' @' }}
+              <span>{{ replyDraft.replyUserName }}</span>
+              <span>{{ replyDraft.to_floor }}</span>
+            </h3>
             <Icon
               @click="handelClosePanel"
               class="close"
