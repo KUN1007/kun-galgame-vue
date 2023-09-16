@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  ref,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-  onBeforeMount,
-  nextTick,
-} from 'vue'
+import { ref, watch, onMounted, onBeforeUnmount, onBeforeMount } from 'vue'
 import SingleTopic from './SingleTopic.vue'
 
 import { HomeTopic } from '@/api/index'
@@ -24,9 +17,14 @@ const topics = ref<HomeTopic[]>([])
 // 页面的容器，用于计算是否到达底部
 const content = ref<HTMLElement>()
 
+// 获取页面话题的函数
+const getTopics = async (): Promise<HomeTopic[]> => {
+  return (await useKUNGalgameHomeStore().getHomeTopic()).data
+}
+
 // 调用 fetchTopics 获取话题数据（watch 大法好！）
 watch([keywords, sortField, sortOrder], async () => {
-  topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
+  topics.value = await getTopics()
 })
 
 // 滚动事件处理函数
@@ -36,7 +34,8 @@ const scrollHandler = async () => {
     // 自动增加页数
     page.value++
 
-    const lazyLoadTopics = (await useKUNGalgameHomeStore().getHomeTopic()).data
+    // 获取下一页的话题
+    const lazyLoadTopics = await getTopics()
 
     // 判断是否已经将数据加载完，加载完则不需要加载了
     if (!lazyLoadTopics.length) {
@@ -72,17 +71,19 @@ onMounted(async () => {
   // 获取滚动元素的引用
   const element = content.value
 
+  // 获取到了则启动监听器，监听页面滚动行为
   if (element) {
     element.addEventListener('scroll', scrollHandler)
   }
 
-  topics.value = (await useKUNGalgameHomeStore().getHomeTopic()).data
+  // 首次加载获取话题
+  topics.value = await getTopics()
 })
 
 // 在组件卸载前，移除滚动事件监听器
 onBeforeUnmount(() => {
   const element = content.value
-
+  // 如果获取到页面元素则销毁监听器
   if (element) {
     element.removeEventListener('scroll', scrollHandler)
   }

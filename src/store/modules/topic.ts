@@ -46,6 +46,8 @@ interface CommentDraft {
 
 // 获取回复的请求
 interface ReplyRequest {
+  page: number
+  limit: number
   sortField: string
   sortOrder: 'asc' | 'desc'
 }
@@ -59,6 +61,8 @@ interface Topic {
   isActiveAside: boolean
   // 是否滚动到顶部
   isScrollToTop: boolean
+  // 加载完了是否还需要加载
+  isLoading: boolean
 
   // 回复的缓存
   replyDraft: ReplyDraft
@@ -77,6 +81,8 @@ export const useKUNGalgameTopicStore = defineStore({
     isShowAdvance: false,
     isActiveAside: false,
     isScrollToTop: false,
+    isLoading: true,
+
     replyDraft: {
       tid: 0,
       r_uid: 0,
@@ -89,7 +95,9 @@ export const useKUNGalgameTopicStore = defineStore({
       publishStatus: false,
     },
     replyRequest: {
-      sortField: '',
+      page: 1,
+      limit: 5,
+      sortField: 'floor',
       sortOrder: 'asc',
     },
     commentDraft: {
@@ -140,17 +148,13 @@ export const useKUNGalgameTopicStore = defineStore({
       })
     },
     // 获取回复
-    getReplies(
-      tid: number,
-      page?: number,
-      limit?: number
-    ): Promise<TopicReplyResponseData> {
+    getReplies(tid: number): Promise<TopicReplyResponseData> {
       return new Promise((resolve, reject) => {
         // 这里的默认值用于初始化
         const requestData: TopicReplyRequestData = {
           tid: tid,
-          page: page || 1,
-          limit: limit || 5,
+          page: this.replyRequest.page,
+          limit: this.replyRequest.limit,
           sortField: this.replyRequest.sortField || 'floor',
           sortOrder: this.replyRequest.sortOrder || 'desc',
         }
@@ -193,6 +197,11 @@ export const useKUNGalgameTopicStore = defineStore({
       this.replyDraft.tags = []
 
       this.replyDraft.isSaveReply = false
+    },
+    // 重置页数，是否加载，这样排序才能生效
+    resetPageStatus() {
+      this.replyRequest.page = 1
+      this.isLoading = true
     },
   },
 })
