@@ -94,8 +94,6 @@ const {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* 楼主话题距离其它人话题的距离 */
-  margin-bottom: 5px;
   flex-shrink: 0;
   /* TODO: */
   /* 楼主话题背景图 */

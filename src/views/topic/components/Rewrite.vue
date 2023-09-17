@@ -23,4 +23,10 @@ span {
   align-items: center;
   color: var(--kungalgame-font-color-3);
 }
+
+@media (max-width: 1000px) {
+  span {
+    margin-right: 10px;
+  }
+}
 </style>
