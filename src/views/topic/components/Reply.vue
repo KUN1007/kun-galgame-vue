@@ -145,6 +145,7 @@ defineProps<{
   border-radius: 5px;
   background-color: var(--kungalgame-trans-white-5);
   box-shadow: var(--shadow);
+  transition: all 0.5s;
 }
 /* 其它人回复的内容区 */
 .content {
@@ -160,6 +161,7 @@ defineProps<{
 }
 /* 其它人回复的上部右侧区域 */
 .right {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -201,6 +203,12 @@ defineProps<{
   padding: 17px;
   border-left: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
+}
+
+/* 滚动到指定话题激活后的样式 */
+.active .container {
+  border: 2px solid var(--kungalgame-red-3);
+  background-color: var(--kungalgame-trans-red-1);
 }
 
 @media (max-width: 1000px) {

@@ -68,8 +68,6 @@ const getReplies = async (): Promise<TopicReply[]> => {
   return (await useKUNGalgameTopicStore().getReplies(tid.value)).data
 }
 
-// 滚动到某个回复的位置
-
 // 调用 getReplies 获取回复数据（watch 大法好！）
 watch(
   () => [
@@ -106,6 +104,12 @@ watchEffect(async () => {
     // 滚动到指定位置并标识 style
     if (childElement) {
       childElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      childElement.classList.add('active')
+      // 等待一段时间
+      await new Promise((resolve) => {
+        setTimeout(resolve, 3000)
+      })
+      childElement.classList.remove('active')
     }
     scrollToReplyId.value = -1
   }
