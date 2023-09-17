@@ -30,7 +30,9 @@ const { isShowAdvance, isEdit, replyDraft } = storeToRefs(
   useKUNGalgameTopicStore()
 )
 
-const position = computed(() => {})
+const position = computed(() => {
+  return replyDraft.value.to_floor === 0 ? 'master' : 'reply'
+})
 
 const handelClosePanel = () => {
   isShowAdvance.value = false
@@ -49,9 +51,15 @@ const handelClosePanel = () => {
           <!-- 回复面板回复给谁 -->
           <div class="title">
             <h3>
-              {{ $tm('topic.panel.to') + ' @' }}
+              <span>{{ $tm('topic.panel.to') + ' @' }}</span>
               <span>{{ replyDraft.replyUserName }}</span>
-              <span>{{ replyDraft.to_floor }}</span>
+              <span>
+                {{
+                  `(⋈◍＞◡＜◍)。✧♡ ${$tm(`topic.panel.${position}`)} ${
+                    replyDraft.to_floor
+                  }`
+                }}
+              </span>
             </h3>
             <Icon
               @click="handelClosePanel"
@@ -112,17 +120,23 @@ const handelClosePanel = () => {
 }
 
 .title {
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  padding-left: 20px;
   span {
-    cursor: pointer;
-    color: var(--kungalgame-blue-5);
-    border-bottom: 2px solid var(--kungalgame-white-9);
-    &:hover {
-      border-bottom: 2px solid var(--kungalgame-blue-5);
+    &:nth-child(2) {
+      margin: 0 5px;
+      cursor: pointer;
+      color: var(--kungalgame-pink-3);
+      border-bottom: 2px solid var(--kungalgame-white-9);
+      &:hover {
+        border-bottom: 2px solid var(--kungalgame-pink-3);
+      }
+    }
+    &:nth-child(3) {
+      margin-left: 40px;
     }
   }
 }

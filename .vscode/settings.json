@@ -28,6 +28,7 @@
     "mockjs",
     "moemoe",
     "moemoepoint",
+    "nawa",
     "non-moe",
     "okaidia",
     "persistedstate",
@@ -54,7 +55,8 @@
     "ymgal",
     "Yuki",
     "Yuuki",
-    "yuyu"
+    "yuyu",
+    "zako"
   ],
   "i18n-ally.localesPaths": ["src/language"],
   "vue.codeActions.enabled": false

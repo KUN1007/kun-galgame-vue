@@ -10,9 +10,9 @@ import {
   computed,
   watch,
   onBeforeUnmount,
-  watchEffect,
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
+import message from '@/components/alert/Message'
 
 import { TopicDetail, TopicReply } from '@/api'
 
@@ -68,7 +68,7 @@ const getReplies = async (): Promise<TopicReply[]> => {
   return (await useKUNGalgameTopicStore().getReplies(tid.value)).data
 }
 
-// 调用 getReplies 获取回复数据（watch 大法好！）
+// 调用 getReplies 获取回复数据（watch 大法好！），点击排序时获取回复
 watch(
   () => [
     replyRequest.value.sortOrder,
@@ -94,26 +94,39 @@ watch(isScrollToTop, () => {
 })
 
 // 监视用户想要跳转到哪个回复
-watchEffect(async () => {
-  if (content.value) {
-    // 获取父元素下指定的子元素 id
-    const childElement = content.value.querySelector(
-      `#kungalgame-reply-${scrollToReplyId.value}`
-    ) as HTMLElement
+watch(
+  () => scrollToReplyId.value,
+  async () => {
+    // 这段语句会被执行两次（想想为什么）
+    if (content.value && scrollToReplyId.value !== -1) {
+      // 获取父元素下指定的子元素 id
+      const childElement = content.value.querySelector(
+        `#kungalgame-reply-${scrollToReplyId.value}`
+      ) as HTMLElement
 
-    // 滚动到指定位置并标识 style
-    if (childElement) {
-      childElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      childElement.classList.add('active')
-      // 等待一段时间
-      await new Promise((resolve) => {
-        setTimeout(resolve, 3000)
-      })
-      childElement.classList.remove('active')
+      // 滚动到指定位置并标识 style
+      if (childElement) {
+        childElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        childElement.classList.add('active')
+
+        // 等待一段时间
+        await new Promise((resolve) => {
+          setTimeout(resolve, 3000)
+        })
+
+        childElement.classList.remove('active')
+        // 找不到指定话题，因为这个话题还没有被加载至 DOM
+      } else {
+        message(
+          'Unable to find the specified reply for now. Please scroll down.',
+          '暂时找不到指定回复，请下滑',
+          'info'
+        )
+      }
+      scrollToReplyId.value = -1
     }
-    scrollToReplyId.value = -1
   }
-})
+)
 
 // 滚动事件处理函数
 const scrollHandler = async () => {
