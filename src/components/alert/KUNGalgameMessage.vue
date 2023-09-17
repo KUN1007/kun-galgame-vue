@@ -48,7 +48,7 @@ const messageClass = (type: string): string => {
       <span class="icon" v-else-if="type === 'info'"
         ><Icon icon="line-md:alert-circle"
       /></span>
-      <span>{{ message }}</span>
+      <span v-html="message"></span>
     </div>
   </div>
 </template>

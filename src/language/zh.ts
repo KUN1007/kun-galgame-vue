@@ -95,6 +95,11 @@ export default {
       tags: '相同标签下的其它话题',
       master: '楼主的其它话题',
     },
+    panel: {
+      to: '回复给',
+      master: '狗修金',
+      reply: '杂鱼~♡',
+    },
   },
   update: {
     next: '下个版本',
