@@ -148,7 +148,7 @@ export default {
     help4: "The website's code is handwritten, and errors are inevitable.",
     help5: 'If you encounter any errors, please',
     contact: ' Contact Us.',
-    tags: 'Please input topic tags',
+    tags: 'Please input tags',
     hint: `Hint: (A single tag should be within 10 characters, choose at least one and up to 7 tags). You can enter text and press \`Enter\` to create a tag.`,
     hot: 'Popular Tags (Click to Select) : ',
     categories:
