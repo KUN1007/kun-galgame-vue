@@ -5,7 +5,9 @@
 // 引入编辑器
 import { QuillEditor } from '@vueup/vue-quill'
 // 引入 quill module: for resizing and realigning images and iframe video
-import BlotFormatter from 'quill-blot-formatter'
+// 这里必须这么引入，不然打包之后会报错
+// import BlotFormatter from 'quill-blot-formatter'
+import BlotFormatter from 'quill-blot-formatter/dist/BlotFormatter'
 // 引入 module: URL、邮箱 自动识别
 import MagicUrl from 'quill-magic-url'
 // 引入 module: mention
