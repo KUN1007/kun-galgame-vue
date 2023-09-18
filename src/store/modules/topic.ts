@@ -82,6 +82,8 @@ interface Topic {
   // 要滚动到的回复 id
   scrollToReplyId: number
 
+  // 回复面板的宽度
+  replyPanelWidth: number
   // 回复的缓存
   replyDraft: ReplyDraft
   // 获取回复的请求接口格式
@@ -103,6 +105,7 @@ export const useKUNGalgameTopicStore = defineStore({
     // 回复 id 从 0 开始，-1 只是为了监测数据变化，用于 watchEffect
     scrollToReplyId: -1,
 
+    replyPanelWidth: 90,
     replyDraft: {
       editorHeight: 200,
       textCount: 0,
@@ -217,6 +220,7 @@ export const useKUNGalgameTopicStore = defineStore({
     },
     // 设置回复草稿为原始值，用于发布按钮
     resetReplyDraft() {
+      this.replyDraft.textCount = 0
       this.replyDraft.tid = 0
       this.replyDraft.r_uid = 0
       this.replyDraft.replyUserName = ''

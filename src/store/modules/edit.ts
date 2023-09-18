@@ -73,6 +73,7 @@ export const useKUNGalgameEditStore = defineStore({
       })
     },
     resetTopicData() {
+      this.textCount = 0
       this.title = ''
       this.content = ''
       this.tags = []

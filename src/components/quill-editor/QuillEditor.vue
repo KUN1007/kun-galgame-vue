@@ -45,16 +45,12 @@ const routeName = computed(() => route.name as string)
 // 定义父组件传参
 /**
  * @param {boolean} isShowToolbar - 是否显示工具栏
- * @param {boolean} isShowAdvance - 是否显示高级编辑模式
  * @param {boolean} isShowTitle - 是否显示标题
- * @param {boolean} isShowSettings - 是否显示编辑器设置
  */
 
 const props = defineProps<{
   isShowToolbar: boolean
-  isShowAdvance: boolean
   isShowTitle: boolean
-  isShowSettings: boolean
 }>()
 
 // 编辑器实例

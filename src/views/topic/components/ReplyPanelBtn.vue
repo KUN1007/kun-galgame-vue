@@ -96,6 +96,7 @@ const handleShowAdvance = () => {
   padding: 10px;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -103,12 +104,14 @@ const handleShowAdvance = () => {
 .btn-container button {
   margin: 10px 0;
   height: 40px;
-  width: 200px;
-  font-size: 20px;
+  width: 150px;
+  font-size: 17px;
   white-space: nowrap;
+  border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
   flex-shrink: 0;
+  transition: all 0.2s;
   &:hover {
     color: var(--kungalgame-white);
   }
@@ -116,7 +119,7 @@ const handleShowAdvance = () => {
 /* 确认按钮的样式 */
 .confirm-btn {
   color: var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: var(--kungalgame-trans-white-9);
   border: 1px solid var(--kungalgame-blue-4);
 }
 .confirm-btn:hover {
@@ -126,7 +129,7 @@ const handleShowAdvance = () => {
 /* 保存按钮的样式 */
 .save-btn {
   color: var(--kungalgame-pink-4);
-  background-color: var(--kungalgame-trans-pink-1);
+  background-color: var(--kungalgame-trans-white-9);
   border: 1px solid var(--kungalgame-pink-4);
 }
 .save-btn:hover {
@@ -140,7 +143,7 @@ const handleShowAdvance = () => {
 /* 高级选项按钮的样式 */
 .advance-btn {
   color: var(--kungalgame-red-5);
-  background-color: var(--kungalgame-trans-red-1);
+  background-color: var(--kungalgame-trans-white-9);
   border: 1px solid var(--kungalgame-red-5);
 }
 .advance-btn:hover {
@@ -156,10 +159,6 @@ const handleShowAdvance = () => {
 @media (max-width: 700px) {
   .advance-btn {
     display: none;
-  }
-  .btn-container button {
-    width: 150px;
-    font-size: 17px;
   }
 }
 </style>

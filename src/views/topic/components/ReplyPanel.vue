@@ -6,7 +6,7 @@ import { Icon } from '@iconify/vue'
 import 'animate.css'
 
 // 导入 Vue 异步函数
-import { computed, defineAsyncComponent } from 'vue'
+import { ref, computed, defineAsyncComponent } from 'vue'
 
 // 导入编辑器
 const QuillEditor = defineAsyncComponent(
@@ -26,13 +26,15 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 // 使用话题页面的 store
-const { isShowAdvance, isEdit, replyDraft } = storeToRefs(
+const { isShowAdvance, isEdit, replyDraft, replyPanelWidth } = storeToRefs(
   useKUNGalgameTopicStore()
 )
 
 const position = computed(() => {
   return replyDraft.value.to_floor === 0 ? 'master' : 'reply'
 })
+
+const panelWidth = computed(() => `${replyPanelWidth.value}%`)
 
 const handelClosePanel = () => {
   isShowAdvance.value = false
@@ -47,7 +49,7 @@ const handelClosePanel = () => {
       leave-active-class="animate__animated animate__fadeOutDown animate__faster"
     >
       <div class="root" v-if="isEdit">
-        <div class="container">
+        <div class="container" :style="`width: ${panelWidth}`">
           <!-- 回复面板回复给谁 -->
           <div class="title">
             <h3>
@@ -70,11 +72,8 @@ const handelClosePanel = () => {
           <!-- 回复的编辑器 -->
           <div class="content">
             <QuillEditor
-              :height="200"
               :is-show-toolbar="isShowAdvance"
-              :is-show-advance="false"
               :is-show-title="false"
-              :is-show-settings="false"
             />
           </div>
           <!-- 回复的页脚 -->
@@ -108,7 +107,7 @@ const handelClosePanel = () => {
   z-index: 1;
 }
 .container {
-  width: 90%;
+  transition: all 0.2s;
   max-width: 1000px;
   max-height: 77vh;
   overflow-y: scroll;
