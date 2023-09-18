@@ -1,26 +1,49 @@
 <!-- KUNGalgame 通用切换按钮 -->
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
+import { useRoute } from 'vue-router'
 // 导入编辑界面 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
+// 导入回复的 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
+// 当前页面的路由
+const route = useRoute()
+// 当前页面路由的名字
+const routeName = computed(() => route.name as string)
+
 // 使用编辑界面的 store
-const settingsStore = useKUNGalgameEditStore()
-const { isShowHotKeywords } = storeToRefs(settingsStore)
+const { isShowHotKeywords } = storeToRefs(useKUNGalgameEditStore())
+// 话题界面的 store，用于回复
+const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 // 监听 store 中的状态变化，保持按钮状态与 store 同步
-watch(isShowHotKeywords, (newValue) => {
-  isShowHotKeywords.value = newValue
-})
+watch(
+  () => [isShowHotKeywords.value, replyDraft.value.isShowHotKeywords],
+  ([newValue1, newValue2]) => {
+    isShowHotKeywords.value = newValue1
+    replyDraft.value.isShowHotKeywords = newValue2
+  }
+)
 </script>
 
 <template>
-  <input type="checkbox" id="switch" v-model="isShowHotKeywords" /><label
-    for="switch"
-    >Toggle</label
-  >
+  <!-- 根据路由名绑定不同的 model -->
+  <input
+    v-if="routeName === 'Edit'"
+    type="checkbox"
+    id="switch"
+    v-model="isShowHotKeywords"
+  />
+  <input
+    v-if="routeName === 'Topic'"
+    type="checkbox"
+    id="switch"
+    v-model="replyDraft.isShowHotKeywords"
+  />
+  <label for="switch"></label>
 </template>
 
 <style lang="scss" scoped>

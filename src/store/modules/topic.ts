@@ -21,6 +21,19 @@ import {
 
 // 回复的缓存
 interface ReplyDraft {
+  /**
+   * 编辑器相关
+   * @param {number} editorHeight - 编辑器高度
+   * @param {'' | 'essential' | 'minimal' | 'full'} mode - 编辑器 toolbar 模式
+   * @param {'snow' | 'bubble'} theme - 编辑器主题
+   */
+  editorHeight: number
+  textCount: number
+  mode: '' | 'essential' | 'minimal' | 'full'
+  theme: 'snow' | 'bubble'
+  // 是否显示热门关键词
+  isShowHotKeywords: boolean
+
   // 当前话题的 id
   tid: number
   r_uid: number
@@ -90,6 +103,12 @@ export const useKUNGalgameTopicStore = defineStore({
     scrollToReplyId: -1,
 
     replyDraft: {
+      editorHeight: 200,
+      textCount: 0,
+      mode: '',
+      theme: 'snow',
+      isShowHotKeywords: true,
+
       tid: 0,
       r_uid: 0,
       replyUserName: '',

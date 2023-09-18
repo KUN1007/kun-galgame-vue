@@ -16,13 +16,8 @@ const EditorSettingsMenu = defineAsyncComponent(
 import 'animate.css'
 
 // 接受传入的编辑器计数
-/**
- * @param {number} - 编辑器文字计数
- * @param {boolean} - 是否显示编辑器设置
- */
 defineProps<{
   textCount: number
-  isShowSettings: boolean
 }>()
 
 const router = useRouter()
@@ -60,7 +55,6 @@ const handelClickSettings = () => {
         @click="handelClickSettings"
         class="settings-icon"
         :class="settingsPanelActive"
-        v-if="isShowSettings"
       >
         <Icon icon="uiw:setting-o" />
       </span>

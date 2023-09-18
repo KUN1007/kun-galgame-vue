@@ -14,6 +14,7 @@ interface Topic {
    * @param {'snow' | 'bubble'} theme - 编辑器主题
    */
   editorHeight: number
+  textCount: number
   mode: '' | 'essential' | 'minimal' | 'full'
   theme: 'snow' | 'bubble'
 
@@ -44,6 +45,7 @@ export const useKUNGalgameEditStore = defineStore({
   persist: true,
   state: (): Topic => ({
     editorHeight: 300,
+    textCount: 0,
     mode: '',
     theme: 'snow',
 
