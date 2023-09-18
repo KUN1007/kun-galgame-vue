@@ -56,11 +56,8 @@ const handelClosePanel = () => {
               <span>{{ $tm('topic.panel.to') + ' @' }}</span>
               <span>{{ replyDraft.replyUserName }}</span>
               <span>
-                {{
-                  `(⋈◍＞◡＜◍)。✧♡ ${$tm(`topic.panel.${position}`)} ${
-                    replyDraft.to_floor
-                  }`
-                }}
+                <span class="emoji">(⋈◍＞◡＜◍)。✧♡ </span>
+                {{ `${$tm(`topic.panel.${position}`)} ${replyDraft.to_floor}` }}
               </span>
             </h3>
             <Icon
@@ -137,6 +134,17 @@ const handelClosePanel = () => {
     &:nth-child(3) {
       margin-left: 40px;
     }
+
+    .emoji {
+      color: var(--kungalgame-pink-3);
+    }
+  }
+}
+
+/* 适配手机端 */
+@media (max-width: 700px) {
+  .emoji {
+    display: none;
   }
 }
 </style>
