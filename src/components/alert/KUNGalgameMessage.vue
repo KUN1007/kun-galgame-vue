@@ -78,6 +78,7 @@ const messageClass = (type: string): string => {
   box-shadow: var(--shadow);
   span {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }

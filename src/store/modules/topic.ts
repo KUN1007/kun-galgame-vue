@@ -29,7 +29,8 @@ interface ReplyDraft {
    */
   editorHeight: number
   textCount: number
-  mode: '' | 'essential' | 'minimal' | 'full'
+  // 这里仅支持三种模式
+  mode: '' | 'essential' | 'minimal'
   theme: 'snow' | 'bubble'
   // 是否显示热门关键词
   isShowHotKeywords: boolean
@@ -105,7 +106,7 @@ export const useKUNGalgameTopicStore = defineStore({
     replyDraft: {
       editorHeight: 200,
       textCount: 0,
-      mode: '',
+      mode: 'minimal',
       theme: 'snow',
       isShowHotKeywords: true,
 
