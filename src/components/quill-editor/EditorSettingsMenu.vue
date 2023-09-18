@@ -28,11 +28,6 @@ const route = useRoute()
 // 当前页面路由的名字
 const routeName = computed(() => route.name as string)
 
-// 编辑器的模式
-const editorMode = computed(() =>
-  routeName.value === 'Edit' ? mode.value : replyDraft.value.mode
-)
-
 // 是否显示刷新页面
 const isRefreshPage = ref(false)
 
@@ -101,12 +96,23 @@ const handleRefreshPage = () => location.reload()
           </Transition>
         </div>
 
-        <!-- 切换按钮 -->
-        <select class="select" v-model="editorMode">
+        <!-- 编辑界面切换按钮 -->
+        <select class="select" v-if="routeName === 'Edit'" v-model="mode">
           <option value="minimal">{{ $tm('edit.minimal') }}</option>
           <option value="">{{ $tm('edit.default') }}</option>
           <option value="essential">{{ $tm('edit.essential') }}</option>
           <option value="full">{{ $tm('edit.full') }}</option>
+        </select>
+
+        <!-- 回复面板切换按钮 -->
+        <select
+          class="select"
+          v-if="routeName === 'Topic'"
+          v-model="replyDraft.mode"
+        >
+          <option value="minimal">{{ $tm('edit.minimal') }}</option>
+          <option value="">{{ $tm('edit.default') }}</option>
+          <option value="essential">{{ $tm('edit.essential') }}</option>
         </select>
       </div>
 

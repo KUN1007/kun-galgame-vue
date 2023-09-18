@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, ref } from 'vue'
-
 // 导入路由
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 // 引入图标字体
 import { Icon } from '@iconify/vue'
@@ -11,30 +10,32 @@ import { Icon } from '@iconify/vue'
 const EditorSettingsMenu = defineAsyncComponent(
   () => import('./EditorSettingsMenu.vue')
 )
-
 // 引入 css 动画
 import 'animate.css'
 
-// 接受传入的编辑器计数
-defineProps<{
-  textCount: number
-}>()
+// 导入编辑话题的 store
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
 
-const router = useRouter()
+// 话题编辑界面 store
+const { textCount } = storeToRefs(useKUNGalgameEditStore())
+// 话题界面的 store，用于回复
+const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+
+// 当前的路由
+const route = useRoute()
+// 当前页面路由的名字
+const routeName = computed(() => route.name as string)
+
+const textCountNumber = computed(() =>
+  routeName.value === 'Edit' ? textCount.value : replyDraft.value.textCount
+)
 
 // 是否显示编辑器设置面板
 const isShowSettingsMenu = ref(false)
 // 设置面板被激活后的样式
 const settingsPanelActive = ref('')
-// 根据鼠标的坐标调整背景色
-const x = ref(0)
-// 是否显示信息提示
-const isShowInfo = ref(false)
-
-// 当鼠标移动时
-const onMousemove = (e: MouseEvent) => {
-  x.value = e.clientX
-}
 
 // 点击设置按钮
 const handelClickSettings = () => {
@@ -59,33 +60,11 @@ const handelClickSettings = () => {
         <Icon icon="uiw:setting-o" />
       </span>
 
-      <span class="help" @click="isShowInfo = true">
-        <Icon icon="line-md:question-circle" />
-      </span>
-      <div
-        v-if="isShowInfo"
-        @mousemove="onMousemove"
-        @mouseleave="isShowInfo = false"
-        class="info"
-        :style="{ backgroundColor: `hsl(${x}, 77%, 77%)` }"
-      >
-        <ul>
-          <li>{{ $tm('edit.help1') }}</li>
-          <li>{{ $tm('edit.help2') }}</li>
-          <li>{{ $tm('edit.help3') }}</li>
-          <li>{{ $tm('edit.help4') }}</li>
-          <li>
-            {{ $tm('edit.help5') }}
-            <span @click="router.push('/contact')">
-              {{ $tm('edit.contact') }}
-            </span>
-          </li>
-        </ul>
-      </div>
+      <slot name="help" />
     </div>
 
     <!-- 文字计数 -->
-    <span class="count">{{ textCount + ` ${$tm('edit.word')}` }}</span>
+    <span class="count">{{ textCountNumber + ` ${$tm('edit.word')}` }}</span>
 
     <!-- 设置面板 -->
     <EditorSettingsMenu :isShowSettingsMenu="isShowSettingsMenu" />

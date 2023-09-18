@@ -286,4 +286,10 @@ onBeforeMount(() => {
     padding: 0;
   }
 }
+
+@media (max-width: 700px) {
+  .content-container {
+    width: 100%;
+  }
+}
 </style>

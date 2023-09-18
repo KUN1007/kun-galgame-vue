@@ -18,6 +18,8 @@ const Title = defineAsyncComponent(
 
 // 导入 Footer
 import EditorFooter from './EditorFooter.vue'
+// Footer 的插槽
+import Help from './Help.vue'
 
 // 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
@@ -77,11 +79,6 @@ const editorHeightStyle = computed(
 // 编辑器的模式，根据路由的名字确定
 const editorMode = computed(() =>
   routeName.value === 'Edit' ? mode.value : replyDraft.value.mode
-)
-
-// 编辑器的文字计数，根据路由的名字确定
-const textCountNumber = computed(() =>
-  routeName.value === 'Edit' ? textCount.value : replyDraft.value.textCount
 )
 
 // 编辑器的工具栏是否显示
@@ -152,7 +149,11 @@ const handleTextChange = async () => {
     />
 
     <!-- 编辑器 footer -->
-    <EditorFooter :textCount="textCountNumber" />
+    <EditorFooter>
+      <template #help>
+        <Help />
+      </template>
+    </EditorFooter>
   </div>
 </template>
 
