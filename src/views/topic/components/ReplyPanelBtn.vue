@@ -15,21 +15,34 @@ const { isShowAdvance, replyDraft, isEdit } = storeToRefs(
 const info = useKUNGalgameMessageStore()
 
 // 检查回复是否合法
-const isValidReply = () => {}
+const isValidReply = () => {
+  return replyDraft.value.content.trim().length > 7 &&
+    replyDraft.value.content.trim() !== `<p><br></p>`
+    ? true
+    : false
+}
 
 // 发布回复的函数
 const publishReply = async () => {
-  // 重置页数，是否加载等页面状态
-  useKUNGalgameTopicStore().resetPageStatus()
-  // 发布回复
-  await useKUNGalgameTopicStore().postNewReply()
+  if (isValidReply()) {
+    console.log(replyDraft.value.content)
 
-  // 改变发布状态，前端会新增回复的数据
-  replyDraft.value.publishStatus = !replyDraft.value.publishStatus
-  // 取消保存
-  useKUNGalgameTopicStore().resetReplyDraft()
-  // 关闭面板
-  isEdit.value = false
+    // 重置页数，是否加载等页面状态
+    useKUNGalgameTopicStore().resetPageStatus()
+    // 发布回复
+    await useKUNGalgameTopicStore().postNewReply()
+
+    // 改变发布状态，前端会新增回复的数据
+    replyDraft.value.publishStatus = !replyDraft.value.publishStatus
+    // 取消保存
+    useKUNGalgameTopicStore().resetReplyDraft()
+    // 关闭面板
+    isEdit.value = false
+    // 发布成功提示
+    message('Publish reply successfully!', '发布回复成功！', 'success')
+  } else {
+    message('Reply content cannot be empty!', '回复内容不能为空！', 'warn')
+  }
 }
 
 // 点击发布回复
@@ -38,8 +51,6 @@ const handlePublish = async () => {
   // 这里实现用户的点击确认取消逻辑
   if (res) {
     publishReply()
-    // 发布成功提示
-    message('Publish reply successfully!', '发布回复成功！', 'success')
   } else {
     // 取消发布提示
     message('Cancel publish reply', '取消发布回复', 'info')

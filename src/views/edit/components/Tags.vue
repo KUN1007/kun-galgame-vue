@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, onBeforeMount, onUpdated } from 'vue'
+import { ref, computed, watch, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 // 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
@@ -17,6 +17,13 @@ const { isShowHotKeywords, tags, isSaveTopic } = storeToRefs(
 )
 // 话题界面的 store，用于回复
 const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+
+// 根据路由名计算是否展示热门 tags
+const isShowKeywords = computed(() =>
+  routeName.value === 'Edit'
+    ? isShowHotKeywords.value
+    : replyDraft.value.isShowHotKeywords
+)
 
 // 临时数据，将会从后端返回 7 个热门 tag
 const hotTags = [
@@ -143,7 +150,7 @@ watch(selectedTags.value, () => {
     <div class="hint">{{ $tm('edit.hint') }}</div>
 
     <!-- 热门 tags -->
-    <div class="hot-tags" v-if="isShowHotKeywords">
+    <div class="hot-tags" v-if="isShowKeywords">
       <!-- 标签的提示词 -->
       <div class="tags-info">{{ $tm('edit.hot') }}</div>
       <!-- 标签容器 -->

@@ -30,9 +30,8 @@ import DOMPurify from 'dompurify'
 import { debounce } from '@/utils/debounce'
 
 // 话题编辑界面 store
-const { editorHeight, mode, theme, isSaveTopic, content } = storeToRefs(
-  useKUNGalgameEditStore()
-)
+const { editorHeight, mode, theme, textCount, isSaveTopic, content } =
+  storeToRefs(useKUNGalgameEditStore())
 // 话题界面的 store，用于回复
 const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
@@ -43,7 +42,6 @@ const routeName = computed(() => route.name as string)
 
 // 定义父组件传参
 /**
- * @param {number} height - 编辑器的高度
  * @param {boolean} isShowToolbar - 是否显示工具栏
  * @param {boolean} isShowAdvance - 是否显示高级编辑模式
  * @param {boolean} isShowTitle - 是否显示标题
@@ -51,7 +49,6 @@ const routeName = computed(() => route.name as string)
  */
 
 const props = defineProps<{
-  height?: number
   isShowToolbar: boolean
   isShowAdvance: boolean
   isShowTitle: boolean
@@ -60,28 +57,37 @@ const props = defineProps<{
 
 // 编辑器实例
 const editorRef = ref<typeof QuillEditor>()
-
-// 编辑器的高度
-const editorHeightStyle = computed(
-  () => `height: ${props.height ? props.height : editorHeight.value}px`
-)
-// 编辑器的工具栏是否显示
-const isShowEditorToolbar = computed(() =>
-  props.isShowToolbar ? 'block' : 'none'
-)
-
 // 编辑器内的内容
 const valueHtml = ref('')
-// 编辑器文字计数
-const textCount = ref(0)
-
 // 编辑器相关配置
 const editorOptions = {
   placeholder: 'Moe Moe Moe!',
 }
 
-// 编辑器实例创建时
-const onEditorReady = () => {}
+// 编辑器的高度，根据路由的名字确定
+const editorHeightStyle = computed(
+  () =>
+    `height: ${
+      routeName.value === 'Edit'
+        ? editorHeight.value
+        : replyDraft.value.editorHeight
+    }px`
+)
+
+// 编辑器的模式，根据路由的名字确定
+const editorMode = computed(() =>
+  routeName.value === 'Edit' ? mode.value : replyDraft.value.mode
+)
+
+// 编辑器的文字计数，根据路由的名字确定
+const textCountNumber = computed(() =>
+  routeName.value === 'Edit' ? textCount.value : replyDraft.value.textCount
+)
+
+// 编辑器的工具栏是否显示
+const isShowEditorToolbar = computed(() =>
+  props.isShowToolbar ? 'block' : 'none'
+)
 
 onBeforeMount(() => {
   // 挂载之前载入话题数据，如果不保存，则不载入（并且当前必须在 Edit 界面）
@@ -115,7 +121,14 @@ const handleTextChange = async () => {
 
   // 计算用户输入了多少个字符
   const length = computed(() => editorRef.value?.getText().trim().length)
-  textCount.value = length.value
+
+  // 根据页面的路由名保存计数
+  if (routeName.value === 'Edit') {
+    textCount.value = length.value
+  }
+  if (routeName.value === 'Topic') {
+    replyDraft.value.textCount = length.value
+  }
 }
 </script>
 
@@ -132,19 +145,14 @@ const handleTextChange = async () => {
       :style="editorHeightStyle"
       :theme="theme"
       :modules="modules"
-      :toolbar="mode"
+      :toolbar="editorMode"
       :options="editorOptions"
       @textChange="handleTextChange"
-      @ready="onEditorReady"
       @click.prevent
     />
 
     <!-- 编辑器 footer -->
-    <EditorFooter
-      :textCount="textCount"
-      :editorHeight="editorHeight"
-      :isShowSettings="isShowSettings"
-    />
+    <EditorFooter :textCount="textCountNumber" />
   </div>
 </template>
 

@@ -98,7 +98,7 @@ export default {
     panel: {
       to: 'Reply To',
       master: 'ご主人',
-      reply: 'zako♡',
+      reply: 'zako~♡',
     },
   },
   update: {
