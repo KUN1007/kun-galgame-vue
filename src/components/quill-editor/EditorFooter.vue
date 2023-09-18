@@ -63,6 +63,7 @@ const handelClickSettings = () => {
       <!-- 帮助插槽 -->
       <slot name="help" />
       <input
+        v-if="routeName === 'Topic'"
         class="panel-width"
         type="range"
         min="50"

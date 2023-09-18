@@ -85,7 +85,7 @@ const handleClickCategory = (kun: Category) => {
 /* 单个按钮的样式 */
 .btn {
   height: 30px;
-  width: 20%;
+  width: 177px;
   font-size: 17px;
   cursor: pointer;
   border: 1px solid var(--kungalgame-blue-1);
@@ -94,6 +94,9 @@ const handleClickCategory = (kun: Category) => {
   display: flex;
   justify-content: center;
   align-items: center;
+  &:nth-child(2) {
+    margin: 0 10px;
+  }
 }
 
 /* 被选中按钮的样式 */
