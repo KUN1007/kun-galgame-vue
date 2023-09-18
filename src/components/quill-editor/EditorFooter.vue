@@ -20,8 +20,8 @@ import { storeToRefs } from 'pinia'
 
 // 话题编辑界面 store
 const { textCount } = storeToRefs(useKUNGalgameEditStore())
-// 话题界面的 store，用于回复
-const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+// 话题界面的 store，用于回复和调整回复面板宽度
+const { replyDraft, replyPanelWidth } = storeToRefs(useKUNGalgameTopicStore())
 
 // 当前的路由
 const route = useRoute()
@@ -60,7 +60,16 @@ const handelClickSettings = () => {
         <Icon icon="uiw:setting-o" />
       </span>
 
+      <!-- 帮助插槽 -->
       <slot name="help" />
+      <input
+        class="panel-width"
+        type="range"
+        min="50"
+        max="100"
+        step="1"
+        v-model="replyPanelWidth"
+      />
     </div>
 
     <!-- 文字计数 -->
@@ -132,6 +141,9 @@ const handelClickSettings = () => {
         }
       }
     }
+  }
+  .panel-width {
+    margin-left: 20px;
   }
 }
 
