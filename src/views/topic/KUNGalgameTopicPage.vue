@@ -9,7 +9,6 @@ import {
   onBeforeMount,
   computed,
   watch,
-  onBeforeUnmount,
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import message from '@/components/alert/Message'
@@ -57,6 +56,8 @@ const repliesData = ref<TopicReply[]>([])
 const content = ref<HTMLElement>()
 // 滚动到某个话题时触发动画
 const isExecuteScrollToReplyAnimate = ref(false)
+// 页面滚动的距离
+const contentScrollHeight = ref(0)
 
 // 获取话题详情的函数
 const getTopic = async (): Promise<TopicDetail> => {
@@ -129,7 +130,7 @@ watch(
 )
 
 // 滚动事件处理函数
-const scrollHandler = async () => {
+const handelScroll = async () => {
   // 滚动到底部的处理逻辑
   if (isScrollAtBottom() && isLoading.value) {
     // 自动增加页数
@@ -155,6 +156,9 @@ const isScrollAtBottom = () => {
     const scrollTop = content.value.scrollTop
     const clientHeight = content.value.clientHeight
 
+    // 记录页面滚动的距离给子组件
+    contentScrollHeight.value = scrollTop
+
     // 使用误差范围来比较，因为 js 浮点数不精确
     const errorMargin = 1.007
     return Math.abs(scrollHeight - scrollTop - clientHeight) < errorMargin
@@ -171,22 +175,6 @@ onMounted(async () => {
 
   // 获取回复的数据
   repliesData.value = await getReplies()
-
-  // 获取滚动元素的引用
-  const element = content.value
-  // 获取到了则启动监听器，监听页面滚动行为
-  if (element) {
-    element.addEventListener('scroll', scrollHandler)
-  }
-})
-
-// 在组件卸载前，移除滚动事件监听器
-onBeforeUnmount(() => {
-  const element = content.value
-  // 如果获取到页面元素则销毁监听器
-  if (element) {
-    element.removeEventListener('scroll', scrollHandler)
-  }
 })
 
 /**
@@ -219,6 +207,7 @@ onBeforeMount(() => {
   <!-- 回复面板组件 -->
   <!-- 总容器 -->
   <div class="root">
+    <!-- 回复面板组件 -->
     <ReplyPanel />
 
     <!-- 下方可视内容区的容器 -->
@@ -227,7 +216,15 @@ onBeforeMount(() => {
       <Aside v-if="topicData?.tags" :tags="topicData.tags" />
 
       <!-- 内容区 -->
-      <div class="content" ref="content">
+      <div class="content" ref="content" @scroll="handelScroll">
+        <Transition
+          enter-active-class="animate__animated animate__fadeInDown animate__faster"
+        >
+          <!-- 滚动时的 title -->
+          <div class="title-scroll" v-if="contentScrollHeight > 400">
+            啊这可海星
+          </div>
+        </Transition>
         <Master v-if="topicData" :topicData="topicData" />
         <Reply
           v-if="repliesData"
@@ -276,6 +273,24 @@ onBeforeMount(() => {
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: visible;
+}
+
+.title-scroll {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold;
+  color: var(--kungalgame-font-color-3);
+  background-color: var(--kungalgame-trans-white-5);
+  border: 1px solid var(--kungalgame-blue-1);
+  border-radius: 0 0 5px 5px;
+  backdrop-filter: blur(5px);
+  z-index: 1;
 }
 
 @media (max-width: 1000px) {
