@@ -46,6 +46,12 @@ const handelClickSettings = () => {
     settingsPanelActive.value = ''
   }
 }
+
+// 关闭面板 emits
+const handelCloseSettingsMenu = () => {
+  isShowSettingsMenu.value = false
+  settingsPanelActive.value = ''
+}
 </script>
 
 <template>
@@ -77,7 +83,10 @@ const handelClickSettings = () => {
     <span class="count">{{ textCountNumber + ` ${$tm('edit.word')}` }}</span>
 
     <!-- 设置面板 -->
-    <EditorSettingsMenu :isShowSettingsMenu="isShowSettingsMenu" />
+    <EditorSettingsMenu
+      @close="handelCloseSettingsMenu"
+      :isShowSettingsMenu="isShowSettingsMenu"
+    />
   </div>
 </template>
 

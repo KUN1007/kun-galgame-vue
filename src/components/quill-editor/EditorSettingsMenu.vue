@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
-
+// 引入图标字体
+import { Icon } from '@iconify/vue'
 // 引入 css 动画
 import 'animate.css'
 
@@ -23,6 +24,11 @@ defineProps<{
   isShowSettingsMenu: boolean
 }>()
 
+// 定义是否关闭设置面板的 emits
+const emits = defineEmits<{
+  close: [isShowSettingsMenu: boolean]
+}>()
+
 // 当前的路由
 const route = useRoute()
 // 当前页面路由的名字
@@ -40,6 +46,11 @@ watch(
 )
 
 const handleRefreshPage = () => location.reload()
+
+// 关闭设置面板
+const handelCloseSettingsPanel = () => {
+  emits('close', false)
+}
 </script>
 
 <template>
@@ -49,77 +60,84 @@ const handleRefreshPage = () => location.reload()
   >
     <!-- 设置菜单 -->
     <div v-if="isShowSettingsMenu" class="settings-menu">
-      <!-- 编辑器高度设置 -->
-      <div class="editor-height-title">
-        <span> {{ $tm('edit.editorHeight') }} </span>
-        <span>{{ editorHeight }} px</span>
-      </div>
-
-      <!-- 编辑界面 -->
-      <div v-if="routeName === 'Edit'" class="editor-height">
-        <span>300 px</span>
-        <input
-          type="range"
-          min="300"
-          max="500"
-          step="1"
-          v-model="editorHeight"
-        />
-        <span>500 px</span>
-      </div>
-
-      <!-- 回复面板 -->
-      <div v-if="routeName === 'Topic'" class="editor-height">
-        <span>100 px</span>
-        <input
-          type="range"
-          min="100"
-          max="500"
-          step="1"
-          v-model="replyDraft.editorHeight"
-        />
-        <span>500 px</span>
-      </div>
-
-      <!-- 是否显示编辑器高级选项 -->
-      <div class="editor-advance">
-        <div class="editor-advance-title">
-          <Transition mode="out-in" name="slide-up">
-            <span v-if="!isRefreshPage"> {{ $tm('edit.editorMode') }} </span>
-            <span
-              @click="handleRefreshPage"
-              class="refresh"
-              v-else-if="isRefreshPage"
-            >
-              {{ $tm('edit.refresh') }}
-            </span>
-          </Transition>
+      <div class="content">
+        <!-- 编辑器高度设置 -->
+        <div class="editor-height-title">
+          <span> {{ $tm('edit.editorHeight') }} </span>
+          <span>{{ editorHeight }} px</span>
         </div>
 
-        <!-- 编辑界面切换按钮 -->
-        <select class="select" v-if="routeName === 'Edit'" v-model="mode">
-          <option value="minimal">{{ $tm('edit.minimal') }}</option>
-          <option value="">{{ $tm('edit.default') }}</option>
-          <option value="essential">{{ $tm('edit.essential') }}</option>
-          <option value="full">{{ $tm('edit.full') }}</option>
-        </select>
+        <!-- 编辑界面 -->
+        <div v-if="routeName === 'Edit'" class="editor-height">
+          <span>300 px</span>
+          <input
+            type="range"
+            min="300"
+            max="500"
+            step="1"
+            v-model="editorHeight"
+          />
+          <span>500 px</span>
+        </div>
 
-        <!-- 回复面板切换按钮 -->
-        <select
-          class="select"
-          v-if="routeName === 'Topic'"
-          v-model="replyDraft.mode"
-        >
-          <option value="minimal">{{ $tm('edit.minimal') }}</option>
-          <option value="">{{ $tm('edit.default') }}</option>
-          <option value="essential">{{ $tm('edit.essential') }}</option>
-        </select>
+        <!-- 回复面板 -->
+        <div v-if="routeName === 'Topic'" class="editor-height">
+          <span>100 px</span>
+          <input
+            type="range"
+            min="100"
+            max="500"
+            step="1"
+            v-model="replyDraft.editorHeight"
+          />
+          <span>500 px</span>
+        </div>
+
+        <!-- 是否显示编辑器高级选项 -->
+        <div class="editor-advance">
+          <div class="editor-advance-title">
+            <Transition mode="out-in" name="slide-up">
+              <span v-if="!isRefreshPage"> {{ $tm('edit.editorMode') }} </span>
+              <span
+                @click="handleRefreshPage"
+                class="refresh"
+                v-else-if="isRefreshPage"
+              >
+                {{ $tm('edit.refresh') }}
+              </span>
+            </Transition>
+          </div>
+
+          <!-- 编辑界面切换按钮 -->
+          <select class="select" v-if="routeName === 'Edit'" v-model="mode">
+            <option value="minimal">{{ $tm('edit.minimal') }}</option>
+            <option value="">{{ $tm('edit.default') }}</option>
+            <option value="essential">{{ $tm('edit.essential') }}</option>
+            <option value="full">{{ $tm('edit.full') }}</option>
+          </select>
+
+          <!-- 回复面板切换按钮 -->
+          <select
+            class="select"
+            v-if="routeName === 'Topic'"
+            v-model="replyDraft.mode"
+          >
+            <option value="minimal">{{ $tm('edit.minimal') }}</option>
+            <option value="">{{ $tm('edit.default') }}</option>
+            <option value="essential">{{ $tm('edit.essential') }}</option>
+          </select>
+        </div>
+
+        <!-- 是否显示热门关键词 -->
+        <div class="keywords">
+          <div class="keywords-title">{{ $tm('edit.tagsHint') }}</div>
+          <SwitchButton />
+        </div>
       </div>
 
-      <!-- 是否显示热门关键词 -->
-      <div class="keywords">
-        <div class="keywords-title">{{ $tm('edit.tagsHint') }}</div>
-        <SwitchButton />
+      <!-- 关闭按钮 -->
+      <div class="close">
+        <Icon @click="handelCloseSettingsPanel" icon="line-md:close" />
       </div>
     </div>
   </Transition>
@@ -127,7 +145,7 @@ const handleRefreshPage = () => location.reload()
 
 <style lang="scss" scoped>
 .settings-menu {
-  width: 277px;
+  width: 323px;
   padding: 10px;
   z-index: 1009;
   position: absolute;
@@ -137,7 +155,12 @@ const handleRefreshPage = () => location.reload()
   box-shadow: var(--shadow);
   border-radius: 5px;
   display: flex;
-  flex-direction: column;
+
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
   .editor-height-title {
     display: flex;
@@ -189,6 +212,15 @@ const handleRefreshPage = () => location.reload()
   option {
     background-color: var(--kungalgame-white);
   }
+}
+
+// 关闭设置
+.close {
+  font-size: 25px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
 }
 
 // 是否显示热门关键词

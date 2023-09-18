@@ -23,7 +23,9 @@ const settingsStore = useKUNGalgameSettingsStore()
 const { isShowPageWidth } = storeToRefs(settingsStore)
 
 // 定义是否关闭设置面板的 emits
-const emits = defineEmits(['close'])
+const emits = defineEmits<{
+  close: [showKUNGalgamePanel: boolean]
+}>()
 
 // 恢复所有设置为默认
 const handleRecover = () => {
@@ -83,11 +85,9 @@ const handelCloseSettingsPanel = () => {
       <!-- 背景设置组件 -->
       <Background />
 
-      <div>
-        <button class="reset" @click="handleRecover">
-          {{ $tm('header.settings.recover') }}
-        </button>
-      </div>
+      <button class="reset" @click="handleRecover">
+        {{ $tm('header.settings.recover') }}
+      </button>
     </div>
 
     <!-- 看板娘组件 -->
@@ -186,6 +186,7 @@ const handelCloseSettingsPanel = () => {
   background-color: var(--kungalgame-trans-red-1);
   width: 100%;
   height: 30px;
+  transition: all 0.2s;
   &:hover {
     background-color: var(--kungalgame-red-3);
     color: var(--kungalgame-white);

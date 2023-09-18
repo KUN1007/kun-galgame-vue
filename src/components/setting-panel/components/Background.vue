@@ -202,6 +202,7 @@ const handleCustomBackground = () => {
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-blue-1);
+  transition: all 0.2s;
   &:hover {
     background-color: var(--kungalgame-trans-blue-2);
   }
