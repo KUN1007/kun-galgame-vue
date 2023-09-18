@@ -133,7 +133,7 @@ export default {
   },
   edit: {
     title: 'Title',
-    word: 'Words',
+    word: 'Word(s)',
     editorHeight: 'Editor Height',
     editorMode: 'Editor Mode',
     minimal: 'Minimal',
@@ -149,7 +149,7 @@ export default {
     help5: 'If you encounter any errors, please',
     contact: ' Contact Us.',
     tags: 'Please input topic tags',
-    hint: `Hint: (A single tag should be within 14 characters, choose at least one and up to 7 tags). You can enter text and press \`Enter\` to create a tag.`,
+    hint: `Hint: (A single tag should be within 10 characters, choose at least one and up to 7 tags). You can enter text and press \`Enter\` to create a tag.`,
     hot: 'Popular Tags (Click to Select) : ',
     categories:
       'Click to select topic categories (multiple selections allowed) : ',

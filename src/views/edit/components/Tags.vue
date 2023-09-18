@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, watch, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
 // 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
@@ -39,6 +41,10 @@ const hotTags = [
 const selectedTags = ref<string[]>([])
 // input 框是否为 focus 状态
 const isInputFocus = ref(false)
+// 输入框的内容
+const inputValue = ref('')
+// 是否可以删除 tag 的标志，没有这个值的话用户在删除输入框最后一个字母时会连同最后一个 tag 一起删除
+const canDeleteTag = ref(false)
 
 // 组件挂载之前载入 store 里的数据
 onBeforeMount(() => {
@@ -54,7 +60,10 @@ onBeforeMount(() => {
 
 // 点击 tag 触发回调
 const handleTagClick = (tag: string) => {
-  selectedTags.value.push(tag)
+  // 已经选择的 tag < 7 才会 push
+  if (selectedTags.value.length < 7) {
+    selectedTags.value.push(tag)
+  }
 }
 
 // 点击取消选中 tag
@@ -71,38 +80,52 @@ const remainingTags = computed<string[]>(() => {
 })
 
 // 输入框事件，按下 enter 创建 tag，创建 tag 时长度不超过 17，个数不超过 7
-const handleTagInput = (event: KeyboardEvent) => {
-  const inputElement = event.target as HTMLInputElement
-  // 单个 tag
-  const tagName = inputElement.value.trim()
+const handleAddTag = () => {
+  const tagName = inputValue.value.trim()
+
+  // 检测到已经有这个 tag 则警告
+  if (selectedTags.value.includes(tagName)) {
+    message(
+      'Tag already exists, please choose another one',
+      '标签已存在，请更换',
+      'warn'
+    )
+    return
+  }
 
   // 按下 enter 创建
-  if (
-    event.key === 'Enter' &&
-    tagName.length > 0 &&
-    selectedTags.value.length < 7
-  ) {
+  if (tagName.length > 0 && selectedTags.value.length < 7) {
     const tag = validateTagName(tagName)
 
     // 创建新 tag
     selectedTags.value.push(tag)
-    inputElement.value = ''
-  } else if (
-    event.key === 'Backspace' &&
-    inputElement.value === '' &&
-    selectedTags.value.length > 0
-  ) {
-    // 按下 Backspace 键时，删除最后一个 tag
-    selectedTags.value.pop()
+    // 清空输入框的值
+    inputValue.value = ''
+    // 此时可以删除 tag
+    canDeleteTag.value = true
   }
 }
 
-// 合法的输入长度不能超过 17 个字符，超过则截取前 17 个字符
+// 输入框事件，按下 backspace 删除 tag
+const handleRemoveTag = () => {
+  // 按下 backspace 删除
+  if (inputValue.value === '' && selectedTags.value.length > 0) {
+    // 检测 canDeleteTag 的值，当用户删除输入框最后一个字母时
+    // 将这个值设为 true，这样下一次用户就可以使用 backspace 删除 tag 了
+    if (canDeleteTag.value) {
+      // 按下 Backspace 键时，删除最后一个 tag
+      selectedTags.value.pop()
+    }
+    canDeleteTag.value = true
+  }
+}
+
+// 合法的输入长度不能超过 10 个字符，超过则截取前 10 个字符
 const validateTagName = (tagName: string) => {
   let validatedName = tagName
 
-  if (validatedName.length > 17) {
-    validatedName = validatedName.slice(0, 17)
+  if (validatedName.length > 10) {
+    validatedName = validatedName.slice(0, 10)
   }
 
   return validatedName
@@ -136,8 +159,11 @@ watch(selectedTags.value, () => {
       <input
         class="input"
         type="text"
+        v-model="inputValue"
         :placeholder="`${$tm('edit.tags')}`"
-        @keyup="handleTagInput"
+        @input="canDeleteTag = false"
+        @keyup.enter="handleAddTag"
+        @keyup.backspace="handleRemoveTag"
         @focus="isInputFocus = true"
         @blur="isInputFocus = false"
       />
