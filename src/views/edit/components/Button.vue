@@ -36,9 +36,9 @@ const checkPublish = (topicData: EditCreateTopicRequestData) => {
     // 内容为空的话，警告
     message('Content cannot be empty!', '内容不可为空！', 'warn')
     return false
-  } else if (topicData.tags.length) {
+  } else if (!topicData.tags.length) {
     message('Please use at least one tag!', '请至少使用一个标签！', 'warn')
-  } else if (topicData.category.length) {
+  } else if (!topicData.category.length) {
     message(
       'Please select at least one category!',
       '请至少选择一个分类！',

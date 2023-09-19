@@ -68,7 +68,24 @@ export interface TopicCreateReplyRequestData {
 }
 
 // 评论的数据
-export interface TopicComment {}
+export interface TopicComment {
+  rid: number
+  tid: number
+  c_uid: Omit<TopicUserInfo, 'moemoepoint'>
+  to_uid: TopicToUserInfo
+  content: string
+  likes: number[]
+  dislikes: number[]
+}
+
+// 发表评论的请求数据
+export interface TopicCreateCommentRequestData {
+  tid: number
+  rid: number
+  c_uid: number
+  to_uid: number
+  content: string
+}
 
 // 获取单个话题响应数据的格式
 export type TopicDetailResponseData = KUNGalgameResponseData<TopicDetail>
@@ -76,5 +93,12 @@ export type TopicDetailResponseData = KUNGalgameResponseData<TopicDetail>
 // 单个话题回复响应数据的格式，返回的是多条回复数据，是一个数组
 export type TopicReplyResponseData = KUNGalgameResponseData<TopicReply[]>
 
-// 创建单个回复后返回的恢复数据
+// 创建单个回复后返回的回复数据
 export type TopicCreateReplyResponseData = KUNGalgameResponseData<TopicReply>
+
+// 单个回复底下所有的评论数据，是一个数组
+export type TopicCommentResponseData = KUNGalgameResponseData<TopicComment[]>
+
+// 创建单个评论后返回的评论数据
+export type TopicCreateCommentResponseData =
+  KUNGalgameResponseData<TopicComment>

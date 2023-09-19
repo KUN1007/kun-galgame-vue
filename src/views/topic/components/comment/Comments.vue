@@ -2,8 +2,34 @@
   这是回复话题下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
  -->
 <script setup lang="ts">
+import { onMounted, ref, toRaw } from 'vue'
 import { Icon } from '@iconify/vue'
 import CommentPanel from './CommentPanel.vue'
+
+import { TopicReply, TopicComment } from '@/api/index'
+
+// 导入话题页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+
+const { tid, rid } = defineProps<{
+  tid: number
+  rid: number
+}>()
+
+const { scrollToReplyId } = storeToRefs(useKUNGalgameTopicStore())
+
+// 评论的数据
+const commentsData = ref<TopicComment[]>()
+
+const getComments = async (tid: number, rid: number) => {
+  return (await useKUNGalgameTopicStore().getComments(tid, rid)).data
+}
+
+onMounted(async () => {
+  commentsData.value = await getComments(tid, rid)
+  console.log(toRaw(commentsData.value))
+})
 </script>
 
 <template>

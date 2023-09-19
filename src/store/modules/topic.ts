@@ -1,23 +1,26 @@
 /* 话题详情的 store */
 import { defineStore } from 'pinia'
-
+// 话题
 import {
-  getRelatedTopicsByTagsApi,
-  getPopularTopicsByUserUidApi,
-  getRepliesByPidApi,
   getTopicByTidApi,
-  TopicCreateReplyRequestData,
-  TopicCreateReplyResponseData,
-  postReplyByPidApi,
-} from '@/api/index'
-import {
-  TopicAsideOtherTagRequestData,
-  TopicAsideMasterRequestData,
-  TopicAsideResponseData,
   TopicDetailResponseData,
+  TopicAsideOtherTagRequestData,
+  getRelatedTopicsByTagsApi,
+  TopicAsideMasterRequestData,
+  getPopularTopicsByUserUidApi,
+  TopicAsideResponseData,
+} from '@/api'
+// 回复
+import {
+  getRepliesByPidApi,
+  postReplyByPidApi,
   TopicReplyRequestData,
   TopicReplyResponseData,
-} from '@/api/index'
+  TopicCreateReplyRequestData,
+  TopicCreateReplyResponseData,
+} from '@/api'
+// 评论
+import { getCommentsByReplyRidApi, TopicCommentResponseData } from '@/api'
 
 // 回复的缓存
 interface ReplyDraft {
@@ -210,6 +213,18 @@ export const useKUNGalgameTopicStore = defineStore({
           content: this.replyDraft.content,
         }
         postReplyByPidApi(requestData)
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    // 获取评论
+    getComments(tid: number, rid: number): Promise<TopicCommentResponseData> {
+      return new Promise((resolve, reject) => {
+        getCommentsByReplyRidApi(tid, rid)
           .then((res) => {
             resolve(res)
           })

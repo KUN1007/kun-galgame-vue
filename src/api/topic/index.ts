@@ -14,7 +14,9 @@ const topicURLs = {
   // 根据话题 id 获取话题回复
   getRepliesByPid: `/topic/detail`,
   // 创建单个回复
-  postReplyByPidApi: `/topic/detail`,
+  postReplyByPid: `/topic/detail`,
+  // 获取一个回复下的所有评论
+  getCommentsByReplyRid: `/topic/detail`,
 }
 
 // 左侧相同标签下的其它话题
@@ -84,28 +86,12 @@ export async function getRepliesByPidApi(
   }
 }
 
-// 获取一个回复下面的评论
-// export async function getCommentsByReplyRidApi(
-//   request: Topic.TopicReplyRequestData
-// ): Promise<Topic.TopicReplyResponseData> {
-//   try {
-//     const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply`
-
-//     const response = await fetchGet<Topic.TopicReplyResponseData>(url)
-
-//     return response
-//   } catch (error) {
-//     console.log(error)
-//     throw new Error('Failed to fetch comments')
-//   }
-// }
-
 // 根据 pid 创建一个评论
 export async function postReplyByPidApi(
   request: Topic.TopicCreateReplyRequestData
 ): Promise<Topic.TopicCreateReplyResponseData> {
   try {
-    const url = `${topicURLs.postReplyByPidApi}/${request.tid}/reply`
+    const url = `${topicURLs.postReplyByPid}/${request.tid}/reply`
 
     const response = await fetchPost<Topic.TopicCreateReplyResponseData>(
       url,
@@ -116,5 +102,22 @@ export async function postReplyByPidApi(
   } catch (error) {
     console.log(error)
     throw new Error('Failed to create reply')
+  }
+}
+
+// 获取一个回复下面的评论
+export async function getCommentsByReplyRidApi(
+  tid: number,
+  rid: number
+): Promise<Topic.TopicCommentResponseData> {
+  try {
+    const url = `${topicURLs.getCommentsByReplyRid}/${tid}/reply?rid=\`${rid}\``
+
+    const response = await fetchGet<Topic.TopicCommentResponseData>(url)
+
+    return response
+  } catch (error) {
+    console.log(error)
+    throw new Error('Failed to fetch comments')
   }
 }

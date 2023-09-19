@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// 引入图标字体
+import { Icon } from '@iconify/vue'
+import { debounce } from '@/utils/debounce'
+</script>
 
 <template>
   <div class="panel">
@@ -6,9 +10,10 @@
       <div class="title"><span>kun</span>评论 @<span>啊这可海星</span></div>
       <div class="confirm">
         <button>发布评论</button>
-        <button></button>
+        <button>关闭</button>
       </div>
     </div>
+    <!-- textarea 容器 -->
     <div class="container">
       <textarea
         name="comment"
@@ -32,11 +37,12 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   color: var(--kungalgame-font-color-3);
+  margin-bottom: 10px;
 }
 
 .title {
-  margin-bottom: 10px;
   span {
     &:nth-child(1) {
       margin-right: 10px;
@@ -53,10 +59,13 @@
 }
 
 .confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   button {
     cursor: pointer;
     transition: all 0.2s;
-    color: var(--kungalgame-font-color-3);
+    color: var(--kungalgame-blue-4);
     padding: 2px 7px;
     border: 1px solid var(--kungalgame-blue-4);
     border-radius: 5px;
@@ -65,6 +74,9 @@
       background-color: var(--kungalgame-blue-4);
       color: var(--kungalgame-white);
     }
+    &:nth-child(2) {
+      margin-left: 10px;
+    }
   }
 }
 
@@ -72,15 +84,13 @@
   display: flex;
   textarea {
     color: var(--kungalgame-font-color-3);
-    transition: all 0.2s;
     flex: 1;
     margin-bottom: 20px;
     width: 100%;
     border: 1px solid var(--kungalgame-blue-4);
-    background-color: var(--kungalgame-trans-white-5);
+    background-color: var(--kungalgame-trans-white-9);
     border-radius: 5px;
     padding: 5px;
-    box-shadow: var(--shadow);
     &:focus {
       border: 1px solid var(--kungalgame-pink-3);
     }
