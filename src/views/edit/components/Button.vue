@@ -20,7 +20,7 @@ import {
 
 const router = useRouter()
 
-const { content, isSaveTopic } = storeToRefs(useKUNGalgameEditStore())
+const { textCount, isSaveTopic } = storeToRefs(useKUNGalgameEditStore())
 const messageStore = useKUNGalgameMessageStore()
 
 // 发布时检测用户输入是否合法
@@ -29,13 +29,16 @@ const checkPublish = (topicData: EditCreateTopicRequestData) => {
     // 标题为空的话，警告
     message('Title cannot be empty!', '标题不可为空！', 'warn')
     return false
-  } else if (!content.value.trim()) {
+  } else if (!textCount) {
+    if (textCount > 100007) {
+      message('Content max length is 100007!', '内容最大长度为100007！', 'warn')
+    }
     // 内容为空的话，警告
     message('Content cannot be empty!', '内容不可为空！', 'warn')
     return false
-  } else if (topicData.tags.length === 0) {
+  } else if (topicData.tags.length) {
     message('Please use at least one tag!', '请至少使用一个标签！', 'warn')
-  } else if (topicData.category.length === 0) {
+  } else if (topicData.category.length) {
     message(
       'Please select at least one category!',
       '请至少选择一个分类！',

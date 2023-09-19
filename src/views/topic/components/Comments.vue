@@ -3,11 +3,14 @@
  -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import CommentPanel from './CommentPanel.vue'
 </script>
 
 <template>
   <!-- 评论容器 -->
   <div class="comment-container">
+    <!-- 评论的弹出面板 -->
+    <CommentPanel />
     <!-- 评论的标题 -->
     <div class="title">
       <span>评论</span>
