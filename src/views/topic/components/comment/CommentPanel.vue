@@ -1,16 +1,80 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 // 引入图标字体
 import { Icon } from '@iconify/vue'
 import { debounce } from '@/utils/debounce'
+
+// 导入用户 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+// 导入话题页面 store
+import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+
+const { name, uid } = storeToRefs(useKUNGalgameUserStore())
+
+const { tid, rid, to_user } = defineProps<{
+  tid: number
+  rid: number
+  to_user: {
+    uid: number
+    name: string
+  }
+}>()
+
+const { commentDraft } = storeToRefs(useKUNGalgameTopicStore())
+
+// 评论的内容
+const commentValue = ref('')
+
+// 处理评论输入
+const handleInputComment = () => {
+  // 创建一个防抖处理函数
+  const debouncedUpdateContent = debounce(() => {
+    commentDraft.value.content = commentValue.value
+  }, 1007)
+
+  // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
+  debouncedUpdateContent()
+}
+
+// 挂载时初始化评论信息
+onMounted(() => {
+  // 首先重置评论内容
+  useKUNGalgameTopicStore().resetCommentDraft()
+})
+
+// 发布评论
+const handlePublishComment = async () => {
+  // 保存当前的回复内容
+  commentDraft.value.tid = tid
+  commentDraft.value.rid = rid
+  commentDraft.value.c_uid = uid.value
+  commentDraft.value.to_uid = to_user.uid
+  commentDraft.value.content = commentValue.value
+
+  const r = (await useKUNGalgameTopicStore().postNewComment()).data
+  console.log(r)
+
+  // 发表完毕还原回复内容
+  useKUNGalgameTopicStore().resetCommentDraft()
+}
+
+// 关闭评论面板
+const handleCloseCommentPanel = () => {
+  commentDraft.value.isShowCommentPanelRid = 0
+}
 </script>
 
 <template>
-  <div class="panel">
+  <div class="panel" v-if="commentDraft.isShowCommentPanelRid === rid">
     <div class="top">
-      <div class="title"><span>kun</span>评论 @<span>啊这可海星</span></div>
+      <div class="title">
+        <span>{{ name }}</span
+        >评论 @<span>{{ to_user.name }}</span>
+      </div>
       <div class="confirm">
-        <button>发布评论</button>
-        <button>关闭</button>
+        <button @click="handlePublishComment">发布评论</button>
+        <button @click="handleCloseCommentPanel">关闭</button>
       </div>
     </div>
     <!-- textarea 容器 -->
@@ -19,8 +83,13 @@ import { debounce } from '@/utils/debounce'
         name="comment"
         placeholder="请输入您的评论，最大字数为1007"
         rows="5"
+        v-model="commentValue"
+        @input="handleInputComment"
       >
       </textarea>
+
+      <!-- 文字计数 -->
+      <div class="count">{{ commentValue.length }}</div>
     </div>
   </div>
 </template>
@@ -81,6 +150,7 @@ import { debounce } from '@/utils/debounce'
 }
 
 .container {
+  position: relative;
   display: flex;
   textarea {
     color: var(--kungalgame-font-color-3);
@@ -95,5 +165,12 @@ import { debounce } from '@/utils/debounce'
       border: 1px solid var(--kungalgame-pink-3);
     }
   }
+}
+
+.count {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: var(--kungalgame-font-color-1);
 }
 </style>

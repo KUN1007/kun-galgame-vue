@@ -2,22 +2,23 @@
   这是回复话题下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
  -->
 <script setup lang="ts">
-import { onMounted, ref, toRaw } from 'vue'
+import { defineAsyncComponent, onMounted, ref, toRaw } from 'vue'
 import { Icon } from '@iconify/vue'
-import CommentPanel from './CommentPanel.vue'
+const CommentPanel = defineAsyncComponent(() => import('./CommentPanel.vue'))
 
-import { TopicReply, TopicComment } from '@/api/index'
+import { TopicComment } from '@/api/index'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-import { storeToRefs } from 'pinia'
 
 const { tid, rid } = defineProps<{
   tid: number
   rid: number
+  toUser: {
+    uid: number
+    name: string
+  }
 }>()
-
-const { scrollToReplyId } = storeToRefs(useKUNGalgameTopicStore())
 
 // 评论的数据
 const commentsData = ref<TopicComment[]>()
@@ -28,7 +29,7 @@ const getComments = async (tid: number, rid: number) => {
 
 onMounted(async () => {
   commentsData.value = await getComments(tid, rid)
-  console.log(toRaw(commentsData.value))
+  console.log(commentsData.value)
 })
 </script>
 
@@ -36,41 +37,53 @@ onMounted(async () => {
   <!-- 评论容器 -->
   <div class="comment-container">
     <!-- 评论的弹出面板 -->
-    <CommentPanel />
-    <!-- 评论的标题 -->
-    <div class="title">
-      <span>评论</span>
-    </div>
-    <div class="comment">
-      <!-- 用户头像 -->
-      <img src="@/assets/images/KUN.jpg" alt="KUN" />
-      <!-- 单个评论的内容区 -->
-      <div class="content">
-        <!-- 单个评论内容区顶部 -->
-        <div class="describe">
-          <!-- 顶部左侧名字 -->
-          <div class="name">鲲评论 @<a href="#">啊这可海星啊这</a></div>
-          <!-- 顶部右侧点赞、踩 -->
-          <div class="operate">
-            <ul>
-              <!-- 点赞 -->
-              <li>
-                <Icon class="icon" icon="line-md:thumbs-up-twotone" />
-              </li>
-              <!-- 踩 -->
-              <li>
-                <Icon class="icon" icon="line-md:thumbs-down-twotone" />
-              </li>
-              <li>
-                <Icon class="icon" icon="fa-regular:comment-dots" />
-              </li>
-            </ul>
+    <CommentPanel :tid="tid" :rid="rid" :to_user="toUser" />
+
+    <!-- 评论的展示区域 -->
+    <div class="container" v-if="commentsData?.length">
+      <!-- 评论的标题 -->
+      <div class="title">
+        <span>评论</span>
+      </div>
+      <div
+        class="comment"
+        v-for="(comment, index) in commentsData"
+        :key="index"
+      >
+        <!-- 用户头像 TODO: -->
+        <img src="@/assets/images/KUN.jpg" alt="KUN" />
+        <!-- 单个评论的内容区 -->
+        <div class="content">
+          <!-- 单个评论内容区顶部 -->
+          <div class="describe">
+            <!-- 顶部左侧名字 -->
+            <div class="name">
+              {{ `${comment.c_user.name}评论 @` }}
+              <a href="#">{{ comment.to_user.name }}</a>
+            </div>
+            <!-- 顶部右侧点赞、踩 -->
+            <div class="operate">
+              <ul>
+                <!-- 点赞 -->
+                <li>
+                  <Icon class="icon" icon="line-md:thumbs-up-twotone" />
+                  {{ comment.likes.length }}
+                </li>
+                <!-- 踩 -->
+                <li>
+                  <Icon class="icon" icon="line-md:thumbs-down-twotone" />
+                  {{ comment.dislikes.length }}
+                </li>
+                <li>
+                  <Icon class="icon" icon="fa-regular:comment-dots" />
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <!-- 单个评论内容区底部 -->
-        <div class="text">
-          啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
-          啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+          <!-- 单个评论内容区底部 -->
+          <div class="text">
+            {{ comment.content }}
+          </div>
         </div>
       </div>
     </div>

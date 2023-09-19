@@ -20,7 +20,13 @@ import {
   TopicCreateReplyResponseData,
 } from '@/api'
 // 评论
-import { getCommentsByReplyRidApi, TopicCommentResponseData } from '@/api'
+import {
+  getCommentsByReplyRidApi,
+  TopicCommentResponseData,
+  postCommentByPidAndRidApi,
+  TopicCreateCommentRequestData,
+  TopicCreateCommentResponseData,
+} from '@/api'
 
 // 回复的缓存
 interface ReplyDraft {
@@ -56,13 +62,6 @@ interface ReplyDraft {
   publishStatus: boolean
 }
 
-// 评论的缓存
-interface CommentDraft {
-  c_uid: number
-  to_uid: number
-  content: string
-}
-
 // 获取回复的请求
 interface ReplyRequest {
   page: number
@@ -70,6 +69,20 @@ interface ReplyRequest {
   sortField: string
   sortOrder: 'asc' | 'desc'
 }
+
+// 评论的缓存
+interface CommentDraft {
+  // 评论的内容
+  tid: number
+  rid: number
+  c_uid: number
+  to_uid: number
+  content: string
+
+  // 显示哪个评论的评论面板
+  isShowCommentPanelRid: number
+}
+
 // 话题页面的 store
 interface Topic {
   // 是否正在被编辑
@@ -134,9 +147,13 @@ export const useKUNGalgameTopicStore = defineStore({
       sortOrder: 'asc',
     },
     commentDraft: {
+      tid: 0,
+      rid: 0,
       c_uid: 0,
       to_uid: 0,
       content: '',
+
+      isShowCommentPanelRid: 0,
     },
   }),
   actions: {
@@ -233,7 +250,26 @@ export const useKUNGalgameTopicStore = defineStore({
           })
       })
     },
-    // 设置回复草稿为原始值，用于发布按钮
+    // 创建一个评论
+    postNewComment(): Promise<TopicCreateCommentResponseData> {
+      return new Promise((resolve, reject) => {
+        const requestData: TopicCreateCommentRequestData = {
+          tid: this.commentDraft.tid,
+          rid: this.commentDraft.rid,
+          c_uid: this.commentDraft.c_uid,
+          to_uid: this.commentDraft.to_uid,
+          content: this.commentDraft.content,
+        }
+        postCommentByPidAndRidApi(requestData)
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    // 设置回复草稿为原始值，用于回复发布按钮
     resetReplyDraft() {
       this.replyDraft.textCount = 0
       this.replyDraft.tid = 0
@@ -245,10 +281,18 @@ export const useKUNGalgameTopicStore = defineStore({
 
       this.replyDraft.isSaveReply = false
     },
-    // 重置页数，是否加载，这样排序才能生效
+    // 重置页数，是否加载，这样回复排序才能生效
     resetPageStatus() {
       this.replyRequest.page = 1
       this.isLoading = true
+    },
+    // 设置评论草稿为原始值，用于评论发布按钮
+    resetCommentDraft() {
+      this.commentDraft.tid = 0
+      this.commentDraft.rid = 0
+      this.commentDraft.c_uid = 0
+      this.commentDraft.to_uid = 0
+      this.commentDraft.content = ''
     },
   },
 })

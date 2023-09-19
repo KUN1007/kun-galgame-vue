@@ -23,7 +23,6 @@ const { isEdit, replyDraft } = storeToRefs(topicStore)
 
 // 接受父组件的传值
 const props = defineProps<{
-  isOthersTopic?: boolean
   info: {
     views?: number
     likes: number[]
@@ -102,8 +101,10 @@ const handelReply = async () => {
         <li>
           <span class="icon"><Icon icon="line-md:pencil-twotone-alt" /></span>
         </li>
-        <li v-if="isOthersTopic">
-          <span class="icon"><Icon icon="fa-regular:comment-dots" /></span>
+
+        <!-- 回复的插槽 -->
+        <li>
+          <slot name="comment"></slot>
         </li>
       </ul>
     </div>
@@ -141,6 +142,7 @@ const handelReply = async () => {
     }
   }
 }
+
 /* 图标字体的样式 */
 .icon {
   font-size: 24px;

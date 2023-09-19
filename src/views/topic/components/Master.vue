@@ -76,7 +76,6 @@ const {
         </div>
         <!-- 话题的点赞数等信息 -->
         <TopicFooter
-          :isOthersTopic="false"
           :info="{ views, likes, dislikes, upvotes, to_floor: 0 }"
           :r-user="user"
         />
