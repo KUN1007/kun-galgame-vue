@@ -7,6 +7,7 @@ import { postLoginDataApi } from '@/api/index'
 
 interface UserState {
   uid: number
+  name: string
   avatar: string
   token: string
   refreshToken: string
@@ -18,14 +19,16 @@ export const useKUNGalgameUserStore = defineStore({
   persist: true,
   state: (): UserState => ({
     uid: 0,
+    name: '',
     avatar: '',
     token: '',
     refreshToken: '',
   }),
   getters: {},
   actions: {
-    setUserInfo(uid: number, avatar: string): void {
+    setUserInfo(uid: number, name: string, avatar: string): void {
       this.uid = uid
+      this.name = name
       this.avatar = avatar
     },
     setToken(token: string, refreshToken: string): void {
@@ -41,7 +44,7 @@ export const useKUNGalgameUserStore = defineStore({
         })
           .then((res) => {
             if (res.data) {
-              this.setUserInfo(res.data.uid, res.data.avatar)
+              this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
               this.setToken(res.data.token, res.data.refreshToken)
             } else
               (e: any) => {

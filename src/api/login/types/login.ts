@@ -9,6 +9,7 @@ export interface LoginRequestData {
 // 登录响应数据的格式
 export type LoginResponseData = KUNGalgameResponseData<{
   uid: number
+  name: string
   avatar: string
   token: string
   refreshToken: string

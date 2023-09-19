@@ -71,8 +71,8 @@ export interface TopicCreateReplyRequestData {
 export interface TopicComment {
   rid: number
   tid: number
-  c_uid: Omit<TopicUserInfo, 'moemoepoint'>
-  to_uid: TopicToUserInfo
+  c_user: Omit<TopicUserInfo, 'moemoepoint'>
+  to_user: TopicToUserInfo
   content: string
   likes: number[]
   dislikes: number[]

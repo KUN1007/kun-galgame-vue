@@ -5,6 +5,7 @@
  -->
 <script setup lang="ts">
 import { ref } from 'vue'
+import { Icon } from '@iconify/vue'
 // 导入评论组件
 import Comments from '../comment/Comments.vue'
 // 导入 Footer 组件
@@ -24,11 +25,23 @@ import { TopicReply } from '@/api/index'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-const { scrollToReplyId } = storeToRefs(useKUNGalgameTopicStore())
+const { scrollToReplyId, commentDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 defineProps<{
   repliesData: TopicReply[]
 }>()
+
+// 控制面板关闭的值
+const isCommentPanelOpen = ref(false)
+// 切换面板的状态
+const handleClickComment = (rid: number) => {
+  if (isCommentPanelOpen.value) {
+    commentDraft.value.isShowCommentPanelRid = rid
+  } else {
+    commentDraft.value.isShowCommentPanelRid = 0
+  }
+  isCommentPanelOpen.value = !isCommentPanelOpen.value
+}
 </script>
 
 <template>
@@ -83,10 +96,11 @@ defineProps<{
               <Time :time="reply.time" />
             </div>
           </div>
+
           <!-- 其它人回复的底部 -->
-          <!-- isOthersTopic 区别楼主和回复的 footer,info 代表 footer 的点赞等信息，rUser 表示当前的回复用户信息 -->
+          <!-- info 代表 footer 的点赞等信息，rUser 表示当前的回复用户信息 -->
+          <!-- 这里传入了回复的插槽，因为只有回复可以被评论 -->
           <TopicFooter
-            :isOthersTopic="true"
             :info="{
               likes: reply.likes,
               dislikes: reply.dislikes,
@@ -94,8 +108,20 @@ defineProps<{
               to_floor: reply.floor,
             }"
             :rUser="reply.r_user"
+          >
+            <template #comment>
+              <span @click="handleClickComment(reply.rid)" class="icon">
+                <Icon icon="fa-regular:comment-dots" />
+              </span>
+            </template>
+          </TopicFooter>
+
+          <!-- 评论区域 -->
+          <Comments
+            :tid="reply.tid"
+            :rid="reply.rid"
+            :toUser="{ uid: reply.r_user.uid, name: reply.r_user.name }"
           />
-          <Comments :tid="reply.tid" :rid="reply.rid" />
         </div>
       </div>
     </div>
@@ -204,6 +230,14 @@ defineProps<{
   padding: 17px;
   border-left: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
+}
+
+/* 插槽的样式 */
+.icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--kungalgame-font-color-2);
+  display: flex;
 }
 
 /* 滚动到指定话题激活后的样式 */

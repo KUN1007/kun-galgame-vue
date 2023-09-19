@@ -17,6 +17,8 @@ const topicURLs = {
   postReplyByPid: `/topic/detail`,
   // 获取一个回复下的所有评论
   getCommentsByReplyRid: `/topic/detail`,
+  // 创建一个评论
+  postCommentByPidAndRid: `/topic/detail`,
 }
 
 // 左侧相同标签下的其它话题
@@ -111,9 +113,28 @@ export async function getCommentsByReplyRidApi(
   rid: number
 ): Promise<Topic.TopicCommentResponseData> {
   try {
-    const url = `${topicURLs.getCommentsByReplyRid}/${tid}/reply?rid=\`${rid}\``
+    const url = `${topicURLs.getCommentsByReplyRid}/${tid}/comment?rid=${rid}`
 
     const response = await fetchGet<Topic.TopicCommentResponseData>(url)
+
+    return response
+  } catch (error) {
+    console.log(error)
+    throw new Error('Failed to fetch comments')
+  }
+}
+
+// 根据 tid 和 rid 创建一个评论
+export async function postCommentByPidAndRidApi(
+  request: Topic.TopicCreateCommentRequestData
+): Promise<Topic.TopicCreateCommentResponseData> {
+  try {
+    const url = `${topicURLs.postCommentByPidAndRid}/${request.tid}/comment`
+
+    const response = await fetchPost<Topic.TopicCreateCommentResponseData>(
+      url,
+      request
+    )
 
     return response
   } catch (error) {

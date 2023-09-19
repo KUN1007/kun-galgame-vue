@@ -39,6 +39,7 @@ const {
   isEdit,
   replyDraft,
   replyRequest,
+  commentDraft,
   isScrollToTop,
   isLoading,
   scrollToReplyId,
@@ -186,8 +187,9 @@ const topicPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Topic + '%'
 })
 
-// 在页面跳转和刷新时重置回复面板状态，关闭高级模式、关闭面板
+// 在页面跳转和刷新时关闭回复面板和评论面板
 const resetPanelStatus = () => {
+  commentDraft.value.isShowCommentPanelRid = 0
   isShowAdvance.value = false
   isEdit.value = false
 }
