@@ -18,10 +18,10 @@ import { TopicDetail, TopicReply } from '@/api'
 // Aside
 import Aside from './aside/Aside.vue'
 import Master from './components/Master.vue'
-import Reply from './components/Reply.vue'
+import Reply from './components/reply/Reply.vue'
 // 异步导入回复面板
 const ReplyPanel = defineAsyncComponent(
-  () => import('./components/ReplyPanel.vue')
+  () => import('./components/reply/ReplyPanel.vue')
 )
 
 // 导入设置面板 store

@@ -4,18 +4,19 @@
   这个区域包含所有人回复给楼主的话题，其中每个人的话题将会被拆分成为单独的组件
  -->
 <script setup lang="ts">
+import { ref } from 'vue'
 // 导入评论组件
-import Comments from '../components/Comments.vue'
+import Comments from '../comment/Comments.vue'
 // 导入 Footer 组件
-import TopicFooter from './../components/TopicFooter.vue'
+import TopicFooter from '../TopicFooter.vue'
 // 导入发布时间组件
-import Time from './../components/Time.vue'
+import Time from '../Time.vue'
 // 导入标签组件
-import Tags from './../components/Tags.vue'
+import Tags from '../Tags.vue'
 // 导入重新编辑
-import Rewrite from './../components/Rewrite.vue'
-// 导入发帖人个人信息
-import KUNGalgamerInfo from './../components/KUNGalgamerInfo.vue'
+import Rewrite from '../Rewrite.vue'
+// 导入发布人个人信息
+import KUNGalgamerInfo from '../KUNGalgamerInfo.vue'
 
 import { TopicReply } from '@/api/index'
 
@@ -94,7 +95,7 @@ defineProps<{
             }"
             :rUser="reply.r_user"
           />
-          <Comments />
+          <Comments :tid="reply.tid" :rid="reply.rid" />
         </div>
       </div>
     </div>
