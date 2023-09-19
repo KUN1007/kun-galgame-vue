@@ -27,9 +27,13 @@ const getComments = async (tid: number, rid: number) => {
   return (await useKUNGalgameTopicStore().getComments(tid, rid)).data
 }
 
+// 拿到新发布的评论并 push 到原来的数据里，无需重新获取
+const getCommentEmits = (newComment: TopicComment) => {
+  commentsData.value?.push(newComment)
+}
+
 onMounted(async () => {
   commentsData.value = await getComments(tid, rid)
-  console.log(commentsData.value)
 })
 </script>
 
@@ -37,7 +41,12 @@ onMounted(async () => {
   <!-- 评论容器 -->
   <div class="comment-container">
     <!-- 评论的弹出面板 -->
-    <CommentPanel :tid="tid" :rid="rid" :to_user="toUser" />
+    <CommentPanel
+      @getCommentEmits="getCommentEmits"
+      :tid="tid"
+      :rid="rid"
+      :to_user="toUser"
+    />
 
     <!-- 评论的展示区域 -->
     <div class="container" v-if="commentsData?.length">

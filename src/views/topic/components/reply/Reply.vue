@@ -35,12 +35,12 @@ defineProps<{
 const isCommentPanelOpen = ref(false)
 // 切换面板的状态
 const handleClickComment = (rid: number) => {
+  isCommentPanelOpen.value = !isCommentPanelOpen.value
   if (isCommentPanelOpen.value) {
     commentDraft.value.isShowCommentPanelRid = rid
   } else {
     commentDraft.value.isShowCommentPanelRid = 0
   }
-  isCommentPanelOpen.value = !isCommentPanelOpen.value
 }
 </script>
 

@@ -4,6 +4,8 @@ import { onMounted, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { debounce } from '@/utils/debounce'
 
+import { TopicComment } from '@/api/index'
+
 // 导入用户 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 // 导入话题页面 store
@@ -12,6 +14,7 @@ import { storeToRefs } from 'pinia'
 
 const { name, uid } = storeToRefs(useKUNGalgameUserStore())
 
+// 定于父组件 props
 const { tid, rid, to_user } = defineProps<{
   tid: number
   rid: number
@@ -21,6 +24,11 @@ const { tid, rid, to_user } = defineProps<{
   }
 }>()
 
+const emits = defineEmits<{
+  getCommentEmits: [newComment: TopicComment]
+}>()
+
+// 使用评论的 store
 const { commentDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 // 评论的内容
@@ -52,11 +60,13 @@ const handlePublishComment = async () => {
   commentDraft.value.to_uid = to_user.uid
   commentDraft.value.content = commentValue.value
 
-  const r = (await useKUNGalgameTopicStore().postNewComment()).data
-  console.log(r)
+  const newComment = (await useKUNGalgameTopicStore().postNewComment()).data
 
   // 发表完毕还原回复内容
   useKUNGalgameTopicStore().resetCommentDraft()
+
+  // 将新的评论内容给父组件
+  emits('getCommentEmits', newComment)
 }
 
 // 关闭评论面板
@@ -69,8 +79,9 @@ const handleCloseCommentPanel = () => {
   <div class="panel" v-if="commentDraft.isShowCommentPanelRid === rid">
     <div class="top">
       <div class="title">
-        <span>{{ name }}</span
-        >评论 @<span>{{ to_user.name }}</span>
+        <span>{{ name }}</span>
+        评论 @
+        <span>{{ to_user.name }}</span>
       </div>
       <div class="confirm">
         <button @click="handlePublishComment">发布评论</button>

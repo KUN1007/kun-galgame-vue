@@ -293,6 +293,8 @@ export const useKUNGalgameTopicStore = defineStore({
       this.commentDraft.c_uid = 0
       this.commentDraft.to_uid = 0
       this.commentDraft.content = ''
+
+      this.commentDraft.isShowCommentPanelRid = 0
     },
   },
 })
