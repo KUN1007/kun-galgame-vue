@@ -40,6 +40,7 @@ const getRepliesCount = computed(() => {
   return replies.length + comments
 })
 </script>
+
 <template>
   <!-- 话题信息 -->
   <div class="topic-info">

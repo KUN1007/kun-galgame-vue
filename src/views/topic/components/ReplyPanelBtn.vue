@@ -16,10 +16,8 @@ const info = useKUNGalgameMessageStore()
 
 // 检查回复是否合法
 const isValidReply = () => {
-  return replyDraft.value.content.trim().length > 7 &&
-    replyDraft.value.content.trim() !== `<p><br></p>`
-    ? true
-    : false
+  const count = replyDraft.value.textCount
+  return count && count < 10007
 }
 
 // 发布回复的函数
