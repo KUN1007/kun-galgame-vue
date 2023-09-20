@@ -86,7 +86,7 @@ const handelReply = async () => {
             <span></span>
             <span></span>
             <span></span>
-            回复
+            {{ $tm('topic.content.reply') }}
           </div>
         </li>
         <!-- 分享 -->

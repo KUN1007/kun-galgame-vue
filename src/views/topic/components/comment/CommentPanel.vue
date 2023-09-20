@@ -113,19 +113,23 @@ const handleCloseCommentPanel = () => {
     <div class="top">
       <div class="title">
         <span>{{ name }}</span>
-        评论 @
+        <span>{{ $tm('topic.content.comment') }}</span>
         <span>{{ to_user.name }}</span>
       </div>
       <div class="confirm">
-        <button @click="handlePublishComment">发布评论</button>
-        <button @click="handleCloseCommentPanel">关闭</button>
+        <button @click="handlePublishComment">
+          {{ $tm('topic.content.publish') }}
+        </button>
+        <button @click="handleCloseCommentPanel">
+          {{ $tm('topic.content.close') }}
+        </button>
       </div>
     </div>
     <!-- textarea 容器 -->
     <div class="container">
       <textarea
         name="comment"
-        placeholder="请输入您的评论，最大字数为1007"
+        :placeholder="`${$tm('topic.content.hint')}`"
         rows="5"
         v-model="commentValue"
         @input="handleInputComment"
@@ -148,21 +152,24 @@ const handleCloseCommentPanel = () => {
 
 .top {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   color: var(--kungalgame-font-color-3);
-  margin-bottom: 10px;
+  padding: 10px 0;
 }
 
 .title {
+  display: flex;
+  flex-wrap: wrap;
   span {
-    &:nth-child(1) {
-      margin-right: 10px;
-    }
+    padding-bottom: 5px;
     &:nth-child(2) {
+      margin: 0 5px;
+    }
+    &:nth-child(3) {
       cursor: pointer;
-      margin-left: 10px;
       color: var(--kungalgame-blue-4);
       &:hover {
         text-decoration: underline;
@@ -188,7 +195,7 @@ const handleCloseCommentPanel = () => {
       color: var(--kungalgame-white);
     }
     &:nth-child(2) {
-      margin-left: 10px;
+      margin-left: 5px;
     }
   }
 }

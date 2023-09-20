@@ -95,6 +95,15 @@ export default {
       tags: '相同标签下的其它话题',
       master: '楼主的其它话题',
     },
+    content: {
+      status: '话题状态',
+      reply: '回复',
+      comments: '评论',
+      comment: '评论',
+      publish: '发布评论',
+      close: '关闭',
+      hint: '请输入您的评论，最大字数为1007',
+    },
     panel: {
       to: '回复给',
       master: '狗修金',

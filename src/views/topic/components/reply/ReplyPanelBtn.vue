@@ -74,15 +74,14 @@ const handleShowAdvance = () => {
 <template>
   <!-- 按钮的容器 -->
   <div class="btn-container">
+    <!-- 高级选项按钮 -->
+    <button class="advance-btn" @click="handleShowAdvance">高级选项</button>
     <!-- 确认按钮 -->
 
     <button class="confirm-btn" @click="handlePublish">确认发布</button>
 
     <!-- 保存按钮 -->
     <button class="save-btn" @click="handleSave">保存草稿</button>
-
-    <!-- 高级选项按钮 -->
-    <button class="advance-btn" @click="handleShowAdvance">高级选项</button>
   </div>
 </template>
 
@@ -138,12 +137,12 @@ const handleShowAdvance = () => {
 }
 /* 高级选项按钮的样式 */
 .advance-btn {
-  color: var(--kungalgame-red-5);
+  color: var(--kungalgame-purple-4);
   background-color: var(--kungalgame-trans-white-9);
-  border: 1px solid var(--kungalgame-red-5);
+  border: 1px solid var(--kungalgame-purple-4);
 }
 .advance-btn:hover {
-  background-color: var(--kungalgame-red-5);
+  background-color: var(--kungalgame-purple-4);
   transition: 0.1s;
 }
 .advance-btn:active {

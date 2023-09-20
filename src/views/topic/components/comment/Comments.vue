@@ -73,7 +73,7 @@ const handleClickReply = (uid: number, name: string) => {
     <div class="container" v-if="commentsData?.length">
       <!-- 评论的标题 -->
       <div class="title">
-        <span>评论</span>
+        <span>{{ $tm('topic.content.comments') }}</span>
       </div>
       <div
         class="comment"
@@ -88,7 +88,8 @@ const handleClickReply = (uid: number, name: string) => {
           <div class="describe">
             <!-- 顶部左侧名字 -->
             <div class="name">
-              {{ `${comment.c_user.name}评论 @` }}
+              {{ `${comment.c_user.name} ${$tm('topic.content.comment')}` }}
+              <!-- 跳转到用户主页 TODO: -->
               <a href="#">{{ comment.to_user.name }}</a>
             </div>
             <!-- 顶部右侧点赞、踩 -->
@@ -160,6 +161,7 @@ const handleClickReply = (uid: number, name: string) => {
 /* 单个评论内容区顶部 */
 .describe {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 5px;
 }
