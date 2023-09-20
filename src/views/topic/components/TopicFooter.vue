@@ -3,8 +3,6 @@
 import { nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
-// 引入流光环绕的特效
-import '@/styles/effect/effect.scss'
 
 import { TopicUserInfo } from '@/api'
 
@@ -79,13 +77,8 @@ const handelReply = async () => {
     <!-- 底部右侧部分（回复、评论、只看、编辑） -->
     <div class="right">
       <ul>
-        <li>
-          <!-- 对所有此类元素应用样式 -->
-          <div class="kungalgame-comet-surround" @click="handelReply">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+        <li @click="handelReply">
+          <div class="reply">
             {{ $tm('topic.content.reply') }}
           </div>
         </li>
@@ -157,10 +150,51 @@ const handelReply = async () => {
   margin-left: 10px;
   li {
     margin-right: 17px;
-    &:nth-child(1) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  }
+}
+
+.reply {
+  position: relative;
+  width: 70px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--kungalgame-blue-4);
+  box-shadow: inset 0 0 0 2px var(--kungalgame-blue-1);
+  cursor: pointer;
+  transition: all 0.2s;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+  }
+  &:hover {
+    color: var(--kungalgame-pink-4);
+
+    &::before {
+      transition: width 0.2s, height 0.2s, border-bottom-color 0s;
+      transition-delay: 0.2s, 0s, 0.2s;
+      width: 70px;
+      height: 30px;
+      border-left: 2px solid var(--kungalgame-pink-4);
+      border-bottom: 2px solid var(--kungalgame-pink-4);
+    }
+
+    &::after {
+      transition: width 0.2s, height 0.2s, border-right-color 0.2s;
+      transition-delay: 0s, 0.2s, 0.2s;
+      width: 70px;
+      height: 30px;
+      border-top: 2px solid var(--kungalgame-pink-4);
+      border-right: 2px solid var(--kungalgame-pink-4);
     }
   }
 }

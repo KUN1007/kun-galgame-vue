@@ -1,6 +1,9 @@
 export function getPlainText(html: string): string {
-  const re1 = new RegExp('<.+?>', 'g')
-  const arrEntities: Record<string, string> = {
+  // 使用正则表达式匹配所有HTML标签并删除
+  const plainText = html.replace(/<[^>]*>/g, '')
+
+  // 使用实体编码映射表将HTML实体编码还原
+  const entityMap: Record<string, string> = {
     lt: '<',
     gt: '>',
     nbsp: ' ',
@@ -11,11 +14,10 @@ export function getPlainText(html: string): string {
     rdquo: '”',
   }
 
-  const plainText = html
-    .replace(re1, '')
-    .replace(/&(lt|gt|nbsp|amp|quot|ldquo|mdash|rdquo);/gi, function (all, t) {
-      return arrEntities[t]
-    })
+  // 使用正则表达式匹配实体编码并还原
+  const decodedText = plainText.replace(/&(\w+);/g, function (match, entity) {
+    return entityMap[entity] || match
+  })
 
-  return plainText
+  return decodedText
 }
