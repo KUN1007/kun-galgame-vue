@@ -1,10 +1,38 @@
 <!-- 发帖的时间 -->
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
+import dayjs from 'dayjs'
+import 'dayjs/locale/en' // 导入英文语言包
 
-defineProps<{
+// 使用设置界面的 store，目的是获取网站整体的语言
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+const { time } = defineProps<{
   time?: number
 }>()
+
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
+
+// 设置使用英文语言
+dayjs.locale('en')
+const formattedCNDate = dayjs(time).format('YYYY年MM月DD日-HH:mm:ss 发布')
+const formattedENDate = dayjs(time).format('MMMM D, YYYY - h:mm:ss A')
+
+const loliTime = computed(() => {
+  if (showKUNGalgameLanguage.value === 'en') {
+    return formattedENDate
+  }
+
+  if (showKUNGalgameLanguage.value === 'zh') {
+    return formattedCNDate
+  }
+
+  return ''
+})
 </script>
 
 <template>
@@ -12,7 +40,7 @@ defineProps<{
   <div class="time">
     <!-- 沙漏图标字体 -->
     <Icon class="hourglass" icon="eos-icons:hourglass" />
-    <div>2019年10月7日-10:07:00 发布</div>
+    <div>{{ loliTime }}</div>
   </div>
 </template>
 

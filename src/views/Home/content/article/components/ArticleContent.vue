@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
       <div
         v-for="topic in topics"
         :key="topic.tid"
-        :class="topic.upvotes.length ? 'kungalgame-comet-surround' : ''"
+        :class="topic.status === 2 ? 'kungalgame-comet-surround' : ''"
       >
         <span></span>
         <span></span>

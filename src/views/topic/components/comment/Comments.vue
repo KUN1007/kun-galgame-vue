@@ -2,7 +2,7 @@
   这是回复话题下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
  -->
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted, ref, toRaw } from 'vue'
+import { defineAsyncComponent, onMounted, reactive, ref, toRaw } from 'vue'
 import { Icon } from '@iconify/vue'
 const CommentPanel = defineAsyncComponent(() => import('./CommentPanel.vue'))
 
@@ -10,6 +10,8 @@ import { TopicComment } from '@/api/index'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { storeToRefs } from 'pinia'
+const { commentDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 const { tid, rid, toUser } = defineProps<{
   tid: number
@@ -22,6 +24,11 @@ const { tid, rid, toUser } = defineProps<{
 
 // 评论的数据
 const commentsData = ref<TopicComment[]>()
+// 评论给谁
+const toUserInfo = reactive({
+  uid: 0,
+  name: '',
+})
 
 const getComments = async (tid: number, rid: number) => {
   return (await useKUNGalgameTopicStore().getComments(tid, rid)).data
@@ -33,11 +40,22 @@ const getCommentEmits = (newComment: TopicComment) => {
 }
 
 onMounted(async () => {
+  // 将用户信息给回复面板
+  toUserInfo.name = toUser.name
+  toUserInfo.uid = toUser.uid
+
   commentsData.value = await getComments(tid, rid)
 })
 
 // 点击回复
-const handleClickReply = () => {}
+const handleClickReply = (uid: number, name: string) => {
+  // 将当前回复的信息给回复面板
+  toUserInfo.name = name
+  toUserInfo.uid = uid
+
+  // 打开回复面板
+  commentDraft.value.isShowCommentPanelRid = rid
+}
 </script>
 
 <template>
@@ -48,7 +66,7 @@ const handleClickReply = () => {}
       @getCommentEmits="getCommentEmits"
       :tid="tid"
       :rid="rid"
-      :to_user="toUser"
+      :to_user="toUserInfo"
     />
 
     <!-- 评论的展示区域 -->
@@ -86,7 +104,11 @@ const handleClickReply = () => {}
                   <Icon class="icon" icon="line-md:thumbs-down-twotone" />
                   {{ comment.dislikes.length }}
                 </li>
-                <li @click="handleClickReply">
+                <li
+                  @click="
+                    handleClickReply(comment.c_user.uid, comment.c_user.name)
+                  "
+                >
                   <Icon class="icon" icon="fa-regular:comment-dots" />
                 </li>
               </ul>

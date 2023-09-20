@@ -16,6 +16,7 @@ import Time from '../components/Time.vue'
 import Tags from '../components/Tags.vue'
 
 import { TopicDetail } from '@/api/topic/types/topic'
+import { computed } from 'vue'
 
 const topicData = defineProps<{
   topicData: TopicDetail
@@ -34,7 +35,22 @@ const {
   edited,
   user,
   rid,
+  status,
+  share,
 } = topicData.topicData
+
+// 话题的状态
+const loliStatus = computed(() => {
+  if (status === 0) {
+    return 'active'
+  } else if (status === 1) {
+    return 'banned'
+  } else if (status === 2) {
+    return 'featured'
+  } else {
+    return ''
+  }
+})
 </script>
 
 <template>
@@ -70,7 +86,9 @@ const {
           <!-- 内容区的底部 -->
           <div class="content-bottom">
             <!-- 话题状态 -->
-            <div>话题状态：<span>正常</span></div>
+            <div class="status">
+              话题状态：<span :class="loliStatus">{{ loliStatus }}</span>
+            </div>
             <Rewrite v-if="edited" :time="edited" />
           </div>
         </div>
@@ -168,22 +186,35 @@ const {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--kungalgame-blue-1);
-  div {
+}
+
+/* 话题状态 */
+.status {
+  display: flex;
+  font-size: 12px;
+  margin-left: 10px;
+  color: var(--kungalgame-font-color-3);
+  /* 话题状态 */
+  span {
+    width: 50px;
+    padding: 1px;
+    color: var(--kungalgame-white);
     display: flex;
-    font-size: 12px;
-    margin-left: 10px;
-    color: var(--kungalgame-font-color-3);
-    /* 话题状态 */
-    span {
-      width: 30px;
-      padding: 1px;
-      background-color: var(--kungalgame-green-4);
-      color: var(--kungalgame-white);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    justify-content: center;
+    align-items: center;
   }
+}
+
+.active {
+  background-color: var(--kungalgame-green-4);
+}
+
+.banned {
+  background-color: var(--kungalgame-gray-4);
+}
+
+.featured {
+  background-color: var(--kungalgame-red-4);
 }
 
 @media (max-width: 1000px) {
