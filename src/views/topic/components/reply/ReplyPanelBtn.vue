@@ -23,8 +23,6 @@ const isValidReply = () => {
 // 发布回复的函数
 const publishReply = async () => {
   if (isValidReply()) {
-    console.log(replyDraft.value.content)
-
     // 重置页数，是否加载等页面状态
     useKUNGalgameTopicStore().resetPageStatus()
     // 发布回复

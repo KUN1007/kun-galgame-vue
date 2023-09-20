@@ -11,7 +11,7 @@ import { TopicComment } from '@/api/index'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
-const { tid, rid } = defineProps<{
+const { tid, rid, toUser } = defineProps<{
   tid: number
   rid: number
   toUser: {
@@ -35,6 +35,9 @@ const getCommentEmits = (newComment: TopicComment) => {
 onMounted(async () => {
   commentsData.value = await getComments(tid, rid)
 })
+
+// 点击回复
+const handleClickReply = () => {}
 </script>
 
 <template>
@@ -83,7 +86,7 @@ onMounted(async () => {
                   <Icon class="icon" icon="line-md:thumbs-down-twotone" />
                   {{ comment.dislikes.length }}
                 </li>
-                <li>
+                <li @click="handleClickReply">
                   <Icon class="icon" icon="fa-regular:comment-dots" />
                 </li>
               </ul>
@@ -109,7 +112,7 @@ onMounted(async () => {
 /* 评论容器 */
 .comment-container {
   width: 100%;
-  padding: 17px;
+  padding: 0 17px;
 }
 
 /* 单个评论 */
