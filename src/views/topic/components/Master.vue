@@ -87,7 +87,8 @@ const loliStatus = computed(() => {
           <div class="content-bottom">
             <!-- 话题状态 -->
             <div class="status">
-              话题状态：<span :class="loliStatus">{{ loliStatus }}</span>
+              <span>{{ `${$tm('topic.content.status')}:` }}</span>
+              <span :class="loliStatus">{{ loliStatus }}</span>
             </div>
             <Rewrite v-if="edited" :time="edited" />
           </div>
@@ -196,12 +197,17 @@ const loliStatus = computed(() => {
   color: var(--kungalgame-font-color-3);
   /* 话题状态 */
   span {
-    width: 50px;
-    padding: 1px;
-    color: var(--kungalgame-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    &:nth-child(1) {
+      margin-right: 5px;
+    }
+    &:nth-child(2) {
+      width: 50px;
+      padding: 1px;
+      color: var(--kungalgame-white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
