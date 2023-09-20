@@ -51,7 +51,7 @@ const props = defineProps<{
   display: flex;
   justify-content: center;
   margin-top: 17px;
-  font-size: 23px;
+  font-size: 17px;
 }
 /* 萌萌点 */
 .moemoepoint {

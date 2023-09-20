@@ -1,21 +1,15 @@
 <script setup lang="ts">
 import { getUpdateLogApi } from '@/api/update-log/index'
-import { KUNGalgameUpdateLog } from '@/api/update-log/types/updateLog'
+import { UpdateLog } from '@/api'
 import { ref, onBeforeMount } from 'vue'
 
 // 在组件中定义响应式的话题数据
-const topics = ref<KUNGalgameUpdateLog[]>([])
+const topics = ref<UpdateLog[]>([])
 
 // 在组件挂载时调用 fetchTopics 获取话题数据
 onBeforeMount(async () => {
-  try {
-    topics.value = await getUpdateLogApi()
-  } catch (error) {
-    console.log('Error fetching updateLogs:', error)
-  }
+  topics.value = await getUpdateLogApi()
 })
-
-console.log(topics)
 </script>
 
 <template>

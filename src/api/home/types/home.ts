@@ -39,6 +39,7 @@ export interface HomeTopic {
   category: string[]
   popularity: number
   user: HomeUserInfo
+  status: number
 }
 
 // 首页响应数据的格式

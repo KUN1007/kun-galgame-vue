@@ -26,6 +26,8 @@ export interface TopicDetail {
   edited: number
   user: TopicUserInfo
   rid: number[]
+  status: number
+  share: number[]
 }
 
 // 回复的请求数据
