@@ -143,6 +143,7 @@ const handelScroll = async () => {
     // 判断是否已经将数据加载完，加载完则不需要加载了
     if (!lazyLoadReplies.length) {
       isLoading.value = false
+      return
     }
 
     // 将新加载的回复数据追加到已有的回复数据中
@@ -224,7 +225,7 @@ onBeforeMount(() => {
         >
           <!-- 滚动时的 title -->
           <div class="title-scroll" v-if="contentScrollHeight > 400">
-            啊这可海星
+            {{ topicData?.title }}
           </div>
         </Transition>
         <Master v-if="topicData" :topicData="topicData" />

@@ -40,7 +40,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 信息展示部分的容器,目的是把左侧的信息和右侧的网站介绍分开 */
 .container {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
   /* 为了左右两部分设置弹性盒 */
   display: flex;
 }

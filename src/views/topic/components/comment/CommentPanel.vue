@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-// 引入图标字体
-import { Icon } from '@iconify/vue'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
 import { debounce } from '@/utils/debounce'
 
 import { TopicComment } from '@/api/index'
@@ -24,6 +24,7 @@ const { tid, rid, to_user } = defineProps<{
   }
 }>()
 
+// 定义父组件 emits
 const emits = defineEmits<{
   getCommentEmits: [newComment: TopicComment]
 }>()
@@ -45,6 +46,36 @@ const handleInputComment = () => {
   debouncedUpdateContent()
 }
 
+// 保存评论信息
+const saveComment = () => {
+  commentDraft.value.tid = tid
+  commentDraft.value.rid = rid
+  commentDraft.value.c_uid = uid.value
+  commentDraft.value.to_uid = to_user.uid
+  commentDraft.value.content = commentValue.value
+}
+
+// 检查评论是否合法
+const isValidComment = () => {
+  // 评论内容为空警告
+  if (!commentDraft.value.content.trim()) {
+    message('Comment content cannot be empty!', '评论内容不能为空！', 'warn')
+    return false
+  }
+
+  // 评论内容超出限制警告
+  if (commentDraft.value.content.trim().length > 1007) {
+    message(
+      'The maximum length for comments should not exceed 1007 characters.',
+      '评论最大长度不可超过1007个字符',
+      'warn'
+    )
+    return false
+  }
+
+  return true
+}
+
 // 挂载时初始化评论信息
 onMounted(() => {
   // 首先重置评论内容
@@ -54,19 +85,21 @@ onMounted(() => {
 // 发布评论
 const handlePublishComment = async () => {
   // 保存当前的回复内容
-  commentDraft.value.tid = tid
-  commentDraft.value.rid = rid
-  commentDraft.value.c_uid = uid.value
-  commentDraft.value.to_uid = to_user.uid
-  commentDraft.value.content = commentValue.value
+  saveComment()
 
-  const newComment = (await useKUNGalgameTopicStore().postNewComment()).data
+  if (isValidComment()) {
+    // 获取新评论
+    const newComment = (await useKUNGalgameTopicStore().postNewComment()).data
 
-  // 发表完毕还原回复内容
-  useKUNGalgameTopicStore().resetCommentDraft()
+    // 发表完毕还原回复内容
+    useKUNGalgameTopicStore().resetCommentDraft()
 
-  // 将新的评论内容给父组件
-  emits('getCommentEmits', newComment)
+    // 将新的评论内容给父组件
+    emits('getCommentEmits', newComment)
+
+    // 提醒用户
+    message('Comment publish successfully!', '评论发布成功', 'success')
+  }
 }
 
 // 关闭评论面板

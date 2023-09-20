@@ -4,7 +4,7 @@
   这个区域包含所有人回复给楼主的话题，其中每个人的话题将会被拆分成为单独的组件
  -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 // 导入评论组件
 import Comments from '../comment/Comments.vue'
@@ -55,7 +55,7 @@ const handleClickComment = (rid: number) => {
       <div
         class="other-topic-container"
         v-for="(reply, index) in repliesData"
-        :key="`${index}${Math.random()}`"
+        :key="`${index}`"
         :id="`kungalgame-reply-${reply.floor}`"
       >
         <!-- 每个人的单个话题 -->
@@ -242,7 +242,7 @@ const handleClickComment = (rid: number) => {
 
 /* 滚动到指定话题激活后的样式 */
 .active .container {
-  border: 2px solid var(--kungalgame-red-3);
+  border: 1px solid var(--kungalgame-red-3);
   background-color: var(--kungalgame-trans-red-1);
 }
 
