@@ -95,8 +95,17 @@ export default {
       tags: 'Topics Under the Same Tags',
       master: 'Other Topics of The Master',
     },
+    content: {
+      status: 'Topic status',
+      reply: 'Reply',
+      comments: 'Comments',
+      comment: 'Commented to',
+      publish: 'Publish Comment',
+      close: 'Close',
+      hint: 'Please enter your comment, maximum 1007 characters.',
+    },
     panel: {
-      to: 'Reply To',
+      to: 'Replied To',
       master: 'ご主人',
       reply: 'zako~♡',
     },

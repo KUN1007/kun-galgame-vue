@@ -42,7 +42,7 @@ const {
 // 话题的状态
 const loliStatus = computed(() => {
   if (status === 0) {
-    return 'active'
+    return 'normal'
   } else if (status === 1) {
     return 'banned'
   } else if (status === 2) {
@@ -205,7 +205,8 @@ const loliStatus = computed(() => {
   }
 }
 
-.active {
+/* 话题的 status */
+.normal {
   background-color: var(--kungalgame-green-4);
 }
 
@@ -214,7 +215,14 @@ const loliStatus = computed(() => {
 }
 
 .featured {
-  background-color: var(--kungalgame-red-4);
+  background-color: var(--kungalgame-pink-3);
+}
+
+/* 话题被点击跳转 */
+/* 滚动到指定话题激活后的样式 */
+.active .content-container {
+  border: 1px solid var(--kungalgame-red-3);
+  background-color: var(--kungalgame-trans-red-1);
 }
 
 @media (max-width: 1000px) {
