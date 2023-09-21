@@ -9,7 +9,7 @@ import 'dayjs/locale/en' // 导入英文语言包
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-const { time } = defineProps<{
+const props = defineProps<{
   time?: number
 }>()
 
@@ -19,8 +19,8 @@ const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
 
 // 设置使用英文语言
 dayjs.locale('en')
-const formattedCNDate = dayjs(time).format('YYYY年MM月DD日-HH:mm:ss 发布')
-const formattedENDate = dayjs(time).format('MMMM D, YYYY - h:mm:ss A')
+const formattedCNDate = dayjs(props.time).format('YYYY年MM月DD日-HH:mm:ss 发布')
+const formattedENDate = dayjs(props.time).format('MMMM D, YYYY - h:mm:ss A')
 
 const loliTime = computed(() => {
   if (showKUNGalgameLanguage.value === 'en') {

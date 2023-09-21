@@ -27,6 +27,7 @@ interface UserState {
 export const useKUNGalgameUserStore = defineStore({
   id: 'kungalgamer',
   persist: true,
+  // TODO: token 放在 cookie 中，这里临时存放一下
   state: (): UserState => ({
     uid: 0,
     name: '',
@@ -68,8 +69,9 @@ export const useKUNGalgameUserStore = defineStore({
       })
     },
     // 发送验证码
-    sendCode(request: VerificationCodeMailRequestData): Promise<void> {
+    sendCode(email: string): Promise<void> {
       return new Promise((resolve, reject) => {
+        const request: VerificationCodeMailRequestData = { email }
         sendVerificationCodeMailApi(request)
           .then((res) => {
             resolve(res)
