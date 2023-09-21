@@ -13,7 +13,7 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 const { commentDraft } = storeToRefs(useKUNGalgameTopicStore())
 
-const { tid, rid, toUser } = defineProps<{
+const props = defineProps<{
   tid: number
   rid: number
   toUser: {
@@ -41,10 +41,10 @@ const getCommentEmits = (newComment: TopicComment) => {
 
 onMounted(async () => {
   // 将用户信息给回复面板
-  toUserInfo.name = toUser.name
-  toUserInfo.uid = toUser.uid
+  toUserInfo.name = props.toUser.name
+  toUserInfo.uid = props.toUser.uid
 
-  commentsData.value = await getComments(tid, rid)
+  commentsData.value = await getComments(props.tid, props.rid)
 })
 
 // 点击回复
@@ -54,7 +54,7 @@ const handleClickReply = (uid: number, name: string) => {
   toUserInfo.uid = uid
 
   // 打开回复面板
-  commentDraft.value.isShowCommentPanelRid = rid
+  commentDraft.value.isShowCommentPanelRid = props.rid
 }
 </script>
 

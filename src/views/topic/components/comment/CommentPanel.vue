@@ -15,7 +15,7 @@ import { storeToRefs } from 'pinia'
 const { name, uid } = storeToRefs(useKUNGalgameUserStore())
 
 // 定于父组件 props
-const { tid, rid, to_user } = defineProps<{
+const props = defineProps<{
   tid: number
   rid: number
   to_user: {
@@ -48,10 +48,10 @@ const handleInputComment = () => {
 
 // 保存评论信息
 const saveComment = () => {
-  commentDraft.value.tid = tid
-  commentDraft.value.rid = rid
+  commentDraft.value.tid = props.tid
+  commentDraft.value.rid = props.rid
   commentDraft.value.c_uid = uid.value
-  commentDraft.value.to_uid = to_user.uid
+  commentDraft.value.to_uid = props.to_user.uid
   commentDraft.value.content = commentValue.value
 }
 

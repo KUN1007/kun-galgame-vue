@@ -12,7 +12,6 @@ export interface RegisterRequestData {
   email: string
   password: string
   code: string
-  ip?: string
 }
 
 // 发送验证码请求数据格式

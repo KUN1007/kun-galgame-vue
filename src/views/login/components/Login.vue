@@ -93,7 +93,6 @@ const handleLogin = () => {
     if (res.code === 200) {
       router.push('/')
       info.info(tm('AlertInfo.login.success'))
-    } else {
     }
   })
 }
@@ -103,7 +102,7 @@ const handleLogin = () => {
   <!-- 登陆 -->
   <div class="login">
     <Capture @validate="handleVerify" :isShowValidate="isShowValidate" />
-    <form class="form" @submit.prevent="handleLogin">
+    <div class="form">
       <h2 class="title">{{ $tm('login.loginTitle') }}</h2>
       <input
         v-model="loginForm.name"
@@ -117,14 +116,18 @@ const handleLogin = () => {
         :placeholder="($tm('login.loginPassword') as string)"
         class="input"
       />
+
+      <!-- 忘记密码 -->
       <span class="forget">{{ $tm('login.forget') }}</span>
       <span @click="isShowValidate = true" class="capture">{{
         $tm('login.capture')
       }}</span>
-      <button class="btn" type="submit">
+
+      <!-- 点击登录 -->
+      <button @click="handleLogin" class="btn" type="submit">
         {{ $tm('login.loginTitle') }}
       </button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -146,7 +149,7 @@ const handleLogin = () => {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 3rem;
+  padding: 0 50px;
   height: 100%;
   text-align: center;
 }
@@ -155,7 +158,7 @@ const handleLogin = () => {
 .title {
   font-weight: 300;
   font-weight: bold;
-  margin-bottom: 1.25rem;
+  margin-bottom: 20px;
   color: var(--kungalgame-font-color-2);
 }
 
@@ -163,8 +166,8 @@ const handleLogin = () => {
   border: none;
   outline: none;
   border-bottom: 1.5px solid var(--kungalgame-blue-0);
-  padding: 0.9rem 0.9rem;
-  margin: 0.5rem 0;
+  padding: 15px;
+  margin: 7px 0;
   width: 100%;
   background-color: var(--kungalgame-white);
   color: var(--kungalgame-font-color-3);
@@ -190,18 +193,17 @@ const handleLogin = () => {
 
 .btn {
   position: absolute;
-  margin-top: 1.5rem;
-  bottom: 7%;
+  bottom: 10%;
   border-radius: 50px;
   background-color: var(--kungalgame-trans-white-5);
   border: 1px solid var(--kungalgame-blue-4);
   color: var(--kungalgame-blue-4);
   cursor: pointer;
-  font-size: 0.9em;
-  letter-spacing: 0.1rem;
-  padding: 0.6rem 4rem;
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding: 7px 50px;
   text-transform: uppercase;
-  transition: transform 80ms ease-in;
+  transition: all 0.2s;
   overflow: hidden;
   white-space: nowrap;
 }
