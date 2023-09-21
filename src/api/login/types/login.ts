@@ -6,6 +6,20 @@ export interface LoginRequestData {
   password: string
 }
 
+// 注册请求数据的格式
+export interface RegisterRequestData {
+  name: string
+  email: string
+  password: string
+  code: string
+  ip?: string
+}
+
+// 发送验证码请求数据格式
+export interface VerificationCodeMailRequestData {
+  email: string
+}
+
 // 登录响应数据的格式
 export type LoginResponseData = KUNGalgameResponseData<{
   uid: number

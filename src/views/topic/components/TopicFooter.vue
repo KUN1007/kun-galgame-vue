@@ -32,6 +32,7 @@ const props = defineProps<{
   rUser: TopicUserInfo
 }>()
 
+// 点击回复打开回复面板
 const handelReply = async () => {
   // 保存必要信息，以便发表回复
   replyDraft.value.tid = tid
@@ -44,6 +45,9 @@ const handelReply = async () => {
   await nextTick()
   isEdit.value = true
 }
+
+// 重新编辑
+const handleClickEdit = () => {}
 </script>
 
 <template>
@@ -92,7 +96,9 @@ const handelReply = async () => {
         </li>
         <!-- 编辑 -->
         <li>
-          <span class="icon"><Icon icon="line-md:pencil-twotone-alt" /></span>
+          <span @click="handleClickEdit" class="icon">
+            <Icon icon="line-md:pencil-twotone-alt" />
+          </span>
         </li>
 
         <!-- 回复的插槽 -->
