@@ -30,6 +30,16 @@ export interface TopicDetail {
   share: number[]
 }
 
+// 更新话题的请求数据
+export interface TopicUpdateRequestData {
+  tid: number
+  uid: number
+  title: string
+  content: string
+  tags: string[]
+  category: string[]
+}
+
 // 回复的请求数据
 export interface TopicReplyRequestData {
   tid: number
