@@ -3,22 +3,22 @@
  -->
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import {
   isValidEmail,
   isValidName,
   isValidPassword,
   isValidMailConfirmCode,
 } from '@/utils/validate'
-import { useI18n } from 'vue-i18n'
 import Code from '@/components/verification-code/Code.vue'
 import Capture from '@/components/capture/Capture.vue'
 
-const { t } = useI18n()
-
 const info = useKUNGalgameMessageStore()
 
-const isShowValidate = ref(false)
+const isCapturePass = ref(false)import { useI18n } from 'vue-i18n'
 const isCaptureComplete = ref(false)
 const isSendCode = ref(false)
 
@@ -29,56 +29,65 @@ const registerForm = reactive({
   code: '',
 })
 
-const handleVerify = (result: boolean) => {
+// 人机验证
+const handleCapture = (result: boolean) => {
   if (result) {
-    isShowValidate.value = false
-    info.info(t('AlertInfo.capture.success'))
+    message(
+      'Human-machine identity verification successful',
+      '人机验证通过',
+      'success'
+    )
+    isCapturePass.value = true
     isCaptureComplete.value = true
+  } else {
+    isCapturePass.value = false
   }
 }
 
+// 验证表单是否为空
 const isEmptyInput = () => {
   if (!registerForm.username.trim()) {
-    info.info(t('AlertInfo.login.emptyUsername'))
+    message('Username cannot be empty!', '用户名不可为空！', 'warn')
     return false
   } else if (!registerForm.email.trim()) {
-    info.info('邮箱不可以为空')
+    message('Email cannot be empty!', '邮箱不可为空！', 'warn')
     return false
   } else if (!registerForm.password.trim()) {
-    info.info(t('AlertInfo.login.emptyPassword'))
+    message('Password cannot be empty!', '密码不可为空！', 'warn')
     return false
   } else {
     return true
   }
 }
 
+// 验证表单是否合法
 const isValidInput = (): boolean => {
   if (!isEmptyInput()) {
     return false
   }
   if (!isValidName(registerForm.username)) {
-    info.info(t('非法的用户名'))
+    message('Invalid username format!', '非法的用户名格式！', 'warn')
     return false
   }
   if (!isValidEmail(registerForm.email)) {
-    info.info('非法的邮箱格式')
+    message('Invalid email format!', '非法的邮箱格式！', 'warn')
     return false
   }
   if (!isValidPassword(registerForm.password)) {
-    info.info(t('非法的密码格式'))
+    message('Invalid password format!', '非法的密码格式！', 'warn')
     return false
   }
   return true
 }
 
 const handleSendCode = () => {
+  // 验证码为空
   if (!isValidInput()) {
     return
   }
 
   if (!isCaptureComplete.value) {
-    isShowValidate.value = true
-    isSendCode.value = true
+    return
   }
 }
 
@@ -103,7 +112,7 @@ const handleRegister = () => {
 <template>
   <!-- 注册 -->
   <div class="register">
-    <Capture @validate="handleVerify" :isShowValidate="isShowValidate" />
+    <Capture @validate="handleCapture" :isShowValidate="isCapturePass" />
     <form action="#" class="form" @submit.prevent="handleRegister">
       <h2 class="title">注册</h2>
       <input
