@@ -1,29 +1,154 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+// 导入问题
+import { questionsEN } from './questionsEN'
+import { questionsCN } from './questionsCN'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
+// 导入设置塑件，目的是获取语言
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+// 使用设置 store 获取语言
+const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
+// 当前的语言
+const questions =
+  showKUNGalgameLanguage.value === 'en' ? questionsEN : questionsCN
+
+const props = defineProps<{
+  isShowValidate: boolean
+}>()
+
+const emits = defineEmits<{
+  handleVerify: [res: boolean]
+  handleClose: [isShowValidate: boolean]
+}>()
+
+// 用户输入的答案
+const userAnswers = ref([])
+// 当前问题的索引
+const currentQuestionIndex = ref(0)
+// 当前的问题
+const currentQuestion = computed(() => questions[currentQuestionIndex.value])
+// 错误次数计数
+const errorCounter = ref(0)
+const expectedKeys = ref(['k', 'u', 'n'])
+const currentIndex = ref(0)
+// 是否显示提示
+const isShowHint = ref(false)
+// 是否显示答案
+const isShowAnswer = ref(false)
+
+// 监听键盘事件
+const checkKeyPress = (event: KeyboardEvent) => {
+  const pressedKey = event.key
+
+  if (pressedKey === expectedKeys.value[currentIndex.value]) {
+    // 当用户按下了期望的键时
+    if (currentIndex.value === expectedKeys.value.length - 1) {
+      // 如果已经按下了最后一个键 "n"，触发相应逻辑
+      isShowAnswer.value = true
+    } else {
+      // 否则，继续下一个期望的键
+      currentIndex.value++
+    }
+  } else {
+    // 如果按下了错误的键，重新开始检查
+    currentIndex.value = 0
+  }
+}
+
+// 提交问题
+const submitAnswer = () => {
+  const userAnswer = userAnswers.value[currentQuestionIndex.value]
+  const correctOption = currentQuestion.value.correctOption
+
+  if (userAnswer === correctOption) {
+    // 回答正确
+    emits('handleVerify', true)
+  } else {
+    // 回答错误
+    errorCounter.value++
+
+    message('Wrong answer!', '回答错误！', 'warn')
+
+    // 前进到下一题
+    nextQuestion()
+
+    // 错误次数大于三次显示提示
+    if (errorCounter.value >= 3) {
+      isShowHint.value = true
+    }
+  }
+}
+
+const nextQuestion = () => {
+  if (currentQuestionIndex.value < questions.length - 1) {
+    currentQuestionIndex.value++
+  } else {
+    message('', '已经没有问题了，杂鱼~♡', 'info')
+  }
+}
+</script>
+
 <template>
   <Teleport to="body" :disabled="props.isShowValidate">
     <Transition name="capture">
-      <div class="mask" v-if="props.isShowValidate">
+      <!-- 遮罩 -->
+      <div
+        class="mask"
+        @keydown="checkKeyPress($event)"
+        tabindex="0"
+        v-if="props.isShowValidate"
+      >
         <div class="validate">
-          <div class="text">
-            <div
-              class="character"
-              v-for="(char, index) in characters"
-              :key="index"
-              :style="char.style"
-              @click="handleCharacterClick(char)"
-            >
-              <text>{{ char.value }}</text>
-            </div>
+          <!-- 标题 -->
+          <div class="title">
+            <!-- <span>{{ `❮` }}</span> -->
+            <h2>请回答下面的问题</h2>
+            <!-- <span>{{ `❯` }}</span> -->
           </div>
-          <div class="msg">
-            <div v-if="errorCount > 0" class="error">
-              {{ $tm('AlertInfo.capture.error') }}
+          <p class="question">{{ currentQuestion.text }}</p>
+
+          <!-- 选择项 -->
+          <div class="select">
+            <label
+              v-for="(option, index) in currentQuestion.options"
+              :key="index"
+            >
+              <input
+                type="radio"
+                v-model="userAnswers[currentQuestionIndex]"
+                :value="option"
+              />
+              {{ option }}
+            </label>
+          </div>
+
+          <!-- 提交按钮 -->
+          <div class="btn">
+            <button @click="submitAnswer">提交</button>
+            <button @click="emits('handleClose', false)">关闭</button>
+          </div>
+
+          <!-- 提示 -->
+          <!-- tabindex 使得该元素可以被页面聚焦 -->
+          <div class="hint-container">
+            <div v-if="isShowHint" class="hint">
+              <div>真是杂鱼呢~♡这都答不出来~杂鱼~♡杂鱼~♡</div>
+              <div>
+                臭杂鱼♡，试试在页面上敲击 <span>kun</span> 呢，杂鱼~♡杂鱼~♡
+              </div>
             </div>
-            <div class="hint" v-if="!isVerified">
-              {{ $tm('AlertInfo.capture.order') }}
-              {{ characters.map((char) => char.value).join(' ') }}
-            </div>
-            <div class="refresh" @click="resetCharacters">
-              {{ $tm('AlertInfo.capture.refresh') }}
+            <div v-if="isShowAnswer" class="answer">
+              <div>杂鱼~♡杂鱼~♡你就看吧，最后害的还是你自己</div>
+              <a
+                href="http://github.com/KUN1007/kun-galgame-vue"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                答案
+              </a>
             </div>
           </div>
         </div>
@@ -31,103 +156,6 @@
     </Transition>
   </Teleport>
 </template>
-
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-
-const containerRef = ref<HTMLDivElement | null>(null)
-const characters = ref(generateRandomCharacters())
-const clickedCharacters = ref('')
-const isVerified = ref(false)
-const errorCount = ref(0)
-
-const props = defineProps(['isShowValidate'])
-const emits = defineEmits(['validate'])
-
-interface Character {
-  value: string
-  style: {
-    top: string
-    left: string
-  }
-}
-
-emits('validate', false)
-
-// 获得随机字符
-function generateRandomCharacters(): Character[] {
-  const chars = t('AlertInfo.capture.text')
-  const randomChars: Character[] = []
-
-  // 创建一个 Set 集合用于去重
-  const charSet = new Set<string>()
-
-  while (charSet.size < 3) {
-    const randomIndex = Math.floor(Math.random() * chars.length)
-    const char = chars[randomIndex]
-
-    // 如果字符不在集合中，则添加到集合和结果数组中
-    if (!charSet.has(char)) {
-      charSet.add(char)
-      const character: Character = {
-        value: char,
-        style: {
-          top: `${getRandomCoordinate()}px`,
-          left: `${getRandomCoordinate()}px`,
-        },
-      }
-      randomChars.push(character)
-    }
-  }
-
-  return randomChars
-}
-
-// 获取字符的随机位置
-function getRandomCoordinate(): number {
-  const minCoordinate = 50
-  const maxCoordinate = 150
-  return (
-    Math.floor(Math.random() * (maxCoordinate - minCoordinate + 1)) +
-    minCoordinate
-  )
-}
-
-// 处理字符被点击
-const handleCharacterClick = (char: Character): Promise<boolean> => {
-  return new Promise<boolean>((resolve, reject) => {
-    clickedCharacters.value += char.value
-    if (
-      clickedCharacters.value.length === 3 &&
-      clickedCharacters.value === characters.value.map((c) => c.value).join('')
-    ) {
-      isVerified.value = true
-      emits('validate', true)
-    } else if (clickedCharacters.value.length >= 3) {
-      errorCount.value += 1
-      resetCharacters()
-      emits('validate', false)
-    }
-  })
-}
-
-// 重置字符，防止位置重合和 .
-function resetCharacters() {
-  characters.value = generateRandomCharacters()
-  clickedCharacters.value = ''
-  isVerified.value = false
-}
-
-onMounted(() => {
-  const container = containerRef.value
-  if (container) {
-    container.style.width = '300px'
-    container.style.height = '300px'
-  }
-})
-</script>
 
 <style lang="scss" scoped>
 .mask {
@@ -148,39 +176,90 @@ onMounted(() => {
   width: 300px;
   height: 300px;
   margin: auto;
-  padding: 20px 30px;
+  padding: 17px;
   background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-1);
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   display: flex;
+  flex-direction: column;
 }
 
-.text {
-  cursor: pointer;
-  position: absolute;
-  font-size: 30px;
-  transform: translateX(-30px);
-}
-
-.character {
-  position: relative;
-}
-
-.refresh {
-  width: 64px;
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 17px;
   color: var(--kungalgame-blue-4);
-  margin-top: 20px;
-  cursor: pointer;
-  border-bottom: 2px solid var(--kungalgame-trans-white-9);
-  &:hover {
-    border-bottom: 2px solid var(--kungalgame-blue-4);
+}
+
+.question {
+  font-size: 17px;
+  margin-bottom: 20px;
+  font-style: oblique;
+}
+
+.select {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    width: 77px;
+    padding: 5px;
+    color: var(--kungalgame-blue-4);
+    border: 1px solid var(--kungalgame-blue-4);
+    border-radius: 5px;
+    background-color: var(--kungalgame-trans-white-9);
+    transition: all 0.2s;
+    &:hover {
+      color: var(--kungalgame-white);
+      background-color: var(--kungalgame-blue-4);
+    }
   }
 }
 
-.msg {
-  position: absolute;
+.hint-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: end;
+  font-style: oblique;
+  .hint {
+    width: 100%;
+    font-size: 10px;
+    span {
+      color: var(--kungalgame-pink-4);
+      font-weight: bold;
+    }
+  }
+  .answer {
+    width: 100%;
+    div {
+      font-size: 10px;
+    }
+    a {
+      color: var(--kungalgame-blue-5);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* 激活后的样式 */
+.active {
+  transition: all 0.2s;
+  border: 2px solid var(--kungalgame-pink-3);
 }
 
 .capture-enter-from {
@@ -197,3 +276,4 @@ onMounted(() => {
   transform: scale(1.1);
 }
 </style>
+./questionsCN

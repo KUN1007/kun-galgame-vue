@@ -137,7 +137,11 @@ const handleRegister = () => {
   <!-- 注册 -->
   <div class="register">
     <!-- 人机验证 -->
-    <Capture @validate="handleVerify" :isShowValidate="isShowValidate" />
+    <Capture
+      @handleVerify="handleVerify"
+      @handleClose="isShowValidate = false"
+      :isShowValidate="isShowValidate"
+    />
 
     <!-- 注册表单 -->
     <div class="form">

@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, defineAsyncComponent } from 'vue'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
 // 使用全局通知
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
 // 导入人机验证组件
-import Capture from '@/components/capture/Capture.vue'
+const Capture = defineAsyncComponent(
+  () => import('@/components/capture/Capture.vue')
+)
 
 // 导入验证表单是否合法的函数
 import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
@@ -101,7 +103,12 @@ const handleLogin = () => {
 <template>
   <!-- 登陆 -->
   <div class="login">
-    <Capture @validate="handleVerify" :isShowValidate="isShowValidate" />
+    <!-- 人机验证 -->
+    <Capture
+      @handleVerify="handleVerify"
+      @handleClose="isShowValidate = false"
+      :isShowValidate="isShowValidate"
+    />
     <div class="form">
       <h2 class="title">{{ $tm('login.loginTitle') }}</h2>
       <input
