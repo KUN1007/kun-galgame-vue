@@ -1,9 +1,8 @@
-<!-- 
-  TODO: 注册表单未完成，注册逻辑未完成，发送验证码的逻辑未完成，i18n 未完成
- -->
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+// 使用全局通知
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
@@ -15,6 +14,11 @@ import {
 } from '@/utils/validate'
 import Code from '@/components/verification-code/Code.vue'
 import Capture from '@/components/capture/Capture.vue'
+
+// 导入 i18n
+import { useI18n } from 'vue-i18n'
+const { tm } = useI18n()
+const info = useKUNGalgameMessageStore()
 
 const router = useRouter()
 const isShowValidate = ref(false)
@@ -83,6 +87,7 @@ const isValidInput = (): boolean => {
 const handleSendCode = () => {
   // 表单为空
   if (!isValidInput()) {
+    message('Form cannot be empty', '表单不可为空', 'warn')
     return
   }
 
@@ -99,10 +104,20 @@ const handleSendCode = () => {
 
 const handleRegister = () => {
   if (!isSendCode.value) {
+    message(
+      'Need to send an email verification code',
+      '需要发送邮箱验证码',
+      'warn'
+    )
     return
   }
 
   if (!registerForm.code.trim()) {
+    message(
+      'Email verification code cannot be empty',
+      '邮箱验证码不可为空',
+      'warn'
+    )
     return
   }
 
@@ -124,6 +139,7 @@ const handleRegister = () => {
       if (res.code === 200) {
         router.push('/')
         message('Register successfully!', '注册成功！', 'success')
+        info.info(tm('AlertInfo.login.success'))
       } else {
       }
     })
@@ -146,13 +162,13 @@ const handleRegister = () => {
     <!-- 注册表单 -->
     <div class="form">
       <!-- 标题 -->
-      <h2 class="title">注册</h2>
+      <h2 class="title">{{ $tm('login.register.title') }}</h2>
 
       <div class="container" v-for="item in registerFormItem" :key="item.index">
         <input
           v-model="registerForm[item.value]"
           :type="item.type"
-          :placeholder="item.placeholder"
+          :placeholder="`${$tm(`login.register.${item.placeholder}`)}`"
           :class="item.class"
         />
       </div>
@@ -165,14 +181,24 @@ const handleRegister = () => {
       />
 
       <!-- 注册按钮 -->
-      <button @click="handleRegister" class="btn" type="submit">注册</button>
+      <button @click="handleRegister" class="btn" type="submit">
+        {{ $tm('login.register.title') }}
+      </button>
 
       <!-- 用户协议提示等 -->
       <span class="user-agreement">
-        点击注册表示您已经同意我们的
-        <router-link to="/licence"><span>用户协议</span></router-link>
-        和
-        <router-link to="/privacy"><span>隐私政策</span></router-link>
+        {{ $tm('login.register.click') }}
+
+        <!-- 用户协议和隐私政策 -->
+        <div class="licence">
+          <router-link to="/licence">
+            <span>{{ $tm('login.register.agreement') }}</span>
+          </router-link>
+          {{ $tm('login.register.and') }}
+          <router-link to="/privacy">
+            <span>{{ $tm('login.register.privacy') }}</span>
+          </router-link>
+        </div>
       </span>
     </div>
   </div>
@@ -246,9 +272,15 @@ const handleRegister = () => {
     color: var(--kungalgame-red-4);
     font-style: oblique;
   }
+
+  .licence {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .btn {
+  width: 150px;
   position: absolute;
   bottom: 10%;
   border-radius: 50px;
@@ -258,7 +290,7 @@ const handleRegister = () => {
   cursor: pointer;
   font-size: 15px;
   letter-spacing: 2px;
-  padding: 7px 50px;
+  padding: 7px 0;
   text-transform: uppercase;
   transition: all 0.2s;
   margin-top: 30px;

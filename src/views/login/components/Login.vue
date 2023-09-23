@@ -4,6 +4,8 @@ import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
 // 使用全局通知
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
 
 // 导入人机验证组件
 const Capture = defineAsyncComponent(
@@ -38,7 +40,6 @@ const handleVerify = (result: boolean) => {
   if (result) {
     // 处理人机校验完成后的逻辑
     isShowValidate.value = false
-    info.info(tm('AlertInfo.capture.success'))
     isCaptureComplete.value = true
   }
 }
@@ -47,11 +48,11 @@ const isEmptyInput = (): boolean => {
   // 如果输入的字段为空
   if (!loginForm.name.trim()) {
     // 提示用户输入的名字为空
-    info.info(tm('AlertInfo.login.emptyUsername'))
+    message('Username cannot be empty', '用户名不可为空', 'warn')
     return false
   } else if (!loginForm.password.trim()) {
     // 提示用户输入的密码为空
-    info.info(tm('AlertInfo.login.emptyPassword'))
+    message('Password cannot be empty', '密码不可为空', 'warn')
     return false
   } else {
     return true
@@ -86,7 +87,11 @@ const handleLogin = () => {
   }
   // 未完成人机身份验证提示信息，直接返回
   if (!isCaptureComplete.value) {
-    info.info(tm('AlertInfo.capture.click'))
+    message(
+      'Please click above to complete the human verification',
+      '请点击上方完成人机身份验证',
+      'warn'
+    )
     return
   }
   // 所有的验证都通过了再向后端发送请求
@@ -110,29 +115,29 @@ const handleLogin = () => {
       :isShowValidate="isShowValidate"
     />
     <div class="form">
-      <h2 class="title">{{ $tm('login.loginTitle') }}</h2>
+      <h2 class="title">{{ $tm('login.login.loginTitle') }}</h2>
       <input
         v-model="loginForm.name"
         type="text"
-        :placeholder="($tm('login.loginUsername') as string)"
+        :placeholder="($tm('login.login.loginUsername') as string)"
         class="input"
       />
       <input
         v-model="loginForm.password"
         type="password"
-        :placeholder="($tm('login.loginPassword') as string)"
+        :placeholder="($tm('login.login.loginPassword') as string)"
         class="input"
       />
 
       <!-- 忘记密码 -->
-      <span class="forget">{{ $tm('login.forget') }}</span>
+      <span class="forget">{{ $tm('login.login.forget') }}</span>
       <span @click="isShowValidate = true" class="capture">{{
-        $tm('login.capture')
+        $tm('login.login.capture')
       }}</span>
 
       <!-- 点击登录 -->
       <button @click="handleLogin" class="btn" type="submit">
-        {{ $tm('login.loginTitle') }}
+        {{ $tm('login.login.loginTitle') }}
       </button>
     </div>
   </div>
@@ -199,6 +204,7 @@ const handleLogin = () => {
 }
 
 .btn {
+  width: 150px;
   position: absolute;
   bottom: 10%;
   border-radius: 50px;
@@ -208,7 +214,7 @@ const handleLogin = () => {
   cursor: pointer;
   font-size: 15px;
   letter-spacing: 2px;
-  padding: 7px 50px;
+  padding: 7px 0px;
   text-transform: uppercase;
   transition: all 0.2s;
   overflow: hidden;

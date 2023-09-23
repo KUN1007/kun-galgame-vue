@@ -70,6 +70,7 @@ const navBar: nav[] = [
   height: 100%;
   width: 120px;
   background-color: var(--kungalgame-trans-pink-0);
+  border-radius: 0 0 0 7px;
   border-right: 1px solid var(--kungalgame-blue-4);
   box-sizing: border-box;
   display: flex;

@@ -169,11 +169,36 @@ export default {
     draft: 'Save Draft',
   },
   login: {
-    loginTitle: 'Login',
-    forget: 'Forgot your password? Click here to send reset email',
-    loginUsername: 'Username or email',
-    loginPassword: 'Password',
-    capture: 'Click to proceed with the human verification process',
+    login: {
+      loginTitle: 'Login',
+      forget: 'Forgot your password? Click here to send reset email',
+      loginUsername: 'Username or email',
+      loginPassword: 'Password',
+      capture: 'Click to proceed with the human verification process',
+    },
+    overlay: {
+      title: 'Welcome to KUN Visual Novel Registration',
+      world: `The World's`,
+      moe: 'Cutest',
+      forum: 'Galgame Forum',
+      login: 'Login',
+      home: 'Welcome Back',
+      kun: 'KUN Visual Novel Gives You',
+      hug: 'The Warmest Hug',
+      register: 'Register',
+    },
+    register: {
+      title: 'Register',
+      name: 'username',
+      email: 'email',
+      password: 'password',
+      code: 'Email verification code',
+      send: 'Send code',
+      click: 'Clicking Register means you have agreed to our',
+      agreement: 'User Agreement',
+      and: 'and',
+      privacy: 'Privacy Policy',
+    },
   },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
@@ -189,8 +214,6 @@ export default {
     },
     login: {
       success: 'Login Successfully! Welcome to KUN Visual Novel ~ ',
-      emptyUsername: 'Username cannot be empty',
-      emptyPassword: 'Password cannot be empty',
       invalidUsername:
         'Invalid username. Username should be 1 to 17 characters long and can include: Chinese characters, English letters, numbers, underscore, and tilde (~)',
       invalidPassword:
@@ -205,6 +228,9 @@ export default {
       hint3: 'on the page, zako~♡ zako~♡',
       hint4: `Za~~~ko~♡ zako~♡ Just you wait, you'll regret it in the end`,
       answer: 'Answer',
+    },
+    code: {
+      code: `The verification code has been sent. You can check it in your email. Please check your spam folder. If you haven't received the email, you can try to resend the email verification code after 30 seconds.`,
     },
   },
 }

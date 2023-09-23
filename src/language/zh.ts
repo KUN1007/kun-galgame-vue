@@ -168,11 +168,36 @@ export default {
     draft: '保存草稿',
   },
   login: {
-    loginTitle: '登录',
-    forget: '忘记密码? 点击发送重置邮件',
-    loginUsername: '用户名或邮箱',
-    loginPassword: '密码',
-    capture: '点击进行人机身份验证',
+    login: {
+      loginTitle: '登录',
+      forget: '忘记密码? 点击发送重置邮件',
+      loginUsername: '用户名或邮箱',
+      loginPassword: '密码',
+      capture: '点击进行人机身份验证',
+    },
+    overlay: {
+      title: '欢迎注册 KUNgalgame',
+      world: `世界上最`,
+      moe: '萌',
+      forum: '的 Galgame 论坛',
+      login: '登录',
+      home: '欢迎回家',
+      kun: 'KUNgalgame 给你',
+      hug: '最温暖的拥抱',
+      register: '注册',
+    },
+    register: {
+      title: '注册',
+      name: '用户名',
+      email: '邮箱',
+      password: '密码',
+      code: '邮箱验证码',
+      send: '发送验证码',
+      click: '点击注册表示您已经同意我们的',
+      agreement: '用户协议',
+      and: '和',
+      privacy: '隐私政策',
+    },
   },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
@@ -188,8 +213,6 @@ export default {
     },
     login: {
       login: '登陆成功!欢迎来到 鲲 Galgame ~ ',
-      emptyUsername: '用户名不可为空',
-      emptyPassword: '密码不可为空',
       invalidUsername:
         '非法的用户名，用户名为 1 到 17 位，可以包含：中文、英文、数字、下划线、波浪线',
       invalidPassword:
@@ -204,6 +227,9 @@ export default {
       hint3: '呢，杂鱼~♡杂鱼~♡',
       hint4: '杂~~~鱼~♡杂鱼~♡你就看吧，最后害的还是你自己',
       answer: '答案',
+    },
+    code: {
+      code: '验证码已发送，您可以在邮箱中查看，注意查看垃圾邮件，如果未收到邮件，您可以在 30 秒后尝试重新发送邮箱验证码',
     },
   },
 }
