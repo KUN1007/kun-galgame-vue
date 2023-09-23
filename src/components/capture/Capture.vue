@@ -24,10 +24,16 @@ const emits = defineEmits<{
   handleClose: [isShowValidate: boolean]
 }>()
 
+// 用于随机选择问题的函数
+const randomizeQuestion = () => {
+  // 生成一个介于0到问题数量减1之间的随机整数
+  return Math.floor(Math.random() * questions.length)
+}
+
 // 用户输入的答案
-const userAnswers = ref([])
+const userAnswers = ref('')
 // 当前问题的索引
-const currentQuestionIndex = ref(0)
+const currentQuestionIndex = ref(randomizeQuestion())
 // 当前的问题
 const currentQuestion = computed(() => questions[currentQuestionIndex.value])
 // 错误次数计数
@@ -60,33 +66,31 @@ const checkKeyPress = (event: KeyboardEvent) => {
 
 // 提交问题
 const submitAnswer = () => {
-  const userAnswer = userAnswers.value[currentQuestionIndex.value]
   const correctOption = currentQuestion.value.correctOption
 
-  if (userAnswer === correctOption) {
+  if (userAnswers.value === correctOption) {
     // 回答正确
     emits('handleVerify', true)
+    message(
+      'Human-machine identity verification successful ~',
+      '人机身份验证通过 ~',
+      'success'
+    )
   } else {
     // 回答错误
     errorCounter.value++
 
     message('Wrong answer!', '回答错误！', 'warn')
 
-    // 前进到下一题
-    nextQuestion()
+    // 随机选择一个新的问题
+    const randomIndex = randomizeQuestion()
+    currentQuestionIndex.value = randomIndex
+    userAnswers.value = ''
 
     // 错误次数大于三次显示提示
     if (errorCounter.value >= 3) {
       isShowHint.value = true
     }
-  }
-}
-
-const nextQuestion = () => {
-  if (currentQuestionIndex.value < questions.length - 1) {
-    currentQuestionIndex.value++
-  } else {
-    message('', '已经没有问题了，杂鱼~♡', 'info')
   }
 }
 </script>
@@ -105,7 +109,7 @@ const nextQuestion = () => {
           <!-- 标题 -->
           <div class="title">
             <!-- <span>{{ `❮` }}</span> -->
-            <h2>请回答下面的问题</h2>
+            <h2>{{ $tm('AlertInfo.capture.title') }}</h2>
             <!-- <span>{{ `❯` }}</span> -->
           </div>
           <p class="question">{{ currentQuestion.text }}</p>
@@ -116,38 +120,40 @@ const nextQuestion = () => {
               v-for="(option, index) in currentQuestion.options"
               :key="index"
             >
-              <input
-                type="radio"
-                v-model="userAnswers[currentQuestionIndex]"
-                :value="option"
-              />
+              <input type="radio" v-model="userAnswers" :value="option" />
               {{ option }}
             </label>
           </div>
 
           <!-- 提交按钮 -->
           <div class="btn">
-            <button @click="submitAnswer">提交</button>
-            <button @click="emits('handleClose', false)">关闭</button>
+            <button @click="submitAnswer">
+              {{ $tm('AlertInfo.capture.submit') }}
+            </button>
+            <button @click="emits('handleClose', false)">
+              {{ $tm('AlertInfo.capture.close') }}
+            </button>
           </div>
 
           <!-- 提示 -->
           <!-- tabindex 使得该元素可以被页面聚焦 -->
           <div class="hint-container">
             <div v-if="isShowHint" class="hint">
-              <div>真是杂鱼呢~♡这都答不出来~杂鱼~♡杂鱼~♡</div>
+              <div>{{ $tm('AlertInfo.capture.hint1') }}</div>
               <div>
-                臭杂鱼♡，试试在页面上敲击 <span>kun</span> 呢，杂鱼~♡杂鱼~♡
+                {{ $tm('AlertInfo.capture.hint2') }}
+                <span>kun</span>
+                {{ $tm('AlertInfo.capture.hint3') }}
               </div>
             </div>
             <div v-if="isShowAnswer" class="answer">
-              <div>杂鱼~♡杂鱼~♡你就看吧，最后害的还是你自己</div>
+              <div>{{ $tm('AlertInfo.capture.hint4') }}</div>
               <a
                 href="http://github.com/KUN1007/kun-galgame-vue"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                答案
+                {{ $tm('AlertInfo.capture.answer') }}
               </a>
             </div>
           </div>
@@ -172,9 +178,8 @@ const nextQuestion = () => {
 }
 
 .validate {
-  height: 100%;
   width: 300px;
-  height: 300px;
+  min-height: 300px;
   margin: auto;
   padding: 17px;
   background-color: var(--kungalgame-trans-white-2);

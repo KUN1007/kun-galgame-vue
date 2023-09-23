@@ -10,9 +10,9 @@ interface Question {
 export const questionsCN: Question[] = reactive([
   {
     id: 1,
-    text: '下列哪个不是《千恋万花》中的角色？',
-    options: ['丛雨', '芦花', '芳乃', '宁宁'],
-    correctOption: '宁宁',
+    text: '下列哪个不是《千恋＊万花》中的角色？',
+    options: ['丛雨', '芦花', '芳乃', '七海'],
+    correctOption: '七海',
   },
   {
     id: 2,
@@ -40,14 +40,14 @@ export const questionsCN: Question[] = reactive([
   {
     id: 5,
     text: '以下哪部作品中男主没有女装？',
-    options: ['近月少女的礼仪', '少女领域', '美少女万华镜1', '我们没有翅膀'],
+    options: ['近月少女的礼仪', '少女 * 领域', '美少女万华镜1', '我们没有翅膀'],
     correctOption: '美少女万华镜1',
   },
   {
     id: 6,
     text: '以下哪个作品是《SMEE》制作的?',
-    options: ['Friend to Lover', 'Dal Segno', 'Eden*', 'LOOPERS'],
-    correctOption: 'Friend to Lover',
+    options: ['~Friend to Lover~', 'Dal Segno', 'Eden*', 'LOOPERS'],
+    correctOption: '~Friend to Lover~',
   },
   {
     id: 7,
