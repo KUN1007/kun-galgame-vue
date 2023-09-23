@@ -36,6 +36,7 @@
   width: 100%;
   /* 头部的颜色 */
   background-color: var(--kungalgame-trans-blue-0);
+  border-radius: 7px 7px 0 0;
   align-items: center;
   span:nth-child(1) {
     font-family: serif;

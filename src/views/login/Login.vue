@@ -38,19 +38,28 @@ const handleClickRegister = () => {
         <div class="overlay">
           <div class="panel left">
             <h2>
-              欢迎注册 KUNgalgame <br /><br />—— 世界上最<span>萌</span>的
-              galgame 论坛
+              {{ $tm('login.overlay.title') }}<br /><br />——
+              {{ $tm('login.overlay.world') }}
+              <span>{{ $tm('login.overlay.moe') }}</span>
+              {{ $tm('login.overlay.forum') }}
             </h2>
             <br />
-            <button class="btn" @click="handleClickSignIn">登陆</button>
+            <button class="btn" @click="handleClickSignIn">
+              {{ $tm('login.overlay.login') }}
+            </button>
           </div>
           <div class="panel right">
             <h2>
-              欢迎回家 <br />
+              {{ $tm('login.overlay.home') }}
               <br />
-              KUNgalgame 给你最温暖的拥抱
+              <br />
+              {{ $tm('login.overlay.kun') }}
+              <br />
+              {{ $tm('login.overlay.hug') }}
             </h2>
-            <button class="btn" @click="handleClickRegister">注册</button>
+            <button class="btn" @click="handleClickRegister">
+              {{ $tm('login.overlay.register') }}
+            </button>
           </div>
         </div>
       </div>
@@ -98,44 +107,28 @@ const handleClickRegister = () => {
   width: 100%;
 }
 
-.container.active .login {
-  transform: translateX(100%);
-}
-
-.container.active .register {
-  animation: show 0.6s;
-  opacity: 1;
-  transform: translateX(100%);
-  z-index: 5;
-}
-@keyframes show {
-  0%,
-  49.99% {
-    opacity: 0;
-    z-index: 1;
+.container.active {
+  .login {
+    transform: translateX(100%);
   }
-
-  50%,
-  100% {
+  .register {
+    animation: show 0.6s;
     opacity: 1;
+    transform: translateX(100%);
     z-index: 5;
   }
-}
-
-.container.active .container-overlay {
-  transform: translateX(-100%);
-}
-
-.container.active .overlay {
-  transform: translateX(50%);
-}
-
-.container.active .left {
-  transform: translateX(0);
-}
-
-.container.active .right {
-  transform: translateX(20%);
+  .container-overlay {
+    transform: translateX(-100%);
+  }
+  .overlay {
+    transform: translateX(50%);
+  }
+  .left {
+    transform: translateX(0);
+  }
+  .right {
+    transform: translateX(20%);
+  }
 }
 
 .container-overlay {
@@ -155,28 +148,29 @@ const handleClickRegister = () => {
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
   width: 200%;
+
+  h2 {
+    margin-top: 150px;
+    font-size: medium;
+    color: var(--kungalgame-font-color-2);
+  }
+
+  h2 span {
+    color: var(--kungalgame-red-4);
+    padding: 0 5px;
+    font-size: 20px;
+  }
+
+  .left {
+    transform: translateX(-20%);
+  }
+
+  .right {
+    right: 0;
+    transform: translateX(0);
+  }
 }
 
-.btn {
-  position: absolute;
-  bottom: 7%;
-  border-radius: 50px;
-  background-color: var(--kungalgame-trans-white-5);
-  border: 1px solid var(--kungalgame-blue-4);
-  color: var(--kungalgame-blue-4);
-  cursor: pointer;
-  font-size: 0.9em;
-  letter-spacing: 0.1rem;
-  padding: 0.6rem 4rem;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.btn:hover {
-  background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-white);
-}
 /* 交互页面的盒子 */
 .panel {
   align-items: center;
@@ -192,45 +186,47 @@ const handleClickRegister = () => {
   width: 50%;
   background-color: var(--kungalgame-trans-white-5);
 }
+
 .btn {
+  width: 150px;
+  position: absolute;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding: 7px 0px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  overflow: hidden;
+  white-space: nowrap;
   /* 红色按钮距离底部的距离 */
   position: absolute;
-  bottom: 7%;
+  bottom: 10%;
   background-color: var(--kungalgame-red-0);
   border: 1px solid var(--kungalgame-red-4);
   color: var(--kungalgame-red-4);
-}
-.btn:hover {
-  background-color: var(--kungalgame-red-4);
-  color: var(--kungalgame-white);
+
+  &:hover {
+    background-color: var(--kungalgame-red-4);
+    color: var(--kungalgame-white);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
-h2 {
-  margin-top: 150px;
-  font-size: medium;
-  color: var(--kungalgame-font-color-2);
-}
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
 
-h2 span {
-  color: var(--kungalgame-red-4);
-  padding: 0 5px;
-  font-size: 20px;
-}
-
-.left {
-  transform: translateX(-20%);
-}
-
-.right {
-  right: 0;
-  transform: translateX(0);
-}
-
-.btn:active {
-  transform: scale(0.95);
-}
-
-.btn:focus {
-  outline: none;
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
 }
 </style>
