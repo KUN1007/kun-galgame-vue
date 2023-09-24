@@ -13,6 +13,8 @@ import {
   postRegisterDataApi,
   sendVerificationCodeMailApi,
 } from '@/api'
+// 操作 cookie 的函数
+import { setToken } from '@/utils/cookie'
 
 // 用户信息接口
 interface UserState {
@@ -27,7 +29,7 @@ interface UserState {
 export const useKUNGalgameUserStore = defineStore({
   id: 'kungalgamer',
   persist: true,
-  // TODO: token 放在 cookie 中，这里临时存放一下
+  // token 放在 cookie 中, refreshToken 放在 localStorage 中
   state: (): UserState => ({
     uid: 0,
     name: '',
@@ -46,7 +48,7 @@ export const useKUNGalgameUserStore = defineStore({
     // 设置用户 token
     setToken(token: string, refreshToken: string): void {
       this.token = token
-      this.refreshToken = refreshToken
+      setToken(refreshToken)
     },
     // 登陆
     login(request: LoginRequestData): Promise<LoginResponseData> {

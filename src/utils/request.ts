@@ -1,3 +1,6 @@
+// 操作 cookie 的函数
+import { getToken } from '@/utils/cookie'
+
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export type FetchOptions = {
