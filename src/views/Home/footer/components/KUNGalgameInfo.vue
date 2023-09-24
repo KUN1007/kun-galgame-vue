@@ -55,7 +55,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 左侧下方的信息 */
 .bottom {
   display: flex;
-  flex-direction: column;
 }
 
 .footer {
@@ -72,6 +71,9 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     margin: 20px 0;
   }
   .container {
+    flex-direction: column;
+  }
+  .bottom {
     flex-direction: column;
   }
 }
