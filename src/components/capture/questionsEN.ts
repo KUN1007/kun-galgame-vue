@@ -39,7 +39,7 @@ export const questionsEN: Question[] = reactive([
   },
   {
     id: 5,
-    text: 'In which of the following works does the male protagonist not cross-dress?',
+    text: 'In which of the following games does the male protagonist not cross-dress?',
     options: [
       'Tsuki ni Yorisou Otome no Sahou',
       'Otome * Domain',
@@ -50,7 +50,7 @@ export const questionsEN: Question[] = reactive([
   },
   {
     id: 6,
-    text: 'Which of the following works was produced by "SMEE"?',
+    text: 'Which of the following games was produced by "SMEE"?',
     options: ['~Friend to Lover~', 'Dal Segno', 'Eden*', 'LOOPERS'],
     correctOption: '~Friend to Lover~',
   },

@@ -26,4 +26,4 @@ export const KUNGalgameLanguage = localStorageString
 // 读取本地的白天黑夜模式，这个函数如果是黑夜模式的话会返回 true
 export const mode = window.matchMedia('(prefers-color-scheme: dark)').matches
   ? 'dark'
-  : 'light'
+  : ''

@@ -16,9 +16,9 @@ const Capture = defineAsyncComponent(
 )
 
 // 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameMode, showKUNGalgameFontStyle } =
-  storeToRefs(settingsStore)
+const { showKUNGalgameMode, showKUNGalgameFontStyle } = storeToRefs(
+  useKUNGalgameSettingsStore()
+)
 
 // 必须在这里调用生命周期函数，初始化主题和字体
 onBeforeMount(() => {
