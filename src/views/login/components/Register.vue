@@ -181,7 +181,7 @@ const handleRegister = () => {
 
         <!-- 用户协议和隐私政策 -->
         <div class="licence">
-          <router-link to="/licence">
+          <router-link to="/agreement">
             <span>{{ $tm('login.register.agreement') }}</span>
           </router-link>
           {{ $tm('login.register.and') }}

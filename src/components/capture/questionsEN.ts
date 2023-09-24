@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 
-interface Question {
+export interface Question {
   id: number
   text: string
   options: string[]

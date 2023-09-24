@@ -27,8 +27,10 @@ const handleClickRegister = () => {
     <div class="container" :class="isShowPanel">
       <!-- 登陆注册切换 -->
       <div class="switch">
-        <div @click="handleClickSignIn">登录</div>
-        <div @click="handleClickRegister">注册</div>
+        <div @click="handleClickSignIn">{{ $tm('login.overlay.login') }}</div>
+        <div @click="handleClickRegister">
+          {{ $tm('login.overlay.register') }}
+        </div>
       </div>
       <!-- 登录面板 -->
       <Login class="login" />

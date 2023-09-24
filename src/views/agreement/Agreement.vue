@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BackToPrevious from '@/components/BackToPrevious.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
@@ -22,11 +23,8 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
       </div>
       <BackToPrevious />
       <!-- 版权 -->
-      <div class="copyright">
-        <span>Copyright © 2023 KUNgalgame</span>
-        <span>All rights reserved | Version 0.01</span>
-      </div>
     </div>
+    <KUNGalgameFooter class="footer" />
   </div>
 </template>
 
@@ -35,20 +33,18 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 .root {
   height: 100vh;
   width: 100vw;
-  min-width: 600px;
   min-height: 500px;
   background: linear-gradient(
     var(--kungalgame-trans-pink-1),
     var(--kungalgame-trans-blue-1)
   );
   display: flex;
+  flex-direction: column;
   background-color: var(--kungalgame-white);
 }
 /* 内容区容器 */
 .container {
-  /* 固定宽高 */
-  width: 500px;
-  height: 400px;
+  max-width: 500px;
   /* 居中 */
   margin: auto;
   position: relative;
@@ -88,8 +84,16 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
   margin-top: 50px;
   margin-left: 160px;
 }
-.copyright {
+
+.footer {
+  width: 100%;
   position: absolute;
-  bottom: -40px;
+  bottom: 20px;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 90%;
+  }
 }
 </style>
