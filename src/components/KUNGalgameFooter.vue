@@ -21,5 +21,7 @@
   color: var(--kungalgame-font-color-3);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -32,9 +32,9 @@ export const constantRoutes: RouteRecordRaw[] = [
 
   // KUNGalgame  用户协议
   {
-    name: 'Licence',
-    path: '/licence',
-    component: () => import('@/views/licence/Licence.vue'),
+    name: 'Agreement',
+    path: '/agreement',
+    component: () => import('@/views/agreement/Agreement.vue'),
     meta: {
       title: '用户协议',
     },

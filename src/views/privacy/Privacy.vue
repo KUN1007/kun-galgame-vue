@@ -55,14 +55,11 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 /* 内容区容器 */
 .container {
-  /* 固定宽高 */
-  max-width: 600px;
-  max-height: 500px;
+  max-width: 500px;
   /* 居中 */
   margin: auto;
   position: relative;
   background-color: var(--kungalgame-trans-blue-0);
-  border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
   box-shadow: var(--kungalgame-shadow-0);
   /* 竖直方向弹性分布 */
@@ -96,5 +93,11 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   align-items: center;
   /* 距离下一个项目的距离 */
   margin: 10px 0;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 90%;
+  }
 }
 </style>

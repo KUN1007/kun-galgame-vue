@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 // 导入问题
-import { questionsEN } from './questionsEN'
+import { questionsEN, Question } from './questionsEN'
 import { questionsCN } from './questionsCN'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
@@ -18,13 +18,22 @@ const { isShowCapture, isCaptureSuccessful } = storeToRefs(
   useKUNGalgameMessageStore()
 )
 // 当前的语言
-const questions =
+const questions = ref<Question[]>([])
+
+// 初始化
+questions.value =
   showKUNGalgameLanguage.value === 'en' ? questionsEN : questionsCN
+
+// 监听属性,实现响应式
+watch(showKUNGalgameLanguage, () => {
+  questions.value =
+    showKUNGalgameLanguage.value === 'en' ? questionsEN : questionsCN
+})
 
 // 用于随机选择问题的函数
 const randomizeQuestion = () => {
   // 生成一个介于0到问题数量减1之间的随机整数
-  return Math.floor(Math.random() * questions.length)
+  return Math.floor(Math.random() * questions.value.length)
 }
 
 // 用户输入的答案
@@ -32,7 +41,9 @@ const userAnswers = ref('')
 // 当前问题的索引
 const currentQuestionIndex = ref(randomizeQuestion())
 // 当前的问题
-const currentQuestion = computed(() => questions[currentQuestionIndex.value])
+const currentQuestion = computed(
+  () => questions.value[currentQuestionIndex.value]
+)
 // 错误次数计数
 const errorCounter = ref(0)
 const expectedKeys = ref(['k', 'u', 'n'])
