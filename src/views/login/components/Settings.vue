@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+// 导入 i18n
+import { useI18n } from 'vue-i18n'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
@@ -8,6 +10,9 @@ const { showKUNGalgameLanguage, showKUNGalgameMode } = storeToRefs(
   useKUNGalgameSettingsStore()
 )
 
+// 全局语言设置,这里必须这么写,否则响应式不生效
+const { locale } = useI18n({ useScope: 'global' })
+
 const handleSwitchLanguage = () => {
   const lang = showKUNGalgameLanguage.value
   if (lang === 'en') {
@@ -15,6 +20,7 @@ const handleSwitchLanguage = () => {
   } else {
     showKUNGalgameLanguage.value = 'en'
   }
+  locale.value = showKUNGalgameLanguage.value
 }
 </script>
 
@@ -58,6 +64,12 @@ const handleSwitchLanguage = () => {
   }
   .dark {
     color: var(--kungalgame-blue-4);
+  }
+}
+
+@media (max-width: 700px) {
+  .settings {
+    padding-top: 50px;
   }
 }
 </style>
