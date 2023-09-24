@@ -6,6 +6,8 @@ import { useRouter } from 'vue-router'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
+// 导入设置
+import Settings from './Settings.vue'
 
 // 导入人机验证组件
 const Capture = defineAsyncComponent(
@@ -114,6 +116,8 @@ const handleLogin = () => {
       @handleClose="isShowValidate = false"
       :isShowValidate="isShowValidate"
     />
+    <!-- 设置 -->
+    <Settings />
     <div class="form">
       <h2 class="title">{{ $tm('login.login.loginTitle') }}</h2>
       <input
@@ -231,5 +235,20 @@ const handleLogin = () => {
 
 .btn:focus {
   outline: none;
+}
+
+@media (max-width: 700px) {
+  .login {
+    width: 90%;
+    transition: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 15px 27px var(--kungalgame-blue-0),
+      0 10px 10px var(--kungalgame-blue-0);
+  }
+  .form {
+    border-radius: 5px;
+  }
 }
 </style>

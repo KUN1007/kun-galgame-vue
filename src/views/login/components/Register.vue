@@ -158,7 +158,6 @@ const handleRegister = () => {
       @handleClose="isShowValidate = false"
       :isShowValidate="isShowValidate"
     />
-
     <!-- 注册表单 -->
     <div class="form">
       <!-- 标题 -->
@@ -303,6 +302,20 @@ const handleRegister = () => {
   }
   &:focus {
     outline: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .register {
+    width: 90%;
+    transition: none;
+    top: 0%;
+    left: 5%;
+    box-shadow: 0 15px 27px var(--kungalgame-blue-0),
+      0 10px 10px var(--kungalgame-blue-0);
+  }
+  .form {
+    border-radius: 5px;
   }
 }
 </style>

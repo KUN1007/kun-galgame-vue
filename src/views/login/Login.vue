@@ -9,8 +9,6 @@ import Login from './components/Login.vue'
 // 导入注册面板
 import Register from './components/Register.vue'
 
-import Settings from './components/Settings.vue'
-
 const isShowPanel = ref('')
 
 // 点击登录，面板滑动
@@ -25,9 +23,13 @@ const handleClickRegister = () => {
 </script>
 
 <template>
-  <Settings />
   <div class="root">
     <div class="container" :class="isShowPanel">
+      <!-- 登陆注册切换 -->
+      <div class="switch">
+        <div @click="handleClickSignIn">登录</div>
+        <div @click="handleClickRegister">注册</div>
+      </div>
       <!-- 登录面板 -->
       <Login class="login" />
       <!-- 注册面板 -->
@@ -66,9 +68,7 @@ const handleClickRegister = () => {
     </div>
 
     <!-- 版权 -->
-    <KUNGalgameFooter
-      style="position: absolute; bottom: 2%; white-space: nowrap"
-    />
+    <KUNGalgameFooter style="position: absolute; bottom: 2%" />
   </div>
 </template>
 
@@ -98,13 +98,40 @@ const handleClickRegister = () => {
   /* 圆角 */
   border-radius: 5px;
   /* 容器的阴影 */
-  box-shadow: 0 0.9rem 1.7rem var(--kungalgame-blue-0),
-    0 0.7rem 0.7rem var(--kungalgame-blue-0);
+  box-shadow: 0 15px 27px var(--kungalgame-blue-0),
+    0 10px 10px var(--kungalgame-blue-0);
   height: 490px;
   max-width: 700px;
   overflow: hidden;
   position: relative;
   width: 100%;
+}
+
+.switch {
+  width: 90%;
+  top: 4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 40px;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--kungalgame-white);
+  background-color: var(--kungalgame-blue-4);
+  border-radius: 5px 5px 0 0;
+  display: none;
+  div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:nth-child(1) {
+      border-right: 1px solid var(--kungalgame-white);
+    }
+  }
 }
 
 .container.active {
@@ -227,6 +254,35 @@ const handleClickRegister = () => {
   100% {
     opacity: 1;
     z-index: 5;
+  }
+}
+
+@media (max-width: 700px) {
+  .switch {
+    display: flex;
+  }
+  .root {
+    min-width: 0;
+    width: 100%;
+    background: var(--kungalgame-trans-blue-0);
+  }
+  .container {
+    background-image: none;
+    display: flex;
+    box-shadow: none;
+  }
+  .container-overlay {
+    display: none;
+  }
+  .container.active {
+    .login {
+      display: none;
+      transform: translateX(0);
+    }
+    .register {
+      animation: none;
+      transform: translateX(0);
+    }
   }
 }
 </style>

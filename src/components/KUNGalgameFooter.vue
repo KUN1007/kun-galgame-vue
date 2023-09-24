@@ -6,10 +6,8 @@
 <template>
   <!-- 版权描述,版本号 -->
   <div class="footer">
-    <span
-      >Copyright © 2023 KUNGalgame<span> </span> All rights reserved | Version
-      0.7.0</span
-    >
+    <span>Copyright © 2023 KUNGalgame</span>
+    <span>All rights reserved | Version 0.7.0</span>
   </div>
 </template>
 
@@ -21,5 +19,7 @@
   /* 文字间距 */
   letter-spacing: 1px;
   color: var(--kungalgame-font-color-3);
+  display: flex;
+  flex-direction: column;
 }
 </style>
