@@ -4,15 +4,11 @@ import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
 // 使用全局通知
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { storeToRefs } from 'pinia'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
 // 导入设置
 import Settings from './Settings.vue'
-
-// 导入人机验证组件
-const Capture = defineAsyncComponent(
-  () => import('@/components/capture/Capture.vue')
-)
 
 // 导入验证表单是否合法的函数
 import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
@@ -21,10 +17,10 @@ import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 import { useI18n } from 'vue-i18n'
 const { tm } = useI18n()
 
-// 定义人机验证的标志
-const isShowValidate = ref(false)
-// 定义人机验证是否完成的标志
-const isCaptureComplete = ref(false)
+// 使用消息 store
+const { isShowCapture, isCaptureSuccessful } = storeToRefs(
+  useKUNGalgameMessageStore()
+)
 
 const router = useRouter()
 
@@ -37,14 +33,6 @@ const loginForm = reactive({
   name: '',
   password: '',
 })
-
-const handleVerify = (result: boolean) => {
-  if (result) {
-    // 处理人机校验完成后的逻辑
-    isShowValidate.value = false
-    isCaptureComplete.value = true
-  }
-}
 
 const isEmptyInput = (): boolean => {
   // 如果输入的字段为空
@@ -88,7 +76,7 @@ const handleLogin = () => {
     return
   }
   // 未完成人机身份验证提示信息，直接返回
-  if (!isCaptureComplete.value) {
+  if (!isCaptureSuccessful.value) {
     message(
       'Please click above to complete the human verification',
       '请点击上方完成人机身份验证',
@@ -110,12 +98,6 @@ const handleLogin = () => {
 <template>
   <!-- 登陆 -->
   <div class="login">
-    <!-- 人机验证 -->
-    <Capture
-      @handleVerify="handleVerify"
-      @handleClose="isShowValidate = false"
-      :isShowValidate="isShowValidate"
-    />
     <!-- 设置 -->
     <Settings />
     <div class="form">
@@ -135,7 +117,7 @@ const handleLogin = () => {
 
       <!-- 忘记密码 -->
       <span class="forget">{{ $tm('login.login.forget') }}</span>
-      <span @click="isShowValidate = true" class="capture">{{
+      <span @click="isShowCapture = true" class="capture">{{
         $tm('login.login.capture')
       }}</span>
 
@@ -244,6 +226,7 @@ const handleLogin = () => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 7px;
     box-shadow: 0 15px 27px var(--kungalgame-blue-0),
       0 10px 10px var(--kungalgame-blue-0);
   }

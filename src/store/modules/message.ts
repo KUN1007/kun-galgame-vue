@@ -13,10 +13,17 @@ interface Message {
   isShowCancel: boolean
   // 返回确认信息，Alert 组件专用
   confirm: boolean
+
+  // 人机验证组件
+  // 是否显示人机验证
+  isShowCapture: boolean
+  // 是否验证通过
+  isCaptureSuccessful: boolean
 }
 
 export const useKUNGalgameMessageStore = defineStore({
   id: 'message',
+  // 所有消息组件均不需要持久存储
   persist: false,
   state: (): Message => ({
     showInfo: false,
@@ -25,6 +32,8 @@ export const useKUNGalgameMessageStore = defineStore({
     alertMsg: '',
     isShowCancel: false,
     confirm: false,
+    isShowCapture: false,
+    isCaptureSuccessful: false,
   }),
   getters: {},
   actions: {

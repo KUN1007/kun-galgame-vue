@@ -102,7 +102,6 @@ const handleClickRegister = () => {
     0 10px 10px var(--kungalgame-blue-0);
   height: 490px;
   max-width: 700px;
-  overflow: hidden;
   position: relative;
   width: 100%;
 }

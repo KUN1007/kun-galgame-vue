@@ -24,7 +24,7 @@ export const registerFormItem: RegisterFormItem[] = [
   {
     index: 3,
     value: 'password',
-    type: 'text',
+    type: 'password',
     placeholder: 'password',
     class: 'input',
   },

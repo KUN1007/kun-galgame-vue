@@ -1,5 +1,6 @@
 <!-- App -->
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
 // 导入通知和提示组件
 import Alert from '@/components/alert/Alert.vue'
 import Info from '@/components/alert/Info.vue'
@@ -8,6 +9,11 @@ import { onBeforeMount } from 'vue'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+
+// 导入人机验证组件
+const Capture = defineAsyncComponent(
+  () => import('@/components/capture/Capture.vue')
+)
 
 // 使用设置面板的 store
 const settingsStore = useKUNGalgameSettingsStore()
@@ -36,6 +42,9 @@ onBeforeMount(() => {
 
   <!-- 全局通知组件 -->
   <Info />
+
+  <!-- 人机验证组件 -->
+  <Capture />
   <RouterView />
 </template>
 

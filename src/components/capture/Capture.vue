@@ -5,24 +5,21 @@ import { questionsEN } from './questionsEN'
 import { questionsCN } from './questionsCN'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
-// 导入设置塑件，目的是获取语言
+// 导入消息 store
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
+// 导入设置组件，目的是获取语言
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
 // 使用设置 store 获取语言
 const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
+// 使用消息组件的变量
+const { isShowCapture, isCaptureSuccessful } = storeToRefs(
+  useKUNGalgameMessageStore()
+)
 // 当前的语言
 const questions =
   showKUNGalgameLanguage.value === 'en' ? questionsEN : questionsCN
-
-const props = defineProps<{
-  isShowValidate: boolean
-}>()
-
-const emits = defineEmits<{
-  handleVerify: [res: boolean]
-  handleClose: [isShowValidate: boolean]
-}>()
 
 // 用于随机选择问题的函数
 const randomizeQuestion = () => {
@@ -70,7 +67,10 @@ const submitAnswer = () => {
 
   if (userAnswers.value === correctOption) {
     // 回答正确
-    emits('handleVerify', true)
+    // 设置验证通过
+    isCaptureSuccessful.value = true
+    // 关闭面板
+    isShowCapture.value = false
     message(
       'Human-machine identity verification successful ~',
       '人机身份验证通过 ~',
@@ -96,14 +96,14 @@ const submitAnswer = () => {
 </script>
 
 <template>
-  <Teleport to="body" :disabled="props.isShowValidate">
+  <Teleport to="body" :disabled="isShowCapture">
     <Transition name="capture">
       <!-- 遮罩 -->
       <div
         class="mask"
         @keydown="checkKeyPress($event)"
         tabindex="0"
-        v-if="props.isShowValidate"
+        v-if="isShowCapture"
       >
         <div class="validate">
           <!-- 标题 -->
@@ -130,7 +130,7 @@ const submitAnswer = () => {
             <button @click="submitAnswer">
               {{ $tm('AlertInfo.capture.submit') }}
             </button>
-            <button @click="emits('handleClose', false)">
+            <button @click="isShowCapture = false">
               {{ $tm('AlertInfo.capture.close') }}
             </button>
           </div>

@@ -3,9 +3,14 @@ import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 // 使用全局通知
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
+// 使用用户 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+// 使用设置
+import Settings from './Settings.vue'
+
 import {
   isValidEmail,
   isValidName,
@@ -13,16 +18,19 @@ import {
   isValidMailConfirmCode,
 } from '@/utils/validate'
 import Code from '@/components/verification-code/Code.vue'
-import Capture from '@/components/capture/Capture.vue'
+
+// 使用消息 store
+const { isShowCapture, isCaptureSuccessful } = storeToRefs(
+  useKUNGalgameMessageStore()
+)
 
 // 导入 i18n
 import { useI18n } from 'vue-i18n'
 const { tm } = useI18n()
 const info = useKUNGalgameMessageStore()
 
+// 当前的路由
 const router = useRouter()
-const isShowValidate = ref(false)
-const isCaptureComplete = ref(false)
 const isSendCode = ref(false)
 
 import { registerFormItem } from './registerForm'
@@ -33,19 +41,6 @@ const registerForm = reactive<Record<string, string>>({
   password: '',
   code: '',
 })
-
-// 人机验证
-const handleVerify = (result: boolean) => {
-  if (result) {
-    isShowValidate.value = false
-    message(
-      'Human-machine identity verification successful',
-      '人机验证通过',
-      'success'
-    )
-    isCaptureComplete.value = true
-  }
-}
 
 // 验证表单是否为空
 const isEmptyInput = () => {
@@ -92,9 +87,9 @@ const handleSendCode = () => {
   }
 
   // 未完成人机验证
-  if (!isCaptureComplete.value) {
+  if (!isCaptureSuccessful.value) {
     // 显示人机验证
-    isShowValidate.value = true
+    isShowCapture.value = true
     return
   }
 
@@ -152,12 +147,8 @@ const handleRegister = () => {
 <template>
   <!-- 注册 -->
   <div class="register">
-    <!-- 人机验证 -->
-    <Capture
-      @handleVerify="handleVerify"
-      @handleClose="isShowValidate = false"
-      :isShowValidate="isShowValidate"
-    />
+    <!-- 设置 -->
+    <Settings />
     <!-- 注册表单 -->
     <div class="form">
       <!-- 标题 -->
@@ -311,6 +302,7 @@ const handleRegister = () => {
     transition: none;
     top: 0%;
     left: 5%;
+    border-radius: 7px;
     box-shadow: 0 15px 27px var(--kungalgame-blue-0),
       0 10px 10px var(--kungalgame-blue-0);
   }
