@@ -156,6 +156,9 @@ const handleClickEdit = () => {}
   margin-left: 10px;
   li {
     margin-right: 17px;
+    span {
+      display: flex;
+    }
   }
 }
 
@@ -168,7 +171,6 @@ const handleClickEdit = () => {}
   align-items: center;
   text-align: center;
   color: var(--kungalgame-blue-4);
-  box-shadow: inset 0 0 0 2px var(--kungalgame-blue-1);
   cursor: pointer;
   transition: all 0.2s;
   &::before,

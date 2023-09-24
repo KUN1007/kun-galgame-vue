@@ -13,20 +13,20 @@ const settingsStore = useKUNGalgameSettingsStore()
     <!-- 白天 / 黑夜模式切换 -->
     <span>{{ $tm('header.settings.mode') }}</span>
     <div class="mode-container">
-      <li>
+      <span>
         <Icon
           class="sun"
           icon="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
           @click="settingsStore.setKUNGalgameTheme('')"
         />
-      </li>
-      <li>
+      </span>
+      <span>
         <Icon
           class="moon"
           icon="line-md:sunny-outline-to-moon-loop-transition"
           @click="settingsStore.setKUNGalgameTheme('dark')"
         />
-      </li>
+      </span>
     </div>
   </div>
 </template>
@@ -43,13 +43,13 @@ const settingsStore = useKUNGalgameSettingsStore()
   width: 60%;
   display: flex;
   justify-content: space-around;
-  li {
+  span {
     cursor: pointer;
   }
-  li:nth-child(1) {
+  span:nth-child(1) {
     color: var(--kungalgame-red-4);
   }
-  li:nth-child(2) {
+  span:nth-child(2) {
     color: var(--kungalgame-blue-4);
   }
 }
