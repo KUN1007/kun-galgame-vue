@@ -41,9 +41,9 @@
     "cross-env": "^7.0.3",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.64.2",
+    "terser": "^5.20.0",
     "typescript": "^5.1.6",
     "vite": "^4.4.8",
-    "vite-plugin-mock": "^3.0.0",
     "vue-tsc": "^1.8.8"
   },
   "keywords": [
