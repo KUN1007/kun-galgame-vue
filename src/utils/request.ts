@@ -1,5 +1,7 @@
 // 操作 cookie 的函数
 import { getToken } from '@/utils/cookie'
+// 错误处理函数
+import { onRequestError } from '@/error/onRequestError'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
@@ -13,22 +15,22 @@ const fetchRequest = async <T>(
   url: string,
   options: FetchOptions
 ): Promise<T> => {
-  try {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL
-    const fullUrl = `${baseUrl}${url}`
+  const baseUrl = import.meta.env.VITE_API_BASE_URL
+  const fullUrl = `${baseUrl}${url}`
 
-    const response = await fetch(fullUrl, options)
-
-    if (!response.ok) {
-      throw new Error('Request Error!')
-    }
-
-    const data: T = await response.json()
-    return data
-  } catch (error) {
-    console.error('Fetch Error:', error)
-    throw new Error('Request Error!')
+  // 在请求头中添加 token
+  const headers = {
+    ...options.headers,
+    Authorization: `Bearer ${getToken()}`,
   }
+
+  const response = await fetch(fullUrl, { ...options, headers })
+
+  // 处理错误
+  onRequestError(response)
+
+  const data: T = await response.json()
+  return data
 }
 
 const fetchGet = async <T>(

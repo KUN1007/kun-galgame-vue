@@ -4,7 +4,7 @@ import type * as Login from './types/login'
 const loginURLs = {
   login: `/login/login`,
   register: `/login/register`,
-  verificationCode: `/auth/email/send`,
+  verificationCode: `/auth/email/code`,
 }
 
 // 获取用户登录数据
