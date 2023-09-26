@@ -22,7 +22,6 @@ interface UserState {
   name: string
   avatar: string
   token: string
-  refreshToken: string
 }
 
 // 这里用了 pinia-plugin-persistedstate，直接存储 token 即可
@@ -35,7 +34,6 @@ export const useKUNGalgameUserStore = defineStore({
     name: '',
     avatar: '',
     token: '',
-    refreshToken: '',
   }),
   getters: {},
   actions: {
@@ -45,11 +43,6 @@ export const useKUNGalgameUserStore = defineStore({
       this.name = name
       this.avatar = avatar
     },
-    // 设置用户 token
-    setToken(token: string, refreshToken: string): void {
-      this.token = token
-      setToken(refreshToken)
-    },
     // 登陆
     login(request: LoginRequestData): Promise<LoginResponseData> {
       return new Promise((resolve, reject) => {
@@ -58,7 +51,7 @@ export const useKUNGalgameUserStore = defineStore({
           .then((res) => {
             if (res.data) {
               this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
-              this.setToken(res.data.token, res.data.refreshToken)
+              setToken(res.data.token)
             } else
               (error: Error) => {
                 throw new Error('500 Server ERROR', error)
@@ -90,7 +83,7 @@ export const useKUNGalgameUserStore = defineStore({
           .then((res) => {
             if (res.data) {
               this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
-              this.setToken(res.data.token, res.data.refreshToken)
+              setToken(res.data.token)
             } else
               (error: Error) => {
                 throw new Error('500 Server ERROR', error)

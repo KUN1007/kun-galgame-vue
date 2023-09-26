@@ -1,17 +1,17 @@
-import { Router } from 'vue-router'
-import { type RouteRecordRaw } from 'vue-router'
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+// 导入 rooter
+import { Router, RouteRecordRaw } from 'vue-router'
+// 导入公共路由，无需鉴权
 import { WHITE_LIST } from '../router'
-import { storeToRefs } from 'pinia'
-import { unref } from 'vue'
+// 导入获取 token 的函数
+import { getToken } from '@/utils/cookie'
 
 // 临时使用
 import { asyncRoutes } from '../router'
 
 export const createPermission = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
-    const useStore = useKUNGalgameUserStore()
-    const { token } = storeToRefs(useStore)
+    // 获取当前 token，access token，refresh 在 服务器端 http only
+    const token = getToken()
     const getRoute = asyncRoutes
 
     // 白名单
@@ -21,7 +21,7 @@ export const createPermission = (router: Router) => {
     }
 
     // 没有token
-    if (!unref(token)) {
+    if (!token) {
       if (!to.meta?.permission && getRoute.length > 0) {
         next()
         return

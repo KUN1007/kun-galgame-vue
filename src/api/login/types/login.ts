@@ -25,5 +25,4 @@ export type LoginResponseData = KUNGalgameResponseData<{
   name: string
   avatar: string
   token: string
-  refreshToken: string
 }>
