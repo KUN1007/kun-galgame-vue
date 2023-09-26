@@ -7,6 +7,7 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export type FetchOptions = {
   method: HttpMethod
+  credentials: 'include'
   headers?: Record<string, string>
   body?: BodyInit
 }
@@ -39,6 +40,7 @@ const fetchGet = async <T>(
 ): Promise<T> => {
   const options: FetchOptions = {
     method: 'GET',
+    credentials: 'include',
     headers: headers,
   }
 
@@ -52,6 +54,7 @@ const fetchPost = async <T>(
 ): Promise<T> => {
   const options: FetchOptions = {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...headers,
@@ -69,6 +72,7 @@ const fetchPut = async <T>(
 ): Promise<T> => {
   const options: FetchOptions = {
     method: 'PUT',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...headers,
@@ -85,6 +89,7 @@ const fetchDelete = async <T>(
 ): Promise<T> => {
   const options: FetchOptions = {
     method: 'DELETE',
+    credentials: 'include',
     headers: headers,
   }
 
