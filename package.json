@@ -38,6 +38,7 @@
     "@types/dompurify": "^3.0.2",
     "@types/js-cookie": "^3.0.4",
     "@types/node": "^20.4.8",
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "cross-env": "^7.0.3",
@@ -46,6 +47,7 @@
     "terser": "^5.20.0",
     "typescript": "^5.1.6",
     "vite": "^4.4.8",
+    "vite-plugin-mkcert": "^1.16.0",
     "vue-tsc": "^1.8.8"
   },
   "keywords": [
