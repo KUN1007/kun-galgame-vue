@@ -8,8 +8,6 @@ import { TopicUserInfo } from '@/api'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-// 导入当前用户的 store
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
 // 当前的话题 tid
@@ -22,7 +20,7 @@ const { isEdit, replyDraft } = storeToRefs(topicStore)
 // 接受父组件的传值
 const props = defineProps<{
   info: {
-    views?: number
+    views: number
     likes: number[]
     dislikes: number[]
     upvotes: number[]
@@ -32,22 +30,27 @@ const props = defineProps<{
   rUser: TopicUserInfo
 }>()
 
-// 点击回复打开回复面板
-const handelReply = async () => {
-  // 保存必要信息，以便发表回复
+// 保存必要信息
+const saveDraft = () => {
   replyDraft.value.tid = tid
-  replyDraft.value.r_uid = useKUNGalgameUserStore().uid
   replyDraft.value.replyUserName = props.rUser.name
   replyDraft.value.to_uid = props.rUser.uid
   replyDraft.value.to_floor = props.info.to_floor
+}
 
-  // 打开回复面板
-  await nextTick()
+// 点击回复打开回复面板
+const handelReply = async () => {
+  // 保存必要信息，以便发表回复
+  saveDraft()
+
   isEdit.value = true
 }
 
 // 重新编辑
-const handleClickEdit = () => {}
+const handleClickEdit = () => {
+  // 保存必要信息，以便更新话题
+  saveDraft()
+}
 </script>
 
 <template>
@@ -99,11 +102,6 @@ const handleClickEdit = () => {}
           <span @click="handleClickEdit" class="icon">
             <Icon icon="line-md:pencil-twotone-alt" />
           </span>
-        </li>
-
-        <!-- 回复的插槽 -->
-        <li>
-          <slot name="comment"></slot>
         </li>
       </ul>
     </div>
