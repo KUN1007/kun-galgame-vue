@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, onBeforeMount } from 'vue'
+import { ref, computed, watch, onBeforeMount, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
@@ -27,16 +27,8 @@ const isShowKeywords = computed(() =>
     : replyDraft.value.isShowHotKeywords
 )
 
-// 临时数据，将会从后端返回 7 个热门 tag
-const hotTags = [
-  '啊这可海星',
-  '啊这可海星',
-  '啊这',
-  '啊这可海星az',
-  '啊这可海星啊这可海星',
-  '鲲鲲鲲',
-]
-
+// 后端返回的热门 tags
+const hotTags = ref<string[]>([])
 // 选中的 tag
 const selectedTags = ref<string[]>([])
 // input 框是否为 focus 状态
@@ -76,7 +68,7 @@ const handleTagClose = (tag: string) => {
 
 // 被选中后还留下的 tag
 const remainingTags = computed<string[]>(() => {
-  return hotTags.filter((tag) => !selectedTags.value.includes(tag))
+  return hotTags.value.filter((tag) => !selectedTags.value.includes(tag))
 })
 
 // 输入框事件，按下 enter 创建 tag，创建 tag 时长度不超过 17，个数不超过 7
@@ -140,6 +132,34 @@ watch(selectedTags.value, () => {
   // 否则保存在 edit 界面的 store
   if (routeName.value === 'Edit') {
     tags.value = selectedTags.value
+  }
+})
+
+// 获取热门 tags 的函数，获取 10 个
+const getTags = async () => {
+  return (await useKUNGalgameEditStore().getHotTags(10)).data
+}
+
+// 检测 isShowKeywords 的变化，为真时才获取 tag，适应页面的响应式
+watch(isShowKeywords, async () => {
+  if (isShowHotKeywords.value === true) {
+    hotTags.value = await getTags()
+  }
+})
+
+// 挂载时获取热门 tags
+onMounted(async () => {
+  // 是否需要在编辑界面触发接口
+  const isLoadEditHotTags =
+    routeName.value === 'Edit' && isShowHotKeywords.value
+
+  // 是否需要在回复界面触发接口
+  const isLoadTopicHotTags =
+    routeName.value === 'Topic' && replyDraft.value.isShowHotKeywords
+
+  // 需要获取时才触发
+  if (isLoadEditHotTags || isLoadTopicHotTags) {
+    hotTags.value = await getTags()
   }
 })
 </script>

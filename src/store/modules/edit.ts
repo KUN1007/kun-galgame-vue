@@ -1,9 +1,11 @@
 /* 编辑区的 store */
 import { defineStore } from 'pinia'
-import { postEditNewTopicApi } from '@/api/index'
+import { postEditNewTopicApi, getTopTagsApi } from '@/api/index'
 import {
   EditCreateTopicRequestData,
   EditCreateTopicResponseData,
+  EditGetHotTagsRequestData,
+  EditGetHotTagsResponseData,
 } from '@/api/index'
 
 interface Topic {
@@ -64,6 +66,19 @@ export const useKUNGalgameEditStore = defineStore({
     ): Promise<EditCreateTopicResponseData> {
       return new Promise((resolve, reject) => {
         postEditNewTopicApi(createTopicRequestData)
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    // 获取热门 tags
+    getHotTags(limit: number): Promise<EditGetHotTagsResponseData> {
+      return new Promise((resolve, reject) => {
+        const requestData: EditGetHotTagsRequestData = { limit }
+        getTopTagsApi(requestData)
           .then((res) => {
             resolve(res)
           })
