@@ -9,16 +9,19 @@ const topicURLs = {
   getRelatedTopicsByTags: `/topic/nav/same`,
   // 楼主的其它话题
   getPopularTopicsByUserUid: `/topic/nav/master`,
+
   // 获取单个话题
   getTopicByTid: `/topic/detail`,
+
   // 根据话题 id 获取话题回复
-  getRepliesByPid: `/topic/detail`,
+  getRepliesByPid: `/topic/detail/reply`,
   // 创建单个回复
-  postReplyByPid: `/topic/detail`,
+  postReplyByPid: `/topic/detail/reply`,
+
   // 获取一个回复下的所有评论
-  getCommentsByReplyRid: `/topic/detail`,
+  getCommentsByReplyRid: `/topic/detail/comment`,
   // 创建一个评论
-  postCommentByPidAndRid: `/topic/detail`,
+  postCommentByPidAndRid: `/topic/detail/comment`,
 }
 
 // 左侧相同标签下的其它话题
@@ -60,7 +63,7 @@ export async function getTopicByTidApi(
   tid: number
 ): Promise<Topic.TopicDetailResponseData> {
   try {
-    const url = `${topicURLs.getTopicByTid}/${tid}`
+    const url = `${topicURLs.getTopicByTid}?tid=${tid}`
 
     const response = await fetchGet<Topic.TopicDetailResponseData>(url)
 
@@ -76,8 +79,8 @@ export async function getRepliesByPidApi(
   request: Topic.TopicReplyRequestData
 ): Promise<Topic.TopicReplyResponseData> {
   try {
-    const queryParams = objectToQueryParams(request, 'tid')
-    const url = `${topicURLs.getRepliesByPid}/${request.tid}/reply/?${queryParams}`
+    const queryParams = objectToQueryParams(request)
+    const url = `${topicURLs.getRepliesByPid}?${queryParams}`
 
     const response = await fetchGet<Topic.TopicReplyResponseData>(url)
 
@@ -93,7 +96,7 @@ export async function postReplyByPidApi(
   request: Topic.TopicCreateReplyRequestData
 ): Promise<Topic.TopicCreateReplyResponseData> {
   try {
-    const url = `${topicURLs.postReplyByPid}/${request.tid}/reply`
+    const url = `${topicURLs.postReplyByPid}`
 
     const response = await fetchPost<Topic.TopicCreateReplyResponseData>(
       url,
@@ -109,11 +112,10 @@ export async function postReplyByPidApi(
 
 // 获取一个回复下面的评论
 export async function getCommentsByReplyRidApi(
-  tid: number,
   rid: number
 ): Promise<Topic.TopicCommentResponseData> {
   try {
-    const url = `${topicURLs.getCommentsByReplyRid}/${tid}/comment?rid=${rid}`
+    const url = `${topicURLs.getCommentsByReplyRid}?rid=${rid}`
 
     const response = await fetchGet<Topic.TopicCommentResponseData>(url)
 
@@ -129,7 +131,7 @@ export async function postCommentByPidAndRidApi(
   request: Topic.TopicCreateCommentRequestData
 ): Promise<Topic.TopicCreateCommentResponseData> {
   try {
-    const url = `${topicURLs.postCommentByPidAndRid}/${request.tid}/comment`
+    const url = `${topicURLs.postCommentByPidAndRid}`
 
     const response = await fetchPost<Topic.TopicCreateCommentResponseData>(
       url,

@@ -25,7 +25,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         </div>
       </div>
       <!-- 版权 -->
-      <KUNGalgameFooter />
+      <KUNGalgameFooter style="display: block" />
     </div>
   </div>
 </template>

@@ -129,6 +129,7 @@ const loliStatus = computed(() => {
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-5);
   box-sizing: border-box;
+  transition: all 0.5s;
 }
 
 /* 楼主话题头部 */
