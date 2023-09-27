@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, defineAsyncComponent } from 'vue'
+import { reactive } from 'vue'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
 // 使用全局通知
