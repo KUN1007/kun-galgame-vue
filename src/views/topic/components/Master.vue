@@ -3,7 +3,7 @@
  -->
 <script setup lang="ts">
 // 楼主话题的 Footer
-import TopicFooter from '../components/TopicFooter.vue'
+import MasterFooter from './MasterFooter.vue'
 // 楼主话题是否重新编辑
 import Rewrite from '../components/Rewrite.vue'
 // 楼主的信息
@@ -94,7 +94,7 @@ const loliStatus = computed(() => {
           </div>
         </div>
         <!-- 话题的点赞数等信息 -->
-        <TopicFooter
+        <MasterFooter
           :info="{ views, likes, dislikes, upvotes, to_floor: 0 }"
           :r-user="user"
         />
