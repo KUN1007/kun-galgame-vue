@@ -26,3 +26,8 @@ export type LoginResponseData = KUNGalgameResponseData<{
   avatar: string
   token: string
 }>
+
+// 获取 token 响应数据格式
+export type RefreshTokenResponseData = KUNGalgameResponseData<{
+  token: string
+}>

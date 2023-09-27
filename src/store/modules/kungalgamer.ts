@@ -21,19 +21,16 @@ interface UserState {
   uid: number
   name: string
   avatar: string
-  token: string
 }
 
-// 这里用了 pinia-plugin-persistedstate，直接存储 token 即可
+// 这里用了 pinia-plugin-persistedstate，直接存储即可
 export const useKUNGalgameUserStore = defineStore({
   id: 'kungalgamer',
   persist: true,
-  // token 放在 cookie 中, refreshToken 放在 localStorage 中
   state: (): UserState => ({
     uid: 0,
     name: '',
     avatar: '',
-    token: '',
   }),
   getters: {},
   actions: {

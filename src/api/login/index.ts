@@ -5,6 +5,7 @@ const loginURLs = {
   login: `/login/login`,
   register: `/login/register`,
   verificationCode: `/auth/email/code`,
+  refreshToken: `/auth/token/refresh`,
 }
 
 // 获取用户登录数据
@@ -35,3 +36,14 @@ export const postRegisterDataApi = async (
   )
   return response
 }
+
+// token 失效时获取 refresh token
+export const generateTokenByRefreshTokenApi =
+  async (): Promise<Login.RefreshTokenResponseData> => {
+    const response = await fetchPost<Login.RefreshTokenResponseData>(
+      loginURLs.refreshToken
+    )
+    console.log(response)
+
+    return response
+  }
