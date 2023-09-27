@@ -239,9 +239,9 @@ export const useKUNGalgameTopicStore = defineStore({
       })
     },
     // 获取评论
-    getComments(tid: number, rid: number): Promise<TopicCommentResponseData> {
+    getComments(rid: number): Promise<TopicCommentResponseData> {
       return new Promise((resolve, reject) => {
-        getCommentsByReplyRidApi(tid, rid)
+        getCommentsByReplyRidApi(rid)
           .then((res) => {
             resolve(res)
           })

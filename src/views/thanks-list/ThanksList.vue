@@ -110,9 +110,10 @@ const thanksListPageWidth = computed(() => {
   /* 固定宽高 */
   transition: all 0.2s;
   width: v-bind(thanksListPageWidth);
+  max-width: 1300px;
   height: 1300px;
   /* 居中 */
-  margin: auto;
+  margin: 0 auto;
   position: relative;
   border-radius: 7px;
   box-shadow: var(--shadow);

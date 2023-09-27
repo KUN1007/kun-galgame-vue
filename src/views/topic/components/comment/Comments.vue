@@ -30,8 +30,8 @@ const toUserInfo = reactive({
   name: '',
 })
 
-const getComments = async (tid: number, rid: number) => {
-  return (await useKUNGalgameTopicStore().getComments(tid, rid)).data
+const getComments = async (rid: number) => {
+  return (await useKUNGalgameTopicStore().getComments(rid)).data
 }
 
 // 拿到新发布的评论并 push 到原来的数据里，无需重新获取
@@ -44,7 +44,7 @@ onMounted(async () => {
   toUserInfo.name = props.toUser.name
   toUserInfo.uid = props.toUser.uid
 
-  commentsData.value = await getComments(props.tid, props.rid)
+  commentsData.value = await getComments(props.rid)
 })
 
 // 点击回复
