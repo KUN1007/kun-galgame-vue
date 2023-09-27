@@ -74,9 +74,6 @@ onMounted(async () => {
 <style lang="scss" scoped>
 /* 侧边栏动态推送话题的总容器 */
 .topic-wrap {
-  width: 100%;
-  height: 100%;
-
   /* 今日热门话题区域为竖直弹性盒 */
   display: flex;
   flex-direction: column;
@@ -84,7 +81,7 @@ onMounted(async () => {
 /* 标题六个字的样式 */
 .title-new,
 .title-hot {
-  height: 100%;
+  height: 50px;
   /* 设置（今日热门话题）居中 */
   display: flex;
   justify-content: center;
@@ -96,8 +93,7 @@ onMounted(async () => {
 }
 /* 展示热门话题的区域 */
 .topic-content {
-  height: 100%;
-
+  height: 43px;
   /* 热门话题标题部分为弹性盒 */
   display: flex;
   flex-direction: column;

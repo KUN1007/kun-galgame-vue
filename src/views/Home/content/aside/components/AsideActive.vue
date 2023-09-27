@@ -38,7 +38,7 @@ const props = defineProps(['isActive'])
 /* 侧边栏功能区 */
 .item-box {
   width: 100%;
-  height: 300px;
+  flex-grow: 1;
   /* 设置六个功能（模式、排行、背景等）分布的弹性盒 */
   display: flex;
   flex-direction: column;
@@ -48,7 +48,6 @@ const props = defineProps(['isActive'])
   width: 100%;
   /* 发布话题的按钮相对于功能区盒子的占比 */
   flex-grow: 1;
-  flex-shrink: 0;
   /* 发布按钮样式 */
   button {
     height: 100%;
