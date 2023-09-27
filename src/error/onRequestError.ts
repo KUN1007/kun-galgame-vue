@@ -2,7 +2,7 @@
 import message from '@/components/alert/Message'
 import { generateTokenByRefreshTokenApi } from '@/api'
 // 操作 cookie 的函数
-import { setToken } from '@/utils/cookie'
+import { setToken, removeToken } from '@/utils/cookie'
 // 导入路由
 import router from '@/router'
 
@@ -23,6 +23,7 @@ export async function onRequestError(response: Response) {
         '登陆过期，请重新登陆',
         'error'
       )
+      removeToken()
       router.push('/login')
     }
   }
