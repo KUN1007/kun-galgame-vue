@@ -8,9 +8,6 @@ import { TopicAside } from '@/api/index'
 
 // 导入 topic store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-// 导入用户 store
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-import { storeToRefs } from 'pinia'
 
 import { RouterLink, useRoute } from 'vue-router'
 import { onMounted } from 'vue'
@@ -19,14 +16,11 @@ const route = useRoute()
 
 const tid = route.params.tid as string
 
-const { uid } = storeToRefs(useKUNGalgameUserStore())
-
 const topicData = ref<TopicAside[]>()
 
 const fetchTopicData = async () => {
   topicData.value = (
     await useKUNGalgameTopicStore().getPopularTopicsByUserUid({
-      uid: uid.value,
       tid: tid,
     })
   ).data
