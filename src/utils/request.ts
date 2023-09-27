@@ -12,7 +12,8 @@ export type FetchOptions = {
   body?: BodyInit
 }
 
-const fetchRequest = async <T>(
+// fetch 请求函数
+const kunFetchRequest = async <T>(
   url: string,
   options: FetchOptions
 ): Promise<T> => {
@@ -27,8 +28,8 @@ const fetchRequest = async <T>(
 
   const response = await fetch(fullUrl, { ...options, headers })
 
-  // 处理错误
-  onRequestError(response)
+  // 处理错误，token 过期
+  await onRequestError(response)
 
   const data: T = await response.json()
   return data
@@ -44,7 +45,7 @@ const fetchGet = async <T>(
     headers: headers,
   }
 
-  return await fetchRequest<T>(url, options)
+  return await kunFetchRequest<T>(url, options)
 }
 
 const fetchPost = async <T>(
@@ -62,7 +63,7 @@ const fetchPost = async <T>(
     body: JSON.stringify(body),
   }
 
-  return await fetchRequest<T>(url, options)
+  return await kunFetchRequest<T>(url, options)
 }
 
 const fetchPut = async <T>(
@@ -80,7 +81,7 @@ const fetchPut = async <T>(
     body: JSON.stringify(body),
   }
 
-  return await fetchRequest<T>(url, options)
+  return await kunFetchRequest<T>(url, options)
 }
 
 const fetchDelete = async <T>(
@@ -93,7 +94,7 @@ const fetchDelete = async <T>(
     headers: headers,
   }
 
-  return await fetchRequest<T>(url, options)
+  return await kunFetchRequest<T>(url, options)
 }
 
 export { fetchGet, fetchPost, fetchPut, fetchDelete }
