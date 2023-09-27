@@ -6,7 +6,7 @@ import { Icon } from '@iconify/vue'
 import 'animate.css'
 
 // 导入 Vue 异步函数
-import { ref, computed, defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
 
 // 导入编辑器
 const QuillEditor = defineAsyncComponent(

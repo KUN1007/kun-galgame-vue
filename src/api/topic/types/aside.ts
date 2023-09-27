@@ -13,8 +13,6 @@ export interface TopicAsideOtherTagRequestData {
 }
 
 export interface TopicAsideMasterRequestData {
-  // 楼主 id
-  uid: number
   // 当前话题的 tid，因为相同标签下的其它话题不包括本话题
   tid: string
 }

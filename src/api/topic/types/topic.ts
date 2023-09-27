@@ -72,7 +72,6 @@ export interface TopicReply {
 // 发表回复的请求数据
 export interface TopicCreateReplyRequestData {
   tid: number
-  r_uid: number
   to_uid: number
   to_floor: number
   tags: string[]
@@ -94,7 +93,6 @@ export interface TopicComment {
 export interface TopicCreateCommentRequestData {
   tid: number
   rid: number
-  c_uid: number
   to_uid: number
   content: string
 }

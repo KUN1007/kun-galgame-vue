@@ -223,7 +223,6 @@ export const useKUNGalgameTopicStore = defineStore({
         // 这里的值用于初始化回复
         const requestData: TopicCreateReplyRequestData = {
           tid: this.replyDraft.tid,
-          r_uid: this.replyDraft.r_uid,
           to_uid: this.replyDraft.to_uid,
           to_floor: this.replyDraft.to_floor,
           tags: this.replyDraft.tags,
@@ -256,7 +255,6 @@ export const useKUNGalgameTopicStore = defineStore({
         const requestData: TopicCreateCommentRequestData = {
           tid: this.commentDraft.tid,
           rid: this.commentDraft.rid,
-          c_uid: this.commentDraft.c_uid,
           to_uid: this.commentDraft.to_uid,
           content: this.commentDraft.content,
         }
