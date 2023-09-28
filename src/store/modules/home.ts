@@ -1,27 +1,12 @@
 /* 主页的 store */
 import { defineStore } from 'pinia'
-
+// api
 import { getHomeTopicApi } from '@/api/index'
-
+// 数据接口的类型
 import { HomeTopicRequestData, HomeTopicResponseData } from '@/api/index'
 
-interface HomeStore {
-  keywords: string
-  category: string
-  page: number
-  limit: number
-  sortField: string
-  sortOrder: string
-  // 加载完了是否还需要加载
-  isLoading: boolean
-
-  // 其它的 store
-  // 是否激活主页的左侧交互面板
-  isActiveMainPageAside: boolean
-
-  // 搜索历史存储
-  searchHistory: string[]
-}
+// home store 的类型
+import { HomeStore } from '../types/home'
 
 export const useKUNGalgameHomeStore = defineStore({
   id: 'home',
@@ -55,7 +40,7 @@ export const useKUNGalgameHomeStore = defineStore({
   getters: {},
   actions: {
     // 获取首页话题
-    getHomeTopic(): Promise<HomeTopicResponseData> {
+    async getHomeTopic(): Promise<HomeTopicResponseData> {
       // 这里的值用于初始化
       const requestData: HomeTopicRequestData = {
         keywords: this.keywords,
@@ -65,15 +50,7 @@ export const useKUNGalgameHomeStore = defineStore({
         sortField: this.sortField,
         sortOrder: this.sortOrder,
       }
-      return new Promise((resolve, reject) => {
-        getHomeTopicApi(requestData)
-          .then((res) => {
-            resolve(res)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+      return await getHomeTopicApi(requestData)
     },
     // 重置页数，是否加载，这样排序才能生效
     resetPageStatus() {

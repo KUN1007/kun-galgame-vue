@@ -15,7 +15,7 @@ interface TopicRewrite {
   isTopicRewriting: boolean
 }
 
-export interface Topic {
+export interface EditStore {
   /**
    * 编辑器相关
    * @param {number} editorHeight - 编辑器高度

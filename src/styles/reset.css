@@ -28,3 +28,9 @@ button,
 select {
   font-family: inherit;
 }
+
+/* 鼠标选中文字的颜色 */
+*::selection {
+  background-color: var(--kungalgame-blue-1); /* 选中文本的背景颜色 */
+  color: var(--kungalgame-blue-4); /* 选中文本的文本颜色 */
+}

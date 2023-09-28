@@ -42,6 +42,8 @@ const handelInput = () => {
 
   // 用户输入了纯空格
   if (topicTitle.value.trim() === '') {
+    title.value = ''
+    topicRewrite.value.title = ''
     return
   }
 
@@ -52,7 +54,6 @@ const handelInput = () => {
      */
     // 不是重新编辑则保存在 edit 界面的 store
     if (!topicRewrite.value.isTopicRewriting) {
-      // 过滤 xss
       title.value = topicTitle.value
     }
     /**
