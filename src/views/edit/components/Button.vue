@@ -3,75 +3,26 @@
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
-// Vue 函数
-import { toRaw } from 'vue'
 // 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// 导入用户 store
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 // 导入路由
 import { useRouter } from 'vue-router'
-// 导入请求数据格式
-import {
-  EditCreateTopicRequestData,
-  EditCreateTopicResponseData,
-} from '@/api/index'
 
 const router = useRouter()
 
-const { textCount, isSaveTopic } = storeToRefs(useKUNGalgameEditStore())
+const { isSaveTopic, topicRewrite } = storeToRefs(useKUNGalgameEditStore())
 const messageStore = useKUNGalgameMessageStore()
 
-// 发布时检测用户输入是否合法
-const checkPublish = (topicData: EditCreateTopicRequestData) => {
-  if (!topicData.title.trim()) {
-    // 标题为空的话，警告
-    message('Title cannot be empty!', '标题不可为空！', 'warn')
-    return false
-  } else if (!textCount) {
-    if (textCount > 100007) {
-      message('Content max length is 100007!', '内容最大长度为100007！', 'warn')
-    }
-    // 内容为空的话，警告
-    message('Content cannot be empty!', '内容不可为空！', 'warn')
-    return false
-  } else if (!topicData.tags.length) {
-    message('Please use at least one tag!', '请至少使用一个标签！', 'warn')
-  } else if (!topicData.category.length) {
-    message(
-      'Please select at least one category!',
-      '请至少选择一个分类！',
-      'warn'
-    )
-  } else {
-    return true
-  }
-}
-
+// 发布话题
 const handlePublish = async () => {
   const res = await messageStore.alert('AlertInfo.edit.publish', true)
   // 这里实现用户的点击确认取消逻辑
   if (res) {
-    // 坑，storeToRefs 不等于 vue 中的 ref 或者 reactive，不能用 toRaw
-    const rawData = toRaw(useKUNGalgameEditStore().$state)
+    // 后端返回的创建好的话题数据
+    const createdTopic = await useKUNGalgameEditStore().createNewTopic()
 
-    // 发送给后端的数据
-    const topicToCreate = {
-      title: rawData.title,
-      content: rawData.content,
-      time: Date.now(),
-      tags: rawData.tags,
-      category: rawData.category,
-      uid: useKUNGalgameUserStore().uid,
-    }
-
-    // 检查提交数据是否合法
-    if (checkPublish(topicToCreate)) {
-      // 后端返回的创建好的话题数据
-      const createdTopic: EditCreateTopicResponseData =
-        await useKUNGalgameEditStore().createNewTopic(topicToCreate)
-
+    if (createdTopic) {
       // 获取创建好话题的 tid
       const tid = createdTopic.data.tid
 
@@ -86,9 +37,40 @@ const handlePublish = async () => {
       messageStore.info('AlertInfo.edit.publishSuccess')
       // 清除数据，并不再保存数据，因为此时该话题已被发布
       useKUNGalgameEditStore().resetTopicData()
+    } else {
+      message('Failed to create new topic', '发布话题失败', 'error')
     }
   } else {
     messageStore.info('AlertInfo.edit.publishCancel')
+  }
+}
+
+// 重新编辑
+const handleRewrite = async () => {
+  const res = await messageStore.alert('AlertInfo.edit.rewrite', true)
+  // 这里实现用户的点击确认取消逻辑
+  if (res) {
+    // 更新话题
+    const res = await useKUNGalgameEditStore().rewriteTopic()
+
+    console.log(res.data)
+
+    // 获取创建好话题的 tid
+    const tid = topicRewrite.value.tid
+
+    // 将用户 push 进对应 tid 话题的详情页面
+    router.push({
+      name: 'Topic',
+      params: {
+        tid: tid,
+      },
+    })
+
+    messageStore.info('AlertInfo.edit.rewriteSuccess')
+    // 清除数据，并不再保存数据，因为此时该话题已被更新
+    useKUNGalgameEditStore().resetRewriteTopicData()
+  } else {
+    messageStore.info('AlertInfo.edit.rewriteCancel')
   }
 }
 
@@ -104,9 +86,21 @@ const handleSave = () => {
   <!-- 按钮的容器 -->
   <div class="btn-container">
     <!-- 确认按钮 -->
-
-    <button class="confirm-btn" @click="handlePublish">
+    <button
+      v-if="!topicRewrite.isTopicRewriting"
+      class="confirm-btn"
+      @click="handlePublish"
+    >
       {{ $tm('edit.publish') }}
+    </button>
+
+    <!-- 重新编辑按钮 -->
+    <button
+      v-if="topicRewrite.isTopicRewriting"
+      class="rewrite-btn"
+      @click="handleRewrite"
+    >
+      {{ $tm('edit.rewrite') }}
     </button>
 
     <!-- 保存按钮 -->
@@ -148,8 +142,20 @@ const handleSave = () => {
 }
 .confirm-btn:hover {
   background-color: var(--kungalgame-blue-4);
-  transition: 0.1s;
+  transition: 0.2s;
 }
+
+/* 重新编辑按钮的样式 */
+.rewrite-btn {
+  color: var(--kungalgame-red-4);
+  background-color: var(--kungalgame-trans-red-1);
+  border: 1px solid var(--kungalgame-red-4);
+}
+.rewrite-btn:hover {
+  background-color: var(--kungalgame-red-4);
+  transition: 0.2s;
+}
+
 /* 保存按钮的样式 */
 .save-btn {
   color: var(--kungalgame-pink-4);
@@ -158,7 +164,7 @@ const handleSave = () => {
 }
 .save-btn:hover {
   background-color: var(--kungalgame-pink-4);
-  transition: 0.1s;
+  transition: 0.2s;
 }
 .save-btn:active {
   background-color: var(--kungalgame-pink-3);

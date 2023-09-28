@@ -4,7 +4,6 @@ export interface EditCreateTopicRequestData {
   time: number
   tags: Array<string>
   category: Array<string>
-  uid: number
 }
 
 export interface EditKUNGalgameTopic {
@@ -28,6 +27,15 @@ export interface EditKUNGalgameTopic {
   // edited: number
 }
 
+// 更新话题的请求数据格式
+export interface EditUpdateTopicRequestData {
+  tid: number
+  title: string
+  content: string
+  tags: string[]
+  category: string[]
+}
+
 // 获取热门 tag 的请求数据格式
 export interface EditGetHotTagsRequestData {
   limit: number
@@ -36,6 +44,9 @@ export interface EditGetHotTagsRequestData {
 // 创建话题响应数据的格式
 export type EditCreateTopicResponseData =
   KUNGalgameResponseData<EditKUNGalgameTopic>
+
+// 更新话题响应数据的格式
+export type EditUpdateTopicResponseData = KUNGalgameResponseData<{}>
 
 // 热门 tag 的返回数据格式
 export type EditGetHotTagsResponseData = KUNGalgameResponseData<string[]>

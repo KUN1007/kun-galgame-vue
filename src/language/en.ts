@@ -166,6 +166,7 @@ export default {
     Technique: 'Technique',
     Others: 'Others',
     publish: 'Confirm Publish',
+    rewrite: 'Confirm Rewrite',
     draft: 'Save Draft',
   },
   login: {

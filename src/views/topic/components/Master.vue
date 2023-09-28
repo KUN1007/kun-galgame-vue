@@ -34,9 +34,10 @@ const {
   tags,
   edited,
   user,
-  rid,
+  // rid,
   status,
-  share,
+  // share,
+  category,
 } = topicData.topicData
 
 // 话题的状态
@@ -93,9 +94,10 @@ const loliStatus = computed(() => {
             <Rewrite v-if="edited" :time="edited" />
           </div>
         </div>
-        <!-- 话题的点赞数等信息 -->
+        <!-- 话题的点赞数等信息，楼主的 floor 就是 0 -->
         <MasterFooter
-          :info="{ views, likes, dislikes, upvotes, to_floor: 0 }"
+          :info="{ tid, views, likes, dislikes, upvotes, to_floor: 0 }"
+          :topic="{ tid, title, content, tags, category }"
           :r-user="user"
         />
       </div>
@@ -113,8 +115,6 @@ const loliStatus = computed(() => {
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  /* TODO: */
-  /* 楼主话题背景图 */
 }
 
 /* 楼主话题内容区的容器 */
