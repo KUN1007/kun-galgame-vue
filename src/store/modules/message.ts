@@ -1,31 +1,13 @@
 import { defineStore } from 'pinia'
 
-interface Message {
-  // 是否展示通知消息
-  showInfo: boolean
-  // 是否展示警告消息
-  showAlert: boolean
-  // 通知消息的内容
-  infoMsg: string
-  // 警告消息的内容
-  alertMsg: string
-  // 是否展示取消按钮，Alert 组件专用
-  isShowCancel: boolean
-  // 返回确认信息，Alert 组件专用
-  confirm: boolean
-
-  // 人机验证组件
-  // 是否显示人机验证
-  isShowCapture: boolean
-  // 是否验证通过
-  isCaptureSuccessful: boolean
-}
+// message store 的类型
+import { MessageStore } from '../types/message'
 
 export const useKUNGalgameMessageStore = defineStore({
   id: 'message',
   // 所有消息组件均不需要持久存储
   persist: false,
-  state: (): Message => ({
+  state: (): MessageStore => ({
     showInfo: false,
     showAlert: false,
     infoMsg: '',

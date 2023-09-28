@@ -4,30 +4,14 @@ import { defineStore } from 'pinia'
 // 网站的默认设置
 import { KUNGalgameLanguage, mode } from '@/utils/getDefaultEnv'
 
-// 设置面板配置
-interface KUNGalgameSettings {
-  // 白天黑夜模式切换
-  showKUNGalgameMode: string
-  // 网站显示语言
-  showKUNGalgameLanguage: string
-  // 主页宽度
-  showKUNGalgamePageWidth: Record<string, number>
-  // 网站字体
-  showKUNGalgameFontStyle: string
-  // 背景图
-  showKUNGalgameBackground: string
-  // 自定义背景图
-  showKUNGalgameCustomBackground: string
-
-  // 显示页面宽度还是显示字体设置
-  isShowPageWidth: boolean
-}
+// settings store 的类型
+import { KUNGalgameSettingsStore } from '../types/settings'
 
 export const useKUNGalgameSettingsStore = defineStore({
   id: 'KUNGalgame-settings',
   persist: true,
   // 默认值
-  state: (): KUNGalgameSettings => ({
+  state: (): KUNGalgameSettingsStore => ({
     showKUNGalgameMode: mode,
     showKUNGalgameLanguage: KUNGalgameLanguage,
     showKUNGalgamePageWidth: {

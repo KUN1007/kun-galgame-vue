@@ -14,19 +14,14 @@ import {
   sendVerificationCodeMailApi,
 } from '@/api'
 
-// 用户信息接口
-interface UserState {
-  uid: number
-  name: string
-  avatar: string
-  moemoeAccessToken: string
-}
+// kungalgame store 类型
+import { KUNGalgamerStore } from '../types/kungalgamer'
 
 // 这里用了 pinia-plugin-persistedstate，直接存储即可
 export const useKUNGalgameUserStore = defineStore({
   id: 'kungalgamer',
   persist: true,
-  state: (): UserState => ({
+  state: (): KUNGalgamerStore => ({
     uid: 0,
     name: '',
     avatar: '',
@@ -50,56 +45,36 @@ export const useKUNGalgameUserStore = defineStore({
       this.moemoeAccessToken = ''
     },
     // 登陆
-    login(request: LoginRequestData): Promise<LoginResponseData> {
-      return new Promise((resolve, reject) => {
-        // 这里是向后端发请求的函数
-        postLoginDataApi(request)
-          .then((res) => {
-            if (res.data) {
-              this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
-              this.setToken(res.data.token)
-            } else
-              (error: Error) => {
-                throw new Error('500 Server ERROR', error)
-              }
-            resolve(res)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+    async login(request: LoginRequestData): Promise<LoginResponseData> {
+      const res = await postLoginDataApi(request)
+      if (res.code === 200) {
+        this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
+        this.setToken(res.data.token)
+      } else if (res.code === 500) {
+        console.log(res.message)
+      } else {
+        throw new Error('500 Server ERROR')
+      }
+      return res
     },
     // 发送验证码
-    sendCode(email: string): Promise<void> {
-      return new Promise((resolve, reject) => {
-        const request: VerificationCodeMailRequestData = { email }
-        sendVerificationCodeMailApi(request)
-          .then((res) => {
-            resolve(res)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+    async sendCode(email: string): Promise<void> {
+      const request: VerificationCodeMailRequestData = { email }
+      return await sendVerificationCodeMailApi(request)
     },
     // 注册
-    register(request: RegisterRequestData): Promise<LoginResponseData> {
-      return new Promise((resolve, reject) => {
-        postRegisterDataApi(request)
-          .then((res) => {
-            if (res.data) {
-              this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
-              this.setToken(res.data.token)
-            } else
-              (error: Error) => {
-                throw new Error('500 Server ERROR', error)
-              }
-            resolve(res)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+    async register(request: RegisterRequestData): Promise<LoginResponseData> {
+      const res = await postRegisterDataApi(request)
+
+      if (res.code === 200) {
+        this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
+        this.setToken(res.data.token)
+      } else if (res.code === 500) {
+        console.log(res.message)
+      } else {
+        throw new Error('500 Server ERROR')
+      }
+      return res
     },
   },
 })
