@@ -14,7 +14,7 @@ const route = useRoute()
 const routeName = computed(() => route.name as string)
 
 // 话题编辑界面 store
-const { isShowHotKeywords, tags, isSaveTopic } = storeToRefs(
+const { isShowHotKeywords, tags, isSaveTopic, topicRewrite } = storeToRefs(
   useKUNGalgameEditStore()
 )
 // 话题界面的 store，用于回复
@@ -40,13 +40,26 @@ const canDeleteTag = ref(false)
 
 // 组件挂载之前载入 store 里的数据
 onBeforeMount(() => {
+  /**
+   * 编辑器处于编辑界面
+   */
   // 挂载之前载入话题数据，如果不保存，则不载入（并且当前必须在 edit 界面）
   if (isSaveTopic.value && routeName.value === 'Edit') {
     selectedTags.value = tags.value
   }
+  /**
+   * 编辑器处于回复界面
+   */
   // 挂载之前载入回复数据，如果不保存，则不载入（并且当前必须在 topic 界面）
   if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
     selectedTags.value = replyDraft.value.tags
+  }
+  /**
+   * 编辑器处于重新编辑的编辑界面
+   */
+  // 挂载之前载入重新编辑话题的 tags
+  if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
+    selectedTags.value = topicRewrite.value.tags
   }
 })
 

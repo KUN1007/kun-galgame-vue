@@ -8,7 +8,9 @@ import { storeToRefs } from 'pinia'
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
 
-const { isSaveTopic, title } = storeToRefs(useKUNGalgameEditStore())
+const { isSaveTopic, title, topicRewrite } = storeToRefs(
+  useKUNGalgameEditStore()
+)
 
 // 话题标题的文字
 const topicTitle = ref('')
@@ -16,8 +18,18 @@ const topicTitle = ref('')
 const maxInputLength = 40
 
 onBeforeMount(() => {
+  /**
+   * 编辑器处于编辑界面
+   */
   if (isSaveTopic.value) {
     topicTitle.value = title.value
+  }
+  /**
+   * 编辑器处于重新编辑的编辑界面
+   */
+  // 挂载之前载入重新编辑话题的数据
+  if (topicRewrite.value.isTopicRewriting) {
+    topicTitle.value = topicRewrite.value.title
   }
 })
 
@@ -35,8 +47,21 @@ const handelInput = () => {
 
   // 创建一个防抖处理函数
   const debouncedInput = debounce(() => {
-    // 过滤 xss
-    title.value = topicTitle.value
+    /**
+     * 编辑器处于回复界面
+     */
+    // 不是重新编辑则保存在 edit 界面的 store
+    if (!topicRewrite.value.isTopicRewriting) {
+      // 过滤 xss
+      title.value = topicTitle.value
+    }
+    /**
+     * 编辑器处于重新编辑的编辑界面
+     */
+    // 重新编辑则保存在重新编辑界面的 store
+    if (topicRewrite.value.isTopicRewriting) {
+      topicRewrite.value.title = topicTitle.value
+    }
   }, 300)
 
   // 调用防抖处理函数，会在延迟时间内只执行一次更新操作

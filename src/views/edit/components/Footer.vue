@@ -8,16 +8,28 @@ import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { Category, topicCategory } from './category'
 import { storeToRefs } from 'pinia'
 
-const { isSaveTopic, category } = storeToRefs(useKUNGalgameEditStore())
+const { isSaveTopic, category, topicRewrite } = storeToRefs(
+  useKUNGalgameEditStore()
+)
 
 // 定义被选中的分类的数组
 const selectedCategories = ref<string[]>([])
 
 // 组件挂载之前载入 store 里的数据
 onBeforeMount(() => {
+  /**
+   * 编辑器处于编辑界面
+   */
   // 如果用户保存了草稿则载入
   if (isSaveTopic.value) {
     selectedCategories.value = category.value
+  }
+  /**
+   * 编辑器处于重新编辑的编辑界面
+   */
+  // 挂载之前载入重新编辑话题的数据
+  if (topicRewrite.value.isTopicRewriting) {
+    selectedCategories.value = topicRewrite.value.category
   }
 })
 

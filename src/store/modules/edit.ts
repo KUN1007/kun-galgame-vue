@@ -1,46 +1,24 @@
 /* 编辑区的 store */
 import { defineStore } from 'pinia'
-import { postEditNewTopicApi, getTopTagsApi } from '@/api/index'
+// api
+import {
+  postEditNewTopicApi,
+  updateEditNewTopicApi,
+  getTopTagsApi,
+} from '@/api'
+// api 请求格式
 import {
   EditCreateTopicRequestData,
   EditCreateTopicResponseData,
+  EditUpdateTopicRequestData,
+  EditUpdateTopicResponseData,
   EditGetHotTagsRequestData,
   EditGetHotTagsResponseData,
-} from '@/api/index'
-
-interface Topic {
-  /**
-   * 编辑器相关
-   * @param {number} editorHeight - 编辑器高度
-   * @param {'' | 'essential' | 'minimal' | 'full'} mode - 编辑器 toolbar 模式
-   * @param {'snow' | 'bubble'} theme - 编辑器主题
-   */
-  editorHeight: number
-  textCount: number
-  mode: '' | 'essential' | 'minimal' | 'full'
-  theme: 'snow' | 'bubble'
-
-  /**
-   * 话题相关
-   * @param {string} title - 话题标题
-   * @param {string} content - 话题内容（富文本）
-   * @param {Array<string>} tags - 话题标签
-   * @param {Array<string>} category - 话题类别
-   * @param {boolean} isSave - 是否保存话题草稿
-   */
-  // 话题标题
-  title: string
-  // 话题内容
-  content: string
-  // 话题标签
-  tags: Array<string>
-  // 话题分区
-  category: Array<string>
-  // 是否显示热门关键词
-  isShowHotKeywords: boolean
-  // 是否保存话题
-  isSaveTopic: boolean
-}
+} from '@/api'
+// store interface
+import { Topic } from '../types/edit'
+// some utils to check topic publish data is valid
+import { checkTopicPublish } from '../utils/checkTopicPublish'
 
 export const useKUNGalgameEditStore = defineStore({
   id: 'edit',
@@ -57,15 +35,36 @@ export const useKUNGalgameEditStore = defineStore({
     category: [],
     isShowHotKeywords: true,
     isSaveTopic: false,
+
+    topicRewrite: {
+      tid: 0,
+      title: '',
+      content: '',
+      tags: [],
+      category: [],
+
+      isTopicRewriting: false,
+    },
   }),
   getters: {},
   actions: {
     // 创建话题
-    createNewTopic(
-      createTopicRequestData: EditCreateTopicRequestData
-    ): Promise<EditCreateTopicResponseData> {
+    createNewTopic(): Promise<EditCreateTopicResponseData> | undefined {
+      // 当前话题的数据
+      const requestData: EditCreateTopicRequestData = {
+        title: this.title,
+        content: this.content,
+        time: Date.now(),
+        tags: this.tags,
+        category: this.category,
+      }
+      // 检查话题数据不合法直接返回
+      if (!checkTopicPublish(this.textCount, requestData)) {
+        return
+      }
+      // 合法则请求接口发布话题
       return new Promise((resolve, reject) => {
-        postEditNewTopicApi(createTopicRequestData)
+        postEditNewTopicApi(requestData)
           .then((res) => {
             resolve(res)
           })
@@ -73,6 +72,17 @@ export const useKUNGalgameEditStore = defineStore({
             reject(error)
           })
       })
+    },
+    // 更新话题
+    async rewriteTopic(): Promise<EditUpdateTopicResponseData> {
+      const requestData: EditUpdateTopicRequestData = {
+        tid: this.topicRewrite.tid,
+        title: this.topicRewrite.title,
+        content: this.topicRewrite.content,
+        tags: this.topicRewrite.tags,
+        category: this.topicRewrite.category,
+      }
+      return await updateEditNewTopicApi(requestData)
     },
     // 获取热门 tags
     getHotTags(limit: number): Promise<EditGetHotTagsResponseData> {
@@ -87,6 +97,7 @@ export const useKUNGalgameEditStore = defineStore({
           })
       })
     },
+    // 重置话题草稿数据，用于发布时
     resetTopicData() {
       this.textCount = 0
       this.title = ''
@@ -95,6 +106,15 @@ export const useKUNGalgameEditStore = defineStore({
       this.category = []
 
       this.isSaveTopic = false
+    },
+    // 重置重新发布话题数据，用于重新编辑
+    resetRewriteTopicData() {
+      this.topicRewrite.title = ''
+      this.topicRewrite.content = ''
+      this.topicRewrite.tags = []
+      this.topicRewrite.category = []
+
+      this.topicRewrite.isTopicRewriting = false
     },
   },
 })

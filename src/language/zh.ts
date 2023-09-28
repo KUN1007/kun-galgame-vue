@@ -165,6 +165,7 @@ export default {
     Technique: '技术交流',
     Others: '其它',
     publish: '确认发布',
+    rewrite: '确认 Rewrite',
     draft: '保存草稿',
   },
   login: {
@@ -209,6 +210,9 @@ export default {
       publish: '确认发布吗？',
       publishSuccess: '发布成功',
       publishCancel: '取消发布',
+      rewrite: '确认 Rewrite 吗？',
+      rewriteSuccess: 'Rewrite 成功',
+      rewriteCancel: '取消 Rewrite',
       draft: '草稿已经保存成功！',
     },
     login: {

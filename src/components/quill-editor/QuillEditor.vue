@@ -32,8 +32,15 @@ import DOMPurify from 'dompurify'
 import { debounce } from '@/utils/debounce'
 
 // 话题编辑界面 store
-const { editorHeight, mode, theme, textCount, isSaveTopic, content } =
-  storeToRefs(useKUNGalgameEditStore())
+const {
+  editorHeight,
+  mode,
+  theme,
+  textCount,
+  isSaveTopic,
+  content,
+  topicRewrite,
+} = storeToRefs(useKUNGalgameEditStore())
 // 话题界面的 store，用于回复
 const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
@@ -83,13 +90,26 @@ const isShowEditorToolbar = computed(() =>
 )
 
 onBeforeMount(() => {
+  /**
+   * 编辑器处于编辑界面
+   */
   // 挂载之前载入话题数据，如果不保存，则不载入（并且当前必须在 Edit 界面）
   if (isSaveTopic.value && routeName.value === 'Edit') {
     valueHtml.value = content.value
   }
+  /**
+   * 编辑器处于回复界面
+   */
   // 挂载之前载入回复数据，如果不保存，则不载入（并且当前必须在 topic 界面）
   if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
     valueHtml.value = replyDraft.value.content
+  }
+  /**
+   * 编辑器处于重新编辑的编辑界面
+   */
+  // 挂载之前载入重新编辑话题的数据
+  if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
+    valueHtml.value = topicRewrite.value.content
   }
 })
 
@@ -99,13 +119,26 @@ const handleTextChange = async () => {
   const purifiedHtml = DOMPurify.sanitize(editorRef.value?.getHTML())
   // 创建一个防抖处理函数
   const debouncedUpdateContent = debounce(() => {
+    /**
+     * 编辑器处于编辑界面
+     */
     // 如果是在 topic 界面则保存到回复的 store
     if (routeName.value === 'Topic') {
       replyDraft.value.content = purifiedHtml
     }
+    /**
+     * 编辑器处于回复界面
+     */
     // 否则保存在 edit 界面的 store
-    if (routeName.value === 'Edit') {
+    if (!topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
       content.value = purifiedHtml
+    }
+    /**
+     * 编辑器处于重新编辑的编辑界面
+     */
+    // 挂载之前载入重新编辑话题的数据
+    if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
+      topicRewrite.value.content = purifiedHtml
     }
   }, 1007)
 

@@ -28,6 +28,7 @@ export interface TopicDetail {
   rid: number[]
   status: number
   share: number[]
+  category: string[]
 }
 
 // 更新话题的请求数据

@@ -1,25 +1,27 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
-import { nextTick } from 'vue'
-import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
+import { useRouter } from 'vue-router'
 
 import { TopicUserInfo } from '@/api'
 
+// 导入编辑界面的 store
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 当前的话题 tid
-const tid = parseInt(useRoute().params.tid as string)
-
+// 使用编辑界面的 store
+const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
 // 使用话题页面的 store
-const topicStore = useKUNGalgameTopicStore()
-const { isEdit, replyDraft } = storeToRefs(topicStore)
+const { isEdit, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+// 使用路由
+const router = useRouter()
 
 // 接受父组件的传值
 const props = defineProps<{
   info: {
+    tid: number
     views: number
     likes: number[]
     dislikes: number[]
@@ -27,29 +29,41 @@ const props = defineProps<{
     // 被回复人的 floor
     to_floor: number
   }
+  topic: {
+    tid: number
+    title: string
+    content: string
+    tags: string[]
+    category: string[]
+  }
   rUser: TopicUserInfo
 }>()
-
-// 保存必要信息
-const saveDraft = () => {
-  replyDraft.value.tid = tid
-  replyDraft.value.replyUserName = props.rUser.name
-  replyDraft.value.to_uid = props.rUser.uid
-  replyDraft.value.to_floor = props.info.to_floor
-}
 
 // 点击回复打开回复面板
 const handelReply = async () => {
   // 保存必要信息，以便发表回复
-  saveDraft()
+  replyDraft.value.tid = props.info.tid
+  // 被回复人就是发表人的 uid
+  replyDraft.value.to_uid = props.rUser.uid
+  replyDraft.value.to_floor = props.info.to_floor
 
   isEdit.value = true
 }
 
 // 重新编辑
 const handleClickEdit = () => {
-  // 保存必要信息，以便更新话题
-  saveDraft()
+  // 保存数据
+  topicRewrite.value.tid = props.topic.tid
+  topicRewrite.value.title = props.topic.title
+  topicRewrite.value.content = props.topic.content
+  topicRewrite.value.tags = props.topic.tags
+  topicRewrite.value.category = props.topic.category
+
+  // 设置正在重新编辑状态为真
+  topicRewrite.value.isTopicRewriting = true
+
+  // 跳转到编辑界面
+  router.push({ name: 'Edit' })
 }
 </script>
 
@@ -62,22 +76,22 @@ const handleClickEdit = () => {
         <!-- 推话题 -->
         <li>
           <span class="icon"><Icon icon="bi:rocket" /></span>
-          {{ info?.upvotes?.length }}
+          {{ info.upvotes.length }}
         </li>
         <!-- 查看数量 -->
-        <li v-if="info.views">
+        <li>
           <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
           {{ info.views }}
         </li>
         <!-- 点赞 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-up-twotone" /></span>
-          {{ info?.likes?.length }}
+          {{ info.likes.length }}
         </li>
         <!-- 踩 -->
         <li>
           <span class="icon"><Icon icon="line-md:thumbs-down-twotone" /></span>
-          {{ info?.dislikes?.length }}
+          {{ info.dislikes.length }}
         </li>
       </ul>
     </div>
