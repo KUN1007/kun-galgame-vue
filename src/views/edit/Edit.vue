@@ -1,19 +1,49 @@
 <script setup lang="ts">
+import { onBeforeRouteLeave } from 'vue-router'
+// 全局消息组件（底部）
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 引入编辑器
 import QuillEditor from '@/components/quill-editor/QuillEditor.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
+// 导入编辑话题的 store
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
+
+// 使用编辑话题的 store
+const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
 // 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const editPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Edit + '%'
+})
+
+// 路由离开时提醒用户发布重新编辑的话题
+onBeforeRouteLeave(async (to, from, next) => {
+  // 如果是正在更新话题
+  if (topicRewrite.value.isTopicRewriting) {
+    // 获取用户点击的结果
+    const res = await useKUNGalgameMessageStore().alert(
+      'AlertInfo.edit.leave',
+      true
+    )
+    if (res) {
+      // 重置重新编辑话题的数据
+      useKUNGalgameEditStore().resetRewriteTopicData()
+      // 用户确认离开，继续导航
+      next()
+    } else {
+      // 用户取消离开，阻止导航
+      next(false)
+    }
+  } else {
+    next()
+  }
 })
 </script>
 
@@ -37,6 +67,7 @@ const editPageWidth = computed(() => {
         <Footer />
       </div>
     </div>
+
     <!-- 版权 -->
     <KUNGalgameFooter style="margin: 0 auto; padding-top: 10px" />
     <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)"

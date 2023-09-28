@@ -214,6 +214,7 @@ export default {
       rewriteSuccess: 'Rewrite 成功',
       rewriteCancel: '取消 Rewrite',
       draft: '草稿已经保存成功！',
+      leave: '确认离开界面吗？您的更改将不会保存',
     },
     login: {
       login: '登陆成功!欢迎来到 鲲 Galgame ~ ',
