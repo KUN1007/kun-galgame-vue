@@ -13,14 +13,13 @@ import {
   postRegisterDataApi,
   sendVerificationCodeMailApi,
 } from '@/api'
-// 操作 cookie 的函数
-import { setToken } from '@/utils/cookie'
 
 // 用户信息接口
 interface UserState {
   uid: number
   name: string
   avatar: string
+  moemoeAccessToken: string
 }
 
 // 这里用了 pinia-plugin-persistedstate，直接存储即可
@@ -31,6 +30,7 @@ export const useKUNGalgameUserStore = defineStore({
     uid: 0,
     name: '',
     avatar: '',
+    moemoeAccessToken: '',
   }),
   getters: {},
   actions: {
@@ -40,6 +40,15 @@ export const useKUNGalgameUserStore = defineStore({
       this.name = name
       this.avatar = avatar
     },
+    setToken(moemoeAccessToken: string) {
+      this.moemoeAccessToken = moemoeAccessToken
+    },
+    getToken() {
+      return this.moemoeAccessToken
+    },
+    removeToken() {
+      this.moemoeAccessToken = ''
+    },
     // 登陆
     login(request: LoginRequestData): Promise<LoginResponseData> {
       return new Promise((resolve, reject) => {
@@ -48,7 +57,7 @@ export const useKUNGalgameUserStore = defineStore({
           .then((res) => {
             if (res.data) {
               this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
-              setToken(res.data.token)
+              this.setToken(res.data.token)
             } else
               (error: Error) => {
                 throw new Error('500 Server ERROR', error)
@@ -80,7 +89,7 @@ export const useKUNGalgameUserStore = defineStore({
           .then((res) => {
             if (res.data) {
               this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
-              setToken(res.data.token)
+              this.setToken(res.data.token)
             } else
               (error: Error) => {
                 throw new Error('500 Server ERROR', error)

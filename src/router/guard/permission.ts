@@ -2,8 +2,8 @@
 import { Router, RouteRecordRaw } from 'vue-router'
 // 导入公共路由，无需鉴权
 import { WHITE_LIST } from '../router'
-// 导入获取 token 的函数
-import { getToken } from '@/utils/cookie'
+// 使用用户 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 // 进度条
 import NProgress from 'nprogress'
 import '@/styles/nprogress/nprogress.scss'
@@ -18,7 +18,7 @@ export const createPermission = (router: Router) => {
     // 启动 nprogress
     NProgress.start()
     // 获取当前 token，access token，refresh 在 服务器端 http only
-    const token = getToken()
+    const token = useKUNGalgameUserStore().getToken()
     // 是否在白名单内
     const isInWhitelist = WHITE_LIST.includes(to.name as string) ? true : false
 

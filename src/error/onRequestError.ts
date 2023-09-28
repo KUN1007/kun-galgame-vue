@@ -1,8 +1,8 @@
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
 import { generateTokenByRefreshTokenApi } from '@/api'
-// 操作 cookie 的函数
-import { setToken, removeToken } from '@/utils/cookie'
+// 使用用户 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 // 导入路由
 import router from '@/router'
 
@@ -13,7 +13,7 @@ export async function onRequestError(response: Response) {
 
     // 成功获取到新的 token 则设置 token
     if (accessTokenResponse.code === 200 && accessTokenResponse.data.token) {
-      setToken(accessTokenResponse.data.token)
+      useKUNGalgameUserStore().setToken(accessTokenResponse.data.token)
       // 设置页面重新加载应用 token
       location.reload()
     } else {
@@ -23,7 +23,7 @@ export async function onRequestError(response: Response) {
         '登陆过期，请重新登陆',
         'error'
       )
-      removeToken()
+      useKUNGalgameUserStore().removeToken()
       router.push('/login')
     }
   }

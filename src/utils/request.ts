@@ -1,5 +1,5 @@
-// 操作 cookie 的函数
-import { getToken } from '@/utils/cookie'
+// 使用用户 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 // 错误处理函数
 import { onRequestError } from '@/error/onRequestError'
 
@@ -23,7 +23,7 @@ const kunFetchRequest = async <T>(
   // 在请求头中添加 token
   const headers = {
     ...options.headers,
-    Authorization: `Bearer ${getToken()}`,
+    Authorization: `Bearer ${useKUNGalgameUserStore().getToken()}`,
   }
 
   const response = await fetch(fullUrl, { ...options, headers })
