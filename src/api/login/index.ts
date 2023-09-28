@@ -43,7 +43,5 @@ export const generateTokenByRefreshTokenApi =
     const response = await fetchPost<Login.RefreshTokenResponseData>(
       loginURLs.refreshToken
     )
-    console.log(response)
-
     return response
   }
