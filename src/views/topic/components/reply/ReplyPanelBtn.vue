@@ -121,6 +121,11 @@ const handleShowAdvance = () => {
   background-color: var(--kungalgame-blue-4);
   transition: 0.1s;
 }
+.confirm-btn:active {
+  background-color: var(--kungalgame-blue-3);
+  transform: scale(0.8);
+}
+
 /* 保存按钮的样式 */
 .save-btn {
   color: var(--kungalgame-pink-4);
@@ -135,6 +140,7 @@ const handleShowAdvance = () => {
   background-color: var(--kungalgame-pink-3);
   transform: scale(0.8);
 }
+
 /* 高级选项按钮的样式 */
 .advance-btn {
   color: var(--kungalgame-purple-4);
@@ -146,7 +152,7 @@ const handleShowAdvance = () => {
   transition: 0.1s;
 }
 .advance-btn:active {
-  background-color: var(--kungalgame-red-3);
+  background-color: var(--kungalgame-purple-4);
   transform: scale(0.8);
 }
 

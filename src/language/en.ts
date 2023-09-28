@@ -211,7 +211,11 @@ export default {
       publish: 'Confirm to publish?',
       publishSuccess: 'Publish Successfully',
       publishCancel: 'Cancel Publish',
+      rewrite: 'Confirm to Rewrite?',
+      rewriteSuccess: 'Rewrite Successfully',
+      rewriteCancel: 'Cancel Rewrite',
       draft: 'The draft has been saved successfully!',
+      leave: 'Confirm leaving the page? Your changes will not be saved.',
     },
     login: {
       success: 'Login Successfully! Welcome to KUN Visual Novel ~ ',

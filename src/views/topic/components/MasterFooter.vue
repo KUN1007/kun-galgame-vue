@@ -9,6 +9,8 @@ import { TopicUserInfo } from '@/api'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+// 导入用户的 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
 // 使用编辑界面的 store
@@ -38,6 +40,14 @@ const props = defineProps<{
   }
   rUser: TopicUserInfo
 }>()
+
+// 是否具有重新编辑的权限
+/**
+ * 这里只是简单起见，不显示重新编辑
+ * 实际上如果用户自己修改了 localStorage 中保存的信息，这个验证就失效了
+ * 但是修改了也没有用，验证逻辑位于后端
+ */
+const isShowRewrite = useKUNGalgameUserStore().uid === props.rUser.uid
 
 // 点击回复打开回复面板
 const handelReply = async () => {
@@ -112,7 +122,7 @@ const handleClickEdit = () => {
           <span class="icon"><Icon icon="ph:user-focus-duotone" /></span>
         </li>
         <!-- 编辑 -->
-        <li>
+        <li v-if="isShowRewrite">
           <span @click="handleClickEdit" class="icon">
             <Icon icon="line-md:pencil-twotone-alt" />
           </span>
