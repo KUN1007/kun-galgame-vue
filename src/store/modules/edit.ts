@@ -1,11 +1,7 @@
 /* 编辑区的 store */
 import { defineStore } from 'pinia'
 // api
-import {
-  postEditNewTopicApi,
-  updateEditNewTopicApi,
-  getTopTagsApi,
-} from '@/api'
+import { postNewTopicApi, updateNewTopicApi, getTopTagsApi } from '@/api'
 // api 请求格式
 import {
   EditCreateTopicRequestData,
@@ -63,7 +59,7 @@ export const useKUNGalgameEditStore = defineStore({
         return
       }
       // 合法则请求接口发布话题
-      return await postEditNewTopicApi(requestData)
+      return await postNewTopicApi(requestData)
     },
     // 更新话题
     async rewriteTopic(): Promise<EditUpdateTopicResponseData | undefined> {
@@ -74,11 +70,13 @@ export const useKUNGalgameEditStore = defineStore({
         tags: this.topicRewrite.tags,
         category: this.topicRewrite.category,
       }
+
       // 检查话题数据不合法直接返回
       if (!checkTopicPublish(this.textCount, requestData)) {
         return
       }
-      return await updateEditNewTopicApi(requestData)
+
+      return await updateNewTopicApi(requestData)
     },
     // 获取热门 tags
     async getHotTags(limit: number): Promise<EditGetHotTagsResponseData> {

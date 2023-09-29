@@ -125,8 +125,11 @@ export const useKUNGalgameTopicStore = defineStore({
     },
 
     // 获取评论
-    async getComments(rid: number): Promise<TopicCommentResponseData> {
-      return await getCommentsByReplyRidApi(rid)
+    async getComments(
+      tid: number,
+      rid: number
+    ): Promise<TopicCommentResponseData> {
+      return await getCommentsByReplyRidApi(tid, rid)
     },
 
     // 创建一个评论

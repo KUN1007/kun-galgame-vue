@@ -3,19 +3,13 @@ import type * as Edit from './types/edit'
 // 将对象转为请求参数的函数
 import objectToQueryParams from '@/utils/objectToQueryParams'
 
-const editURLs = {
-  createTopic: `/edit/topic`,
-  updateTopic: `/edit/topic`,
-  hotTags: `/tag/popular`,
-}
-
 // 创建话题
-export async function postEditNewTopicApi(
+export async function postNewTopicApi(
   newTopicData: Edit.EditCreateTopicRequestData
 ): Promise<Edit.EditCreateTopicResponseData> {
   // 调用 fetchPost 函数
   const response = await fetchPost<Edit.EditCreateTopicResponseData>(
-    editURLs.createTopic,
+    `/topics`,
     newTopicData
   )
 
@@ -24,14 +18,16 @@ export async function postEditNewTopicApi(
 }
 
 // 更新话题
-export async function updateEditNewTopicApi(
+export async function updateNewTopicApi(
   requestData: Edit.EditUpdateTopicRequestData
 ): Promise<Edit.EditUpdateTopicResponseData> {
+  const url = `/topics/${requestData.tid}`
   // 调用 fetchPost 函数
   const response = await fetchPut<Edit.EditUpdateTopicResponseData>(
-    editURLs.updateTopic,
+    url,
     requestData
   )
+
   return response
 }
 
@@ -42,7 +38,7 @@ export async function getTopTagsApi(
   const queryParams = objectToQueryParams(requestData)
 
   const response = await fetchGet<Edit.EditGetHotTagsResponseData>(
-    `${editURLs.hotTags}?${queryParams}`
+    `/tag/popular?${queryParams}`
   )
   return response
 }
