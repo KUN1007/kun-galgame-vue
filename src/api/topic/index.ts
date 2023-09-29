@@ -4,33 +4,13 @@ import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as Aside from './types/aside'
 import * as Topic from './types/topic'
 
-const topicURLs = {
-  // 左侧相同标签下的其它话题
-  getRelatedTopicsByTags: `/topic/nav/same`,
-  // 楼主的其它话题
-  getPopularTopicsByUserUid: `/topic/nav/master`,
-
-  // 获取单个话题
-  getTopicByTid: `/topic/detail`,
-
-  // 根据话题 id 获取话题回复
-  getRepliesByPid: `/topic/detail/reply`,
-  // 创建单个回复
-  postReplyByPid: `/topic/detail/reply`,
-
-  // 获取一个回复下的所有评论
-  getCommentsByReplyRid: `/topic/detail/comment`,
-  // 创建一个评论
-  postCommentByPidAndRid: `/topic/detail/comment`,
-}
-
 // 左侧相同标签下的其它话题
 export async function getRelatedTopicsByTagsApi(
   request: Aside.TopicAsideOtherTagRequestData
 ): Promise<Aside.TopicAsideResponseData> {
   try {
-    const queryParams = objectToQueryParams(request)
-    const url = `${topicURLs.getRelatedTopicsByTags}?${queryParams}`
+    const queryParams = objectToQueryParams(request, 'tid')
+    const url = `/topics/${request.tid}/related?${queryParams}`
 
     const response = await fetchGet<Aside.TopicAsideResponseData>(url)
 
@@ -46,8 +26,8 @@ export async function getPopularTopicsByUserUidApi(
   request: Aside.TopicAsideMasterRequestData
 ): Promise<Aside.TopicAsideResponseData> {
   try {
-    const queryParams = objectToQueryParams(request)
-    const url = `${topicURLs.getPopularTopicsByUserUid}?${queryParams}`
+    const queryParams = objectToQueryParams(request, 'tid')
+    const url = `/topics/${request.tid}/popular?${queryParams}`
 
     const response = await fetchGet<Aside.TopicAsideResponseData>(url)
 
@@ -63,7 +43,7 @@ export async function getTopicByTidApi(
   tid: number
 ): Promise<Topic.TopicDetailResponseData> {
   try {
-    const url = `${topicURLs.getTopicByTid}?tid=${tid}`
+    const url = `/topics/${tid}`
 
     const response = await fetchGet<Topic.TopicDetailResponseData>(url)
 
@@ -74,13 +54,13 @@ export async function getTopicByTidApi(
   }
 }
 
-// 根据话题 id 获取话题回复
+// 根据话题 tid 获取话题回复
 export async function getRepliesByPidApi(
   request: Topic.TopicReplyRequestData
 ): Promise<Topic.TopicReplyResponseData> {
   try {
-    const queryParams = objectToQueryParams(request)
-    const url = `${topicURLs.getRepliesByPid}?${queryParams}`
+    const queryParams = objectToQueryParams(request, 'tid')
+    const url = `/topics/${request.tid}/replies?${queryParams}`
 
     const response = await fetchGet<Topic.TopicReplyResponseData>(url)
 
@@ -91,12 +71,12 @@ export async function getRepliesByPidApi(
   }
 }
 
-// 根据 pid 创建一个评论
+// 根据 tid 创建一个回复
 export async function postReplyByPidApi(
   request: Topic.TopicCreateReplyRequestData
 ): Promise<Topic.TopicCreateReplyResponseData> {
   try {
-    const url = `${topicURLs.postReplyByPid}`
+    const url = `/topics/${request.tid}/reply`
 
     const response = await fetchPost<Topic.TopicCreateReplyResponseData>(
       url,
@@ -110,12 +90,13 @@ export async function postReplyByPidApi(
   }
 }
 
-// 获取一个回复下面的评论
+// 获取一个回复下面所有的评论
 export async function getCommentsByReplyRidApi(
+  tid: number,
   rid: number
 ): Promise<Topic.TopicCommentResponseData> {
   try {
-    const url = `${topicURLs.getCommentsByReplyRid}?rid=${rid}`
+    const url = `/topics/${tid}/comment?rid=${rid}`
 
     const response = await fetchGet<Topic.TopicCommentResponseData>(url)
 
@@ -131,7 +112,7 @@ export async function postCommentByPidAndRidApi(
   request: Topic.TopicCreateCommentRequestData
 ): Promise<Topic.TopicCreateCommentResponseData> {
   try {
-    const url = `${topicURLs.postCommentByPidAndRid}`
+    const url = `/topics/${request.tid}/comment`
 
     const response = await fetchPost<Topic.TopicCreateCommentResponseData>(
       url,

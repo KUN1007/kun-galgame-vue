@@ -51,9 +51,7 @@ const handleRewrite = async () => {
   // 这里实现用户的点击确认取消逻辑
   if (res) {
     // 更新话题
-    const res = await useKUNGalgameEditStore().rewriteTopic()
-
-    console.log(res.data)
+    await useKUNGalgameEditStore().rewriteTopic()
 
     // 获取创建好话题的 tid
     const tid = topicRewrite.value.tid
