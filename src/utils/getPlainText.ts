@@ -1,8 +1,8 @@
 export function getPlainText(html: string): string {
-  // 使用正则表达式匹配所有HTML标签并删除
+  // 使用正则表达式匹配所有 HTML 标签并删除
   const plainText = html.replace(/<[^>]*>/g, '')
 
-  // 使用实体编码映射表将HTML实体编码还原
+  // 使用实体编码映射表将 HTML 实体编码还原
   const entityMap: Record<string, string> = {
     lt: '<',
     gt: '>',

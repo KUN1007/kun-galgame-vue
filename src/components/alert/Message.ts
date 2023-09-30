@@ -16,6 +16,9 @@ export default (
   type: MessageType,
   duration?: number
 ) => {
+  // 初始化的时候先将上一次创建的内容销毁
+  render(null, document.body)
+
   const messageNode = h(Message, {
     messageCN,
     messageEN,

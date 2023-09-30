@@ -58,19 +58,19 @@ const loliFaceLeft = loli.face.left + 'px'
 const loliFaceTop = loli.face.top + 'px'
 
 // 身体的图片资源链接
-let lass = getAssetsFile(loli.lass.layer_id)
+const lass = getAssetsFile(loli.lass.layer_id)
 
 // 眼睛的图片资源链接
-let eye = getAssetsFile(loli.eye.layer_id)
+const eye = getAssetsFile(loli.eye.layer_id)
 
 // 眉毛的图片资源链接
-let brow = getAssetsFile(loli.brow.layer_id)
+const brow = getAssetsFile(loli.brow.layer_id)
 
 // 嘴巴的图片资源链接
-let mouth = getAssetsFile(loli.mouth.layer_id)
+const mouth = getAssetsFile(loli.mouth.layer_id)
 
 // 腮红的图片资源链接
-let face = getAssetsFile(loli.face.layer_id)
+const face = getAssetsFile(loli.face.layer_id)
 
 // 导出模块
 export {

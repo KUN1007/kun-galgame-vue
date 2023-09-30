@@ -200,6 +200,10 @@ const handleTextChange = async () => {
   /* 头部下方阴影 */
   box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
   display: v-bind(isShowEditorToolbar);
+  /* 不显示视频插入，这个功能 BUG 太多了 */
+  .ql-video {
+    display: none;
+  }
 }
 
 /* 编辑器体的样式 */
