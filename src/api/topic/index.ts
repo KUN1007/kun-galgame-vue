@@ -1,6 +1,7 @@
-import { fetchGet, fetchPost } from '@/utils/request'
+import { fetchGet, fetchPost, fetchPut } from '@/utils/request'
 // 将对象转为请求参数的函数
 import objectToQueryParams from '@/utils/objectToQueryParams'
+import * as Action from './types/action'
 import * as Aside from './types/aside'
 import * as Topic from './types/topic'
 
@@ -52,6 +53,18 @@ export async function getTopicByTidApi(
     console.log(error)
     throw new Error('Failed to fetch topic')
   }
+}
+
+// 点赞话题
+export async function updateTopicLikeApi(
+  request: Action.TopicLikeTopicRequestData
+): Promise<Action.TopicLikeTopicResponseData> {
+  const queryParams = objectToQueryParams(request, 'tid')
+  const url = `/topics/${request.tid}/like?${queryParams}`
+
+  const response = fetchPut<Action.TopicLikeTopicResponseData>(url)
+
+  return response
 }
 
 // 根据话题 tid 获取话题回复

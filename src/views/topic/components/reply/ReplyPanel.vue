@@ -45,7 +45,7 @@ const handelClosePanel = () => {
 <template>
   <Teleport to="body" :disabled="isEdit">
     <Transition
-      enter-active-class="animate__animated animate__bounceInUp animate__faster"
+      enter-active-class="animate__animated animate__fadeInUp animate__faster"
       leave-active-class="animate__animated animate__fadeOutDown animate__faster"
     >
       <div class="root" v-if="isEdit">

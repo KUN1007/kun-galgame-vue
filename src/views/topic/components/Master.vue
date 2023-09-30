@@ -36,7 +36,7 @@ const {
   user,
   // rid,
   status,
-  // share,
+  share,
   category,
 } = topicData.topicData
 
@@ -94,11 +94,19 @@ const loliStatus = computed(() => {
             <Rewrite v-if="edited" :time="edited" />
           </div>
         </div>
-        <!-- 话题的点赞数等信息，楼主的 floor 就是 0 -->
+        <!-- 话题的点赞数等信息，楼主的 floor 就是 0，被作用人就是该话题的发布人 -->
         <MasterFooter
-          :info="{ tid, views, likes, dislikes, upvotes, to_floor: 0 }"
+          :info="{
+            tid,
+            views,
+            likes,
+            dislikes,
+            upvotes,
+            share,
+            to_floor: 0,
+          }"
           :topic="{ tid, title, content, tags, category }"
-          :r-user="user"
+          :master="user"
         />
       </div>
     </div>
