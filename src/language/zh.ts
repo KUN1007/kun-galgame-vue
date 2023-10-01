@@ -210,6 +210,7 @@ export default {
       publish: '确认发布吗？',
       publishSuccess: '发布成功',
       publishCancel: '取消发布',
+      upvote: '您确定推这个话题吗，这将会消耗您 17 萌萌点',
       rewrite: '确认 Rewrite 吗？',
       rewriteSuccess: 'Rewrite 成功',
       rewriteCancel: '取消 Rewrite',

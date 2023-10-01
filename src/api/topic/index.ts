@@ -55,6 +55,18 @@ export async function getTopicByTidApi(
   }
 }
 
+// 推话题
+export async function updateTopicUpvoteApi(
+  request: Action.TopicUpvoteTopicRequestData
+): Promise<Action.TopicUpvoteTopicResponseData> {
+  const queryParams = objectToQueryParams(request, 'tid')
+  const url = `/topics/${request.tid}/upvote?${queryParams}`
+
+  const response = fetchPut<Action.TopicUpvoteTopicResponseData>(url)
+
+  return response
+}
+
 // 点赞话题
 export async function updateTopicLikeApi(
   request: Action.TopicLikeTopicRequestData

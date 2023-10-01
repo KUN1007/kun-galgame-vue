@@ -93,11 +93,11 @@ onBeforeUnmount(() => {
 <template>
   <div class="topic-container" ref="content">
     <TransitionGroup name="list" tag="div">
-      <!-- 该状态为 2 则话题处于被推状态 -->
+      <!-- 热度 > 100 则话题处于被推状态 -->
       <div
         v-for="topic in topics"
         :key="topic.tid"
-        :class="topic.status === 2 ? 'kungalgame-comet-surround' : ''"
+        :class="topic.popularity >= 100 ? 'kungalgame-comet-surround' : ''"
       >
         <span></span>
         <span></span>
@@ -144,7 +144,7 @@ onBeforeUnmount(() => {
 .kungalgame-comet-surround {
   padding: 0;
   flex-shrink: 0;
-  border: 2px solid var(--kungalgame-red-2);
+  border: 2px solid var(--kungalgame-red-4);
 }
 
 .list-move, /* 对移动中的元素应用的过渡 */

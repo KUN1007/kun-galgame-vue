@@ -29,6 +29,7 @@ export interface TopicDetail {
   status: number
   share: number[]
   category: string[]
+  popularity: number
 }
 
 // 更新话题的请求数据
