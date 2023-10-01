@@ -3,6 +3,8 @@
 import { onMounted, reactive, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
+// 全局消息组件（底部）
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
 // throttle 函数
@@ -101,7 +103,7 @@ const handleClickLikeThrottled = throttle(
         ? actions.likes.length + 1
         : actions.likes.length - 1
     } else {
-      message('Like topic failed!', '点赞话题失败', 'error')
+      message('Topic like failed!', '点赞话题失败', 'error')
     }
   },
   1007,
@@ -114,7 +116,50 @@ const handleClickLikeThrottled = throttle(
   }
 )
 
-// 在点击事件中使用节流版本的函数
+// 推话题
+const handleClickUpvote = async () => {
+  // 当前用户不可以推自己的话题
+  if (currUserUid === props.master.uid) {
+    message('You cannot upvote your own topic', '您不可以推自己的话题', 'warn')
+    return
+  }
+
+  // TODO: 该功能必须有错误处理
+  // if (useKUNGalgameUserStore().moemoepoint < 1100) {
+  //   message(
+  //     'Your Moe Moe Points are less than 1100, and you cannot use the upvote feature',
+  //     '您的萌萌点小于 1100，无法使用推功能',
+  //     'warn'
+  //   )
+  //   return
+  // }
+
+  // 调用弹窗确认
+  const res = await useKUNGalgameMessageStore().alert(
+    'AlertInfo.edit.upvote',
+    true
+  )
+
+  // 这里实现用户的点击确认取消逻辑
+  if (res) {
+    // 请求推话题的接口
+    const res = await useKUNGalgameTopicStore().updateTopicUpvote(
+      props.info.tid,
+      props.master.uid
+    )
+
+    if (res.code === 200) {
+      // 更新推数
+      actions.upvotes.length++
+
+      message('Topic upvote successfully', '推话题成功', 'success')
+    } else {
+      message('Topic upvote failed!', '推话题失败', 'error')
+    }
+  }
+}
+
+// 点赞
 const handleClickLike = () => {
   handleClickLikeThrottled()
 }
@@ -178,7 +223,13 @@ onMounted(() => {
       <ul>
         <!-- 推话题 -->
         <li>
-          <span class="icon"><Icon icon="bi:rocket" /></span>
+          <span
+            class="icon"
+            :class="isActive.isUpvote ? 'active' : ''"
+            @click="handleClickUpvote"
+          >
+            <Icon icon="bi:rocket" />
+          </span>
           {{ actions.upvotes.length }}
         </li>
         <!-- 查看数量 -->
@@ -192,8 +243,9 @@ onMounted(() => {
             class="icon"
             :class="isActive.isLiked ? 'active' : ''"
             @click="handleClickLike"
-            ><Icon icon="line-md:thumbs-up-twotone"
-          /></span>
+          >
+            <Icon icon="line-md:thumbs-up-twotone" />
+          </span>
           {{ actions.likes.length }}
         </li>
         <!-- 踩 -->
@@ -263,11 +315,6 @@ onMounted(() => {
   cursor: pointer;
 }
 
-/* 激活后的样式 */
-.active {
-  color: var(--kungalgame-blue-4);
-}
-
 /* 底部右侧部分（回复、评论、只看、编辑） */
 .right {
   display: flex;
@@ -322,6 +369,11 @@ onMounted(() => {
       border-right: 2px solid var(--kungalgame-pink-4);
     }
   }
+}
+
+/* 激活后的样式 */
+.active {
+  color: var(--kungalgame-blue-4);
 }
 
 @media (max-width: 700px) {

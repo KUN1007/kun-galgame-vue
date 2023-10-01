@@ -13,6 +13,9 @@ import {
 
 // 点赞等动作
 import {
+  updateTopicUpvoteApi,
+  TopicUpvoteTopicRequestData,
+  TopicUpvoteTopicResponseData,
   updateTopicLikeApi,
   TopicLikeTopicRequestData,
   TopicLikeTopicResponseData,
@@ -105,6 +108,18 @@ export const useKUNGalgameTopicStore = defineStore({
     // 获取单个话题
     async getTopicByTid(tid: number): Promise<TopicDetailResponseData> {
       return await getTopicByTidApi(tid)
+    },
+
+    // 推话题
+    async updateTopicUpvote(
+      tid: number,
+      toUid: number
+    ): Promise<TopicUpvoteTopicResponseData> {
+      const requestData: TopicUpvoteTopicRequestData = {
+        tid: tid,
+        to_uid: toUid,
+      }
+      return await updateTopicUpvoteApi(requestData)
     },
 
     // 点赞话题

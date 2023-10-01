@@ -38,16 +38,20 @@ const {
   status,
   share,
   category,
+  popularity,
 } = topicData.topicData
 
 // 话题的状态
 const loliStatus = computed(() => {
+  // 热度 > 100 则显示被推
+  if (popularity >= 100) {
+    return 'featured'
+  }
+
   if (status === 0) {
     return 'normal'
   } else if (status === 1) {
     return 'banned'
-  } else if (status === 2) {
-    return 'featured'
   } else {
     return ''
   }
