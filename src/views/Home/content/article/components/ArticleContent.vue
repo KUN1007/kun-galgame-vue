@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onBeforeUnmount, onBeforeMount } from 'vue'
 import SingleTopic from './SingleTopic.vue'
+// 导入计算时间差的函数
+import { hourDiff } from '@/utils/time'
 
 import { HomeTopic } from '@/api'
 
@@ -93,11 +95,13 @@ onBeforeUnmount(() => {
 <template>
   <div class="topic-container" ref="content">
     <TransitionGroup name="list" tag="div">
-      <!-- 热度 > 100 则话题处于被推状态 -->
+      <!-- 被推时间在 10h 之内 -->
       <div
         v-for="topic in topics"
         :key="topic.tid"
-        :class="topic.popularity >= 100 ? 'kungalgame-comet-surround' : ''"
+        :class="
+          hourDiff(topic.upvote_time, 10) ? 'kungalgame-comet-surround' : ''
+        "
       >
         <span></span>
         <span></span>

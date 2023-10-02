@@ -40,6 +40,7 @@ export interface HomeTopic {
   popularity: number
   user: HomeUserInfo
   status: number
+  upvote_time: number
 }
 
 // 首页响应数据的格式

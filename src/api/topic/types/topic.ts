@@ -30,6 +30,7 @@ export interface TopicDetail {
   share: number[]
   category: string[]
   popularity: number
+  upvote_time: number
 }
 
 // 更新话题的请求数据
