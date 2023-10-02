@@ -18,6 +18,9 @@ import Tags from '../components/Tags.vue'
 import { TopicDetail } from '@/api/topic/types/topic'
 import { computed } from 'vue'
 
+// 导入计算时间差的函数
+import { hourDiff } from '@/utils/time'
+
 const topicData = defineProps<{
   topicData: TopicDetail
 }>()
@@ -38,13 +41,14 @@ const {
   status,
   share,
   category,
-  popularity,
+  // popularity,
+  upvote_time,
 } = topicData.topicData
 
 // 话题的状态
 const loliStatus = computed(() => {
-  // 热度 > 100 则显示被推
-  if (popularity >= 100) {
+  // 被推在 10h 之内则显示被推
+  if (hourDiff(upvote_time, 10)) {
     return 'featured'
   }
 

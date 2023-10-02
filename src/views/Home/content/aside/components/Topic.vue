@@ -42,7 +42,8 @@ onMounted(async () => {
           <div class="title">{{ kun.title }}</div>
           <div class="hot">
             <Icon icon="bi:fire" />
-            <span>{{ kun.popularity }}</span>
+            <!-- 后端计算小数不精确，一律 ceil -->
+            <span>{{ Math.ceil(kun.popularity) }}</span>
           </div>
         </div>
       </router-link>
