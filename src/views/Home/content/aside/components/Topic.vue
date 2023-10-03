@@ -58,7 +58,7 @@ onMounted(async () => {
         <div class="topic">
           <div class="title">{{ kun.title }}</div>
           <div class="new">
-            <Icon icon="svg-spinners:clock" />
+            <Icon icon="eos-icons:hourglass" />
             <span>{{
               formatTimeDifference(
                 kun.time,

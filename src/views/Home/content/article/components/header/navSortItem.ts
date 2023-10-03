@@ -8,13 +8,13 @@ interface Sort {
 export const navSortItem: Sort[] = [
   {
     index: 1,
-    icon: 'line-md:rotate-270',
+    icon: 'bi:sort-down',
     name: 'updated',
     sortField: 'updated',
   },
   {
     index: 2,
-    icon: 'svg-spinners:clock',
+    icon: 'eos-icons:hourglass',
     name: 'time',
     sortField: 'time',
   },

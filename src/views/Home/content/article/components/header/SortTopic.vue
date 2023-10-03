@@ -6,6 +6,10 @@ import { storeToRefs } from 'pinia'
 
 // 导入排序列表的字段
 import { navSortItem } from './navSortItem'
+import { ref } from 'vue'
+
+// 升序和降序的样式
+const ascClass = ref('')
 
 const { sortField, sortOrder } = storeToRefs(useKUNGalgameHomeStore())
 
@@ -17,18 +21,37 @@ const handleSortByField = (field: string) => {
 const orderAscending = () => {
   useKUNGalgameHomeStore().resetPageStatus()
   sortOrder.value = 'asc'
+  // 更改样式
+  ascClass.value = 'active'
 }
 
 const orderDescending = () => {
   useKUNGalgameHomeStore().resetPageStatus()
   sortOrder.value = 'desc'
+  ascClass.value = ''
+}
+
+const iconMap: Record<string, string> = {
+  updated: 'bi:sort-down',
+  time: 'eos-icons:hourglass',
+  popularity: 'bi:fire',
+  views: 'ic:outline-remove-red-eye',
+  likes: 'line-md:thumbs-up-twotone',
+  replies: 'ri:reply-line',
+  comments: 'fa-regular:comment-dots',
+}
+
+const isSortField = () => {
+  return Object.keys(iconMap).includes(sortField.value)
 }
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" :class="ascClass">
     <span>{{ $tm('mainPage.header.filter') }}</span>
-    <Icon class="filter" icon="bi:sort-down" />
+    <span class="filter">
+      <Icon v-if="isSortField()" :icon="iconMap[sortField]" />
+    </span>
     <!-- 排序的二级菜单 -->
     <div class="sort-container">
       <div class="sort-submenu">
@@ -68,7 +91,7 @@ const orderDescending = () => {
 }
 /* 筛选 */
 .container {
-  background-color: var(--kungalgame-trans-red-3);
+  background-color: var(--kungalgame-trans-blue-3);
   flex-grow: 1;
   border-radius: 5px 0 0 0;
   position: relative;
@@ -85,8 +108,12 @@ const orderDescending = () => {
   position: absolute;
 }
 .filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 18px;
   margin-left: 7px;
+  color: var(--kungalgame-blue-4);
 }
 .sort-submenu {
   display: none;
@@ -139,6 +166,14 @@ const orderDescending = () => {
     &:nth-child(2) {
       border-left: 1px solid var(--kungalgame-trans-blue-4);
     }
+  }
+}
+
+/* 点击升序后的样式 */
+.active {
+  background-color: var(--kungalgame-trans-red-3);
+  .filter {
+    color: var(--kungalgame-red-4);
   }
 }
 </style>

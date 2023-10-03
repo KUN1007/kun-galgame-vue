@@ -104,6 +104,7 @@ defineProps<{
 @media (max-width: 700px) {
   .kungalgame-topic-content {
     width: 100%;
+    margin-top: 0;
   }
 }
 </style>
