@@ -12,7 +12,7 @@ const isEditUpdateTopicData = (data: any): data is EditUpdateTopicRequestData =>
 export const checkTopicPublish = (
   textCount: number,
   topicData: EditCreateTopicRequestData | EditUpdateTopicRequestData
-) => {
+): boolean => {
   // 检查 tid
   if (isEditUpdateTopicData(topicData)) {
     // 话题 id 为零，应该。。。。不存在吧（
@@ -37,11 +37,13 @@ export const checkTopicPublish = (
   }
   if (textCount > 100007) {
     message('Content max length is 100007!', '内容最大长度为100007！', 'warn')
+    return false
   }
 
   // 检查 tag
   if (!topicData.tags.length) {
     message('Please use at least one tag!', '请至少使用一个标签！', 'warn')
+    return false
   }
 
   // 检查分类
@@ -51,6 +53,7 @@ export const checkTopicPublish = (
       '请至少选择一个分类！',
       'warn'
     )
+    return false
   }
 
   // 都通过则返回真

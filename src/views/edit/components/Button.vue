@@ -37,8 +37,6 @@ const handlePublish = async () => {
       messageStore.info('AlertInfo.edit.publishSuccess')
       // 清除数据，并不再保存数据，因为此时该话题已被发布
       useKUNGalgameEditStore().resetTopicData()
-    } else {
-      message('Failed to create new topic', '发布话题失败', 'error')
     }
   } else {
     messageStore.info('AlertInfo.edit.publishCancel')
