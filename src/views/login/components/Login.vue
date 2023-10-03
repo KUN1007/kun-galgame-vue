@@ -89,7 +89,12 @@ const handleLogin = () => {
     // 如果请求成功跳转到主页
     if (res.code === 200) {
       router.push('/')
-      info.info(tm('AlertInfo.login.success'))
+      message(
+        'Login Successfully! Welcome to KUN Visual Novel ~ ',
+        '登陆成功!欢迎来到 鲲 Galgame ~ ',
+        'success',
+        5000
+      )
     }
   })
 }

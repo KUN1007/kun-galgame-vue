@@ -220,7 +220,6 @@ export default {
       leave: 'Confirm leaving the page? Your changes will not be saved.',
     },
     login: {
-      success: 'Login Successfully! Welcome to KUN Visual Novel ~ ',
       invalidUsername:
         'Invalid username. Username should be 1 to 17 characters long and can include: Chinese characters, English letters, numbers, underscore, and tilde (~)',
       invalidPassword:

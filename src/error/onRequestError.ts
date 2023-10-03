@@ -5,8 +5,20 @@ import { generateTokenByRefreshTokenApi } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 // 导入路由
 import router from '@/router'
+// 导入已知错误处理函数
+import { kungalgameErrorHandler } from './errorHandler'
 
+interface ErrorResponseData {
+  code: number
+  message: string
+}
+
+/**
+ * 相当于拦截器，先根据可预见的状态码识别常见错误
+ * 再根据后端自定义的状态码识别错误，识别不了则抛出错误
+ */
 export async function onRequestError(response: Response) {
+  // 根据状态码识别错误
   if (response.status === 401) {
     // 尝试根据 refresh token 获取新的 token
     const accessTokenResponse = await generateTokenByRefreshTokenApi()
@@ -26,6 +38,7 @@ export async function onRequestError(response: Response) {
       useKUNGalgameUserStore().removeToken()
       router.push('/login')
     }
+    return
   }
 
   if (response.status === 404) {
@@ -34,9 +47,11 @@ export async function onRequestError(response: Response) {
       '资源未找到，请求地址出错',
       'error'
     )
+    return
   }
 
-  if (response.status === 500) {
-    message('Internal Server Error', '服务器错误', 'error')
-  }
+  // 获取错误响应体数据
+  const data: ErrorResponseData = await response.json()
+  // 处理已知错误
+  kungalgameErrorHandler(data.code)
 }
