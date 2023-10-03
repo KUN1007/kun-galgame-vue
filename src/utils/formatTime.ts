@@ -42,6 +42,7 @@ function replaceTimeUnits(input: string, language: string) {
     (languageOptions as Record<string, any>)[language] || languageOptions.en
 
   const replacements: Record<string, string> = {
+    an: '1', // 将 "an" 替换为 "1"
     a: '1', // 将 "a" 替换为 "1"
     second: languageOption.second,
     seconds: languageOption.seconds,

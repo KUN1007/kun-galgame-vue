@@ -14,7 +14,12 @@ export const asideNavItem: navItem[] = [
     icon: 'line-md:arrows-vertical',
     name: 'floorSort',
   },
-  { index: 2, sortField: 'time', icon: 'svg-spinners:clock', name: 'timeSort' },
+  {
+    index: 2,
+    sortField: 'time',
+    icon: 'eos-icons:hourglass',
+    name: 'timeSort',
+  },
   {
     index: 3,
     sortField: 'likes',

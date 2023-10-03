@@ -148,6 +148,8 @@ const handleClickUpvote = async () => {
       props.master.uid
     )
 
+    console.log(res.code)
+
     if (res.code === 200) {
       // 更新推数
       actions.upvotes.length++
