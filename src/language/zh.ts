@@ -218,7 +218,6 @@ export default {
       leave: '确认离开界面吗？您的更改将不会保存',
     },
     login: {
-      login: '登陆成功!欢迎来到 鲲 Galgame ~ ',
       invalidUsername:
         '非法的用户名，用户名为 1 到 17 位，可以包含：中文、英文、数字、下划线、波浪线',
       invalidPassword:

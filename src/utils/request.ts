@@ -28,8 +28,12 @@ const kunFetchRequest = async <T>(
 
   const response = await fetch(fullUrl, { ...options, headers })
 
-  // 处理错误，token 过期
-  await onRequestError(response)
+  // 后端的一切正常响应都被设为 200 了
+  if (response.status != 200) {
+    // 处理错误，token 过期
+    await onRequestError(response)
+    throw new Error('KUNGalgame Fetch Error occurred, but no problem')
+  }
 
   const data: T = await response.json()
   return data

@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
 
 // 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
 
 const props = defineProps<{
   messageCN: string
@@ -13,10 +15,10 @@ const props = defineProps<{
   type: `warn` | `success` | `error` | `info`
 }>()
 
-const message =
-  settingsStore.showKUNGalgameLanguage === 'en'
-    ? props.messageEN
-    : props.messageCN
+const message = ref('')
+// 初始化
+message.value =
+  showKUNGalgameLanguage.value === 'en' ? props.messageEN : props.messageCN
 
 const messageClass = (type: string): string => {
   if (type === 'warn') {
@@ -31,6 +33,15 @@ const messageClass = (type: string): string => {
     return ''
   }
 }
+
+// 监听属性,实现响应式
+watch(
+  () => useKUNGalgameSettingsStore().showKUNGalgameLanguage,
+  () => {
+    message.value =
+      showKUNGalgameLanguage.value === 'en' ? props.messageEN : props.messageCN
+  }
+)
 </script>
 
 <template>
