@@ -5,6 +5,8 @@ import { onRequestError } from '@/error/onRequestError'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
+const successResponseArray = [200, 201, 202, 204, 205, 206]
+
 export type FetchOptions = {
   method: HttpMethod
   credentials: 'include'
@@ -28,8 +30,8 @@ const kunFetchRequest = async <T>(
 
   const response = await fetch(fullUrl, { ...options, headers })
 
-  // 后端的一切正常响应都被设为 200 了
-  if (response.status != 200) {
+  // 不为 20X 则报错
+  if (!successResponseArray.includes(response.status)) {
     // 处理错误，token 过期
     await onRequestError(response)
     throw new Error('KUNGalgame Fetch Error occurred, but no problem')
