@@ -79,6 +79,18 @@ export async function updateTopicLikeApi(
   return response
 }
 
+// 点踩话题
+export async function updateTopicDislikeApi(
+  request: Action.TopicDislikeTopicRequestData
+): Promise<Action.TopicDislikeTopicResponseData> {
+  const queryParams = objectToQueryParams(request, 'tid')
+  const url = `/topics/${request.tid}/dislike?${queryParams}`
+
+  const response = fetchPut<Action.TopicDislikeTopicResponseData>(url)
+
+  return response
+}
+
 // 根据话题 tid 获取话题回复
 export async function getRepliesByPidApi(
   request: Topic.TopicReplyRequestData

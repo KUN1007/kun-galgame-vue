@@ -19,6 +19,9 @@ import {
   updateTopicLikeApi,
   TopicLikeTopicRequestData,
   TopicLikeTopicResponseData,
+  updateTopicDislikeApi,
+  TopicDislikeTopicRequestData,
+  TopicDislikeTopicResponseData,
 } from '@/api'
 
 // 回复
@@ -136,8 +139,22 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateTopicLikeApi(requestData)
     },
 
+    // 点踩话题
+    async updateTopicDislike(
+      tid: number,
+      toUid: number,
+      isPush: boolean
+    ): Promise<TopicDislikeTopicResponseData> {
+      const requestData: TopicDislikeTopicRequestData = {
+        tid: tid,
+        to_uid: toUid,
+        isPush: isPush,
+      }
+      return await updateTopicDislikeApi(requestData)
+    },
+
     // 获取回复
-    async getReplies(tid: number): Promise<TopicReplyResponseData> {
+    async getReplies(tid: number): Promise<TopicDislikeTopicResponseData> {
       // 这里的默认值用于初始化
       const requestData: TopicReplyRequestData = {
         tid: tid,
