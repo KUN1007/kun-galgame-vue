@@ -15,8 +15,18 @@ export interface TopicLikeTopicRequestData {
   isPush: boolean
 }
 
+// 点踩
+export interface TopicDislikeTopicRequestData {
+  tid: number
+  to_uid: number
+  isPush: boolean
+}
+
 // 推话题响应数据的格式
 export type TopicUpvoteTopicResponseData = KUNGalgameResponseData<{}>
 
 // 点赞话题响应数据的格式
 export type TopicLikeTopicResponseData = KUNGalgameResponseData<{}>
+
+// 点踩话题响应数据的格式
+export type TopicDislikeTopicResponseData = KUNGalgameResponseData<{}>

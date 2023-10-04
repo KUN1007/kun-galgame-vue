@@ -36,8 +36,6 @@ const props = defineProps<{
     dislikes: number[]
     upvotes: number[]
     share: number[]
-    // 被回复人的 floor
-    to_floor: number
   }
   topic: {
     tid: number
@@ -56,8 +54,10 @@ const props = defineProps<{
  */
 // 当前登录用户的 uid
 const currUserUid = useKUNGalgameUserStore().uid
+// 话题发布者的 uid
+const masterUid = props.master.uid
 // 是否具有重新编辑的权限
-const isShowRewrite = currUserUid === props.master.uid
+const isShowRewrite = currUserUid === masterUid
 
 // footer 左侧的动作，点赞等
 const actions = reactive({
@@ -75,11 +75,20 @@ const isActive = reactive({
   isShared: false,
 })
 
+// throttle 回调函数
+const throttleCallback = () => {
+  message(
+    'You can only perform one operation within 1007 milliseconds',
+    '您在 1007 毫秒内只能进行一次操作',
+    'warn'
+  )
+}
+
 // throttle 函数，1007 毫秒仅会触发一次点赞
 const handleClickLikeThrottled = throttle(
   async () => {
     // 当前用户不可以给自己点赞
-    if (currUserUid === props.master.uid) {
+    if (currUserUid === masterUid) {
       message(
         'You cannot like your own topic',
         '您不可以给自己的话题点赞',
@@ -93,7 +102,7 @@ const handleClickLikeThrottled = throttle(
 
     const res = await useKUNGalgameTopicStore().updateTopicLike(
       props.info.tid,
-      props.master.uid,
+      masterUid,
       isActive.isLiked
     )
 
@@ -107,19 +116,45 @@ const handleClickLikeThrottled = throttle(
     }
   },
   1007,
-  () => {
-    message(
-      'You can only perform one operation within 1007 milliseconds',
-      '您在 1007 毫秒内只能进行一次操作',
-      'warn'
+  throttleCallback
+)
+
+// throttle 函数，1007 毫秒仅会触发一次点踩
+const handleClickDislikeThrottled = throttle(
+  async () => {
+    if (currUserUid === masterUid) {
+      message(
+        'You cannot dislike your own topic',
+        '您不可以给自己的话题点踩',
+        'warn'
+      )
+      return
+    }
+
+    isActive.isDisliked = !isActive.isDisliked
+    const res = await useKUNGalgameTopicStore().updateTopicDislike(
+      props.info.tid,
+      masterUid,
+      isActive.isDisliked
     )
-  }
+
+    if (res.code === 200) {
+      // 更新点赞数
+      actions.dislikes.length = isActive.isDisliked
+        ? actions.dislikes.length + 1
+        : actions.dislikes.length - 1
+    } else {
+      message('Topic dislike failed!', '点踩话题失败', 'error')
+    }
+  },
+  1007,
+  throttleCallback
 )
 
 // 推话题
 const handleClickUpvote = async () => {
   // 当前用户不可以推自己的话题
-  if (currUserUid === props.master.uid) {
+  if (currUserUid === masterUid) {
     message('You cannot upvote your own topic', '您不可以推自己的话题', 'warn')
     return
   }
@@ -145,7 +180,7 @@ const handleClickUpvote = async () => {
     // 请求推话题的接口
     const res = await useKUNGalgameTopicStore().updateTopicUpvote(
       props.info.tid,
-      props.master.uid
+      masterUid
     )
 
     if (res.code === 200) {
@@ -164,19 +199,25 @@ const handleClickLike = () => {
   handleClickLikeThrottled()
 }
 
+// 点踩
+const handleClickDislike = () => {
+  handleClickDislikeThrottled()
+}
+
 // 点击回复打开回复面板
-const handelReply = async () => {
+const handleClickReply = async () => {
   // 保存必要信息，以便发表回复
   replyDraft.value.tid = props.info.tid
   // 被回复人就是发表人的 uid
-  replyDraft.value.to_uid = props.master.uid
-  replyDraft.value.to_floor = props.info.to_floor
-
+  replyDraft.value.to_uid = masterUid
+  // 楼主的 floor 就是 0
+  replyDraft.value.to_floor = 0
+  // 打开回复面板
   isEdit.value = true
 }
 
 // 重新编辑
-const handleClickEdit = () => {
+const handleClickRewrite = () => {
   // 保存数据
   topicRewrite.value.tid = props.topic.tid
   topicRewrite.value.title = props.topic.title
@@ -250,7 +291,13 @@ onMounted(() => {
         </li>
         <!-- 踩 -->
         <li>
-          <span class="icon"><Icon icon="line-md:thumbs-down-twotone" /></span>
+          <span
+            class="icon"
+            :class="isActive.isDisliked ? 'active' : ''"
+            @click="handleClickDislike"
+          >
+            <Icon icon="line-md:thumbs-down-twotone" />
+          </span>
           {{ actions.dislikes.length }}
         </li>
       </ul>
@@ -258,7 +305,7 @@ onMounted(() => {
 
     <!-- 底部右侧部分（回复、评论、只看、编辑） -->
     <div class="right">
-      <div @click="handelReply" class="reply">
+      <div @click="handleClickReply" class="reply">
         {{ $tm('topic.content.reply') }}
       </div>
 
@@ -269,7 +316,7 @@ onMounted(() => {
       <span class="icon"><Icon icon="ph:user-focus-duotone" /></span>
 
       <!-- 编辑 -->
-      <span v-if="isShowRewrite" @click="handleClickEdit" class="icon">
+      <span v-if="isShowRewrite" @click="handleClickRewrite" class="icon">
         <Icon icon="line-md:pencil-twotone-alt" />
       </span>
     </div>
