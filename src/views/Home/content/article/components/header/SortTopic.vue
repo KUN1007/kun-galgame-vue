@@ -32,7 +32,7 @@ const orderDescending = () => {
 }
 
 const iconMap: Record<string, string> = {
-  updated: 'bi:sort-down',
+  updated: 'line-md:arrows-vertical',
   time: 'eos-icons:hourglass',
   popularity: 'bi:fire',
   views: 'ic:outline-remove-red-eye',
@@ -56,13 +56,13 @@ const isSortField = () => {
     <div class="sort-container">
       <div class="sort-submenu">
         <div
+          class="sort-item"
           v-for="kun in navSortItem"
           :key="kun.index"
           @click="handleSortByField(kun.sortField)"
         >
-          <Icon class="icon-item" :icon="kun.icon" />{{
-            $tm(`mainPage.header.${kun.name}`)
-          }}
+          <span><Icon class="icon-item" :icon="kun.icon" /></span>
+          <span>{{ $tm(`mainPage.header.${kun.name}`) }}</span>
         </div>
         <div class="sort-order">
           <span @click="orderAscending">
@@ -123,22 +123,23 @@ const isSortField = () => {
 .container:hover .sort-submenu {
   display: flex;
 }
-.sort-submenu > div {
+.sort-item {
   padding: 10px 0;
   background-color: var(--kungalgame-trans-white-2);
   font-size: 14px;
   color: var(--kungalgame-font-color-3);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+  place-items: center;
 }
 /* 单个二级菜单 hover */
-.sort-submenu > div:hover {
+.sort-item:hover {
   background-color: var(--kungalgame-trans-blue-1);
   backdrop-filter: blur(5px);
 }
-.sort-submenu > div:active {
+.sort-item:active {
   background-color: var(--kungalgame-trans-blue-2);
 }
 .icon-item {
@@ -150,8 +151,10 @@ const isSortField = () => {
 /* 按照升序还是降序排列 */
 .sort-order {
   width: 100%;
+  padding: 10px 0;
   display: flex;
   cursor: default;
+  background-color: var(--kungalgame-trans-white-2);
   span {
     color: var(--kungalgame-blue-4);
     width: 100%;

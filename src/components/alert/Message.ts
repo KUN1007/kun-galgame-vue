@@ -1,4 +1,4 @@
-import { render, h } from 'vue'
+import { render, h, ref } from 'vue'
 import Message from './KUNGalgameMessage.vue'
 
 type MessageType = `warn` | `success` | `error` | `info`
@@ -10,13 +10,18 @@ type MessageType = `warn` | `success` | `error` | `info`
  * @param {number} duration - 消息的展示时间，可选，默认 3s
  */
 
+// 消息的计数，在有新消息展示的时候销毁消息会产生错误后果
+const messageCount = ref(0)
+
 export default (
   messageEN: string,
   messageCN: string,
   type: MessageType,
   duration?: number
 ) => {
-  // 初始化的时候先将上一次创建的内容销毁
+  // 增加消息计数
+  messageCount.value++
+  // 先移除上一个组件
   render(null, document.body)
 
   const messageNode = h(Message, {
@@ -28,13 +33,16 @@ export default (
 
   const time = duration ? duration : 3000
 
-  const handleDestroy = () => {
-    // 从 body 上移除组件
-    render(null, document.body)
-  }
-
+  // 指定时间后删除消息
   setTimeout(() => {
-    handleDestroy()
+    // 递减消息计数
+    messageCount.value--
+
+    // 消息计数为零时再移除组件
+    if (!messageCount.value) {
+      // 从 body 上移除组件
+      render(null, document.body)
+    }
   }, time)
 
   render(messageNode, document.body)

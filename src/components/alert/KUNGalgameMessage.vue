@@ -45,8 +45,8 @@ watch(
 </script>
 
 <template>
-  <div class="container">
-    <div class="message" :class="messageClass(type)">
+  <div class="kungalgame-message-container">
+    <div class="kungalgame-message" :class="messageClass(type)">
       <span class="icon" v-if="type === 'warn'"
         ><Icon icon="line-md:alert"
       /></span>
@@ -65,7 +65,7 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-.container {
+.kungalgame-message-container {
   position: fixed;
   top: 100px;
   margin: 0 auto;
@@ -75,7 +75,7 @@ watch(
   display: flex;
   z-index: 9999;
 }
-.message {
+.kungalgame-message {
   margin: 0 auto;
   font-size: large;
   color: var(--kungalgame-font-color-2);

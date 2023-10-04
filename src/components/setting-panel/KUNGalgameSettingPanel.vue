@@ -188,7 +188,7 @@ const handelCloseSettingsPanel = () => {
   height: 30px;
   transition: all 0.2s;
   &:hover {
-    background-color: var(--kungalgame-red-3);
+    background-color: var(--kungalgame-red-4);
     color: var(--kungalgame-white);
   }
 }
