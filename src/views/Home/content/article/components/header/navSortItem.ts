@@ -8,7 +8,7 @@ interface Sort {
 export const navSortItem: Sort[] = [
   {
     index: 1,
-    icon: 'bi:sort-down',
+    icon: 'line-md:arrows-vertical',
     name: 'updated',
     sortField: 'updated',
   },

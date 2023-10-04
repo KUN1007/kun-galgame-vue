@@ -32,6 +32,7 @@ const props = defineProps<{
   flex-shrink: 0;
   &:hover {
     background-color: var(--kungalgame-white);
+    box-shadow: var(--kungalgame-shadow-1);
     transition: 0.2s;
   }
   &:last-child {

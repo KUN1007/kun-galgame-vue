@@ -64,7 +64,6 @@ defineProps<{
 
 /* 发帖人昵称位置设置 */
 .name {
-  border-top: 1px solid var(--kungalgame-blue-1);
   flex-grow: 1;
   display: flex;
 }

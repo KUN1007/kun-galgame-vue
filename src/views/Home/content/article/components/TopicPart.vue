@@ -114,6 +114,7 @@ const getRepliesCount = computed(() => {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: var(--kungalgame-blue-5);
 }
 
 /* 话题点赞数等信息 */
