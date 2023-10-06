@@ -7,9 +7,7 @@ export * from './edit/types/edit'
 export * from './home/types/home'
 export * from './kungalgamer/types/kungalgamer'
 export * from './login/types/login'
-export * from './topic/types/action'
-export * from './topic/types/topic'
-export * from './topic/types/aside'
+export * from './topic/types'
 export * from './update-log/types/updateLog'
 
 // 暴露出所有 api
