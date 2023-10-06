@@ -22,6 +22,7 @@ export interface TopicReply {
   edited: number
   content: string
   upvotes: number[]
+  upvote_time: number
   likes: number[]
   dislikes: number[]
   tags: string[]
