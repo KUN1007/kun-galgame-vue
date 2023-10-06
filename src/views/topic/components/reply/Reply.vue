@@ -9,7 +9,7 @@ import { Icon } from '@iconify/vue'
 // 导入评论组件
 import Comments from '../comment/Comments.vue'
 // 导入 Footer 组件
-import ReplyFooter from './ReplyFooter.vue'
+import Footer from '../footer/Footer.vue'
 // 导入发布时间组件
 import Time from '../Time.vue'
 // 导入标签组件
@@ -97,25 +97,31 @@ const handleClickComment = (rid: number) => {
             </div>
           </div>
 
-          <!-- 其它人回复的底部 -->
-          <!-- info 代表 footer 的点赞等信息，master 表示当前的回复用户信息 -->
-          <!-- 这里传入了回复的插槽，因为只有回复可以被评论 -->
-          <ReplyFooter
+          <!-- 回复没有浏览数，所以是 0，占位 -->
+          <!-- title 和 category 也没有，占位 -->
+          <Footer
             :info="{
+              tid: reply.tid,
               rid: reply.rid,
+              views: 0,
               likes: reply.likes,
               dislikes: reply.dislikes,
               upvotes: reply.upvotes,
-              to_floor: reply.floor,
             }"
-            :master="reply.r_user"
+            :content="{
+              title: '',
+              content: reply.content,
+              tags: reply.tags,
+              category: [],
+            }"
+            :to-uid="reply.r_user.uid"
           >
             <template #comment>
               <span @click="handleClickComment(reply.rid)" class="icon">
                 <Icon icon="fa-regular:comment-dots" />
               </span>
             </template>
-          </ReplyFooter>
+          </Footer>
 
           <!-- 评论区域 -->
           <Comments

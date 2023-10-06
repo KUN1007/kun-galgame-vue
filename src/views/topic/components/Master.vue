@@ -2,8 +2,8 @@
   这是 KUNGalgame 话题展示区域楼主话题的区域，楼主的话题将会被展示在这里，位于话题展示区域最上方
  -->
 <script setup lang="ts">
-// 楼主话题的 Footer
-import MasterFooter from './MasterFooter.vue'
+// Footer
+import Footer from './footer/Footer.vue'
 // 楼主话题是否重新编辑
 import Rewrite from '../components/Rewrite.vue'
 // 楼主的信息
@@ -103,17 +103,22 @@ const loliStatus = computed(() => {
           </div>
         </div>
         <!-- 话题的点赞数等信息，被作用人就是该话题的发布人 -->
-        <MasterFooter
+        <Footer
           :info="{
             tid,
+            rid: 0,
             views,
             likes,
             dislikes,
             upvotes,
-            share,
           }"
-          :topic="{ tid, title, content, tags, category }"
-          :master="user"
+          :content="{
+            title,
+            content,
+            tags,
+            category,
+          }"
+          :to-uid="user.uid"
         />
       </div>
     </div>

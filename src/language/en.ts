@@ -211,8 +211,10 @@ export default {
       publish: 'Confirm to publish?',
       publishSuccess: 'Publish Successfully',
       publishCancel: 'Cancel Publish',
-      upvote:
+      upvoteTopic:
         'Are you sure you want to upvote this topic? This will cost you 17 Moe Moe Points',
+      upvoteReply:
+        'Are you sure you want to upvote this reply? This will cost you 3 Moe Moe Points',
       rewrite: 'Confirm to Rewrite?',
       rewriteSuccess: 'Rewrite Successfully',
       rewriteCancel: 'Cancel Rewrite',
