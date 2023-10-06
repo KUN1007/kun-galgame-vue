@@ -98,16 +98,17 @@ const handleClickComment = (rid: number) => {
           </div>
 
           <!-- 其它人回复的底部 -->
-          <!-- info 代表 footer 的点赞等信息，rUser 表示当前的回复用户信息 -->
+          <!-- info 代表 footer 的点赞等信息，master 表示当前的回复用户信息 -->
           <!-- 这里传入了回复的插槽，因为只有回复可以被评论 -->
           <ReplyFooter
             :info="{
+              rid: reply.rid,
               likes: reply.likes,
               dislikes: reply.dislikes,
-              upvotes: reply.upvote,
+              upvotes: reply.upvotes,
               to_floor: reply.floor,
             }"
-            :rUser="reply.r_user"
+            :master="reply.r_user"
           >
             <template #comment>
               <span @click="handleClickComment(reply.rid)" class="icon">

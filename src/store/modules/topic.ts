@@ -3,23 +3,21 @@ import { defineStore } from 'pinia'
 // 话题
 import {
   getTopicByTidApi,
+  getRelatedTopicsByTagsApi,
+  getPopularTopicsByUserUidApi,
+  updateTopicUpvoteApi,
+  updateTopicLikeApi,
+  updateTopicDislikeApi,
+} from '@/api'
+import type {
   TopicDetailResponseData,
   TopicAsideOtherTagRequestData,
-  getRelatedTopicsByTagsApi,
   TopicAsideMasterRequestData,
-  getPopularTopicsByUserUidApi,
   TopicAsideResponseData,
-} from '@/api'
-
-// 点赞等动作
-import {
-  updateTopicUpvoteApi,
   TopicUpvoteTopicRequestData,
   TopicUpvoteTopicResponseData,
-  updateTopicLikeApi,
   TopicLikeTopicRequestData,
   TopicLikeTopicResponseData,
-  updateTopicDislikeApi,
   TopicDislikeTopicRequestData,
   TopicDislikeTopicResponseData,
 } from '@/api'
@@ -28,10 +26,22 @@ import {
 import {
   getRepliesByPidApi,
   postReplyByPidApi,
+  updateReplyUpvoteApi,
+  updateReplyLikeApi,
+  updateReplyDislikeApi,
+} from '@/api'
+
+import type {
   TopicReplyRequestData,
   TopicReplyResponseData,
   TopicCreateReplyRequestData,
   TopicCreateReplyResponseData,
+  TopicUpvoteReplyRequestData,
+  TopicUpvoteReplyResponseData,
+  TopicLikeReplyRequestData,
+  TopicLikeReplyResponseData,
+  TopicDislikeReplyRequestData,
+  TopicDislikeReplyResponseData,
 } from '@/api'
 
 // 评论
@@ -154,7 +164,7 @@ export const useKUNGalgameTopicStore = defineStore({
     },
 
     // 获取回复
-    async getReplies(tid: number): Promise<TopicDislikeTopicResponseData> {
+    async getReplies(tid: number): Promise<TopicReplyResponseData> {
       // 这里的默认值用于初始化
       const requestData: TopicReplyRequestData = {
         tid: tid,
@@ -177,6 +187,52 @@ export const useKUNGalgameTopicStore = defineStore({
         content: this.replyDraft.content,
       }
       return await postReplyByPidApi(requestData)
+    },
+
+    // 推回复
+    async updateReplyUpvote(
+      tid: number,
+      toUid: number,
+      rid: number
+    ): Promise<TopicUpvoteReplyResponseData> {
+      const requestData: TopicUpvoteReplyRequestData = {
+        tid: tid,
+        to_uid: toUid,
+        rid: rid,
+      }
+      return await updateReplyUpvoteApi(requestData)
+    },
+
+    // 点赞回复
+    async updateReplyLike(
+      tid: number,
+      toUid: number,
+      rid: number,
+      isPush: boolean
+    ): Promise<TopicLikeReplyResponseData> {
+      const requestData: TopicLikeReplyRequestData = {
+        tid: tid,
+        to_uid: toUid,
+        rid: rid,
+        isPush: isPush,
+      }
+      return await updateReplyLikeApi(requestData)
+    },
+
+    // 点踩回复
+    async updateReplyDislike(
+      tid: number,
+      toUid: number,
+      rid: number,
+      isPush: boolean
+    ): Promise<TopicDislikeReplyResponseData> {
+      const requestData: TopicDislikeReplyRequestData = {
+        tid: tid,
+        to_uid: toUid,
+        rid: rid,
+        isPush: isPush,
+      }
+      return await updateReplyDislikeApi(requestData)
     },
 
     // 获取评论
