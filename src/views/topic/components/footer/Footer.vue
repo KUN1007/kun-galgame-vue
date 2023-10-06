@@ -99,8 +99,8 @@ const handleClickRewrite = () => {
           :to-uid="masterUid"
         />
 
-        <!-- 浏览数 -->
-        <li>
+        <!-- 浏览数，楼主才会显示 -->
+        <li v-if="props.info.views > 0">
           <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
           {{ info.views }}
         </li>
@@ -143,9 +143,8 @@ const handleClickRewrite = () => {
       </span>
 
       <!-- 回复的插槽 -->
-      <span>
-        <slot name="comment"></slot>
-      </span>
+
+      <slot name="comment"></slot>
     </div>
   </div>
 </template>
@@ -211,6 +210,7 @@ const handleClickRewrite = () => {
   color: var(--kungalgame-blue-4);
   cursor: pointer;
   transition: all 0.2s;
+  margin-right: 10px;
   &::before,
   &::after {
     content: '';
@@ -254,10 +254,8 @@ const handleClickRewrite = () => {
   .footer {
     flex-direction: column;
   }
-  .right {
-    span:last-child {
-      margin-right: 0;
-    }
+  .reply {
+    margin-right: 0;
   }
 }
 </style>

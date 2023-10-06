@@ -19,6 +19,9 @@ import Rewrite from '../Rewrite.vue'
 // 导入发布人个人信息
 import KUNGalgamerInfo from '../KUNGalgamerInfo.vue'
 
+// 导入计算时间差的函数
+import { hourDiff } from '@/utils/time'
+
 import { TopicReply } from '@/api/index'
 
 // 导入话题页面 store
@@ -52,9 +55,11 @@ const handleClickComment = (rid: number) => {
     appear
   >
     <div>
+      <!-- 被推 10 小时内样式改变 -->
       <div
         class="other-topic-container"
         v-for="(reply, index) in repliesData"
+        :class="hourDiff(reply.upvote_time, 10) ? 'active-upvote' : ''"
         :key="`${index}`"
         :id="`kungalgame-reply-${reply.floor}`"
       >
@@ -245,6 +250,12 @@ const handleClickComment = (rid: number) => {
   font-size: 24px;
   color: var(--kungalgame-font-color-2);
   display: flex;
+  margin-right: 17px;
+}
+
+/* 回复被推的样式 */
+.active-upvote .container {
+  border: 2px solid var(--kungalgame-pink-3);
 }
 
 /* 滚动到指定话题激活后的样式 */

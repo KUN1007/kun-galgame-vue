@@ -177,14 +177,21 @@ const handleClickReply = (uid: number, name: string) => {
 }
 .operate ul {
   display: flex;
+  justify-content: center;
   align-items: center;
   li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 10px;
+    .icon {
+      cursor: pointer;
+      color: var(--kungalgame-font-color-2);
+      margin-right: 2px;
+    }
   }
 }
-.icon {
-  color: var(--kungalgame-font-color-2);
-}
+
 /* 单个评论 */
 .text {
   font-size: 12px;
