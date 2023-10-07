@@ -15,6 +15,7 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 // 导入用户的 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 
 // 使用话题页面的 store
 const { isEdit, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
@@ -38,6 +39,10 @@ const props = defineProps<{
   toUid: number
 }>()
 
+const info = computed(() => props.info)
+const content = computed(() => props.content)
+const toUid = computed(() => props.toUid)
+
 /**
  * 这里只是简单起见，不显示重新编辑
  * 实际上如果用户自己修改了 localStorage 中保存的信息，这个验证就失效了
@@ -45,15 +50,13 @@ const props = defineProps<{
  */
 // 当前登录用户的 uid
 const currUserUid = useKUNGalgameUserStore().uid
-// 话题 / 回复发布者的 uid
-const masterUid = props.toUid
 
 // 点击回复打开回复面板
-const handleClickReply = async () => {
+const handleClickReply = () => {
   // 保存必要信息，以便发表回复
-  replyDraft.value.tid = props.info.tid
+  replyDraft.value.tid = info.value.tid
   // 被回复人就是发表人的 uid
-  replyDraft.value.to_uid = masterUid
+  replyDraft.value.to_uid = toUid.value
   // 楼主的 floor 就是 0
   replyDraft.value.to_floor = 0
   // 打开回复面板
@@ -70,14 +73,14 @@ const handleClickReply = async () => {
         <!-- 推话题 -->
         <Upvote
           :uid="currUserUid"
-          :tid="props.info.tid"
-          :rid="props.info.rid"
-          :upvotes="props.info.upvotes"
-          :to-uid="masterUid"
+          :tid="info.tid"
+          :rid="info.rid"
+          :upvotes="info.upvotes"
+          :to-uid="toUid"
         />
 
         <!-- 浏览数，楼主才会显示 -->
-        <li v-if="props.info.views > 0">
+        <li v-if="info.views > 0">
           <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
           {{ info.views }}
         </li>
@@ -85,19 +88,19 @@ const handleClickReply = async () => {
         <!-- 点赞 -->
         <Like
           :uid="currUserUid"
-          :tid="props.info.tid"
-          :rid="props.info.rid"
-          :likes="props.info.likes"
-          :to-uid="masterUid"
+          :tid="info.tid"
+          :rid="info.rid"
+          :likes="info.likes"
+          :to-uid="toUid"
         />
 
         <!-- 踩 -->
         <Dislike
           :uid="currUserUid"
-          :tid="props.info.tid"
-          :rid="props.info.rid"
-          :dislikes="props.info.dislikes"
-          :to-uid="masterUid"
+          :tid="info.tid"
+          :rid="info.rid"
+          :dislikes="info.dislikes"
+          :to-uid="toUid"
         />
       </ul>
     </div>
@@ -116,14 +119,14 @@ const handleClickReply = async () => {
 
       <!-- 编辑 -->
       <Rewrite
-        :tid="props.info.tid"
-        :rid="props.info.rid"
+        :tid="info.tid"
+        :rid="info.rid"
         :uid="currUserUid"
-        :title="props.content.title"
-        :content="props.content.content"
-        :tags="props.content.tags"
-        :category="props.content.category"
-        :to-uid="masterUid"
+        :title="content.title"
+        :content="content.content"
+        :tags="content.tags"
+        :category="content.category"
+        :to-uid="toUid"
       />
 
       <!-- 回复的插槽 -->

@@ -1,6 +1,6 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
@@ -19,8 +19,18 @@ const props = defineProps<{
   toUid: number
 }>()
 
-const likesArray = ref(props.likes)
-const isLiked = ref(false)
+const isLiked = ref(props.likes.includes(props.uid))
+const likesCount = ref(props.likes.length)
+
+// 响应式
+watch(
+  () => props.likes,
+  (newLikes) => {
+    // 更新 isLiked 和 likesCount
+    isLiked.value = newLikes.includes(props.uid)
+    likesCount.value = newLikes.length
+  }
+)
 
 // throttle 回调函数
 const throttleCallback = () => {
@@ -52,50 +62,36 @@ const likeOperation = async (
   }
 }
 
+// 点赞 / 取消点赞
+const toggleLike = async () => {
+  // 当前用户不可以给自己点赞
+  if (props.uid === props.toUid) {
+    message('You cannot like yourself', '您不可以给自己点赞', 'warn')
+    return
+  }
+
+  const { tid, rid, toUid } = props
+  const isPush = !isLiked.value // 取反表示点赞或取消点赞
+
+  // 执行点赞或取消点赞操作
+  const res = await likeOperation(tid, rid, toUid, isPush)
+
+  if (res.code === 200) {
+    isLiked.value = isPush
+    likesCount.value += isPush ? 1 : -1
+    message('Like successfully!', '点赞成功', 'success')
+  } else {
+    message('Like failed!', '点赞失败', 'error')
+  }
+}
+
 // throttle 函数，1007 毫秒仅会触发一次点赞
-const handleClickLikeThrottled = throttle(
-  async () => {
-    // 当前用户不可以给自己点赞
-    if (props.uid === props.toUid) {
-      message('You cannot like yourself', '您不可以给自己点赞', 'warn')
-      return
-    }
-
-    // 切换点赞激活状态
-    isLiked.value = !isLiked.value
-
-    const res = await likeOperation(
-      props.tid,
-      props.rid,
-      props.toUid,
-      isLiked.value
-    )
-
-    if (res.code === 200) {
-      // 更新点赞数
-      likesArray.value.length = isLiked.value
-        ? likesArray.value.length + 1
-        : likesArray.value.length - 1
-    } else {
-      message('Like failed!', '点赞失败', 'error')
-    }
-  },
-  1007,
-  throttleCallback
-)
+const handleClickLikeThrottled = throttle(toggleLike, 1007, throttleCallback)
 
 // 点赞
 const handleClickLike = () => {
   handleClickLikeThrottled()
 }
-
-// 初始化按钮的状态，是否已点赞等
-onMounted(() => {
-  // 已经点赞
-  if (props.likes.includes(props.uid)) {
-    isLiked.value = true
-  }
-})
 </script>
 
 <template>
@@ -108,7 +104,7 @@ onMounted(() => {
     >
       <Icon icon="line-md:thumbs-up-twotone" />
     </span>
-    {{ likesArray.length }}
+    {{ likesCount }}
   </li>
 </template>
 

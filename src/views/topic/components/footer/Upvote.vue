@@ -1,6 +1,6 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 // 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
@@ -18,8 +18,17 @@ const props = defineProps<{
   toUid: number
 }>()
 
-const upvotesArray = ref(props.upvotes)
-const isUpvote = ref(false)
+const isUpvote = ref(props.upvotes.includes(props.uid))
+const upvoteCount = ref(props.upvotes.length)
+
+// 响应式
+watch(
+  () => props.upvotes,
+  (newUpvote) => {
+    isUpvote.value = props.upvotes.includes(props.uid)
+    upvoteCount.value = newUpvote.length
+  }
+)
 
 // 推话题
 const upvoteTopic = async () => {
@@ -31,15 +40,14 @@ const upvoteTopic = async () => {
 
   // 这里实现用户的点击确认取消逻辑
   if (res) {
+    const { tid, toUid } = props
     // 请求推话题的接口
-    const res = await useKUNGalgameTopicStore().updateTopicUpvote(
-      props.tid,
-      props.toUid
-    )
+    const res = await useKUNGalgameTopicStore().updateTopicUpvote(tid, toUid)
 
     if (res.code === 200) {
       // 更新推数
-      upvotesArray.value.length++
+      upvoteCount.value++
+      isUpvote.value = true
 
       message('Topic upvote successfully', '推话题成功', 'success')
     } else {
@@ -58,16 +66,18 @@ const upvoteReply = async () => {
 
   // 这里实现用户的点击确认取消逻辑
   if (res) {
+    const { tid, toUid, rid } = props
     // 请求推话题的接口
     const res = await useKUNGalgameTopicStore().updateReplyUpvote(
-      props.tid,
-      props.toUid,
-      props.rid
+      tid,
+      toUid,
+      rid
     )
 
     if (res.code === 200) {
       // 更新推数
-      upvotesArray.value.length++
+      upvoteCount.value++
+      isUpvote.value = true
 
       message('Reply upvote successfully', '推回复成功', 'success')
     } else {
@@ -91,14 +101,6 @@ const handleClickUpvote = async () => {
     upvoteReply()
   }
 }
-
-// 初始化按钮的状态
-onMounted(() => {
-  // 已经推过
-  if (props.upvotes.includes(props.uid)) {
-    isUpvote.value = true
-  }
-})
 </script>
 
 <template>
@@ -111,7 +113,7 @@ onMounted(() => {
     >
       <Icon icon="bi:rocket" />
     </span>
-    {{ upvotes.length }}
+    {{ upvoteCount }}
   </li>
 </template>
 
@@ -141,6 +143,6 @@ li {
 
 /* 激活后的样式 */
 .active {
-  color: var(--kungalgame-blue-4);
+  color: var(--kungalgame-blue-4) !important;
 }
 </style>
