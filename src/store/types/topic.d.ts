@@ -27,9 +27,6 @@ interface ReplyDraft {
 
   // 是否保存回复
   isSaveReply: boolean
-  // 回复发布的状态，如果状态有变化则将发布好的回复数据添加在回复数组里
-  // 这里与 true 和 false 无关，关心的是它的状态改变
-  publishStatus: boolean
 }
 
 // 获取回复的请求
@@ -53,6 +50,17 @@ interface CommentDraft {
   isShowCommentPanelRid: number
 }
 
+// 更新评论的缓存
+interface ReplyRewrite {
+  tid: number
+  rid: number
+  content: string
+  tags: string[]
+
+  // 回复是否正在被重新编辑
+  isReplyRewriting: boolean
+}
+
 // 话题页面的 store
 export interface TopicStore {
   // 是否正在被编辑
@@ -74,6 +82,8 @@ export interface TopicStore {
   replyDraft: ReplyDraft
   // 获取回复的请求接口格式
   replyRequest: ReplyRequest
+  // 更新评论的缓存
+  replyRewrite: ReplyRewrite
 
   // 评论的缓存
   commentDraft: CommentDraft

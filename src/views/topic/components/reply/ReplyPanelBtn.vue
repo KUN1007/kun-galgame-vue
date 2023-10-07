@@ -5,14 +5,22 @@ import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import message from '@/components/alert/Message'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+// 回复临时数据
+import { useTempReplyStore } from '@/store/temp/reply'
 import { storeToRefs } from 'pinia'
+// 回复重新编辑响应的临时数据
+import { useTempReplyRewriteStore } from '@/store/temp/replyRewrite'
+import { timeEnd } from 'console'
 
+const { rid, replyContent, tags, edited } = storeToRefs(
+  useTempReplyRewriteStore()
+)
 // 使用话题页面的 store
-const { isShowAdvance, replyDraft, isEdit } = storeToRefs(
+const { isShowAdvance, replyDraft, replyRewrite, isEdit } = storeToRefs(
   useKUNGalgameTopicStore()
 )
 
-const info = useKUNGalgameMessageStore()
+const messageStore = useKUNGalgameMessageStore()
 
 // 检查回复是否合法
 const isValidReply = () => {
@@ -26,16 +34,20 @@ const publishReply = async () => {
     // 重置页数，是否加载等页面状态
     useKUNGalgameTopicStore().resetPageStatus()
     // 发布回复
-    await useKUNGalgameTopicStore().postNewReply()
+    const responseData = await useKUNGalgameTopicStore().postNewReply()
 
-    // 改变发布状态，前端会新增回复的数据
-    replyDraft.value.publishStatus = !replyDraft.value.publishStatus
-    // 取消保存
-    useKUNGalgameTopicStore().resetReplyDraft()
-    // 关闭面板
-    isEdit.value = false
-    // 发布成功提示
-    message('Publish reply successfully!', '发布回复成功！', 'success')
+    if (responseData.code === 200) {
+      // 保存新回复的数据
+      useTempReplyStore().tempReply = responseData.data
+      // 取消保存
+      useKUNGalgameTopicStore().resetReplyDraft()
+      // 关闭面板
+      isEdit.value = false
+      // 发布成功提示
+      message('Publish reply successfully!', '发布回复成功！', 'success')
+    } else {
+      message('Publish reply failed!', '发布回复失败！', 'error')
+    }
   } else {
     message('Reply content cannot be empty!', '回复内容不能为空！', 'warn')
   }
@@ -43,13 +55,47 @@ const publishReply = async () => {
 
 // 点击发布回复
 const handlePublish = async () => {
-  const res = await info.alert('AlertInfo.edit.publish', true)
+  const res = await messageStore.alert('AlertInfo.edit.publish', true)
   // 这里实现用户的点击确认取消逻辑
   if (res) {
     publishReply()
   } else {
     // 取消发布提示
     message('Cancel publish reply', '取消发布回复', 'info')
+  }
+}
+
+// 保存重新编辑的话题，临时保存，因为页面重新加载会自动返回后端数据，这样保存不用请求后端接口
+const saveRewriteReply = () => {
+  rid.value = replyRewrite.value.rid
+  replyContent.value = replyRewrite.value.content
+  tags.value = replyRewrite.value.tags
+  edited.value = Date.now()
+}
+
+// 重新编辑
+const handleRewrite = async () => {
+  const res = await messageStore.alert('AlertInfo.edit.rewrite', true)
+  // 这里实现用户的点击确认取消逻辑
+  if (res) {
+    // 更新话题
+    const responseData = await useKUNGalgameTopicStore().updateReply()
+
+    if (responseData.code === 200) {
+      // 改变发布状态，前端会新增回复的数据
+
+      message('Reply rewrite successfully', '回复重新编辑成功', 'success')
+      // 保存新话题的数据，实际上就是草稿的数据
+      saveRewriteReply()
+
+      // 清除数据，因为此时该回复已被更新
+      useKUNGalgameTopicStore().resetRewriteTopicData()
+      // 关闭面板
+      isShowAdvance.value = false
+      isEdit.value = false
+    } else {
+      message('Reply rewrite failed!', '回复重新编辑失败！', 'error')
+    }
   }
 }
 
@@ -76,9 +122,24 @@ const handleShowAdvance = () => {
   <div class="btn-container">
     <!-- 高级选项按钮 -->
     <button class="advance-btn" @click="handleShowAdvance">高级选项</button>
-    <!-- 确认按钮 -->
 
-    <button class="confirm-btn" @click="handlePublish">确认发布</button>
+    <!-- 确认按钮 -->
+    <button
+      v-if="!replyRewrite.isReplyRewriting"
+      class="confirm-btn"
+      @click="handlePublish"
+    >
+      确认发布
+    </button>
+
+    <!-- 重新编辑 -->
+    <button
+      v-if="replyRewrite.isReplyRewriting"
+      class="rewrite-btn"
+      @click="handleRewrite"
+    >
+      确认 Rewrite
+    </button>
 
     <!-- 保存按钮 -->
     <button class="save-btn" @click="handleSave">保存草稿</button>
@@ -111,6 +172,7 @@ const handleShowAdvance = () => {
     color: var(--kungalgame-white);
   }
 }
+
 /* 确认按钮的样式 */
 .confirm-btn {
   color: var(--kungalgame-blue-4);
@@ -123,6 +185,21 @@ const handleShowAdvance = () => {
 }
 .confirm-btn:active {
   background-color: var(--kungalgame-blue-3);
+  transform: scale(0.8);
+}
+
+/* 重新编辑按钮的样式 */
+.rewrite-btn {
+  color: var(--kungalgame-red-4);
+  background-color: var(--kungalgame-trans-white-9);
+  border: 1px solid var(--kungalgame-red-4);
+}
+.rewrite-btn:hover {
+  background-color: var(--kungalgame-red-4);
+  transition: 0.1s;
+}
+.rewrite-btn:active {
+  background-color: var(--kungalgame-red-3);
   transform: scale(0.8);
 }
 

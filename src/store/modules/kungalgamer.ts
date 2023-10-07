@@ -19,7 +19,7 @@ import { KUNGalgamerStore } from '../types/kungalgamer'
 
 // 这里用了 pinia-plugin-persistedstate，直接存储即可
 export const useKUNGalgameUserStore = defineStore({
-  id: 'kungalgamer',
+  id: 'KUNGalgameUser',
   persist: true,
   state: (): KUNGalgamerStore => ({
     uid: 0,

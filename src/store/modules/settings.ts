@@ -8,14 +8,14 @@ import { KUNGalgameLanguage, mode } from '@/utils/getDefaultEnv'
 import { KUNGalgameSettingsStore } from '../types/settings'
 
 export const useKUNGalgameSettingsStore = defineStore({
-  id: 'KUNGalgame-settings',
+  id: 'KUNGalgameSettings',
   persist: true,
   // 默认值
   state: (): KUNGalgameSettingsStore => ({
     showKUNGalgameMode: mode,
     showKUNGalgameLanguage: KUNGalgameLanguage,
     showKUNGalgamePageWidth: {
-      KUN: 61.8,
+      KUN: 90,
       Topic: 90,
       Edit: 90,
       KUNGalgame: 90,

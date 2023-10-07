@@ -64,3 +64,17 @@ export async function updateReplyDislikeApi(
 
   return response
 }
+
+// 更新回复
+export async function updateReplyApi(
+  requestData: Reply.TopicUpdateReplyRequestData
+): Promise<Reply.TopicUpdateReplyResponseData> {
+  const url = `/topics/${requestData.tid}/reply`
+
+  const response = fetchPut<Reply.TopicUpdateReplyResponseData>(
+    url,
+    requestData
+  )
+
+  return response
+}

@@ -62,6 +62,14 @@ export interface TopicDislikeReplyRequestData {
   isPush: boolean
 }
 
+// 更新回复的请求数据
+export interface TopicUpdateReplyRequestData {
+  tid: number
+  rid: number
+  content: string
+  tags: string[]
+}
+
 // 单个话题回复响应数据的格式，返回的是多条回复数据，是一个数组
 export type TopicReplyResponseData = KUNGalgameResponseData<TopicReply[]>
 
@@ -76,3 +84,6 @@ export type TopicLikeReplyResponseData = KUNGalgameResponseData<{}>
 
 // 点踩回复响应数据的格式
 export type TopicDislikeReplyResponseData = KUNGalgameResponseData<{}>
+
+// 更新回复响应数据的格式
+export type TopicUpdateReplyResponseData = KUNGalgameResponseData<{}>

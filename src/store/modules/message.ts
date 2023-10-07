@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 import { MessageStore } from '../types/message'
 
 export const useKUNGalgameMessageStore = defineStore({
-  id: 'message',
+  id: 'KUNGalgameMessage',
   // 所有消息组件均不需要持久存储
   persist: false,
   state: (): MessageStore => ({

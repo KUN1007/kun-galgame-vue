@@ -17,7 +17,7 @@ import { EditStore } from '../types/edit'
 import { checkTopicPublish } from '../utils/checkTopicPublish'
 
 export const useKUNGalgameEditStore = defineStore({
-  id: 'edit',
+  id: 'KUNGalgameEdit',
   persist: true,
   state: (): EditStore => ({
     editorHeight: 300,
