@@ -3,7 +3,7 @@
  */
 
 // 读取本地存储中的语言配置
-const localStorageString = localStorage.getItem('KUNGalgame-settings')
+const localStorageString = localStorage.getItem('KUNGalgameSettings')
 
 // 这里是为了兼容各种浏览器，某些浏览器的 navigator.language 值为 'zh-CN'，会导致报错
 const getInitLanguage = () => {

@@ -1,5 +1,6 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
+import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
 // 导入编辑界面的 store
@@ -28,7 +29,19 @@ const props = defineProps<{
 }>()
 
 // 是否具有重新编辑的权限
-const isShowRewrite = props.uid === props.toUid
+const isShowRewrite = ref(props.uid === props.toUid)
+
+// 响应式
+watch(
+  () => props.toUid,
+  () => {
+    if (props.uid === props.toUid) {
+      isShowRewrite.value = true
+    } else {
+      isShowRewrite.value = false
+    }
+  }
+)
 
 // 重新编辑话题
 const rewriteTopic = () => {

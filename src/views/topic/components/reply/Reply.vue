@@ -4,8 +4,10 @@
   这个区域包含所有人回复给楼主的话题，其中每个人的话题将会被拆分成为单独的组件
  -->
 <script setup lang="ts">
-import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
+import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue'
 import { Icon } from '@iconify/vue'
+// 内容区组件
+import Content from '../Content.vue'
 // 导入评论组件
 import Comments from '../comment/Comments.vue'
 // 导入 Footer 组件
@@ -30,9 +32,12 @@ import { storeToRefs } from 'pinia'
 
 const { scrollToReplyId, commentDraft } = storeToRefs(useKUNGalgameTopicStore())
 
-defineProps<{
+const props = defineProps<{
   repliesData: TopicReply[]
 }>()
+
+// 响应式 props 的值，因为子组件还要用
+const replies = computed(() => props.repliesData)
 
 // 控制面板关闭的值
 const isCommentPanelOpen = ref(false)
@@ -58,14 +63,14 @@ const handleClickComment = (rid: number) => {
       <!-- 被推 10 小时内样式改变 -->
       <div
         class="other-topic-container"
-        v-for="(reply, index) in repliesData"
+        v-for="(reply, index) in replies"
         :class="hourDiff(reply.upvote_time, 10) ? 'active-upvote' : ''"
         :key="`${index}`"
         :id="`kungalgame-reply-${reply.floor}`"
       >
         <!-- 每个人的单个话题 -->
         <!-- 楼层标志 -->
-        <div class="floor">
+        <div class="floor" :class="reply.edited ? 'rewrite' : ''">
           <span>K{{ reply.floor }}</span>
         </div>
         <!-- 其他人话题内容区的容器 -->
@@ -91,8 +96,9 @@ const handleClickComment = (rid: number) => {
                   <!-- 上部区域的右边 -->
                   <Rewrite v-if="reply.edited" :time="reply.edited" />
                 </div>
-                <!-- 右侧部分分文本 -->
-                <div class="text" v-html="reply.content"></div>
+
+                <!-- 富文本内容展示区域 -->
+                <Content :content="reply.content" />
               </div>
             </div>
             <!-- 其他人回复的下部 -->
@@ -164,6 +170,7 @@ const handleClickComment = (rid: number) => {
   border-bottom: none;
   /* 这里的阴影只能这么绘制 */
   filter: drop-shadow(1px 2px 2px var(--kungalgame-trans-blue-4));
+  margin: 5px 0;
   span {
     transform: rotate(10deg) translateY(40px);
     padding: 0 30px;
@@ -251,6 +258,13 @@ const handleClickComment = (rid: number) => {
   color: var(--kungalgame-font-color-2);
   display: flex;
   margin-right: 17px;
+}
+
+/* 被重新编辑后的楼层标志样式 */
+.rewrite {
+  span {
+    transform: rotate(0) translateY(0) translateX(-7px);
+  }
 }
 
 /* 回复被推的样式 */

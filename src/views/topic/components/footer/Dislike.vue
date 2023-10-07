@@ -1,6 +1,6 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
@@ -19,8 +19,18 @@ const props = defineProps<{
   toUid: number
 }>()
 
-const dislikesArray = ref(props.dislikes)
-const isDisliked = ref(false)
+const isDisliked = ref(props.dislikes.includes(props.uid))
+const dislikesCount = ref(props.dislikes.length)
+
+// 响应式
+watch(
+  () => props.dislikes,
+  (newLikes) => {
+    // 更新 isLiked 和 likesCount
+    isDisliked.value = newLikes.includes(props.uid)
+    dislikesCount.value = newLikes.length
+  }
+)
 
 // throttle 回调函数
 const throttleCallback = () => {
@@ -56,34 +66,32 @@ const dislikeOperation = async (
   }
 }
 
+// 点踩 / 取消点踩
+const toggleDislike = async () => {
+  // 当前用户不可以给自己点赞
+  if (props.uid === props.toUid) {
+    message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
+    return
+  }
+
+  const { tid, rid, toUid } = props
+  const isPush = !isDisliked.value // 取反表示点赞或取消点赞
+
+  // 执行点赞或取消点赞操作
+  const res = await dislikeOperation(tid, rid, toUid, isPush)
+
+  if (res.code === 200) {
+    isDisliked.value = isPush
+    dislikesCount.value += isPush ? 1 : -1
+    message('Dislike successfully!', '点踩成功', 'success')
+  } else {
+    message('Dislike failed!', '点踩失败', 'error')
+  }
+}
+
 // throttle 函数，1007 毫秒仅会触发一次点踩
 const handleClickDislikeThrottled = throttle(
-  async () => {
-    // 当前用户不可以给自己点赞
-    if (props.uid === props.toUid) {
-      message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
-      return
-    }
-
-    // 切换点赞激活状态
-    isDisliked.value = !isDisliked.value
-
-    const res = await dislikeOperation(
-      props.tid,
-      props.rid,
-      props.toUid,
-      isDisliked.value
-    )
-
-    if (res.code === 200) {
-      // 更新点踩数
-      dislikesArray.value.length = isDisliked.value
-        ? dislikesArray.value.length + 1
-        : dislikesArray.value.length - 1
-    } else {
-      message('Dislike failed!', '点踩失败', 'error')
-    }
-  },
+  toggleDislike,
   1007,
   throttleCallback
 )
@@ -92,14 +100,6 @@ const handleClickDislikeThrottled = throttle(
 const handleClickDislike = () => {
   handleClickDislikeThrottled()
 }
-
-// 初始化按钮的状态
-onMounted(() => {
-  // 已经点踩
-  if (props.dislikes.includes(props.uid)) {
-    isDisliked.value = true
-  }
-})
 </script>
 
 <template>
@@ -112,7 +112,7 @@ onMounted(() => {
     >
       <Icon icon="line-md:thumbs-down-twotone" />
     </span>
-    {{ dislikes.length }}
+    {{ dislikesCount }}
   </li>
 </template>
 

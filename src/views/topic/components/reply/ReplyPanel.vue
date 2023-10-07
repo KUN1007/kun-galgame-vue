@@ -21,8 +21,6 @@ import ReplyPanelBtn from './ReplyPanelBtn.vue'
 
 // 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 全局消息组件（顶部）
-import message from '@/components/alert/Message'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
