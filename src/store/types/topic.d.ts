@@ -16,9 +16,8 @@ interface ReplyDraft {
 
   // 当前话题的 id
   tid: number
-  r_uid: number
   // 回复给谁，用于回复面板展示
-  replyUserName: string
+  toUserName: string
   to_uid: number
   content: string
   tags: string[]

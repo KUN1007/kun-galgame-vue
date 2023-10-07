@@ -1,5 +1,6 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 // 推组件
 import Upvote from './Upvote.vue'
@@ -7,18 +8,13 @@ import Upvote from './Upvote.vue'
 import Like from './Like.vue'
 // 踩组件
 import Dislike from './Dislike.vue'
+// 回复组件
+import Reply from './Reply.vue'
 // 重新编辑组件
 import Rewrite from './Rewrite.vue'
 
-// 导入话题页面 store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 // 导入用户的 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
-
-// 使用话题页面的 store
-const { isEdit, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 // 接受父组件的传值
 const props = defineProps<{
@@ -36,12 +32,16 @@ const props = defineProps<{
     tags: string[]
     category: string[]
   }
-  toUid: number
+  toUser: {
+    uid: number
+    name: string
+  }
+  toFloor: number
 }>()
 
 const info = computed(() => props.info)
 const content = computed(() => props.content)
-const toUid = computed(() => props.toUid)
+const toUser = computed(() => props.toUser)
 
 /**
  * 这里只是简单起见，不显示重新编辑
@@ -50,18 +50,6 @@ const toUid = computed(() => props.toUid)
  */
 // 当前登录用户的 uid
 const currUserUid = useKUNGalgameUserStore().uid
-
-// 点击回复打开回复面板
-const handleClickReply = () => {
-  // 保存必要信息，以便发表回复
-  replyDraft.value.tid = info.value.tid
-  // 被回复人就是发表人的 uid
-  replyDraft.value.to_uid = toUid.value
-  // 楼主的 floor 就是 0
-  replyDraft.value.to_floor = 0
-  // 打开回复面板
-  isEdit.value = true
-}
 </script>
 
 <template>
@@ -76,7 +64,7 @@ const handleClickReply = () => {
           :tid="info.tid"
           :rid="info.rid"
           :upvotes="info.upvotes"
-          :to-uid="toUid"
+          :to-uid="toUser.uid"
         />
 
         <!-- 浏览数，楼主才会显示 -->
@@ -91,7 +79,7 @@ const handleClickReply = () => {
           :tid="info.tid"
           :rid="info.rid"
           :likes="info.likes"
-          :to-uid="toUid"
+          :to-uid="toUser.uid"
         />
 
         <!-- 踩 -->
@@ -100,22 +88,25 @@ const handleClickReply = () => {
           :tid="info.tid"
           :rid="info.rid"
           :dislikes="info.dislikes"
-          :to-uid="toUid"
+          :to-uid="toUser.uid"
         />
       </ul>
     </div>
 
     <!-- 底部右侧部分（回复、评论、只看、编辑） -->
     <div class="right">
-      <div @click="handleClickReply" class="reply">
-        {{ $tm('topic.content.reply') }}
-      </div>
+      <Reply
+        :tid="info.tid"
+        :to-user-name="toUser.name"
+        :to_uid="toUser.uid"
+        :to_floor="toFloor"
+      />
 
       <!-- 分享 -->
       <span class="icon"><Icon icon="majesticons:share-line" /></span>
 
       <!-- 只看 -->
-      <span class="icon"><Icon icon="ph:user-focus-duotone" /></span>
+      <!-- <span class="icon"><Icon icon="ph:user-focus-duotone" /></span> -->
 
       <!-- 编辑 -->
       <Rewrite
@@ -126,7 +117,7 @@ const handleClickReply = () => {
         :content="content.content"
         :tags="content.tags"
         :category="content.category"
-        :to-uid="toUid"
+        :to-uid="toUser.uid"
       />
 
       <!-- 回复的插槽 -->

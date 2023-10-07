@@ -66,7 +66,7 @@ const handelClosePanel = async () => {
           <div class="title">
             <h3>
               <span>{{ $tm('topic.panel.to') + ' @' }}</span>
-              <span>{{ replyDraft.replyUserName }}</span>
+              <span>{{ replyDraft.toUserName }}</span>
               <span>
                 <span class="emoji">(⋈◍＞◡＜◍)。✧♡ </span>
                 {{ `${$tm(`topic.panel.${position}`)} ${replyDraft.to_floor}` }}

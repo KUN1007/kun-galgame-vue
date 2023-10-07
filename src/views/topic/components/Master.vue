@@ -102,7 +102,7 @@ const loliStatus = computed(() => {
             <Rewrite v-if="edited" :time="edited" />
           </div>
         </div>
-        <!-- 话题的点赞数等信息，被作用人就是该话题的发布人 -->
+        <!-- 话题的点赞数等信息，被作用人就是该话题的发布人，楼主 floor 为 0 -->
         <Footer
           :info="{
             tid,
@@ -118,7 +118,11 @@ const loliStatus = computed(() => {
             tags,
             category,
           }"
-          :to-uid="user.uid"
+          :to-user="{
+            uid: user.uid,
+            name: user.name,
+          }"
+          :to-floor="0"
         />
       </div>
     </div>
