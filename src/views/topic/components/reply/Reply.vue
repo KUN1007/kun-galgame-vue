@@ -125,7 +125,11 @@ const handleClickComment = (rid: number) => {
               tags: reply.tags,
               category: [],
             }"
-            :to-uid="reply.r_user.uid"
+            :to-user="{
+              uid: reply.r_user.uid,
+              name: reply.r_user.name,
+            }"
+            :to-floor="reply.floor"
           >
             <template #comment>
               <span @click="handleClickComment(reply.rid)" class="icon">

@@ -80,8 +80,7 @@ export const useKUNGalgameTopicStore = defineStore({
       isShowHotKeywords: true,
 
       tid: 0,
-      r_uid: 0,
-      replyUserName: '',
+      toUserName: '',
       to_uid: 0,
       content: '',
       tags: [],
@@ -280,8 +279,7 @@ export const useKUNGalgameTopicStore = defineStore({
     resetReplyDraft() {
       this.replyDraft.textCount = 0
       this.replyDraft.tid = 0
-      this.replyDraft.r_uid = 0
-      this.replyDraft.replyUserName = ''
+      this.replyDraft.toUserName = ''
       this.replyDraft.to_uid = 0
       this.replyDraft.content = ''
       this.replyDraft.tags = []
