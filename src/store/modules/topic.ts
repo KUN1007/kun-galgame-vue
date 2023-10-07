@@ -29,6 +29,7 @@ import {
   updateReplyUpvoteApi,
   updateReplyLikeApi,
   updateReplyDislikeApi,
+  updateReplyApi,
 } from '@/api'
 
 import type {
@@ -42,13 +43,15 @@ import type {
   TopicLikeReplyResponseData,
   TopicDislikeReplyRequestData,
   TopicDislikeReplyResponseData,
+  TopicUpdateReplyRequestData,
+  TopicUpdateReplyResponseData,
 } from '@/api'
 
 // 评论
-import {
-  getCommentsByReplyRidApi,
+import { getCommentsByReplyRidApi, postCommentByPidAndRidApi } from '@/api'
+
+import type {
   TopicCommentResponseData,
-  postCommentByPidAndRidApi,
   TopicCreateCommentRequestData,
   TopicCreateCommentResponseData,
 } from '@/api'
@@ -57,7 +60,7 @@ import {
 import { TopicStore } from '../types/topic'
 
 export const useKUNGalgameTopicStore = defineStore({
-  id: 'topic',
+  id: 'KUNGalgameTopic',
   persist: true,
   state: (): TopicStore => ({
     isEdit: false,
@@ -85,7 +88,6 @@ export const useKUNGalgameTopicStore = defineStore({
       to_floor: 0,
 
       isSaveReply: false,
-      publishStatus: false,
     },
     replyRequest: {
       page: 1,
@@ -93,6 +95,15 @@ export const useKUNGalgameTopicStore = defineStore({
       sortField: 'floor',
       sortOrder: 'asc',
     },
+    replyRewrite: {
+      tid: 0,
+      rid: 0,
+      content: '',
+      tags: [],
+
+      isReplyRewriting: false,
+    },
+
     commentDraft: {
       tid: 0,
       rid: 0,
@@ -189,6 +200,17 @@ export const useKUNGalgameTopicStore = defineStore({
       return await postReplyByPidApi(requestData)
     },
 
+    // 更新回复
+    async updateReply(): Promise<TopicUpdateReplyResponseData> {
+      const requestData: TopicUpdateReplyRequestData = {
+        tid: this.replyRewrite.tid,
+        rid: this.replyRewrite.rid,
+        content: this.replyRewrite.content,
+        tags: this.replyRewrite.tags,
+      }
+      return await updateReplyApi(requestData)
+    },
+
     // 推回复
     async updateReplyUpvote(
       tid: number,
@@ -280,6 +302,16 @@ export const useKUNGalgameTopicStore = defineStore({
       this.commentDraft.content = ''
 
       this.commentDraft.isShowCommentPanelRid = 0
+    },
+    // 重置重新编辑回复数据，用于重新编辑回复
+    resetRewriteTopicData() {
+      this.replyDraft.textCount = 0
+      this.replyRewrite.tid = 0
+      this.replyRewrite.rid = 0
+      this.replyRewrite.content = ''
+      this.replyRewrite.tags = []
+
+      this.replyRewrite.isReplyRewriting = false
     },
   },
 })

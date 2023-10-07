@@ -1,10 +1,8 @@
 <script setup lang="ts">
 // 导入图标
 import { Icon } from '@iconify/vue'
-
 // 导入动画
 import 'animate.css'
-
 // 导入 Vue 异步函数
 import { computed, defineAsyncComponent } from 'vue'
 
@@ -21,14 +19,19 @@ const Tags = defineAsyncComponent(
 // 导入回复按钮
 import ReplyPanelBtn from './ReplyPanelBtn.vue'
 
+// 全局消息组件（底部）
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
+const messageStore = useKUNGalgameMessageStore()
+
 // 使用话题页面的 store
-const { isShowAdvance, isEdit, replyDraft, replyPanelWidth } = storeToRefs(
-  useKUNGalgameTopicStore()
-)
+const { isShowAdvance, isEdit, replyDraft, replyRewrite, replyPanelWidth } =
+  storeToRefs(useKUNGalgameTopicStore())
 
 const position = computed(() => {
   return replyDraft.value.to_floor === 0 ? 'master' : 'reply'
@@ -36,7 +39,18 @@ const position = computed(() => {
 
 const panelWidth = computed(() => `${replyPanelWidth.value}%`)
 
-const handelClosePanel = () => {
+const handelClosePanel = async () => {
+  // 正在重新编辑
+  if (replyRewrite.value.isReplyRewriting) {
+    const res = await messageStore.alert('AlertInfo.edit.closePanel', true)
+    // 这里实现用户的点击确认取消逻辑
+    if (res) {
+      // 清除数据，因为此时该回复已被更新
+      useKUNGalgameTopicStore().resetRewriteTopicData()
+    } else {
+      return
+    }
+  }
   isShowAdvance.value = false
   isEdit.value = false
 }

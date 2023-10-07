@@ -218,6 +218,7 @@ export default {
       rewrite: 'Confirm to Rewrite?',
       rewriteSuccess: 'Rewrite Successfully',
       rewriteCancel: 'Cancel Rewrite',
+      closePanel: 'Confirm closing the panel? Your changes will not be saved.',
       draft: 'The draft has been saved successfully!',
       leave: 'Confirm leaving the page? Your changes will not be saved.',
     },

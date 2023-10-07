@@ -18,7 +18,7 @@ const { isShowHotKeywords, tags, isSaveTopic, topicRewrite } = storeToRefs(
   useKUNGalgameEditStore()
 )
 // 话题界面的 store，用于回复
-const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+const { replyDraft, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
 
 // 根据路由名计算是否展示热门 tags
 const isShowKeywords = computed(() =>
@@ -48,6 +48,13 @@ onBeforeMount(() => {
     selectedTags.value = tags.value
   }
   /**
+   * 编辑器处于重新编辑的编辑界面
+   */
+  // 挂载之前载入重新编辑话题的 tags
+  if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
+    selectedTags.value = topicRewrite.value.tags
+  }
+  /**
    * 编辑器处于回复界面
    */
   // 挂载之前载入回复数据，如果不保存，则不载入（并且当前必须在 topic 界面）
@@ -55,11 +62,10 @@ onBeforeMount(() => {
     selectedTags.value = replyDraft.value.tags
   }
   /**
-   * 编辑器处于重新编辑的编辑界面
+   * 编辑器处于回复的重新编辑界面
    */
-  // 挂载之前载入重新编辑话题的 tags
-  if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
-    selectedTags.value = topicRewrite.value.tags
+  if (replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
+    selectedTags.value = replyRewrite.value.tags
   }
 })
 

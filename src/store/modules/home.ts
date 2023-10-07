@@ -9,7 +9,7 @@ import { HomeTopicRequestData, HomeTopicResponseData } from '@/api/index'
 import { HomeStore } from '../types/home'
 
 export const useKUNGalgameHomeStore = defineStore({
-  id: 'home',
+  id: 'KUNGalgameHome',
   persist: true,
   state: (): HomeStore => ({
     // 搜索框的 store

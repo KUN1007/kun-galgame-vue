@@ -28,6 +28,10 @@ const ReplyPanel = defineAsyncComponent(
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+// 回复发布响应的临时数据
+import { useTempReplyStore } from '@/store/temp/reply'
+// 回复重新编辑响应的临时数据
+import { useTempReplyRewriteStore } from '@/store/temp/replyRewrite'
 import { storeToRefs } from 'pinia'
 
 // 当前的路由
@@ -37,13 +41,16 @@ const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const {
   isShowAdvance,
   isEdit,
-  replyDraft,
   replyRequest,
   commentDraft,
   isScrollToTop,
   isLoading,
   scrollToReplyId,
 } = storeToRefs(useKUNGalgameTopicStore())
+const { tempReply } = storeToRefs(useTempReplyStore())
+const { rid, replyContent, tags, edited } = storeToRefs(
+  useTempReplyRewriteStore()
+)
 
 const tid = computed(() => {
   return Number(route.params.tid)
@@ -72,13 +79,43 @@ const getReplies = async (): Promise<TopicReply[]> => {
 
 // 调用 getReplies 获取回复数据（watch 大法好！），点击排序时获取回复
 watch(
-  () => [
-    replyRequest.value.sortOrder,
-    replyRequest.value.sortField,
-    replyDraft.value.publishStatus,
-  ],
+  () => [replyRequest.value.sortOrder, replyRequest.value.sortField],
   async () => {
     repliesData.value = await getReplies()
+  }
+)
+
+// 用户新发布回复，滚动到这个回复
+watch(
+  () => tempReply.value.rid,
+  async () => {
+    // 新发布的回复加到原来回复的数据中
+    repliesData.value = [...repliesData.value, tempReply.value]
+    // 等待一段时间
+    await new Promise((resolve) => {
+      setTimeout(resolve, 107)
+    })
+    // 滚动到这个回复
+    scrollToReplyId.value = tempReply.value.floor
+    // 最底下的回复，不需要加载了
+    if (repliesData.value.length === tempReply.value.floor) {
+      isLoading.value = false
+    }
+  }
+)
+
+// 用户重新编辑回复
+watch(
+  () => edited.value,
+  () => {
+    // 找到 repliesData 中的数据
+    const reply = repliesData.value.find((reply) => reply.rid === rid.value)
+    // 更新必要的数据
+    if (reply) {
+      reply.content = replyContent.value
+      reply.tags = tags.value
+      reply.edited = edited.value
+    }
   }
 )
 
@@ -193,12 +230,35 @@ const resetPanelStatus = () => {
   commentDraft.value.isShowCommentPanelRid = 0
   isShowAdvance.value = false
   isEdit.value = false
+  // 重置重新编辑回复的数据
+  // useKUNGalgameTopicStore().resetRewriteTopicData()
 }
 
 // 页面离开时关闭回复面板
 onBeforeRouteLeave(() => {
   resetPanelStatus()
 })
+// onBeforeRouteLeave(async (to, from, next) => {
+//   // 如果是正在更新回复
+//   if (replyRewrite.value.isReplyRewriting) {
+//     // 获取用户点击的结果
+//     const res = await useKUNGalgameMessageStore().alert(
+//       'AlertInfo.edit.leave',
+//       true
+//     )
+//     if (res) {
+//       // 重置重新编辑话题的数据
+//       useKUNGalgameEditStore().resetRewriteTopicData()
+//       // 用户确认离开，继续导航
+//       next()
+//     } else {
+//       // 用户取消离开，阻止导航
+//       next(false)
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 // 挂载之前关闭回复面板
 onBeforeMount(() => {

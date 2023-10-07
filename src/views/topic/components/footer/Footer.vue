@@ -1,28 +1,23 @@
 <!-- 话题的底部区域，推话题，回复，点赞等 -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { useRouter } from 'vue-router'
 // 推组件
 import Upvote from './Upvote.vue'
 // 点赞组件
 import Like from './Like.vue'
 // 踩组件
 import Dislike from './Dislike.vue'
+// 重新编辑组件
+import Rewrite from './Rewrite.vue'
 
-// 导入编辑界面的 store
-import { useKUNGalgameEditStore } from '@/store/modules/edit'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 // 导入用户的 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
-// 使用编辑界面的 store
-const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
 // 使用话题页面的 store
 const { isEdit, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
-// 使用路由
-const router = useRouter()
 
 // 接受父组件的传值
 const props = defineProps<{
@@ -52,8 +47,6 @@ const props = defineProps<{
 const currUserUid = useKUNGalgameUserStore().uid
 // 话题 / 回复发布者的 uid
 const masterUid = props.toUid
-// 是否具有重新编辑的权限
-const isShowRewrite = currUserUid === masterUid
 
 // 点击回复打开回复面板
 const handleClickReply = async () => {
@@ -65,22 +58,6 @@ const handleClickReply = async () => {
   replyDraft.value.to_floor = 0
   // 打开回复面板
   isEdit.value = true
-}
-
-// 重新编辑
-const handleClickRewrite = () => {
-  // 保存数据
-  topicRewrite.value.tid = props.info.tid
-  topicRewrite.value.title = props.content.title
-  topicRewrite.value.content = props.content.content
-  topicRewrite.value.tags = props.content.tags
-  topicRewrite.value.category = props.content.category
-
-  // 设置正在重新编辑状态为真
-  topicRewrite.value.isTopicRewriting = true
-
-  // 跳转到编辑界面
-  router.push({ name: 'Edit' })
 }
 </script>
 
@@ -138,9 +115,16 @@ const handleClickRewrite = () => {
       <span class="icon"><Icon icon="ph:user-focus-duotone" /></span>
 
       <!-- 编辑 -->
-      <span v-if="isShowRewrite" @click="handleClickRewrite" class="icon">
-        <Icon icon="line-md:pencil-twotone-alt" />
-      </span>
+      <Rewrite
+        :tid="props.info.tid"
+        :rid="props.info.rid"
+        :uid="currUserUid"
+        :title="props.content.title"
+        :content="props.content.content"
+        :tags="props.content.tags"
+        :category="props.content.category"
+        :to-uid="masterUid"
+      />
 
       <!-- 回复的插槽 -->
 
