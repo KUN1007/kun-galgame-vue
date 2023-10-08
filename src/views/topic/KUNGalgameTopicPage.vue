@@ -12,6 +12,8 @@ import {
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import message from '@/components/alert/Message'
+// 全局消息组件（底部）
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
 import { TopicDetail, TopicReply } from '@/api'
 
@@ -44,6 +46,7 @@ const {
   isShowAdvance,
   isEdit,
   replyRequest,
+  replyRewrite,
   isScrollToTop,
   isLoading,
   scrollToReplyId,
@@ -236,31 +239,27 @@ const resetPanelStatus = () => {
   // useKUNGalgameTopicStore().resetRewriteTopicData()
 }
 
-// 页面离开时关闭回复面板
-onBeforeRouteLeave(() => {
-  resetPanelStatus()
+// 页面离开时关闭回复面板，如果重新编辑回复需要确认离开
+onBeforeRouteLeave(async (to, from, next) => {
+  // 如果是正在更新回复
+  if (replyRewrite.value.isReplyRewriting) {
+    // 获取用户点击的结果
+    const res = await useKUNGalgameMessageStore().alert(
+      'AlertInfo.edit.leave',
+      true
+    )
+    if (res) {
+      resetPanelStatus()
+      // 用户确认离开，继续导航
+      next()
+    } else {
+      // 用户取消离开，阻止导航
+      next(false)
+    }
+  } else {
+    next()
+  }
 })
-// onBeforeRouteLeave(async (to, from, next) => {
-//   // 如果是正在更新回复
-//   if (replyRewrite.value.isReplyRewriting) {
-//     // 获取用户点击的结果
-//     const res = await useKUNGalgameMessageStore().alert(
-//       'AlertInfo.edit.leave',
-//       true
-//     )
-//     if (res) {
-//       // 重置重新编辑话题的数据
-//       useKUNGalgameEditStore().resetRewriteTopicData()
-//       // 用户确认离开，继续导航
-//       next()
-//     } else {
-//       // 用户取消离开，阻止导航
-//       next(false)
-//     }
-//   } else {
-//     next()
-//   }
-// })
 
 // 挂载之前关闭回复面板
 onBeforeMount(() => {

@@ -27,7 +27,7 @@ export interface TopicReply {
   dislikes: number[]
   tags: string[]
   time: number
-  cid: number[]
+  comment: number[]
 }
 
 // 发表回复的请求数据
