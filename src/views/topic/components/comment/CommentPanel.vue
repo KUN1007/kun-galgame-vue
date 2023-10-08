@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 // 全局消息组件（顶部）
 import message from '@/components/alert/Message'
 import { debounce } from '@/utils/debounce'
@@ -10,27 +10,19 @@ import { TopicComment } from '@/api/index'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+// 使用不持久的评论 store
+import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
 
-const { name, uid } = storeToRefs(useKUNGalgameUserStore())
+const { name } = storeToRefs(useKUNGalgameUserStore())
 
-// 定于父组件 props
-const props = defineProps<{
-  tid: number
-  rid: number
-  to_user: {
-    uid: number
-    name: string
-  }
-}>()
+const { tid, rid, toUid, toUsername, content, isShowCommentPanelRid } =
+  storeToRefs(useTempCommentStore())
 
 // 定义父组件 emits
 const emits = defineEmits<{
   getCommentEmits: [newComment: TopicComment]
 }>()
-
-// 使用评论的 store
-const { commentDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 // 评论的内容
 const commentValue = ref('')
@@ -39,32 +31,23 @@ const commentValue = ref('')
 const handleInputComment = () => {
   // 创建一个防抖处理函数
   const debouncedUpdateContent = debounce(() => {
-    commentDraft.value.content = commentValue.value
+    content.value = commentValue.value
   }, 1007)
 
   // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
   debouncedUpdateContent()
 }
 
-// 保存评论信息
-const saveComment = () => {
-  commentDraft.value.tid = props.tid
-  commentDraft.value.rid = props.rid
-  commentDraft.value.c_uid = uid.value
-  commentDraft.value.to_uid = props.to_user.uid
-  commentDraft.value.content = commentValue.value
-}
-
 // 检查评论是否合法
 const isValidComment = () => {
   // 评论内容为空警告
-  if (!commentDraft.value.content.trim()) {
+  if (!content.value.trim()) {
     message('Comment content cannot be empty!', '评论内容不能为空！', 'warn')
     return false
   }
 
   // 评论内容超出限制警告
-  if (commentDraft.value.content.trim().length > 1007) {
+  if (content.value.trim().length > 1007) {
     message(
       'The maximum length for comments should not exceed 1007 characters.',
       '评论最大长度不可超过1007个字符',
@@ -76,45 +59,44 @@ const isValidComment = () => {
   return true
 }
 
-// 挂载时初始化评论信息
-onMounted(() => {
-  // 首先重置评论内容
-  useKUNGalgameTopicStore().resetCommentDraft()
-})
-
 // 发布评论
 const handlePublishComment = async () => {
-  // 保存当前的回复内容
-  saveComment()
-
   if (isValidComment()) {
     // 获取新评论
-    const newComment = (await useKUNGalgameTopicStore().postNewComment()).data
-
-    // 发表完毕还原回复内容
-    useKUNGalgameTopicStore().resetCommentDraft()
+    const newComment = (
+      await useKUNGalgameTopicStore().postNewComment(
+        tid.value,
+        rid.value,
+        toUid.value,
+        content.value
+      )
+    ).data
 
     // 将新的评论内容给父组件
     emits('getCommentEmits', newComment)
 
     // 提醒用户
     message('Comment publish successfully!', '评论发布成功', 'success')
+
+    handleCloseCommentPanel()
+  } else {
+    message('Comment publish failed!', '评论发布失败', 'success')
   }
 }
 
 // 关闭评论面板
 const handleCloseCommentPanel = () => {
-  commentDraft.value.isShowCommentPanelRid = 0
+  isShowCommentPanelRid.value = 0
 }
 </script>
 
 <template>
-  <div class="panel" v-if="commentDraft.isShowCommentPanelRid === rid">
+  <div class="panel">
     <div class="top">
       <div class="title">
         <span>{{ name }}</span>
         <span>{{ $tm('topic.content.comment') }}</span>
-        <span>{{ to_user.name }}</span>
+        <span>{{ toUsername }}</span>
       </div>
       <div class="confirm">
         <button @click="handlePublishComment">

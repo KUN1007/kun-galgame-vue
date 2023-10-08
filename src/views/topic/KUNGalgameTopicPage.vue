@@ -32,6 +32,8 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { useTempReplyStore } from '@/store/temp/reply'
 // 回复重新编辑响应的临时数据
 import { useTempReplyRewriteStore } from '@/store/temp/replyRewrite'
+// 使用不持久的评论 store
+import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
 
 // 当前的路由
@@ -42,7 +44,6 @@ const {
   isShowAdvance,
   isEdit,
   replyRequest,
-  commentDraft,
   isScrollToTop,
   isLoading,
   scrollToReplyId,
@@ -51,6 +52,7 @@ const { tempReply } = storeToRefs(useTempReplyStore())
 const { rid, replyContent, tags, edited } = storeToRefs(
   useTempReplyRewriteStore()
 )
+const { isShowCommentPanelRid } = storeToRefs(useTempCommentStore())
 
 const tid = computed(() => {
   return Number(route.params.tid)
@@ -227,7 +229,7 @@ const topicPageWidth = computed(() => {
 
 // 在页面跳转和刷新时关闭回复面板和评论面板
 const resetPanelStatus = () => {
-  commentDraft.value.isShowCommentPanelRid = 0
+  isShowCommentPanelRid.value = 0
   isShowAdvance.value = false
   isEdit.value = false
   // 重置重新编辑回复的数据

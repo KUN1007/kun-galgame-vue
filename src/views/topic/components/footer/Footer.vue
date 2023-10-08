@@ -105,7 +105,7 @@ const currUserUid = useKUNGalgameUserStore().uid
       <!-- 分享 -->
       <span class="icon"><Icon icon="majesticons:share-line" /></span>
 
-      <!-- 只看 -->
+      <!-- 只看 TODO: -->
       <!-- <span class="icon"><Icon icon="ph:user-focus-duotone" /></span> -->
 
       <!-- 编辑 -->

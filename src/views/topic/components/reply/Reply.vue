@@ -28,9 +28,16 @@ import { TopicReply } from '@/api/index'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+
+// 使用不持久的评论 store
+import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
 
-const { scrollToReplyId, commentDraft } = storeToRefs(useKUNGalgameTopicStore())
+const { scrollToReplyId } = storeToRefs(useKUNGalgameTopicStore())
+
+const { tid, rid, toUid, toUsername, isShowCommentPanelRid } = storeToRefs(
+  useTempCommentStore()
+)
 
 const props = defineProps<{
   repliesData: TopicReply[]
@@ -42,12 +49,21 @@ const replies = computed(() => props.repliesData)
 // 控制面板关闭的值
 const isCommentPanelOpen = ref(false)
 // 切换面板的状态
-const handleClickComment = (rid: number) => {
+const handleClickComment = (
+  topicId: number,
+  replyIid: number,
+  uid: number,
+  name: string
+) => {
   isCommentPanelOpen.value = !isCommentPanelOpen.value
   if (isCommentPanelOpen.value) {
-    commentDraft.value.isShowCommentPanelRid = rid
+    tid.value = topicId
+    rid.value = replyIid
+    toUid.value = uid
+    toUsername.value = name
+    isShowCommentPanelRid.value = replyIid
   } else {
-    commentDraft.value.isShowCommentPanelRid = 0
+    isShowCommentPanelRid.value = 0
   }
 }
 </script>
@@ -132,7 +148,17 @@ const handleClickComment = (rid: number) => {
             :to-floor="reply.floor"
           >
             <template #comment>
-              <span @click="handleClickComment(reply.rid)" class="icon">
+              <span
+                @click="
+                  handleClickComment(
+                    reply.tid,
+                    reply.rid,
+                    reply.r_user.uid,
+                    reply.r_user.name
+                  )
+                "
+                class="icon"
+              >
                 <Icon icon="fa-regular:comment-dots" />
               </span>
             </template>
@@ -273,7 +299,7 @@ const handleClickComment = (rid: number) => {
 
 /* 回复被推的样式 */
 .active-upvote .container {
-  border: 2px solid var(--kungalgame-pink-3);
+  border: 1px solid var(--kungalgame-red-4);
 }
 
 /* 滚动到指定话题激活后的样式 */
