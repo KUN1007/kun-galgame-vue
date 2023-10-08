@@ -32,7 +32,7 @@ const handleInputComment = () => {
   // 创建一个防抖处理函数
   const debouncedUpdateContent = debounce(() => {
     content.value = commentValue.value
-  }, 1007)
+  }, 300)
 
   // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
   debouncedUpdateContent()
@@ -79,8 +79,6 @@ const handlePublishComment = async () => {
     message('Comment publish successfully!', '评论发布成功', 'success')
 
     handleCloseCommentPanel()
-  } else {
-    message('Comment publish failed!', '评论发布失败', 'success')
   }
 }
 

@@ -4,12 +4,19 @@
 <script setup lang="ts">
 import { defineAsyncComponent, onMounted, reactive, ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
+// 异步导入回复面板组件
 const CommentPanel = defineAsyncComponent(() => import('./CommentPanel.vue'))
+// 点赞组件
+import Like from './Like.vue'
+// 点踩组件
+import Dislike from './Dislike.vue'
 
 import { TopicComment } from '@/api/index'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+// 导入用户 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
 // 使用不持久的评论 store
 import { useTempCommentStore } from '@/store/temp/comment'
@@ -31,6 +38,8 @@ const props = defineProps<{
 const tidRef = ref(props.tid)
 const ridRef = ref(props.rid)
 const toUser = ref(props.toUser)
+// 当前用户 uid
+const currentUserUid = useKUNGalgameUserStore().uid
 
 // 响应式
 watch(
@@ -110,15 +119,21 @@ const handleClickComment = (
             <div class="operate">
               <ul>
                 <!-- 点赞 -->
-                <li>
-                  <Icon class="icon" icon="line-md:thumbs-up-twotone" />
-                  {{ comment.likes.length }}
-                </li>
+                <Like
+                  :tid="props.tid"
+                  :cid="comment.cid"
+                  :uid="currentUserUid"
+                  :to-uid="comment.c_user.uid"
+                  :likes="comment.likes"
+                />
                 <!-- 踩 -->
-                <li>
-                  <Icon class="icon" icon="line-md:thumbs-down-twotone" />
-                  {{ comment.dislikes.length }}
-                </li>
+                <Dislike
+                  :tid="props.tid"
+                  :cid="comment.cid"
+                  :uid="currentUserUid"
+                  :to-uid="comment.c_user.uid"
+                  :dislikes="comment.dislikes"
+                />
                 <li
                   @click="
                     handleClickComment(

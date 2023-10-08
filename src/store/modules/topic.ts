@@ -48,10 +48,19 @@ import type {
 } from '@/api'
 
 // 评论
-import { getCommentsByReplyRidApi, postCommentByPidAndRidApi } from '@/api'
+import {
+  getCommentsByReplyRidApi,
+  updateCommentLikeApi,
+  updateCommentDislikeApi,
+  postCommentByPidAndRidApi,
+} from '@/api'
 
 import type {
   TopicCommentResponseData,
+  TopicLikeCommentRequestData,
+  TopicLikeCommentResponseData,
+  TopicDislikeCommentRequestData,
+  TopicDislikeCommentResponseData,
   TopicCreateCommentRequestData,
   TopicCreateCommentResponseData,
 } from '@/api'
@@ -252,6 +261,34 @@ export const useKUNGalgameTopicStore = defineStore({
       rid: number
     ): Promise<TopicCommentResponseData> {
       return await getCommentsByReplyRidApi(tid, rid)
+    },
+
+    // 点赞评论
+    async updateCommentLike(
+      tid: number,
+      cid: number,
+      toUid: number
+    ): Promise<TopicLikeCommentResponseData> {
+      const requestData: TopicLikeCommentRequestData = {
+        tid: tid,
+        cid: cid,
+        to_uid: toUid,
+      }
+      return await updateCommentLikeApi(requestData)
+    },
+
+    // 点踩评论
+    async updateCommentDislike(
+      tid: number,
+      cid: number,
+      toUid: number
+    ): Promise<TopicDislikeCommentResponseData> {
+      const requestData: TopicDislikeCommentRequestData = {
+        tid: tid,
+        cid: cid,
+        to_uid: toUid,
+      }
+      return await updateCommentDislikeApi(requestData)
     },
 
     // 创建一个评论
