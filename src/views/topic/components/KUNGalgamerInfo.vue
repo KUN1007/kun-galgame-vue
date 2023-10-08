@@ -64,9 +64,17 @@ const props = defineProps<{
   .kungalgamer {
     flex-direction: row;
     justify-content: center;
-    margin-top: 27px;
+    margin-top: 17px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--kungalgame-blue-1);
+  }
+  .avatar {
+    /* 图像加载不出来时页面不塌陷 */
+    width: 70px;
+    margin-top: 10px;
+    img {
+      width: 70px;
+    }
   }
   .info {
     margin-left: 50px;

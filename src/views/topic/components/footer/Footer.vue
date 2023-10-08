@@ -13,8 +13,18 @@ import Reply from './Reply.vue'
 // 重新编辑组件
 import Rewrite from './Rewrite.vue'
 
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
+
 // 导入用户的 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+// 导入设置面板 store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+// 使用设置面板的 store
+const settingsStore = useKUNGalgameSettingsStore()
+const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
 
 // 接受父组件的传值
 const props = defineProps<{
@@ -50,6 +60,35 @@ const toUser = computed(() => props.toUser)
  */
 // 当前登录用户的 uid
 const currUserUid = useKUNGalgameUserStore().uid
+
+// 分享
+const handleClickShare = () => {
+  const shareLinkEN = computed(
+    () =>
+      `Share Link from KUN Visual Novel Forum ~~~
+Title: ${props.content.title}
+Link: https://www.kungal.com/topic/${props.info.tid}`
+  )
+
+  const shareLinkCN = computed(
+    () =>
+      `来自鲲 Galgame 论坛的分享链接 ~~~
+标题: ${props.content.title}
+链接: https://www.kungal.com/topic/${props.info.tid}`
+  )
+
+  const shareLink =
+    showKUNGalgameLanguage.value === 'en' ? shareLinkEN : shareLinkCN
+
+  navigator.clipboard
+    .writeText(shareLink.value)
+    .then(() => {
+      message('Share Link copied successfully!', '分享链接复制成功', 'success')
+    })
+    .catch((err) => {
+      message('Share Link copied failed!', '分享链接复制失败!', 'error')
+    })
+}
 </script>
 
 <template>
@@ -103,7 +142,9 @@ const currUserUid = useKUNGalgameUserStore().uid
       />
 
       <!-- 分享 -->
-      <span class="icon"><Icon icon="majesticons:share-line" /></span>
+      <span @click="handleClickShare" class="icon"
+        ><Icon icon="majesticons:share-line"
+      /></span>
 
       <!-- 只看 TODO: -->
       <!-- <span class="icon"><Icon icon="ph:user-focus-duotone" /></span> -->
