@@ -105,6 +105,7 @@ defineProps<{
   .kungalgame-topic-content {
     width: 100%;
     margin-top: 0;
+    padding: 17px 7px;
   }
 }
 </style>

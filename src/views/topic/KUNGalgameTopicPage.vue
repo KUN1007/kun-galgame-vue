@@ -291,8 +291,9 @@ onBeforeMount(() => {
         </Transition>
         <Master v-if="topicData" :topicData="topicData" />
         <Reply
-          v-if="repliesData"
+          v-if="topicData && repliesData"
           :repliesData="repliesData"
+          :title="topicData.title"
           :isExecuteScrollToReplyAnimate="isExecuteScrollToReplyAnimate"
         />
       </div>

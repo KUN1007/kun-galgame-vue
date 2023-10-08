@@ -41,6 +41,7 @@ const { tid, rid, toUid, toUsername, isShowCommentPanelRid } = storeToRefs(
 
 const props = defineProps<{
   repliesData: TopicReply[]
+  title: string
 }>()
 
 // 响应式 props 的值，因为子组件还要用
@@ -104,7 +105,7 @@ const handleClickComment = (
                   <!-- 上部区域的左边 -->
                   <div class="reply">
                     <!-- 跳转到页面中话题的位置 -->
-                    回复给 @
+                    {{ `${$tm('topic.panel.to')} @` }}
                     <span @click="scrollToReplyId = reply.to_floor">
                       {{ reply.to_user.name }}
                     </span>
@@ -136,7 +137,7 @@ const handleClickComment = (
               upvotes: reply.upvotes,
             }"
             :content="{
-              title: '',
+              title: props.title,
               content: reply.content,
               tags: reply.tags,
               category: [],
@@ -320,6 +321,11 @@ const handleClickComment = (
 @media (max-width: 700px) {
   .article {
     flex-direction: column;
+  }
+  .top {
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--kungalgame-blue-1);
   }
 }
 </style>
