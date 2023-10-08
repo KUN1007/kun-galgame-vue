@@ -36,19 +36,6 @@ interface ReplyRequest {
   sortOrder: 'asc' | 'desc'
 }
 
-// 评论的缓存
-interface CommentDraft {
-  // 评论的内容
-  tid: number
-  rid: number
-  c_uid: number
-  to_uid: number
-  content: string
-
-  // 显示哪个评论的评论面板
-  isShowCommentPanelRid: number
-}
-
 // 更新评论的缓存
 interface ReplyRewrite {
   tid: number
@@ -83,7 +70,4 @@ export interface TopicStore {
   replyRequest: ReplyRequest
   // 更新评论的缓存
   replyRewrite: ReplyRewrite
-
-  // 评论的缓存
-  commentDraft: CommentDraft
 }

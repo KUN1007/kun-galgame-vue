@@ -2,7 +2,7 @@
   这是回复话题下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
  -->
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted, reactive, ref, toRaw } from 'vue'
+import { defineAsyncComponent, onMounted, reactive, ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 const CommentPanel = defineAsyncComponent(() => import('./CommentPanel.vue'))
 
@@ -10,8 +10,14 @@ import { TopicComment } from '@/api/index'
 
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+
+// 使用不持久的评论 store
+import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
-const { commentDraft } = storeToRefs(useKUNGalgameTopicStore())
+
+const { tid, rid, toUid, toUsername, isShowCommentPanelRid } = storeToRefs(
+  useTempCommentStore()
+)
 
 const props = defineProps<{
   tid: number
@@ -22,16 +28,25 @@ const props = defineProps<{
   }
 }>()
 
-// 评论的数据
-const commentsData = ref<TopicComment[]>()
-// 评论给谁
-const toUserInfo = reactive({
-  uid: 0,
-  name: '',
-})
+const tidRef = ref(props.tid)
+const ridRef = ref(props.rid)
+const toUser = ref(props.toUser)
 
-const getComments = async (tid: number, rid: number) => {
-  return (await useKUNGalgameTopicStore().getComments(tid, rid)).data
+// 响应式
+watch(
+  () => props.rid,
+  async () => {
+    ridRef.value = props.rid
+    toUser.value = props.toUser
+    commentsData.value = await getComments(tidRef.value, ridRef.value)
+  }
+)
+
+// 评论的数据
+const commentsData = ref<TopicComment[]>([])
+
+const getComments = async (topicId: number, replyId: number) => {
+  return (await useKUNGalgameTopicStore().getComments(topicId, replyId)).data
 }
 
 // 拿到新发布的评论并 push 到原来的数据里，无需重新获取
@@ -40,21 +55,22 @@ const getCommentEmits = (newComment: TopicComment) => {
 }
 
 onMounted(async () => {
-  // 将用户信息给回复面板
-  toUserInfo.name = props.toUser.name
-  toUserInfo.uid = props.toUser.uid
-
-  commentsData.value = await getComments(props.tid, props.rid)
+  commentsData.value = await getComments(tidRef.value, ridRef.value)
 })
 
 // 点击回复
-const handleClickReply = (uid: number, name: string) => {
-  // 将当前回复的信息给回复面板
-  toUserInfo.name = name
-  toUserInfo.uid = uid
-
+const handleClickComment = (
+  topicId: number,
+  replyId: number,
+  uid: number,
+  name: string
+) => {
+  tid.value = topicId
+  rid.value = replyId
+  toUid.value = uid
+  toUsername.value = name
   // 打开回复面板
-  commentDraft.value.isShowCommentPanelRid = props.rid
+  isShowCommentPanelRid.value = ridRef.value
 }
 </script>
 
@@ -64,9 +80,7 @@ const handleClickReply = (uid: number, name: string) => {
     <!-- 评论的弹出面板 -->
     <CommentPanel
       @getCommentEmits="getCommentEmits"
-      :tid="tid"
-      :rid="rid"
-      :to_user="toUserInfo"
+      v-if="isShowCommentPanelRid === ridRef"
     />
 
     <!-- 评论的展示区域 -->
@@ -107,7 +121,12 @@ const handleClickReply = (uid: number, name: string) => {
                 </li>
                 <li
                   @click="
-                    handleClickReply(comment.c_user.uid, comment.c_user.name)
+                    handleClickComment(
+                      comment.tid,
+                      comment.rid,
+                      comment.c_user.uid,
+                      comment.c_user.name
+                    )
                   "
                 >
                   <Icon class="icon" icon="fa-regular:comment-dots" />

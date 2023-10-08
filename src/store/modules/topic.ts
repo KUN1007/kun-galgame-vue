@@ -102,16 +102,6 @@ export const useKUNGalgameTopicStore = defineStore({
 
       isReplyRewriting: false,
     },
-
-    commentDraft: {
-      tid: 0,
-      rid: 0,
-      c_uid: 0,
-      to_uid: 0,
-      content: '',
-
-      isShowCommentPanelRid: 0,
-    },
   }),
   actions: {
     // 左侧相同标签下的其它话题
@@ -265,12 +255,17 @@ export const useKUNGalgameTopicStore = defineStore({
     },
 
     // 创建一个评论
-    async postNewComment(): Promise<TopicCreateCommentResponseData> {
+    async postNewComment(
+      tid: number,
+      rid: number,
+      toUid: number,
+      content: string
+    ): Promise<TopicCreateCommentResponseData> {
       const requestData: TopicCreateCommentRequestData = {
-        tid: this.commentDraft.tid,
-        rid: this.commentDraft.rid,
-        to_uid: this.commentDraft.to_uid,
-        content: this.commentDraft.content,
+        tid: tid,
+        rid: rid,
+        to_uid: toUid,
+        content: content,
       }
       return await postCommentByPidAndRidApi(requestData)
     },
@@ -290,16 +285,6 @@ export const useKUNGalgameTopicStore = defineStore({
     resetPageStatus() {
       this.replyRequest.page = 1
       this.isLoading = true
-    },
-    // 设置评论草稿为原始值，用于评论发布按钮
-    resetCommentDraft() {
-      this.commentDraft.tid = 0
-      this.commentDraft.rid = 0
-      this.commentDraft.c_uid = 0
-      this.commentDraft.to_uid = 0
-      this.commentDraft.content = ''
-
-      this.commentDraft.isShowCommentPanelRid = 0
     },
     // 重置重新编辑回复数据，用于重新编辑回复
     resetRewriteTopicData() {
