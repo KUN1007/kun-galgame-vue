@@ -97,7 +97,9 @@ const loliStatus = computed(() => {
             <!-- 话题状态 -->
             <div class="status">
               <span>{{ `${$tm('topic.content.status')}:` }}</span>
-              <span :class="loliStatus">{{ loliStatus }}</span>
+              <span :class="loliStatus">{{
+                $tm(`topic.content.${loliStatus}`)
+              }}</span>
             </div>
             <Rewrite v-if="edited" :time="edited" />
           </div>

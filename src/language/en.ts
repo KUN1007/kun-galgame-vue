@@ -97,6 +97,9 @@ export default {
     },
     content: {
       status: 'Topic status',
+      featured: 'Featured',
+      normal: 'Normal',
+      banned: 'Banned',
       reply: 'Reply',
       comments: 'Comments',
       comment: 'Commented to',
