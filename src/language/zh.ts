@@ -97,6 +97,9 @@ export default {
     },
     content: {
       status: '话题状态',
+      featured: '被推',
+      normal: '正常',
+      banned: '封禁',
       reply: '回复',
       comments: '评论',
       comment: '评论',
