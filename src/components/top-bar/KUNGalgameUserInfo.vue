@@ -2,6 +2,22 @@
 import { onMounted, ref } from 'vue'
 const container = ref<HTMLElement>()
 
+const emit = defineEmits({
+  close,
+})
+
+// 失去焦点时关闭面板
+const handlePanelBlur = async () => {
+  // 等待一段时间，不然会直接导致面板关闭
+  await new Promise((resolve) => {
+    setTimeout(resolve, 107)
+  })
+  emit('close')
+}
+
+// 退出登录
+const logOut = () => {}
+
 onMounted(() => {
   // 自动获取焦点
   container.value?.focus()
@@ -9,7 +25,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="container" tabindex="-1" class="container">
+  <div ref="container" tabindex="-1" class="container" @blur="handlePanelBlur">
     <span class="triangle1"></span>
     <span class="triangle2"></span>
     <div class="kungalgamer">
