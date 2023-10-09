@@ -160,7 +160,7 @@ const submitAnswer = () => {
             <div v-if="isShowAnswer" class="answer">
               <div>{{ $tm('AlertInfo.capture.hint4') }}</div>
               <a
-                href="http://github.com/KUN1007/kun-galgame-vue"
+                href="https://github.com/KUN1007/kun-galgame-vue/tree/remove-server/src/components/capture"
                 target="_blank"
                 rel="noopener noreferrer"
               >

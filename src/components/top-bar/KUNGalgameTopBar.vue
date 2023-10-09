@@ -97,7 +97,7 @@ onBeforeRouteLeave(() => {
       </div>
       <KUNGalgameUserInfo
         v-if="showKUNGalgameUserPanel"
-        @blur="showKUNGalgameUserPanel = false"
+        @close="showKUNGalgameUserPanel = false"
       />
     </div>
   </div>
