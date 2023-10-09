@@ -16,11 +16,17 @@ const KUNGalgameSettingsPanel = defineAsyncComponent(
   () => import('../setting-panel/KUNGalgameSettingPanel.vue')
 )
 
+// 异步导入点击用户头像的面板
+const KUNGalgameUserInfo = defineAsyncComponent(
+  () => import('./KUNGalgameUserInfo.vue')
+)
+
 // 显示设置面板的状态值
 const showKUNGalgamePanel = ref(false)
-
 // 显示手机模式 hamburger 的状态值
 const showKUNGalgameHamburger = ref(false)
+// 显示点击用户头像面板的状态值
+const showKUNGalgameUserPanel = ref(false)
 
 // 根据导航条的项目个数操作 css 中导航条的宽度，这里必须要这样写，因为用了 css v-bind
 const navItemNum = topBarItem.length
@@ -57,9 +63,9 @@ onBeforeRouteLeave(() => {
       </div>
       <div class="kungalgame">
         <!-- 网站的名字和网站图标 -->
-        <RouterLink to="/kun"
-          ><img src="../../assets/images/favicon.png" alt="KUNgal"
-        /></RouterLink>
+        <RouterLink to="/kun">
+          <img src="@/assets/images/favicon.png" alt="KUNgal" />
+        </RouterLink>
         <RouterLink to="/kun">
           <span>{{ $tm('header.name') }}</span>
         </RouterLink>
@@ -68,9 +74,9 @@ onBeforeRouteLeave(() => {
         <ul>
           <!-- 顶部单个板块 -->
           <li v-for="kun in topBarItem" :key="kun.index">
-            <router-link :to="{ path: kun.router }">{{
-              $tm(`header['${kun.name}']`)
-            }}</router-link>
+            <router-link :to="{ path: kun.router }">
+              {{ $tm(`header['${kun.name}']`) }}
+            </router-link>
           </li>
           <!-- 顶部板块下部的 hover 效果 -->
           <div class="box"></div>
@@ -79,12 +85,20 @@ onBeforeRouteLeave(() => {
     </div>
     <div class="kungalgamer-info">
       <!-- showKUNGalgamePanel 为 store 里的布尔值,其真假控制设置面板的显示与关闭 -->
-      <span @click="showKUNGalgamePanel = !showKUNGalgamePanel"
-        ><Icon icon="uiw:setting-o"
-      /></span>
-      <router-link to="/kungalgamer">
-        <img src="../../assets/images/KUN.jpg" alt="KUN" />
-      </router-link>
+      <span @click="showKUNGalgamePanel = !showKUNGalgamePanel">
+        <Icon icon="uiw:setting-o" />
+      </span>
+      <div class="avatar">
+        <img
+          @click="showKUNGalgameUserPanel = true"
+          src="../../assets/images/KUN.jpg"
+          alt="KUN"
+        />
+      </div>
+      <KUNGalgameUserInfo
+        v-if="showKUNGalgameUserPanel"
+        @blur="showKUNGalgameUserPanel = false"
+      />
     </div>
   </div>
   <div class="settings-panel">
@@ -220,18 +234,22 @@ $navNumber: v-bind(navItemNum);
   display: flex;
   align-items: center;
   margin-right: 50px;
-  img {
-    cursor: pointer;
-    border-radius: 50%;
-    height: 40px;
-    position: relative;
-  }
   > span {
     color: var(--kungalgame-font-color-2);
     font-size: 25px;
     margin-top: 10px;
     margin-right: 30px;
     cursor: pointer;
+  }
+}
+
+.avatar {
+  position: relative;
+  img {
+    cursor: pointer;
+    border-radius: 50%;
+    height: 40px;
+    position: relative;
   }
 }
 
