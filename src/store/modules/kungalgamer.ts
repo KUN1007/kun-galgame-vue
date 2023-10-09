@@ -25,6 +25,7 @@ export const useKUNGalgameUserStore = defineStore({
     uid: 0,
     name: '',
     avatar: '',
+    moemoepoint: 0,
     moemoeAccessToken: '',
   }),
   getters: {},

@@ -23,6 +23,10 @@ export default {
       restore: 'Restore blank background',
       recover: 'Recover all settings to default',
     },
+    user: {
+      profile: 'Profile Page',
+      logout: 'Log out',
+    },
   },
   back: {
     back: 'Back',
@@ -224,6 +228,7 @@ export default {
       closePanel: 'Confirm closing the panel? Your changes will not be saved.',
       draft: 'The draft has been saved successfully!',
       leave: 'Confirm leaving the page? Your changes will not be saved.',
+      logout: 'Are you sure you want to log out?',
     },
     login: {
       invalidUsername:
