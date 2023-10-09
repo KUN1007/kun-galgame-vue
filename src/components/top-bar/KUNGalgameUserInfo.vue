@@ -1,7 +1,19 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-const container = ref<HTMLElement>()
+import { useRouter } from 'vue-router'
+// 全局消息组件（顶部）
+import message from '@/components/alert/Message'
+// 全局消息组件（底部）
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
+// 重置 store
+import { kungalgameStoreReset } from '@/store'
 
+const { uid, name, moemoepoint } = storeToRefs(useKUNGalgameUserStore())
+
+const container = ref<HTMLElement>()
+const router = useRouter()
 const emit = defineEmits({
   close,
 })
@@ -15,8 +27,19 @@ const handlePanelBlur = async () => {
   emit('close')
 }
 
-// 退出登录
-const logOut = () => {}
+// 退出登录，简单起见这里不和后端通信使 token 从 redis 移除了
+const logOut = async () => {
+  // 获取用户点击的结果
+  const res = await useKUNGalgameMessageStore().alert(
+    'AlertInfo.edit.logout',
+    true
+  )
+  if (res) {
+    kungalgameStoreReset()
+    router.push('/login')
+    message('Logout successfully!', '登出成功', 'success')
+  }
+}
 
 onMounted(() => {
   // 自动获取焦点
@@ -30,12 +53,18 @@ onMounted(() => {
     <span class="triangle2"></span>
     <div class="kungalgamer">
       <div class="info">
-        <p>KUN</p>
-        <p>MP: <span>1007</span></p>
+        <p>{{ name }}</p>
+        <p>
+          MP: <span>{{ moemoepoint }}</span>
+        </p>
       </div>
       <div class="func">
-        <span><RouterLink to="/kungalgamer">个人主页</RouterLink></span>
-        <span>退出登录</span>
+        <span>
+          <RouterLink to="/kungalgamer">
+            {{ $tm('header.user.profile') }}
+          </RouterLink>
+        </span>
+        <span @click="logOut">{{ $tm('header.user.logout') }}</span>
       </div>
     </div>
   </div>
@@ -50,6 +79,7 @@ onMounted(() => {
 }
 .triangle1 {
   position: absolute;
+  top: 1px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
@@ -63,7 +93,7 @@ onMounted(() => {
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 17px solid var(--kungalgame-blue-4);
+  border-bottom: 17px solid var(--kungalgame-blue-1);
 }
 .kungalgamer {
   padding: 10px;
@@ -71,6 +101,7 @@ onMounted(() => {
   transform: translateX(-43%);
   width: 130px;
   background-color: var(--kungalgame-white);
+  border: 1px solid var(--kungalgame-blue-1);
   border-radius: 5px;
   position: absolute;
   display: flex;
@@ -108,7 +139,7 @@ onMounted(() => {
       color: var(--kungalgame-blue-5);
     }
     &:hover {
-      background-color: var(--kungalgame-blue-1);
+      background-color: var(--kungalgame-trans-blue-1);
     }
   }
 }

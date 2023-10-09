@@ -23,6 +23,10 @@ export default {
       restore: '恢复空白背景',
       recover: '恢复所有设置为默认',
     },
+    user: {
+      profile: '个人主页',
+      logout: '退出登录',
+    },
   },
   back: {
     back: '返回',
@@ -221,6 +225,7 @@ export default {
       closePanel: '确认关闭面板吗？您的更改将不会被保存',
       draft: '草稿已经保存成功！',
       leave: '确认离开界面吗？您的更改将不会保存',
+      logout: '您确定退出登录吗？',
     },
     login: {
       invalidUsername:

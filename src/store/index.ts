@@ -33,7 +33,7 @@ export function setupPinia(app: App<Element>) {
 }
 
 // 重置所有 store，用于登出
-export function storeReset() {
+export function kungalgameStoreReset() {
   const editStore = useKUNGalgameEditStore()
   const homeStore = useKUNGalgameHomeStore()
   const userStore = useKUNGalgameUserStore()

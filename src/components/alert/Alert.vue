@@ -78,6 +78,7 @@ const handleConfirm = () => {
   height: 30px;
   color: var(--kungalgame-font-color-3);
   cursor: pointer;
+  border-radius: 2px;
   &:nth-child(1) {
     background-color: var(--kungalgame-trans-blue-1);
     border: 1px solid var(--kungalgame-blue-4);
