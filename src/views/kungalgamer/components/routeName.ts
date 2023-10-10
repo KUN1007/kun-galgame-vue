@@ -23,26 +23,26 @@ export const navBarRoute: nav[] = [
   {
     index: 4,
     name: '发的话题',
-    router: 'topic',
+    router: 'published-topic',
   },
   {
     index: 5,
     name: '赞的话题',
-    router: 'topic',
+    router: 'liked-topic',
   },
   {
     index: 6,
     name: '推的话题',
-    router: 'topic',
+    router: 'upvote-topic',
   },
   {
     index: 7,
     name: '发的回复',
-    router: 'topic',
+    router: 'reply',
   },
   {
     index: 8,
     name: '发的评论',
-    router: 'topic',
+    router: 'comment',
   },
 ]

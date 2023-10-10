@@ -7,21 +7,25 @@ import { navBarRoute } from './routeName'
 const uid = computed(() => {
   return parseInt(useRoute().params.uid as string)
 })
+
+const fullPath = computed(() => {
+  return useRoute().fullPath
+})
 </script>
 
 <template>
   <!-- 左侧交互区 -->
   <div class="nav">
-    <!-- 交互区的单个项目 -->
-    <ul>
-      <li v-for="kun in navBarRoute" :key="kun.index">
-        <KeepAlive>
-          <router-link :to="`/kungalgamer/${uid}/${kun.router}`">{{
-            kun.name
-          }}</router-link>
-        </KeepAlive>
-      </li>
-    </ul>
+    <div
+      class="item"
+      v-for="kun in navBarRoute"
+      :key="kun.index"
+      :class="fullPath === `/kungalgamer/${uid}/${kun.router}` ? 'active' : ''"
+    >
+      <router-link :to="`/kungalgamer/${uid}/${kun.router}`">{{
+        kun.name
+      }}</router-link>
+    </div>
   </div>
 </template>
 
@@ -38,27 +42,34 @@ const uid = computed(() => {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  & > ul {
+}
+
+.item {
+  height: 40px;
+  background-color: var(--kungalgame-trans-blue-0);
+  display: flex;
+  transition: all 0.2s;
+  &:hover {
+    background-color: var(--kungalgame-trans-blue-2);
+  }
+  a {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    li {
-      height: 40px;
-      background-color: var(--kungalgame-trans-blue-0);
-      display: flex;
-      &:hover {
-        background-color: var(--kungalgame-trans-red-2);
-        transition: 0.1s;
-      }
-      a {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: var(--kungalgame-blue-4);
-      }
-    }
+    justify-content: center;
+    align-items: center;
+    color: var(--kungalgame-blue-4);
+  }
+}
+
+/* 当前选中 */
+.active {
+  background-color: var(--kungalgame-blue-4);
+  &:hover {
+    background-color: var(--kungalgame-blue-4);
+  }
+  a {
+    color: var(--kungalgame-white);
   }
 }
 </style>
