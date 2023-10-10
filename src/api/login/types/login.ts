@@ -24,6 +24,8 @@ export type LoginResponseData = KUNGalgameResponseData<{
   uid: number
   name: string
   avatar: string
+  moemoepoint: number
+  roles: number
   token: string
 }>
 

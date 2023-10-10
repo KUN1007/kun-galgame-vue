@@ -5,4 +5,5 @@ export interface KUNGalgamerStore {
   avatar: string
   moemoepoint: number
   moemoeAccessToken: string
+  roles: number
 }

@@ -83,9 +83,18 @@ const toggleDislike = async () => {
   if (res.code === 200) {
     isDisliked.value = isPush
     dislikesCount.value += isPush ? 1 : -1
-    message('Dislike successfully!', '点踩成功', 'success')
+
+    if (isPush) {
+      message('Dislike successfully!', '点踩成功！', 'success')
+    } else {
+      message('Cancel dislike successfully!', '取消点踩成功！', 'success')
+    }
   } else {
-    message('Dislike failed!', '点踩失败', 'error')
+    if (isPush) {
+      message('Dislike failed!', '点踩失败！', 'error')
+    } else {
+      message('Cancel dislike failed!', '取消点踩失败！', 'error')
+    }
   }
 }
 
