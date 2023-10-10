@@ -70,7 +70,7 @@ const isValidInput = (): boolean => {
 }
 
 // 处理用户点击登陆时的逻辑
-const handleLogin = () => {
+const handleLogin = async () => {
   // 保证输入格式和人机验证通过才能发送登录请求
   if (!isValidInput()) {
     return
@@ -85,18 +85,17 @@ const handleLogin = () => {
     return
   }
   // 所有的验证都通过了再向后端发送请求
-  useStore.login(loginForm).then((res) => {
-    // 如果请求成功跳转到主页
-    if (res.code === 200) {
-      router.push('/')
-      message(
-        'Login Successfully! Welcome to KUN Visual Novel ~ ',
-        '登陆成功!欢迎来到 鲲 Galgame ~ ',
-        'success',
-        5000
-      )
-    }
-  })
+  const res = await useStore.login(loginForm)
+  // 如果请求成功跳转到主页
+  if (res.code === 200) {
+    router.push('/kun')
+    message(
+      'Login Successfully! Welcome to KUN Visual Novel ~ ',
+      '登陆成功!欢迎来到 鲲 Galgame ~ ',
+      'success',
+      5000
+    )
+  }
 }
 </script>
 

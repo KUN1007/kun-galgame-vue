@@ -6,6 +6,7 @@ import Aside from './components/Aside.vue'
 import { ref, onBeforeMount } from 'vue'
 
 // 在组件中定义响应式的话题数据
+const topics = ref()
 
 // 在组件挂载时调用 fetchTopics 获取话题数据
 onBeforeMount(async () => {

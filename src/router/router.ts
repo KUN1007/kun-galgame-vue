@@ -75,7 +75,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   // KUNGalgame 403 TODO:
   {
     name: '403',
-    path: '/admin',
+    path: '/kungalgame403',
     component: () => import('@/views/403/403.vue'),
     meta: {
       title: '403',

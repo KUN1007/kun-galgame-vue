@@ -2,7 +2,7 @@
 
 <template>
   <!-- 右侧内容区 -->
-  <div class="article">
+  <div class="article" v-permission="{ roles: [2], uid: 1 }">
     <!-- 更改邮箱 -->
     <div class="change-mail change-pwd">
       <form class="mail-form pwd-form">

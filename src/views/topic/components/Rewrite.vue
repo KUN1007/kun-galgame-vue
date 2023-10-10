@@ -10,7 +10,7 @@ import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
 const props = defineProps<{
-  time: number
+  time: number | string
 }>()
 
 // 使用设置面板的 store

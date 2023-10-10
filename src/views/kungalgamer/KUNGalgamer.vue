@@ -42,7 +42,7 @@ onMounted(async () => {
       <!-- 内容区 -->
       <div class="content">
         <NavBar />
-        <RouterView :user="user" />
+        <RouterView v-if="user" :user="user" />
       </div>
     </div>
     <!-- 版权 -->

@@ -7,7 +7,7 @@
     <div class="container">
       <p>404</p>
       <p>您访问了一个不存在的页面</p>
-      <button><router-link to="/">点击返回主页</router-link></button>
+      <button><router-link to="/kun">点击返回主页</router-link></button>
     </div>
   </div>
 </template>
