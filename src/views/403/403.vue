@@ -7,7 +7,7 @@
     <div class="container">
       <p>403</p>
       <p>您没有权限访问该界面</p>
-      <button>点击返回主页</button>
+      <button><router-link to="/kun">点击返回主页</router-link></button>
     </div>
   </div>
 </template>
@@ -50,10 +50,16 @@ button {
   font-size: 17px;
   background-color: var(--kungalgame-trans-blue-1);
   cursor: pointer;
-}
-button:hover {
-  background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-white);
-  transition: 0.2s;
+  transition: all 0.2s;
+  a {
+    transition: color 0.2s;
+    color: var(--kungalgame-blue-4);
+  }
+  &:hover {
+    background-color: var(--kungalgame-blue-4);
+    a {
+      color: var(--kungalgame-white);
+    }
+  }
 }
 </style>

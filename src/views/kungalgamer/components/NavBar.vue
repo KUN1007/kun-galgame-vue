@@ -2,10 +2,13 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { navBarRoute } from './routeName'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+
+const currentUserUid = useKUNGalgameUserStore().uid
 
 // 从路由参数中获取当前的用户 uid
 const uid = computed(() => {
-  return parseInt(useRoute().params.uid as string)
+  return parseInt(useRoute().params.uid as string) | currentUserUid
 })
 
 const fullPath = computed(() => {

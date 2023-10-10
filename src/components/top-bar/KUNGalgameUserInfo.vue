@@ -14,9 +14,11 @@ const { uid, name, moemoepoint } = storeToRefs(useKUNGalgameUserStore())
 
 const container = ref<HTMLElement>()
 const router = useRouter()
-const emit = defineEmits({
-  close,
-})
+const routerRedirectTo = `/kungalgamer/${uid.value}/info`
+
+const emits = defineEmits<{
+  close: []
+}>()
 
 // 失去焦点时关闭面板
 const handlePanelBlur = async () => {
@@ -24,7 +26,7 @@ const handlePanelBlur = async () => {
   await new Promise((resolve) => {
     setTimeout(resolve, 107)
   })
-  emit('close')
+  emits('close')
 }
 
 // 退出登录，简单起见这里不和后端通信使 token 从 redis 移除了
@@ -60,7 +62,7 @@ onMounted(() => {
       </div>
       <div class="func">
         <span>
-          <RouterLink to="/kungalgamer">
+          <RouterLink :to="routerRedirectTo">
             {{ $tm('header.user.profile') }}
           </RouterLink>
         </span>
