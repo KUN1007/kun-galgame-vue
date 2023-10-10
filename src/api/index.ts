@@ -5,7 +5,7 @@
 // 暴露出所有 interface
 export * from './edit/types/edit'
 export * from './home/types/home'
-export * from './kungalgamer/types/kungalgamer'
+export * from './user/types/user'
 export * from './login/types/login'
 export * from './topic/types'
 export * from './update-log/types/updateLog'
@@ -13,7 +13,7 @@ export * from './update-log/types/updateLog'
 // 暴露出所有 api
 export * from './edit'
 export * from './home'
-export * from './kungalgamer'
+export * from './user'
 export * from './login'
 export * from './topic'
 export * from './update-log'

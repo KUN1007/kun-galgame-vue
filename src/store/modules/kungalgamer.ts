@@ -2,17 +2,23 @@
  * 用户的信息存储
  */
 import { defineStore } from 'pinia'
-import {
+
+import type {
   LoginRequestData,
   LoginResponseData,
   RegisterRequestData,
   VerificationCodeMailRequestData,
 } from '@/api'
+
 import {
   postLoginDataApi,
   postRegisterDataApi,
   sendVerificationCodeMailApi,
 } from '@/api'
+
+import type { UserInfoResponseData } from '@/api'
+
+import { getUserByUidApi } from '@/api'
 
 // kungalgame store 类型
 import { KUNGalgamerStore } from '../types/kungalgamer'
@@ -76,6 +82,11 @@ export const useKUNGalgameUserStore = defineStore({
         throw new Error('500 Server ERROR')
       }
       return res
+    },
+
+    // 获取单个用户基本信息
+    async getUser(uid: number): Promise<UserInfoResponseData> {
+      return getUserByUidApi(uid)
     },
   },
 })

@@ -2,8 +2,8 @@ import { fetchPost } from '@/utils/request'
 import type * as Login from './types/login'
 
 const loginURLs = {
-  login: `/login/login`,
-  register: `/login/register`,
+  login: `/user/login`,
+  register: `/user/register`,
   verificationCode: `/auth/email/code`,
   refreshToken: `/auth/token/refresh`,
 }

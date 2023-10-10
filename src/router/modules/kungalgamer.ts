@@ -1,4 +1,6 @@
 import { type RouteRecordRaw } from 'vue-router'
+// 当前用户的信息
+import { currentUserInfo } from '@/utils/getCurrentUserInfo'
 
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
@@ -7,12 +9,14 @@ const kungalgamer: RouteRecordRaw[] = [
   {
     path: '/kungalgamer',
     component: Layout,
-    redirect: '/kungalgamer/kungalgamer/info',
+    // 访问默认跳转到当前用户的主页
+    redirect: `/kungalgamer/${currentUserInfo.uid}/info`,
     children: [
       {
         // 这里的路径之后会改成单个用户的 id
         name: 'KUNGalgamer',
-        path: 'kungalgamer',
+        path: ':uid',
+        redirect: `/kungalgamer/${currentUserInfo.uid}/info`,
         component: () => import('@/views/kungalgamer/KUNGalgamer.vue'),
         meta: {
           permission: 'kungalgamer',

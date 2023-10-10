@@ -1,52 +1,12 @@
 <script setup lang="ts">
-interface nav {
-  index: number
-  name: string
-  router: string
-}
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { navBarRoute } from './routeName'
 
-const navBar: nav[] = [
-  {
-    index: 1,
-    name: '个人信息',
-    router: '/kungalgamer/kungalgamer/info',
-  },
-  {
-    index: 2,
-    name: '信息设置',
-    router: '/kungalgamer/kungalgamer/settings',
-  },
-  {
-    index: 3,
-    name: '邮箱密码',
-    router: '/kungalgamer/kungalgamer/password',
-  },
-  {
-    index: 4,
-    name: '发的话题',
-    router: '/kungalgamer/kungalgamer/topic',
-  },
-  {
-    index: 5,
-    name: '赞的话题',
-    router: '/kungalgamer/kungalgamer/topic',
-  },
-  {
-    index: 6,
-    name: '推的话题',
-    router: '/kungalgamer/kungalgamer/topic',
-  },
-  {
-    index: 7,
-    name: '发的回复',
-    router: '/kungalgamer/kungalgamer/topic',
-  },
-  {
-    index: 8,
-    name: '发的评论',
-    router: '/kungalgamer/kungalgamer/topic',
-  },
-]
+// 从路由参数中获取当前的用户 uid
+const uid = computed(() => {
+  return parseInt(useRoute().params.uid as string)
+})
 </script>
 
 <template>
@@ -54,9 +14,11 @@ const navBar: nav[] = [
   <div class="nav">
     <!-- 交互区的单个项目 -->
     <ul>
-      <li v-for="kun in navBar" :key="kun.index">
+      <li v-for="kun in navBarRoute" :key="kun.index">
         <KeepAlive>
-          <router-link :to="kun.router">{{ kun.name }}</router-link>
+          <router-link :to="`/kungalgamer/${uid}/${kun.router}`">{{
+            kun.name
+          }}</router-link>
         </KeepAlive>
       </li>
     </ul>
