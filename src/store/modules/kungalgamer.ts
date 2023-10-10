@@ -33,14 +33,23 @@ export const useKUNGalgameUserStore = defineStore({
     avatar: '',
     moemoepoint: 0,
     moemoeAccessToken: '',
+    roles: 0,
   }),
   getters: {},
   actions: {
     // 设置用户信息
-    setUserInfo(uid: number, name: string, avatar: string): void {
+    setUserInfo(
+      uid: number,
+      name: string,
+      avatar: string,
+      moemoepoint: number,
+      roles: number
+    ): void {
       this.uid = uid
       this.name = name
       this.avatar = avatar
+      this.moemoepoint = moemoepoint
+      this.roles = roles
     },
     setToken(moemoeAccessToken: string) {
       this.moemoeAccessToken = moemoeAccessToken
@@ -55,7 +64,13 @@ export const useKUNGalgameUserStore = defineStore({
     async login(request: LoginRequestData): Promise<LoginResponseData> {
       const res = await postLoginDataApi(request)
       if (res.code === 200) {
-        this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
+        this.setUserInfo(
+          res.data.uid,
+          res.data.name,
+          res.data.avatar,
+          res.data.moemoepoint,
+          res.data.roles
+        )
         this.setToken(res.data.token)
       } else if (res.code === 500) {
         console.log(res.message)
@@ -74,7 +89,13 @@ export const useKUNGalgameUserStore = defineStore({
       const res = await postRegisterDataApi(request)
 
       if (res.code === 200) {
-        this.setUserInfo(res.data.uid, res.data.name, res.data.avatar)
+        this.setUserInfo(
+          res.data.uid,
+          res.data.name,
+          res.data.avatar,
+          res.data.moemoepoint,
+          res.data.roles
+        )
         this.setToken(res.data.token)
       } else if (res.code === 500) {
         console.log(res.message)

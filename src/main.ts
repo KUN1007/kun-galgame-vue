@@ -8,8 +8,10 @@ import router from './router'
 import i18n from '@/language/i18n'
 // 引入路由守卫
 import { setupRouterGuard } from '@/router/guard'
-// 引入 Pinia
+// 引入 pinia
 import { setupPinia } from '@/store/index'
+// directives
+import { setupKUNGalgameDirectives } from '@/directives'
 // 引入样式
 import '@/styles/index.scss'
 
@@ -20,5 +22,7 @@ const app = createApp(App)
 setupRouterGuard(router)
 // 使用 pinia
 setupPinia(app)
+// 自定义指令
+setupKUNGalgameDirectives(app)
 
 app.use(router).use(i18n).mount('#app')

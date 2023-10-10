@@ -32,7 +32,7 @@ export const useTempReplyStore = defineStore({
       dislikes: [],
       tags: [],
       time: 0,
-      cid: [],
+      comment: [],
     } as TopicReply,
   }),
   getters: {},

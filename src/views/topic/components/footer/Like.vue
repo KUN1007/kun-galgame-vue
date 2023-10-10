@@ -79,9 +79,18 @@ const toggleLike = async () => {
   if (res.code === 200) {
     isLiked.value = isPush
     likesCount.value += isPush ? 1 : -1
-    message('Like successfully!', '点赞成功', 'success')
+
+    if (isPush) {
+      message('Like successfully!', '点赞成功！', 'success')
+    } else {
+      message('Cancel like successfully!', '取消点赞成功！', 'success')
+    }
   } else {
-    message('Like failed!', '点赞失败', 'error')
+    if (isPush) {
+      message('Like failed!', '点赞失败！', 'error')
+    } else {
+      message('Cancel like failed!', '取消点赞失败！', 'error')
+    }
   }
 }
 
