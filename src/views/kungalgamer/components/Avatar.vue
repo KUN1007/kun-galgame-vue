@@ -14,7 +14,7 @@ const handleSubmit = () => {}
     <input
       type="file"
       id="avatar"
-      accept=".jpg, .jpeg, .png"
+      accept=".jpg, .png"
       @change="handleFileChange"
     />
   </div>

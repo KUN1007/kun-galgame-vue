@@ -1,61 +1,29 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 import dayjs from 'dayjs'
 
 import type { UserInfo } from '@/api'
-// 导入用户 store
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
-const user = ref<UserInfo>()
-// 从路由参数中获取当前的用户 uid
-const uid = computed(() => {
-  return parseInt(useRoute().params.uid as string)
-})
-/* 
-  uid: number
-  name: string
-  avatar: string
-  roles: string
-  status: number
-  time: number
-  moemoepoint: number
-  bio: string
-  upvote: number
-  like: number
-  dislike: number
-  daily_topic_count: number
+const props = defineProps<{
+  user: UserInfo
+}>()
 
-  topic: number[]
-  reply: number[]
-  comment: number[] */
-// 获取当前用户信息
-const getUser = async (uid: number) => {
-  const userInfo = await useKUNGalgameUserStore().getUser(uid)
-  return userInfo.data
-}
-
-// 挂载时获取用户信息
-onMounted(async () => {
-  user.value = await getUser(uid.value)
-})
+const user = computed(() => props.user)
 </script>
 
 <template>
   <!-- 右侧内容区 -->
   <div class="article" v-if="user">
     <!-- 用户个人信息 -->
-    <div class="kungalgamer-info">
+    <div class="info">
       <!-- 用户基本信息 -->
-      <div class="kungalgamer-basic">
+      <div class="basic">
         <!-- 用户名 -->
         <span>用户名: {{ user.name }}</span>
         <!-- 萌萌点 -->
         <span>萌萌点: {{ user.moemoepoint }}</span>
         <!-- 注册序号 -->
         <span>注册序号: {{ user.uid }}</span>
-        <!-- 注册时间 -->
-        <span>注册时间: {{ dayjs(user.time).format('YYYY/MM/DD') }}</span>
         <span>角色: {{ user.roles }}</span>
         <span>状态: {{ user.status }}</span>
         <span>被推数: {{ user.upvote }}</span>
@@ -66,14 +34,15 @@ onMounted(async () => {
         <span>发表话题数: {{ user.topic.length }}</span>
         <span>发表回复数: {{ user.reply.length }}</span>
         <span>发表评论数: {{ user.comment.length }}</span>
+
+        <!-- 注册时间 -->
+        <span>注册时间: {{ dayjs(user.time).format('YYYY/MM/DD') }}</span>
       </div>
       <!-- 用户签名 -->
-      <ul class="kungalgamer-sign">
-        <div>
-          <div>签名:</div>
-          <div>{{ user.bio ? user.bio : 'NULL' }}</div>
-        </div>
-      </ul>
+      <div class="bio">
+        <div>签名:</div>
+        <div>{{ user.bio ? user.bio : 'NULL' }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -82,23 +51,40 @@ onMounted(async () => {
 /* 内容区 */
 .article {
   flex-grow: 1;
-  padding: 7px 27px;
+  padding: 7px 0;
 }
 /* 用户个人信息 */
-.kungalgamer-info {
+.info {
   display: flex;
   flex-direction: column;
 }
 /* 用户基本信息 */
-.kungalgamer-basic {
+.basic {
+  font-size: small;
+  place-items: center;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 2fr));
-  grid-template-rows: repeat(5, minmax(0, 30px));
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 2fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--kungalgame-blue-4);
+  span {
+    padding: 5px 7px;
+    &:last-child {
+      grid-column-start: span 3;
+    }
+  }
 }
 /* 用户签名 */
-.kungalgamer-sign {
+.bio {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  div {
+    &:nth-child(1) {
+      margin-bottom: 10px;
+    }
+  }
 }
 </style>

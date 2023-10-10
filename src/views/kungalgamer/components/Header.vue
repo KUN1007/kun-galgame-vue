@@ -1,21 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const props = defineProps<{
+  name?: string
+  moemoepoint?: number
+}>()
+
+const mpWidth = computed(() => {
+  return props.moemoepoint ? `${props.moemoepoint % 100}%` : '0%'
+})
+</script>
 
 <template>
   <!-- 页面头部 -->
   <div class="header">
     <!-- 用户头像 -->
-    <div class="kungalgamer-avatar">
+    <div class="avatar">
       <img src="@/assets/images/KUN.jpg" alt="KUN" />
     </div>
     <!-- 用户名 -->
-    <div class="kungalgamer-name">
-      <span>KUN</span>
+    <div class="name">
+      <span>{{ props.name }}</span>
       <span>KUNGalgame</span>
     </div>
     <!-- 用户萌萌点 -->
     <div class="moemoepoint">
-      <div class="mp-progress"></div>
-      <span>MP: 1007</span>
+      <Transition name="progress">
+        <div class="mp-progress"></div>
+      </Transition>
+      <span>MP: {{ props.moemoepoint }}</span>
     </div>
   </div>
 </template>
@@ -30,8 +43,26 @@
   display: flex;
   flex-direction: column;
 }
+
+/* 用户头像 */
+.avatar {
+  position: absolute;
+  /* 头像的定位 */
+  top: 5px;
+  left: 50px;
+  z-index: 2;
+  img {
+    width: 140px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 2px 4px var(--kungalgame-trans-red-2);
+    &:hover {
+      animation: spin 1s;
+    }
+  }
+}
+
 /* 用户名 */
-.kungalgamer-name {
+.name {
   flex-grow: 2;
   width: 100%;
   /* 头部的颜色 */
@@ -43,7 +74,7 @@
     position: absolute;
     font-size: 22px;
     /* 相对于 header 定位信息 */
-    margin-left: 200px;
+    margin-left: 210px;
     margin-top: 60px;
     z-index: 1;
   }
@@ -57,24 +88,7 @@
     text-shadow: 2px 2px 2px var(--kungalgame-trans-white-5);
   }
 }
-/* 用户头像 */
-.kungalgamer-avatar {
-  position: absolute;
-  /* 头像的定位 */
-  top: 5px;
-  left: 50px;
-  z-index: 2;
-}
-/* 头像图片的属性 */
-.kungalgamer-avatar img {
-  width: 140px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 2px 4px var(--kungalgame-trans-red-2);
-}
-/* 头像的 hover */
-.kungalgamer-avatar img:hover {
-  animation: spin 1s;
-}
+
 @keyframes spin {
   50% {
     transform: rotate(360deg);
@@ -86,6 +100,7 @@
     box-shadow: 0px 0px 2px 7px var(--kungalgame-trans-red-2);
   }
 }
+
 /* 用户萌萌点 */
 .moemoepoint {
   height: 1px;
@@ -98,20 +113,47 @@
   display: flex;
   align-items: center;
   z-index: 1;
+  span {
+    position: absolute;
+    right: 0;
+    font-size: 17px;
+    padding-right: 20px;
+    font-style: italic;
+  }
 }
 /* 用户的萌萌点进度 */
 .mp-progress {
+  transition: width 0.5s;
   height: 100%;
   /* 这个数值会根据用户的萌萌点数增长，引起页面蓝色占比的变化 */
-  width: 77%;
+  width: v-bind(mpWidth);
   background-color: var(--kungalgame-trans-blue-2);
 }
-/* 萌萌点进度提示数字 */
-.moemoepoint span {
-  position: absolute;
-  right: 0;
-  font-size: 17px;
-  padding-right: 20px;
-  font-style: italic;
+
+.progress-enter-active {
+  width: 0;
+}
+
+@media (max-width: 700px) {
+  .header {
+    /* 固定高度 */
+    height: 110px;
+  }
+  .avatar {
+    left: 30px;
+    img {
+      width: 100px;
+    }
+  }
+  .name {
+    span:nth-child(1) {
+      margin-left: 150px;
+      margin-top: 40px;
+    }
+    span:nth-child(2) {
+      bottom: 30%;
+      font-size: 50px;
+    }
+  }
 }
 </style>
