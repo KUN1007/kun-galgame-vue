@@ -7,14 +7,12 @@ const pool: RouteRecordRaw[] = [
   {
     path: '/pool',
     component: Layout,
-    redirect: '/pool/index',
     children: [
       {
         name: 'Pool',
-        path: 'index',
+        path: '',
         component: () => import('@/views/pool/Pool.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '话题池',
         },
       },

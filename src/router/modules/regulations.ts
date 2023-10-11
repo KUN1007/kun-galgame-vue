@@ -7,14 +7,12 @@ const bylaw: RouteRecordRaw[] = [
   {
     path: '/bylaw',
     component: Layout,
-    redirect: '/bylaw/index',
     children: [
       {
         name: 'Bylaw',
-        path: 'index',
+        path: '',
         component: () => import('@/views/bylaw/Bylaw.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '执行条例（试行）',
         },
       },

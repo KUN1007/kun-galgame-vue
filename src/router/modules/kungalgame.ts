@@ -7,14 +7,12 @@ const kungalgame: RouteRecordRaw[] = [
   {
     path: '/kungalgame',
     component: Layout,
-    redirect: '/kungalgame/index',
     children: [
       {
         name: 'KUNGalgame',
-        path: 'index',
+        path: '',
         component: () => import('@/views/kungalgame/KUNGalgame.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '关于我们',
         },
       },

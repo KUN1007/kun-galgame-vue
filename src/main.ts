@@ -11,7 +11,7 @@ import { setupRouterGuard } from '@/router/guard'
 // 引入 pinia
 import { setupPinia } from '@/store/index'
 // directives
-import { setupKUNGalgameDirectives } from '@/directives'
+// import { setupKUNGalgameDirectives } from '@/directives'
 // 引入样式
 import '@/styles/index.scss'
 
@@ -23,6 +23,6 @@ setupRouterGuard(router)
 // 使用 pinia
 setupPinia(app)
 // 自定义指令
-setupKUNGalgameDirectives(app)
+// setupKUNGalgameDirectives(app)
 
 app.use(router).use(i18n).mount('#app')

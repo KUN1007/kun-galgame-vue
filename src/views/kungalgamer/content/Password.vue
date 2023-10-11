@@ -1,8 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { UserInfo } from '@/api'
+
+const props = defineProps<{
+  user: UserInfo
+}>()
+</script>
 
 <template>
   <!-- 右侧内容区 -->
-  <div class="article" v-permission="{ roles: [2], uid: 1 }">
+  <div class="article">
     <!-- 更改邮箱 -->
     <div class="change-mail change-pwd">
       <form class="mail-form pwd-form">

@@ -7,14 +7,12 @@ const technique: RouteRecordRaw[] = [
   {
     path: '/technique',
     component: Layout,
-    redirect: '/technique/index',
     children: [
       {
         name: 'Technique',
-        path: 'index',
+        path: '',
         component: () => import('@/views/technique/Technique.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '技术交流',
         },
       },
