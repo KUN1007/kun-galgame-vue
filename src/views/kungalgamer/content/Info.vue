@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick } from 'vue'
+import { computed } from 'vue'
 import dayjs from 'dayjs'
 
 import type { UserInfo } from '@/api'

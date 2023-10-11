@@ -7,14 +7,12 @@ const updateLog: RouteRecordRaw[] = [
   {
     path: '/update-log',
     component: Layout,
-    redirect: '/update-log/index',
     children: [
       {
         name: 'UpdateLog',
-        path: 'index',
+        path: '',
         component: () => import('@/views/update-log/UpdateLog.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '更新日志',
         },
       },

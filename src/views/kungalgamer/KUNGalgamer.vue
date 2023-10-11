@@ -41,7 +41,7 @@ onMounted(async () => {
       <Header :name="user?.name" :moemoepoint="user?.moemoepoint" />
       <!-- 内容区 -->
       <div class="content">
-        <NavBar />
+        <NavBar :uid="uid" />
         <RouterView v-if="user" :user="user" />
       </div>
     </div>

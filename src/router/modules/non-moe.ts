@@ -7,14 +7,12 @@ const nonMoe: RouteRecordRaw[] = [
   {
     path: '/non-moe',
     component: Layout,
-    redirect: '/non-moe/index',
     children: [
       {
         name: 'NonMoe',
-        path: 'index',
+        path: '',
         component: () => import('@/views/non-moe/NonMoe.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '不萌萌',
         },
       },

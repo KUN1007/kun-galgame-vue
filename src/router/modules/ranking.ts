@@ -7,14 +7,12 @@ const ranking: RouteRecordRaw[] = [
   {
     path: '/ranking',
     component: Layout,
-    redirect: '/ranking/index',
     children: [
       {
         name: 'Ranking',
-        path: 'index',
+        path: '',
         component: () => import('@/views/ranking/Ranking.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '排行榜',
         },
       },

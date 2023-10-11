@@ -1,43 +1,64 @@
 import type { Directive, DirectiveBinding } from 'vue'
 import message from '@/components/alert/Message'
 import { currentUserInfo } from '@/utils/getCurrentUserInfo'
-// 导入路由
 import router from '@/router'
+
+// 当前用户 uid
+const currentUserUid = currentUserInfo.uid
+// 当前用户 roles
 const currentUserRoles = currentUserInfo.roles
 
+// 用户权限，游客 0，用户 1，管理员 2，超级管理员 3，用户自己 4
+enum UserRole {
+  Guest = 0,
+  User = 1,
+  Admin = 2,
+  SuperAdmin = 3,
+  Self = 4,
+}
+
+/**
+ * @roles 可以访问该资源的用户类型
+ * @uid 需要鉴权的用户 id
+ */
 interface BindingProps {
-  roles: number[]
+  roles: UserRole[]
   uid?: number
 }
 
-// 鉴权
+const handleUnauthorizedAccess = (element: HTMLElement) => {
+  element.parentNode?.removeChild(element)
+
+  message(
+    'You do not have sufficient permissions!',
+    '您没有足够的权限！',
+    'error',
+    5000
+  )
+  router.push('/kungalgame403')
+}
+
 export const permission: Directive = {
   mounted(element: HTMLElement, binding: DirectiveBinding<BindingProps>) {
-    // 获取传过来的角色要求
-    const roles = binding.value.roles
-    // 路由 meta 中的 permission
-    const currentUserUid = binding.value?.uid
-
-    if (currentUserInfo.uid === currentUserUid) {
-      roles.push(4)
-    }
+    const roles = [...binding.value.roles]
+    const uid = binding.value.uid
 
     const hasPermission = () => {
-      return roles.some((number) => number === currentUserUid || number === 4)
+      // 用户自己
+      if (uid === currentUserUid) {
+        return true
+      }
+
+      // 用户有访问权限
+      if (roles.includes(currentUserRoles)) {
+        return true
+      }
+
+      return false
     }
 
-    // 用户的角色，游客：0，普通用户：1，管理员：2，超级管理员：3，用户自己本人：4
     if (!hasPermission()) {
-      // 将页面删除
-      element.parentNode?.removeChild(element)
-
-      message(
-        'You do not have sufficient permissions!',
-        '您没有足够的权限！',
-        'error',
-        5000
-      )
-      router.push('/kungalgame403')
+      handleUnauthorizedAccess(element)
     }
   },
 }

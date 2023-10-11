@@ -18,7 +18,6 @@ const topic: RouteRecordRaw[] = [
         props: true,
         meta: {
           transition: 'animate__fadeIn animate__faster',
-          permission: 'kungalgamer',
           title: '话题',
         },
       },

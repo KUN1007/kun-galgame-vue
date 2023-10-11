@@ -1,33 +1,47 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { navBarRoute } from './routeName'
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
-const currentUserUid = useKUNGalgameUserStore().uid
+// 根据 uid 获取当前用户的权限
+import { getCurrentUserRole } from '@/utils/getCurrentUserRole'
 
-// 从路由参数中获取当前的用户 uid
-const uid = computed(() => {
-  return parseInt(useRoute().params.uid as string) | currentUserUid
-})
+const props = defineProps<{
+  uid: number
+}>()
 
-const fullPath = computed(() => {
-  return useRoute().fullPath
+// 当前页面的 uid
+const currentPageUid = ref(0)
+// 是否展示 nav item，其它用户访问主页时
+const isShowNavItem = (permission: number[]) =>
+  permission.includes(getCurrentUserRole(currentPageUid.value))
+
+// 点击样式激活
+const activeClass = (currentPageUid: number, routeName: string) => {
+  return useRoute().fullPath === `/kungalgamer/${currentPageUid}/${routeName}`
+    ? 'active'
+    : ''
+}
+
+onMounted(() => {
+  currentPageUid.value = props.uid
 })
 </script>
 
 <template>
   <!-- 左侧交互区 -->
   <div class="nav">
+    <!-- 这里 v-for 不能和 v-if 一起用 -->
     <div
       class="item"
       v-for="kun in navBarRoute"
       :key="kun.index"
-      :class="fullPath === `/kungalgamer/${uid}/${kun.router}` ? 'active' : ''"
+      :class="activeClass(currentPageUid, kun.router)"
+      v-show="isShowNavItem(kun.permission)"
     >
-      <router-link :to="`/kungalgamer/${uid}/${kun.router}`">{{
-        kun.name
-      }}</router-link>
+      <router-link :to="`/kungalgamer/${currentPageUid}/${kun.router}`">
+        {{ kun.name }}
+      </router-link>
     </div>
   </div>
 </template>

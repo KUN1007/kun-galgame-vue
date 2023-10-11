@@ -7,14 +7,12 @@ const edit: RouteRecordRaw[] = [
   {
     path: '/edit',
     component: Layout,
-    redirect: '/edit/index',
     children: [
       {
         name: 'Edit',
-        path: 'index',
+        path: '',
         component: () => import('@/views/edit/Edit.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '编辑',
         },
       },

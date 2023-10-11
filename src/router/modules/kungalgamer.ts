@@ -4,6 +4,7 @@ import { currentUserInfo } from '@/utils/getCurrentUserInfo'
 
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
+// 用户权限，游客 0，用户 1，管理员 2，超级管理员 3，用户自己 4
 const kungalgamer: RouteRecordRaw[] = [
   // KUNGalgame 用户页
   {
@@ -13,23 +14,16 @@ const kungalgamer: RouteRecordRaw[] = [
     redirect: `/kungalgamer/${currentUserInfo.uid}/info`,
     children: [
       {
-        // 这里的路径之后会改成单个用户的 id
-        name: currentUserInfo.uid,
         path: ':uid',
         redirect: `/kungalgamer/${currentUserInfo.uid}/info`,
         component: () => import('@/views/kungalgamer/KUNGalgamer.vue'),
-        meta: {
-          permission: 'kungalgamer',
-          title: '用户页',
-        },
         children: [
           {
             name: 'KUNGalgamerInfo',
             path: 'info',
             component: () => import('@/views/kungalgamer/content/Info.vue'),
             meta: {
-              title: 'KUN | Info',
-              permission: 'kun',
+              title: 'Info',
             },
           },
           {
@@ -37,8 +31,8 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'settings',
             component: () => import('@/views/kungalgamer/content/Settings.vue'),
             meta: {
-              title: 'KUN | Settings',
-              permission: 'kun',
+              title: 'Settings',
+              permission: [4],
             },
           },
           {
@@ -46,8 +40,8 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'password',
             component: () => import('@/views/kungalgamer/content/Password.vue'),
             meta: {
-              title: 'KUN | Password',
-              permission: 'kun',
+              title: 'Password',
+              permission: [4],
             },
           },
           {
@@ -56,8 +50,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'published-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'KUN | Topic',
-              permission: 'kun',
+              title: 'PublishedTopic',
             },
           },
           {
@@ -66,8 +59,8 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'liked-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'KUN | Topic',
-              permission: 'kun',
+              title: 'LikedTopic',
+              permission: [2, 3, 4],
             },
           },
           {
@@ -76,8 +69,8 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'upvote-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'KUN | Topic',
-              permission: 'kun',
+              title: 'UpvoteTopic',
+              permission: [2, 3, 4],
             },
           },
           {
@@ -86,8 +79,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'reply',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'KUN | Topic',
-              permission: 'kun',
+              title: 'Reply',
             },
           },
           {
@@ -96,8 +88,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'comment',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'KUN | Topic',
-              permission: 'kun',
+              title: 'Comment',
             },
           },
         ],

@@ -7,14 +7,12 @@ const balance: RouteRecordRaw[] = [
   {
     path: '/balance',
     component: Layout,
-    redirect: '/balance/index',
     children: [
       {
         name: 'Balance',
-        path: 'index',
+        path: '',
         component: () => import('@/views/balance/Balance.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '收支公示',
         },
       },

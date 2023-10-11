@@ -7,14 +7,12 @@ const thanksList: RouteRecordRaw[] = [
   {
     path: '/thanks-list',
     component: Layout,
-    redirect: '/thanks-list/index',
     children: [
       {
         name: 'ThanksList',
-        path: 'index',
+        path: '',
         component: () => import('@/views/thanks-list/ThanksList.vue'),
         meta: {
-          permission: 'kungalgamer',
           title: '感谢名单',
         },
       },
