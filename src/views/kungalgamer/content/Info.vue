@@ -9,6 +9,33 @@ const props = defineProps<{
 }>()
 
 const user = computed(() => props.user)
+
+// 角色名
+const rolesName = () => {
+  const roles = props.user.roles
+  if (roles === 1) {
+    return 'user'
+  }
+  if (roles === 2) {
+    return 'admin'
+  }
+  if (roles === 3) {
+    return 'SU'
+  }
+  return ''
+}
+
+// 状态名
+const statusName = () => {
+  const status = props.user.status
+  if (status === 0) {
+    return 'normal'
+  }
+  if (status === 1) {
+    return 'banned'
+  }
+  return ''
+}
 </script>
 
 <template>
@@ -24,16 +51,16 @@ const user = computed(() => props.user)
         <span>萌萌点: {{ user.moemoepoint }}</span>
         <!-- 注册序号 -->
         <span>注册序号: {{ user.uid }}</span>
-        <span>角色: {{ user.roles }}</span>
-        <span>状态: {{ user.status }}</span>
+        <span>角色: {{ rolesName() }}</span>
+        <span>状态: {{ statusName() }}</span>
         <span>被推数: {{ user.upvote }}</span>
         <span>被赞数: {{ user.like }}</span>
         <span>被踩数: {{ user.dislike }}</span>
         <span>今日发表: {{ user.daily_topic_count }}</span>
 
-        <span>发表话题数: {{ user.topic.length }}</span>
-        <span>发表回复数: {{ user.reply.length }}</span>
-        <span>发表评论数: {{ user.comment.length }}</span>
+        <span>话题数: {{ user.topic.length }}</span>
+        <span>回复数: {{ user.reply.length }}</span>
+        <span>评论数: {{ user.comment.length }}</span>
 
         <!-- 注册时间 -->
         <span>注册时间: {{ dayjs(user.time).format('YYYY/MM/DD') }}</span>

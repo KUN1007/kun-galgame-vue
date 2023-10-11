@@ -2,7 +2,7 @@ export interface UserInfo {
   uid: number
   name: string
   avatar: string
-  roles: string
+  roles: number
   status: number
   time: number
   moemoepoint: number
@@ -17,4 +17,11 @@ export interface UserInfo {
   comment: number[]
 }
 
+export interface UserUpdateBioRequestData {
+  uid: number
+  bio: string
+}
+
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
+
+export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
