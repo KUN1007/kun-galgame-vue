@@ -141,6 +141,11 @@ onMounted(() => {
     align-items: center;
     border-radius: 5px;
     a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       color: var(--kungalgame-blue-5);
     }
     &:hover {
