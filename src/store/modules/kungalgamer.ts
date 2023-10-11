@@ -16,9 +16,13 @@ import {
   sendVerificationCodeMailApi,
 } from '@/api'
 
-import type { UserInfoResponseData } from '@/api'
+import type {
+  UserInfoResponseData,
+  UserUpdateBioRequestData,
+  UserUpdateBioResponseData,
+} from '@/api'
 
-import { getUserByUidApi } from '@/api'
+import { getUserByUidApi, updateUserBioApi } from '@/api'
 
 // kungalgame store 类型
 import { KUNGalgamerStore } from '../types/kungalgamer'
@@ -108,6 +112,18 @@ export const useKUNGalgameUserStore = defineStore({
     // 获取单个用户基本信息
     async getUser(uid: number): Promise<UserInfoResponseData> {
       return getUserByUidApi(uid)
+    },
+
+    // 更新用户 bio
+    async updateBio(
+      uid: number,
+      bio: string
+    ): Promise<UserUpdateBioResponseData> {
+      const request: UserUpdateBioRequestData = {
+        uid,
+        bio,
+      }
+      return updateUserBioApi(request)
     },
   },
 })
