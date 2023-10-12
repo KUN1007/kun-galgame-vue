@@ -30,6 +30,13 @@ export interface UserUpdateEmailRequestData {
   code: string
 }
 
+// 用户更新密码
+export interface UserUpdatePasswordRequestData {
+  uid: number
+  oldPassword: string
+  newPassword: string
+}
+
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
 
 export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
@@ -41,3 +48,5 @@ export type UserGetUserEmailResponseData = KUNGalgameResponseData<{
 export type UserGetEmailRestCodeResponseData = KUNGalgameResponseData<{}>
 
 export type UserUpdateEmailResponseData = KUNGalgameResponseData<{}>
+
+export type UserUpdatePasswordResponseData = KUNGalgameResponseData<{}>

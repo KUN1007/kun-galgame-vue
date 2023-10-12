@@ -53,7 +53,18 @@ export async function getUserResetEmailCodeApi(
 export async function updateUserEmailApi(
   request: User.UserUpdateEmailRequestData
 ): Promise<User.UserUpdateEmailResponseData> {
-  const url = `/user/:uid/email`
+  const url = `/user/${request.uid}/email`
+
+  const response = fetchPut<User.UserUpdateEmailResponseData>(url, request)
+
+  return response
+}
+
+// 更新密码
+export async function updateUserPasswordApi(
+  request: User.UserUpdatePasswordRequestData
+): Promise<User.UserUpdatePasswordResponseData> {
+  const url = `/user/${request.uid}/password`
 
   const response = fetchPut<User.UserUpdateEmailResponseData>(url, request)
 
