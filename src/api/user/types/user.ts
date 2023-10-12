@@ -52,6 +52,19 @@ export interface UserGetUserTopicRequestData {
   tidArray: number[]
 }
 
+// 发布评论返回数据
+export interface UserReply {
+  tid: number
+  content: string
+  time: number
+}
+
+// 获取用户发布的回复
+export interface UserGetUserReplyRequestData {
+  uid: number
+  ridArray: number[]
+}
+
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
 
 export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
@@ -67,3 +80,5 @@ export type UserUpdateEmailResponseData = KUNGalgameResponseData<{}>
 export type UserUpdatePasswordResponseData = KUNGalgameResponseData<{}>
 
 export type UserGetUserTopicResponseData = KUNGalgameResponseData<UserTopic[]>
+
+export type UserGetUserReplyResponseData = KUNGalgameResponseData<UserReply[]>

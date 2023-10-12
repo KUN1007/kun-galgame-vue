@@ -78,9 +78,21 @@ export async function getUserTopicApi(
   request: User.UserGetUserTopicRequestData
 ): Promise<User.UserGetUserTopicResponseData> {
   const queryParams = objectToQueryParams(request, 'uid')
-  const url = `/user/${request.uid}/published-topic?${queryParams}`
+  const url = `/user/${request.uid}/topics?${queryParams}`
 
   const response = fetchGet<User.UserGetUserTopicResponseData>(url)
+
+  return response
+}
+
+// 获取用户回复
+export async function getUserReplyApi(
+  request: User.UserGetUserReplyRequestData
+): Promise<User.UserGetUserReplyResponseData> {
+  const queryParams = objectToQueryParams(request, 'uid')
+  const url = `/user/${request.uid}/replies?${queryParams}`
+
+  const response = fetchGet<User.UserGetUserReplyResponseData>(url)
 
   return response
 }

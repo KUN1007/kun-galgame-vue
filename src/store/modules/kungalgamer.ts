@@ -28,6 +28,8 @@ import type {
   UserUpdatePasswordResponseData,
   UserGetUserTopicRequestData,
   UserGetUserTopicResponseData,
+  UserGetUserReplyRequestData,
+  UserGetUserReplyResponseData,
 } from '@/api'
 
 import {
@@ -38,6 +40,7 @@ import {
   updateUserEmailApi,
   updateUserPasswordApi,
   getUserTopicApi,
+  getUserReplyApi,
 } from '@/api'
 
 // kungalgame store 类型
@@ -181,13 +184,24 @@ export const useKUNGalgameUserStore = defineStore({
       return updateUserPasswordApi(requestData)
     },
 
-    // 获取用户发布的话题
-    async getTopic(tidArray: number[]): Promise<UserGetUserTopicResponseData> {
+    // 获取用户的话题
+    async getTopics(tidArray: number[]): Promise<UserGetUserTopicResponseData> {
       const requestData: UserGetUserTopicRequestData = {
         uid: this.uid,
         tidArray: tidArray,
       }
       return getUserTopicApi(requestData)
+    },
+
+    // 获取用户回复
+    async getReplies(
+      ridArray: number[]
+    ): Promise<UserGetUserReplyResponseData> {
+      const requestData: UserGetUserReplyRequestData = {
+        uid: this.uid,
+        ridArray: ridArray,
+      }
+      return getUserReplyApi(requestData)
     },
   },
 })
