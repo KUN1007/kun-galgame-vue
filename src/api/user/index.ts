@@ -20,3 +20,10 @@ export async function updateUserBioApi(request: User.UserUpdateBioRequestData) {
   const response = await fetchPut<User.UserUpdateBioResponseData>(url, request)
   return response
 }
+
+// 获取用户邮箱
+export async function getUserEmailApi(uid: number) {
+  const url = `/user/${uid}/email`
+  const response = await fetchGet<User.UserGetUserEmailResponseData>(url)
+  return response
+}

@@ -25,3 +25,7 @@ export interface UserUpdateBioRequestData {
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
 
 export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
+
+export type UserGetUserEmailResponseData = KUNGalgameResponseData<{
+  email: string
+}>
