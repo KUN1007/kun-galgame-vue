@@ -17,9 +17,17 @@ export interface UserInfo {
   comment: number[]
 }
 
+// 用户更新签名
 export interface UserUpdateBioRequestData {
   uid: number
   bio: string
+}
+
+// 用户更新邮箱
+export interface UserUpdateEmailRequestData {
+  uid: number
+  email: string
+  code: string
 }
 
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
@@ -29,3 +37,7 @@ export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
 export type UserGetUserEmailResponseData = KUNGalgameResponseData<{
   email: string
 }>
+
+export type UserGetEmailRestCodeResponseData = KUNGalgameResponseData<{}>
+
+export type UserUpdateEmailResponseData = KUNGalgameResponseData<{}>
