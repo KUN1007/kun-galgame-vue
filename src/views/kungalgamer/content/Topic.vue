@@ -1,11 +1,46 @@
 <script setup lang="ts">
-import SingleTopic from '../components/SingleTopic.vue'
+import { computed, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import type { UserInfo, UserTopic } from '@/api'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import dayjs from 'dayjs'
+
+const props = defineProps<{
+  user: UserInfo
+}>()
+
+const route = useRoute()
+const topics = ref<UserTopic[]>([])
+
+const tidArray = computed(() => {
+  if (route.name === 'KUNGalgamerPublishedTopic') {
+    return props.user.topic
+  }
+  if (route.name === 'KUNGalgamerLikedTopic') {
+    return props.user.like_topic
+  }
+  if (route.name === 'KUNGalgamerUpvoteTopic') {
+    return props.user.upvote_topic
+  }
+  return []
+})
+
+onMounted(async () => {
+  const response = await useKUNGalgameUserStore().getTopic(tidArray.value)
+  topics.value = response.data
+})
 </script>
 
 <template>
   <!-- 右侧内容区 -->
   <div class="article">
-    <SingleTopic />
+    <!-- 单个项目 -->
+    <div class="topic" v-for="(topic, index) in topics" :key="index">
+      <div class="topic-title">
+        {{ topic.title }}
+      </div>
+      <div class="topic-time">{{ dayjs(topic.time).format('YYYY/MM/DD') }}</div>
+    </div>
   </div>
 </template>
 
@@ -32,5 +67,34 @@ import SingleTopic from '../components/SingleTopic.vue'
   /* 兼容火狐 */
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
+}
+
+/* 单个话题的样式 */
+.topic {
+  width: 100%;
+  /* 单个话题高度 */
+  height: 30px;
+  /* 话题之间的距离 */
+  padding: 2px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--kungalgame-blue-1);
+  box-sizing: border-box;
+  border-left: 2px solid var(--kungalgame-blue-4);
+  cursor: pointer;
+}
+.topic:hover {
+  border-bottom: 1px solid var(--kungalgame-blue-4);
+  background-color: var(--kungalgame-trans-blue-1);
+}
+/* 单个话题的标题 */
+.topic-title {
+  /* 单行显示，溢出省略号 */
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

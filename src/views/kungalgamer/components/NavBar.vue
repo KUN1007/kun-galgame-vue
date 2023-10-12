@@ -40,7 +40,7 @@ onMounted(() => {
       v-show="isShowNavItem(kun.permission)"
     >
       <router-link :to="`/kungalgamer/${currentPageUid}/${kun.router}`">
-        {{ kun.name }}
+        <span>{{ kun.name }}</span>
       </router-link>
     </div>
   </div>
@@ -92,7 +92,7 @@ onMounted(() => {
 
 @media (max-width: 700px) {
   .nav {
-    width: 60px;
+    width: 70px;
     font-size: small;
   }
 }
