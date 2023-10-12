@@ -108,5 +108,8 @@ onActivated(() => {
 .disabled {
   cursor: not-allowed;
   color: var(--kungalgame-font-color-0);
+  input {
+    cursor: not-allowed;
+  }
 }
 </style>
