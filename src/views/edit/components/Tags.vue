@@ -280,7 +280,6 @@ onMounted(async () => {
   /* 输入标签的字体 */
   font-size: 17px;
   flex-grow: 1;
-  box-sizing: border-box;
   border: none;
   padding: 7px;
   display: flex;

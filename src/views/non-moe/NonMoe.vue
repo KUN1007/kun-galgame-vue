@@ -88,7 +88,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   /* y 轴溢出滚动 */
   overflow-y: scroll;
   padding: 0 10px;
-  box-sizing: border-box;
   &::-webkit-scrollbar {
     display: inline;
     width: 4px;

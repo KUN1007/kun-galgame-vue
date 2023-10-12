@@ -46,7 +46,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   background-color: var(--kungalgame-trans-blue-0);
   box-shadow: var(--kungalgame-shadow-0);
   padding: 20px;
-  box-sizing: border-box;
   position: relative;
   border-radius: 7px;
 }

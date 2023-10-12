@@ -90,7 +90,6 @@ const handleBackToTop = () => {
       display: flex;
       align-items: center;
       position: relative;
-      box-sizing: border-box;
       /* 页面变化时不换行 */
       overflow: hidden;
       white-space: nowrap;

@@ -34,7 +34,6 @@ defineProps<{
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  box-sizing: border-box;
   color: var(--kungalgame-font-color-3);
   margin-right: 5px;
 }

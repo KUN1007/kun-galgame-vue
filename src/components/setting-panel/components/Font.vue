@@ -81,7 +81,6 @@ const handleSetFont = () => {
     padding: 0 10px;
     height: 25px;
     width: 70px;
-    box-sizing: border-box;
     color: var(--kungalgame-font-color-3);
     border: 1px solid var(--kungalgame-blue-4);
     border-left: none;

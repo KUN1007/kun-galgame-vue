@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import type { UserInfo, UserTopic, UserReply } from '@/api'
+import type { UserInfo, UserTopic, UserReply, UserComment } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import dayjs from 'dayjs'
 import { getPlainText } from '@/utils/getPlainText'
@@ -13,6 +13,7 @@ const props = defineProps<{
 const route = useRoute()
 const topics = ref<UserTopic[]>([])
 const replies = ref<UserReply[]>([])
+const comments = ref<UserComment[]>([])
 
 const tidArray = computed(() => {
   if (route.name === 'KUNGalgamerPublishedTopic') {
@@ -34,6 +35,13 @@ const ridArray = computed(() => {
   return []
 })
 
+const cidArray = computed(() => {
+  if (route.name === 'KUNGalgamerComment') {
+    return props.user.comment
+  }
+  return []
+})
+
 onMounted(async () => {
   // 如果有话题的话获取话题
   if (tidArray.value.length) {
@@ -45,6 +53,11 @@ onMounted(async () => {
     const response = await useKUNGalgameUserStore().getReplies(ridArray.value)
     replies.value = response.data
   }
+  // 如果有评论的话获取评论
+  if (cidArray.value.length) {
+    const response = await useKUNGalgameUserStore().getComments(cidArray.value)
+    comments.value = response.data
+  }
 })
 </script>
 
@@ -54,24 +67,39 @@ onMounted(async () => {
     <!-- 如果是话题 -->
     <div class="topic" v-if="tidArray.length">
       <div class="item" v-for="(topic, index) in topics" :key="index">
-        <div class="title">
-          {{ topic.title }}
-        </div>
-        <div class="time">
-          {{ dayjs(topic.time).format('YYYY/MM/DD') }}
-        </div>
+        <RouterLink :to="`/topic/${topic.tid}`">
+          <div class="title">
+            {{ topic.title }}
+          </div>
+          <div class="time">
+            {{ dayjs(topic.time).format('YYYY/MM/DD') }}
+          </div>
+        </RouterLink>
       </div>
     </div>
 
     <!-- 如果是回复 -->
-    <div class="topic" v-if="ridArray.length">
+    <div class="reply" v-if="ridArray.length">
       <div class="item" v-for="(reply, index) in replies" :key="index">
-        <div class="title">
-          {{ getPlainText(reply.content) }}
-        </div>
-        <div class="time">
-          {{ dayjs(reply.time).format('YYYY/MM/DD') }}
-        </div>
+        <RouterLink :to="`/topic/${reply.tid}`">
+          <div class="title">
+            {{ getPlainText(reply.content) }}
+          </div>
+          <div class="time">
+            {{ dayjs(reply.time).format('YYYY/MM/DD') }}
+          </div>
+        </RouterLink>
+      </div>
+    </div>
+
+    <!-- 如果是评论 -->
+    <div class="comment" v-if="cidArray.length">
+      <div class="item" v-for="(comment, index) in comments" :key="index">
+        <RouterLink :to="`/topic/${comment.tid}`">
+          <div class="title">
+            {{ comment.content }}
+          </div>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -103,24 +131,41 @@ onMounted(async () => {
 
 /* 单个话题的样式 */
 .item {
+  transition: all 0.2s;
   width: 100%;
   /* 单个话题高度 */
   height: 30px;
   /* 话题之间的距离 */
   padding: 2px 5px;
   margin: 5px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid var(--kungalgame-blue-1);
-  box-sizing: border-box;
-  border-left: 2px solid var(--kungalgame-blue-4);
+  border-left: 2px  solid var(--kungalgame-blue-4);
   cursor: pointer;
+  a {
+    height: 100%;
+    color: var(--kungalgame-font-color-3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &:hover {
+    border-bottom: 1px solid var(--kungalgame-blue-4);
+    background-color: var(--kungalgame-trans-blue-1);
+  }
 }
-.item:hover {
-  border-bottom: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-1);
+
+.reply,
+.comment {
+  .item {
+    border-bottom: 1px solid var(--kungalgame-red-1);
+    border-left: 2px solid var(--kungalgame-red-3);
+    &:hover {
+      border-bottom: 1px solid var(--kungalgame-red-3);
+      background-color: var(--kungalgame-trans-red-1);
+    }
+  }
 }
+
 /* 单个话题的标题 */
 .title {
   /* 单行显示，溢出省略号 */
@@ -128,5 +173,11 @@ onMounted(async () => {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+@media (max-width: 700px) {
+  .article {
+    padding: 7px 17px;
+  }
 }
 </style>

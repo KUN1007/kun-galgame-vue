@@ -154,7 +154,6 @@ const loliStatus = computed(() => {
   border-radius: 5px;
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-5);
-  box-sizing: border-box;
   transition: all 0.5s;
 }
 
@@ -169,7 +168,6 @@ const loliStatus = computed(() => {
   color: var(--kungalgame-font-color-3);
   font-size: 17px;
   border-bottom: 1px solid var(--kungalgame-blue-1);
-  box-sizing: border-box;
 }
 /* 楼主话题标题 */
 .title {
@@ -194,7 +192,6 @@ const loliStatus = computed(() => {
   justify-content: space-between;
   /* 下面的分割线 */
   border-bottom: 1px solid var(--kungalgame-blue-1);
-  box-sizing: border-box;
   flex-grow: 1;
 }
 
@@ -203,7 +200,6 @@ const loliStatus = computed(() => {
   width: 100%;
   display: flex;
   border-bottom: 1px solid var(--kungalgame-blue-1);
-  box-sizing: border-box;
 }
 
 /* 内容区的底部 */

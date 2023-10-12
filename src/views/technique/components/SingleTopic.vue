@@ -49,7 +49,6 @@ const props = defineProps(['data'])
   display: inline-block;
   /* 隐藏 hover 的颜色露出 */
   overflow: hidden;
-  box-sizing: border-box;
   max-width: 350px;
 }
 /* 单个话题 hover */

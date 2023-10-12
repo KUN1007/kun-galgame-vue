@@ -46,7 +46,6 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
   height: 100%;
   background-color: var(--kungalgame-trans-white-5);
   border: 1px solid var(--kungalgame-trans-blue-4);
-  box-sizing: border-box;
   border-radius: 5px;
 }
 /* 侧边栏容器，调透明色用 */
@@ -78,7 +77,6 @@ import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
 .search {
   background-color: var(--kungalgame-trans-blue-2);
   display: flex;
-  box-sizing: border-box;
 }
 /* 推荐标签 */
 .recommend {

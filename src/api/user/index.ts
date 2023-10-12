@@ -96,3 +96,15 @@ export async function getUserReplyApi(
 
   return response
 }
+
+// 获取用户评论
+export async function getUserCommentApi(
+  request: User.UserGetUserCommentRequestData
+): Promise<User.UserGetUserCommentResponseData> {
+  const queryParams = objectToQueryParams(request, 'uid')
+  const url = `/user/${request.uid}/comments?${queryParams}`
+
+  const response = fetchGet<User.UserGetUserCommentResponseData>(url)
+
+  return response
+}

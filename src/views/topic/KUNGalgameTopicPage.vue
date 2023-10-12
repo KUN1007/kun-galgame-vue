@@ -325,7 +325,6 @@ onBeforeMount(() => {
   /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;
-  box-sizing: border-box;
   overflow: hidden;
 }
 

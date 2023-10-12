@@ -76,7 +76,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 /* 内容区 */
 .article {
   padding: 20px;
-  box-sizing: border-box;
 }
 /* 单个项目之间的距离 */
 .list > li {

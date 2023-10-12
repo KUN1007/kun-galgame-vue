@@ -108,8 +108,6 @@ const mpWidth = computed(() => {
   /* 分割线 */
   border-top: 2px solid var(--kungalgame-blue-4);
   border-bottom: 1px solid var(--kungalgame-blue-4);
-  /* 内 border 盒子 */
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   z-index: 1;

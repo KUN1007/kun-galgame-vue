@@ -39,7 +39,7 @@ export interface UserUpdatePasswordRequestData {
   newPassword: string
 }
 
-// 发布的话题返回数据
+// 获取用户的话题返回数据
 export interface UserTopic {
   tid: number
   title: string
@@ -52,7 +52,7 @@ export interface UserGetUserTopicRequestData {
   tidArray: number[]
 }
 
-// 发布评论返回数据
+// 获取用户发布回复返回数据
 export interface UserReply {
   tid: number
   content: string
@@ -63,6 +63,18 @@ export interface UserReply {
 export interface UserGetUserReplyRequestData {
   uid: number
   ridArray: number[]
+}
+
+// 获取用户发布评论返回数据
+export interface UserComment {
+  tid: number
+  content: string
+}
+
+// 获取用户发布的回复
+export interface UserGetUserCommentRequestData {
+  uid: number
+  cidArray: number[]
 }
 
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
@@ -82,3 +94,7 @@ export type UserUpdatePasswordResponseData = KUNGalgameResponseData<{}>
 export type UserGetUserTopicResponseData = KUNGalgameResponseData<UserTopic[]>
 
 export type UserGetUserReplyResponseData = KUNGalgameResponseData<UserReply[]>
+
+export type UserGetUserCommentResponseData = KUNGalgameResponseData<
+  UserComment[]
+>
