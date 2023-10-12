@@ -89,4 +89,11 @@ onMounted(() => {
     color: var(--kungalgame-white);
   }
 }
+
+@media (max-width: 700px) {
+  .nav {
+    width: 60px;
+    font-size: small;
+  }
+}
 </style>

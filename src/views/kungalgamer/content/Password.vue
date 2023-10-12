@@ -141,16 +141,16 @@ onMounted(async () => {
     <div class="password">
       <div class="title">更改密码:</div>
       <div class="input">
-        <span>请输入您的旧密码: </span
-        ><input v-model="input.oldPassword" type="password" />
+        <span>请输入您的旧密码: </span>
+        <input v-model="input.oldPassword" type="password" />
       </div>
       <div class="input">
-        <span>请输入您的新密码: </span
-        ><input v-model="input.newPassword" type="password" />
+        <span>请输入您的新密码: </span>
+        <input v-model="input.newPassword" type="password" />
       </div>
       <div class="input">
-        <span>请再次输入新密码: </span
-        ><input v-model="input.repeatPassword" type="password" />
+        <span>请再次输入新密码: </span>
+        <input v-model="input.repeatPassword" type="password" />
       </div>
 
       <div class="btn">
@@ -219,6 +219,20 @@ onMounted(async () => {
     }
     &:active {
       transform: scale(0.9);
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .article {
+    font-size: small;
+  }
+  .title {
+    font-size: medium;
+  }
+  .input {
+    span {
+      margin-right: 5px;
     }
   }
 }
