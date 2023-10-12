@@ -98,8 +98,12 @@ const handleChangeAvatar = () => {
 
       <!-- 帮助区域 -->
       <div class="help">
-        <p>拖拽图片到方框内或点击方框上传</p>
-        <div>支持 1007KB 以内的图片，支持 jpg 和 png 格式</div>
+        <p class="hint">拖拽图片到方框内或点击方框上传</p>
+        <div class="support">
+          <span>支持 1007KB 以内的图片</span>
+          <br />
+          <span>支持 jpg 和 png 格式</span>
+        </div>
         <button @click="handleChangeAvatar">确定更改</button>
       </div>
     </div>
@@ -200,6 +204,19 @@ const handleChangeAvatar = () => {
     &:active {
       transform: scale(0.9);
     }
+  }
+}
+.support {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 700px) {
+  .help {
+    padding: 0 10px;
+  }
+  .hint {
+    display: none;
   }
 }
 </style>
