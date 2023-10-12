@@ -1,4 +1,6 @@
 import { fetchGet, fetchPut, fetchPost } from '@/utils/request'
+// 将对象转为请求参数的函数
+import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as User from './types/user'
 
 // 获取单个用户信息
@@ -67,6 +69,18 @@ export async function updateUserPasswordApi(
   const url = `/user/${request.uid}/password`
 
   const response = fetchPut<User.UserUpdateEmailResponseData>(url, request)
+
+  return response
+}
+
+// 获取用户话题，发布的，点赞的，推的
+export async function getUserTopicApi(
+  request: User.UserGetUserTopicRequestData
+): Promise<User.UserGetUserTopicResponseData> {
+  const queryParams = objectToQueryParams(request, 'uid')
+  const url = `/user/${request.uid}/published-topic?${queryParams}`
+
+  const response = fetchGet<User.UserGetUserTopicResponseData>(url)
 
   return response
 }
