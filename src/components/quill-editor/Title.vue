@@ -96,8 +96,6 @@ const handelInput = () => {
   color: var(--kungalgame-font-color-2);
   /* 距离外轮廓的距离 */
   padding: 7px;
-  /* 内边距盒子 */
-  box-sizing: border-box;
   width: 100%;
   /* 标题输入字体大小 */
   font-size: 40px;

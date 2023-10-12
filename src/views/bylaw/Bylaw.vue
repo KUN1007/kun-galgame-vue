@@ -134,7 +134,6 @@ const bylawPageWidth = computed(() => {
   padding: 10px;
   border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
-  box-sizing: border-box;
   background-color: var(--kungalgame-trans-white-2);
   box-shadow: var(--shadow);
 }

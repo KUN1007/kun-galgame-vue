@@ -56,7 +56,6 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   align-items: center;
   color: var(--kungalgame-font-color-3);
   padding: 20px;
-  box-sizing: border-box;
 }
 /* 内容区容器 hover */
 .container:hover {

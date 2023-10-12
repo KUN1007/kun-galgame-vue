@@ -162,7 +162,6 @@ const handleDeleteHistory = (historyIndex: number) => {
   /* 相对于二级菜单定位 */
   position: relative;
   display: flex;
-  box-sizing: border-box;
   color: var(--kungalgame-font-color-3);
 }
 /* 搜索框表单 */
@@ -206,8 +205,6 @@ const handleDeleteHistory = (historyIndex: number) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 内边距盒子 */
-  box-sizing: border-box;
   font-size: 18px;
   cursor: pointer;
   transition: all 0.2s;

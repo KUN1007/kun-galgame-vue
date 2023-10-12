@@ -238,7 +238,6 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
     height: 0;
     top: 0;
     left: 0;
-    box-sizing: border-box;
     border: 2px solid transparent;
   }
   &:hover {

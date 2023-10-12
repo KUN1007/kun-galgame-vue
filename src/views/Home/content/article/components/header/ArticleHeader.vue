@@ -51,7 +51,6 @@ const category = ['Galgame']
   border-radius: 0 5px 0 0;
   cursor: pointer;
   border-left: 1px solid var(--kungalgame-trans-blue-4);
-  box-sizing: border-box;
   color: var(--kungalgame-font-color-3);
 }
 .more:hover {

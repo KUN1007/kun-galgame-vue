@@ -125,7 +125,6 @@ const thanksListPageWidth = computed(() => {
   background-color: var(--kungalgame-trans-white-5);
   backdrop-filter: blur(17px);
   padding: 20px;
-  box-sizing: border-box;
 }
 /* 页面标题 */
 .title {

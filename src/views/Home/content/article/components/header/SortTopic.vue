@@ -96,7 +96,6 @@ const isSortField = () => {
   border-radius: 5px 0 0 0;
   position: relative;
   border-right: 1px solid var(--kungalgame-trans-blue-4);
-  box-sizing: border-box;
   cursor: pointer;
 }
 .container:hover {

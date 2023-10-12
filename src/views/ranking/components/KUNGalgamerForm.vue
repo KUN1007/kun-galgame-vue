@@ -32,7 +32,6 @@ import KUNgalgamer from './KUNGalgamer.vue'
 .kungalgamer-ranking {
   width: 50%;
   border-right: 1px solid var(--kungalgame-blue-4);
-  box-sizing: border-box;
 }
 /* 用户排行标题 */
 .kungalgamer-title {

@@ -30,6 +30,8 @@ import type {
   UserGetUserTopicResponseData,
   UserGetUserReplyRequestData,
   UserGetUserReplyResponseData,
+  UserGetUserCommentRequestData,
+  UserGetUserCommentResponseData,
 } from '@/api'
 
 import {
@@ -41,6 +43,7 @@ import {
   updateUserPasswordApi,
   getUserTopicApi,
   getUserReplyApi,
+  getUserCommentApi,
 } from '@/api'
 
 // kungalgame store 类型
@@ -202,6 +205,17 @@ export const useKUNGalgameUserStore = defineStore({
         ridArray: ridArray,
       }
       return getUserReplyApi(requestData)
+    },
+
+    // 获取用户评论
+    async getComments(
+      cidArray: number[]
+    ): Promise<UserGetUserCommentResponseData> {
+      const requestData: UserGetUserCommentRequestData = {
+        uid: this.uid,
+        cidArray: cidArray,
+      }
+      return getUserCommentApi(requestData)
     },
   },
 })

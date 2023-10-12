@@ -89,8 +89,6 @@ onMounted(async () => {
     align-items: center;
     /* 设置左侧的 border 方便制作 hover */
     border-left: 4px solid transparent;
-    /* 内边距盒子 */
-    box-sizing: border-box;
     &:hover {
       border-left: 4px solid var(--kungalgame-pink-3);
       background-color: var(--kungalgame-trans-blue-1);
