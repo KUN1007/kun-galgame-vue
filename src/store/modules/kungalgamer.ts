@@ -21,9 +21,18 @@ import type {
   UserUpdateBioRequestData,
   UserUpdateBioResponseData,
   UserGetUserEmailResponseData,
+  UserGetEmailRestCodeResponseData,
+  UserUpdateEmailRequestData,
+  UserUpdateEmailResponseData,
 } from '@/api'
 
-import { getUserByUidApi, updateUserBioApi, getUserEmailApi } from '@/api'
+import {
+  getUserByUidApi,
+  updateUserBioApi,
+  getUserEmailApi,
+  getUserResetEmailCodeApi,
+  updateUserEmailApi,
+} from '@/api'
 
 // kungalgame store 类型
 import { KUNGalgamerStore } from '../types/kungalgamer'
@@ -131,6 +140,26 @@ export const useKUNGalgameUserStore = defineStore({
     async getEmail(): Promise<UserGetUserEmailResponseData> {
       const uid = this.uid
       return getUserEmailApi(uid)
+    },
+
+    // 获取重置邮箱验证码
+    async getResetEmailCode(
+      email: string
+    ): Promise<UserGetEmailRestCodeResponseData> {
+      return getUserResetEmailCodeApi(email)
+    },
+
+    // 更新邮箱
+    async updateEmail(
+      email: string,
+      code: string
+    ): Promise<UserUpdateEmailResponseData> {
+      const requestData: UserUpdateEmailRequestData = {
+        uid: this.uid,
+        email: email,
+        code: code,
+      }
+      return updateUserEmailApi(requestData)
     },
   },
 })

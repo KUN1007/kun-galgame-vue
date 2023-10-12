@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import type { UserInfo } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import Message from '@/components/alert/Message'
+import { checkSendCode, checkResetEmail } from '../utils/check'
 
 const props = defineProps<{
   user: UserInfo
@@ -10,6 +11,56 @@ const props = defineProps<{
 
 // 当前用户的邮箱
 const email = ref('')
+// 用户的新邮箱
+const newEmail = ref('')
+// 验证码
+const code = ref('')
+// 已经发送验证码的邮箱
+const hasSentCodeEmail = ref('')
+
+// 发送邮箱验证码
+const handleSendCode = async () => {
+  // 检查必要信息
+  if (!checkSendCode(newEmail.value)) {
+    return
+  }
+
+  hasSentCodeEmail.value = newEmail.value
+  const res = await useKUNGalgameUserStore().getResetEmailCode(newEmail.value)
+
+  if (res.code === 200) {
+    Message(
+      'Reset email verification code send successfully!',
+      '重置邮箱验证码发送成功！',
+      'success'
+    )
+  } else {
+    Message(
+      'Reset email verification code send failed!',
+      '重置邮箱验证码发送失败！',
+      'error'
+    )
+  }
+}
+
+// 更改邮箱
+const handleResetEmail = async () => {
+  // 检查必要信息
+  if (!checkResetEmail(hasSentCodeEmail.value, newEmail.value, code.value)) {
+    return
+  }
+
+  const res = await useKUNGalgameUserStore().updateEmail(
+    hasSentCodeEmail.value,
+    code.value
+  )
+
+  if (res.code === 200) {
+    Message('Email change successfully!', '邮箱更改成功', 'success')
+  } else {
+    Message('Email change failed!', '邮箱更改失败', 'error')
+  }
+}
 
 onMounted(async () => {
   const response = await useKUNGalgameUserStore().getEmail()
@@ -30,14 +81,15 @@ onMounted(async () => {
       <div class="title">更改邮箱:</div>
       <div class="current-email">您当前的邮箱是: {{ email }}</div>
       <div class="input">
-        <span>请输入您的新邮箱: </span><input type="text" />
+        <span>请输入您的新邮箱: </span><input v-model="newEmail" type="text" />
       </div>
       <div class="input">
-        <span>请输入您的验证码: </span><input type="text" />
+        <span>请输入您的验证码: </span><input v-model="code" type="text" />
       </div>
 
       <div class="btn">
-        <button>发送验证码</button> <button>确定更改邮箱</button>
+        <button @click="handleSendCode">发送验证码</button>
+        <button @click="handleResetEmail">确定更改邮箱</button>
       </div>
     </div>
     <!-- 用户更改密码 -->
@@ -53,7 +105,9 @@ onMounted(async () => {
         <span>请再次输入新密码: </span><input type="password" />
       </div>
 
-      <div class="btn"><button>确定更改密码</button></div>
+      <div class="btn">
+        <button>确定更改密码</button>
+      </div>
     </div>
   </div>
 </template>

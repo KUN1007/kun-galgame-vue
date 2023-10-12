@@ -117,7 +117,11 @@ const handleRegister = () => {
   }
 
   if (!isValidMailConfirmCode(registerForm.code)) {
-    message('Invalid email verification code.', '邮箱验证码错误！', 'warn')
+    message(
+      'Invalid email verification code format!',
+      '非法的邮箱验证码格式！',
+      'warn'
+    )
     return
   }
 
