@@ -1,34 +1,46 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import type { UserInfo } from '@/api'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import Message from '@/components/alert/Message'
 
 const props = defineProps<{
   user: UserInfo
 }>()
+
+// 当前用户的邮箱
+const email = ref('')
+
+onMounted(async () => {
+  const response = await useKUNGalgameUserStore().getEmail()
+
+  if (response.code === 200) {
+    email.value = response.data.email
+  } else {
+    Message('Get email failed!', '获取邮箱失败！', 'error')
+  }
+})
 </script>
 
 <template>
   <!-- 右侧内容区 -->
   <div class="article">
     <!-- 更改邮箱 -->
-    <div class="change-mail change-pwd">
-      <form class="mail-form pwd-form">
-        <div>你当前的邮箱是: kun@kungalgame.com</div>
-        <div>更改邮箱:</div>
-        <div>请输入你的新邮箱: <input type="text" /></div>
-        <button>点击发送邮箱验证码</button>
-        <div>请输入你的验证码: <input type="text" /></div>
-        <button>确定更改邮箱</button>
-      </form>
+    <div class="email">
+      <div>你当前的邮箱是: {{ email }}</div>
+      <div>更改邮箱:</div>
+      <div>请输入你的新邮箱: <input type="text" /></div>
+      <button>点击发送邮箱验证码</button>
+      <div>请输入你的验证码: <input type="text" /></div>
+      <button>确定更改邮箱</button>
     </div>
     <!-- 用户更改密码 -->
-    <div class="change-pwd">
-      <form class="pwd-form">
-        <div>更改密码:</div>
-        <div>请输入你的旧密码: <input type="password" /></div>
-        <div>请输入你的新密码: <input type="password" /></div>
-        <div>请再次输入新密码: <input type="password" /></div>
-        <button>确定更改密码</button>
-      </form>
+    <div class="password">
+      <div>更改密码:</div>
+      <div>请输入你的旧密码: <input type="password" /></div>
+      <div>请输入你的新密码: <input type="password" /></div>
+      <div>请再次输入新密码: <input type="password" /></div>
+      <button>确定更改密码</button>
     </div>
   </div>
 </template>
@@ -36,48 +48,11 @@ const props = defineProps<{
 <style lang="scss" scoped>
 /* 内容区 */
 .article {
-  flex-grow: 1;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-/* 更改按钮距离签名的距离 */
-.change-pwd > div {
-  margin-top: 30px;
-}
-/* 密码信息 */
-.pwd-form > div {
-  margin-bottom: 7px;
-}
-/* 密码输入框 */
-.pwd-form input {
-  height: 16px;
-  padding: 2px;
-  border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-white-5);
-}
-.pwd-form input:focus {
-  box-shadow: 0px 0px 3px var(--kungalgame-blue-4);
-}
-/* 更改密码 button */
-.pwd-form button {
-  width: 304px;
-  border: 1px solid var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-0);
-  cursor: pointer;
-}
-.pwd-form button:hover {
-  background-color: var(--kungalgame-trans-red-4);
-}
-.pwd-form button:active {
-  background-color: var(--kungalgame-trans-red-0);
-}
-/* 更改邮箱 */
-.change-mail {
-  margin-bottom: 27px;
-}
-.mail-form button {
-  margin-bottom: 10px;
 }
 </style>

@@ -20,9 +20,10 @@ import type {
   UserInfoResponseData,
   UserUpdateBioRequestData,
   UserUpdateBioResponseData,
+  UserGetUserEmailResponseData,
 } from '@/api'
 
-import { getUserByUidApi, updateUserBioApi } from '@/api'
+import { getUserByUidApi, updateUserBioApi, getUserEmailApi } from '@/api'
 
 // kungalgame store 类型
 import { KUNGalgamerStore } from '../types/kungalgamer'
@@ -124,6 +125,12 @@ export const useKUNGalgameUserStore = defineStore({
         bio,
       }
       return updateUserBioApi(request)
+    },
+
+    // 获取用户邮箱
+    async getEmail(): Promise<UserGetUserEmailResponseData> {
+      const uid = this.uid
+      return getUserEmailApi(uid)
     },
   },
 })
