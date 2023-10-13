@@ -40,13 +40,15 @@ const isEmptyInput = (): boolean => {
     // 提示用户输入的名字为空
     message('Username cannot be empty', '用户名不可为空', 'warn')
     return false
-  } else if (!loginForm.password.trim()) {
+  }
+
+  if (!loginForm.password.trim()) {
     // 提示用户输入的密码为空
     message('Password cannot be empty', '密码不可为空', 'warn')
     return false
-  } else {
-    return true
   }
+
+  return true
 }
 
 // 判断输入的用户名和密码字段是否合法
