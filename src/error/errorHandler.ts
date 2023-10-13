@@ -1,12 +1,12 @@
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 import { getErrorMessageEN, getErrorMessageCN } from './errorI18n'
 
 const showMessage = (errorCode: number) => {
   const messageType = 'error'
   const messageTextEN = getErrorMessageEN(errorCode)
   const messageTextCN = getErrorMessageCN(errorCode)
-  message(messageTextEN, messageTextCN, messageType)
+  Message(messageTextEN, messageTextCN, messageType)
 }
 
 /**

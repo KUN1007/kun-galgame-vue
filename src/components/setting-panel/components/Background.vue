@@ -7,7 +7,7 @@ import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 
 import backgroundImages from './background'
 
@@ -45,7 +45,7 @@ const handleCustomBackground = () => {
     showKUNGalgameBackground.value = '1007'
     url.value = ''
   } else {
-    message('Please input valid image url', '请输入合法的图片链接', 'warn')
+    Message('Please input valid image url', '请输入合法的图片链接', 'warn')
   }
 }
 // 恢复空白背景

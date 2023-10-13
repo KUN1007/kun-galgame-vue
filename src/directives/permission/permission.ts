@@ -1,5 +1,5 @@
 import type { Directive, DirectiveBinding } from 'vue'
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 import { currentUserInfo } from '@/utils/getCurrentUserInfo'
 import router from '@/router'
 
@@ -29,7 +29,7 @@ interface BindingProps {
 const handleUnauthorizedAccess = (element: HTMLElement) => {
   element.parentNode?.removeChild(element)
 
-  message(
+  Message(
     'You do not have sufficient permissions!',
     '您没有足够的权限！',
     'error',

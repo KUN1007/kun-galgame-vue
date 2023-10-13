@@ -11,7 +11,7 @@ import {
   watch,
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
@@ -161,7 +161,7 @@ watch(
         childElement.classList.remove('active')
         // 找不到指定话题，因为这个话题还没有被加载至 DOM
       } else {
-        message(
+        Message(
           'Unable to find the specified reply for now. Please scroll down.',
           '暂时找不到指定回复，请下滑',
           'info'

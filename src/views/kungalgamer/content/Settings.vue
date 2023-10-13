@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import Avatar from '../components/Avatar.vue'
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 导入用户 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
@@ -14,7 +14,7 @@ const bioValue = ref('')
 const handleChangeBio = async () => {
   // 签名超过最大长度
   if (bioValue.value.length > 107) {
-    message(
+    Message(
       'Bio must not exceed a maximum length of 107 characters',
       '签名的最大长度不可超过 107 个字符',
       'warn'
@@ -27,10 +27,10 @@ const handleChangeBio = async () => {
     bioValue.value
   )
   if (res.code === 200) {
-    message('Rewrite bio successfully!', 'Rewrite 签名成功', 'success')
+    Message('Rewrite bio successfully!', 'Rewrite 签名成功', 'success')
     bioValue.value = ''
   } else {
-    message('Rewrite bio failed!', 'Rewrite 签名失败', 'error')
+    Message('Rewrite bio failed!', 'Rewrite 签名失败', 'error')
   }
 }
 </script>

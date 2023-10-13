@@ -14,7 +14,7 @@ import Reply from './Reply.vue'
 import Rewrite from './Rewrite.vue'
 
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 
 // 导入用户的 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
@@ -83,10 +83,10 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
   navigator.clipboard
     .writeText(shareLink.value)
     .then(() => {
-      message('Share Link copied successfully!', '分享链接复制成功', 'success')
+      Message('Share Link copied successfully!', '分享链接复制成功', 'success')
     })
     .catch((err) => {
-      message('Share Link copied failed!', '分享链接复制失败!', 'error')
+      Message('Share Link copied failed!', '分享链接复制失败!', 'error')
     })
 }
 </script>

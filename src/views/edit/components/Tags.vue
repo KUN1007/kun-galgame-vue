@@ -2,7 +2,7 @@
 import { ref, computed, watch, onBeforeMount, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
@@ -96,7 +96,7 @@ const handleAddTag = () => {
 
   // 检测到已经有这个 tag 则警告
   if (selectedTags.value.includes(tagName)) {
-    message(
+    Message(
       'Tag already exists, please choose another one',
       '标签已存在，请更换',
       'warn'

@@ -1,5 +1,5 @@
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 import { generateTokenByRefreshTokenApi } from '@/api'
 // 使用用户 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
@@ -30,7 +30,7 @@ export async function onRequestError(response: Response) {
       location.reload()
     } else {
       // 否则提示用户重新登陆
-      message(
+      Message(
         'Login expired, please log in again.',
         '登陆过期，请重新登陆',
         'error'
@@ -42,7 +42,7 @@ export async function onRequestError(response: Response) {
   }
 
   if (response.status === 404) {
-    message(
+    Message(
       'Not Found, request address is incorrect.',
       '资源未找到，请求地址出错',
       'error'

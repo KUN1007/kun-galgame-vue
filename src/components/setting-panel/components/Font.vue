@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
@@ -17,7 +17,7 @@ const handleSetFont = () => {
     settingsStore.setKUNGalgameFontStyle(font.value)
     font.value = ''
   } else {
-    message('Please input valid font name', '请输入合法的字体名', 'warn')
+    Message('Please input valid font name', '请输入合法的字体名', 'warn')
   }
 }
 </script>

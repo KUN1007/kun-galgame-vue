@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
@@ -42,7 +42,7 @@ const logOut = async () => {
     kungalgameStoreReset()
     router.push('/login')
     resetRouter()
-    message('Logout successfully!', '登出成功', 'success')
+    Message('Logout successfully!', '登出成功', 'success')
   }
 }
 

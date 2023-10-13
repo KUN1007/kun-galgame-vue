@@ -3,7 +3,7 @@
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // throttle 函数
 import { throttle } from '@/utils/throttle'
 
@@ -34,7 +34,7 @@ watch(
 
 // throttle 回调函数
 const throttleCallback = () => {
-  message(
+  Message(
     'You can only perform one operation within 1007 milliseconds',
     '您在 1007 毫秒内只能进行一次操作',
     'warn'
@@ -70,7 +70,7 @@ const dislikeOperation = async (
 const toggleDislike = async () => {
   // 当前用户不可以给自己点赞
   if (props.uid === props.toUid) {
-    message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
+    Message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
     return
   }
 
@@ -85,15 +85,15 @@ const toggleDislike = async () => {
     dislikesCount.value += isPush ? 1 : -1
 
     if (isPush) {
-      message('Dislike successfully!', '点踩成功！', 'success')
+      Message('Dislike successfully!', '点踩成功！', 'success')
     } else {
-      message('Cancel dislike successfully!', '取消点踩成功！', 'success')
+      Message('Cancel dislike successfully!', '取消点踩成功！', 'success')
     }
   } else {
     if (isPush) {
-      message('Dislike failed!', '点踩失败！', 'error')
+      Message('Dislike failed!', '点踩失败！', 'error')
     } else {
-      message('Cancel dislike failed!', '取消点踩失败！', 'error')
+      Message('Cancel dislike failed!', '取消点踩失败！', 'error')
     }
   }
 }

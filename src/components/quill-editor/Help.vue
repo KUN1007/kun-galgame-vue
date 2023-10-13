@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 
 // 导入路由
 import { useRoute, useRouter } from 'vue-router'
@@ -42,7 +42,7 @@ const handleClickHelp = () => {
     <p>网站的代码是手写的，错误在所难免</p>
     <p>如果您遇到错误，请<a style="color: var(--kungalgame-blue-4); border-bottom: 2px solid var(--kungalgame-blue-4);" href="/contact">联系我们</a></p>`
 
-    message(helpHtmlEN, helpHtmlCN, 'info', 5000)
+    Message(helpHtmlEN, helpHtmlCN, 'info', 5000)
   }
 }
 </script>

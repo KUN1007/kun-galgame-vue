@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 上传头像的函数
 import {
   checkImageValid,
@@ -51,7 +51,7 @@ const handleDragOver = (event: DragEvent) => {
 
 // 更改头像
 const handleChangeAvatar = () => {
-  message(
+  Message(
     'Image API is not yet completed, stay tuned for updates',
     '图片接口还未完成，敬请期待',
     'warn'
