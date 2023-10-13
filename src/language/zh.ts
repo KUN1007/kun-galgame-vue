@@ -264,6 +264,16 @@ export default {
       confirmPwd: '确定更改密码',
     },
   },
+  forgot: {
+    title: '忘记密码',
+    email: '您的邮箱',
+    code: '验证码',
+    next: '下一步',
+    prev: '上一步',
+    new: '新密码',
+    rePwd: '确认密码',
+    confirm: '确定更改',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: '确定',
