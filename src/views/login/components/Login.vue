@@ -97,6 +97,11 @@ const handleLogin = async () => {
     )
   }
 }
+
+// 忘记密码
+const handleClickForgotPassword = () => {
+  router.push('/forgot')
+}
 </script>
 
 <template>
@@ -120,10 +125,14 @@ const handleLogin = async () => {
       />
 
       <!-- 忘记密码 -->
-      <span class="forget">{{ $tm('login.login.forget') }}</span>
-      <span @click="isShowCapture = true" class="capture">{{
-        $tm('login.login.capture')
-      }}</span>
+      <span @click="handleClickForgotPassword" class="forget">
+        {{ $tm('login.login.forget') }}
+      </span>
+
+      <!-- 人机验证 -->
+      <span @click="isShowCapture = true" class="capture">
+        {{ $tm('login.login.capture') }}
+      </span>
 
       <!-- 点击登录 -->
       <button @click="handleLogin" class="btn" type="submit">
@@ -181,6 +190,7 @@ const handleLogin = async () => {
 
 /* 获取验证码 */
 .forget {
+  cursor: pointer;
   text-decoration: none;
   font-size: small;
   color: var(--kungalgame-blue-4);

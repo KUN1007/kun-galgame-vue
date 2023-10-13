@@ -87,7 +87,6 @@ const handleClickRegister = () => {
     var(--kungalgame-trans-blue-0)
   );
   position: relative;
-  background-color: var(--kungalgame-white);
 }
 
 /* 总容器 */

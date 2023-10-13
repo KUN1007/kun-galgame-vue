@@ -178,7 +178,7 @@ export default {
   login: {
     login: {
       loginTitle: '登录',
-      forget: '忘记密码? 点击发送重置邮件',
+      forget: '忘记密码?',
       loginUsername: '用户名或邮箱',
       loginPassword: '密码',
       capture: '点击进行人机身份验证',

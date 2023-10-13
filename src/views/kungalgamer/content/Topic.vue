@@ -109,7 +109,7 @@ onMounted(async () => {
 /* 内容区 */
 .article {
   width: 100%;
-  padding: 7px 27px;
+  padding: 7px 17px;
   /* 竖直弹性盒 */
   display: flex;
   flex-direction: column;
@@ -139,7 +139,7 @@ onMounted(async () => {
   padding: 2px 5px;
   margin: 5px 0;
   border-bottom: 1px solid var(--kungalgame-blue-1);
-  border-left: 2px  solid var(--kungalgame-blue-4);
+  border-left: 2px solid var(--kungalgame-blue-4);
   cursor: pointer;
   a {
     height: 100%;
@@ -173,11 +173,5 @@ onMounted(async () => {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-@media (max-width: 700px) {
-  .article {
-    padding: 7px 17px;
-  }
 }
 </style>
