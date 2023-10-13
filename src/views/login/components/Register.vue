@@ -33,7 +33,7 @@ const info = useKUNGalgameMessageStore()
 const router = useRouter()
 const isSendCode = ref(false)
 
-import { registerFormItem } from './registerForm'
+import { registerFormItem } from '../utils/registerForm'
 
 const registerForm = reactive<Record<string, string>>({
   name: '',
@@ -97,7 +97,7 @@ const handleSendCode = () => {
   isSendCode.value = true
 }
 
-const handleRegister = () => {
+const handleRegister = async () => {
   if (!isSendCode.value) {
     message(
       'Need to send an email verification code',
@@ -126,25 +126,21 @@ const handleRegister = () => {
   }
 
   // 执行注册逻辑，发送请求，后端校验验证码
-  useKUNGalgameUserStore()
-    .register({
-      name: registerForm.name,
-      email: registerForm.email,
-      password: registerForm.password,
-      code: registerForm.code,
-    })
-    .then((res) => {
-      // 如果请求成功跳转到主页
-      if (res.code === 200) {
-        router.push('/')
-        message('Register successfully!', '注册成功！', 'success')
-        info.info(tm('AlertInfo.login.success'))
-      } else {
-      }
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  const res = await useKUNGalgameUserStore().register({
+    name: registerForm.name,
+    email: registerForm.email,
+    password: registerForm.password,
+    code: registerForm.code,
+  })
+
+  // 如果请求成功跳转到主页
+  if (res.code === 200) {
+    router.push('/')
+    message('Register successfully!', '注册成功！', 'success')
+    info.info(tm('AlertInfo.login.success'))
+  } else {
+    message('Register failed!', '注册失败！', 'error')
+  }
 }
 </script>
 

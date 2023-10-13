@@ -111,11 +111,11 @@ const handleChangePassword = async () => {
         <div class="password" v-else-if="!flag">
           <div class="input">
             <span>更改密码：</span>
-            <input v-model="input.newPassword" type="text" />
+            <input v-model="input.newPassword" type="password" />
           </div>
           <div class="input">
             <span>确认密码：</span>
-            <input v-model="input.confirmPassword" type="text" />
+            <input v-model="input.confirmPassword" type="password" />
           </div>
         </div>
       </Transition>

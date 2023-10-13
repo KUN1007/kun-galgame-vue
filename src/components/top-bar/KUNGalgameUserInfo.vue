@@ -14,6 +14,7 @@ import { resetRouter } from '@/router'
 
 const { uid, name, moemoepoint } = storeToRefs(useKUNGalgameUserStore())
 
+const router = useRouter()
 const container = ref<HTMLElement>()
 const routerRedirectTo = `/kungalgamer/${uid.value}/info`
 
@@ -39,7 +40,7 @@ const logOut = async () => {
   )
   if (res) {
     kungalgameStoreReset()
-    useRouter().push('/login')
+    router.push('/login')
     resetRouter()
     message('Logout successfully!', '登出成功', 'success')
   }
