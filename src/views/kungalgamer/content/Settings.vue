@@ -42,18 +42,22 @@ const handleChangeBio = async () => {
 
     <!-- 更改 bio -->
     <div class="bio">
-      <div class="title">更改签名</div>
+      <div class="title">{{ $tm('user.settings.bio') }}</div>
       <textarea
         name="bio"
-        placeholder="请输入您的新签名，最大 107 个字符"
+        :placeholder="`${$tm('user.settings.hint')}`"
         rows="5"
         v-model="bioValue"
       >
       </textarea>
 
       <div class="help">
-        <span class="bioCount">字数：{{ bioValue.length }}</span>
-        <button @click="handleChangeBio">确定更改</button>
+        <span class="bioCount">
+          {{ $tm('user.settings.count') }}: {{ bioValue.length }}
+        </span>
+        <button @click="handleChangeBio">
+          {{ $tm('user.settings.confirm') }}
+        </button>
       </div>
     </div>
   </div>

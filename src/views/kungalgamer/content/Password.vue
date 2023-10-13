@@ -144,43 +144,56 @@ const handleClickForgotPassword = () => {
   <div class="article">
     <!-- 更改邮箱 -->
     <div class="email">
-      <div class="title">更改邮箱:</div>
-      <div class="current-email">您当前的邮箱是: {{ email }}</div>
+      <div class="title">{{ $tm('user.email.email') }}:</div>
+      <!-- 当前的邮箱 -->
+      <div class="current-email">
+        {{ $tm('user.email.current') }}: {{ email }}
+      </div>
+      <!-- 新邮箱 -->
       <div class="input">
-        <span>请输入您的新邮箱: </span>
+        <span>{{ $tm('user.email.newEmail') }}: </span>
         <input v-model="input.newEmail" type="text" />
       </div>
+      <!-- 邮箱验证码 -->
       <div class="input">
-        <span>请输入您的验证码: </span>
+        <span>{{ $tm('user.email.code') }}: </span>
         <input v-model="input.code" type="text" />
       </div>
-
+      <!-- 发送验证码 -->
       <div class="btn">
         <button @click="handleSendCode" v-if="!hasSentCodeEmail">
-          发送验证码
+          {{ $tm('user.email.send') }}
         </button>
-        <button @click="handleResetEmail">确定更改邮箱</button>
+        <!-- 确定更改 -->
+        <button @click="handleResetEmail">
+          {{ $tm('user.email.confirmEmail') }}
+        </button>
       </div>
     </div>
 
     <!-- 用户更改密码 -->
     <div class="password">
-      <div class="title">更改密码:</div>
+      <div class="title">{{ $tm('user.email.pwd') }}:</div>
+      <!-- 旧密码 -->
       <div class="input">
-        <span>请输入您的旧密码: </span>
+        <span>{{ $tm('user.email.oldPwd') }}: </span>
         <input v-model="input.oldPassword" type="password" />
       </div>
+      <!-- 新密码 -->
       <div class="input">
-        <span>请输入您的新密码: </span>
+        <span>{{ $tm('user.email.newPwd') }}: </span>
         <input v-model="input.newPassword" type="password" />
       </div>
+      <!-- 确认密码 -->
       <div class="input">
-        <span>请再次输入新密码: </span>
+        <span>{{ $tm('user.email.rePwd') }}: </span>
         <input v-model="input.repeatPassword" type="password" />
       </div>
 
       <div class="btn">
-        <button @click="handleChangePassword">确定更改密码</button>
+        <button @click="handleChangePassword">
+          {{ $tm('user.email.confirmPwd') }}
+        </button>
       </div>
     </div>
 
@@ -219,7 +232,8 @@ const handleClickForgotPassword = () => {
 .input {
   margin: 10px 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 30px;
   input {
     height: 25px;
     padding-left: 5px;
@@ -274,6 +288,7 @@ const handleClickForgotPassword = () => {
     font-size: medium;
   }
   .input {
+    padding: 0;
     span {
       margin-right: 5px;
     }

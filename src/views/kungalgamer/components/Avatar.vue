@@ -68,7 +68,7 @@ const handleChangeAvatar = () => {
 
 <template>
   <div class="avatar">
-    <div class="title">更改头像</div>
+    <div class="title">{{ $tm('user.settings.avatar') }}</div>
 
     <div class="container">
       <div
@@ -98,13 +98,18 @@ const handleChangeAvatar = () => {
 
       <!-- 帮助区域 -->
       <div class="help">
-        <p class="hint">拖拽图片到方框内或点击方框上传</p>
-        <div class="support">
-          <span>支持 1007KB 以内的图片</span>
-          <br />
-          <span>支持 jpg 和 png 格式</span>
+        <div class="hint">
+          <span>{{ $tm('user.settings.drag') }}</span>
+          <span>{{ $tm('user.settings.click') }}</span>
         </div>
-        <button @click="handleChangeAvatar">确定更改</button>
+        <div class="support">
+          <span>{{ $tm('user.settings.supportImage') }}</span>
+          <br />
+          <span>{{ $tm('user.settings.supportFormat') }}</span>
+        </div>
+        <button @click="handleChangeAvatar">
+          {{ $tm('user.settings.confirm') }}
+        </button>
       </div>
     </div>
   </div>
@@ -206,9 +211,19 @@ const handleChangeAvatar = () => {
     }
   }
 }
+
+.hint {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .support {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 700px) {

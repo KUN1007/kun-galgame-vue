@@ -40,7 +40,7 @@ onMounted(() => {
       v-show="isShowNavItem(kun.permission)"
     >
       <RouterLink :to="`/kungalgamer/${currentPageUid}/${kun.router}`">
-        <span>{{ kun.name }}</span>
+        <span>{{ $tm(`user.nav.${kun.name}`) }}</span>
       </RouterLink>
     </div>
   </div>

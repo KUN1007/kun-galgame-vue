@@ -16,7 +16,7 @@ const category = ['Galgame']
     <!-- 搜索框，主页只有 Galgame -->
     <KUNGalgameSearchBox :category="category" style="border: none" />
     <!-- 交互区域进入全部话题 -->
-    <RouterLink to="/pool/index" class="more">
+    <RouterLink to="/pool" class="more">
       <span>{{ $tm('mainPage.header.all') }}</span>
       <Icon class="all-topic" icon="line-md:chevron-triple-right" />
     </RouterLink>
