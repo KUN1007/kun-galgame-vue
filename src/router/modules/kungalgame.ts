@@ -13,7 +13,7 @@ const kungalgame: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/kungalgame/KUNGalgame.vue'),
         meta: {
-          title: '关于我们',
+          title: 'about',
         },
       },
     ],

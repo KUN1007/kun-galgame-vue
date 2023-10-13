@@ -13,7 +13,7 @@ const edit: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/edit/Edit.vue'),
         meta: {
-          title: '编辑',
+          title: 'edit',
         },
       },
     ],

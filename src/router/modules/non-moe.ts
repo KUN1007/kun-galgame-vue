@@ -13,7 +13,7 @@ const nonMoe: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/non-moe/NonMoe.vue'),
         meta: {
-          title: '不萌萌',
+          title: 'nonMoe',
         },
       },
     ],

@@ -13,7 +13,7 @@ const ranking: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/ranking/Ranking.vue'),
         meta: {
-          title: '排行榜',
+          title: 'ranking',
         },
       },
     ],

@@ -13,7 +13,7 @@ const thanksList: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/thanks-list/ThanksList.vue'),
         meta: {
-          title: '感谢名单',
+          title: 'thanks',
         },
       },
     ],

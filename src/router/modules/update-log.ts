@@ -13,7 +13,7 @@ const updateLog: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/update-log/UpdateLog.vue'),
         meta: {
-          title: '更新日志',
+          title: 'update',
         },
       },
     ],

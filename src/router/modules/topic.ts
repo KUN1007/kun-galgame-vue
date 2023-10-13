@@ -18,7 +18,7 @@ const topic: RouteRecordRaw[] = [
         props: true,
         meta: {
           transition: 'animate__fadeIn animate__faster',
-          title: '话题',
+          title: 'topics',
         },
       },
     ],

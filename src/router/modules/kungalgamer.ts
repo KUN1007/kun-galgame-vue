@@ -23,7 +23,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'info',
             component: () => import('@/views/kungalgamer/content/Info.vue'),
             meta: {
-              title: 'Info',
+              title: 'userInfo',
             },
           },
           {
@@ -31,7 +31,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'settings',
             component: () => import('@/views/kungalgamer/content/Settings.vue'),
             meta: {
-              title: 'Settings',
+              title: 'userSettings',
               permission: [4],
             },
           },
@@ -40,7 +40,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'password',
             component: () => import('@/views/kungalgamer/content/Password.vue'),
             meta: {
-              title: 'Password',
+              title: 'userPassword',
               permission: [4],
             },
           },
@@ -50,7 +50,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'published-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'PublishedTopic',
+              title: 'userPublished',
             },
           },
           {
@@ -59,7 +59,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'liked-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'LikedTopic',
+              title: 'userLiked',
               permission: [2, 3, 4],
             },
           },
@@ -69,7 +69,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'upvote-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'UpvoteTopic',
+              title: 'userUpvote',
               permission: [2, 3, 4],
             },
           },
@@ -79,7 +79,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'reply',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'Reply',
+              title: 'userReply',
             },
           },
           {
@@ -88,7 +88,7 @@ const kungalgamer: RouteRecordRaw[] = [
             path: 'comment',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
             meta: {
-              title: 'Comment',
+              title: 'userComment',
             },
           },
         ],

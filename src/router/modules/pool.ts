@@ -13,7 +13,7 @@ const pool: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/pool/Pool.vue'),
         meta: {
-          title: '话题池',
+          title: 'pool',
         },
       },
     ],

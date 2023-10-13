@@ -13,7 +13,7 @@ const balance: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/balance/Balance.vue'),
         meta: {
-          title: '收支公示',
+          title: 'balance',
         },
       },
     ],

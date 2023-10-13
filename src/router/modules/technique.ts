@@ -13,7 +13,7 @@ const technique: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/technique/Technique.vue'),
         meta: {
-          title: '技术交流',
+          title: 'technique',
         },
       },
     ],

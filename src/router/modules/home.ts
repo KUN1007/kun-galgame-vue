@@ -14,7 +14,7 @@ const index: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/Home/KUNGalgameMainPage.vue'),
         meta: {
-          title: '主页',
+          title: 'home',
         },
       },
     ],

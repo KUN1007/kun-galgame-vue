@@ -128,10 +128,8 @@ const isSortField = () => {
   font-size: 14px;
   color: var(--kungalgame-font-color-3);
   text-decoration: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(1, minmax(0, 1fr));
-  place-items: center;
+  display: flex;
+  justify-content: space-around;
 }
 /* 单个二级菜单 hover */
 .sort-item:hover {
@@ -176,6 +174,19 @@ const isSortField = () => {
   background-color: var(--kungalgame-trans-red-3);
   .filter {
     color: var(--kungalgame-red-4);
+  }
+}
+
+@media (max-width: 700px) {
+  .sort-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      &:nth-child(1) {
+        display: none;
+      }
+    }
   }
 }
 </style>
