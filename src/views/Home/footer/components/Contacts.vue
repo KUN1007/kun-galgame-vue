@@ -6,24 +6,25 @@ import { Icon } from '@iconify/vue'
   <!-- 下方上面的联系我们 -->
   <div class="kungalgame-contact">
     <h2>{{ $tm('mainPage.footer.contact') }}</h2>
-    <!-- QQ, 微信, telegram 的图标列表 -->
+    <!-- QQ, bilibili, telegram 的图标列表 -->
     <ul>
       <li>
         <a
           href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=hlXYbLM8MqOm9WzE22ZodNiQJ3nc1Bu2&authKey=7xfTYC1atV5loXyWNv9VOTOaf5ZzR9BdCFcMNJWdmyukck8%2FDLSF3%2FrHgyiY48pT&noverify=0&group_code=726477957"
           target="_blank"
-          ><Icon icon="bi:tencent-qq"
-        /></a>
+        >
+          <Icon icon="bi:tencent-qq" />
+        </a>
       </li>
       <li>
-        <a href="https://space.bilibili.com/1748455574" target="_blank"
-          ><Icon icon="ri:bilibili-line"
-        /></a>
+        <a href="https://space.bilibili.com/1748455574" target="_blank">
+          <Icon icon="ri:bilibili-line" />
+        </a>
       </li>
       <li>
-        <a href="https://t.me/kungalgame" target="_blank"
-          ><Icon icon="ic:baseline-telegram"
-        /></a>
+        <a href="https://t.me/kungalgame" target="_blank">
+          <Icon icon="ic:baseline-telegram" />
+        </a>
       </li>
     </ul>
   </div>
