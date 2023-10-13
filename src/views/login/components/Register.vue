@@ -181,13 +181,13 @@ const handleRegister = async () => {
 
         <!-- 用户协议和隐私政策 -->
         <div class="licence">
-          <router-link to="/agreement">
+          <RouterLink to="/agreement">
             <span>{{ $tm('login.register.agreement') }}</span>
-          </router-link>
+          </RouterLink>
           {{ $tm('login.register.and') }}
-          <router-link to="/privacy">
+          <RouterLink to="/privacy">
             <span>{{ $tm('login.register.privacy') }}</span>
-          </router-link>
+          </RouterLink>
         </div>
       </span>
     </div>

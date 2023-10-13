@@ -1,5 +1,6 @@
 <!-- 这个部分为发帖人的个人信息展示部分 -->
 <script setup lang="ts">
+import { computed } from 'vue'
 const props = defineProps<{
   user: {
     uid: number
@@ -8,6 +9,8 @@ const props = defineProps<{
     moemoepoint: number
   }
 }>()
+
+const user = computed(() => props.user)
 </script>
 
 <template>
@@ -16,11 +19,15 @@ const props = defineProps<{
     <!-- 头像 -->
     <div class="avatar">
       <!-- 头像图片 TODO: -->
-      <img src="@/assets/images/KUN.jpg" alt="KUN" />
+      <RouterLink :to="`/kungalgamer/${user.uid}/info`">
+        <img src="@/assets/images/KUN.jpg" alt="KUN" />
+      </RouterLink>
     </div>
     <div class="info">
       <!-- 名字 -->
-      <div class="name">{{ user.name }}</div>
+      <div class="name">
+        {{ user.name }}
+      </div>
       <!-- 萌萌点 -->
       <div class="moemoepoint">{{ user.moemoepoint }}</div>
     </div>

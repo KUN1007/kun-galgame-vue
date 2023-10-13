@@ -13,19 +13,19 @@ const props = defineProps(['isActive'])
     <!-- 发布新文章 -->
     <div class="new-article">
       <!-- 发布新文章的按钮 -->
-      <router-link to="/edit/index">
+      <RouterLink to="/edit/index">
         <button class="btn-new-article">
           {{ $tm('mainPage.asideActive.create') }}
         </button>
-      </router-link>
+      </RouterLink>
     </div>
     <!-- 功能盒子容器 -->
     <div class="item-box-container">
       <!-- 侧边栏单个项目 -->
       <span v-for="kun in asideItem" :key="kun.index">
-        <router-link :to="{ path: kun.router }">{{
+        <RouterLink :to="{ path: kun.router }">{{
           $tm(`mainPage.asideActive['${kun.name}']`)
-        }}</router-link>
+        }}</RouterLink>
       </span>
     </div>
   </div>

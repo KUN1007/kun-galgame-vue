@@ -10,8 +10,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         赞助我们<span>没有任何的萌萌点奖励</span>，不过可以帮我们缓解一部分服务器的费用，您确定要赞助吗
       </p>
       <div class="btn">
-        <router-link to="/">确定赞助</router-link>
-        <router-link to="/">返回主页</router-link>
+        <RouterLink to="/">确定赞助</RouterLink>
+        <RouterLink to="/">返回主页</RouterLink>
       </div>
     </div>
     <!-- 版权 -->

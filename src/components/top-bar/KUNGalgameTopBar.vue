@@ -74,9 +74,9 @@ onBeforeRouteLeave(() => {
         <ul>
           <!-- 顶部单个板块 -->
           <li v-for="kun in topBarItem" :key="kun.index">
-            <router-link :to="{ path: kun.router }">
+            <RouterLink :to="{ path: kun.router }">
               {{ $tm(`header['${kun.name}']`) }}
-            </router-link>
+            </RouterLink>
           </li>
           <!-- 顶部板块下部的 hover 效果 -->
           <div class="box"></div>

@@ -7,7 +7,7 @@
     <div class="container">
       <p>403</p>
       <p>您没有权限访问该界面</p>
-      <button><router-link to="/kun">点击返回主页</router-link></button>
+      <button><RouterLink to="/kun">点击返回主页</RouterLink></button>
     </div>
   </div>
 </template>
