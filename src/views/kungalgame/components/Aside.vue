@@ -27,9 +27,9 @@ const asideBarItem: asideBar[] = [
       <li>运营理念</li>
       <li>论坛规定</li>
       <li class="skip" v-for="kun in asideBarItem" :key="kun.index">
-        <router-link style="color: #218bff" :to="{ path: kun.router }">{{
+        <RouterLink style="color: #218bff" :to="{ path: kun.router }">{{
           kun.name
-        }}</router-link>
+        }}</RouterLink>
       </li>
     </ul>
   </div>

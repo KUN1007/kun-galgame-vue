@@ -13,9 +13,9 @@ const props = defineProps<{
   <div class="topic">
     <UserPart :user="props.topic.user" />
     <!-- 进入指定话题的路由 -->
-    <router-link :to="`/topic/${props.topic.tid}`">
+    <RouterLink :to="`/topic/${props.topic.tid}`">
       <TopicPart :topic="props.topic" />
-    </router-link>
+    </RouterLink>
   </div>
 </template>
 

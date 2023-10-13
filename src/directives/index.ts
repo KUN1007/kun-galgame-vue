@@ -1,3 +1,7 @@
+/**
+ * 目前所有指令均未启用
+ */
+
 import { type App } from 'vue'
 // 图片点击放大指令
 import { zoom } from './zoom/zoom'

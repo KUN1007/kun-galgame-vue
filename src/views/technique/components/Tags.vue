@@ -12,9 +12,9 @@ import { tagsList } from './tags'
     <ul class="tags">
       <!-- 单个标签，最大输入文字为 10 个 -->
       <li v-for="kun in tagsList" :key="kun.index">
-        <Icon class="icon" icon="ant-design:tag-twotone" /><router-link
+        <Icon class="icon" icon="ant-design:tag-twotone" /><RouterLink
           :to="kun.router"
-          >{{ kun.data }}</router-link
+          >{{ kun.data }}</RouterLink
         >
       </li>
     </ul>

@@ -38,7 +38,7 @@ onMounted(async () => {
       {{ $tm('topic.aside.master') }}
     </div>
     <div class="topic" v-for="(kun, index) in topicData" :key="index">
-      <router-link :to="`/topic/${kun.tid}`">{{ kun.title }}</router-link>
+      <RouterLink :to="`/topic/${kun.tid}`">{{ kun.title }}</RouterLink>
     </div>
   </div>
 </template>

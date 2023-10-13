@@ -54,13 +54,15 @@ import { onMounted, watch } from 'vue'
     <!-- 话题的状态 -->
     <div class="status">
       <!-- 浏览数 -->
-      <span
-        ><Icon icon="ic:outline-remove-red-eye" />{{ props.data.view }}</span
-      >
+      <span>
+        <Icon icon="ic:outline-remove-red-eye" />
+        {{ props.data.view }}
+      </span>
       <!-- 点赞数 -->
-      <span
-        ><Icon icon="line-md:thumbs-up-twotone" />{{ props.data.like }}</span
-      >
+      <span>
+        <Icon icon="line-md:thumbs-up-twotone" />
+        {{ props.data.like }}
+      </span>
     </div>
     <!-- 发帖时间 -->
     <div class="time">

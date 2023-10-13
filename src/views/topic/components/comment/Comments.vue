@@ -104,7 +104,9 @@ const handleClickComment = (
         :key="index"
       >
         <!-- 用户头像 TODO: -->
-        <img src="@/assets/images/KUN.jpg" alt="KUN" />
+        <RouterLink :to="`/kungalgamer/${comment.c_user.uid}/info`">
+          <img src="@/assets/images/KUN.jpg" alt="KUN" />
+        </RouterLink>
         <!-- 单个评论的内容区 -->
         <div class="content">
           <!-- 单个评论内容区顶部 -->

@@ -37,7 +37,7 @@ onMounted(async () => {
     <!-- 热门话题的目录 -->
     <!-- 这里使用了父组件传过来的 isHotTopic 数据 -->
     <span class="topic-content hot-bg" v-for="kun in navHotTopic">
-      <router-link :to="{ path: `/topic/${kun.tid}` }">
+      <RouterLink :to="{ path: `/topic/${kun.tid}` }">
         <div class="topic">
           <div class="title">{{ kun.title }}</div>
           <div class="hot">
@@ -46,7 +46,7 @@ onMounted(async () => {
             <span>{{ Math.ceil(kun.popularity) }}</span>
           </div>
         </div>
-      </router-link>
+      </RouterLink>
     </span>
 
     <!-- 今日最新话题 -->
@@ -54,7 +54,7 @@ onMounted(async () => {
       {{ $tm(`mainPage.asideActive.new`) }}
     </div>
     <span class="topic-content new-bg" v-for="kun in navNewTopic">
-      <router-link :to="{ path: `/topic/${kun.tid}` }">
+      <RouterLink :to="{ path: `/topic/${kun.tid}` }">
         <div class="topic">
           <div class="title">{{ kun.title }}</div>
           <div class="new">
@@ -67,7 +67,7 @@ onMounted(async () => {
             }}</span>
           </div>
         </div>
-      </router-link>
+      </RouterLink>
     </span>
   </div>
 </template>

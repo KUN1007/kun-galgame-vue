@@ -39,9 +39,9 @@ onMounted(() => {
       :class="activeClass(currentPageUid, kun.router)"
       v-show="isShowNavItem(kun.permission)"
     >
-      <router-link :to="`/kungalgamer/${currentPageUid}/${kun.router}`">
+      <RouterLink :to="`/kungalgamer/${currentPageUid}/${kun.router}`">
         <span>{{ kun.name }}</span>
-      </router-link>
+      </RouterLink>
     </div>
   </div>
 </template>
