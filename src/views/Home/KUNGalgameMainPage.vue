@@ -5,14 +5,14 @@ import MainPageFooter from './footer/MainPageFooter.vue'
 
 <template>
   <!-- 可视部分的容器 -->
-  <div class="visual-wrapper">
+  <div class="root">
     <MainPageContent />
     <MainPageFooter />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.visual-wrapper {
+.root {
   height: 1500px;
   display: flex;
   flex-direction: column;

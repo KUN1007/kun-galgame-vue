@@ -21,7 +21,7 @@ const info: FooterInfo[] = [
       {
         index: 1,
         name: `daily`,
-        router: `/pool/index`,
+        router: `/pool`,
       },
       {
         index: 2,
@@ -37,17 +37,17 @@ const info: FooterInfo[] = [
       {
         index: 1,
         name: `execute`,
-        router: `/technique/index`,
+        router: `/technique`,
       },
       {
         index: 2,
         name: `globalization`,
-        router: `/technique/index`,
+        router: `/technique`,
       },
       {
         index: 3,
         name: `make`,
-        router: `/technique/index`,
+        router: `/technique`,
       },
     ],
   },
@@ -63,12 +63,12 @@ const info: FooterInfo[] = [
       {
         index: 2,
         name: `principle`,
-        router: `/kungalgame/index`,
+        router: `/kungalgame`,
       },
       {
         index: 3,
         name: `balance`,
-        router: `/balance/index`,
+        router: `/balance`,
       },
     ],
   },
@@ -107,6 +107,7 @@ const link: FooterInfoItem[] = [
       <h2>
         <span>{{ $tm(`mainPage.footer.title['${kun.title}']`) }}</span>
       </h2>
+
       <ul class="function" v-for="yuyu in kun.list" :key="yuyu.index">
         <li>
           <RouterLink :to="yuyu.router">{{
@@ -115,11 +116,13 @@ const link: FooterInfoItem[] = [
         </li>
       </ul>
     </div>
+
     <div class="catalog">
       <!-- 每个信息类别的标题 -->
       <h2>
         <span>{{ $tm(`mainPage.footer.title.friend`) }}</span>
       </h2>
+
       <ul class="function" v-for="azkhx in link" :key="azkhx.index">
         <li>
           <a :href="azkhx.router" target="_blank">{{
