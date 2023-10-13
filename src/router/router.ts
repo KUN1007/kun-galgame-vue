@@ -10,6 +10,15 @@ export const constantRoutes: RouteRecordRaw[] = [
       title: '登录',
     },
   },
+  // KUNGalgame 忘记密码
+  {
+    name: 'Forgot',
+    path: '/forgot',
+    component: () => import('@/views/forgot/Forgot.vue'),
+    meta: {
+      title: '忘记密码',
+    },
+  },
   // KUNGalgame 联系我们
   {
     name: 'Contact',

@@ -179,7 +179,7 @@ export default {
   login: {
     login: {
       loginTitle: 'Login',
-      forget: 'Forgot your password? Click here to send reset email',
+      forget: 'Forgot your password?',
       loginUsername: 'Username or email',
       loginPassword: 'Password',
       capture: 'Click to proceed with the human verification process',
