@@ -13,7 +13,7 @@ const bylaw: RouteRecordRaw[] = [
         path: '',
         component: () => import('@/views/bylaw/Bylaw.vue'),
         meta: {
-          title: '执行条例（试行）',
+          title: 'regulations',
         },
       },
     ],
