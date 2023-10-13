@@ -108,3 +108,17 @@ export async function getUserCommentApi(
 
   return response
 }
+
+// 根据用户邮箱重置密码
+export async function updateUserPasswordByEmailApi(
+  request: User.UserResetPasswordByEmailRequestData
+): Promise<User.UserResetPasswordByEmailResponseData> {
+  const url = `/auth/password/reset`
+
+  const response = fetchPost<User.UserResetPasswordByEmailResponseData>(
+    url,
+    request
+  )
+
+  return response
+}

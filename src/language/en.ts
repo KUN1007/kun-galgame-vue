@@ -248,6 +248,7 @@ export default {
     },
     code: {
       code: `The verification code has been sent. You can check it in your email. Please check your spam folder. If you haven't received the email, you can try to resend the email verification code after 30 seconds.`,
+      password: 'Are you sure you want to change the password?',
     },
   },
 }

@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router'
 import type { UserInfo } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import Message from '@/components/alert/Message'
+// 使用全局通知
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 重置 store
 import { kungalgameStoreReset } from '@/store'
 // 重置路由
@@ -93,6 +95,15 @@ const handleChangePassword = async () => {
       input.repeatPassword
     )
   ) {
+    return
+  }
+
+  // 确定更改密码吗?
+  const result = await useKUNGalgameMessageStore().alert(
+    'AlertInfo.code.password',
+    true
+  )
+  if (!result) {
     return
   }
 

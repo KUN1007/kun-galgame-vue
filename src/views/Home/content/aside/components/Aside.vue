@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 导入功能区的单个项目
-import asideItem from '@/types/home/aside-item'
+import asideItem from './asideItem'
 </script>
 
 <template>
@@ -12,16 +12,6 @@ import asideItem from '@/types/home/aside-item'
       }}</router-link>
     </span>
   </div>
-  <!-- 
-
-    TODO:
-    <span><Icon icon="line-md:uploading-loop" /></span>
-    <span><Icon icon="healthicons:money-bag-outline" /></span>
-    <span><Icon icon="solar:ranking-outline" /></span>
-    <span><Icon icon="line-md:clipboard-list" /></span>
-    <span><Icon icon="fluent-mdl2:contact-list" /></span>
-    <span><Icon icon="line-md:alert" /></span>
-   -->
 </template>
 
 <style lang="scss" scoped>

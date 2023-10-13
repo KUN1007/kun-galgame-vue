@@ -1,7 +1,19 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Message from '@/components/alert/Message'
+import Code from '@/components/verification-code/Code.vue'
 import { checkEmail, checkCode, checkPassword } from './check'
+
+// 使用全局通知
+import { useKUNGalgameMessageStore } from '@/store/modules/message'
+// 使用用户 store
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
+
+const { isShowCapture, isCaptureSuccessful } = storeToRefs(
+  useKUNGalgameMessageStore()
+)
 
 const input = reactive({
   email: '',
@@ -10,14 +22,27 @@ const input = reactive({
   confirmPassword: '',
 })
 
+const router = useRouter()
 // 切换界面
 const flag = ref(true)
+// 是否发送了验证码
+const isSendCode = ref(false)
 
 // 发送验证码
 const handleClickSendCode = () => {
   if (!checkEmail(input.email)) {
     return
   }
+
+  // 未完成人机验证
+  if (!isCaptureSuccessful.value) {
+    // 显示人机验证
+    isShowCapture.value = true
+    return
+  }
+
+  // 发送验证码
+  isSendCode.value = true
 }
 
 // 下一步
@@ -34,9 +59,31 @@ const handleClickPrev = () => {
 }
 
 // 确定更改密码
-const handleChangePassword = () => {
+const handleChangePassword = async () => {
   if (!checkPassword(input.newPassword, input.confirmPassword)) {
     return
+  }
+
+  // 确定更改密码吗?
+  const result = await useKUNGalgameMessageStore().alert(
+    'AlertInfo.code.password',
+    true
+  )
+  if (!result) {
+    return
+  }
+
+  const response = await useKUNGalgameUserStore().updatePasswordByEmail(
+    input.email,
+    input.code,
+    input.newPassword
+  )
+
+  if (response.code === 200) {
+    router.push('/login')
+    Message('Password change successfully!', '密码更改成功', 'success')
+  } else {
+    Message('Password change failed!', '密码更改失败', 'error')
   }
 }
 </script>
@@ -74,7 +121,13 @@ const handleChangePassword = () => {
       </Transition>
 
       <div class="btn">
-        <button v-if="flag" @click="handleClickSendCode">发送验证码</button>
+        <Code
+          v-if="flag"
+          @click="handleClickSendCode"
+          class="code"
+          :email="input.email"
+          :isSendCode="isSendCode"
+        />
         <button v-if="flag" @click="handleClickNext">下一步</button>
         <button v-if="!flag" @click="handleClickPrev">上一步</button>
         <button v-if="!flag" @click="handleChangePassword">确定更改</button>
@@ -146,6 +199,7 @@ const handleChangePassword = () => {
   button {
     cursor: pointer;
     width: 110px;
+    height: 33px;
     padding: 7px 10px;
     border: 1px solid var(--kungalgame-blue-4);
     border-radius: 5px;
