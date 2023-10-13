@@ -91,18 +91,18 @@ const handleChangePassword = async () => {
 <template>
   <div class="root">
     <div class="container">
-      <div class="title">忘记密码</div>
+      <div class="title">{{ $tm('forgot.title') }}</div>
 
       <Transition mode="out-in" name="slide">
         <!-- 验证邮箱 -->
         <div class="email" v-if="flag">
           <div class="input">
-            <span>您的邮箱：</span>
+            <span>{{ $tm('forgot.email') }}: </span>
             <input v-model="input.email" type="text" />
           </div>
 
           <div class="input">
-            <span>验证码：</span>
+            <span>{{ $tm('forgot.code') }}: </span>
             <input v-model="input.code" type="text" />
           </div>
         </div>
@@ -110,11 +110,11 @@ const handleChangePassword = async () => {
         <!-- 新密码 -->
         <div class="password" v-else-if="!flag">
           <div class="input">
-            <span>更改密码：</span>
+            <span>{{ $tm('forgot.new') }}: </span>
             <input v-model="input.newPassword" type="password" />
           </div>
           <div class="input">
-            <span>确认密码：</span>
+            <span>{{ $tm('forgot.rePwd') }}: </span>
             <input v-model="input.confirmPassword" type="password" />
           </div>
         </div>
@@ -128,9 +128,15 @@ const handleChangePassword = async () => {
           :email="input.email"
           :isSendCode="isSendCode"
         />
-        <button v-if="flag" @click="handleClickNext">下一步</button>
-        <button v-if="!flag" @click="handleClickPrev">上一步</button>
-        <button v-if="!flag" @click="handleChangePassword">确定更改</button>
+        <button v-if="flag" @click="handleClickNext">
+          {{ $tm('forgot.next') }}
+        </button>
+        <button v-if="!flag" @click="handleClickPrev">
+          {{ $tm('forgot.prev') }}
+        </button>
+        <button v-if="!flag" @click="handleChangePassword">
+          {{ $tm('forgot.confirm') }}
+        </button>
       </div>
     </div>
   </div>
@@ -177,8 +183,10 @@ const handleChangePassword = async () => {
 }
 
 .input {
+  padding: 0 10px;
   display: flex;
   margin-bottom: 30px;
+  justify-content: space-between;
 
   input {
     border: none;

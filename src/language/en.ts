@@ -266,6 +266,16 @@ export default {
       confirmPwd: 'Confirm Password Change',
     },
   },
+  forgot: {
+    title: 'Forget Password',
+    email: 'Your Email',
+    code: 'Code',
+    next: 'Next',
+    prev: 'Back',
+    new: 'New Password',
+    rePwd: 'Confirm Password',
+    confirm: 'Confirm',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: 'OK',
