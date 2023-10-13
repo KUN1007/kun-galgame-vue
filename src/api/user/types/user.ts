@@ -77,6 +77,13 @@ export interface UserGetUserCommentRequestData {
   cidArray: number[]
 }
 
+// 用户验证邮箱重置密码,不根据密码重置
+export interface UserResetPasswordByEmailRequestData {
+  email: string
+  code: string
+  newPassword: string
+}
+
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
 
 export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
@@ -98,3 +105,5 @@ export type UserGetUserReplyResponseData = KUNGalgameResponseData<UserReply[]>
 export type UserGetUserCommentResponseData = KUNGalgameResponseData<
   UserComment[]
 >
+
+export type UserResetPasswordByEmailResponseData = KUNGalgameResponseData<{}>

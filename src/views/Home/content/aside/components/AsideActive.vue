@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Topic from './Topic.vue'
 // 导入功能区的单个项目
-import asideItem from '@/types/home/aside-item'
+import asideItem from './asideItem'
 
 // 接受父组件的传值
 const props = defineProps(['isActive'])

@@ -32,6 +32,8 @@ import type {
   UserGetUserReplyResponseData,
   UserGetUserCommentRequestData,
   UserGetUserCommentResponseData,
+  UserResetPasswordByEmailRequestData,
+  UserResetPasswordByEmailResponseData,
 } from '@/api'
 
 import {
@@ -44,6 +46,7 @@ import {
   getUserTopicApi,
   getUserReplyApi,
   getUserCommentApi,
+  updateUserPasswordByEmailApi,
 } from '@/api'
 
 // kungalgame store 类型
@@ -216,6 +219,20 @@ export const useKUNGalgameUserStore = defineStore({
         cidArray: cidArray,
       }
       return getUserCommentApi(requestData)
+    },
+
+    // 根据用户邮箱重置密码
+    async updatePasswordByEmail(
+      email: string,
+      code: string,
+      newPassword: string
+    ): Promise<UserResetPasswordByEmailResponseData> {
+      const requestData: UserResetPasswordByEmailRequestData = {
+        email: email,
+        code: code,
+        newPassword: newPassword,
+      }
+      return updateUserPasswordByEmailApi(requestData)
     },
   },
 })

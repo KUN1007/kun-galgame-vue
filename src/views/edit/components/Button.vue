@@ -1,8 +1,6 @@
 <script setup lang="ts">
 // 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 全局消息组件（顶部）
-import message from '@/components/alert/Message'
 // 导入编辑话题的 store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
