@@ -1,5 +1,44 @@
 <script setup lang="ts">
-import Email from './components/Email.vue'
+import { reactive, ref } from 'vue'
+import Message from '@/components/alert/Message'
+import { checkEmail, checkCode, checkPassword } from './check'
+
+const input = reactive({
+  email: '',
+  code: '',
+  newPassword: '',
+  confirmPassword: '',
+})
+
+// 切换界面
+const flag = ref(true)
+
+// 发送验证码
+const handleClickSendCode = () => {
+  if (!checkEmail(input.email)) {
+    return
+  }
+}
+
+// 下一步
+const handleClickNext = () => {
+  if (!checkCode(input.email, input.code)) {
+    return
+  }
+  flag.value = false
+}
+
+// 上一步
+const handleClickPrev = () => {
+  flag.value = true
+}
+
+// 确定更改密码
+const handleChangePassword = () => {
+  if (!checkPassword(input.newPassword, input.confirmPassword)) {
+    return
+  }
+}
 </script>
 
 <template>
@@ -7,39 +46,38 @@ import Email from './components/Email.vue'
     <div class="container">
       <div class="title">忘记密码</div>
 
-      <!-- 验证邮箱 -->
-      <div class="email">
-        <div class="input">
-          <span>您的邮箱：</span>
-          <input type="text" />
+      <Transition mode="out-in" name="slide">
+        <!-- 验证邮箱 -->
+        <div class="email" v-if="flag">
+          <div class="input">
+            <span>您的邮箱：</span>
+            <input v-model="input.email" type="text" />
+          </div>
+
+          <div class="input">
+            <span>验证码：</span>
+            <input v-model="input.code" type="text" />
+          </div>
         </div>
 
-        <div class="input">
-          <span>验证码：</span>
-          <input type="text" />
+        <!-- 新密码 -->
+        <div class="password" v-else-if="!flag">
+          <div class="input">
+            <span>更改密码：</span>
+            <input v-model="input.newPassword" type="text" />
+          </div>
+          <div class="input">
+            <span>确认密码：</span>
+            <input v-model="input.confirmPassword" type="text" />
+          </div>
         </div>
+      </Transition>
 
-        <div class="btn">
-          <button>发送验证码</button>
-          <button>下一步</button>
-        </div>
-      </div>
-
-      <!-- 新密码 -->
-      <div class="password">
-        <div class="input">
-          <span>您的邮箱：</span>
-          <input type="text" />
-        </div>
-        <div class="input">
-          <span>您的邮箱：</span>
-          <input type="text" />
-        </div>
-
-        <div class="btn">
-          <button>上一步</button>
-          <button>下一步</button>
-        </div>
+      <div class="btn">
+        <button v-if="flag" @click="handleClickSendCode">发送验证码</button>
+        <button v-if="flag" @click="handleClickNext">下一步</button>
+        <button v-if="!flag" @click="handleClickPrev">上一步</button>
+        <button v-if="!flag" @click="handleChangePassword">确定更改</button>
       </div>
     </div>
   </div>
@@ -76,7 +114,8 @@ import Email from './components/Email.vue'
   color: var(--kungalgame-white);
 }
 
-.email {
+.email,
+.password {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -100,29 +139,34 @@ import Email from './components/Email.vue'
 }
 
 .btn {
-  margin-bottom: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
 
   button {
     cursor: pointer;
-    width: 150px;
-    padding: 5px 10px;
+    width: 110px;
+    padding: 7px 10px;
     border: 1px solid var(--kungalgame-blue-4);
     border-radius: 5px;
     background-color: var(--kungalgame-white);
     margin: 10px;
     color: var(--kungalgame-blue-4);
-    transition: all 0.2s;
-
-    &:hover {
-      background-color: var(--kungalgame-blue-4);
-      color: var(--kungalgame-white);
-    }
-    &:active {
-      transform: scale(0.9);
-    }
   }
+}
+
+.slide-enter-active,
+.slide-up-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 </style>

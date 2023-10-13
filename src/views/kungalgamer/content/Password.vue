@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import type { UserInfo } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import Message from '@/components/alert/Message'
+// 重置 store
+import { kungalgameStoreReset } from '@/store'
+// 重置路由
+import { resetRouter } from '@/router'
 import {
   checkSendCode,
   checkResetEmail,
   checkChangePassword,
 } from '../utils/check'
 
-const props = defineProps<{
+defineProps<{
   user: UserInfo
 }>()
 
@@ -97,6 +102,9 @@ const handleChangePassword = async () => {
   )
 
   if (res.code === 200) {
+    kungalgameStoreReset()
+    useRouter().push('/login')
+    resetRouter()
     Message('Password change successfully!', '密码更改成功', 'success')
   } else {
     Message('Password change failed!', '密码更改失败', 'error')
