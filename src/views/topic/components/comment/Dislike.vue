@@ -5,7 +5,7 @@
 import { ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // throttle 函数
 import { throttle } from '@/utils/throttle'
 
@@ -35,7 +35,7 @@ watch(
 
 // throttle 回调函数
 const throttleCallback = () => {
-  message(
+  Message(
     'You can only perform one operation within 1007 milliseconds',
     '您在 1007 毫秒内只能进行一次操作',
     'warn'
@@ -45,13 +45,13 @@ const throttleCallback = () => {
 const dislikeComment = async () => {
   // 已经点踩
   if (isDisliked.value) {
-    message(`You've already disliked it`, '您已经点过踩了', 'warn')
+    Message(`You've already disliked it`, '您已经点过踩了', 'warn')
     return
   }
 
   // 当前用户不可以给自己点赞
   if (props.uid === props.toUid) {
-    message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
+    Message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
     return
   }
 
@@ -65,9 +65,9 @@ const dislikeComment = async () => {
   if (res.code === 200) {
     dislikesCount.value++
     isDisliked.value = true
-    message('Dislike successfully!', '点踩成功', 'success')
+    Message('Dislike successfully!', '点踩成功', 'success')
   } else {
-    message('Dislike failed!', '点踩失败', 'error')
+    Message('Dislike failed!', '点踩失败', 'error')
   }
 }
 

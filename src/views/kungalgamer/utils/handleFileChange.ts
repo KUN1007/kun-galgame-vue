@@ -1,4 +1,4 @@
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 
 const dataURItoBlob = (dataURI: string) => {
   const byteString = atob(dataURI.split(',')[1])
@@ -15,7 +15,7 @@ export const checkImageValid = (file: File) => {
   if (file.type === 'image/jpeg' || file.type === 'image/png') {
     return true
   } else {
-    message(
+    Message(
       'Invalid file type. Please select a JPEG or PNG image.',
       '非法的文件类型，请选择 JPG 或 PNG 图片！',
       'warn'
@@ -56,7 +56,7 @@ export const resizeImage = (file: File): Promise<Blob> => {
       const resizedFile = dataURItoBlob(canvas.toDataURL('image/webp', 0.77))
 
       if (resizedFile.size > 1007 * 1024) {
-        message(
+        Message(
           'Image is too large. Please select an image smaller than 1007KB!',
           '文件过大, 请选择小于 1007KB 的文件! ',
           'warn'

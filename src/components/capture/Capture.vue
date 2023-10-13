@@ -4,7 +4,7 @@ import { ref, computed, watch } from 'vue'
 import { questionsEN, Question } from './questionsEN'
 import { questionsCN } from './questionsCN'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 导入消息 store
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 导入设置组件，目的是获取语言
@@ -82,7 +82,7 @@ const submitAnswer = () => {
     isCaptureSuccessful.value = true
     // 关闭面板
     isShowCapture.value = false
-    message(
+    Message(
       'Human-machine identity verification successful ~',
       '人机身份验证通过 ~',
       'success'
@@ -91,7 +91,7 @@ const submitAnswer = () => {
     // 回答错误
     errorCounter.value++
 
-    message('Wrong answer!', '回答错误！', 'warn')
+    Message('Wrong answer!', '回答错误！', 'warn')
 
     // 随机选择一个新的问题
     const randomIndex = randomizeQuestion()

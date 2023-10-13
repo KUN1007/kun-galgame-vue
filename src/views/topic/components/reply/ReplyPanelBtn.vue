@@ -2,7 +2,7 @@
 // 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 // 回复临时数据
@@ -43,12 +43,12 @@ const publishReply = async () => {
       // 关闭面板
       isEdit.value = false
       // 发布成功提示
-      message('Publish reply successfully!', '发布回复成功！', 'success')
+      Message('Publish reply successfully!', '发布回复成功！', 'success')
     } else {
-      message('Publish reply failed!', '发布回复失败！', 'error')
+      Message('Publish reply failed!', '发布回复失败！', 'error')
     }
   } else {
-    message('Reply content cannot be empty!', '回复内容不能为空！', 'warn')
+    Message('Reply content cannot be empty!', '回复内容不能为空！', 'warn')
   }
 }
 
@@ -60,7 +60,7 @@ const handlePublish = async () => {
     publishReply()
   } else {
     // 取消发布提示
-    message('Cancel publish reply', '取消发布回复', 'info')
+    Message('Cancel publish reply', '取消发布回复', 'info')
   }
 }
 
@@ -83,7 +83,7 @@ const handleRewrite = async () => {
     if (responseData.code === 200) {
       // 改变发布状态，前端会新增回复的数据
 
-      message('Reply rewrite successfully', '回复重新编辑成功', 'success')
+      Message('Reply rewrite successfully', '回复重新编辑成功', 'success')
       // 保存新话题的数据，实际上就是草稿的数据
       saveRewriteReply()
 
@@ -93,7 +93,7 @@ const handleRewrite = async () => {
       isShowAdvance.value = false
       isEdit.value = false
     } else {
-      message('Reply rewrite failed!', '回复重新编辑失败！', 'error')
+      Message('Reply rewrite failed!', '回复重新编辑失败！', 'error')
     }
   }
 }
@@ -103,7 +103,7 @@ const handleSave = () => {
   // 设置保存为 true
   replyDraft.value.isSaveReply = true
   // 这里实现用户的保存逻辑
-  message(
+  Message(
     'The draft has been saved successfully!',
     '草稿已经保存成功',
     'success'

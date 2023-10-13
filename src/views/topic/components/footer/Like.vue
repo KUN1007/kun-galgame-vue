@@ -3,7 +3,7 @@
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // throttle 函数
 import { throttle } from '@/utils/throttle'
 
@@ -34,7 +34,7 @@ watch(
 
 // throttle 回调函数
 const throttleCallback = () => {
-  message(
+  Message(
     'You can only perform one operation within 1007 milliseconds',
     '您在 1007 毫秒内只能进行一次操作',
     'warn'
@@ -66,7 +66,7 @@ const likeOperation = async (
 const toggleLike = async () => {
   // 当前用户不可以给自己点赞
   if (props.uid === props.toUid) {
-    message('You cannot like yourself', '您不可以给自己点赞', 'warn')
+    Message('You cannot like yourself', '您不可以给自己点赞', 'warn')
     return
   }
 
@@ -81,15 +81,15 @@ const toggleLike = async () => {
     likesCount.value += isPush ? 1 : -1
 
     if (isPush) {
-      message('Like successfully!', '点赞成功！', 'success')
+      Message('Like successfully!', '点赞成功！', 'success')
     } else {
-      message('Cancel like successfully!', '取消点赞成功！', 'success')
+      Message('Cancel like successfully!', '取消点赞成功！', 'success')
     }
   } else {
     if (isPush) {
-      message('Like failed!', '点赞失败！', 'error')
+      Message('Like failed!', '点赞失败！', 'error')
     } else {
-      message('Cancel like failed!', '取消点赞失败！', 'error')
+      Message('Cancel like failed!', '取消点赞失败！', 'error')
     }
   }
 }

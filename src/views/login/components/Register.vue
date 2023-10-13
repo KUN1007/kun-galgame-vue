@@ -7,7 +7,7 @@ import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 使用设置
 import Settings from './Settings.vue'
 
@@ -45,13 +45,13 @@ const registerForm = reactive<Record<string, string>>({
 // 验证表单是否为空
 const isEmptyInput = () => {
   if (!registerForm.name.trim()) {
-    message('Username cannot be empty!', '用户名不可为空！', 'warn')
+    Message('Username cannot be empty!', '用户名不可为空！', 'warn')
     return false
   } else if (!registerForm.email.trim()) {
-    message('Email cannot be empty!', '邮箱不可为空！', 'warn')
+    Message('Email cannot be empty!', '邮箱不可为空！', 'warn')
     return false
   } else if (!registerForm.password.trim()) {
-    message('Password cannot be empty!', '密码不可为空！', 'warn')
+    Message('Password cannot be empty!', '密码不可为空！', 'warn')
     return false
   } else {
     return true
@@ -64,15 +64,15 @@ const isValidInput = (): boolean => {
     return false
   }
   if (!isValidName(registerForm.name)) {
-    message('Invalid username format!', '非法的用户名格式！', 'warn')
+    Message('Invalid username format!', '非法的用户名格式！', 'warn')
     return false
   }
   if (!isValidEmail(registerForm.email)) {
-    message('Invalid email format!', '非法的邮箱格式！', 'warn')
+    Message('Invalid email format!', '非法的邮箱格式！', 'warn')
     return false
   }
   if (!isValidPassword(registerForm.password)) {
-    message('Invalid password format!', '非法的密码格式！', 'warn')
+    Message('Invalid password format!', '非法的密码格式！', 'warn')
     return false
   }
   return true
@@ -82,7 +82,7 @@ const isValidInput = (): boolean => {
 const handleSendCode = () => {
   // 表单为空
   if (!isValidInput()) {
-    message('Form cannot be empty', '表单不可为空', 'warn')
+    Message('Form cannot be empty', '表单不可为空', 'warn')
     return
   }
 
@@ -99,7 +99,7 @@ const handleSendCode = () => {
 
 const handleRegister = async () => {
   if (!isSendCode.value) {
-    message(
+    Message(
       'Need to send an email verification code',
       '需要发送邮箱验证码',
       'warn'
@@ -108,7 +108,7 @@ const handleRegister = async () => {
   }
 
   if (!registerForm.code.trim()) {
-    message(
+    Message(
       'Email verification code cannot be empty',
       '邮箱验证码不可为空',
       'warn'
@@ -117,7 +117,7 @@ const handleRegister = async () => {
   }
 
   if (!isValidMailConfirmCode(registerForm.code)) {
-    message(
+    Message(
       'Invalid email verification code format!',
       '非法的邮箱验证码格式！',
       'warn'
@@ -136,10 +136,10 @@ const handleRegister = async () => {
   // 如果请求成功跳转到主页
   if (res.code === 200) {
     router.push('/')
-    message('Register successfully!', '注册成功！', 'success')
+    Message('Register successfully!', '注册成功！', 'success')
     info.info(tm('AlertInfo.login.success'))
   } else {
-    message('Register failed!', '注册失败！', 'error')
+    Message('Register failed!', '注册失败！', 'error')
   }
 }
 </script>

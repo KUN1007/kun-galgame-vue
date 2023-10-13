@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue'
 // 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
@@ -49,9 +49,9 @@ const upvoteTopic = async () => {
       upvoteCount.value++
       isUpvote.value = true
 
-      message('Topic upvote successfully', '推话题成功', 'success')
+      Message('Topic upvote successfully', '推话题成功', 'success')
     } else {
-      message('Topic upvote failed!', '推话题失败', 'error')
+      Message('Topic upvote failed!', '推话题失败', 'error')
     }
   }
 }
@@ -79,9 +79,9 @@ const upvoteReply = async () => {
       upvoteCount.value++
       isUpvote.value = true
 
-      message('Reply upvote successfully', '推回复成功', 'success')
+      Message('Reply upvote successfully', '推回复成功', 'success')
     } else {
-      message('Reply upvote failed!', '推回复失败', 'error')
+      Message('Reply upvote failed!', '推回复失败', 'error')
     }
   }
 }
@@ -90,7 +90,7 @@ const upvoteReply = async () => {
 const handleClickUpvote = async () => {
   // 当前用户不可以推自己
   if (props.uid === props.toUid) {
-    message('You cannot upvote your own topic', '您不可以推自己的话题', 'warn')
+    Message('You cannot upvote your own topic', '您不可以推自己的话题', 'warn')
     return
   }
 

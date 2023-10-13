@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 import { debounce } from '@/utils/debounce'
 
 import { TopicComment } from '@/api/index'
@@ -42,13 +42,13 @@ const handleInputComment = () => {
 const isValidComment = () => {
   // 评论内容为空警告
   if (!content.value.trim()) {
-    message('Comment content cannot be empty!', '评论内容不能为空！', 'warn')
+    Message('Comment content cannot be empty!', '评论内容不能为空！', 'warn')
     return false
   }
 
   // 评论内容超出限制警告
   if (content.value.trim().length > 1007) {
-    message(
+    Message(
       'The maximum length for comments should not exceed 1007 characters.',
       '评论最大长度不可超过1007个字符',
       'warn'
@@ -76,7 +76,7 @@ const handlePublishComment = async () => {
     emits('getCommentEmits', newComment)
 
     // 提醒用户
-    message('Comment publish successfully!', '评论发布成功', 'success')
+    Message('Comment publish successfully!', '评论发布成功', 'success')
 
     handleCloseCommentPanel()
   }
