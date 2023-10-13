@@ -53,6 +53,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .root {
   height: 100vh;
+  min-height: 800px;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -62,6 +63,7 @@ onMounted(async () => {
   /* 内容区占整个页面的比例 */
   width: 60%;
   height: 70%;
+  min-height: 700px;
   /* 内容区的最大宽度和高度 */
   max-width: 1350px;
   max-width: 1200px;

@@ -46,29 +46,47 @@ const statusName = () => {
       <!-- 用户基本信息 -->
       <div class="basic">
         <!-- 用户名 -->
-        <span>用户名: {{ user.name }}</span>
+        <span>{{ $tm('user.profile.name') }}: {{ user.name }}</span>
         <!-- 萌萌点 -->
-        <span>萌萌点: {{ user.moemoepoint }}</span>
+        <span>
+          {{ $tm('user.profile.moemoepoint') }}: {{ user.moemoepoint }}
+        </span>
         <!-- 注册序号 -->
-        <span>注册序号: {{ user.uid }}</span>
-        <span>角色: {{ rolesName() }}</span>
-        <span>状态: {{ statusName() }}</span>
-        <span>被推数: {{ user.upvote }}</span>
-        <span>被赞数: {{ user.like }}</span>
-        <span>被踩数: {{ user.dislike }}</span>
-        <span>今日发表: {{ user.daily_topic_count }}</span>
-
-        <span>话题数: {{ user.topic.length }}</span>
-        <span>回复数: {{ user.reply.length }}</span>
-        <span>评论数: {{ user.comment.length }}</span>
+        <span>{{ $tm('user.profile.register') }}: {{ user.uid }}</span>
+        <!-- 角色 -->
+        <span>{{ $tm('user.profile.roles') }}: {{ rolesName() }}</span>
+        <!-- 状态 -->
+        <span>{{ $tm('user.profile.status') }}: {{ statusName() }}</span>
+        <!-- 被推数 -->
+        <span>{{ $tm('user.profile.upvote') }}: {{ user.upvote }}</span>
+        <!-- 被赞数 -->
+        <span>{{ $tm('user.profile.like') }}: {{ user.like }}</span>
+        <!-- 被踩数 -->
+        <span>{{ $tm('user.profile.dislike') }}: {{ user.dislike }}</span>
+        <!-- 今日发布话题数 -->
+        <span>
+          {{ $tm('user.profile.today') }}: {{ user.daily_topic_count }}
+        </span>
+        <!-- 发布话题数 -->
+        <span>{{ $tm('user.profile.topic') }}: {{ user.topic.length }}</span>
+        <!-- 发布回复数 -->
+        <span>{{ $tm('user.profile.reply') }}: {{ user.reply.length }}</span>
+        <!-- 发布评论数 -->
+        <span>
+          {{ $tm('user.profile.comment') }}: {{ user.comment.length }}
+        </span>
 
         <!-- 注册时间 -->
-        <span>注册时间: {{ dayjs(user.time).format('YYYY/MM/DD') }}</span>
+        <span>
+          {{ $tm('user.profile.time') }}:
+          {{ dayjs(user.time).format('YYYY/MM/DD') }}
+        </span>
       </div>
       <!-- 用户签名 -->
       <div class="bio">
-        <div>签名:</div>
-        <div>{{ user.bio ? user.bio : 'NULL' }}</div>
+        <div>{{ $tm('user.profile.bio') }}:</div>
+        <div v-if="user.bio">{{ user.bio }}</div>
+        <div v-if="!user.bio" class="null">{{ $tm('user.profile.null') }}</div>
       </div>
     </div>
   </div>
@@ -113,5 +131,11 @@ const statusName = () => {
       margin-bottom: 10px;
     }
   }
+}
+
+/* 签名为空 */
+.null {
+  color: var(--kungalgame-blue-2);
+  font-style: oblique;
 }
 </style>
