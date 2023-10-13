@@ -20,6 +20,7 @@ defineProps<{
   user: UserInfo
 }>()
 
+const router = useRouter()
 // 当前用户的邮箱
 const email = ref('')
 // 已经发送验证码的邮箱
@@ -114,7 +115,7 @@ const handleChangePassword = async () => {
 
   if (res.code === 200) {
     kungalgameStoreReset()
-    useRouter().push('/login')
+    router.push('/login')
     resetRouter()
     Message('Password change successfully!', '密码更改成功', 'success')
   } else {
@@ -131,6 +132,11 @@ onMounted(async () => {
     Message('Get email failed!', '获取邮箱失败！', 'error')
   }
 })
+
+// 忘记密码
+const handleClickForgotPassword = () => {
+  router.push('/forgot')
+}
 </script>
 
 <template>
@@ -156,6 +162,7 @@ onMounted(async () => {
         <button @click="handleResetEmail">确定更改邮箱</button>
       </div>
     </div>
+
     <!-- 用户更改密码 -->
     <div class="password">
       <div class="title">更改密码:</div>
@@ -176,6 +183,11 @@ onMounted(async () => {
         <button @click="handleChangePassword">确定更改密码</button>
       </div>
     </div>
+
+    <!-- 忘记密码 -->
+    <span @click="handleClickForgotPassword" class="forget">
+      {{ $tm('login.login.forget') }}
+    </span>
   </div>
 </template>
 
@@ -240,6 +252,18 @@ onMounted(async () => {
       transform: scale(0.9);
     }
   }
+}
+
+.password {
+  margin-bottom: 20px;
+}
+
+/* 忘记密码 */
+.forget {
+  font-size: medium;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--kungalgame-blue-4);
 }
 
 @media (max-width: 700px) {

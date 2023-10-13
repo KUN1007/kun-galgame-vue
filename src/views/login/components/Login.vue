@@ -6,27 +6,23 @@ import { useRouter } from 'vue-router'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { storeToRefs } from 'pinia'
 // 全局消息组件（顶部）
-import message from '@/components/alert/Message'
+import Message from '@/components/alert/Message'
 // 导入设置
 import Settings from './Settings.vue'
+// 导入 i18n
+import { useI18n } from 'vue-i18n'
 
 // 导入验证表单是否合法的函数
 import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 
-// 导入 i18n
-import { useI18n } from 'vue-i18n'
-const { tm } = useI18n()
+const router = useRouter()
 
+const { tm } = useI18n()
+const info = useKUNGalgameMessageStore()
 // 使用消息 store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
   useKUNGalgameMessageStore()
 )
-
-const router = useRouter()
-
-const info = useKUNGalgameMessageStore()
-
-const useStore = useKUNGalgameUserStore()
 
 // 用户登录的表单
 const loginForm = reactive({
@@ -34,64 +30,81 @@ const loginForm = reactive({
   password: '',
 })
 
-const isEmptyInput = (): boolean => {
+// 检查用户名
+const checkUsername = (name: string) => {
   // 如果输入的字段为空
-  if (!loginForm.name.trim()) {
+  if (!name.trim()) {
     // 提示用户输入的名字为空
-    message('Username cannot be empty', '用户名不可为空', 'warn')
+    Message('Username cannot be empty', '用户名不可为空', 'warn')
     return false
   }
 
-  if (!loginForm.password.trim()) {
-    // 提示用户输入的密码为空
-    message('Password cannot be empty', '密码不可为空', 'warn')
+  if (!isValidName(name) && !isValidEmail(name)) {
+    // 输入的用户名格式错误时的逻辑
+    info.info(tm('AlertInfo.login.invalidUsername'))
     return false
   }
 
   return true
 }
 
-// 判断输入的用户名和密码字段是否合法
-const isValidInput = (): boolean => {
-  // 如果输入为空直接返回 false
-  if (!isEmptyInput()) {
-    return false
-  }
-  if (!isValidName(loginForm.name) && !isValidEmail(loginForm.name)) {
-    // 输入的用户名格式错误时的逻辑
-    info.info(tm('AlertInfo.login.invalidUsername'))
+const checkPassword = (password: string) => {
+  if (!password.trim()) {
+    // 提示用户输入的密码为空
+    Message('Password cannot be empty', '密码不可为空', 'warn')
     return false
   }
   // 输入的密码格式不正确时（为用户名或邮箱）
-  if (!isValidPassword(loginForm.password)) {
+  if (!isValidPassword(password)) {
     // 如果密码非法的话返回非法密码
     info.info(tm('AlertInfo.login.invalidPassword'))
     return false
   }
+
+  return true
+}
+
+const checkLogin = (
+  name: string,
+  password: string,
+  isCaptureSuccessful: boolean
+) => {
+  // 检查用户名和密码
+  if (!checkUsername(name) || !checkPassword(password)) {
+    return false
+  }
+
+  // 未完成人机身份验证提示信息，直接返回
+  if (!isCaptureSuccessful) {
+    Message(
+      'Please click above to complete the human verification',
+      '请点击上方完成人机身份验证',
+      'warn'
+    )
+    return false
+  }
+
   return true
 }
 
 // 处理用户点击登陆时的逻辑
 const handleLogin = async () => {
-  // 保证输入格式和人机验证通过才能发送登录请求
-  if (!isValidInput()) {
+  // 检查用户输入,人机验证
+  const result = checkLogin(
+    loginForm.name,
+    loginForm.password,
+    isCaptureSuccessful.value
+  )
+  if (!result) {
     return
   }
-  // 未完成人机身份验证提示信息，直接返回
-  if (!isCaptureSuccessful.value) {
-    message(
-      'Please click above to complete the human verification',
-      '请点击上方完成人机身份验证',
-      'warn'
-    )
-    return
-  }
+
   // 所有的验证都通过了再向后端发送请求
-  const res = await useStore.login(loginForm)
+  const res = await useKUNGalgameUserStore().login(loginForm)
   // 如果请求成功跳转到主页
   if (res.code === 200) {
     router.push('/kun')
-    message(
+    Message(
       'Login Successfully! Welcome to KUN Visual Novel ~ ',
       '登陆成功!欢迎来到 鲲 Galgame ~ ',
       'success',
@@ -190,7 +203,7 @@ const handleClickForgotPassword = () => {
   transition: 0.2s linear;
 }
 
-/* 获取验证码 */
+/* 忘记密码 */
 .forget {
   cursor: pointer;
   text-decoration: none;
