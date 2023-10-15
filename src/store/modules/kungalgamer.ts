@@ -63,6 +63,7 @@ export const useKUNGalgameUserStore = defineStore({
     uid: 0,
     name: '',
     avatar: '',
+    avatarMin: '',
     moemoepoint: 0,
     moemoeAccessToken: '',
     roles: 0,
@@ -80,6 +81,7 @@ export const useKUNGalgameUserStore = defineStore({
       this.uid = uid
       this.name = name
       this.avatar = avatar
+      this.avatarMin = avatar.replace(/\.webp$/, '-77.webp')
       this.moemoepoint = moemoepoint
       this.roles = roles
     },

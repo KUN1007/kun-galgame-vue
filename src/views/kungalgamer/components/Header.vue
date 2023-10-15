@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
+
+const { name, avatar } = storeToRefs(useKUNGalgameUserStore())
 
 const props = defineProps<{
-  name?: string
   moemoepoint?: number
 }>()
 
@@ -16,11 +19,11 @@ const mpWidth = computed(() => {
   <div class="header">
     <!-- 用户头像 -->
     <div class="avatar">
-      <img src="@/assets/images/KUN.jpg" alt="KUN" />
+      <img v-if="avatar" :src="avatar" alt="KUN" />
     </div>
     <!-- 用户名 -->
     <div class="name">
-      <span>{{ props.name }}</span>
+      <span>{{ name }}</span>
       <span>KUNGalgame</span>
     </div>
     <!-- 用户萌萌点 -->
@@ -49,10 +52,15 @@ const mpWidth = computed(() => {
   position: absolute;
   /* 头像的定位 */
   top: 5px;
+  width: 140px;
+  height: 140px;
+  background-color: var(--kungalgame-trans-blue-0);
+  border-radius: 50%;
   left: 50px;
   z-index: 2;
   img {
     width: 140px;
+    height: 140px;
     border-radius: 50%;
     box-shadow: 0px 0px 2px 4px var(--kungalgame-trans-red-2);
     &:hover {

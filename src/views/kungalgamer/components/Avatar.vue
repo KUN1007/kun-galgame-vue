@@ -4,6 +4,7 @@ import Message from '@/components/alert/Message'
 // 上传头像的函数
 import { checkImageValid, resizeImage } from '../utils/handleFileChange'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
 
 // 准备给后端的图片
 const uploadedImage = ref<Blob>()
@@ -11,6 +12,8 @@ const uploadedImage = ref<Blob>()
 const selectedFileUrl = ref<string>('')
 // 上传的 input
 const input = ref<HTMLElement>()
+// 本地保存的用户头像链接
+const { avatar, avatarMin } = storeToRefs(useKUNGalgameUserStore())
 
 // 上传图片的函数
 const uploadImage = async (file: File) => {
@@ -71,7 +74,20 @@ const handleChangeAvatar = async () => {
 
   console.log(uploadedImage.value)
 
-  await useKUNGalgameUserStore().updateAvatar(formData)
+  const res = await useKUNGalgameUserStore().updateAvatar(formData)
+
+  if (res.code === 200) {
+    // 保存返回的头像链接
+    const avatarLink = res.data.avatar
+    avatar.value = avatarLink
+    avatarMin.value = avatarLink.replace(/\.webp$/, '-77.webp')
+    // 清除数据
+    selectedFileUrl.value = ''
+
+    Message('Update avatar successfully!', '更新头像成功', 'success')
+  } else {
+    Message('Update avatar failed!', '更新头像失败', 'error')
+  }
 }
 </script>
 

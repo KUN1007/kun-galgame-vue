@@ -94,6 +94,7 @@ export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
 
 export type UserUpdateAvatarResponseData = KUNGalgameResponseData<{
   avatar: string
+  avatarMin: string
 }>
 
 export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
