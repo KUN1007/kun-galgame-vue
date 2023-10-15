@@ -19,6 +19,12 @@ export interface UserInfo {
   upvote_topic: number[]
 }
 
+// 用户更新头像
+export interface UserUpdateAvatarRequestData {
+  uid: number
+  avatar: FormData
+}
+
 // 用户更新签名
 export interface UserUpdateBioRequestData {
   uid: number
@@ -85,6 +91,10 @@ export interface UserResetPasswordByEmailRequestData {
 }
 
 export type UserInfoResponseData = KUNGalgameResponseData<UserInfo>
+
+export type UserUpdateAvatarResponseData = KUNGalgameResponseData<{
+  avatar: string
+}>
 
 export type UserUpdateBioResponseData = KUNGalgameResponseData<{}>
 

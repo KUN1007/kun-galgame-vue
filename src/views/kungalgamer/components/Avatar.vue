@@ -2,11 +2,8 @@
 import { ref } from 'vue'
 import Message from '@/components/alert/Message'
 // 上传头像的函数
-import {
-  checkImageValid,
-  resizeImage,
-  handleUploadAvatar,
-} from '../utils/handleFileChange'
+import { checkImageValid, resizeImage } from '../utils/handleFileChange'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
 // 准备给后端的图片
 const uploadedImage = ref<Blob>()
@@ -15,12 +12,28 @@ const selectedFileUrl = ref<string>('')
 // 上传的 input
 const input = ref<HTMLElement>()
 
+// 上传图片的函数
+const uploadImage = async (file: File) => {
+  // 检查图片是否合法，不合法则退出
+  const isFileValid = checkImageValid(file)
+  if (!isFileValid) {
+    return
+  }
+  const resizedFile = await resizeImage(file)
+  uploadedImage.value = resizedFile
+  selectedFileUrl.value = URL.createObjectURL(resizedFile)
+}
+
 // 点击上传
 const handleFileChange = async (event: Event) => {
-  const imgUrl = await handleUploadAvatar(event)
-  if (imgUrl) {
-    selectedFileUrl.value = imgUrl
+  const input = event.target as HTMLInputElement
+
+  if (!input.files || !input.files[0]) {
+    return
   }
+
+  const file = input.files[0]
+  uploadImage(file)
 }
 
 // 拖拽上传
@@ -32,14 +45,7 @@ const handleDrop = async (event: DragEvent) => {
   const dataTransfer = event.dataTransfer
   if (dataTransfer && dataTransfer.files.length > 0) {
     const file = dataTransfer.files[0]
-
-    // 验证文件类型，正确则上传
-    if (checkImageValid(file)) {
-      const resizedFile = await resizeImage(file)
-      uploadedImage.value = resizedFile
-
-      selectedFileUrl.value = URL.createObjectURL(resizedFile)
-    }
+    uploadImage(file)
   }
 }
 
@@ -49,20 +55,23 @@ const handleDragOver = (event: DragEvent) => {
   event.dataTransfer!.dropEffect = 'copy'
 }
 
-// 更改头像
-const handleChangeAvatar = () => {
-  Message(
-    'Image API is not yet completed, stay tuned for updates',
-    '图片接口还未完成，敬请期待',
-    'warn'
-  )
-  if (uploadedImage.value) {
-    const formData = new FormData()
-    formData.append('avatar', uploadedImage.value)
+// 点击上传
+const handleClickUpload = () => {
+  input.value?.click()
+}
 
-    // 在这里执行上传逻辑 TODO:
-    // 上传完成后可以显示成功消息或者刷新用户界面
+// 更改头像
+const handleChangeAvatar = async () => {
+  if (!uploadedImage.value) {
+    return
   }
+
+  const formData = new FormData()
+  formData.append('avatar', uploadedImage.value, useKUNGalgameUserStore().name)
+
+  console.log(uploadedImage.value)
+
+  await useKUNGalgameUserStore().updateAvatar(formData)
 }
 </script>
 
@@ -77,7 +86,7 @@ const handleChangeAvatar = () => {
         class="avatar-upload"
         @drop="handleDrop($event)"
         @dragover="handleDragOver"
-        @click="input?.click()"
+        @click="handleClickUpload"
       >
         <!-- 加号提示 -->
         <span class="plus" v-if="!selectedFileUrl"></span>

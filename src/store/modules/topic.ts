@@ -100,7 +100,7 @@ export const useKUNGalgameTopicStore = defineStore({
     },
     replyRequest: {
       page: 1,
-      limit: 5,
+      limit: 3,
       sortField: 'floor',
       sortOrder: 'asc',
     },

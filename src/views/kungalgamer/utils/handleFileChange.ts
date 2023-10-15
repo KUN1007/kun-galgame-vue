@@ -70,22 +70,3 @@ export const resizeImage = (file: File): Promise<Blob> => {
     }
   })
 }
-
-// 上传头像
-export const handleUploadAvatar = async (event: Event) => {
-  const input = event.target as HTMLInputElement
-
-  if (input.files && input.files[0]) {
-    const file = input.files[0]
-
-    // 检查图片是否合法，不合法则退出
-    const isFileValid = checkImageValid(file)
-    if (!isFileValid) {
-      return
-    }
-
-    // 处理图片
-    const resizedFile = await resizeImage(file)
-    return URL.createObjectURL(resizedFile)
-  }
-}
