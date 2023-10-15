@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import Avatar from '../components/Avatar.vue'
 import Message from '@/components/alert/Message'
 // 导入用户 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-
-const currentUserUid = computed(() => useKUNGalgameUserStore().uid)
 
 // 签名的内容
 const bioValue = ref('')
@@ -22,10 +20,8 @@ const handleChangeBio = async () => {
     return
   }
 
-  const res = await useKUNGalgameUserStore().updateBio(
-    currentUserUid.value,
-    bioValue.value
-  )
+  const res = await useKUNGalgameUserStore().updateBio(bioValue.value)
+
   if (res.code === 200) {
     Message('Rewrite bio successfully!', 'Rewrite 签名成功', 'success')
     bioValue.value = ''

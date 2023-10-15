@@ -1,4 +1,9 @@
-import { fetchGet, fetchPut, fetchPost } from '@/utils/request'
+import {
+  fetchGet,
+  fetchPut,
+  fetchPost,
+  fetchPostWithFormData,
+} from '@/utils/request'
 // 将对象转为请求参数的函数
 import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as User from './types/user'
@@ -13,6 +18,19 @@ export async function getUserByUidApi(
   const response = await fetchGet<User.UserInfoResponseData>(url)
 
   // 返回获取的用户数据
+  return response
+}
+
+// 更新用户头像
+export async function updateUserAvatarApi(
+  request: User.UserUpdateAvatarRequestData
+): Promise<User.UserUpdateAvatarResponseData> {
+  const url = `/user/${request.uid}/avatar`
+  const response =
+    await fetchPostWithFormData<User.UserUpdateAvatarResponseData>(
+      url,
+      request.avatar
+    )
   return response
 }
 

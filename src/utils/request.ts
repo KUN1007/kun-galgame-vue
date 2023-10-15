@@ -103,4 +103,21 @@ const fetchDelete = async <T>(
   return await kunFetchRequest<T>(url, options)
 }
 
-export { fetchGet, fetchPost, fetchPut, fetchDelete }
+const fetchPostWithFormData = async <T>(
+  url: string,
+  formData: FormData,
+  headers?: Record<string, string>
+): Promise<T> => {
+  const options: FetchOptions = {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      ...headers,
+    },
+    body: formData,
+  }
+
+  return await kunFetchRequest<T>(url, options)
+}
+
+export { fetchGet, fetchPost, fetchPut, fetchDelete, fetchPostWithFormData }

@@ -18,6 +18,8 @@ import {
 
 import type {
   UserInfoResponseData,
+  UserUpdateAvatarRequestData,
+  UserUpdateAvatarResponseData,
   UserUpdateBioRequestData,
   UserUpdateBioResponseData,
   UserGetUserEmailResponseData,
@@ -38,6 +40,7 @@ import type {
 
 import {
   getUserByUidApi,
+  updateUserAvatarApi,
   updateUserBioApi,
   getUserEmailApi,
   getUserResetEmailCodeApi,
@@ -139,13 +142,21 @@ export const useKUNGalgameUserStore = defineStore({
       return getUserByUidApi(uid)
     },
 
+    // 更新用户 avatar
+    async updateAvatar(
+      avatar: FormData
+    ): Promise<UserUpdateAvatarResponseData> {
+      const request: UserUpdateAvatarRequestData = {
+        uid: this.uid,
+        avatar: avatar,
+      }
+      return updateUserAvatarApi(request)
+    },
+
     // 更新用户 bio
-    async updateBio(
-      uid: number,
-      bio: string
-    ): Promise<UserUpdateBioResponseData> {
+    async updateBio(bio: string): Promise<UserUpdateBioResponseData> {
       const request: UserUpdateBioRequestData = {
-        uid,
+        uid: this.uid,
         bio,
       }
       return updateUserBioApi(request)
