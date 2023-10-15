@@ -72,15 +72,13 @@ const handleChangeAvatar = async () => {
   const formData = new FormData()
   formData.append('avatar', uploadedImage.value, useKUNGalgameUserStore().name)
 
-  console.log(uploadedImage.value)
-
   const res = await useKUNGalgameUserStore().updateAvatar(formData)
 
   if (res.code === 200) {
     // 保存返回的头像链接
     const avatarLink = res.data.avatar
     avatar.value = avatarLink
-    avatarMin.value = avatarLink.replace(/\.webp$/, '-77.webp')
+    avatarMin.value = avatarLink.replace(/\.webp$/, '-100.webp')
     // 清除数据
     selectedFileUrl.value = ''
 
