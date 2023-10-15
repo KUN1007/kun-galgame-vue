@@ -1,25 +1,23 @@
 <script setup lang="ts">
-// 导入 Vue 函数
 import { defineAsyncComponent, ref } from 'vue'
-// 导入图标
 import { Icon } from '@iconify/vue'
-// 导入 css 动画
 import 'animate.css'
-// 导入导航栏的单个项目
 import { topBarItem } from './topBarItem'
 import { onBeforeRouteLeave } from 'vue-router'
-// 异步导入手机版 hamburger，提升首页加载速度
+// 手机版 hamburger
 const Hamburger = defineAsyncComponent(() => import('./Hamburger.vue'))
-
-// 异步导入设置面板，提升首页加载速度
+// 设置面板
 const KUNGalgameSettingsPanel = defineAsyncComponent(
   () => import('../setting-panel/KUNGalgameSettingPanel.vue')
 )
-
-// 异步导入点击用户头像的面板
+// 点击用户头像的面板
 const KUNGalgameUserInfo = defineAsyncComponent(
   () => import('./KUNGalgameUserInfo.vue')
 )
+
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
+const { avatarMin } = storeToRefs(useKUNGalgameUserStore())
 
 // 显示设置面板的状态值
 const showKUNGalgamePanel = ref(false)
@@ -91,7 +89,7 @@ onBeforeRouteLeave(() => {
       <div class="avatar">
         <img
           @click="showKUNGalgameUserPanel = true"
-          src="../../assets/images/KUN.jpg"
+          :src="avatarMin"
           alt="KUN"
         />
       </div>
