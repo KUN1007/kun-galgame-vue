@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 const props = defineProps<{
   user: {
     uid: number
@@ -6,6 +8,8 @@ const props = defineProps<{
     name: string
   }
 }>()
+
+const user = computed(() => props.user)
 </script>
 
 <template>
@@ -13,9 +17,12 @@ const props = defineProps<{
   <div class="kungalgamer">
     <!-- 发布者头像 -->
     <div class="avatar">
-      <!-- TODO: 这里换成后端的用户图片接口，我不想用 express 雕花了 -->
-      <RouterLink :to="`/kungalgamer/${props.user.uid}/info`">
-        <img src="@/assets/images/topic.jpg" :alt="props.user.name" />
+      <!-- 用户图片 -->
+      <RouterLink :to="`/kungalgamer/${user.uid}/info`">
+        <img
+          :src="user.avatar.replace(/\.webp$/, '-100.webp')"
+          :alt="user.name"
+        />
       </RouterLink>
     </div>
     <!-- 发布者姓名 -->

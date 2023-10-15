@@ -18,9 +18,9 @@ const user = computed(() => props.user)
   <div class="kungalgamer">
     <!-- 头像 -->
     <div class="avatar">
-      <!-- 头像图片 TODO: -->
+      <!-- 头像图片 -->
       <RouterLink :to="`/kungalgamer/${user.uid}/info`">
-        <img src="@/assets/images/KUN.jpg" alt="KUN" />
+        <img v-if="user.avatar" :src="user.avatar" :alt="user.name" />
       </RouterLink>
     </div>
     <div class="info">
@@ -78,9 +78,11 @@ const user = computed(() => props.user)
   .avatar {
     /* 图像加载不出来时页面不塌陷 */
     width: 70px;
+    height: 70px;
     margin-top: 10px;
     img {
       width: 70px;
+      height: 70px;
     }
   }
   .info {

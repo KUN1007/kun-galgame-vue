@@ -19,7 +19,7 @@ const mpWidth = computed(() => {
   <div class="header">
     <!-- 用户头像 -->
     <div class="avatar">
-      <img v-if="avatar" :src="avatar" alt="KUN" />
+      <img v-if="avatar" :src="avatar" :alt="name" />
     </div>
     <!-- 用户名 -->
     <div class="name">
@@ -54,7 +54,6 @@ const mpWidth = computed(() => {
   top: 5px;
   width: 140px;
   height: 140px;
-  background-color: var(--kungalgame-trans-blue-0);
   border-radius: 50%;
   left: 50px;
   z-index: 2;
@@ -147,8 +146,11 @@ const mpWidth = computed(() => {
   }
   .avatar {
     left: 30px;
+    width: 100px;
+    height: 100px;
     img {
       width: 100px;
+      height: 100px;
     }
   }
   .name {

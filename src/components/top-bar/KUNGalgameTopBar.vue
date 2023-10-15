@@ -17,7 +17,7 @@ const KUNGalgameUserInfo = defineAsyncComponent(
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
-const { avatarMin } = storeToRefs(useKUNGalgameUserStore())
+const { name, avatarMin } = storeToRefs(useKUNGalgameUserStore())
 
 // 显示设置面板的状态值
 const showKUNGalgamePanel = ref(false)
@@ -88,10 +88,14 @@ onBeforeRouteLeave(() => {
       </span>
       <div class="avatar">
         <img
+          v-if="avatarMin"
           @click="showKUNGalgameUserPanel = true"
           :src="avatarMin"
           alt="KUN"
         />
+        <span @click="showKUNGalgameUserPanel = true" v-if="!avatarMin">
+          {{ name }}
+        </span>
       </div>
       <KUNGalgameUserInfo
         v-if="showKUNGalgameUserPanel"
@@ -243,6 +247,12 @@ $navNumber: v-bind(navItemNum);
 
 .avatar {
   position: relative;
+  span {
+    cursor: pointer;
+    &:hover {
+      color: var(--kungalgame-blue-5);
+    }
+  }
   img {
     cursor: pointer;
     border-radius: 50%;

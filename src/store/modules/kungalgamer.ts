@@ -81,7 +81,7 @@ export const useKUNGalgameUserStore = defineStore({
       this.uid = uid
       this.name = name
       this.avatar = avatar
-      this.avatarMin = avatar.replace(/\.webp$/, '-77.webp')
+      this.avatarMin = avatar.replace(/\.webp$/, '-100.webp')
       this.moemoepoint = moemoepoint
       this.roles = roles
     },

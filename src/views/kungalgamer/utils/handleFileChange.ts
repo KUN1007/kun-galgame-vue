@@ -30,9 +30,9 @@ export const resizeImage = (file: File): Promise<Blob> => {
     const image = new Image()
     image.src = URL.createObjectURL(file)
     image.onload = () => {
-      // 这里要求图片最大长宽均为 177px
-      const maxWidth = 177
-      const maxHeight = 177
+      // 这里要求图片最大长宽均为 233px
+      const maxWidth = 233
+      const maxHeight = 233
       let newWidth = image.width
       let newHeight = image.height
 
