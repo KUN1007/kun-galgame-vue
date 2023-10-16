@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { FSLog } from '../log'
-defineProps(['isIncome'])
+defineProps<{
+  isIncome?: boolean
+}>()
 </script>
 
 <template>
