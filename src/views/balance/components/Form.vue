@@ -103,4 +103,10 @@ const { isIncome, incomeData, expenditureData, statement } = toRefs(props)
     background-color: var(--kungalgame-trans-pink-0);
   }
 }
+
+@media (max-width: 1000px) {
+  .form {
+    width: 100%;
+  }
+}
 </style>

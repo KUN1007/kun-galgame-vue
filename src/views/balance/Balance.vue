@@ -178,8 +178,42 @@ onMounted(async () => {
 }
 
 @media (max-width: 1000px) {
+  .root {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+  }
+
   .content {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    div {
+      &:nth-child(1) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .title {
+    font-size: 20px;
+  }
+  .amount-status-deficit {
+    flex-direction: column;
+    div {
+      &:nth-child(2) {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .root {
+    width: 95%;
+  }
+  .content {
     width: 100%;
   }
 }
