@@ -17,18 +17,35 @@ export interface BalanceExpenditureRequestData {
   sortOrder: SortOrder
 }
 
-// income 响应数据
-export type BalanceIncomeResponseData = KUNGalgameResponseData<{
+// 单条收入返回数据
+export interface BalanceIncome {
   iid: number
   reason: string
   time: number
   amount: number
-}>
+}
 
-// expenditure 响应数据
-export type BalanceExpenditureResponseData = KUNGalgameResponseData<{
+// 单条支出返回数据
+export interface BalanceExpenditure {
   eid: number
   reason: string
   time: number
   amount: number
-}>
+}
+
+// 收支总额返回数据
+export interface PLStatement {
+  totalIncome: number
+  totalExpenditure: number
+  profitLoss: number
+}
+
+// income 响应数据
+export type BalanceIncomeResponseData = KUNGalgameResponseData<BalanceIncome[]>
+
+// expenditure 响应数据
+export type BalanceExpenditureResponseData = KUNGalgameResponseData<
+  BalanceExpenditure[]
+>
+
+export type BalancePLStatementResponseData = KUNGalgameResponseData<PLStatement>

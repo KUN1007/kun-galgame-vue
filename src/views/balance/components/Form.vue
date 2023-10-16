@@ -1,28 +1,41 @@
 <script setup lang="ts">
+import { toRefs } from 'vue'
 import Log from './Log.vue'
 // 导入临时数据
-import { calculateTotalIncome, calculateTotalExpenditure } from '../log'
+import type { BalanceIncome, BalanceExpenditure, PLStatement } from '@/api'
 
-const props = defineProps(['isIncome'])
-const title = props.isIncome ? 'income' : 'expenditure'
-const total = props.isIncome ? 'totalIncome' : 'totalExpenditure'
+const props = defineProps<{
+  isIncome: boolean
+  incomeData?: BalanceIncome[]
+  expenditureData?: BalanceExpenditure[]
+  statement: PLStatement
+}>()
+
+const { isIncome, incomeData, expenditureData, statement } = toRefs(props)
 </script>
 
 <template>
   <!-- 收入 -->
   <div class="form" :class="$props.isIncome ? '' : 'expenditure-form'">
     <!-- 标题 -->
-    <div class="title">{{ $tm(`balance['${title}']`) }}</div>
+    <div v-if="isIncome" class="title">{{ $tm(`balance.income`) }}</div>
+    <div v-if="!isIncome" class="title">{{ $tm(`balance.expenditure`) }}</div>
     <!-- 收入记录的容器 -->
     <div class="container">
-      <Log :isIncome="$props.isIncome" />
+      <!-- 单条支出记录 -->
+      <Log :is-income="isIncome" :data="incomeData" />
+      <Log :is-income="isIncome" :data="expenditureData" />
     </div>
     <!-- 总收入 -->
-    <div class="sum">
-      {{ $tm(`balance['${total}']`) }}:
-      {{
-        $props.isIncome ? calculateTotalIncome() : calculateTotalExpenditure()
-      }}
+    <div v-if="isIncome" class="sum">
+      {{ $tm(`balance.totalIncome`) }}:
+      {{ statement.totalIncome }}
+      CNY
+    </div>
+
+    <div v-if="!isIncome" class="sum">
+      {{ $tm(`balance.totalExpenditure`) }}:
+      {{ statement.totalExpenditure }}
       CNY
     </div>
   </div>

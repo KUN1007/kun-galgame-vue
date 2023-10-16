@@ -1,8 +1,43 @@
 <script setup lang="ts">
+import { onMounted, reactive, ref } from 'vue'
 import Form from './components/Form.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
-// 导入临时数据
-import { calculateTotalAmount } from './log'
+
+import { useKUNGalgameBalanceStore } from '@/store/modules/balance'
+import type { BalanceIncome, BalanceExpenditure, PLStatement } from '@/api'
+
+const incomeData = ref<BalanceIncome[]>([])
+const expenditureData = ref<BalanceExpenditure[]>([])
+const statement: PLStatement = reactive({
+  totalIncome: 0,
+  totalExpenditure: 0,
+  profitLoss: 0,
+})
+
+const getIncomeData = async () => {
+  const response = await useKUNGalgameBalanceStore().getIncome()
+  return response.data
+}
+
+const getExpenditureData = async () => {
+  const response = await useKUNGalgameBalanceStore().getExpenditure()
+  return response.data
+}
+
+const getPLStatementData = async () => {
+  const response = await useKUNGalgameBalanceStore().getPLStatement()
+  return response.data
+}
+
+onMounted(async () => {
+  incomeData.value = await getIncomeData()
+  expenditureData.value = await getExpenditureData()
+
+  const PLData = await getPLStatementData()
+  statement.totalIncome = PLData.totalIncome
+  statement.totalExpenditure = PLData.totalExpenditure
+  statement.profitLoss = PLData.profitLoss
+})
 </script>
 
 <template>
@@ -14,21 +49,29 @@ import { calculateTotalAmount } from './log'
       <!-- 内容区 -->
       <div class="content">
         <!-- 是收入表的话就渲染为蓝色 -->
-        <Form :isIncome="true" />
-        <Form />
+        <Form
+          :isIncome="true"
+          :income-data="incomeData"
+          :statement="statement"
+        />
+        <Form
+          :isIncome="false"
+          :expenditure-data="expenditureData"
+          :statement="statement"
+        />
       </div>
       <!-- 经济状态 -->
       <div class="sum">
         <!-- 亏损和盈余的样式不一样 -->
         <div
           class="amount-status-deficit"
-          :class="calculateTotalAmount() >= 0 ? 'amount-status-surplus' : ''"
+          :class="statement.profitLoss >= 0 ? 'amount-status-surplus' : ''"
         >
           <div>
             <!-- i18n -->
             {{ $tm('balance.status') }}:
             <span>{{
-              calculateTotalAmount() >= 0
+              statement.profitLoss >= 0
                 ? $tm('balance.surplusStatus')
                 : $tm('balance.deficitStatus')
             }}</span>
@@ -36,10 +79,10 @@ import { calculateTotalAmount } from './log'
           <div>
             <!-- i18n -->
             {{
-              calculateTotalAmount() >= 0
+              statement.profitLoss >= 0
                 ? $tm('balance.surplusAmount')
                 : $tm('balance.deficitAmount')
-            }}: {{ calculateTotalAmount() }} CNY
+            }}: {{ statement.profitLoss }} CNY
           </div>
         </div>
       </div>

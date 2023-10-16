@@ -6,9 +6,10 @@ import type {
   BalanceExpenditureRequestData,
   BalanceIncomeResponseData,
   BalanceExpenditureResponseData,
+  BalancePLStatementResponseData,
 } from '@/api'
 
-import { getIncomeApi, getExpenditureApi } from '@/api'
+import { getIncomeApi, getExpenditureApi, getPLStatementApi } from '@/api'
 
 interface BalanceStore {
   income: BalanceIncomeRequestData
@@ -57,6 +58,11 @@ export const useKUNGalgameBalanceStore = defineStore({
         sortOrder: this.income.sortOrder,
       }
       return await getExpenditureApi(requestData)
+    },
+
+    // 获取收支总额
+    async getPLStatement(): Promise<BalancePLStatementResponseData> {
+      return await getPLStatementApi()
     },
   },
 })
