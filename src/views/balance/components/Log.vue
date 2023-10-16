@@ -1,42 +1,26 @@
 <script setup lang="ts">
-import { FSLog } from '../log'
-defineProps<{
-  isIncome?: boolean
+import { computed } from 'vue'
+import dayjs from 'dayjs'
+
+import type { BalanceIncome, BalanceExpenditure } from '@/api'
+const props = defineProps<{
+  isIncome: boolean
+  data?: BalanceIncome[] | BalanceExpenditure[]
 }>()
+
+const data = computed(() => props.data)
 </script>
 
 <template>
   <!-- 单条收入记录 -->
-  <div v-for="kun in FSLog" :key="kun.index" v-if="$props.isIncome">
-    <div
-      class="log"
-      v-if="kun.income"
-      :class="$props.isIncome ? '' : 'expenditure-log'"
-    >
+  <div v-for="(kun, index) in data" :key="index">
+    <div class="log" :class="props.isIncome ? '' : 'expenditure-log'">
       <!-- 收入来源 -->
-      <div class="reason">{{ kun.reason }}</div>
+      <div class="reason" v-html="kun.reason"></div>
       <!-- 收入时间和金额 -->
       <div class="result">
         <!-- 收入时间 -->
-        <span class="date">{{ kun.date }}</span>
-        <!-- 收入金额 -->
-        <span class="amount">{{ kun.amount }}</span>
-      </div>
-    </div>
-  </div>
-  <!-- 单条支出记录 -->
-  <div v-for="kun in FSLog" :key="kun.index" v-if="!$props.isIncome">
-    <div
-      class="log"
-      v-if="!kun.income"
-      :class="$props.isIncome ? '' : 'expenditure-log'"
-    >
-      <!-- 收入来源 -->
-      <div class="reason">{{ kun.reason }}</div>
-      <!-- 收入时间和金额 -->
-      <div class="result">
-        <!-- 收入时间 -->
-        <span class="date">{{ kun.date }}</span>
+        <span class="date">{{ dayjs(kun.time).format('YYYY/MM/DD') }}</span>
         <!-- 收入金额 -->
         <span class="amount">{{ kun.amount }}</span>
       </div>
