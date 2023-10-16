@@ -61,7 +61,6 @@ const mpWidth = computed(() => {
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    box-shadow: 0px 0px 2px 4px var(--kungalgame-trans-red-2);
     &:hover {
       animation: spin 1s;
     }

@@ -3,6 +3,7 @@
  */
 
 // 暴露出所有 interface
+export * from './balance/types/balance'
 export * from './edit/types/edit'
 export * from './home/types/home'
 export * from './user/types/user'
@@ -11,6 +12,7 @@ export * from './topic/types'
 export * from './update-log/types/updateLog'
 
 // 暴露出所有 api
+export * from './balance'
 export * from './edit'
 export * from './home'
 export * from './user'
