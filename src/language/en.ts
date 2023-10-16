@@ -278,6 +278,14 @@ export default {
   },
   // 路由标题
   router: {
+    login: 'Login',
+    forget: 'Forgot Password',
+    contact: 'Contact Us',
+    donate: 'Donate Us',
+    agreement: 'User Agreement',
+    privacy: 'Privacy',
+    redirect: 'Redirect',
+
     home: 'Home',
     balance: 'P & L',
     edit: 'Edit',
