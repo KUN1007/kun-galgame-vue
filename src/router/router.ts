@@ -7,7 +7,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/login',
     component: () => import('@/views/login/Login.vue'),
     meta: {
-      title: '登录',
+      title: 'login',
     },
   },
   // KUNGalgame 忘记密码
@@ -16,7 +16,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/forgot',
     component: () => import('@/views/forgot/Forgot.vue'),
     meta: {
-      title: '忘记密码',
+      title: 'forget',
     },
   },
   // KUNGalgame 联系我们
@@ -25,7 +25,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/contact',
     component: () => import('@/views/contact/Contact.vue'),
     meta: {
-      title: '联系我们',
+      title: 'contact',
     },
   },
 
@@ -35,7 +35,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/donate',
     component: () => import('@/views/donate/Donate.vue'),
     meta: {
-      title: '赞助我们',
+      title: 'donate',
     },
   },
 
@@ -45,7 +45,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/agreement',
     component: () => import('@/views/agreement/Agreement.vue'),
     meta: {
-      title: '用户协议',
+      title: 'agreement',
     },
   },
 
@@ -55,7 +55,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/privacy',
     component: () => import('@/views/privacy/Privacy.vue'),
     meta: {
-      title: '隐私政策',
+      title: 'privacy',
     },
   },
 
@@ -66,7 +66,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: '/',
     component: () => import('@/views/redirect/Redirect.vue'),
     meta: {
-      title: '重定向',
+      title: 'redirect',
     },
     children: [], // 添加一个空的 children 数组，redirect 配置项必须有 children
   },

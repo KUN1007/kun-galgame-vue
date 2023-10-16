@@ -276,6 +276,14 @@ export default {
   },
   // 路由标题
   router: {
+    login: '登录',
+    forget: '忘记密码',
+    contact: '联系我们',
+    donate: '赞助我们',
+    agreement: '用户协议',
+    privacy: '隐私政策',
+    redirect: '重定向',
+
     home: '主页',
     balance: '收支公示',
     edit: '编辑',
