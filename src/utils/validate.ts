@@ -7,7 +7,7 @@ export const isValidURL = (url: string) => {
 
 // 正则表达式匹配合法邮箱
 export const isValidEmail = (email: string) => {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const regex = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{1,24}$/
   return regex.test(email)
 }
 

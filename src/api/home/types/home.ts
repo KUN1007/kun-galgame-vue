@@ -29,12 +29,13 @@ export interface HomeTopic {
   tid: number
   title: string
   views: number
-  likes: number[]
-  replies: number[]
+  upvotesCount: number
+  likesCount: number
+  repliesCount: number
   comments: number
+
   time: number
   content: string
-  upvotes: number[]
   tags: string[]
   category: string[]
   popularity: number

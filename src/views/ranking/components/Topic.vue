@@ -1,26 +1,44 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import type { RankingTopics } from '@/api'
+import { computed } from 'vue'
+
+const props = defineProps<{
+  field: string
+  topics: RankingTopics[]
+}>()
+
+const topics = computed(() => props.topics)
+
+const icons: Record<string, string> = {
+  popularity: 'bi:fire',
+  upvotes: 'bi:rocket',
+  views: 'ic:outline-remove-red-eye',
+  likes: 'line-md:thumbs-up-twotone',
+  replies: 'ri:reply-line',
+  comments: 'fa-regular:comment-dots',
+}
+
+// 将传过来的数据转为数值
+const parseTopicNumber = (field: string | string[]) => {
+  return Array.isArray(field) ? field.length : Math.ceil(parseInt(field))
+}
 </script>
 
 <template>
   <!-- 单个话题 -->
-  <div class="single-topic">
+  <div class="single-topic" v-for="(topic, index) in topics" :key="index">
     <!-- 话题的名字 -->
     <div class="topic-name">
-      啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星啊这可海星
+      {{ topic.title }}
     </div>
     <!-- 话题的其它信息 -->
     <div class="detail">
       <!-- 浏览数 -->
-      <span><Icon icon="ic:outline-remove-red-eye" />1007</span>
-      <!-- 点赞数 -->
-      <span><Icon icon="line-md:thumbs-up-twotone" />1007</span>
-      <!-- 回复数 -->
-      <span><Icon icon="ri:reply-line" />1007</span>
-      <!-- 评论数 -->
-      <span><Icon icon="fa-regular:comment-dots" />1007</span>
-      <!-- 推话题数 -->
-      <span><Icon icon="bi:rocket" />1007</span>
+      <span>
+        <Icon :icon="icons[props.field]" />
+        {{ parseTopicNumber(topic.field) }}
+      </span>
     </div>
   </div>
 </template>
