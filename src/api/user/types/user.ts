@@ -12,11 +12,11 @@ export interface UserInfo {
   dislike: number
   daily_topic_count: number
 
-  topic: number[]
-  reply: number[]
-  comment: number[]
-  like_topic: number[]
-  upvote_topic: number[]
+  topicCount: number[]
+  replyCount: number[]
+  commentCount: number[]
+  likeTopic: number[]
+  upvoteTopic: number[]
 }
 
 // 用户更新头像

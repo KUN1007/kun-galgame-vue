@@ -23,12 +23,12 @@ const {
   tid,
   title,
   views,
-  likes,
-  replies,
+  likesCount,
+  repliesCount,
   comments,
   time,
   content,
-  upvotes,
+  upvotesCount,
   tags,
   category,
   popularity,
@@ -37,7 +37,7 @@ const {
 const plainText = getPlainText(content)
 
 const getRepliesCount = computed(() => {
-  return replies.length + comments
+  return repliesCount + comments
 })
 </script>
 
@@ -57,9 +57,9 @@ const getRepliesCount = computed(() => {
             <Icon icon="ic:outline-remove-red-eye" /><span>{{ views }}</span>
           </li>
           <li>
-            <Icon icon="line-md:thumbs-up-twotone" /><span>{{
-              likes.length
-            }}</span>
+            <Icon icon="line-md:thumbs-up-twotone" /><span>
+              {{ likesCount }}
+            </span>
           </li>
           <li>
             <Icon icon="ri:reply-line" /><span>{{ getRepliesCount }}</span>
@@ -68,12 +68,14 @@ const getRepliesCount = computed(() => {
 
         <!-- 话题的发布日期 -->
         <div class="time">
-          <span>{{
-            formatTimeDifference(
-              time,
-              settingsStore.showKUNGalgameLanguage.value
-            )
-          }}</span>
+          <span>
+            {{
+              formatTimeDifference(
+                time,
+                settingsStore.showKUNGalgameLanguage.value
+              )
+            }}
+          </span>
         </div>
       </div>
     </div>

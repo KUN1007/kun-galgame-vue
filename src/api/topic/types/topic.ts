@@ -25,7 +25,7 @@ export interface TopicDetail {
   tags: string[]
   edited: number
   user: TopicUserInfo
-  rid: number[]
+  replies: number[]
   status: number
   share: number[]
   category: string[]
