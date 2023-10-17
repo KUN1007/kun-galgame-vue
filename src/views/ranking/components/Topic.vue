@@ -10,7 +10,7 @@ const props = defineProps<{
 
 const topics = computed(() => props.topics)
 
-const icons: Record<string, string> = {
+const iconMap: Record<string, string> = {
   popularity: 'bi:fire',
   upvotes_count: 'bi:rocket',
   views: 'ic:outline-remove-red-eye',
@@ -26,33 +26,50 @@ const parseTopicNumber = (field: string | string[]) => {
 </script>
 
 <template>
-  <!-- 单个话题 -->
-  <div class="single-topic" v-for="(topic, index) in topics" :key="index">
-    <!-- 话题的名字 -->
-    <div class="topic-name">
-      {{ topic.title }}
+  <TransitionGroup name="list">
+    <!-- 单个话题 -->
+    <div class="single-topic" v-for="topic in topics" :key="topic.tid">
+      <RouterLink :to="`/topic/${topic.tid}`">
+        <!-- 话题的名字 -->
+        <div class="topic-name">
+          {{ topic.title }}
+        </div>
+        <!-- 话题的其它信息 -->
+        <div class="detail">
+          <!-- 浏览数 -->
+
+          <Icon :icon="iconMap[props.field]" />
+          <span>{{ parseTopicNumber(topic.field) }}</span>
+        </div>
+      </RouterLink>
     </div>
-    <!-- 话题的其它信息 -->
-    <div class="detail">
-      <!-- 浏览数 -->
-      <span>
-        <Icon :icon="icons[props.field]" />
-        {{ parseTopicNumber(topic.field) }}
-      </span>
-    </div>
-  </div>
+  </TransitionGroup>
 </template>
 
 <style lang="scss" scoped>
 /* 单个话题 */
 .single-topic {
-  flex-shrink: 0;
-  height: 37px;
-  border-bottom: 1px solid var(--kungalgame-blue-4);
-  margin: 7px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  a {
+    flex-shrink: 0;
+    height: 37px;
+    margin: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--kungalgame-trans-blue-0);
+    border: 1px solid var(--kungalgame-trans-blue-0);
+    border-radius: 5px;
+    color: var(--kungalgame-font-color-3);
+    padding: 0 10px;
+    cursor: pointer;
+
+    &:hover {
+      transition: all 0.5s;
+      background-color: var(--kungalgame-trans-white-9);
+      border: 1px solid var(--kungalgame-blue-4);
+      color: var(--kungalgame-blue-4);
+    }
+  }
 }
 /* 话题的名字 */
 .topic-name {
@@ -60,16 +77,31 @@ const parseTopicNumber = (field: string | string[]) => {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* 话题的其它信息 */
-.v-l-c-t {
-  flex-shrink: 0;
-}
+
 .detail {
   display: flex;
+  align-items: center;
+  color: var(--kungalgame-blue-4);
   span {
-    display: flex;
-    align-items: center;
+    color: var(--kungalgame-font-color-3);
     margin-left: 10px;
   }
+}
+
+.list-move, /* 对移动中的元素应用的过渡 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+}
+
+/* 确保将离开的元素从布局流中删除
+  以便能够正确地计算移动的动画。 */
+.list-leave-active {
+  position: absolute;
 }
 </style>

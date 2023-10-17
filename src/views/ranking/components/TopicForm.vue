@@ -9,13 +9,24 @@ import { storeToRefs } from 'pinia'
 import type { RankingTopics } from '@/api'
 import { topicNavSortItem } from './navSortItem'
 
-const { topic, user } = storeToRefs(useKUNGalgameRankingStore())
+const { topic } = storeToRefs(useKUNGalgameRankingStore())
 const topics = ref<RankingTopics[]>([])
+// 升序降序
+const isAscending = ref(false)
 
 // 获取话题
 const getTopics = async () => {
   const responseData = await useKUNGalgameRankingStore().getTopics()
   return responseData.data
+}
+
+const iconMap: Record<string, string> = {
+  popularity: 'bi:fire',
+  upvotes_count: 'bi:rocket',
+  views: 'ic:outline-remove-red-eye',
+  likes_count: 'line-md:thumbs-up-twotone',
+  replies_count: 'ri:reply-line',
+  comments: 'fa-regular:comment-dots',
 }
 
 // 监听话题数据获取新话题
@@ -31,29 +42,53 @@ watch(
 onMounted(async () => {
   topics.value = await getTopics()
 })
+
+// 切换排序方式
+const handleClickSortOrder = () => {
+  isAscending.value = !isAscending.value
+  if (isAscending.value) {
+    topic.value.sortOrder = 'asc'
+  } else {
+    topic.value.sortOrder = 'desc'
+  }
+}
 </script>
 
 <template>
   <!-- 话题排行 -->
   <div class="topic">
     <!-- 话题排行标题 -->
-    <div class="title">最萌的话题</div>
+    <div class="title">话题</div>
     <!-- 话题排行的交互 -->
     <div class="nav">
       <!-- 升序降序 -->
-      <div class="order">排序</div>
+      <div class="order" @click="handleClickSortOrder">
+        <Transition name="order" mode="out-in">
+          <div v-if="isAscending">
+            <span>升序</span>
+            <Icon class="icon" icon="line-md:arrow-small-up" />
+          </div>
+          <div v-else-if="!isAscending">
+            <span>降序</span>
+            <Icon class="icon" icon="line-md:arrow-small-down" />
+          </div>
+        </Transition>
+      </div>
 
-      <div class="field">
+      <!-- 排序 -->
+      <div class="sort">
+        <Icon class="icon" :icon="iconMap[topic.sortField]" />
+        <span>筛选</span>
         <!-- 排序子菜单 -->
-        <div class="sort-submenu">
+        <div class="submenu">
           <div
-            class="sort-item"
+            class="item"
             v-for="kun in topicNavSortItem"
             :key="kun.index"
             @click="topic.sortField = kun.sortField"
           >
-            <span><Icon class="icon-item" :icon="kun.icon" /></span>
-            <span>按时间排序</span>
+            <span><Icon class="icon" :icon="kun.icon" /></span>
+            <span>{{ kun.name }}</span>
           </div>
         </div>
       </div>
@@ -69,6 +104,7 @@ onMounted(async () => {
 /* 话题排行 */
 .topic {
   width: 50%;
+  height: calc(100% - 50px - 20px - 40px);
 }
 /* 话题排行标题 */
 .title {
@@ -82,8 +118,75 @@ onMounted(async () => {
 }
 /* 话题排行的交互 */
 .nav {
+  height: 40px;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   margin-left: 10px;
+  border: 1px solid var(--kungalgame-blue-4);
+  border-radius: 5px;
+}
+
+.order {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    font-size: 22px;
+  }
+
+  & > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.sort {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  border-left: 1px solid var(--kungalgame-blue-4);
+}
+
+.sort:hover .submenu {
+  display: flex;
+}
+
+.icon {
+  color: var(--kungalgame-blue-4);
+}
+
+.submenu {
+  top: 40px;
+  position: absolute;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid var(--kungalgame-blue-1);
+  box-shadow: var(--shadow);
+  background-color: var(--kungalgame-trans-white-5);
+  backdrop-filter: blur(5px);
+  .item {
+    transition: all 0.2s;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &:hover {
+      background-color: var(--kungalgame-trans-blue-1);
+    }
+  }
 }
 
 /* 单个话题的容器 */
@@ -107,5 +210,20 @@ onMounted(async () => {
   /* 兼容火狐 */
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1);
+}
+
+.order-enter-active,
+.order-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.order-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.order-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

@@ -34,13 +34,13 @@ export const navSortItem: Sort[] = [
     index: 5,
     icon: 'line-md:thumbs-up-twotone',
     name: 'likes',
-    sortField: 'likes',
+    sortField: 'likes_count',
   },
   {
     index: 6,
     icon: 'ri:reply-line',
     name: 'replies',
-    sortField: 'replies',
+    sortField: 'replies_count',
   },
   {
     index: 7,

@@ -6,7 +6,7 @@ import KUNgalgamer from './KUNGalgamer.vue'
   <!-- 用户排行 -->
   <div class="kungalgamer-ranking">
     <!-- 用户排行标题 -->
-    <div class="kungalgamer-title">最萌的萝莉</div>
+    <div class="kungalgamer-title">用户</div>
     <!-- 用户排行的交互 -->
     <div class="kungalgamer-nav">
       <!-- 萌萌点 -->

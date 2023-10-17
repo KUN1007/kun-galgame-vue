@@ -2,7 +2,7 @@ export interface RankingGetTopicsRequestData {
   page: number
   limit: number
   sortField: string
-  sortOrder: string
+  sortOrder: 'asc' | 'desc'
 }
 
 export interface RankingTopics {
