@@ -20,10 +20,10 @@ const tidArray = computed(() => {
     return props.user.topic
   }
   if (route.name === 'KUNGalgamerLikedTopic') {
-    return props.user.like_topic
+    return props.user.likeTopic
   }
   if (route.name === 'KUNGalgamerUpvoteTopic') {
-    return props.user.upvote_topic
+    return props.user.upvoteTopic
   }
   return []
 })

@@ -12,10 +12,10 @@ const topics = computed(() => props.topics)
 
 const icons: Record<string, string> = {
   popularity: 'bi:fire',
-  upvotes: 'bi:rocket',
+  upvotes_count: 'bi:rocket',
   views: 'ic:outline-remove-red-eye',
-  likes: 'line-md:thumbs-up-twotone',
-  replies: 'ri:reply-line',
+  likes_count: 'line-md:thumbs-up-twotone',
+  replies_count: 'ri:reply-line',
   comments: 'fa-regular:comment-dots',
 }
 

@@ -16,7 +16,7 @@ export const topicNavSortItem: Topic[] = [
     index: 2,
     icon: 'bi:rocket',
     name: 'upvote',
-    sortField: 'upvotes',
+    sortField: 'upvotes_count',
   },
   {
     index: 3,
@@ -28,13 +28,13 @@ export const topicNavSortItem: Topic[] = [
     index: 4,
     icon: 'line-md:thumbs-up-twotone',
     name: 'likes',
-    sortField: 'likes',
+    sortField: 'likes_count',
   },
   {
     index: 5,
     icon: 'ri:reply-line',
     name: 'replies',
-    sortField: 'replies',
+    sortField: 'replies_count',
   },
   {
     index: 6,
