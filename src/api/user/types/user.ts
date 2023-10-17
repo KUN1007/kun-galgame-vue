@@ -12,9 +12,9 @@ export interface UserInfo {
   dislike: number
   daily_topic_count: number
 
-  topicCount: number[]
-  replyCount: number[]
-  commentCount: number[]
+  topic: number[]
+  reply: number[]
+  comment: number[]
   likeTopic: number[]
   upvoteTopic: number[]
 }
