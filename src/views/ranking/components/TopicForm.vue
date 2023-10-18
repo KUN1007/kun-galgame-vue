@@ -217,4 +217,10 @@ const handleClickSortOrder = () => {
   opacity: 0;
   transform: translateY(30px);
 }
+
+@media (max-width: 700px) {
+  .topic {
+    width: 100%;
+  }
+}
 </style>
