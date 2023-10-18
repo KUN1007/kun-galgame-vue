@@ -103,6 +103,7 @@ onBeforeRouteLeave(() => {
       />
     </div>
   </div>
+
   <div class="settings-panel">
     <transition
       enter-active-class="animate__animated animate__jackInTheBox animate__faster"
@@ -142,7 +143,7 @@ onBeforeRouteLeave(() => {
 .hamburger {
   display: none;
   margin-top: 10px;
-  margin-left: 50px;
+  margin-left: 40px;
   font-size: 25px;
   cursor: pointer;
 }
@@ -187,6 +188,10 @@ $navNumber: v-bind(navItemNum);
       position: absolute;
       transition: 0.5s;
       width: calc(100% / $navNumber);
+
+      &:hover {
+        z-index: -1;
+      }
     }
     a {
       // 转变 a 标签为块级元素
@@ -247,6 +252,8 @@ $navNumber: v-bind(navItemNum);
 
 .avatar {
   position: relative;
+  display: flex;
+
   span {
     cursor: pointer;
     &:hover {
