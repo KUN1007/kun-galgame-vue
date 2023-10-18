@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import type { RankingTopics } from '@/api'
 import { computed } from 'vue'
+import { Icon } from '@iconify/vue'
+import { topicIconMap } from './navSortItem'
+import type { RankingTopics } from '@/api'
 
 const props = defineProps<{
   field: string
@@ -9,15 +10,6 @@ const props = defineProps<{
 }>()
 
 const topics = computed(() => props.topics)
-
-const iconMap: Record<string, string> = {
-  popularity: 'bi:fire',
-  upvotes_count: 'bi:rocket',
-  views: 'ic:outline-remove-red-eye',
-  likes_count: 'line-md:thumbs-up-twotone',
-  replies_count: 'ri:reply-line',
-  comments: 'fa-regular:comment-dots',
-}
 
 // 将传过来的数据转为数值
 const parseTopicNumber = (field: string | string[]) => {
@@ -38,7 +30,7 @@ const parseTopicNumber = (field: string | string[]) => {
         <div class="detail">
           <!-- 浏览数 -->
 
-          <Icon :icon="iconMap[props.field]" />
+          <Icon :icon="topicIconMap[props.field]" />
           <span>{{ parseTopicNumber(topic.field) }}</span>
         </div>
       </RouterLink>

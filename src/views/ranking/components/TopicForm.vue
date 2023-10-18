@@ -7,7 +7,7 @@ import { useKUNGalgameRankingStore } from '@/store/modules/ranking'
 import { storeToRefs } from 'pinia'
 
 import type { RankingTopics } from '@/api'
-import { topicNavSortItem } from './navSortItem'
+import { topicSortItem, topicIconMap } from './navSortItem'
 
 const { topic } = storeToRefs(useKUNGalgameRankingStore())
 const topics = ref<RankingTopics[]>([])
@@ -18,15 +18,6 @@ const isAscending = ref(false)
 const getTopics = async () => {
   const responseData = await useKUNGalgameRankingStore().getTopics()
   return responseData.data
-}
-
-const iconMap: Record<string, string> = {
-  popularity: 'bi:fire',
-  upvotes_count: 'bi:rocket',
-  views: 'ic:outline-remove-red-eye',
-  likes_count: 'line-md:thumbs-up-twotone',
-  replies_count: 'ri:reply-line',
-  comments: 'fa-regular:comment-dots',
 }
 
 // 监听话题数据获取新话题
@@ -77,13 +68,13 @@ const handleClickSortOrder = () => {
 
       <!-- 排序 -->
       <div class="sort">
-        <Icon class="icon" :icon="iconMap[topic.sortField]" />
+        <Icon class="icon" :icon="topicIconMap[topic.sortField]" />
         <span>筛选</span>
         <!-- 排序子菜单 -->
         <div class="submenu">
           <div
             class="item"
-            v-for="kun in topicNavSortItem"
+            v-for="kun in topicSortItem"
             :key="kun.index"
             @click="topic.sortField = kun.sortField"
           >

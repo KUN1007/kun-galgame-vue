@@ -1,63 +1,116 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
+import { userIconMap } from './navSortItem'
+import type { RankingUsers } from '@/api'
+
+const props = defineProps<{
+  field: string
+  users: RankingUsers[]
+}>()
+
+const users = computed(() => props.users)
+
+// 将传过来的数据转为数值
+const parseTopicNumber = (field: string | string[]) => {
+  return Array.isArray(field) ? field.length : Math.ceil(parseInt(field))
+}
 </script>
 
 <template>
-  <!-- 单个用户 -->
-  <div class="single-kungalgamer">
-    <!-- 头像和名字 -->
-    <div class="avatar-name">
-      <img src="@/assets/images/KUN.jpg" alt="KUN" />
-      <span>鲲最可爱！</span>
+  <TransitionGroup name="list">
+    <!-- 单个用户 -->
+    <div class="single-user" v-for="user in users" :key="user.uid">
+      <RouterLink :to="`/kungalgamer/${user.uid}/info`">
+        <!-- 用户的名字 -->
+        <div class="info">
+          <span class="avatar">
+            <img :src="user.avatar" :alt="user.name" />
+          </span>
+          <span class="name">{{ user.name }}</span>
+        </div>
+        <!-- 用户的其它信息 -->
+        <div class="detail">
+          <Icon :icon="userIconMap[props.field]" />
+          <span>{{ parseTopicNumber(user.field) }}</span>
+        </div>
+      </RouterLink>
     </div>
-    <!-- 其它信息 -->
-    <div class="detail">
-      <!-- 萌萌点 -->
-      <span>MOE: 1007</span>
-      <!-- 点赞数 -->
-      <span><Icon icon="line-md:thumbs-up-twotone" />1007</span>
-      <!-- 话题数 -->
-      <span><Icon icon="line-md:text-box-multiple-twotone" />1007</span>
-      <!-- 回复数 -->
-      <span><Icon icon="ri:reply-line" />1007</span>
-      <!-- 评论数 -->
-      <span><Icon icon="fa-regular:comment-dots" />1007</span>
-    </div>
-  </div>
+  </TransitionGroup>
 </template>
 
 <style lang="scss" scoped>
-/* 单个用户 */
-.single-kungalgamer {
-  height: 37px;
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--kungalgame-pink-4);
-  margin: 7px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-/* 用户的头像和名字 */
-.avatar-name {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* 用户的头像 */
-.avatar-name img {
-  width: 30px;
-  border-radius: 50%;
-}
-/* 用户的名字 */
-.avatar-name span {
-  margin-left: 5px;
-}
-.detail {
-  display: flex;
-  span {
+/* 单个话题 */
+.single-user {
+  a {
+    flex-shrink: 0;
+    height: 37px;
+    margin: 7px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    background-color: var(--kungalgame-trans-pink-0);
+    border: 1px solid var(--kungalgame-trans-pink-0);
+    border-radius: 5px;
+    color: var(--kungalgame-font-color-3);
+    padding: 0 10px;
+    cursor: pointer;
+
+    &:hover {
+      transition: all 0.5s;
+      background-color: var(--kungalgame-trans-white-9);
+      border: 1px solid var(--kungalgame-pink-4);
+      color: var(--kungalgame-pink-4);
+    }
+  }
+}
+/* 话题的名字 */
+.info {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  .avatar {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+    }
+  }
+  .name {
     margin-left: 10px;
   }
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  color: var(--kungalgame-pink-4);
+  span {
+    color: var(--kungalgame-font-color-3);
+    margin-left: 10px;
+  }
+}
+
+.list-move, /* 对移动中的元素应用的过渡 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+}
+
+/* 确保将离开的元素从布局流中删除
+  以便能够正确地计算移动的动画。 */
+.list-leave-active {
+  position: absolute;
 }
 </style>

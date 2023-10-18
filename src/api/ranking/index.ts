@@ -12,3 +12,14 @@ export async function getRankingTopicsApi(
   const response = await fetchGet<Ranking.RankingGetTopicsResponseData>(url)
   return response
 }
+
+// 获取 ranking 热门用户
+export async function getRankingUsersApi(
+  request: Ranking.RankingGetUserRequestData
+): Promise<Ranking.RankingGetUsersResponseData> {
+  const queryParams = objectToQueryParams(request)
+  const url = `/ranking/users?${queryParams}`
+
+  const response = await fetchGet<Ranking.RankingGetUsersResponseData>(url)
+  return response
+}

@@ -212,7 +212,7 @@ $navNumber: v-bind(navItemNum);
       }
 
       &:nth-child(3):hover ~ .box {
-        background-color: var(--kungalgame-yellow-3);
+        background-color: var(--kungalgame-yellow-2);
         left: calc(100% / $navNumber * 2);
       }
 

@@ -5,9 +5,10 @@ import type {
   RankingGetTopicsRequestData,
   RankingGetTopicsResponseData,
   RankingGetUserRequestData,
+  RankingGetUsersResponseData,
 } from '@/api'
 
-import { getRankingTopicsApi } from '@/api'
+import { getRankingTopicsApi, getRankingUsersApi } from '@/api'
 
 interface RankingStore {
   topic: RankingGetTopicsRequestData
@@ -20,12 +21,17 @@ export const useKUNGalgameRankingStore = defineStore({
   persist: false,
   state: (): RankingStore => ({
     topic: {
-      page: 0,
-      limit: 0,
+      page: 1,
+      limit: 30,
       sortField: 'popularity',
       sortOrder: 'desc',
     },
-    user: {},
+    user: {
+      page: 1,
+      limit: 30,
+      sortField: 'moemoepoint',
+      sortOrder: 'desc',
+    },
   }),
   getters: {},
   actions: {
@@ -38,6 +44,17 @@ export const useKUNGalgameRankingStore = defineStore({
       }
 
       return await getRankingTopicsApi(requestData)
+    },
+
+    async getUsers(): Promise<RankingGetUsersResponseData> {
+      const requestData: RankingGetUserRequestData = {
+        page: this.user.page,
+        limit: this.user.limit,
+        sortField: this.user.sortField,
+        sortOrder: this.user.sortOrder,
+      }
+
+      return await getRankingUsersApi(requestData)
     },
   },
 })
