@@ -30,13 +30,13 @@ const { isIncome, incomeData, expenditureData, statement } = toRefs(props)
     <div v-if="isIncome" class="sum">
       {{ $tm(`balance.totalIncome`) }}:
       {{ statement.totalIncome }}
-      CNY
+      USDT
     </div>
 
     <div v-if="!isIncome" class="sum">
       {{ $tm(`balance.totalExpenditure`) }}:
       {{ statement.totalExpenditure }}
-      CNY
+      USDT
     </div>
   </div>
 </template>
