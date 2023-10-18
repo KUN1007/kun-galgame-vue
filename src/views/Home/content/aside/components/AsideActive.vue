@@ -13,7 +13,7 @@ const props = defineProps(['isActive'])
     <!-- 发布新文章 -->
     <div class="new-article">
       <!-- 发布新文章的按钮 -->
-      <RouterLink to="/edit/index">
+      <RouterLink to="/edit">
         <button class="btn-new-article">
           {{ $tm('mainPage.asideActive.create') }}
         </button>
@@ -50,21 +50,13 @@ const props = defineProps(['isActive'])
   button {
     height: 100%;
     width: 100%;
-    background-color: var(--kungalgame-red-0);
+    background-color: var(--kungalgame-trans-red-0);
     border: 1px solid var(--kungalgame-red-3);
     border-radius: 5px;
     cursor: pointer;
     color: var(--kungalgame-red-3);
     font-weight: bold;
     font-size: larger;
-    /* 发布按钮 hover 效果 */
-    &:hover {
-      font-size: xx-large;
-      background-color: var(--kungalgame-red-3);
-      color: var(--kungalgame-red-0);
-      /* 效果过渡时长 */
-      transition: 0.3s;
-    }
   }
 }
 /* 功能区容器 */

@@ -21,6 +21,7 @@ import asideItem from './asideItem'
   justify-content: space-around;
   align-items: center;
   border: 1px solid var(--kungalgame-blue-4);
+  border-radius: 5px;
   span {
     width: 100%;
     height: 1px;
@@ -32,7 +33,7 @@ import asideItem from './asideItem'
     }
     &:hover {
       transition: 0.2s;
-      background-color: var(--kungalgame-trans-blue-2);
+      background-color: var(--kungalgame-trans-blue-1);
     }
     a {
       writing-mode: vertical-lr;

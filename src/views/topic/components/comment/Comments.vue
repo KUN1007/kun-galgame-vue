@@ -103,9 +103,13 @@ const handleClickComment = (
         v-for="(comment, index) in commentsData"
         :key="index"
       >
-        <!-- 用户头像 TODO: -->
+        <!-- 用户头像 -->
         <RouterLink :to="`/kungalgamer/${comment.c_user.uid}/info`">
-          <img src="@/assets/images/KUN.jpg" alt="KUN" />
+          <!-- 这里用的是压缩过后的头像 -->
+          <img
+            :src="comment.c_user.avatar.replace(/\.webp$/, '-100.webp')"
+            alt="KUN"
+          />
         </RouterLink>
         <!-- 单个评论的内容区 -->
         <div class="content">

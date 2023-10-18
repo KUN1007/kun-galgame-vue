@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 // 全局消息组件（顶部）
@@ -60,7 +61,8 @@ onMounted(() => {
       <div class="info">
         <p>{{ name }}</p>
         <p>
-          MP: <span>{{ moemoepoint }}</span>
+          <span><Icon icon="line-md:star-alt-twotone"></Icon></span>
+          <span>{{ moemoepoint }}</span>
         </p>
       </div>
       <div class="func">
@@ -124,9 +126,16 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin-left: 5px;
       font-weight: bold;
       color: var(--kungalgame-pink-4);
+
+      &:nth-child(1) {
+        font-size: 20px;
+      }
     }
   }
 }
