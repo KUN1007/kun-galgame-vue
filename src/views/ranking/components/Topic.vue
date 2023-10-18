@@ -49,7 +49,7 @@ const parseTopicNumber = (field: string | string[]) => {
     justify-content: space-between;
     align-items: center;
     background-color: var(--kungalgame-trans-blue-0);
-    border: 1px solid var(--kungalgame-trans-blue-0);
+    border: 1px solid var(--kungalgame-trans-blue-2);
     border-radius: 5px;
     color: var(--kungalgame-font-color-3);
     padding: 0 10px;
