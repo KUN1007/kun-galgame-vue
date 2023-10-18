@@ -49,18 +49,18 @@ const handleClickSortOrder = () => {
   <!-- 话题排行 -->
   <div class="topic">
     <!-- 话题排行标题 -->
-    <div class="title">话题</div>
+    <div class="title">{{ $tm('ranking.topic') }}</div>
     <!-- 话题排行的交互 -->
     <div class="nav">
       <!-- 升序降序 -->
       <div class="order" @click="handleClickSortOrder">
         <Transition name="order" mode="out-in">
           <div v-if="isAscending">
-            <span>升序</span>
+            <span>{{ $tm('ranking.asc') }}</span>
             <Icon class="icon" icon="line-md:arrow-small-up" />
           </div>
           <div v-else-if="!isAscending">
-            <span>降序</span>
+            <span>{{ $tm('ranking.desc') }}</span>
             <Icon class="icon" icon="line-md:arrow-small-down" />
           </div>
         </Transition>
@@ -69,7 +69,7 @@ const handleClickSortOrder = () => {
       <!-- 排序 -->
       <div class="sort">
         <Icon class="icon" :icon="topicIconMap[topic.sortField]" />
-        <span>筛选</span>
+        <span>{{ $tm('ranking.filter') }}</span>
         <!-- 排序子菜单 -->
         <div class="submenu">
           <div
@@ -79,7 +79,7 @@ const handleClickSortOrder = () => {
             @click="topic.sortField = kun.sortField"
           >
             <span><Icon class="icon" :icon="kun.icon" /></span>
-            <span>{{ kun.name }}</span>
+            <span>{{ $tm(`ranking.${kun.name}`) }}</span>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ const handleClickSortOrder = () => {
 }
 /* 话题排行标题 */
 .title {
-  font-size: 30px;
+  font-size: 27px;
   color: var(--kungalgame-blue-4);
   height: 50px;
   display: flex;
@@ -221,6 +221,10 @@ const handleClickSortOrder = () => {
 @media (max-width: 700px) {
   .topic {
     width: 100%;
+  }
+
+  .title {
+    font-size: 23px;
   }
 }
 </style>
