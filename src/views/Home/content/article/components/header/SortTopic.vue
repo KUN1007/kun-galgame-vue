@@ -97,10 +97,12 @@ const isSortField = () => {
   position: relative;
   border-right: 1px solid var(--kungalgame-trans-blue-4);
   cursor: pointer;
+
+  &:hover {
+    background-color: var(--kungalgame-trans-white-5);
+  }
 }
-.container:hover {
-  background-color: var(--kungalgame-trans-white-5);
-}
+
 .sort-container {
   width: 100%;
   top: 100%;
@@ -119,9 +121,11 @@ const isSortField = () => {
   flex-direction: column;
   box-shadow: 1px 2px 1px 1px var(--kungalgame-trans-blue-4);
 }
+
 .container:hover .sort-submenu {
   display: flex;
 }
+
 .sort-item {
   padding: 10px 0;
   background-color: var(--kungalgame-trans-white-2);
@@ -130,17 +134,18 @@ const isSortField = () => {
   text-decoration: none;
   display: flex;
   justify-content: space-around;
+
+  &:hover {
+    background-color: var(--kungalgame-trans-blue-1);
+    backdrop-filter: blur(5px);
+  }
+  &:active {
+    background-color: var(--kungalgame-trans-blue-2);
+  }
 }
-/* 单个二级菜单 hover */
-.sort-item:hover {
-  background-color: var(--kungalgame-trans-blue-1);
-  backdrop-filter: blur(5px);
-}
-.sort-item:active {
-  background-color: var(--kungalgame-trans-blue-2);
-}
+
 .icon-item {
-  color: var(--kungalgame-font-color-2);
+  color: var(--kungalgame-blue-4);
   padding-right: 3px;
   font-size: 20px;
 }

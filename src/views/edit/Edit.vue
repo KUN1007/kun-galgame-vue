@@ -79,8 +79,8 @@ onBeforeRouteLeave(async (to, from, next) => {
 <style lang="scss" scoped>
 .root {
   margin-top: 20px;
-  height: 100vh;
-  min-height: 1200px;
+  height: calc(100vh - 65px);
+  min-height: 1000px;
   display: flex;
   flex-direction: column;
 }

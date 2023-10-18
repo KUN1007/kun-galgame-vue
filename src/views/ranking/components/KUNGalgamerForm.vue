@@ -47,7 +47,7 @@ const handleClickSortOrder = () => {
 
 <template>
   <!-- 话题排行 -->
-  <div class="topic">
+  <div class="user">
     <!-- 话题排行标题 -->
     <div class="title">用户</div>
     <!-- 话题排行的交互 -->
@@ -93,7 +93,7 @@ const handleClickSortOrder = () => {
 
 <style lang="scss" scoped>
 /* 话题排行 */
-.topic {
+.user {
   width: 50%;
   height: calc(100% - 50px - 20px - 40px);
 }
@@ -216,5 +216,11 @@ const handleClickSortOrder = () => {
 .order-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+
+@media (max-width: 700px) {
+  .user {
+    width: 100%;
+  }
 }
 </style>
