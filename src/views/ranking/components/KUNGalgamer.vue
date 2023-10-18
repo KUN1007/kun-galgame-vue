@@ -25,7 +25,12 @@ const parseTopicNumber = (field: string | string[]) => {
         <!-- 用户的名字 -->
         <div class="info">
           <span class="avatar">
-            <img :src="user.avatar" :alt="user.name" />
+            <!-- 用的是 100px 的压缩图片 -->
+            <img
+              v-if="user.avatar"
+              :src="user.avatar.replace(/\.webp$/, '-100.webp')"
+              :alt="user.name"
+            />
           </span>
           <span class="name">{{ user.name }}</span>
         </div>
