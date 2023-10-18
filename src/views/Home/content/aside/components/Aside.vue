@@ -1,13 +1,24 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 // 导入功能区的单个项目
 import asideItem from './asideItem'
+
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
+
+// 根据当前语言计算页面样式
+const langClass = computed(() => {
+  return showKUNGalgameLanguage.value === 'en' ? 'en' : 'cn'
+})
 </script>
 
 <template>
   <div class="aside">
     <!-- 顶部单个板块 -->
     <span v-for="kun in asideItem" :key="kun.index">
-      <RouterLink :to="{ path: kun.router }">
+      <RouterLink :class="langClass" :to="{ path: kun.router }">
         {{ $tm(`mainPage.asideActive['${kun.name}']`) }}
       </RouterLink>
     </span>
@@ -36,9 +47,6 @@ import asideItem from './asideItem'
       background-color: var(--kungalgame-trans-blue-1);
     }
     a {
-      writing-mode: vertical-lr;
-      text-orientation: sideways;
-      transform: rotate(180deg);
       width: 100%;
       height: 100%;
       display: flex;
@@ -47,5 +55,16 @@ import asideItem from './asideItem'
       color: var(--kungalgame-blue-5);
     }
   }
+}
+
+.en {
+  writing-mode: vertical-lr;
+  text-orientation: sideways;
+  transform: rotate(180deg);
+}
+
+.cn {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 </style>
