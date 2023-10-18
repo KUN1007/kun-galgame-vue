@@ -92,4 +92,14 @@ const logs = computed(() => props.logs)
     color: var(--kungalgame-red-3);
   }
 }
+
+@media (max-width: 700px) {
+  .log {
+    margin: 20px 10px;
+
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+}
 </style>

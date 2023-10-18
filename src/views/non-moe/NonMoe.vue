@@ -63,12 +63,14 @@ onMounted(async () => {
 /* 根容器 */
 .container {
   /* 固定宽高 */
-  height: 600px;
-  max-width: 800px;
+  height: 70vh;
+  width: 80vw;
+  min-height: 600px;
+  max-width: 1000px;
   /* 居中 */
   margin: auto;
   background-color: var(--kungalgame-trans-white-5);
-  border: 1px solid var(--kungalgame-red-4);
+  border: 1px solid var(--kungalgame-blue-1);
   overflow: hidden;
   border-radius: 7px;
   /* 模糊背景 */
@@ -107,7 +109,7 @@ onMounted(async () => {
 /* 文章部分 */
 .article {
   background-color: var(--kungalgame-trans-white-5);
-  border-left: 1px solid var(--kungalgame-red-4);
+  border-left: 1px solid var(--kungalgame-blue-1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,7 +126,6 @@ onMounted(async () => {
 .content {
   width: 100%;
   height: 100%;
-  height: 500px;
   /* y 轴溢出滚动 */
   overflow-y: scroll;
   padding: 0 10px;
@@ -140,5 +141,36 @@ onMounted(async () => {
   /* 兼容火狐 */
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
+}
+
+@media (max-width: 700px) {
+  .root {
+    width: 95%;
+    margin: 0 auto;
+  }
+  .container {
+    flex-direction: column;
+    height: 100%;
+    width: 95%;
+  }
+  .title {
+    width: 100%;
+  }
+  .title-cn {
+    writing-mode: unset;
+  }
+  .title-en {
+    writing-mode: unset;
+    transform: rotate(0);
+  }
+
+  .article {
+    border-left: none;
+    border-top: 1px solid var(--kungalgame-blue-1);
+  }
+
+  .content {
+    height: calc(100% - 150px);
+  }
 }
 </style>
