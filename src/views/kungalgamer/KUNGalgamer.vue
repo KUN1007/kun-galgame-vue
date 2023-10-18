@@ -38,7 +38,7 @@ onMounted(async () => {
   <div class="root">
     <!-- 信息区域容器 -->
     <div class="container">
-      <Header :moemoepoint="user?.moemoepoint" />
+      <Header :name="user?.name" :avatar="user?.avatar" :moemoepoint="user?.moemoepoint" />
       <!-- 内容区 -->
       <div class="content">
         <NavBar :uid="uid" />

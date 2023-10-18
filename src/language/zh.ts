@@ -242,7 +242,8 @@ export default {
     },
     settings: {
       avatar: '更改头像',
-      drag: '拖拽图片到方框内或点击方框上传',
+      drag: '拖拽图片到方框内或',
+      click: '点击方框上传',
       supportImage: '支持 1007KB 以内的图片',
       supportFormat: '支持 jpg 和 png 格式',
       confirm: '确定更改',

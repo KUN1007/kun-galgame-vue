@@ -1,11 +1,31 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
 const { name, avatar } = storeToRefs(useKUNGalgameUserStore())
 
+const currentPageUsername = ref(name)
+
+const currentPageUserAvatar = ref(avatar)
+
+// 这里用 watch 是不行的，要 watchEffect，是不是很迷？没错我也很迷啊哈哈哈
+watchEffect(() => {
+  // 没有头像的用户
+  if (props.name) {
+    currentPageUsername.value = props.name
+    currentPageUserAvatar.value = ''
+  }
+  // 有头像的用户
+  if (props.name && props.avatar) {
+    currentPageUsername.value = props.name
+    currentPageUserAvatar.value = props.avatar
+  }
+})
+
 const props = defineProps<{
+  name?: string
+  avatar?: string
   moemoepoint?: number
 }>()
 

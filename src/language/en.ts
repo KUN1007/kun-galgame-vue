@@ -244,7 +244,7 @@ export default {
     settings: {
       avatar: 'Change Avatar',
       drag: 'Drag and drop an image into the box OR',
-      click: 'Click to upload',
+      click: 'Click the box to upload',
       supportImage: 'Supports images up to 1007KB',
       supportFormat: 'Supports jpg and png formats',
       confirm: 'Confirm',
