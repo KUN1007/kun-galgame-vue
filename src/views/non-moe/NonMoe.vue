@@ -1,6 +1,31 @@
 <script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
 import Log from './components/Log.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+import { useKUNGalgameNonMoeStore } from '@/store/modules/nonMoe'
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
+import { NonMoeLog } from '@/api'
+
+const logs = ref<NonMoeLog[]>([])
+// 根据当前语言计算页面样式
+const langClass = computed(() => {
+  return showKUNGalgameLanguage.value === 'en' ? 'title-en' : 'title-cn'
+})
+
+// 获取不萌记录数据
+const getLogs = async () => {
+  const response = await useKUNGalgameNonMoeStore().getLogs()
+  return response.data
+}
+
+// 页面加载时加载数据
+onMounted(async () => {
+  logs.value = await getLogs()
+})
 </script>
 
 <template>
@@ -8,7 +33,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     <!-- 内容区容器 -->
     <div class="container">
       <!-- 页面标题 -->
-      <div class="title">{{ $tm('nonMoe.log') }}</div>
+      <div class="title" :class="langClass">{{ $tm('nonMoe.log') }}</div>
       <!-- 文章部分 -->
       <div class="article">
         <!-- 文章标题 -->
@@ -18,7 +43,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         <!-- 内容区容器 -->
         <div class="content">
           <!-- 所有的记录 -->
-          <Log />
+          <Log :logs="logs" />
         </div>
       </div>
     </div>
@@ -29,11 +54,12 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 <style lang="scss" scoped>
 .root {
-  height: 100vh;
+  height: calc(100vh - 65px);
   display: flex;
   flex-direction: column;
   min-height: 750px;
 }
+
 /* 根容器 */
 .container {
   /* 固定宽高 */
@@ -52,20 +78,32 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   position: relative;
   box-shadow: var(--shadow);
 }
+
 /* 页面标题 */
 .title {
   /* 字体竖直方向分布 */
   font-size: 30px;
   padding: 30px;
   width: 100px;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   color: var(--kungalgame-font-color-2);
+  letter-spacing: 1px;
 }
+
+.title-cn {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.title-en {
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  transform: rotate(180deg);
+}
+
 /* 文章部分 */
 .article {
   background-color: var(--kungalgame-trans-white-5);
@@ -74,12 +112,14 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   flex-direction: column;
   align-items: center;
 }
+
 /* 文章标题 */
 .article-title {
   margin: 20px 0;
   padding: 0 20px;
   font-size: 20px;
 }
+
 /* 内容区容器 */
 .content {
   width: 100%;

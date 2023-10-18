@@ -1,4 +1,3 @@
-// 评论的临时数据，用于组件间传输
 import { defineStore } from 'pinia'
 
 import type {

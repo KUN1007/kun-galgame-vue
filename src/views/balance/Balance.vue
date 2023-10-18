@@ -82,7 +82,7 @@ onMounted(async () => {
               statement.profitLoss >= 0
                 ? $tm('balance.surplusAmount')
                 : $tm('balance.deficitAmount')
-            }}: {{ statement.profitLoss }} CNY
+            }}: {{ statement.profitLoss }} USDT
           </div>
         </div>
       </div>

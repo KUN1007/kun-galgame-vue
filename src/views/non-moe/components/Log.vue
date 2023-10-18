@@ -1,20 +1,34 @@
 <script setup lang="ts">
-import { log } from './log'
 import { Icon } from '@iconify/vue'
+import { computed } from 'vue'
+
+import { NonMoeLog } from '@/api'
+import dayjs from 'dayjs'
+
+const props = defineProps<{
+  logs: NonMoeLog[]
+}>()
+
+const logs = computed(() => props.logs)
 </script>
 
 <template>
   <!-- 单个记录 -->
-  <div class="log" v-for="kun in log" :key="kun.index">
+  <div class="log" v-for="(kun, index) in logs" :key="index">
     <!-- 用户 -->
-    <div class="kungalgamer">@ <span>啊这可海星</span></div>
+    <div class="kungalgamer">
+      @
+      <RouterLink :to="`/kungalgamer/${kun.uid}/info`">
+        {{ kun.name }}
+      </RouterLink>
+    </div>
     <!-- 原因 -->
-    <div class="reason">{{ kun.reason }}</div>
+    <div class="reason" v-html="kun.description"></div>
     <!-- 后果 -->
     <div class="footer">
       <div class="time">
         <Icon class="hourglass" icon="eos-icons:hourglass" />
-        <span>2019 / 10 / 7</span>
+        <span>{{ dayjs(kun.time).format('YYYY/MM/DD') }}</span>
       </div>
       <div class="result">
         <Icon class="warning" icon="line-md:alert" />
@@ -34,7 +48,7 @@ import { Icon } from '@iconify/vue'
 .kungalgamer {
   margin-bottom: 10px;
   font-weight: bold;
-  span {
+  a {
     cursor: pointer;
     color: var(--kungalgame-blue-5);
     border-bottom: 2px solid var(--kungalgame-trans-white-9);
