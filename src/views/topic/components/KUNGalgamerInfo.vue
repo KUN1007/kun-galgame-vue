@@ -1,5 +1,6 @@
 <!-- 这个部分为发帖人的个人信息展示部分 -->
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
 const props = defineProps<{
   user: {
@@ -29,7 +30,10 @@ const user = computed(() => props.user)
         {{ user.name }}
       </div>
       <!-- 萌萌点 -->
-      <div class="moemoepoint">{{ user.moemoepoint }}</div>
+      <div class="moemoepoint">
+        <span><Icon icon="line-md:star-alt-twotone"></Icon></span>
+        <span>{{ user.moemoepoint }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +69,18 @@ const user = computed(() => props.user)
   margin-top: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  color: var(--kungalgame-pink-4);
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:nth-child(1) {
+      font-size: 20px;
+    }
+  }
 }
 
 @media (max-width: 700px) {

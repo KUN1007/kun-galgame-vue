@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { computed, ref, watchEffect } from 'vue'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
@@ -51,7 +52,10 @@ const mpWidth = computed(() => {
       <Transition name="progress">
         <div class="mp-progress"></div>
       </Transition>
-      <span>MP: {{ props.moemoepoint }}</span>
+      <p>
+        <span><Icon icon="line-md:star-alt-twotone"></Icon></span>
+        <span>{{ props.moemoepoint }}</span>
+      </p>
     </div>
   </div>
 </template>
@@ -137,12 +141,25 @@ const mpWidth = computed(() => {
   display: flex;
   align-items: center;
   z-index: 1;
-  span {
+  p {
     position: absolute;
     right: 0;
     font-size: 17px;
     padding-right: 20px;
     font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--kungalgame-pink-4);
+      &:nth-child(1) {
+        font-size: 20px;
+      }
+    }
   }
 }
 /* 用户的萌萌点进度 */
