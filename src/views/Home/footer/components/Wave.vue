@@ -25,7 +25,7 @@
   </svg>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 /* 波浪的属性设置 */
 .kungalgame-waves {
   position: relative;

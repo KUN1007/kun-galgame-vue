@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 /* 版权描述,版本号 */
 .footer {
   /* 距离上面的距离 */
