@@ -34,8 +34,6 @@ const getBackgroundURL = async (imageName: string) => {
   } else {
     // 本地数据没有图片 blob 数据则从后端获取图片 blob 数据并存储在本地
     const imageBlob = await fetchGetBackground(`${imageName}`)
-    console.log('调用 fetch get blob')
-
     await saveImage(imageBlob, imageName)
 
     return URL.createObjectURL(imageBlob)

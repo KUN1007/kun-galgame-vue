@@ -13,7 +13,7 @@ import KUNGalgameInfo from './components/KUNGalgameInfo.vue'
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .footer {
   height: 1px;
   width: 100%;
