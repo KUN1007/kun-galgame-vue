@@ -15,7 +15,7 @@ defineEmits(['showKUNGalgameHamburger'])
   <!-- 总容器 -->
   <div class="container">
     <div class="kungalgame">
-      <img src="../../assets/images/favicon.png" alt="KUNGalgame" />
+      <img src="@/assets/images/favicon.webp" alt="KUNGalgame" />
       <span>{{ $tm('header.name') }}</span>
     </div>
     <!-- 交互栏目 -->
