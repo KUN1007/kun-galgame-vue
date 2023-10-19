@@ -710,26 +710,6 @@
   "group_layer_id": 2098
  },
  {
-  "name": "斜め１",
-  "left": 149,
-  "top": 323,
-  "width": 293,
-  "height": 593,
-  "visible": 1,
-  "layer_id": 2335,
-  "group_layer_id": 2103
- },
- {
-  "name": "斜め２",
-  "left": 149,
-  "top": 323,
-  "width": 242,
-  "height": 593,
-  "visible": 0,
-  "layer_id": 2336,
-  "group_layer_id": 2103
- },
- {
   "name": "汗",
   "left": 0,
   "top": 0,
@@ -817,16 +797,6 @@
   "height": 0,
   "visible": 1,
   "layer_id": 2098,
-  "group_layer_id": 975
- },
- {
-  "name": "裸",
-  "left": 0,
-  "top": 0,
-  "width": 0,
-  "height": 0,
-  "visible": 0,
-  "layer_id": 2103,
   "group_layer_id": 975
  }
 ]
