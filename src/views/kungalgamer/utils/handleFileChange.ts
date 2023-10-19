@@ -1,14 +1,5 @@
 import Message from '@/components/alert/Message'
-
-const dataURItoBlob = (dataURI: string) => {
-  const byteString = atob(dataURI.split(',')[1])
-  const ab = new ArrayBuffer(byteString.length)
-  const ia = new Uint8Array(ab)
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i)
-  }
-  return new Blob([ab], { type: 'image/jpeg' })
-}
+import { dataURItoBlob } from '@/utils/dataURItoBlob'
 
 // 检查图片类型是否合法，允许 png 和 jpg
 export const checkImageValid = (file: File) => {
