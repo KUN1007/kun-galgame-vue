@@ -2,8 +2,6 @@
 import { Icon } from '@iconify/vue'
 
 const props = defineProps(['data'])
-
-// TODO: 后端接口字段名还未定，不能确定
 </script>
 
 <template>

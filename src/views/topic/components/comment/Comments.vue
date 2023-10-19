@@ -118,8 +118,10 @@ const handleClickComment = (
             <!-- 顶部左侧名字 -->
             <div class="name">
               {{ `${comment.c_user.name} ${$tm('topic.content.comment')}` }}
-              <!-- 跳转到用户主页 TODO: -->
-              <a href="#">{{ comment.to_user.name }}</a>
+              <!-- 跳转到用户主页 -->
+              <RouterLink :to="`/kungalgamer/${comment.to_user.uid}/info`">
+                {{ comment.to_user.name }}
+              </RouterLink>
             </div>
             <!-- 顶部右侧点赞、踩 -->
             <div class="operate">

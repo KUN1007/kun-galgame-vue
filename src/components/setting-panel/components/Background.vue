@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 导入 vue 函数
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 // 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -9,32 +9,24 @@ import { storeToRefs } from 'pinia'
 // 全局消息组件（顶部）
 import Message from '@/components/alert/Message'
 
-import backgroundImages from './background'
-
+import { backgroundImages } from './background'
+import { getBackgroundURL } from '@/hooks/useBackgroundPicture'
 import { restoreBackground } from '@/hooks/useBackgroundPicture'
 
+const imageArray = ref<string[]>([])
 // 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
-  storeToRefs(settingsStore)
+  storeToRefs(useKUNGalgameSettingsStore())
+
+// 获取背景图片略缩图
+const getBackground = async (imageNumber: number) => {
+  return await getBackgroundURL(`bg${imageNumber}-m`)
+}
 
 // 更改背景图片
 const handelChangeImage = (index: number) => {
-  showKUNGalgameBackground.value = index.toString()
+  showKUNGalgameBackground.value = `bg${index}`
 }
-
-/* 测试图片: 
-  https://s3.bmp.ovh/imgs/2023/05/30/1ee99996d0eb2646.png
-  https://s3.bmp.ovh/imgs/2023/05/30/87d94be5e004547a.png
-  https://s3.bmp.ovh/imgs/2023/05/30/2a639bd15113b570.png
-  https://s3.bmp.ovh/imgs/2023/05/30/b7c73a1643bdc55b.png
-  https://s3.bmp.ovh/imgs/2023/05/30/ee67fdadd4104bbd.png
-  https://s3.bmp.ovh/imgs/2023/05/30/30aacd3045496498.png
-  https://s3.bmp.ovh/imgs/2023/05/30/ab2da01971cc1629.png
-  https://s3.bmp.ovh/imgs/2023/05/30/ed196495796482e4.png
-  https://s3.bmp.ovh/imgs/2023/05/30/a6dcdae0afe118f0.png
-  https://s3.bmp.ovh/imgs/2023/05/30/7aa57120cc6977a1.png
-  */
 
 // 自定义背景
 const url = ref('')
@@ -42,13 +34,19 @@ const url = ref('')
 const handleCustomBackground = () => {
   if (url.value) {
     showKUNGalgameCustomBackground.value = url.value
-    showKUNGalgameBackground.value = '1007'
+    showKUNGalgameBackground.value = 'bg1007'
     url.value = ''
   } else {
     Message('Please input valid image url', '请输入合法的图片链接', 'warn')
   }
 }
-// 恢复空白背景
+
+onMounted(async () => {
+  for (const background of backgroundImages) {
+    const backgroundURL = await getBackground(background.index)
+    imageArray.value.push(backgroundURL)
+  }
+})
 </script>
 
 <template>
@@ -61,7 +59,7 @@ const handleCustomBackground = () => {
         <ul class="kungalgame-restore-bg">
           <li v-for="kun in backgroundImages" :key="kun.index">
             <img
-              :src="kun.image"
+              :src="imageArray[kun.index - 1]"
               :alt="kun.alt"
               @click="handelChangeImage(kun.index)"
             />

@@ -22,6 +22,7 @@
     "animate.css": "^4.1.1",
     "dayjs": "^1.11.10",
     "dompurify": "^3.0.6",
+    "localforage": "^1.10.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
