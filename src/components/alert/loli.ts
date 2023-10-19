@@ -2,7 +2,7 @@
 import { randomNum } from '@/utils/random'
 // 获取本地图片文件，注意这里不能用 @ 作为基础路径，只能用 ..
 const getAssetsFile = (name: string) => {
-  return new URL(`../../assets/images/alert/${name}.png`, import.meta.url).href
+  return new URL(`../../assets/images/alert/${name}.webp`, import.meta.url).href
 }
 
 const number = randomNum(0, 2)

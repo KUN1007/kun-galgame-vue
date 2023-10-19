@@ -62,7 +62,7 @@ onBeforeRouteLeave(() => {
       <div class="kungalgame">
         <!-- 网站的名字和网站图标 -->
         <RouterLink to="/kun">
-          <img src="@/assets/images/favicon.png" alt="KUNgal" />
+          <img src="@/assets/images/favicon.webp" alt="KUNgal" />
         </RouterLink>
         <RouterLink to="/kun">
           <span>{{ $tm('header.name') }}</span>
