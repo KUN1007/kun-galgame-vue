@@ -1,16 +1,34 @@
 <!-- 先放一个 Layout 在这里，后面应该用得到 -->
 <script setup lang="ts">
+import { onMounted, watch, ref } from 'vue'
 // 导入动画
 import 'animate.css'
-
-import { currBackground } from '@/hooks/useBackgroundPicture'
-
+import { getCurrentBackground } from '@/hooks/useBackgroundPicture'
 import KUNGalgameTopBar from '@/components/top-bar/KUNGalgameTopBar.vue'
+
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
+  storeToRefs(useKUNGalgameSettingsStore())
+
+const imageURL = ref('')
+
+onMounted(async () => {
+  imageURL.value = await getCurrentBackground()
+})
+
+watch(
+  () => [showKUNGalgameBackground.value, showKUNGalgameCustomBackground.value],
+  async () => {
+    imageURL.value = await getCurrentBackground()
+  }
+)
 </script>
 
 <template>
   <!-- #default 是 v-slot 的简写，route 就是路由，Component 是一个 v-node -->
-  <div class="app" :style="{ backgroundImage: currBackground }">
+  <div class="app" :style="{ backgroundImage: `url(${imageURL})` }">
     <div class="top-bar">
       <KUNGalgameTopBar />
     </div>

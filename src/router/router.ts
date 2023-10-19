@@ -81,7 +81,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     },
   },
 
-  // KUNGalgame 403 TODO:
+  // KUNGalgame 403
   {
     name: '403',
     path: '/kungalgame403',

@@ -70,15 +70,14 @@ onBeforeRouteLeave(async (to, from, next) => {
 
     <!-- 版权 -->
     <KUNGalgameFooter style="margin: 0 auto; padding-top: 10px" />
-    <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)"
-      >Editor powered by quill</span
-    >
+    <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)">
+      Editor powered by quill
+    </span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .root {
-  margin-top: 20px;
   height: calc(100vh - 65px);
   min-height: 1000px;
   display: flex;
