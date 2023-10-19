@@ -58,16 +58,6 @@ const getCurrentBackground = async () => {
   return url
 }
 
-// 获取所有图片的预览图，好像。。。min 比 thumbnail 萌一点
-// const getCurrentBackgroundMin = async () => {
-//   let imageArray: string[] = []
-//   for (let i = 0; i < 9; i++) {
-//     const url = await getBackgroundURL(`bg${i}-m`)
-//     imageArray.push(url)
-//   }
-//   return imageArray
-// }
-
 // 恢复空白背景
 const restoreBackground = () => {
   showKUNGalgameBackground.value = 'bg0'
