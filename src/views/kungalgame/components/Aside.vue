@@ -6,37 +6,35 @@ interface asideBar {
 }
 
 const asideBarItem: asideBar[] = [
-  { index: 1, name: '隐私政策', router: '/privacy' },
-  { index: 2, name: '执行条例', router: '/bylaw' },
-  { index: 3, name: '更新日志', router: '/update-log' },
-  { index: 4, name: '收支公示', router: '/balance' },
-  { index: 5, name: '不萌记录', router: '/non-moe' },
-  { index: 6, name: '加入我们', router: '/contact' },
-  { index: 7, name: '感谢名单', router: '/thanks-list' },
-  { index: 8, name: '赞助我们', router: '/donate' },
-  { index: 9, name: '返回主页', router: '/' },
+  { index: 1, name: 'privacy', router: '/privacy' },
+  { index: 2, name: 'bylaw', router: '/bylaw' },
+  { index: 3, name: 'update', router: '/update-log' },
+  { index: 4, name: 'pl', router: '/balance' },
+  { index: 5, name: 'nonMoe', router: '/non-moe' },
+  { index: 6, name: 'join', router: '/contact' },
+  { index: 7, name: 'thanks', router: '/thanks-list' },
+  { index: 8, name: 'donate', router: '/donate' },
+  { index: 9, name: 'home', router: '/' },
 ]
 </script>
 
 <template>
-  <!-- 侧边的文章结构索引 -->
   <div class="aside">
-    <div>KUNGalgame</div>
-    <ul>
-      <li>网站简介</li>
-      <li>运营理念</li>
-      <li>论坛规定</li>
-      <li class="skip" v-for="kun in asideBarItem" :key="kun.index">
-        <RouterLink style="color: #218bff" :to="{ path: kun.router }">{{
-          kun.name
-        }}</RouterLink>
-      </li>
-    </ul>
+    <span>{{ $tm('kungalgame.introduction') }}</span>
+    <span>{{ $tm('kungalgame.operating') }}</span>
+    <span>{{ $tm('kungalgame.rules') }}</span>
+    <span class="skip" v-for="kun in asideBarItem" :key="kun.index">
+      <RouterLink
+        style="color: var(--kungalgame-blue-4)"
+        :to="{ path: kun.router }"
+      >
+        {{ $tm(`kungalgame.${kun.name}`) }}
+      </RouterLink>
+    </span>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 侧边的文章结构索引 */
 .aside {
   width: 122px;
   height: 100%;
@@ -45,49 +43,45 @@ const asideBarItem: asideBar[] = [
   position: sticky;
   top: 0;
   color: var(--kungalgame-font-color-3);
-  /* 侧边的标题 */
-  & > div {
-    /* 固定高度 */
-    height: 50px;
-    /* 字体设置 */
-    font-size: 17px;
-    font-weight: bold;
-    /* 居中 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > span {
+    width: 100%;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: serif;
-  }
-  /* 侧边总体的列表 */
-  & > ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* 侧边的单个项目 */
-    & > li {
-      width: 100%;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+
+    &:nth-child(3) {
+      border-bottom: 1.5px solid var(--kungalgame-blue-4);
     }
   }
 }
-/* 跳转链接 */
+
 .skip {
   border-bottom: 1.5px solid var(--kungalgame-blue-4);
   cursor: pointer;
   color: var(--kungalgame-blue-4);
+
   a {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* 单个项目的 hover */
+
     &:hover {
       background-color: var(--kungalgame-trans-blue-2);
     }
+  }
+}
+
+@media (max-width: 700px) {
+  .aside {
+    width: 90px;
+    font-size: small;
   }
 }
 </style>
