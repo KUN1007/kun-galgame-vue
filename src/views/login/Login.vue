@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
-import { getBackgroundURL } from '@/hooks/useBackgroundPicture'
 
 // 导入登录面板
 import Login from './components/Login.vue'
@@ -10,7 +9,11 @@ import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 
 const isShowPanel = ref('')
-const backgroundImage = ref('')
+
+// 背景图片，这是后端的地址
+const backgroundImageUrl = `${
+  import.meta.env.VITE_API_BASE_URL
+}/uploads/avatar/login.webp`
 
 // 点击登录，面板滑动
 const handleClickSignIn = () => {
@@ -21,10 +24,6 @@ const handleClickSignIn = () => {
 const handleClickRegister = () => {
   isShowPanel.value = 'active'
 }
-
-onMounted(async () => {
-  backgroundImage.value = await getBackgroundURL('login')
-})
 </script>
 
 <template>
@@ -32,7 +31,7 @@ onMounted(async () => {
     <div
       class="container"
       :class="isShowPanel"
-      :style="{ backgroundImage: `url(${backgroundImage})` }"
+      :style="{ backgroundImage: `url(${backgroundImageUrl})` }"
     >
       <!-- 登陆注册切换 -->
       <div class="switch">
@@ -274,7 +273,7 @@ onMounted(async () => {
     background: var(--kungalgame-trans-blue-0);
   }
   .container {
-    background-image: none;
+    background-image: none !important;
     display: flex;
     box-shadow: none;
   }
