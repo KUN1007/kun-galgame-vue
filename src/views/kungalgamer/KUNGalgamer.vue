@@ -38,7 +38,11 @@ onMounted(async () => {
   <div class="root">
     <!-- 信息区域容器 -->
     <div class="container">
-      <Header :name="user?.name" :avatar="user?.avatar" :moemoepoint="user?.moemoepoint" />
+      <Header
+        :name="user?.name"
+        :avatar="user?.avatar"
+        :moemoepoint="user?.moemoepoint"
+      />
       <!-- 内容区 -->
       <div class="content">
         <NavBar :uid="uid" />
@@ -52,7 +56,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .root {
-  height: 100vh;
+  height: calc(100vh - 65px);
   min-height: 800px;
   width: 100vw;
   display: flex;

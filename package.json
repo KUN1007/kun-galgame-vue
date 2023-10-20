@@ -29,7 +29,6 @@
     "quill-blot-formatter": "^1.0.5",
     "quill-image-compress": "^1.2.30",
     "quill-magic-url": "^4.2.0",
-    "quill-mention": "^4.0.0",
     "vue": "^3.3.4",
     "vue-i18n": "^9.5.0",
     "vue-router": "^4.2.5"
