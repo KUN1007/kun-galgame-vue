@@ -67,37 +67,6 @@ defineProps<{
   :deep(blockquote) {
     padding: 7px 10px;
   }
-
-  /* mention */
-  :deep(.mention[data-denotation-char='@']) {
-    margin-right: 2px;
-    cursor: pointer;
-    background-color: var(--kungalgame-pink-4);
-    color: var(--kungalgame-white);
-    padding: 5px;
-    & > span {
-      font-style: oblique;
-      & > span {
-        font-weight: bold;
-        margin-right: 5px;
-      }
-    }
-  }
-
-  :deep(.mention[data-denotation-char='#']) {
-    margin-right: 2px;
-    cursor: pointer;
-    background-color: var(--kungalgame-purple-4);
-    color: var(--kungalgame-white);
-    padding: 5px;
-    & > span {
-      font-style: oblique;
-      & > span {
-        font-weight: bold;
-        margin-right: 5px;
-      }
-    }
-  }
 }
 
 /* 适配手机端 */
