@@ -2,14 +2,10 @@
 import { Icon } from '@iconify/vue'
 // 导入防抖函数
 import { debounce } from '@/utils/debounce'
-import { ref, computed, onBeforeMount } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 // 导入用户 store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
-// 导入设置面板 store
-import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
-// 使用设置面板的 store
-const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
 const { keywords, searchHistory, category } = storeToRefs(
   useKUNGalgameHomeStore()
 )

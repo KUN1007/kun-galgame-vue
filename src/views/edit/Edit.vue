@@ -79,7 +79,7 @@ onBeforeRouteLeave(async (to, from, next) => {
 <style lang="scss" scoped>
 .root {
   height: calc(100vh - 65px);
-  min-height: 1000px;
+  min-height: 1200px;
   display: flex;
   flex-direction: column;
 }
