@@ -26,6 +26,9 @@ const poolPageWidth = computed(() => {
       <Tags />
 
       <div class="topic-container">
+        <!-- TODO: -->
+        <h1 style="margin: auto">This page is under development.</h1>
+
         <Topic
           v-for="kun in topic"
           class="item"

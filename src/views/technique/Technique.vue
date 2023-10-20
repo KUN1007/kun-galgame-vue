@@ -37,6 +37,9 @@ const techniquePageWidth = computed(() => {
       <div class="article">
         <!-- 所有文章的容器 -->
         <div class="article-container">
+          <!-- TODO: -->
+          <h1 style="margin: auto">This page is under development.</h1>
+
           <div class="topic" v-for="topic in topics" :key="topic.topicId">
             <SingleTopic :data="topic" />
           </div>
