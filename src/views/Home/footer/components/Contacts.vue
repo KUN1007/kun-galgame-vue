@@ -11,18 +11,27 @@ import { Icon } from '@iconify/vue'
       <li>
         <a
           href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=hlXYbLM8MqOm9WzE22ZodNiQJ3nc1Bu2&authKey=7xfTYC1atV5loXyWNv9VOTOaf5ZzR9BdCFcMNJWdmyukck8%2FDLSF3%2FrHgyiY48pT&noverify=0&group_code=726477957"
+          aria-label="KUN Visual Novel Official QQ Group | 鲲 Galgame 官方 QQ 群"
           target="_blank"
         >
           <Icon icon="bi:tencent-qq" />
         </a>
       </li>
       <li>
-        <a href="https://space.bilibili.com/1748455574" target="_blank">
+        <a
+          aria-label="KUN Visual Novel Official Bilibili Account | 鲲 Galgame 官方 Bilibili"
+          href="https://space.bilibili.com/1748455574"
+          target="_blank"
+        >
           <Icon icon="ri:bilibili-line" />
         </a>
       </li>
       <li>
-        <a href="https://t.me/kungalgame" target="_blank">
+        <a
+          aria-label="KUN Visual Novel Official Telegram Group"
+          href="https://t.me/kungalgame"
+          target="_blank"
+        >
           <Icon icon="ic:baseline-telegram" />
         </a>
       </li>

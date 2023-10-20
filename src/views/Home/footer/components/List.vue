@@ -164,5 +164,11 @@ const link: FooterInfoItem[] = [
   .mobile {
     display: none;
   }
+
+  .function {
+    li {
+      height: 48px;
+    }
+  }
 }
 </style>

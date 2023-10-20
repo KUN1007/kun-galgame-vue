@@ -26,8 +26,6 @@ const kungalgamePageWidth = computed(() => {
         <!-- 文章容器 -->
         <div class="article">
           <h1>关于我们</h1>
-          <br />
-          <br />
           <h2 id="introduction">网站简介</h2>
           <p>
             KUNGalgame 是由 <span class="skip">KUN（鲲）</span>个人发起的一个
@@ -242,7 +240,7 @@ p,
 .list {
   color: var(--kungalgame-font-color-2);
 }
-/* da标题的字体 */
+
 h1 {
   margin-right: 30px;
   margin-top: 57px;
@@ -286,8 +284,21 @@ a {
 
 @media (max-width: 1000px) {
   .content-container {
-    width: 100%;
+    width: 90%;
     padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .content-container {
+    width: 100%;
+  }
+  .article {
+    margin-left: 7px;
+  }
+
+  h1 {
+    margin: 20px auto;
   }
 }
 </style>

@@ -324,6 +324,20 @@ export default {
     replies: '回复数',
     comments: '评论数',
   },
+  kungalgame: {
+    introduction: '网站简介',
+    operating: '运营理念',
+    rules: '论坛规定',
+    privacy: '隐私政策',
+    bylaw: '执行条例',
+    update: '更新日志',
+    pl: '收支公示',
+    nonMoe: '不萌记录',
+    join: '加入我们',
+    thanks: '感谢名单',
+    donate: '赞助我们',
+    home: '返回主页',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: '确定',

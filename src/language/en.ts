@@ -325,6 +325,20 @@ export default {
     replies: 'Replies',
     comments: 'Comments',
   },
+  kungalgame: {
+    introduction: 'Introduction',
+    operating: 'Operating',
+    rules: 'Forum Rules',
+    privacy: 'Privacy',
+    bylaw: 'Bylaws',
+    update: 'Update Log',
+    pl: 'Profit & Loss',
+    nonMoe: 'Non-Moe',
+    join: 'Join Us',
+    thanks: 'Thanks List',
+    donate: 'Donate Us',
+    home: 'Back Home',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: 'OK',
