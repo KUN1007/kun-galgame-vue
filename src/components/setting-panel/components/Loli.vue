@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getLoli } from '@/utils/loli'
+import { useLoliDataURL } from '@/hooks/useLoli'
 import { onMounted, ref } from 'vue'
 
 const loliData = ref({
@@ -20,10 +20,10 @@ const loliData = ref({
   face: '',
 })
 
-const reGetLoli = () => (loliData.value = getLoli())
+const reGetLoli = async () => (loliData.value = await useLoliDataURL())
 
-onMounted(() => {
-  loliData.value = getLoli()
+onMounted(async () => {
+  loliData.value = await useLoliDataURL()
 })
 </script>
 
@@ -72,7 +72,7 @@ onMounted(() => {
   position: absolute;
   z-index: 9999;
   top: -270px;
-  left: 150px;
+  left: 130px;
 }
 .body {
   position: absolute;
