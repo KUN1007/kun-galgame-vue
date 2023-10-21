@@ -49,11 +49,12 @@ const user = computed(() => props.user)
 }
 /* 头像 */
 .avatar {
-  /* 图像加载不出来时页面不塌陷 */
   width: 100px;
   margin-top: 17px;
+
   img {
     width: 100px;
+    height: 100px;
   }
 }
 /* 名字 */
