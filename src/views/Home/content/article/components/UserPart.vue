@@ -59,6 +59,8 @@ const user = computed(() => props.user)
     flex-grow: 1;
   }
   img {
+    height: 50px;
+    width: 50px;
     padding: 2px;
     border-radius: 50%;
     /* 页面缩小时头像缩小 */

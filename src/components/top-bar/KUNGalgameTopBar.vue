@@ -59,28 +59,31 @@ onBeforeRouteLeave(() => {
           </KeepAlive>
         </transition>
       </div>
+
+      <!-- 网站的名字和网站图标 -->
       <div class="kungalgame">
-        <!-- 网站的名字和网站图标 -->
         <RouterLink to="/kun">
-          <img src="@/assets/images/favicon.webp" alt="KUNgal" />
-        </RouterLink>
-        <RouterLink to="/kun">
+          <img
+            src="@/assets/images/favicon.webp"
+            alt="KUN Visual Novel 鲲 Galgame"
+          />
           <span>{{ $tm('header.name') }}</span>
         </RouterLink>
       </div>
+
+      <!-- 导航栏 -->
       <div class="top-bar">
-        <ul>
-          <!-- 顶部单个板块 -->
-          <li v-for="kun in topBarItem" :key="kun.index">
-            <RouterLink :to="{ path: kun.router }">
-              {{ $tm(`header['${kun.name}']`) }}
-            </RouterLink>
-          </li>
-          <!-- 顶部板块下部的 hover 效果 -->
-          <div class="box"></div>
-        </ul>
+        <!-- 顶部单个板块 -->
+        <span v-for="kun in topBarItem" :key="kun.index">
+          <RouterLink :to="{ path: kun.router }">
+            {{ $tm(`header['${kun.name}']`) }}
+          </RouterLink>
+        </span>
+        <!-- 顶部板块下部的 hover 效果 -->
+        <div class="box"></div>
       </div>
     </div>
+
     <div class="kungalgamer-info">
       <!-- showKUNGalgamePanel 为 store 里的布尔值,其真假控制设置面板的显示与关闭 -->
       <span @click="showKUNGalgamePanel = !showKUNGalgamePanel">
@@ -122,13 +125,10 @@ onBeforeRouteLeave(() => {
 <style lang="scss" scoped>
 /* 头部样式 */
 .header {
-  /* 头部高度 */
   height: 58px;
-  /* 头部下方阴影 */
   box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
-  /* 头部背景 */
-  backdrop-filter: blur(5px);
   background-color: var(--kungalgame-trans-white-5);
+  backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -151,22 +151,7 @@ onBeforeRouteLeave(() => {
 .nav-top {
   display: flex;
   align-items: center;
-}
-.kungalgame {
-  display: flex;
-  align-items: center;
-  img {
-    height: 50px;
-    margin-left: 50px;
-    cursor: pointer;
-  }
-  span {
-    margin-left: 20px;
-    margin-right: 7px;
-    color: var(--kungalgame-font-color-3);
-    font-weight: bold;
-    cursor: pointer;
-  }
+  height: 100%;
 }
 
 // 顶部交互栏
@@ -176,61 +161,77 @@ $navNumber: v-bind(navItemNum);
   position: relative;
   text-align: center;
   width: v-bind(navItemLength);
-  ul {
-    align-items: center;
+  align-items: center;
+  display: flex;
+  .box {
+    border-radius: 2px;
+    bottom: 0;
+    height: 7px;
+    left: 0;
+    position: absolute;
+    transition: 0.5s;
+    width: calc(100% / $navNumber);
+
+    &:hover {
+      z-index: -1;
+    }
+  }
+
+  a {
+    display: block;
+    color: var(--kungalgame-blue-5);
+    width: 100%;
+    height: 100%;
+  }
+
+  span {
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    line-height: 58px;
+    width: 100%;
+    &:nth-child(1):hover ~ .box {
+      background-color: var(--kungalgame-red-3);
+      left: calc(100% / $navNumber * 0);
+    }
+
+    &:nth-child(2):hover ~ .box {
+      background-color: var(--kungalgame-blue-3);
+      left: calc(100% / $navNumber * 1);
+    }
+
+    &:nth-child(3):hover ~ .box {
+      background-color: var(--kungalgame-yellow-2);
+      left: calc(100% / $navNumber * 2);
+    }
+
+    &:nth-child(4):hover ~ .box {
+      filter: hue-rotate(240deg);
+      background-color: var(--kungalgame-blue-3);
+      left: calc(100% / $navNumber * 3);
+    }
+    &:nth-child(5):hover ~ .box {
+      filter: hue-rotate(60deg);
+      background-color: var(--kungalgame-blue-3);
+      left: calc(100% / $navNumber * 4);
+    }
+  }
+}
+
+.kungalgame {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+
+  a {
     display: flex;
-    right: 5%;
-    .box {
-      border-radius: 2px;
-      bottom: 0;
-      height: 7px;
-      left: 0;
-      position: absolute;
-      transition: 0.5s;
-      width: calc(100% / $navNumber);
+    align-items: center;
+    color: var(--kungalgame-font-color-3);
 
-      &:hover {
-        z-index: -1;
-      }
-    }
-    a {
-      // 转变 a 标签为块级元素
-      display: block;
-      color: var(--kungalgame-blue-5);
-      width: 100%;
-      height: 100%;
-    }
-    li {
-      cursor: pointer;
-      display: block;
-      font-weight: bold;
-      line-height: 58px;
-      width: 100%;
-      &:nth-child(1):hover ~ .box {
-        background-color: var(--kungalgame-red-3);
-        left: calc(100% / $navNumber * 0);
-      }
-
-      &:nth-child(2):hover ~ .box {
-        background-color: var(--kungalgame-blue-3);
-        left: calc(100% / $navNumber * 1);
-      }
-
-      &:nth-child(3):hover ~ .box {
-        background-color: var(--kungalgame-yellow-2);
-        left: calc(100% / $navNumber * 2);
-      }
-
-      &:nth-child(4):hover ~ .box {
-        filter: hue-rotate(240deg);
-        background-color: var(--kungalgame-blue-3);
-        left: calc(100% / $navNumber * 3);
-      }
-      &:nth-child(5):hover ~ .box {
-        filter: hue-rotate(60deg);
-        background-color: var(--kungalgame-blue-3);
-        left: calc(100% / $navNumber * 4);
-      }
+    img {
+      width: 50px;
+      height: 50px;
+      margin-right: 30px;
     }
   }
 }
