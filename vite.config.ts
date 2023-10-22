@@ -13,6 +13,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   server: { host: '127.0.0.1', port: 1007 },
   // 消除 i18n 警告
   define: {
