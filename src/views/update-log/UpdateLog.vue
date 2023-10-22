@@ -6,25 +6,21 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 <template>
   <div class="root">
-    <!-- 内容区容器 -->
     <div class="container">
-      <!-- 内容区 -->
       <div class="content">
-        <!-- 下个版本计划更新 -->
+        <!-- Next Version-->
         <div class="next-ver">
-          <!-- 标题 -->
           <div class="title">{{ $tm('update.next') }}</div>
           <Next />
         </div>
-        <!-- 历史版本 -->
+
+        <!-- History Version -->
         <div class="history-ver">
-          <!-- 标题 -->
           <div class="title">{{ $tm('update.history') }}</div>
-          <!-- 历史更新的内容 -->
           <History />
         </div>
       </div>
-      <!-- 版权 -->
+
       <KUNGalgameFooter style="display: block" />
     </div>
   </div>
@@ -32,23 +28,21 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 <style lang="scss" scoped>
 .root {
-  height: 100vh;
+  height: calc(100vh - 65px);
   display: flex;
   flex-direction: column;
   min-width: 1000px;
   min-height: 650px;
 }
-/* 内容区容器 */
+
 .container {
-  /* 固定宽高 */
-  height: 500px;
-  width: 900px;
-  /* 相对于版权定位 */
+  height: 60vh;
+  width: 80vw;
+  max-height: 500px;
+  max-width: 900px;
   position: relative;
-  /* 居中 */
   margin: auto;
   background-color: var(--kungalgame-trans-white-5);
-  /* 模糊背景 */
   backdrop-filter: blur(5px);
   border-radius: 7px;
   display: flex;
@@ -59,17 +53,17 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   border: 1px solid var(--kungalgame-blue-1);
   box-shadow: var(--shadow);
 }
-/* 内容区 */
+
 .content {
   width: 100%;
   height: 100%;
   display: flex;
 }
-/* 下个版本计划更新 */
+
 .next-ver {
   width: 50%;
 }
-/* 标题 */
+
 .title {
   height: 40px;
   font-size: 27px;
@@ -78,9 +72,28 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   align-items: center;
   margin-bottom: 20px;
 }
-/* 历史版本 */
+
 .history-ver {
   height: 100%;
   width: 50%;
+}
+
+@media (max-width: 700px) {
+  .root {
+    min-width: 100%;
+    min-height: 100%;
+  }
+  .container {
+    height: 100%;
+    width: 95%;
+    max-height: 100%;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .next-ver,
+  .history-ver {
+    width: 100%;
+  }
 }
 </style>
