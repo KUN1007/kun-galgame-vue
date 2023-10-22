@@ -92,6 +92,7 @@ onBeforeRouteLeave(() => {
       >
         <Icon icon="uiw:setting-o" />
       </span>
+
       <div class="avatar">
         <img
           v-if="avatarMin"
@@ -291,11 +292,19 @@ $navNumber: v-bind(navItemNum);
 }
 
 @media (max-width: 1000px) {
-  span {
-    display: none;
+  .kungalgame {
+    span {
+      display: none;
+    }
+    img {
+      margin-right: 0 !important;
+    }
   }
 }
 @media (max-width: 700px) {
+  .settings {
+    display: none !important;
+  }
   .top-bar {
     display: none;
   }

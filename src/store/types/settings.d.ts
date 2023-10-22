@@ -3,7 +3,7 @@ export interface KUNGalgameSettingsStore {
   // 白天黑夜模式切换
   showKUNGalgameMode: string
   // 网站显示语言
-  showKUNGalgameLanguage: string
+  showKUNGalgameLanguage: 'en' | 'zh'
   // 主页宽度
   showKUNGalgamePageWidth: Record<string, number>
   // 网站字体
