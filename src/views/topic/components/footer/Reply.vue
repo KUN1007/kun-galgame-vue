@@ -46,6 +46,7 @@ const handleClickReply = () => {
   cursor: pointer;
   transition: all 0.2s;
   margin-right: 10px;
+
   &::before,
   &::after {
     content: '';

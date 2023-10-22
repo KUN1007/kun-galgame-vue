@@ -6,8 +6,8 @@ import { Icon } from '@iconify/vue'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // 全局消息组件（顶部）
 import Message from '@/components/alert/Message'
-// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
 // 接受父组件的传值
 const props = defineProps<{
@@ -91,6 +91,16 @@ const handleClickUpvote = async () => {
   // 当前用户不可以推自己
   if (props.uid === props.toUid) {
     Message('You cannot upvote your own topic', '您不可以推自己的话题', 'warn')
+    return
+  }
+
+  // 当前用户不可以推自己，后端也有判断
+  if (useKUNGalgameUserStore().moemoepoint < 1100) {
+    Message(
+      `Your moemoepoints are less than 1100, so you can't use the topic suggestion feature`,
+      '您的萌萌点不足 1100, 无法使用推话题功能',
+      'warn'
+    )
     return
   }
 
