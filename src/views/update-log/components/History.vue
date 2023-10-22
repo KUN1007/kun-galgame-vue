@@ -14,16 +14,12 @@ onBeforeMount(async () => {
 
 <template>
   <div class="article-history">
-    <!-- 历史更新列表 -->
     <ul class="history-list" v-if="topics.length">
-      <!-- 单个项目 -->
       <li v-for="kun in topics" :key="kun.upid">
-        <!-- 更新内容 -->
-        <!-- <div v-for="yuyu in kun.describe" :key="yuyu.index"> -->
         <div>
           <p>{{ kun.description }}</p>
         </div>
-        <!-- 更新时间和版本 -->
+        <!-- update time and version -->
         <div class="time">
           <span>{{ kun.time }} - Version {{ kun.version }}</span>
         </div>
@@ -33,20 +29,19 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss" scoped>
-/* 历史更新的内容 */
 .article-history {
   border-left: 1px solid var(--kungalgame-blue-4);
   height: 75%;
   padding: 10px;
 }
-/* 历史更新列表 */
+
 .history-list {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* y 轴溢出滚动 */
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: inline;
     width: 4px;
@@ -56,12 +51,11 @@ onBeforeMount(async () => {
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
-  /* 兼容火狐 */
+
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
 }
 
-/* 单个更新历史 */
 li {
   margin-top: 20px;
   display: flex;
@@ -72,11 +66,11 @@ li {
     margin-top: 10px;
   }
 }
-/* 单条更新内容 */
+
 p {
   margin: 5px 0;
 }
-/* 更新时间和版本 */
+
 .time {
   display: flex;
   justify-content: end;
