@@ -142,9 +142,9 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
       />
 
       <!-- 分享 -->
-      <span @click="handleClickShare" class="icon"
-        ><Icon icon="majesticons:share-line"
-      /></span>
+      <span @click="handleClickShare" class="icon">
+        <Icon icon="majesticons:share-line" />
+      </span>
 
       <!-- 只看 TODO: -->
       <!-- <span class="icon"><Icon icon="ph:user-focus-duotone" /></span> -->

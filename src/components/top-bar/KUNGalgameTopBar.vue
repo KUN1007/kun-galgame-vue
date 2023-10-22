@@ -86,7 +86,10 @@ onBeforeRouteLeave(() => {
 
     <div class="kungalgamer-info">
       <!-- showKUNGalgamePanel 为 store 里的布尔值,其真假控制设置面板的显示与关闭 -->
-      <span @click="showKUNGalgamePanel = !showKUNGalgamePanel">
+      <span
+        class="settings"
+        @click="showKUNGalgamePanel = !showKUNGalgamePanel"
+      >
         <Icon icon="uiw:setting-o" />
       </span>
       <div class="avatar">
@@ -240,13 +243,16 @@ $navNumber: v-bind(navItemNum);
 
 .kungalgamer-info {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-right: 50px;
-  > span {
+
+  .settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--kungalgame-font-color-2);
     font-size: 25px;
-    margin-top: 10px;
-    margin-right: 30px;
     cursor: pointer;
   }
 }
@@ -254,9 +260,15 @@ $navNumber: v-bind(navItemNum);
 .avatar {
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   span {
+    white-space: nowrap;
     cursor: pointer;
+    font-size: medium;
+    margin-left: 30px;
+    color: var(--kungalgame-font-color-2);
     &:hover {
       color: var(--kungalgame-blue-5);
     }
