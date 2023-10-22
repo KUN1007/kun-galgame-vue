@@ -19,7 +19,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         </p>
         <p>3. 用户做出不利于我们开源项目维护的行为时，我们有权对用户进行封禁</p>
         <p>4. 因用户账号被盗等造成的损失，KUNGalgame 概不承担</p>
-        <p>协议版本 2019/10/07</p>
+        <p>协议版本 - V 1.0.0</p>
       </div>
       <BackToPrevious />
       <!-- 版权 -->

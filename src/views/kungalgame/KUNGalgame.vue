@@ -165,10 +165,8 @@ const kungalgamePageWidth = computed(() => {
           </ul>
           <br />
           <p>
-            为什么要建议，当然是因为这些不萌啦，如果还想了解更多关于发帖的礼仪，请查看《<span
-              class="skip"
-              >不萌记录</span
-            >》
+            为什么要建议，当然是因为这些不萌啦，如果还想了解更多关于发帖的礼仪，请查看
+            《<span class="skip">不萌记录</span>》
           </p>
           <br />
           <br />
