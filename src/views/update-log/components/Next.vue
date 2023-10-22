@@ -3,27 +3,29 @@ import { Icon } from '@iconify/vue'
 </script>
 
 <template>
-  <!-- 更新的内容 -->
   <div class="article-next">
     <div class="describe">
       <div>{{ $tm('update.update') }}</div>
-      <p>1. 添加数据统计页面</p>
-      <p>2. 修复关于我们页面布局</p>
-      <p>3. 其他细节修复</p>
+
+      <!-- Next update feat -->
+      <p>Moe Moe Moe!</p>
     </div>
-    <!-- 更新预览 -->
+
+    <!-- Update preview -->
     <div class="preview">
       <div>{{ $tm('update.info') }}</div>
       <a
         class="github"
         href="https://github.com/KUN1007/KUNGalGame-vue"
         target="_blank"
-        >{{ $tm('update.visit') }}</a
       >
+        {{ $tm('update.visit') }}
+      </a>
       <a href="https://github.com/KUN1007/KUNGalGame-vue" target="_blank">
         <Icon class="icon" icon="raphael:github"
       /></a>
     </div>
+
     <!-- 预计更新时间 -->
     <div class="time">
       <span>{{ $tm('update.time') }}: 2019/10/7</span>
@@ -39,15 +41,17 @@ import { Icon } from '@iconify/vue'
   justify-content: center;
 }
 /* 更新信息 */
-.describe > div {
-  font-size: 20px;
-  margin: 10px;
-  margin-bottom: 30px;
+.describe {
+  div {
+    font-size: 20px;
+    margin: 10px;
+    margin-bottom: 30px;
+  }
+  p {
+    text-indent: 2em;
+  }
 }
-/* 单个更新信息 */
-.describe > p {
-  text-indent: 2em;
-}
+
 /* 更新预览 */
 .preview {
   margin-top: 70px;
@@ -65,7 +69,7 @@ import { Icon } from '@iconify/vue'
     border-bottom: 2px solid var(--kungalgame-blue-4);
   }
 }
-/* 预计更新时间 */
+
 .time {
   margin-top: 20px;
   display: flex;

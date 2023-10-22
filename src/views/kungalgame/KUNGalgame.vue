@@ -492,13 +492,7 @@ const kungalgamePageWidth = computed(() => {
       </div>
 
       <KUNGalgameFooter
-        style="
-          width: 100%;
-          position: relative;
-          bottom: -3%;
-          display: flex;
-          justify-content: center;
-        "
+        style="width: 100%; bottom: 0; display: flex; justify-content: center"
       />
     </div>
   </div>
@@ -506,22 +500,21 @@ const kungalgamePageWidth = computed(() => {
 
 <style lang="scss" scoped>
 .root {
-  height: 1500px;
+  height: 100%;
+  min-height: calc(100vh + 65px);
 }
-/* 内容区容器 */
+
 .content-container {
   background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
-  /* 固定高度 */
-  height: 1300px;
+  height: 100vh;
   transition: all 0.2s;
   width: v-bind(kungalgamePageWidth);
   max-width: 1300px;
-  /* 居中 */
   margin: auto;
   padding: 5px;
 }
-/* 内容区 */
+
 .content {
   height: 100%;
   overflow-y: scroll;
@@ -539,16 +532,16 @@ const kungalgamePageWidth = computed(() => {
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
-  /* 兼容火狐 */
+  position: relative;
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
 }
-/* 文章区距离侧边的距离 */
+
 .article {
   width: 100%;
   margin-left: 30px;
 }
-/* 网站标题的字体颜色 */
+
 h1,
 h2,
 h3,
@@ -583,7 +576,6 @@ strong {
   text-transform: uppercase;
 }
 
-/* 被划出来的链接字体 */
 .skip {
   border-bottom: 1.5px solid var(--kungalgame-blue-4);
   cursor: pointer;
@@ -614,6 +606,10 @@ strong {
 
   h1 {
     margin: 20px auto;
+  }
+
+  h2 {
+    font-size: 20px;
   }
 }
 </style>
