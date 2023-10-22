@@ -102,6 +102,14 @@ onMounted(async () => {
         </RouterLink>
       </div>
     </div>
+
+    <!-- 如果什么都没有 -->
+    <div
+      v-if="!tidArray.length && !ridArray.length && !cidArray.length"
+      class="null"
+    >
+      {{ $tm('user.profile.null') }}
+    </div>
   </div>
 </template>
 
@@ -173,5 +181,11 @@ onMounted(async () => {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.null {
+  margin: auto;
+  color: var(--kungalgame-blue-2);
+  font-style: oblique;
 }
 </style>
