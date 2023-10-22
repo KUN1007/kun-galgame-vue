@@ -274,6 +274,7 @@ $navNumber: v-bind(navItemNum);
     }
   }
   img {
+    margin-left: 30px;
     height: 40px;
     width: 40px;
     cursor: pointer;

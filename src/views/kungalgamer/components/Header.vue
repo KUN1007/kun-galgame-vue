@@ -10,6 +10,12 @@ const currentPageUsername = ref(name)
 
 const currentPageUserAvatar = ref(avatar)
 
+const props = defineProps<{
+  name?: string
+  avatar?: string
+  moemoepoint?: number
+}>()
+
 // 这里用 watch 是不行的，要 watchEffect，是不是很迷？没错我也很迷啊哈哈哈
 watchEffect(() => {
   // 没有头像的用户
@@ -23,12 +29,6 @@ watchEffect(() => {
     currentPageUserAvatar.value = props.avatar
   }
 })
-
-const props = defineProps<{
-  name?: string
-  avatar?: string
-  moemoepoint?: number
-}>()
 
 const mpWidth = computed(() => {
   return props.moemoepoint ? `${props.moemoepoint % 100}%` : '0%'
