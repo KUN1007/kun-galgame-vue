@@ -21,7 +21,7 @@ const kungalgamePageWidth = computed(() => {
         <Aside />
 
         <!-- KUNGalgame en translation -->
-        <div v-if="showKUNGalgameLanguage === 'en'" class="article">
+        <div class="article" v-if="showKUNGalgameLanguage === 'en'">
           <h1>About Us</h1>
           <h2 id="introduction">Website Introduction</h2>
           <p>
@@ -280,7 +280,7 @@ const kungalgamePageWidth = computed(() => {
         </div>
 
         <!-- KUNGalgame cn translation -->
-        <div v-if="showKUNGalgameLanguage === 'zh'" class="article">
+        <div class="article" v-if="showKUNGalgameLanguage === 'zh'">
           <h1>关于我们</h1>
           <h2 id="introduction">网站简介</h2>
           <p>
