@@ -339,6 +339,14 @@ export default {
     donate: 'Donate Us',
     home: 'Back Home',
   },
+  donate: {
+    donate: 'Donate Us',
+    no: 'comes with no Moemoepoint rewards',
+    server:
+      ', but it can help us cover some server expenses. Are you sure you want to sponsor us?',
+    confirm: 'Confirm Donate',
+    back: 'Back Home',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: 'OK',

@@ -1,20 +1,35 @@
 <script setup lang="ts">
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+import Message from '@/components/alert/Message'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const handleClickDonate = () => {
+  Message(
+    `Let's talk about it when we're in a loss, and first of all, thank you for your support.`,
+    '等我们亏钱再说啦，先感谢您的支持',
+    'info',
+    7777
+  )
+}
 </script>
 
 <template>
   <div class="root">
     <div class="container">
-      <div class="title">赞助我们</div>
+      <div class="title">{{ $tm('donate.donate') }}</div>
       <p class="warning">
-        赞助我们<span>没有任何的萌萌点奖励</span>，不过可以帮我们缓解一部分服务器的费用，您确定要赞助吗
+        {{ $tm('donate.donate') }}
+        <span>{{ $tm('donate.no') }}</span>
+        {{ $tm('donate.server') }}
       </p>
       <div class="btn">
-        <RouterLink to="/">确定赞助</RouterLink>
-        <RouterLink to="/">返回主页</RouterLink>
+        <span @click="handleClickDonate">{{ $tm('donate.confirm') }}</span>
+        <span @click="router.push('/kun')">{{ $tm('donate.back') }}</span>
       </div>
     </div>
-    <!-- 版权 -->
+
     <KUNGalgameFooter style="margin-bottom: 20px; white-space: nowrap" />
   </div>
 </template>
@@ -71,7 +86,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
-  a {
+  span {
     padding: 7px 10px;
     &:nth-child(1) {
       background-color: var(--kungalgame-trans-red-0);
@@ -91,6 +106,16 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         background-color: var(--kungalgame-trans-blue-2);
       }
     }
+  }
+}
+
+@media (max-width: 700px) {
+  .root {
+    min-width: 100%;
+  }
+
+  .container {
+    width: 90%;
   }
 }
 </style>
