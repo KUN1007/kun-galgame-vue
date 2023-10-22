@@ -5,9 +5,8 @@ import { saveImage, getImage } from './useLocalforage'
 import { storeToRefs } from 'pinia'
 
 // 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
-  storeToRefs(settingsStore)
+  storeToRefs(useKUNGalgameSettingsStore())
 
 // 从后端获取背景图片数据
 const fetchGetBackground = async (imageName: string): Promise<Blob> => {
