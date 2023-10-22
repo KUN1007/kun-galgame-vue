@@ -347,6 +347,14 @@ export default {
     confirm: 'Confirm Donate',
     back: 'Back Home',
   },
+  page403: {
+    permission: `You don't have permission to access this page`,
+    back: 'Click to return to the homepage',
+  },
+  page404: {
+    existent: `You've visited a non-existent page`,
+    back: 'Click to return to the homepage',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: 'OK',

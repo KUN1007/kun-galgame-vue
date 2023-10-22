@@ -6,8 +6,10 @@
     <!-- 内容区容器 -->
     <div class="container">
       <p>403</p>
-      <p>您没有权限访问该界面</p>
-      <button><RouterLink to="/kun">点击返回主页</RouterLink></button>
+      <p>{{ $tm('page404.permission') }}</p>
+      <button>
+        <RouterLink to="/kun">{{ $tm('page403.back') }}</RouterLink>
+      </button>
     </div>
   </div>
 </template>

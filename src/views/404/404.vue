@@ -6,8 +6,10 @@
     <!-- 内容区容器 -->
     <div class="container">
       <p>404</p>
-      <p>您访问了一个不存在的页面</p>
-      <button><RouterLink to="/kun">点击返回主页</RouterLink></button>
+      <p>{{ $tm('page404.existent') }}</p>
+      <button>
+        <RouterLink to="/kun">{{ $tm('page404.back') }}</RouterLink>
+      </button>
     </div>
   </div>
 </template>

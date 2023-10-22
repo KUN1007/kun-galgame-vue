@@ -338,6 +338,13 @@ export default {
     donate: '赞助我们',
     home: '返回主页',
   },
+  donate: {
+    donate: '赞助我们',
+    no: '没有任何的萌萌点奖励',
+    server: '，不过可以帮我们缓解一部分服务器的费用，您确定要赞助吗？',
+    confirm: '确定赞助',
+    back: '返回主页',
+  },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
     confirm: '确定',
