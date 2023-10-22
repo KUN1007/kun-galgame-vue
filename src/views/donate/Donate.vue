@@ -50,6 +50,7 @@ const handleClickDonate = () => {
   background-color: var(--kungalgame-white);
   color: var(--kungalgame-font-color-3);
 }
+
 .container {
   /* 固定宽高 */
   width: 400px;
@@ -63,11 +64,13 @@ const handleClickDonate = () => {
   padding: 20px;
   position: relative;
   border-radius: 7px;
+
+  &:hover {
+    box-shadow: var(--kungalgame-shadow-1);
+    transition: 0.3s;
+  }
 }
-.container:hover {
-  box-shadow: var(--kungalgame-shadow-1);
-  transition: 0.3s;
-}
+
 .title {
   /* 固定高度 */
   height: 77px;
@@ -78,9 +81,12 @@ const handleClickDonate = () => {
   margin-bottom: 30px;
   font-size: 30px;
 }
+
 .warning span {
+  text-transform: uppercase;
   color: var(--kungalgame-red-5);
 }
+
 /* 按钮的样式 */
 .btn {
   margin-top: 40px;
