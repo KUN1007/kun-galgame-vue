@@ -18,7 +18,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vue/server-renderer": "^3.3.6",
     "@vueup/vue-quill": "^1.2.0",
     "animate.css": "^4.1.1",
     "dayjs": "^1.11.10",
