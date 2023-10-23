@@ -48,11 +48,11 @@ const props = defineProps(['isActive'])
   button {
     height: 100%;
     width: 100%;
-    background-color: var(--kungalgame-trans-red-0);
-    border: 1px solid var(--kungalgame-red-3);
+    background-color: var(--kungalgame-trans-blue-0);
+    border: 1px solid var(--kungalgame-blue-4);
     border-radius: 5px;
     cursor: pointer;
-    color: var(--kungalgame-red-3);
+    color: var(--kungalgame-blue-4);
     font-weight: bold;
     font-size: larger;
   }

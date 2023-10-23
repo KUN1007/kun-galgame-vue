@@ -273,6 +273,16 @@ const handleClickComment = (
   }
 }
 
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: var(--kungalgame-font-color-2);
+  cursor: pointer;
+  margin-right: 17px;
+}
+
 /* Right side of the top part */
 /* Styling for replies that have been edited */
 .rewrite {

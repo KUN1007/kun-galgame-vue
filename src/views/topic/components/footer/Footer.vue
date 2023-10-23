@@ -221,53 +221,6 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
   }
 }
 
-.reply {
-  position: relative;
-  width: 70px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: var(--kungalgame-blue-4);
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-right: 10px;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 0;
-    left: 0;
-    border: 2px solid transparent;
-  }
-
-  &:hover {
-    color: var(--kungalgame-pink-4);
-
-    &::before {
-      transition: width 0.2s, height 0.2s, border-bottom-color 0s;
-      transition-delay: 0.2s, 0s, 0.2s;
-      width: 70px;
-      height: 30px;
-      border-left: 2px solid var(--kungalgame-pink-4);
-      border-bottom: 2px solid var(--kungalgame-pink-4);
-    }
-
-    &::after {
-      transition: width 0.2s, height 0.2s, border-right-color 0.2s;
-      transition-delay: 0s, 0.2s, 0.2s;
-      width: 70px;
-      height: 30px;
-      border-top: 2px solid var(--kungalgame-pink-4);
-      border-right: 2px solid var(--kungalgame-pink-4);
-    }
-  }
-}
-
 /* Styles after activation */
 .active {
   color: var(--kungalgame-blue-4);
