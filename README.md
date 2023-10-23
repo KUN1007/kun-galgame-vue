@@ -66,9 +66,9 @@ KUNGalgame 创建的意义在于：
 * 网站使用了 [`vue-quill`](https://github.com/vueup/vue-quill) 作为富文本编辑器，但是该编辑器使用了[过时的 `API`](https://github.com/vueup/vue-quill/issues/409)，所以编辑器出现时控制台会有警告，这是编辑器的原因，并不是网站代码的错误，我们之后会自己开发一款富文本编辑器
 * 如果您遇到网站的任何错误，或者有所建议，请[联系我们](https://github.com/KUN1007/kun-galgame-vue#Contact)
 
-要查看网站的全部特性请点击这里
+要查看网站的全部特性请[点击这里](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/feat.md)
 
-要查看网站的所有页面功能请点击这里
+要查看网站的所有页面功能请[点击这里](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/pages.md)
 
 ## 项目介绍
 
@@ -86,11 +86,11 @@ KUNGalgame 创建的意义在于：
 
 #### Web 端浏览器
 ![白天模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/preview.png)
-![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/preview-dark.png)
+![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/preview-dark.png)
 
 #### 手机端浏览器
-![白天模式](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/mobile-preview.png)
-![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/mobile-preview-dark.png)
+![白天模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/mobile-preview.png)
+![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/mobile-preview-dark.png)
 
 ### 启动方法
 
