@@ -1,139 +1,111 @@
-![](https://github.com/KUN1007/kun-galgame-vue/blob/layout/src/assets/images/favicon.png)
+![Logo](https://github.com/KUN1007/kun-galgame-vue/blob/layout/src/assets/images/favicon.png)Logo
 
-图片来源为游戏 [Ark Order](https://apps.qoo-app.com/en/app/9593) 中的角色 `鲲`
+The image is sourced from the game [Ark Order](https://apps.qoo-app.com/en/app/9593), featuring the character '鲲' (Kun).
 
 # kun-galgame-vue
 
+## Introduction
 
+This is the frontend for KUN Visual Novel forum, and it is the first version. We have developed it using the `vue` framework.
 
-## 介绍
+The purpose of creating KUN Visual Novel is to:
 
-这是 KUNGalgame 论坛的前端，这是第一个版本，我们使用 `vue` 框架编写
+- Promote genuinely good games so that everyone can access visual data through platforms like VNDB, avoiding the influence of "experts."
+- Distance ourselves from the culture of praising one moment and condemning the next in the modern internet, promoting critique as a virtue, among other things.
+- Encourage anyone to learn basic computer skills to avoid "superficial experts."
+- Construct a forum primarily driven by individual user enjoyment to resist the formation of social hierarchies.
+- Many current websites use templates, resulting in a lack of diversity, causing aesthetic fatigue.
+- And much more.
 
+We believe that "what truly makes a good game is something that makes you feel happy and genuinely laugh."
 
+**The backend project for the first version is [kun-galgame-koa](https://github.com/KUN1007/kun-galgame-koa).**
 
-KUNGalgame 创建的意义在于：
+## Mission Statement
 
+- The world's cutest galgame forum.
+- Our mission is to create the best possible atmosphere.
+- We will never have advertisements.
+- We will never charge users.
 
+## Technical Support
 
-- 大力宣传真正的好游戏，让大家都会用 VNDB 等网站，看到真正的 可视化数据，避免被“大佬”毒害
-- **远离现代互联网捧一踩一，以批评为美德等等不好的现状**
-- 让任何人都学习基本的计算机基础，避免“爷新”的出现
-- 构建一个以用户个人乐趣为主的论坛，抵制鄙视链的产生
-- 目前的网站大多数套用模板，千篇一律，令人审美疲劳
-- ......等等。
+- Compatible with all modern browsers on both mobile and desktop.
+- Responsive design for screens of any size.
+- Developed entirely using `Vue3` Composition API and fully supports `Typescript`. The coding style follows the best practices recommended on the [Vue official website](https://chat.openai.com/c/vuejs.org).
 
+## Features
 
+### Global Website Settings
 
-我们认为：“**让你觉得快乐的，让你发自内心笑出来的，才是真正的好游戏！**”
+- `I18n` internationalization.
+- Custom background images.
+- Day/Night mode.
+- Font selection for the entire site.
+- Adjust website page width.
 
+### Note
 
+- The website refreshes the `token` every 60 minutes, causing a brief white screen. This is done for security reasons.
+- The website uses [`vue-quill`](https://github.com/vueup/vue-quill) as the rich text editor. However, this editor employs outdated [API](https://github.com/vueup/vue-quill/issues/409), which may generate console warnings when the editor appears. This is due to the editor's design and is not an error in the website's code. We plan to develop our own rich text editor in the future.
+- If you encounter any errors on the website or have suggestions, please [contact us](https://github.com/KUN1007/kun-galgame-vue#ContactUs).
 
-**后端项目第一个版本的地址为 [kun-galgame-koa](https://github.com/KUN1007/kun-galgame-koa)**
+To view all the features of the website, please [click here](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/feat.md).
 
+To explore all the page functionalities, please [click here](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/pages.md).
 
+## Project Introduction
 
-## 运营理念
+### Overview
 
-- 世界上最萌的 galgame 论坛
-- 以营造最良好的氛围为理念
-- 永远不会有广告
-- 永远不会收费
+This is a **reconstructed version** of [`KUNGalgame-pure-css`](https://github.com/KUN1007/kungalgame-pure-css). It is developed using `Vite + Vue3 + Vue-router4 + Typescript + SCSS + Pinia` as the frontend technology stack. It does not rely on any UI frameworks, as this project aims to stand out without UI frameworks. The world is already full of sameness, and we want to bring something different. The project does not integrate `ESLint`, `Prettier`, and similar tools because they can be troublesome, and we love to take it easy. We plan to integrate the necessary project configurations when the first version of the project goes live.
 
+### Preview
 
+##### The repository for the pure HTML + CSS project can be found [here](https://github.com/KUN1007/kungalgame-pure-css).
 
-## 技术支持
+However, during the reconstruction, we added substantial content and switched from `fontawesome` to `iconify` for icons. This may result in a different appearance. Here, we provide a preview of the homepage:
 
-* 支持所有手机和电脑端**现代**浏览器
-* 适配任意大小屏幕
-* 全部 `Vue3` 组合式 `API`，全部 `Typescript` 支持，编写方式遵从[Vue 官网](vuejs.org)最佳实践
+#### Web Browsers
 
+![Light Mode](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/preview.png)
 
+![Dark Mode](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/preview-dark.png)
 
-## 特性
+#### Mobile Browsers
 
-### 网站全局设置
+![Light Mode](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/mobile-preview.png)
 
-* `I18n` 国际化
-* 自定义背景图片
-* 白天 / 黑夜模式
-* 网站全体字体切换
-* 网站页面宽度调整
+![Dark Mode](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/mobile-preview-dark.png)
 
-### 需要注意的是
+### Getting Started
 
-* 网站会在每 `60min` 刷新一次 `token`，会有短暂白屏，这是为了更加安全
-* 网站使用了 [`vue-quill`](https://github.com/vueup/vue-quill) 作为富文本编辑器，但是该编辑器使用了[过时的 `API`](https://github.com/vueup/vue-quill/issues/409)，所以编辑器出现时控制台会有警告，这是编辑器的原因，并不是网站代码的错误，我们之后会自己开发一款富文本编辑器
-* 如果您遇到网站的任何错误，或者有所建议，请[联系我们](https://github.com/KUN1007/kun-galgame-vue#Contact)
+- Clone the repository: `git clone https://github.com/KUN1007/kun-galgame-vue`
+- Navigate to the project directory: `cd kun-galgame-vue`
+- Install dependencies: `pnpm i`
+- Start the development server: `vite dev`
 
-要查看网站的全部特性请[点击这里](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/feat.md)
+## Important Notes
 
-要查看网站的所有页面功能请[点击这里](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/pages.md)
+The upcoming release is only the first version. We had planned the content for versions 2 and 3 from the project's initial design, including:
 
-## 项目介绍
+- Analyzing data from websites such as [`VNDB`](https://vndb.org/), [`-エロゲー批評空間-`](https://erogamescape.dyndns.org/), [`bangumi`](https://bangumi.tv/), etc.
+- Streaming media publishing (uploading and releasing videos).
+- Creating a mobile app version.
+- And more. In short, we will do our best to implement anything you can think of.
 
-### 简介
+## Contact Us
 
-这是[`KUNGalgame-pure-css`](https://github.com/KUN1007/kungalgame-pure-css) 的**重构版本**，使用 Vite + Vue3 + Vue-router4 + Typescript + SCSS + Pinia 作为前端技术栈，不依赖任何 UI 框架，因为这个项目主打的就是非 UI 框架，世界都一样多没意思呀。
+If you want to join our development or Galgame groups, you can connect with us through the following channels:
 
-项目中并未集成 `ESLint`, `Prettier` 等，因为太麻烦了，我爱摸鱼，预计在项目的第一个版本上线时会集成必要的环境类项目配置。
+- [Telegram Group](https://t.me/KUNForum)
+- Tencent QQ Group: 872839714
 
-### 预览
+The following two groups are Galgame groups for discussions and feedback:
 
-##### 纯 HTML + CSS 项目的地址为：[https://github.com/KUN1007/kungalgame-pure-css](https://github.com/KUN1007/kungalgame-pure-css)
-
-但是我们在重构的时候增加了大量的内容，并且将图标由`fontawesome`改为了`iconify`，所以外观可能会不同，这里仅展示主页预览
-
-#### Web 端浏览器
-![白天模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/preview.png)
-![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/preview-dark.png)
-
-#### 手机端浏览器
-![白天模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/mobile-preview.png)
-![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/mobile-preview-dark.png)
-
-### 启动方法
-
-`git clone https://github.com/KUN1007/KUNGalGame-vue`
-
-`cd KUNGalGame-vue`
-
-`pnpm i`
-
-`vite dev`
-
-## 注意事项
-
-将要发布的只是 V1 版本，我们在设计之初就已经规划好了 V2, V3 版本的内容，包括
-
-* 对 `VNDB` `批评空间` `bangumi` 等网站的数据进行分析
-* 流媒体发布（上传发布视频）
-* APP 版本
-* ......等等
-
-总之，只要您能想到的，我们都会尽力实现。
-
-
-
-## Translation
-
-中文版
-
-## 联系我们
-
-如果您想参与我们的开发，可以加入我们的开发群组
-
-Telegram：https://t.me/KUNForum
-
-Tencent QQ Group: 872839714
-
-下面两个群组是 Galgame 群，交流与反馈
-
-Telegram: https://t.me/kungalgame
-
-Tencent QQ Group: 871857690
+- [Telegram Group](https://t.me/kungalgame)
+- Tencent QQ Group: 871857690
 
 ## License
 
-本项目遵从`GPL`开源协议
-
+This project follows the `GPL` open-source license.
