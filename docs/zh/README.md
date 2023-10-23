@@ -64,7 +64,7 @@ KUNGalgame 创建的意义在于：
 
 * 网站会在每 `60min` 刷新一次 `token`，会有短暂白屏，这是为了更加安全
 * 网站使用了 [`vue-quill`](https://github.com/vueup/vue-quill) 作为富文本编辑器，但是该编辑器使用了[过时的 `API`](https://github.com/vueup/vue-quill/issues/409)，所以编辑器出现时控制台会有警告，这是编辑器的原因，并不是网站代码的错误，我们之后会自己开发一款富文本编辑器
-* 如果您遇到网站的任何错误，或者有所建议，请[联系我们](https://github.com/KUN1007/kun-galgame-vue#ContactUs)
+* 如果您遇到网站的任何错误，或者有所建议，请[联系我们](https://github.com/KUN1007/kun-galgame-vue#contact-us)
 
 要查看网站的全部特性请[点击这里](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/feat.md)
 
