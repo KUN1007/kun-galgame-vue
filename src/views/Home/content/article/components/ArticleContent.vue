@@ -116,15 +116,10 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 @use '@/styles/effect/effect.scss';
-/* Topic container */
 .topic-container {
-  /* The topic area occupies the width of the entire article area */
   width: 100%;
   padding: 0 7px;
   overflow-y: scroll;
-  /* The total area of all topics occupies the bottom margin of the left page */
-  margin: 5px 0;
-  /* Topic area flex container */
   display: flex;
   flex-direction: column;
 
@@ -144,7 +139,7 @@ onBeforeUnmount(() => {
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
 
   div {
-    margin-bottom: 5px;
+    margin: 5px 0;
   }
 }
 

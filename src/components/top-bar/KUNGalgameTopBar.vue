@@ -281,7 +281,6 @@ $navNumber: v-bind(navItemNum);
     width: 40px;
     cursor: pointer;
     border-radius: 50%;
-    height: 40px;
     position: relative;
   }
 }
@@ -313,6 +312,11 @@ $navNumber: v-bind(navItemNum);
   }
   .hamburger {
     display: block;
+    margin-left: 30px;
+  }
+
+  .kungalgamer-info {
+    margin-right: 30px;
   }
 }
 </style>
