@@ -48,7 +48,7 @@ We believe that "what truly makes a good game is something that makes you feel h
 
 - The website refreshes the `token` every 60 minutes, causing a brief white screen. This is done for security reasons.
 - The website uses [`vue-quill`](https://github.com/vueup/vue-quill) as the rich text editor. However, this editor employs outdated [API](https://github.com/vueup/vue-quill/issues/409), which may generate console warnings when the editor appears. This is due to the editor's design and is not an error in the website's code. We plan to develop our own rich text editor in the future.
-- If you encounter any errors on the website or have suggestions, please [contact us](https://github.com/KUN1007/kun-galgame-vue#ContactUs).
+- If you encounter any errors on the website or have suggestions, please [contact us](https://github.com/KUN1007/kun-galgame-vue#contact-us).
 
 To view all the features of the website, please [click here](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/en/feat.md).
 
