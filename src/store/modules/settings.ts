@@ -1,16 +1,15 @@
-// KUNGalgame 设置面板的 store
+// Store for KUNGalgame settings panel
 import { defineStore } from 'pinia'
 
-// 网站的默认设置
+// Default website settings
 import { KUNGalgameLanguage, mode } from '@/utils/getDefaultEnv'
 
-// settings store 的类型
+// Type of settings store
 import { KUNGalgameSettingsStore } from '../types/settings'
 
 export const useKUNGalgameSettingsStore = defineStore({
   id: 'KUNGalgameSettings',
   persist: true,
-  // 默认值
   state: (): KUNGalgameSettingsStore => ({
     showKUNGalgameMode: mode,
     showKUNGalgameLanguage: KUNGalgameLanguage,
@@ -31,17 +30,20 @@ export const useKUNGalgameSettingsStore = defineStore({
     isShowPageWidth: true,
   }),
   actions: {
-    // 设置主题，只有两种模式 light 和 dark，light 为 ''
+    // Set the theme, there are only two modes
+    // , light and dark, with light represented as ''
     setKUNGalgameTheme(theme: string) {
       this.showKUNGalgameMode = theme
       document.documentElement.className = theme
     },
-    // 设置字体，用户自己设置，默认为系统 UI
+    // Set the font style, allowing users to set their own
+    // , with the default as system UI
     setKUNGalgameFontStyle(font: string) {
       this.showKUNGalgameFontStyle = font
       document.documentElement.style.fontFamily = font
     },
-    // 恢复所有设置，由于调用了 document，所以 pinia 响应式不生效
+    // Reset all settings; because it interacts with the document
+    // , Pinia reactivity is not effective
     setKUNGalgameSettingsRecover() {
       this.$reset()
       this.setKUNGalgameTheme('')

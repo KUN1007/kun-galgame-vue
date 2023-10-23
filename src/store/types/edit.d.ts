@@ -1,26 +1,26 @@
-// 啊哈哈哈，我就是要起 rewrite 这个名字，来打我呀
+// Ahahaha, I just want to use "rewrite" in the name to tease you
 interface TopicRewrite {
-  // 话题 id
+  // Topic ID
   tid: number
-  // 话题标题
+  // Topic title
   title: string
-  // 话题内容
+  // Topic content
   content: string
-  // 话题标签
+  // Topic tags
   tags: Array<string>
-  // 话题分区
+  // Topic category
   category: Array<string>
 
-  // 是否正在重新编辑话题
+  // Whether the topic is being rewritten
   isTopicRewriting: boolean
 }
 
 export interface EditStore {
   /**
-   * 编辑器相关
-   * @param {number} editorHeight - 编辑器高度
-   * @param {'' | 'essential' | 'minimal' | 'full'} mode - 编辑器 toolbar 模式
-   * @param {'snow' | 'bubble'} theme - 编辑器主题
+   * Editor related
+   * @param {number} editorHeight - Editor height
+   * @param {'' | 'essential' | 'minimal' | 'full'} mode - Editor toolbar mode
+   * @param {'snow' | 'bubble'} theme - Editor theme
    */
   editorHeight: number
   textCount: number
@@ -28,26 +28,26 @@ export interface EditStore {
   theme: 'snow' | 'bubble'
 
   /**
-   * 话题相关
-   * @param {string} title - 话题标题
-   * @param {string} content - 话题内容（富文本）
-   * @param {Array<string>} tags - 话题标签
-   * @param {Array<string>} category - 话题类别
-   * @param {boolean} isSave - 是否保存话题草稿
+   * Topic related
+   * @param {string} title - Topic title
+   * @param {string} content - Topic content (rich text)
+   * @param {Array<string>} tags - Topic tags
+   * @param {Array<string>} category - Topic category
+   * @param {boolean} isSave - Whether to save the topic draft
    */
-  // 话题标题
+  // Topic title
   title: string
-  // 话题内容
+  // Topic content
   content: string
-  // 话题标签
+  // Topic tags
   tags: Array<string>
-  // 话题分区
+  // Topic category
   category: Array<string>
-  // 是否显示热门关键词
+  // Whether to display hot keywords
   isShowHotKeywords: boolean
-  // 是否保存话题
+  // Whether to save the topic
   isSaveTopic: boolean
 
-  /* 重新编辑话题 */
+  /* Rewrite a topic */
   topicRewrite: TopicRewrite
 }

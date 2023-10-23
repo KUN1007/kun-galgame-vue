@@ -42,13 +42,11 @@ onMounted(async () => {
 
 <template>
   <div class="root">
-    <!-- 文章部分 -->
     <div class="article">
-      <!-- 页面标题 -->
       <div class="title">{{ $tm('balance.pl') }}</div>
-      <!-- 内容区 -->
+
       <div class="content">
-        <!-- 是收入表的话就渲染为蓝色 -->
+        <!-- If it's an income statement, render it in blue -->
         <Form
           :isIncome="true"
           :income-data="incomeData"
@@ -60,9 +58,10 @@ onMounted(async () => {
           :statement="statement"
         />
       </div>
-      <!-- 经济状态 -->
+
+      <!-- Economic Status -->
       <div class="sum">
-        <!-- 亏损和盈余的样式不一样 -->
+        <!-- Different styles for deficit and surplus -->
         <div
           class="amount-status-deficit"
           :class="statement.profitLoss >= 0 ? 'amount-status-surplus' : ''"
@@ -86,7 +85,8 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      <!-- 版权 -->
+
+      <!-- Copyright -->
       <KUNGalgameFooter />
     </div>
   </div>
@@ -100,46 +100,37 @@ onMounted(async () => {
   min-height: 800px;
   color: var(--kungalgame-font-color-3);
 }
-/* 文章部分 */
+
 .article {
   min-height: 500px;
-  /* 居中 */
   margin: auto;
   background-color: var(--kungalgame-trans-white-5);
-  /* 模糊背景 */
   backdrop-filter: blur(5px);
-  /* 边距 */
   padding: 10px;
   border-radius: 7px;
   border: 1px solid var(--kungalgame-blue-1);
-  /* 阴影 */
   box-shadow: var(--shadow);
-  /* 竖直弹性盒 */
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* 相对于版权信息定位 */
   position: relative;
 }
-/* 页面标题 */
+
 .title {
-  /* 固定高度 */
   height: 60px;
-  /* 字体大小 */
   font-size: 30px;
   flex-shrink: 0;
-  /* 居中 */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-/* 内容区 */
+
 .content {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-/* 收入支出总结 */
+
 .sum {
   margin-top: 30px;
   width: 100%;
@@ -150,26 +141,29 @@ onMounted(async () => {
   align-items: center;
   font-size: 22px;
 }
-/* 经济状态亏损 */
+
 .amount-status-deficit {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+
   span {
     padding: 5px;
     background-color: var(--kungalgame-red-4);
     color: var(--kungalgame-white);
   }
+
   & > div:last-child {
     background-color: var(--kungalgame-red-2);
   }
 }
-/* 经济状态盈余 */
+
 .amount-status-surplus {
   span {
     background-color: var(--kungalgame-green-4);
   }
+
   & > div:last-child {
     padding: 5px;
     color: var(--kungalgame-white);
@@ -189,6 +183,7 @@ onMounted(async () => {
     justify-content: center;
     align-items: center;
     width: 80%;
+
     div {
       &:nth-child(1) {
         margin-bottom: 20px;
@@ -199,8 +194,10 @@ onMounted(async () => {
   .title {
     font-size: 20px;
   }
+
   .amount-status-deficit {
     flex-direction: column;
+
     div {
       &:nth-child(2) {
         margin-top: 20px;

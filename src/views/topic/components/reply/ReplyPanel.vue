@@ -1,33 +1,25 @@
 <script setup lang="ts">
-// 导入图标
+// Import icons
 import { Icon } from '@iconify/vue'
-// 导入动画
+// Import animations
 import 'animate.css'
-// 导入 Vue 异步函数
+// Import Vue asynchronous functions
 import { computed, defineAsyncComponent } from 'vue'
 
-// 导入编辑器
 const QuillEditor = defineAsyncComponent(
   () => import('@/components/quill-editor/QuillEditor.vue')
 )
-
-// 异步导入话题标签
 const Tags = defineAsyncComponent(
   () => import('@/views/edit/components/Tags.vue')
 )
-
-// 导入回复按钮
 import ReplyPanelBtn from './ReplyPanelBtn.vue'
 
-// 全局消息组件（底部）
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 const messageStore = useKUNGalgameMessageStore()
-
-// 使用话题页面的 store
+// Use the topic page store
 const { isShowAdvance, isEdit, replyDraft, replyRewrite, replyPanelWidth } =
   storeToRefs(useKUNGalgameTopicStore())
 
@@ -37,13 +29,13 @@ const position = computed(() => {
 
 const panelWidth = computed(() => `${replyPanelWidth.value}%`)
 
-const handelClosePanel = async () => {
-  // 正在重新编辑
+const handleClosePanel = async () => {
+  // If currently rewriting a reply
   if (replyRewrite.value.isReplyRewriting) {
     const res = await messageStore.alert('AlertInfo.edit.closePanel', true)
-    // 这里实现用户的点击确认取消逻辑
+    // Implement user's confirmation or cancel logic here
     if (res) {
-      // 清除数据，因为此时该回复已被更新
+      // Clear data because the reply has been updated at this point
       useKUNGalgameTopicStore().resetRewriteTopicData()
     } else {
       return
@@ -62,7 +54,7 @@ const handelClosePanel = async () => {
     >
       <div class="root" v-if="isEdit">
         <div class="container" :style="`width: ${panelWidth}`">
-          <!-- 回复面板回复给谁 -->
+          <!-- Reply panel - reply to whom -->
           <div class="title">
             <h3>
               <span>{{ $tm('topic.panel.to') + ' @' }}</span>
@@ -73,19 +65,19 @@ const handelClosePanel = async () => {
               </span>
             </h3>
             <Icon
-              @click="handelClosePanel"
+              @click="handleClosePanel"
               class="close"
               icon="line-md:close"
             />
           </div>
-          <!-- 回复的编辑器 -->
+          <!-- Reply editor -->
           <div class="content">
             <QuillEditor
               :is-show-toolbar="isShowAdvance"
               :is-show-title="false"
             />
           </div>
-          <!-- 回复的页脚 -->
+          <!-- Reply footer -->
           <div class="footer">
             <Tags
               style="margin-top: 10px; padding: 10px"
@@ -105,6 +97,7 @@ const handelClosePanel = async () => {
   cursor: pointer;
   color: var(--kungalgame-font-color-1);
 }
+
 .root {
   position: fixed;
   bottom: 0;
@@ -115,6 +108,7 @@ const handelClosePanel = async () => {
   align-items: center;
   z-index: 1;
 }
+
 .container {
   transition: all 0.2s;
   max-width: 1000px;
@@ -133,16 +127,19 @@ const handelClosePanel = async () => {
   justify-content: space-between;
   padding: 10px;
   padding-left: 20px;
+
   span {
     &:nth-child(2) {
       margin: 0 5px;
       cursor: pointer;
       color: var(--kungalgame-pink-3);
       border-bottom: 2px solid var(--kungalgame-white-9);
+
       &:hover {
         border-bottom: 2px solid var(--kungalgame-pink-3);
       }
     }
+
     &:nth-child(3) {
       margin-left: 40px;
     }
@@ -153,7 +150,6 @@ const handelClosePanel = async () => {
   }
 }
 
-/* 适配手机端 */
 @media (max-width: 700px) {
   .emoji {
     display: none;

@@ -28,7 +28,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- 看板娘 -->
   <div class="loli" @click="reGetLoli">
     <img
       class="body"
@@ -64,11 +63,9 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-/* 看板娘 */
 .loli {
   cursor: pointer;
   width: 0;
-  /* 定位看板娘，重要 */
   position: absolute;
   z-index: 9999;
   top: -270px;

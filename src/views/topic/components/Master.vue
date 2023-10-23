@@ -1,24 +1,24 @@
-<!-- 
-  这是 KUNGalgame 话题展示区域楼主话题的区域，楼主的话题将会被展示在这里，位于话题展示区域最上方
- -->
+<!-- This is the area for displaying the main topic in the KUNGalgame topic display area.
+  The main topic will be shown here and is located at the top of the topic display area. -->
+
 <script setup lang="ts">
-// Footer
+// Importing components
 import Footer from './footer/Footer.vue'
-// 楼主话题是否重新编辑
+// Whether the main topic has been edited
 import Rewrite from '../components/Rewrite.vue'
-// 楼主的信息
+// Main topic information
 import KUNGalgamerInfo from '../components/KUNGalgamerInfo.vue'
-// 话题内容展示区
+// Topic content display area
 import Content from './Content.vue'
-// 楼主的发帖时间
+// Posting time of the main topic
 import Time from '../components/Time.vue'
-// 楼主话题的标签
+// Tags of the main topic
 import Tags from '../components/Tags.vue'
 
 import { TopicDetail } from '@/api/topic/types/topic'
 import { computed } from 'vue'
 
-// 导入计算时间差的函数
+// Importing a function to calculate time difference
 import { hourDiff } from '@/utils/time'
 
 const topicData = defineProps<{
@@ -45,9 +45,9 @@ const {
   upvote_time,
 } = topicData.topicData
 
-// 话题的状态
+// Topic status
 const loliStatus = computed(() => {
-  // 被推在 10h 之内则显示被推
+  // If upvoted within 10 hours, it will be marked as "featured"
   if (hourDiff(upvote_time, 10)) {
     return 'featured'
   }
@@ -67,34 +67,34 @@ const loliStatus = computed(() => {
     enter-active-class="animate__animated animate__fadeInRight animate__faster"
     appear
   >
-    <!-- 楼主话题容器，这个 id 是方便点击跳转的 -->
+    <!-- Main container for the main topic, the ID is for easy navigation -->
     <div class="container" :id="`kungalgame-reply-0`">
-      <!-- 楼主话题内容区的容器 -->
+      <!-- Container for the main content of the main topic -->
       <div class="content-container">
-        <!-- 楼主话题头部 -->
+        <!-- Header for the main topic -->
         <div class="header">
-          <!-- 楼主话题标题 -->
+          <!-- Title of the main topic -->
           <div class="title">
             {{ title }}
           </div>
         </div>
-        <!-- 楼主话题内容区 -->
+        <!-- Content area for the main topic -->
         <div class="content">
-          <!-- 内容区的顶部 -->
+          <!-- Top section of the content area -->
           <div class="content-top">
             <Tags v-if="tags" :tags="tags" />
             <Time v-if="time" :time="time" />
           </div>
-          <!-- 内容区的中部 -->
+          <!-- Middle section of the content area -->
           <div class="content-center">
             <KUNGalgamerInfo v-if="user" :user="user" />
 
-            <!-- 富文本内容展示区域 -->
+            <!-- Rich text content display area -->
             <Content :content="content" />
           </div>
-          <!-- 内容区的底部 -->
+          <!-- Bottom section of the content area -->
           <div class="content-bottom">
-            <!-- 话题状态 -->
+            <!-- Topic status -->
             <div class="status">
               <span>{{ `${$tm('topic.content.status')}:` }}</span>
               <span :class="loliStatus">{{
@@ -104,7 +104,7 @@ const loliStatus = computed(() => {
             <Rewrite v-if="edited" :time="edited" />
           </div>
         </div>
-        <!-- 话题的点赞数等信息，被作用人就是该话题的发布人，楼主 floor 为 0 -->
+        <!-- Footer displaying topic information such as upvotes, views, likes, etc. -->
         <Footer
           :info="{
             tid,
@@ -132,10 +132,10 @@ const loliStatus = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-/* 楼主话题容器 */
+/* Main container for the main topic */
 .container {
   width: 100%;
-  /* 楼主话题最小高度 */
+  /* Minimum height of the main topic */
   min-height: 400px;
   display: flex;
   flex-direction: column;
@@ -143,7 +143,7 @@ const loliStatus = computed(() => {
   flex-shrink: 0;
 }
 
-/* 楼主话题内容区的容器 */
+/* Container for the main content of the main topic */
 .content-container {
   flex-grow: 1;
   width: 100%;
@@ -157,7 +157,7 @@ const loliStatus = computed(() => {
   transition: all 0.5s;
 }
 
-/* 楼主话题头部 */
+/* Header for the main topic */
 .header {
   width: 100%;
   min-height: 70px;
@@ -169,40 +169,40 @@ const loliStatus = computed(() => {
   font-size: 17px;
   border-bottom: 1px solid var(--kungalgame-blue-1);
 }
-/* 楼主话题标题 */
+/* Title of the main topic */
 .title {
   font-size: 17px;
   font-weight: bold;
-  /* 文字间距 */
+  /* Letter spacing */
   letter-spacing: 1px;
 }
 
-/* 楼主话题内容区 */
+/* Content area for the main topic */
 .content {
   display: flex;
   flex-direction: column;
 }
-/* 内容区的顶部 */
+/* Top section of the content area */
 .content-top {
   width: 100%;
   max-height: 100px;
   display: flex;
   text-align: center;
-  /* 时间和标签分居两侧 */
+  /* Time and tags on separate sides */
   justify-content: space-between;
-  /* 下面的分割线 */
+  /* Bottom separator */
   border-bottom: 1px solid var(--kungalgame-blue-1);
   flex-grow: 1;
 }
 
-/* 楼主的话题和楼主的信息容器 */
+/* Container for the main topic and main topic information */
 .content-center {
   width: 100%;
   display: flex;
   border-bottom: 1px solid var(--kungalgame-blue-1);
 }
 
-/* 内容区的底部 */
+/* Bottom section of the content area */
 .content-bottom {
   width: 100%;
   height: 20px;
@@ -212,13 +212,13 @@ const loliStatus = computed(() => {
   border-bottom: 1px solid var(--kungalgame-blue-1);
 }
 
-/* 话题状态 */
+/* Topic status */
 .status {
   display: flex;
   font-size: 12px;
   margin-left: 10px;
   color: var(--kungalgame-font-color-3);
-  /* 话题状态 */
+  /* Topic status */
   span {
     &:nth-child(1) {
       margin-right: 5px;
@@ -234,7 +234,7 @@ const loliStatus = computed(() => {
   }
 }
 
-/* 话题的 status */
+/* Topic status styles */
 .normal {
   background-color: var(--kungalgame-green-4);
 }
@@ -247,8 +247,8 @@ const loliStatus = computed(() => {
   background-color: var(--kungalgame-pink-3);
 }
 
-/* 话题被点击跳转 */
-/* 滚动到指定话题激活后的样式 */
+/* Style when a topic is clicked to navigate */
+/* Style when a specific topic is activated after scrolling */
 .active .content-container {
   border: 1px solid var(--kungalgame-red-3);
   background-color: var(--kungalgame-trans-red-1);

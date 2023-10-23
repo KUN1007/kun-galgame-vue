@@ -1,6 +1,7 @@
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
-// 这里比较怪异，buffer 上有个 data 属性，不知道哪里来的
+// It's a bit strange here; there's a 'data' property on the buffer
+// , not sure where it comes from
 interface LoliBuffer {
   data: Uint8Array
 }
@@ -42,7 +43,7 @@ const fetchGetLoliData = async (): Promise<
   return await response.json()
 }
 
-// 这里不缓存 loli 数据了，不然 indexdb 数据太多了太难看了
+// Not caching loli data here, as it would clutter the indexdb with too much data
 const createImageUrl = (imageBuffer: LoliBuffer) => {
   const uint8Array = new Uint8Array(imageBuffer.data)
   const blob = new Blob([uint8Array], { type: 'image/webp' })

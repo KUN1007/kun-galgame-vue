@@ -1,83 +1,84 @@
 <script setup lang="ts">
 import { ref, computed, watch, onBeforeMount, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
-// 导入编辑话题的 store
+// Import the store for editing topics
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 当前页面的路由
+// Current page's route
 const route = useRoute()
-// 当前页面路由的名字
+// Current page route name
 const routeName = computed(() => route.name as string)
 
-// 话题编辑界面 store
+// Store for the topic edit interface
 const { isShowHotKeywords, tags, isSaveTopic, topicRewrite } = storeToRefs(
   useKUNGalgameEditStore()
 )
-// 话题界面的 store，用于回复
+// Store for the topic interface, used for replies
 const { replyDraft, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
 
-// 根据路由名计算是否展示热门 tags
+// Compute whether to show hot tags based on route name
 const isShowKeywords = computed(() =>
   routeName.value === 'Edit'
     ? isShowHotKeywords.value
     : replyDraft.value.isShowHotKeywords
 )
 
-// 后端返回的热门 tags
+// Backend response for hot tags
 const hotTags = ref<string[]>([])
-// 选中的 tag
+// Selected tags
 const selectedTags = ref<string[]>([])
-// input 框是否为 focus 状态
+// Focus status of the input box
 const isInputFocus = ref(false)
-// 输入框的内容
+// Input box content
 const inputValue = ref('')
-// 是否可以删除 tag 的标志，没有这个值的话用户在删除输入框最后一个字母时会连同最后一个 tag 一起删除
+// Flag to allow tag deletion; without this, deleting the last letter in the input box would also delete the last tag
 const canDeleteTag = ref(false)
 
-// 组件挂载之前载入 store 里的数据
+// Load data from the store before the component is mounted
 onBeforeMount(() => {
   /**
-   * 编辑器处于编辑界面
+   * The editor is in the editing interface
    */
-  // 挂载之前载入话题数据，如果不保存，则不载入（并且当前必须在 edit 界面）
+  // Load topic data before mounting if it's not saved (and the current page must be in edit mode)
   if (isSaveTopic.value && routeName.value === 'Edit') {
     selectedTags.value = tags.value
   }
   /**
-   * 编辑器处于重新编辑的编辑界面
+   * The editor is in the editing interface for rewriting
    */
-  // 挂载之前载入重新编辑话题的 tags
+  // Load tags for rewriting a topic before mounting (if the current page is in edit mode)
   if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
     selectedTags.value = topicRewrite.value.tags
   }
   /**
-   * 编辑器处于回复界面
+   * The editor is in the reply interface
    */
-  // 挂载之前载入回复数据，如果不保存，则不载入（并且当前必须在 topic 界面）
+  // Load reply data before mounting if it's not saved (and the current page must be in topic mode)
   if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
     selectedTags.value = replyDraft.value.tags
   }
   /**
-   * 编辑器处于回复的重新编辑界面
+   * The editor is in the reply rewriting interface
    */
+  // Load tags for rewriting a reply before mounting (if the current page is in topic mode)
   if (replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
     selectedTags.value = replyRewrite.value.tags
   }
 })
 
-// 点击 tag 触发回调
+// Callback when a tag is clicked
 const handleTagClick = (tag: string) => {
-  // 已经选择的 tag < 7 才会 push
+  // Only push if the selected tag count is less than 7
   if (selectedTags.value.length < 7) {
     selectedTags.value.push(tag)
   }
 }
 
-// 点击取消选中 tag
+// Callback to remove a selected tag
 const handleTagClose = (tag: string) => {
   const index = selectedTags.value.indexOf(tag)
   if (index > -1) {
@@ -85,16 +86,16 @@ const handleTagClose = (tag: string) => {
   }
 }
 
-// 被选中后还留下的 tag
+// Tags remaining after being selected
 const remainingTags = computed<string[]>(() => {
   return hotTags.value.filter((tag) => !selectedTags.value.includes(tag))
 })
 
-// 输入框事件，按下 enter 创建 tag，创建 tag 时长度不超过 17，个数不超过 7
+// Event for adding a tag by pressing Enter key
 const handleAddTag = () => {
   const tagName = inputValue.value.trim()
 
-  // 检测到已经有这个 tag 则警告
+  // Show a warning if the tag already exists
   if (selectedTags.value.includes(tagName)) {
     Message(
       'Tag already exists, please choose another one',
@@ -104,34 +105,34 @@ const handleAddTag = () => {
     return
   }
 
-  // 按下 enter 创建
+  // Create a new tag on pressing Enter
   if (tagName.length > 0 && selectedTags.value.length < 7) {
     const tag = validateTagName(tagName)
 
-    // 创建新 tag
+    // Add a new tag
     selectedTags.value.push(tag)
-    // 清空输入框的值
+    // Clear the input box
     inputValue.value = ''
-    // 此时可以删除 tag
+    // Now it's allowed to delete a tag
     canDeleteTag.value = true
   }
 }
 
-// 输入框事件，按下 backspace 删除 tag
+// Event for removing a tag by pressing Backspace
 const handleRemoveTag = () => {
-  // 按下 backspace 删除
+  // Remove the last tag when Backspace is pressed
   if (inputValue.value === '' && selectedTags.value.length > 0) {
-    // 检测 canDeleteTag 的值，当用户删除输入框最后一个字母时
-    // 将这个值设为 true，这样下一次用户就可以使用 backspace 删除 tag 了
+    // Check the canDeleteTag value; when a user deletes the last letter in the input box
+    // the value is set to true, allowing them to use Backspace to delete a tag
     if (canDeleteTag.value) {
-      // 按下 Backspace 键时，删除最后一个 tag
+      // Remove the last tag when Backspace is pressed
       selectedTags.value.pop()
     }
     canDeleteTag.value = true
   }
 }
 
-// 合法的输入长度不能超过 10 个字符，超过则截取前 10 个字符
+// A tag name must not exceed 10 characters; if it does, truncate it to 10 characters
 const validateTagName = (tagName: string) => {
   let validatedName = tagName
 
@@ -142,41 +143,41 @@ const validateTagName = (tagName: string) => {
   return validatedName
 }
 
-// 监测 selectedTags 的变化，保存用户选中的 tag
+// Watch for changes in selectedTags and save the user-selected tags
 watch(selectedTags.value, () => {
-  // 如果是在 topic 界面则保存到回复的 store
+  // If it's in the topic mode, save to the reply store
   if (routeName.value === 'Topic') {
     replyDraft.value.tags = selectedTags.value
   }
-  // 否则保存在 edit 界面的 store
+  // Otherwise, save to the edit store
   if (routeName.value === 'Edit') {
     tags.value = selectedTags.value
   }
 })
 
-// 获取热门 tags 的函数，获取 10 个
+// Function to get hot tags; get 10 of them
 const getTags = async () => {
   return (await useKUNGalgameEditStore().getHotTags(10)).data
 }
 
-// 检测 isShowKeywords 的变化，为真时才获取 tag，适应页面的响应式
+// Watch for changes in isShowKeywords and fetch tags when it's true, adapting to page responsiveness
 watch(isShowKeywords, async () => {
   if (isShowHotKeywords.value === true) {
     hotTags.value = await getTags()
   }
 })
 
-// 挂载时获取热门 tags
+// Fetch hot tags when the component is mounted
 onMounted(async () => {
-  // 是否需要在编辑界面触发接口
+  // Trigger the interface if hot tags need to be loaded in edit mode
   const isLoadEditHotTags =
     routeName.value === 'Edit' && isShowHotKeywords.value
 
-  // 是否需要在回复界面触发接口
+  // Trigger the interface if hot tags need to be loaded in topic mode
   const isLoadTopicHotTags =
     routeName.value === 'Topic' && replyDraft.value.isShowHotKeywords
 
-  // 需要获取时才触发
+  // Fetch only when needed
   if (isLoadEditHotTags || isLoadTopicHotTags) {
     hotTags.value = await getTags()
   }
@@ -184,17 +185,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- 标签的总容器 -->
+  <!-- Tag container -->
   <div class="container-a">
     <div class="input-container">
       <div class="tags-container">
-        <!-- 已选择的标签显示容器 -->
+        <!-- Selected tags display container -->
         <span v-for="tag in selectedTags" class="selected-tag">
           {{ tag }}
           <span class="close-btn" @click="handleTagClose(tag)">×</span>
         </span>
       </div>
-      <!-- 标签输入框 -->
+      <!-- Tag input box -->
       <input
         class="input"
         type="text"
@@ -207,18 +208,18 @@ onMounted(async () => {
         @blur="isInputFocus = false"
       />
 
-      <!-- 输入框 focus 的特效 -->
+      <!-- Input box focus effect -->
       <div class="box1"></div>
       <div class="box2" :class="isInputFocus ? 'box-active' : ''"></div>
     </div>
 
     <div class="hint">{{ $tm('edit.hint') }}</div>
 
-    <!-- 热门 tags -->
+    <!-- Hot tags -->
     <div class="hot-tags" v-if="isShowKeywords">
-      <!-- 标签的提示词 -->
+      <!-- Tag hint -->
       <div class="tags-info">{{ $tm('edit.hot') }}</div>
-      <!-- 标签容器 -->
+      <!-- Tag container -->
       <div class="tags">
         <span v-for="tag in remainingTags" @click="() => handleTagClick(tag)">
           {{ tag }}
@@ -229,7 +230,7 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-/* 标签的总容器 */
+/* Tag container */
 .container-a {
   width: 100%;
 }
@@ -243,6 +244,7 @@ onMounted(async () => {
     padding: 7px;
     color: var(--kungalgame-blue-3);
   }
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -265,6 +267,7 @@ onMounted(async () => {
   font-size: 14px;
   padding: 2px;
   background-color: var(--kungalgame-trans-red-1);
+
   span {
     cursor: pointer;
   }
@@ -274,10 +277,10 @@ onMounted(async () => {
   margin: 0 5px;
 }
 
-/* 标签输入框 */
+/* Tag input box */
 .input {
   background-color: var(--kungalgame-trans-white-9);
-  /* 输入标签的字体 */
+  /* Font for input tags */
   font-size: 17px;
   flex-grow: 1;
   border: none;
@@ -309,7 +312,7 @@ onMounted(async () => {
   background-color: var(--kungalgame-blue-4);
 }
 
-/* 提示 */
+/* Hint */
 .hint {
   font-size: small;
   color: var(--kungalgame-font-color-1);
@@ -320,25 +323,24 @@ onMounted(async () => {
   margin-bottom: 10px;
 }
 
-/* 单个标签容器 */
+/* Single tag container */
 .tags {
   display: flex;
   flex-wrap: wrap;
-}
 
-/* 单个标签的样式 */
-.tags > span {
-  border: 1px solid var(--kungalgame-blue-1);
-  margin: 5px;
-  display: block;
-  white-space: nowrap;
-  font-size: 14px;
-  padding: 3px;
-  background-color: var(--kungalgame-trans-blue-1);
-  cursor: pointer;
-}
+  & > span {
+    border: 1px solid var(--kungalgame-blue-1);
+    margin: 5px;
+    display: block;
+    white-space: nowrap;
+    font-size: 14px;
+    padding: 3px;
+    background-color: var(--kungalgame-trans-blue-1);
+    cursor: pointer;
 
-.tags > span:hover {
-  background-color: var(--kungalgame-trans-red-1);
+    &:hover {
+      background-color: var(--kungalgame-trans-red-1);
+    }
+  }
 }
 </style>

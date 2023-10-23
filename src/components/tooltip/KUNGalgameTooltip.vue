@@ -3,17 +3,8 @@ import { ref, defineProps } from 'vue'
 
 const props = defineProps({
   content: String,
-  position: String, // 可以是 'top', 'bottom', 'left', 'right'
+  position: String, // 'top', 'bottom', 'left', 'right'
 })
-
-// const tooltipRef = ref<HTMLElement | null>(null)
-
-// // 确保点击外部区域时关闭Tooltip
-// window.addEventListener('click', (event) => {
-//   if (tooltipRef.value && !tooltipRef.value.contains(event.target as Node)) {
-//     // 触发关闭Tooltip的逻辑
-//   }
-// })
 </script>
 
 <template>

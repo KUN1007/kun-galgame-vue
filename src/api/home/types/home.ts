@@ -44,13 +44,11 @@ export interface HomeTopic {
   upvote_time: number
 }
 
-// 首页响应数据的格式
-
-// 左侧热门话题 10 个
+// 10 hot topics on the left side
 export type HomeHotTopicResponseData = KUNGalgameResponseData<HomeHotTopic[]>
 
-// 左侧最新话题 10 个
+// 10 latest topics on the left side
 export type HomeNewTopicResponseData = KUNGalgameResponseData<HomeNewTopic[]>
 
-// 中间展示的话题
+// Topics displayed in the middle
 export type HomeTopicResponseData = KUNGalgameResponseData<HomeTopic[]>

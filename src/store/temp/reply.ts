@@ -1,18 +1,18 @@
-// 回复的临时数据，用于组件间传输
+// Temporary data for replies, used for inter-component communication
 import { defineStore } from 'pinia'
 import type { TopicReply } from '@/api'
 
 export const useTempReplyStore = defineStore({
   id: 'tempReply',
-  // 不持久
+  // Not persistent
   persist: false,
   state: () => ({
     tempReply: {
       rid: 0,
       tid: 0,
-      // reply 所在的楼层
+      // Floor where the reply is located
       floor: 0,
-      // 被回复的 reply 所在的楼层
+      // Floor where the replied reply is located
       to_floor: 0,
       r_user: {
         uid: 0,

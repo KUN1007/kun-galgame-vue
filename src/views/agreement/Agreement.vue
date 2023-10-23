@@ -1,13 +1,47 @@
 <script setup lang="ts">
 import BackToPrevious from '@/components/BackToPrevious.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+
+const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
 </script>
 
 <template>
   <div class="root">
-    <div class="container">
+    <div class="article" v-if="showKUNGalgameLanguage === 'en'">
+      <div class="title">User Agreement</div>
+      <div class="content">
+        <p>
+          When you register as a member of KUN Visual Novel, you become a user
+          of KUN Visual Novel, and at this point, we consider that you have
+          confirmed the following user agreement:
+        </p>
+        <p>
+          1. All statements made by users are not related to KUN Visual Novel.
+        </p>
+        <p>
+          2. KUN Visual Novel is merely an open-source collaborative web
+          development project designed for everyone to learn web knowledge.
+        </p>
+        <p>
+          3. We reserve the right to ban users who engage in actions detrimental
+          to the maintenance of our open-source project.
+        </p>
+        <p>
+          4. KUN Visual Novel is not responsible for any losses caused by issues
+          such as user account theft.
+        </p>
+        <p>Agreement Version - V 1.0.0</p>
+      </div>
+
+      <BackToPrevious />
+    </div>
+
+    <div class="article" v-if="showKUNGalgameLanguage === 'zh'">
       <div class="title">用户协议</div>
-      <div class="article">
+      <div class="content">
         <p>
           当您注册成为 KUNGalgame 的会员时，您即成为 KUNGalgame
           的用户，这时我们认为您已经确认以下用户协议：
@@ -21,15 +55,15 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         <p>4. 因用户账号被盗等造成的损失，KUNGalgame 概不承担</p>
         <p>协议版本 - V 1.0.0</p>
       </div>
+
       <BackToPrevious />
-      <!-- 版权 -->
     </div>
+
     <KUNGalgameFooter class="footer" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 根容器 */
 .root {
   height: 100vh;
   width: 100vw;
@@ -42,46 +76,48 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   flex-direction: column;
   background-color: var(--kungalgame-white);
 }
-/* 内容区容器 */
-.container {
+
+.article {
   max-width: 500px;
-  /* 居中 */
   margin: auto;
   position: relative;
   border-radius: 7px;
   box-shadow: var(--kungalgame-shadow-0);
-  /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
   color: var(--kungalgame-font-color-3);
   padding: 20px;
+
+  &:hover {
+    box-shadow: var(--kungalgame-shadow-1);
+    transition: 0.3s;
+  }
 }
-/* 内容区容器 hover */
-.container:hover {
-  box-shadow: var(--kungalgame-shadow-1);
-  transition: 0.3s;
-}
-/* 页面的标题 */
+
 .title {
-  /* 固定高度 */
   height: 77px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 距离下一个项目的距离 */
   margin-bottom: 10px;
   font-size: 30px;
 }
-.article > p {
-  margin: 5px;
-}
-.article > p:nth-child(2) {
-  margin-top: 20px;
-}
-.article > p:last-child {
-  margin-top: 50px;
-  margin-left: 160px;
+
+.content {
+  & > p {
+    margin: 5px;
+
+    &:nth-child(2) {
+      margin-top: 20px;
+    }
+
+    &:last-child {
+      margin: 50px 0;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 .footer {
@@ -91,7 +127,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 
 @media (max-width: 700px) {
-  .container {
+  .article {
     width: 90%;
   }
 }

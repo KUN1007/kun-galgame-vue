@@ -1,6 +1,6 @@
-/* 话题详情的 store */
+// Store for topic details
 import { defineStore } from 'pinia'
-// 话题
+// Topics
 import {
   getTopicByTidApi,
   getRelatedTopicsByTagsApi,
@@ -23,7 +23,7 @@ import type {
   TopicDislikeTopicResponseData,
 } from '@/api'
 
-// 回复
+// Replies
 import {
   getRepliesByPidApi,
   postReplyByPidApi,
@@ -48,7 +48,7 @@ import type {
   TopicUpdateReplyResponseData,
 } from '@/api'
 
-// 评论
+// Comments
 import {
   getCommentsByReplyRidApi,
   updateCommentLikeApi,
@@ -66,7 +66,7 @@ import type {
   TopicCreateCommentResponseData,
 } from '@/api'
 
-// 导入 topic store 的类型
+// Import the type of topic store
 import { TopicStore } from '../types/topic'
 
 export const useKUNGalgameTopicStore = defineStore({
@@ -78,7 +78,8 @@ export const useKUNGalgameTopicStore = defineStore({
     isActiveAside: false,
     isScrollToTop: false,
     isLoading: true,
-    // 回复 id 从 0 开始，-1 只是为了监测数据变化，用于 watchEffect
+    // Reply ID starts from 0, -1 is just for monitoring data changes
+    // , used for watchEffect
     scrollToReplyId: -1,
 
     replyPanelWidth: 90,
@@ -114,26 +115,26 @@ export const useKUNGalgameTopicStore = defineStore({
     },
   }),
   actions: {
-    // 左侧相同标签下的其它话题
+    // Other topics under the same tag on the left
     async getRelatedTopicsByTags(
       request: TopicAsideOtherTagRequestData
     ): Promise<TopicAsideResponseData> {
       return await getRelatedTopicsByTagsApi(request)
     },
 
-    // 楼主的其它话题
+    // Other topics by the master
     async getPopularTopicsByUserUid(
       request: TopicAsideMasterRequestData
     ): Promise<TopicAsideResponseData> {
       return await getPopularTopicsByUserUidApi(request)
     },
 
-    // 获取单个话题
+    // Get a single topic
     async getTopicByTid(tid: number): Promise<TopicDetailResponseData> {
       return await getTopicByTidApi(tid)
     },
 
-    // 推话题
+    // Upvote a topic
     async updateTopicUpvote(
       tid: number,
       toUid: number
@@ -145,7 +146,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateTopicUpvoteApi(requestData)
     },
 
-    // 点赞话题
+    // Like a topic
     async updateTopicLike(
       tid: number,
       toUid: number,
@@ -159,7 +160,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateTopicLikeApi(requestData)
     },
 
-    // 点踩话题
+    // Dislike a topic
     async updateTopicDislike(
       tid: number,
       toUid: number,
@@ -173,9 +174,9 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateTopicDislikeApi(requestData)
     },
 
-    // 获取回复
+    // Get replies
     async getReplies(tid: number): Promise<TopicReplyResponseData> {
-      // 这里的默认值用于初始化
+      // The default values here are used for initialization
       const requestData: TopicReplyRequestData = {
         tid: tid,
         page: this.replyRequest.page,
@@ -186,9 +187,9 @@ export const useKUNGalgameTopicStore = defineStore({
       return await getRepliesByPidApi(requestData)
     },
 
-    // 创建回复
+    // Create a new reply
     async postNewReply(): Promise<TopicCreateReplyResponseData> {
-      // 这里的值用于初始化回复
+      // The values here are used to initialize the reply
       const requestData: TopicCreateReplyRequestData = {
         tid: this.replyDraft.tid,
         to_uid: this.replyDraft.to_uid,
@@ -199,7 +200,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await postReplyByPidApi(requestData)
     },
 
-    // 更新回复
+    // Update a reply
     async updateReply(): Promise<TopicUpdateReplyResponseData> {
       const requestData: TopicUpdateReplyRequestData = {
         tid: this.replyRewrite.tid,
@@ -210,7 +211,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateReplyApi(requestData)
     },
 
-    // 推回复
+    // Upvote a reply
     async updateReplyUpvote(
       tid: number,
       toUid: number,
@@ -224,7 +225,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateReplyUpvoteApi(requestData)
     },
 
-    // 点赞回复
+    // Like a reply
     async updateReplyLike(
       tid: number,
       toUid: number,
@@ -240,7 +241,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateReplyLikeApi(requestData)
     },
 
-    // 点踩回复
+    // Dislike a reply
     async updateReplyDislike(
       tid: number,
       toUid: number,
@@ -256,7 +257,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateReplyDislikeApi(requestData)
     },
 
-    // 获取评论
+    // Get comments
     async getComments(
       tid: number,
       rid: number
@@ -264,7 +265,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await getCommentsByReplyRidApi(tid, rid)
     },
 
-    // 点赞评论
+    // Like a comment
     async updateCommentLike(
       tid: number,
       cid: number,
@@ -278,7 +279,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateCommentLikeApi(requestData)
     },
 
-    // 点踩评论
+    // Dislike a comment
     async updateCommentDislike(
       tid: number,
       cid: number,
@@ -292,7 +293,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await updateCommentDislikeApi(requestData)
     },
 
-    // 创建一个评论
+    // Create a new comment
     async postNewComment(
       tid: number,
       rid: number,
@@ -308,7 +309,7 @@ export const useKUNGalgameTopicStore = defineStore({
       return await postCommentByPidAndRidApi(requestData)
     },
 
-    // 设置回复草稿为原始值，用于回复发布按钮
+    // Reset reply draft to its original value, used for the reply publish button
     resetReplyDraft() {
       this.replyDraft.textCount = 0
       this.replyDraft.tid = 0
@@ -319,12 +320,12 @@ export const useKUNGalgameTopicStore = defineStore({
 
       this.replyDraft.isSaveReply = false
     },
-    // 重置页数，是否加载，这样回复排序才能生效
+    // Reset page number and loading status for reply sorting to take effect
     resetPageStatus() {
       this.replyRequest.page = 1
       this.isLoading = true
     },
-    // 重置重新编辑回复数据，用于重新编辑回复
+    // Reset data for re-editing a reply
     resetRewriteTopicData() {
       this.replyDraft.textCount = 0
       this.replyRewrite.tid = 0

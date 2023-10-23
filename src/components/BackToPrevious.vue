@@ -5,14 +5,13 @@ const router = useRouter()
 </script>
 
 <template>
-  <!-- 返回主页 -->
+  <!-- Back to homepage -->
   <div class="return" @click="router.back()">
     <span>{{ `< ${$tm('back.back')}` }}</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 返回主页 */
 .return {
   position: absolute;
   bottom: 1%;

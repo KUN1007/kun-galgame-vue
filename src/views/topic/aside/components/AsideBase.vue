@@ -1,36 +1,35 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { asideNavItem } from './asideNavItem'
 
-// 导入 topic store
+// Import the topic store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
 const { isScrollToTop, replyRequest } = storeToRefs(useKUNGalgameTopicStore())
 
-// 排序
+// Sort the replies
 const handleSortReply = (sortField: string) => {
-  // 重置页数，是否加载等页面状态，否则会出现错误
+  // Reset page-related status (e.g., page number, loading status) to prevent errors
   useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortField = sortField
 }
 
-// 升序排序
+// Sort in ascending order
 const orderAscending = () => {
-  // 重置页数，是否加载等页面状态，否则会出现错误
+  // Reset page-related status to prevent errors
   useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'asc'
 }
 
-// 降序排序
+// Sort in descending order
 const orderDescending = () => {
-  // 重置页数，是否加载等页面状态，否则会出现错误
+  // Reset page-related status to prevent errors
   useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'desc'
 }
 
-// 回到顶端
+// Scroll back to the top
 const handleBackToTop = () => {
   isScrollToTop.value = true
 }

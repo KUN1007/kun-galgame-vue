@@ -1,21 +1,21 @@
 /**
- * 根据时间戳获取经过的小时数
+ * Get the number of hours that have passed based on a timestamp.
  */
 
 import dayjs from 'dayjs'
 
 export const hourDiff = (upvote_time: number, hours: number) => {
-  // 检查 upvote_time 是否有效，因为后端初始化为 0
+  // Check if upvote_time is valid, as it may be initialized to 0 by the backend
   if (upvote_time === 0 || upvote_time === undefined) {
     return false
   }
 
-  // 获取当前时间
+  // Get the current time
   const currentTime = dayjs()
 
-  // 获取 upvote_time，这里假设 upvote_time 是一个 UNIX 时间戳
+  // Get upvote_time, assuming upvote_time is a UNIX timestamp
   const upvoteTime = dayjs(upvote_time)
 
-  // 计算时间差并返回比较结果
+  // Calculate the time difference and return the comparison result
   return currentTime.diff(upvoteTime, 'hour') <= hours
 }

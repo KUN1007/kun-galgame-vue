@@ -1,86 +1,86 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-// 导入问题
+// Import questions
 import { questionsEN, Question } from './questionsEN'
 import { questionsCN } from './questionsCN'
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
-// 导入消息 store
+// Import message store
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 导入设置组件，目的是获取语言
+// Import settings component to get the language
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-// 使用设置 store 获取语言
+// Use the settings store to get the language
 const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
-// 使用消息组件的变量
+// Variables from the message component
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
   useKUNGalgameMessageStore()
 )
-// 当前的语言
+// Current language
 const questions = ref<Question[]>([])
 
-// 初始化
+// Initialize
 questions.value =
   showKUNGalgameLanguage.value === 'en' ? questionsEN : questionsCN
 
-// 监听属性,实现响应式
+// Watch for changes in the language setting
 watch(showKUNGalgameLanguage, () => {
   questions.value =
     showKUNGalgameLanguage.value === 'en' ? questionsEN : questionsCN
 })
 
-// 用于随机选择问题的函数
+// Function to randomly select a question
 const randomizeQuestion = () => {
-  // 生成一个介于0到问题数量减1之间的随机整数
+  // Generate a random integer between 0 and the number of questions minus 1
   return Math.floor(Math.random() * questions.value.length)
 }
 
-// 用户输入的答案
+// User's input answer
 const userAnswers = ref('')
-// 当前问题的索引
+// Current question index
 const currentQuestionIndex = ref(randomizeQuestion())
-// 当前的问题
+// Current question
 const currentQuestion = computed(
   () => questions.value[currentQuestionIndex.value]
 )
-// 错误次数计数
+// Error count
 const errorCounter = ref(0)
 const expectedKeys = ref(['k', 'u', 'n'])
 const currentIndex = ref(0)
-// 是否显示提示
+// Whether to show hints
 const isShowHint = ref(false)
-// 是否显示答案
+// Whether to show the answer
 const isShowAnswer = ref(false)
 
-// 监听键盘事件
+// Listen to keyboard events
 const checkKeyPress = (event: KeyboardEvent) => {
   const pressedKey = event.key
 
   if (pressedKey === expectedKeys.value[currentIndex.value]) {
-    // 当用户按下了期望的键时
+    // When the user presses the expected key
     if (currentIndex.value === expectedKeys.value.length - 1) {
-      // 如果已经按下了最后一个键 "n"，触发相应逻辑
+      // If the last key "n" has been pressed, trigger the corresponding logic
       isShowAnswer.value = true
     } else {
-      // 否则，继续下一个期望的键
+      // Otherwise, continue to the next expected key
       currentIndex.value++
     }
   } else {
-    // 如果按下了错误的键，重新开始检查
+    // If the wrong key is pressed, start checking again
     currentIndex.value = 0
   }
 }
 
-// 提交问题
+// Submit the answer
 const submitAnswer = () => {
   const correctOption = currentQuestion.value.correctOption
 
   if (userAnswers.value === correctOption) {
-    // 回答正确
-    // 设置验证通过
+    // Correct answer
+    // Set the validation as successful
     isCaptureSuccessful.value = true
-    // 关闭面板
+    // Close the panel
     isShowCapture.value = false
     Message(
       'Human-machine identity verification successful ~',
@@ -88,17 +88,17 @@ const submitAnswer = () => {
       'success'
     )
   } else {
-    // 回答错误
+    // Wrong answer
     errorCounter.value++
 
     Message('Wrong answer!', '回答错误！', 'warn')
 
-    // 随机选择一个新的问题
+    // Randomly select a new question
     const randomIndex = randomizeQuestion()
     currentQuestionIndex.value = randomIndex
     userAnswers.value = ''
 
-    // 错误次数大于三次显示提示
+    // Show hints if the error count is greater than or equal to 3
     if (errorCounter.value >= 3) {
       isShowHint.value = true
     }
@@ -109,7 +109,7 @@ const submitAnswer = () => {
 <template>
   <Teleport to="body" :disabled="isShowCapture">
     <Transition name="capture">
-      <!-- 遮罩 -->
+      <!-- Mask -->
       <div
         class="mask"
         @keydown="checkKeyPress($event)"
@@ -117,7 +117,7 @@ const submitAnswer = () => {
         v-if="isShowCapture"
       >
         <div class="validate">
-          <!-- 标题 -->
+          <!-- Title -->
           <div class="title">
             <!-- <span>{{ `❮` }}</span> -->
             <h2>{{ $tm('AlertInfo.capture.title') }}</h2>
@@ -125,7 +125,7 @@ const submitAnswer = () => {
           </div>
           <p class="question">{{ currentQuestion.text }}</p>
 
-          <!-- 选择项 -->
+          <!-- Options -->
           <div class="select">
             <label
               v-for="(option, index) in currentQuestion.options"
@@ -136,7 +136,7 @@ const submitAnswer = () => {
             </label>
           </div>
 
-          <!-- 提交按钮 -->
+          <!-- Submit buttons -->
           <div class="btn">
             <button @click="submitAnswer">
               {{ $tm('AlertInfo.capture.submit') }}
@@ -146,8 +146,8 @@ const submitAnswer = () => {
             </button>
           </div>
 
-          <!-- 提示 -->
-          <!-- tabindex 使得该元素可以被页面聚焦 -->
+          <!-- Hints -->
+          <!-- tabindex allows this element to be focused on the page -->
           <div class="hint-container">
             <div v-if="isShowHint" class="hint">
               <div>{{ $tm('AlertInfo.capture.hint1') }}</div>
@@ -272,7 +272,6 @@ const submitAnswer = () => {
   }
 }
 
-/* 激活后的样式 */
 .active {
   transition: all 0.2s;
   border: 2px solid var(--kungalgame-pink-3);

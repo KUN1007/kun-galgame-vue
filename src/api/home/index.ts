@@ -1,16 +1,16 @@
 import { fetchGet } from '@/utils/request'
-// 将对象转为请求参数的函数
+// Function to convert an object to query parameters
 import objectToQueryParams from '@/utils/objectToQueryParams'
 import type * as Home from './types/home'
 
-// 要请求的 URL
+// URLs to be requested
 const homeURLs = {
   home: `/home/topic`,
   navHot: `/home/nav/hot`,
   navNew: `/home/nav/new`,
 }
 
-// 首页话题列表
+// Home page topic list
 export async function getHomeTopicApi(
   requestData: Home.HomeTopicRequestData
 ): Promise<Home.HomeTopicResponseData> {
@@ -23,7 +23,7 @@ export async function getHomeTopicApi(
   return response
 }
 
-// 首页今日热门话题
+// Today's popular topics on the home page
 export async function getHomeNavHotTopicApi(): Promise<Home.HomeHotTopicResponseData> {
   const response = await fetchGet<Home.HomeHotTopicResponseData>(
     homeURLs.navHot
@@ -32,7 +32,7 @@ export async function getHomeNavHotTopicApi(): Promise<Home.HomeHotTopicResponse
   return response
 }
 
-// 首页今日最新话题
+// Today's newest topics on the home page
 export async function getHomeNavNewTopicApi(): Promise<Home.HomeNewTopicResponseData> {
   const response = await fetchGet<Home.HomeNewTopicResponseData>(
     homeURLs.navNew

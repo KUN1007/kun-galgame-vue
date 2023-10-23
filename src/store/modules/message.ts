@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 
-// message store 的类型
+// Type of message store
 import { MessageStore } from '../types/message'
 
 export const useKUNGalgameMessageStore = defineStore({
   id: 'KUNGalgameMessage',
-  // 所有消息组件均不需要持久存储
+  // No need to persist any message components
   persist: false,
   state: (): MessageStore => ({
     showInfo: false,
@@ -23,6 +23,7 @@ export const useKUNGalgameMessageStore = defineStore({
       this.showInfo = true
       this.infoMsg = infoMsg
     },
+
     alert(alertMsg: string, isShowCancel: boolean): Promise<boolean> {
       return new Promise<boolean>((resolve) => {
         this.showAlert = true
@@ -34,6 +35,7 @@ export const useKUNGalgameMessageStore = defineStore({
         this.handleConfirm = () => resolve(true)
       })
     },
+
     handleClose() {},
     handleConfirm() {},
   },

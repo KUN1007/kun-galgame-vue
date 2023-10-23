@@ -1,11 +1,11 @@
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
 import { generateTokenByRefreshTokenApi } from '@/api'
-// 使用用户 store
+// Use the user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// 导入路由
+// Import the router
 import router from '@/router'
-// 导入已知错误处理函数
+// Import known error handling functions
 import { kungalgameErrorHandler } from './errorHandler'
 
 interface ErrorResponseData {
@@ -14,22 +14,23 @@ interface ErrorResponseData {
 }
 
 /**
- * 相当于拦截器，先根据可预见的状态码识别常见错误
- * 再根据后端自定义的状态码识别错误，识别不了则抛出错误
+ * Acts as an interceptor, first recognizing common errors based on predictable status codes.
+ * Then identifies errors based on custom backend status codes
+ * If unable to recognize, it throws an error.
  */
 export async function onRequestError(response: Response) {
-  // 根据状态码识别错误
+  // Identify errors based on status codes
   if (response.status === 401) {
-    // 尝试根据 refresh token 获取新的 token
+    // Attempt to obtain a new token using the refresh token
     const accessTokenResponse = await generateTokenByRefreshTokenApi()
 
-    // 成功获取到新的 token 则设置 token
+    // If a new token is successfully obtained, set the token
     if (accessTokenResponse.code === 200 && accessTokenResponse.data.token) {
       useKUNGalgameUserStore().setToken(accessTokenResponse.data.token)
-      // 设置页面重新加载应用 token
+      // Set the page to reload with the new token applied
       location.reload()
     } else {
-      // 否则提示用户重新登陆
+      // Otherwise, prompt the user to log in again
       Message(
         'Login expired, please log in again.',
         '登陆过期，请重新登陆',
@@ -50,8 +51,8 @@ export async function onRequestError(response: Response) {
     return
   }
 
-  // 获取错误响应体数据
+  // Get the error response data
   const data: ErrorResponseData = await response.json()
-  // 处理已知错误
+  // Handle known errors
   kungalgameErrorHandler(data.code)
 }

@@ -1,8 +1,8 @@
 export function getPlainText(html: string): string {
-  // 去除 HTML 标记
+  // Remove HTML tags
   const plainText = html.replace(/<[^>]*>/g, '')
 
-  // 解码 HTML 实体
+  // Decode HTML entities
   const textWithEntitiesDecoded = new DOMParser().parseFromString(
     plainText,
     'text/html'

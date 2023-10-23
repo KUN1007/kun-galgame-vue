@@ -1,24 +1,20 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import MainPageAside from './aside/MainPageAside.vue'
 import MainPageArticle from './article/MainPageArticle.vue'
-// 导入设置面板 store
+
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
-// 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+
+const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const mainPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.KUN + '%'
 })
 </script>
 
 <template>
-  <!-- 主体部分 -->
   <div class="main">
-    <!-- 主容器 -->
     <div class="main-container">
-      <!-- 内容区容器 -->
       <div class="content-container">
         <MainPageAside class="aside" />
         <MainPageArticle />
@@ -28,31 +24,27 @@ const mainPageWidth = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-/* 主体部分配置 */
 .main {
   width: 100%;
   height: 1px;
   flex-grow: 21;
 }
+
 .main-container {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-/* 可视内容部分宽度 */
+
 .content-container {
   width: v-bind(mainPageWidth);
   transition: all 0.2s;
   height: 100%;
   margin: 0 auto;
-  /* 可视内容区为弹性盒 */
   display: flex;
-  /* 可视内容区居中 */
   align-items: center;
-  /* 设置背景毛玻璃效果 */
   backdrop-filter: blur(5px);
   background-color: var(--kungalgame-trans-white-5);
-  /* 设置背景边框和圆角 */
   border-radius: 5px;
   padding: 5px;
   border: 1px solid var(--kungalgame-blue-0);
@@ -62,6 +54,7 @@ const mainPageWidth = computed(() => {
   .aside {
     display: none;
   }
+
   .content-container {
     width: 80%;
     border: none;
@@ -73,6 +66,7 @@ const mainPageWidth = computed(() => {
   .aside {
     display: none;
   }
+
   .content-container {
     width: 100%;
     border: none;

@@ -1,8 +1,5 @@
-/* 编辑区的 store */
 import { defineStore } from 'pinia'
-// api
 import { postNewTopicApi, updateNewTopicApi, getTopTagsApi } from '@/api'
-// api 请求格式
 import {
   EditCreateTopicRequestData,
   EditCreateTopicResponseData,
@@ -11,9 +8,7 @@ import {
   EditGetHotTagsRequestData,
   EditGetHotTagsResponseData,
 } from '@/api'
-// store interface
 import { EditStore } from '../types/edit'
-// some utils to check topic publish data is valid
 import { checkTopicPublish } from '../utils/checkTopicPublish'
 
 export const useKUNGalgameEditStore = defineStore({
@@ -44,9 +39,9 @@ export const useKUNGalgameEditStore = defineStore({
   }),
   getters: {},
   actions: {
-    // 创建话题
+    // Create a new topic
     async createNewTopic(): Promise<EditCreateTopicResponseData | undefined> {
-      // 当前话题的数据
+      // Data for the current topic
       const requestData: EditCreateTopicRequestData = {
         title: this.title,
         content: this.content,
@@ -54,14 +49,15 @@ export const useKUNGalgameEditStore = defineStore({
         tags: this.tags,
         category: this.category,
       }
-      // 检查话题数据不合法直接返回
+      // If the topic data is invalid, return directly
       if (!checkTopicPublish(this.textCount, requestData)) {
         return
       }
-      // 合法则请求接口发布话题
+      // If valid, make an API request to publish the topic
       return await postNewTopicApi(requestData)
     },
-    // 更新话题
+
+    // Update a topic
     async rewriteTopic(): Promise<EditUpdateTopicResponseData | undefined> {
       const requestData: EditUpdateTopicRequestData = {
         tid: this.topicRewrite.tid,
@@ -71,19 +67,21 @@ export const useKUNGalgameEditStore = defineStore({
         category: this.topicRewrite.category,
       }
 
-      // 检查话题数据不合法直接返回
+      // If the topic data is invalid, return directly
       if (!checkTopicPublish(this.textCount, requestData)) {
         return
       }
 
       return await updateNewTopicApi(requestData)
     },
-    // 获取热门 tags
+
+    // Get popular tags
     async getHotTags(limit: number): Promise<EditGetHotTagsResponseData> {
       const requestData: EditGetHotTagsRequestData = { limit }
       return await getTopTagsApi(requestData)
     },
-    // 重置话题草稿数据，用于发布时
+
+    // Reset topic draft data for publishing
     resetTopicData() {
       this.textCount = 0
       this.title = ''
@@ -93,7 +91,8 @@ export const useKUNGalgameEditStore = defineStore({
 
       this.isSaveTopic = false
     },
-    // 重置重新发布话题数据，用于重新编辑
+
+    // Reset data for re-editing a topic
     resetRewriteTopicData() {
       this.textCount = 0
       this.topicRewrite.title = ''

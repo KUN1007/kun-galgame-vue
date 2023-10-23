@@ -115,6 +115,10 @@ export default {
       to: 'Replied To',
       master: 'ご主人',
       reply: 'zako~♡',
+      advance: 'Advance Options',
+      confirm: 'Confirm Publish',
+      rewrite: 'Confirm Rewrite',
+      save: 'Save Draft',
     },
   },
   update: {
@@ -354,6 +358,10 @@ export default {
   page404: {
     existent: `You've visited a non-existent page`,
     back: 'Click to return to the homepage',
+  },
+  redirect: {
+    success: 'Login successful',
+    home: 'You will be redirected to the home page in 3 seconds',
   },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {

@@ -1,6 +1,6 @@
 import { TopicUserInfo, TopicToUserInfo } from './topic'
 
-// 评论的数据
+// Comment data
 export interface TopicComment {
   cid: number
   rid: number
@@ -12,21 +12,21 @@ export interface TopicComment {
   dislikes: number[]
 }
 
-// 点赞评论的请求数据
+// Request data for liking a comment
 export interface TopicLikeCommentRequestData {
   tid: number
   cid: number
   to_uid: number
 }
 
-// 点踩评论的请求数据
+// Request data for disliking a comment
 export interface TopicDislikeCommentRequestData {
   tid: number
   cid: number
   to_uid: number
 }
 
-// 发表评论的请求数据
+// Request data for creating a comment
 export interface TopicCreateCommentRequestData {
   tid: number
   rid: number
@@ -34,15 +34,15 @@ export interface TopicCreateCommentRequestData {
   content: string
 }
 
-// 单个回复底下所有的评论数据，是一个数组
+// An array containing all comments under a single reply
 export type TopicCommentResponseData = KUNGalgameResponseData<TopicComment[]>
 
-// 点赞评论的响应数据
+// Response data for liking a comment
 export type TopicLikeCommentResponseData = KUNGalgameResponseData<{}>
 
-// 点踩评论的响应数据
+// Response data for disliking a comment
 export type TopicDislikeCommentResponseData = KUNGalgameResponseData<{}>
 
-// 创建单个评论后返回的评论数据
+// Comment data returned after creating a single comment
 export type TopicCreateCommentResponseData =
   KUNGalgameResponseData<TopicComment>

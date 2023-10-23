@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const users = computed(() => props.users)
 
-// 将传过来的数据转为数值
+// Convert the incoming data to numbers
 const parseTopicNumber = (field: string | string[]) => {
   return Array.isArray(field) ? field.length : Math.ceil(parseInt(field))
 }
@@ -19,13 +19,11 @@ const parseTopicNumber = (field: string | string[]) => {
 
 <template>
   <TransitionGroup name="list">
-    <!-- 单个用户 -->
     <div class="single-user" v-for="user in users" :key="user.uid">
       <RouterLink :to="`/kungalgamer/${user.uid}/info`">
-        <!-- 用户的名字 -->
         <div class="info">
           <span class="avatar">
-            <!-- 用的是 100px 的压缩图片 -->
+            <!-- Using a compressed 100px image -->
             <img
               v-if="user.avatar"
               :src="user.avatar.replace(/\.webp$/, '-100.webp')"
@@ -34,7 +32,8 @@ const parseTopicNumber = (field: string | string[]) => {
           </span>
           <span class="name">{{ user.name }}</span>
         </div>
-        <!-- 用户的其它信息 -->
+
+        <!-- User's other information -->
         <div class="detail">
           <Icon :icon="userIconMap[props.field]" />
           <span>{{ parseTopicNumber(user.field) }}</span>
@@ -45,7 +44,6 @@ const parseTopicNumber = (field: string | string[]) => {
 </template>
 
 <style lang="scss" scoped>
-/* 单个话题 */
 .single-user {
   a {
     flex-shrink: 0;
@@ -69,7 +67,7 @@ const parseTopicNumber = (field: string | string[]) => {
     }
   }
 }
-/* 话题的名字 */
+
 .info {
   display: flex;
   align-items: center;
@@ -102,7 +100,7 @@ const parseTopicNumber = (field: string | string[]) => {
   }
 }
 
-.list-move, /* 对移动中的元素应用的过渡 */
+.list-move,
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -113,8 +111,6 @@ const parseTopicNumber = (field: string | string[]) => {
   opacity: 0;
 }
 
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
 .list-leave-active {
   position: absolute;
 }

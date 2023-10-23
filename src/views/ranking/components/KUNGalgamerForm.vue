@@ -11,16 +11,16 @@ import { userSortItem, userIconMap } from './navSortItem'
 
 const { user } = storeToRefs(useKUNGalgameRankingStore())
 const users = ref<RankingUsers[]>([])
-// 升序降序
+// Ascending or descending order
 const isAscending = ref(false)
 
-// 获取用户
+// Get users
 const getUsers = async () => {
   const responseData = await useKUNGalgameRankingStore().getUsers()
   return responseData.data
 }
 
-// 监听用户数据获取新用户
+// Listen for new users when user data changes
 watch(
   () => user,
   async () => {
@@ -29,12 +29,12 @@ watch(
   { deep: true }
 )
 
-// 挂载时获取话题
+// Fetch users when the component is mounted
 onMounted(async () => {
   users.value = await getUsers()
 })
 
-// 切换排序方式
+// Toggle the sorting order
 const handleClickSortOrder = () => {
   isAscending.value = !isAscending.value
   if (isAscending.value) {
@@ -46,19 +46,16 @@ const handleClickSortOrder = () => {
 </script>
 
 <template>
-  <!-- 话题排行 -->
   <div class="user">
-    <!-- 话题排行标题 -->
     <div class="title">{{ $tm('ranking.user') }}</div>
-    <!-- 话题排行的交互 -->
     <div class="nav">
-      <!-- 升序降序 -->
       <div class="order" @click="handleClickSortOrder">
         <Transition name="order" mode="out-in">
           <div v-if="isAscending">
             <span>{{ $tm('ranking.asc') }}</span>
             <Icon class="icon" icon="line-md:arrow-small-up" />
           </div>
+
           <div v-else-if="!isAscending">
             <span>{{ $tm('ranking.desc') }}</span>
             <Icon class="icon" icon="line-md:arrow-small-down" />
@@ -66,11 +63,9 @@ const handleClickSortOrder = () => {
         </Transition>
       </div>
 
-      <!-- 排序 -->
       <div class="sort">
         <Icon class="icon" :icon="userIconMap[user.sortField]" />
         <span>{{ $tm('ranking.filter') }}</span>
-        <!-- 排序子菜单 -->
         <div class="submenu">
           <div
             class="item"
@@ -84,7 +79,7 @@ const handleClickSortOrder = () => {
         </div>
       </div>
     </div>
-    <!-- 单个话题的容器 -->
+
     <div class="container">
       <KUNGalgamer :field="user.sortField" :users="users" />
     </div>
@@ -92,12 +87,11 @@ const handleClickSortOrder = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 话题排行 */
 .user {
   width: 50%;
   height: calc(100% - 50px - 20px - 40px);
 }
-/* 话题排行标题 */
+
 .title {
   font-size: 27px;
   color: var(--kungalgame-pink-4);
@@ -107,7 +101,7 @@ const handleClickSortOrder = () => {
   align-items: center;
   margin-bottom: 20px;
 }
-/* 话题排行的交互 */
+
 .nav {
   height: 40px;
   display: flex;
@@ -168,19 +162,20 @@ const handleClickSortOrder = () => {
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-5);
   backdrop-filter: blur(5px);
+
   .item {
     transition: all 0.2s;
     height: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     &:hover {
       background-color: var(--kungalgame-trans-pink-1);
     }
   }
 }
 
-/* 单个话题的容器 */
 .container {
   height: 100%;
   border-top: none;
@@ -194,11 +189,12 @@ const handleClickSortOrder = () => {
     width: 4px;
     height: 0;
   }
+
   &::-webkit-scrollbar-thumb {
     background: var(--kungalgame-pink-4);
     border-radius: 2px;
   }
-  /* 兼容火狐 */
+
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-pink-4) var(--kungalgame-pink-0);
 }

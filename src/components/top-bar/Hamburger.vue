@@ -1,24 +1,24 @@
-<!-- 这个文件为了适配手机端的顶部导航栏 -->
+<!-- This file is for adapting the top navigation bar for mobile devices -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-// 导入模式切换组件
+// Import mode switch component
 import Mode from '../setting-panel/components/Mode.vue'
-// 导入语言切换组件
+// Import language switch component
 import SwitchLanguage from '../setting-panel/components/SwitchLanguage.vue'
-// 导入顶部导航栏项目
+// Import top navigation bar items
 import { topBarItem } from './topBarItem'
-// 向父元素发送关闭命令
+// Send a close command to the parent element
 defineEmits(['showKUNGalgameHamburger'])
 </script>
 
 <template>
-  <!-- 总容器 -->
+  <!-- Main container -->
   <div class="container">
     <div class="kungalgame">
       <img src="@/assets/images/favicon.webp" alt="KUNGalgame" />
       <span>{{ $tm('header.name') }}</span>
     </div>
-    <!-- 交互栏目 -->
+    <!-- Interactive items -->
     <div class="item" style="font-size: 17px">
       <span v-for="kun in topBarItem" :key="kun.index">
         <RouterLink :to="kun.router">{{
@@ -27,12 +27,12 @@ defineEmits(['showKUNGalgameHamburger'])
       </span>
     </div>
 
-    <!-- 白天黑夜模式切换组件 -->
+    <!-- Day and night mode switch component -->
     <Mode style="font-size: 20px" />
 
-    <!-- 语言切换组件 -->
+    <!-- Language switch component -->
     <SwitchLanguage style="font-size: 20px; margin-bottom: 40px" />
-    <!-- 关闭按钮 -->
+    <!-- Close button -->
     <div class="close">
       <Icon
         icon="line-md:menu-fold-left"

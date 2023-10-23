@@ -1,22 +1,22 @@
-<!-- 话题的底部区域，推话题，回复，点赞等 -->
+<!-- Topic's bottom area, including upvote, reply, like, etc. -->
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
-// 导入编辑界面的 store
+// Import the edit page store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// 导入回复界面的 store
+// Import the reply page store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 使用编辑界面的 store
+// Use the edit page store
 const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
-// 使用回复界面是 store
+// Use the reply page store
 const { isEdit, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
-// 使用路由
+// Use the router
 const router = useRouter()
 
-// 接受父组件的传值
+// Accept props from the parent component
 const props = defineProps<{
   tid: number
   rid: number
@@ -28,10 +28,10 @@ const props = defineProps<{
   toUid: number
 }>()
 
-// 是否具有重新编辑的权限
+// Check if the user has permission to rewrite
 const isShowRewrite = ref(props.uid === props.toUid)
 
-// 响应式
+// Reactive
 watch(
   () => props.toUid,
   () => {
@@ -43,38 +43,38 @@ watch(
   }
 )
 
-// 重新编辑话题
+// Rewrite the topic
 const rewriteTopic = () => {
-  // 保存数据
+  // Save the data
   topicRewrite.value.tid = props.tid
   topicRewrite.value.title = props.title
   topicRewrite.value.content = props.content
   topicRewrite.value.tags = props.tags
   topicRewrite.value.category = props.category
 
-  // 设置正在重新编辑状态为真
+  // Set the "isTopicRewriting" state to true
   topicRewrite.value.isTopicRewriting = true
 
-  // 跳转到编辑界面
+  // Navigate to the edit page
   router.push({ name: 'Edit' })
 }
 
-// 重新编辑回复
+// Rewrite the reply
 const rewriteReply = () => {
-  // 保存数据
+  // Save the data
   replyRewrite.value.tid = props.tid
   replyRewrite.value.rid = props.rid
   replyRewrite.value.content = props.content
   replyRewrite.value.tags = props.tags
 
-  // 设置正在重新编辑回复状态为真
+  // Set the "isReplyRewriting" state to true
   replyRewrite.value.isReplyRewriting = true
 
-  // 打开回复面板
+  // Open the reply panel
   isEdit.value = true
 }
 
-// 编辑
+// Edit
 const handleClickRewrite = () => {
   if (props.rid === 0) {
     rewriteTopic()
@@ -85,7 +85,6 @@ const handleClickRewrite = () => {
 </script>
 
 <template>
-  <!-- 编辑 -->
   <span v-if="isShowRewrite" @click="handleClickRewrite" class="icon">
     <Icon icon="line-md:pencil-twotone-alt" />
   </span>

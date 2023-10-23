@@ -1,9 +1,9 @@
 import { fetchGet } from '@/utils/request'
 import type * as Balance from './types/balance'
-// 将对象转为请求参数的函数
+// Function to convert an object to query parameters
 import objectToQueryParams from '@/utils/objectToQueryParams'
 
-// 获取 income
+// Get income
 export async function getIncomeApi(
   requestData: Balance.BalanceIncomeRequestData
 ): Promise<Balance.BalanceIncomeResponseData> {
@@ -14,7 +14,7 @@ export async function getIncomeApi(
   return response
 }
 
-// 获取 expenditure
+// Get expenditure
 export async function getExpenditureApi(
   requestData: Balance.BalanceExpenditureRequestData
 ): Promise<Balance.BalanceExpenditureResponseData> {
@@ -25,7 +25,7 @@ export async function getExpenditureApi(
   return response
 }
 
-// 收支总额
+// Profit and Loss Statement
 export async function getPLStatementApi(): Promise<Balance.BalancePLStatementResponseData> {
   const url = `/balance/statement`
   const response = await fetchGet<Balance.BalancePLStatementResponseData>(url)

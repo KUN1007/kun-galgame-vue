@@ -1,7 +1,6 @@
-<!-- 先放一个 Layout 在这里，后面应该用得到 -->
 <script setup lang="ts">
 import { onMounted, watch, ref } from 'vue'
-// 导入动画
+// Import animations
 import 'animate.css'
 import { getCurrentBackground } from '@/hooks/useBackgroundPicture'
 import KUNGalgameTopBar from '@/components/top-bar/KUNGalgameTopBar.vue'
@@ -27,7 +26,7 @@ watch(
 </script>
 
 <template>
-  <!-- #default 是 v-slot 的简写，route 就是路由，Component 是一个 v-node -->
+  <!-- #default is shorthand for v-slot, route is the route, Component is a v-node -->
   <div class="app" :style="{ backgroundImage: `url(${imageURL})` }">
     <div class="top-bar">
       <KUNGalgameTopBar />
@@ -37,7 +36,9 @@ watch(
       <Transition
         :enter-active-class="`animate__animated ${route.meta.transition}`"
       >
-        <!-- 坑！这里必须要加 key，不然同一界面 vue router 会识别不出来页面的更新，导致页面不刷新 -->
+        <!-- ATTENTION! You must include a key here; otherwise
+          , Vue Router won't recognize page updates for the same page
+          , causing the page not to refresh -->
         <component :is="Component" :key="route.fullPath"></component>
       </Transition>
     </RouterView>

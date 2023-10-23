@@ -1,8 +1,12 @@
 /**
- * 这里的 interface 及 api 命名需遵循 请求方式 + 文件夹名 + Others 的规范，保证命名不重复
+ * The naming of interfaces and APIs here must follow the convention of
+ *
+ *  request method + folder name + Others
+ *
+ * to ensure that the naming is not duplicated.
  */
 
-// 暴露出所有 interface
+// Expose all interfaces
 export * from './balance/types/balance'
 export * from './edit/types/edit'
 export * from './home/types/home'
@@ -13,7 +17,7 @@ export * from './ranking/types/ranking'
 export * from './topic/types'
 export * from './update-log/types/updateLog'
 
-// 暴露出所有 api
+// Expose all APIs
 export * from './balance'
 export * from './edit'
 export * from './home'

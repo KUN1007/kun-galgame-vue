@@ -11,16 +11,16 @@ import { topicSortItem, topicIconMap } from './navSortItem'
 
 const { topic } = storeToRefs(useKUNGalgameRankingStore())
 const topics = ref<RankingTopics[]>([])
-// 升序降序
+// Ascending or descending order
 const isAscending = ref(false)
 
-// 获取话题
+// Get topics
 const getTopics = async () => {
   const responseData = await useKUNGalgameRankingStore().getTopics()
   return responseData.data
 }
 
-// 监听话题数据获取新话题
+// Watch for new topics when topic data changes
 watch(
   () => topic,
   async () => {
@@ -29,12 +29,12 @@ watch(
   { deep: true }
 )
 
-// 挂载时获取话题
+// Fetch topics when the component is mounted
 onMounted(async () => {
   topics.value = await getTopics()
 })
 
-// 切换排序方式
+// Toggle the sorting order
 const handleClickSortOrder = () => {
   isAscending.value = !isAscending.value
   if (isAscending.value) {
@@ -46,13 +46,9 @@ const handleClickSortOrder = () => {
 </script>
 
 <template>
-  <!-- 话题排行 -->
   <div class="topic">
-    <!-- 话题排行标题 -->
     <div class="title">{{ $tm('ranking.topic') }}</div>
-    <!-- 话题排行的交互 -->
     <div class="nav">
-      <!-- 升序降序 -->
       <div class="order" @click="handleClickSortOrder">
         <Transition name="order" mode="out-in">
           <div v-if="isAscending">
@@ -66,11 +62,9 @@ const handleClickSortOrder = () => {
         </Transition>
       </div>
 
-      <!-- 排序 -->
       <div class="sort">
         <Icon class="icon" :icon="topicIconMap[topic.sortField]" />
         <span>{{ $tm('ranking.filter') }}</span>
-        <!-- 排序子菜单 -->
         <div class="submenu">
           <div
             class="item"
@@ -84,7 +78,7 @@ const handleClickSortOrder = () => {
         </div>
       </div>
     </div>
-    <!-- 单个话题的容器 -->
+
     <div class="container">
       <Topic :field="topic.sortField" :topics="topics" />
     </div>
@@ -92,12 +86,11 @@ const handleClickSortOrder = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 话题排行 */
 .topic {
   width: 50%;
   height: calc(100% - 50px - 20px - 40px);
 }
-/* 话题排行标题 */
+
 .title {
   font-size: 27px;
   color: var(--kungalgame-blue-4);
@@ -107,7 +100,7 @@ const handleClickSortOrder = () => {
   align-items: center;
   margin-bottom: 20px;
 }
-/* 话题排行的交互 */
+
 .nav {
   height: 40px;
   display: flex;
@@ -168,19 +161,20 @@ const handleClickSortOrder = () => {
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-5);
   backdrop-filter: blur(5px);
+
   .item {
     transition: all 0.2s;
     height: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     &:hover {
       background-color: var(--kungalgame-trans-blue-1);
     }
   }
 }
 
-/* 单个话题的容器 */
 .container {
   height: 100%;
   border-top: none;
@@ -194,11 +188,12 @@ const handleClickSortOrder = () => {
     width: 4px;
     height: 0;
   }
+
   &::-webkit-scrollbar-thumb {
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
-  /* 兼容火狐 */
+
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1);
 }

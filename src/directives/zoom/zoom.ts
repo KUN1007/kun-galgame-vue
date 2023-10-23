@@ -1,10 +1,10 @@
 import type { Directive, DirectiveBinding } from 'vue'
 
-/* 该插件未启用 */
+/* This plugin is not enabled */
 
-// 放大 v-html 渲染出来的节点中的图片
+// Enlarge images in nodes rendered by v-html
 export const zoom: Directive = {
-  // binding 指的是传给指定的值，这里没有
+  // The binding refers to values passed to the directive; there are none here
   mounted(element: HTMLElement, binding: DirectiveBinding) {
     const { scale, time } = binding.value || { scale: 1.2, time: 0.3 }
 

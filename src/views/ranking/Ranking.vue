@@ -5,28 +5,26 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 </script>
 
 <template>
-  <!-- 根容器 -->
   <div class="root">
-    <!-- 内容区 -->
     <div class="article">
       <KUNGalgamerForm />
       <TopicForm />
     </div>
-    <!-- 版权 -->
+
     <KUNGalgameFooter style="margin: 20px auto" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .root {
-  height: calc(100vh - 65px);
-  min-height: 1000px;
+  height: 100%;
+  min-height: calc(100vh - 65px);
   display: flex;
   flex-direction: column;
 }
-/* 内容区 */
+
 .article {
-  height: 100%;
+  height: 100vh;
   width: 90%;
   background-color: var(--kungalgame-trans-white-5);
   backdrop-filter: blur(5px);
@@ -44,6 +42,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
     min-height: none;
     height: 100%;
   }
+
   .article {
     width: 95%;
     height: 100%;

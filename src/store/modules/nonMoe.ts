@@ -6,7 +6,6 @@ import { getNonMoeLogsApi } from '@/api'
 
 export const useKUNGalgameNonMoeStore = defineStore({
   id: 'KUNGalgameNonMoe',
-  // 不持久
   persist: false,
   state: (): NonMoeLogRequestData => ({
     page: 1,
@@ -15,7 +14,6 @@ export const useKUNGalgameNonMoeStore = defineStore({
   }),
   getters: {},
   actions: {
-    // 获取不萌记录
     async getLogs(): Promise<NonMoeGetLogsResponseData> {
       const requestData: NonMoeLogRequestData = {
         page: this.page,

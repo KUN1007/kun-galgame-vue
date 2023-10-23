@@ -1,56 +1,52 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-// 全局消息组件（顶部）
 import Message from '@/components/alert/Message'
 import { debounce } from '@/utils/debounce'
 
 import { TopicComment } from '@/api/index'
 
-// 导入用户 store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-// 使用不持久的评论 store
 import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
 
 const { name } = storeToRefs(useKUNGalgameUserStore())
-
 const { tid, rid, toUid, toUsername, content, isShowCommentPanelRid } =
   storeToRefs(useTempCommentStore())
 
-// 定义父组件 emits
+// Define parent component emits
 const emits = defineEmits<{
   getCommentEmits: [newComment: TopicComment]
 }>()
 
-// 评论的内容
+// Comment content
 const commentValue = ref('')
 
-// 处理评论输入
+// Handle comment input
 const handleInputComment = () => {
-  // 创建一个防抖处理函数
+  // Create a debounced processing function
   const debouncedUpdateContent = debounce(() => {
     content.value = commentValue.value
   }, 300)
 
-  // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
+  // Call the debounced processing function
+  // which will execute the update operation only once within the specified delay
   debouncedUpdateContent()
 }
 
-// 检查评论是否合法
+// Check if the comment is valid
 const isValidComment = () => {
-  // 评论内容为空警告
+  // Warning if comment content is empty
   if (!content.value.trim()) {
     Message('Comment content cannot be empty!', '评论内容不能为空！', 'warn')
     return false
   }
 
-  // 评论内容超出限制警告
+  // Warning if comment content exceeds the limit
   if (content.value.trim().length > 1007) {
     Message(
       'The maximum length for comments should not exceed 1007 characters.',
-      '评论最大长度不可超过1007个字符',
+      '评论最大长度不可超过 1007 个字符',
       'warn'
     )
     return false
@@ -59,10 +55,10 @@ const isValidComment = () => {
   return true
 }
 
-// 发布评论
+// Publish a comment
 const handlePublishComment = async () => {
   if (isValidComment()) {
-    // 获取新评论
+    // Get the new comment
     const newComment = (
       await useKUNGalgameTopicStore().postNewComment(
         tid.value,
@@ -72,17 +68,17 @@ const handlePublishComment = async () => {
       )
     ).data
 
-    // 将新的评论内容给父组件
+    // Pass the new comment content to the parent component
     emits('getCommentEmits', newComment)
 
-    // 提醒用户
-    Message('Comment publish successfully!', '评论发布成功', 'success')
+    // Inform the user
+    Message('Comment published successfully!', '评论发布成功', 'success')
 
     handleCloseCommentPanel()
   }
 }
 
-// 关闭评论面板
+// Close the comment panel
 const handleCloseCommentPanel = () => {
   isShowCommentPanelRid.value = 0
 }
@@ -105,7 +101,7 @@ const handleCloseCommentPanel = () => {
         </button>
       </div>
     </div>
-    <!-- textarea 容器 -->
+    <!-- Textarea container -->
     <div class="container">
       <textarea
         name="comment"
@@ -116,14 +112,13 @@ const handleCloseCommentPanel = () => {
       >
       </textarea>
 
-      <!-- 文字计数 -->
+      <!-- Text count -->
       <div class="count">{{ commentValue.length }}</div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 评论区输入的弹出容器 */
 .panel {
   display: flex;
   flex-direction: column;
@@ -143,14 +138,18 @@ const handleCloseCommentPanel = () => {
 .title {
   display: flex;
   flex-wrap: wrap;
+
   span {
     padding-bottom: 5px;
+
     &:nth-child(2) {
       margin: 0 5px;
     }
+
     &:nth-child(3) {
       cursor: pointer;
       color: var(--kungalgame-blue-4);
+
       &:hover {
         text-decoration: underline;
       }
@@ -162,6 +161,7 @@ const handleCloseCommentPanel = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+
   button {
     cursor: pointer;
     transition: all 0.2s;
@@ -170,10 +170,12 @@ const handleCloseCommentPanel = () => {
     border: 1px solid var(--kungalgame-blue-4);
     border-radius: 5px;
     background-color: var(--kungalgame-trans-white-5);
+
     &:hover {
       background-color: var(--kungalgame-blue-4);
       color: var(--kungalgame-white);
     }
+
     &:nth-child(2) {
       margin-left: 5px;
     }
@@ -183,6 +185,7 @@ const handleCloseCommentPanel = () => {
 .container {
   position: relative;
   display: flex;
+
   textarea {
     color: var(--kungalgame-font-color-3);
     flex: 1;
@@ -192,6 +195,7 @@ const handleCloseCommentPanel = () => {
     background-color: var(--kungalgame-trans-white-9);
     border-radius: 5px;
     padding: 5px;
+
     &:focus {
       border: 1px solid var(--kungalgame-pink-3);
     }

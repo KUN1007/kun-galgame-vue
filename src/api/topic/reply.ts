@@ -1,9 +1,9 @@
 import { fetchGet, fetchPost, fetchPut } from '@/utils/request'
-// 将对象转为请求参数的函数
+// Function to convert an object to query parameters
 import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as Reply from './types/reply'
 
-// 根据话题 tid 获取话题回复
+// Get topic replies by tid
 export async function getRepliesByPidApi(
   request: Reply.TopicReplyRequestData
 ): Promise<Reply.TopicReplyResponseData> {
@@ -15,7 +15,7 @@ export async function getRepliesByPidApi(
   return response
 }
 
-// 根据 tid 创建一个回复
+// Create a reply by tid
 export async function postReplyByPidApi(
   request: Reply.TopicCreateReplyRequestData
 ): Promise<Reply.TopicCreateReplyResponseData> {
@@ -29,7 +29,7 @@ export async function postReplyByPidApi(
   return response
 }
 
-// 推
+// Upvote a reply
 export async function updateReplyUpvoteApi(
   request: Reply.TopicUpvoteReplyRequestData
 ): Promise<Reply.TopicUpvoteReplyResponseData> {
@@ -41,7 +41,7 @@ export async function updateReplyUpvoteApi(
   return response
 }
 
-// 点赞
+// Like a reply
 export async function updateReplyLikeApi(
   request: Reply.TopicLikeReplyRequestData
 ): Promise<Reply.TopicLikeReplyResponseData> {
@@ -53,7 +53,7 @@ export async function updateReplyLikeApi(
   return response
 }
 
-// 点踩
+// Dislike a reply
 export async function updateReplyDislikeApi(
   request: Reply.TopicDislikeReplyRequestData
 ): Promise<Reply.TopicDislikeReplyResponseData> {
@@ -65,7 +65,7 @@ export async function updateReplyDislikeApi(
   return response
 }
 
-// 更新回复
+// Update a reply
 export async function updateReplyApi(
   requestData: Reply.TopicUpdateReplyRequestData
 ): Promise<Reply.TopicUpdateReplyResponseData> {

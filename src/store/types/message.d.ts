@@ -1,20 +1,20 @@
 export interface MessageStore {
-  // 是否展示通知消息
+  // Whether to display informational messages
   showInfo: boolean
-  // 是否展示警告消息
+  // Whether to display warning messages
   showAlert: boolean
-  // 通知消息的内容
+  // Content of informational messages
   infoMsg: string
-  // 警告消息的内容
+  // Content of warning messages
   alertMsg: string
-  // 是否展示取消按钮，Alert 组件专用
+  // Whether to display a cancel button (used by Alert component)
   isShowCancel: boolean
-  // 返回确认信息，Alert 组件专用
+  // Response confirmation (used by Alert component)
   confirm: boolean
 
-  // 人机验证组件
-  // 是否显示人机验证
+  // CAPTCHA component
+  // Whether to display CAPTCHA
   isShowCapture: boolean
-  // 是否验证通过
+  // Whether CAPTCHA verification is successful
   isCaptureSuccessful: boolean
 }

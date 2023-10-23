@@ -1,21 +1,21 @@
 /**
- * 这个文件是 quill 的各种 module，太大的 module 比如 markdown 和 emoji 就不用了
+ * This file contains various modules for Quill. Large modules like markdown and emoji are not used here.
  */
 
-// 引入编辑器
+// Import the editor
 // import { QuillEditor } from '@vueup/vue-quill'
-// 引入 quill module: for resizing and realigning images and iframe video
-// 这里必须这么引入，不然打包之后会报错
+// Import Quill module for resizing and realigning images and iframe video
+// It must be imported this way, otherwise it will throw errors after bundling
 // import BlotFormatter from 'quill-blot-formatter'
 // import BlotFormatter from 'quill-blot-formatter/dist/BlotFormatter'
-// 引入 module: URL、邮箱 自动识别
+// Import module for automatic recognition of URLs and email addresses
 import MagicUrl from 'quill-magic-url'
 import '@/styles/editor/editor.snow.scss'
-// 引入 module: 压缩图片、上传图片（太好用了 www）
+// Import module for image compression and uploading (very useful)
 import ImageCompress from 'quill-image-compress'
 import Message from '../alert/Message'
 
-// 编辑器 modules
+// Editor modules
 export const modules = [
   // BlotFormatter
   // {
@@ -69,7 +69,7 @@ export const modules = [
       //   const formData = new FormData()
       //   formData.append('file', imageBlob)
 
-      //   /* TODO: 这里要改成后端接口 */
+      //   /* TODO: Change this to a backend API */
 
       //   fetch('127.0.0.1:10008/upload', { method: 'POST', body: formData })
       //     .then((response) => response.text())
@@ -81,7 +81,7 @@ export const modules = [
       //       console.error(error)
       //     })
       // },
-      // 临时开启一下控制台调试
+      // Temporarily enable console debugging
       debug: false,
     },
   },

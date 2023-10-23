@@ -1,8 +1,8 @@
 /*
- * 用户的信息存储
- */
-import { defineStore } from 'pinia'
 
+User Information Storage
+*/
+import { defineStore } from 'pinia'
 import type {
   LoginRequestData,
   LoginResponseData,
@@ -52,10 +52,10 @@ import {
   updateUserPasswordByEmailApi,
 } from '@/api'
 
-// kungalgame store 类型
+// KUNGalgamer store type
 import { KUNGalgamerStore } from '../types/kungalgamer'
 
-// 这里用了 pinia-plugin-persistedstate，直接存储即可
+// Here, pinia-plugin-persistedstate is used, so storage is automatic
 export const useKUNGalgameUserStore = defineStore({
   id: 'KUNGalgameUser',
   persist: true,
@@ -70,7 +70,7 @@ export const useKUNGalgameUserStore = defineStore({
   }),
   getters: {},
   actions: {
-    // 设置用户信息
+    // Set user information
     setUserInfo(
       uid: number,
       name: string,
@@ -85,16 +85,20 @@ export const useKUNGalgameUserStore = defineStore({
       this.moemoepoint = moemoepoint
       this.roles = roles
     },
+
     setToken(moemoeAccessToken: string) {
       this.moemoeAccessToken = moemoeAccessToken
     },
+
     getToken() {
       return this.moemoeAccessToken
     },
+
     removeToken() {
       this.moemoeAccessToken = ''
     },
-    // 登陆
+
+    // Login
     async login(request: LoginRequestData): Promise<LoginResponseData> {
       const res = await postLoginDataApi(request)
       if (res.code === 200) {
@@ -113,12 +117,14 @@ export const useKUNGalgameUserStore = defineStore({
       }
       return res
     },
-    // 发送验证码
+
+    // Send verification code
     async sendCode(email: string): Promise<void> {
       const request: VerificationCodeMailRequestData = { email }
       return await sendVerificationCodeMailApi(request)
     },
-    // 注册
+
+    // Register
     async register(request: RegisterRequestData): Promise<LoginResponseData> {
       const res = await postRegisterDataApi(request)
 
@@ -139,12 +145,12 @@ export const useKUNGalgameUserStore = defineStore({
       return res
     },
 
-    // 获取单个用户基本信息
+    // Get individual user basic information
     async getUser(uid: number): Promise<UserInfoResponseData> {
       return getUserByUidApi(uid)
     },
 
-    // 更新用户 avatar
+    // Update user avatar
     async updateAvatar(
       avatar: FormData
     ): Promise<UserUpdateAvatarResponseData> {
@@ -155,7 +161,7 @@ export const useKUNGalgameUserStore = defineStore({
       return updateUserAvatarApi(request)
     },
 
-    // 更新用户 bio
+    // Update user bio
     async updateBio(bio: string): Promise<UserUpdateBioResponseData> {
       const request: UserUpdateBioRequestData = {
         uid: this.uid,
@@ -164,20 +170,20 @@ export const useKUNGalgameUserStore = defineStore({
       return updateUserBioApi(request)
     },
 
-    // 获取用户邮箱
+    // Get user email
     async getEmail(): Promise<UserGetUserEmailResponseData> {
       const uid = this.uid
       return getUserEmailApi(uid)
     },
 
-    // 获取重置邮箱验证码
+    // Get reset email code
     async getResetEmailCode(
       email: string
     ): Promise<UserGetEmailRestCodeResponseData> {
       return getUserResetEmailCodeApi(email)
     },
 
-    // 更新邮箱
+    // Update email
     async updateEmail(
       email: string,
       code: string
@@ -190,7 +196,7 @@ export const useKUNGalgameUserStore = defineStore({
       return updateUserEmailApi(requestData)
     },
 
-    // 更新密码
+    // Update password
     async updatePassword(
       oldPassword: string,
       newPassword: string
@@ -203,7 +209,7 @@ export const useKUNGalgameUserStore = defineStore({
       return updateUserPasswordApi(requestData)
     },
 
-    // 获取用户的话题
+    // Get user topics
     async getTopics(tidArray: number[]): Promise<UserGetUserTopicResponseData> {
       const requestData: UserGetUserTopicRequestData = {
         uid: this.uid,
@@ -212,7 +218,7 @@ export const useKUNGalgameUserStore = defineStore({
       return getUserTopicApi(requestData)
     },
 
-    // 获取用户回复
+    // Get user replies
     async getReplies(
       ridArray: number[]
     ): Promise<UserGetUserReplyResponseData> {
@@ -223,7 +229,7 @@ export const useKUNGalgameUserStore = defineStore({
       return getUserReplyApi(requestData)
     },
 
-    // 获取用户评论
+    // Get user comments
     async getComments(
       cidArray: number[]
     ): Promise<UserGetUserCommentResponseData> {
@@ -234,7 +240,7 @@ export const useKUNGalgameUserStore = defineStore({
       return getUserCommentApi(requestData)
     },
 
-    // 根据用户邮箱重置密码
+    // Reset password by user email
     async updatePasswordByEmail(
       email: string,
       code: string,

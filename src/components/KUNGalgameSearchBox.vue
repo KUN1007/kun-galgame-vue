@@ -1,40 +1,41 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-// 导入防抖函数
+// Import debounce function
 import { debounce } from '@/utils/debounce'
 import { ref, onBeforeMount } from 'vue'
-// 导入用户 store
+// Import user store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 const { keywords, searchHistory, category } = storeToRefs(
   useKUNGalgameHomeStore()
 )
 
-// 输入框的值
+// Value of the input field
 const inputValue = ref('')
-// 是否显示搜索历史
+// Whether to show search history
 const isShowSearchHistory = ref(false)
-// 输入框被激活之后的样式
+// Style when the input field is active
 const inputActiveClass = ref({})
 
-// 定义 props，这里的作用是告诉输入框在哪个分类中搜索话题
+// Define props to tell the input field in which category to search for topics
 const props = defineProps(['category'])
 
-// 初始化搜索框内容，不然刷新页面 input 内依然有内容
-// 将搜索的话题类别赋值，因为搜索框会在三个页面渲染，对应三个分类
+// Initialize the content of the search box to prevent content from persisting after page refresh
+// Assign the topic category to be searched because the search box will be rendered on three pages
+// , corresponding to three categories
 onBeforeMount(() => {
   keywords.value = ''
   category.value = props.category
 })
 
-// 定义防抖处理函数
+// Define the debounce handling function
 const debouncedSearch = debounce((inputValue: string) => {
-  // 搜索之前重置页数，是否加载等页面状态
+  // Reset page status and loading state before searching
   useKUNGalgameHomeStore().resetPageStatus()
   keywords.value = inputValue
-}, 300) // 300 毫秒的防抖延迟
+}, 300) // 300 milliseconds debounce delay
 
-// 当搜索框 focus 时
+// When the search box is focused
 const handleInputFocus = () => {
   if (searchHistory.value.length !== 0) {
     isShowSearchHistory.value = true
@@ -44,61 +45,61 @@ const handleInputFocus = () => {
   }
 }
 
-// 当搜索框 blur 时
+// When the search box is blurred
 const handleInputBlur = () => {
-  // 延迟一段时间隐藏搜索历史，以便点击搜索历史时可以触发填充事件
+  // Delay hiding the search history so that clicking on the search history can trigger the fill event
   setTimeout(() => {
     isShowSearchHistory.value = false
     inputActiveClass.value = {}
   }, 100)
 }
 
-// 搜索函数逻辑
+// Search function logic
 const search = () => {
   debouncedSearch(inputValue.value)
   if (!searchHistory.value.includes(inputValue.value)) {
-    // 仅当数组中没有相同元素时才将元素推入数组
+    // Push the element into the array only when there are no identical elements in the array
     searchHistory.value.push(inputValue.value)
   }
 }
 
-// 用户点击 enter 时
+// When the user presses Enter
 const handleClickEnter = (event: KeyboardEvent) => {
   event.preventDefault()
   search()
 }
 
-// 点击搜索按钮搜索逻辑
+// Clicking the search button triggers the search logic
 const handleClickSearch = () => {
   if (inputValue.value.trim()) {
     search()
   }
 }
 
-// 点击历史记录
+// Clicking on search history
 const handleClickHistory = (index: number) => {
   inputValue.value = searchHistory.value[index]
 }
 
-// 清空历史记录
+// Clear search history
 const clearSearchHistory = () => {
   searchHistory.value = []
 }
 
-// 删除历史记录
+// Delete search history
 const handleDeleteHistory = (historyIndex: number) => {
   searchHistory.value.splice(historyIndex, 1)
 }
 </script>
 
 <template>
-  <!-- 交互区搜索框 -->
+  <!-- Interactive area search box -->
   <div class="container">
-    <!-- 搜索框表单 -->
+    <!-- Search box form -->
     <form class="search-form">
-      <!-- 搜索框内容 -->
+      <!-- Search box content -->
       <div class="content">
-        <!-- 框体 -->
+        <!-- Input field -->
         <input
           v-model="inputValue"
           type="search"
@@ -111,21 +112,21 @@ const handleDeleteHistory = (historyIndex: number) => {
           @keydown.enter="handleClickEnter"
         />
       </div>
-      <!-- 搜索框图标 -->
+      <!-- Search box icon -->
       <div class="search-btn" @click="handleClickSearch">
         <Icon icon="line-md:search" />
       </div>
     </form>
-    <!-- 搜索历史容器 -->
+    <!-- Search history container -->
     <div v-if="isShowSearchHistory" class="history">
-      <!-- 搜索历史标题 -->
+      <!-- Search history title -->
       <div class="title">
         <span>{{ $tm('mainPage.header.history') }}</span>
         <span @click="clearSearchHistory">
           {{ $tm('mainPage.header.clear') }}
         </span>
       </div>
-      <!-- 搜索历史 -->
+      <!-- Search history -->
       <div class="history-container">
         <div
           class="single-history"
@@ -144,79 +145,87 @@ const handleDeleteHistory = (historyIndex: number) => {
 </template>
 
 <style lang="scss" scoped>
-/* 搜索话题 */
+/* Search topics */
 .container {
   height: 39px;
   width: 1px;
   justify-content: center;
   align-items: center;
-  /* 页面缩小不换行 */
+  /* Prevent line breaks when the page is resized */
   white-space: nowrap;
   background-color: var(--kungalgame-trans-blue-2);
   border: 1px solid var(--kungalgame-blue-4);
   flex-grow: 2;
-  /* 相对于二级菜单定位 */
+  /* Position relative to the secondary menu */
   position: relative;
   display: flex;
   color: var(--kungalgame-font-color-3);
 }
-/* 搜索框表单 */
+
+/* Search box form */
 .search-form {
   display: flex;
   height: 39px;
-  /* 随着页面自增长 */
+  /* Grows with the page */
   width: 1px;
   flex-grow: 1;
-  /* 居中 */
+  /* Centered */
   justify-content: center;
   align-items: center;
 }
-/* 搜索内容区 */
+
+/* Search content area */
 .content {
   width: 100%;
 }
-/* 框体 */
+
+/* Input field */
 .input {
   padding: 0 15px;
   height: 39px;
   width: 100%;
-  /* 搜索时输入的字体大小 */
+  /* Font size for input during search */
   font-size: 16px;
   border: none;
   background-color: var(--kungalgame-trans-white-5);
   color: var(--kungalgame-font-color-3);
   transition: all 0.2s;
+
   &::placeholder {
     color: var(--kungalgame-font-color-1);
   }
 }
-/* 搜索按钮 */
+
+/* Search button */
 .search-btn {
-  /* 正方形，不缩小 */
+  /* Square shape, does not shrink */
   height: 39px;
   width: 39px;
   flex-shrink: 0;
   border-left: 1px solid var(--kungalgame-trans-blue-4);
-  /* 搜索图标居中 */
+  /* Center the search icon */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
   cursor: pointer;
   transition: all 0.2s;
+
   &:hover {
     background-color: var(--kungalgame-red-1);
   }
+
   &:active {
     background-color: var(--kungalgame-red-2);
   }
 }
-/* 搜索历史的容器 */
+
+/* Search history container */
 .history {
   width: 100%;
-  /* 相对于 nav 的搜索区域绝对定位 */
+  /* Absolute positioning relative to the search area in the nav */
   position: absolute;
-  /* 紧话题搜索区定位 */
+  /* Tight positioning under the topic search area */
   top: 39px;
   left: 0;
   flex-direction: column;
@@ -226,56 +235,65 @@ const handleDeleteHistory = (historyIndex: number) => {
   border-radius: 7px;
   box-shadow: var(--shadow);
 }
-/* 搜索历史 title 的文字 */
+
+/* Text for the search history title */
 .title {
   display: flex;
   margin: 10px;
-  /* 两个提示文字左右分布 */
+  /* Distribute two hint texts left and right */
   justify-content: space-between;
+
   span {
     font-size: 14px;
     &:nth-child(2) {
       cursor: pointer;
       border-bottom: 1.5px solid var(--kungalgame-trans-white-5);
+
       &:hover {
         border-bottom: 1.5px solid var(--kungalgame-blue-4);
       }
     }
   }
 }
-/* 搜索历史 TAG 的存放容器 */
+
+/* Container for storing search history tags */
 .history-container {
   display: flex;
   flex-direction: column;
-  /* 单个搜索记录的字体 */
+  /* Font for individual search records */
   font-size: 13px;
-  /* 搜索记录左右两侧的空白距离 */
+  /* Blank space on the left and right sides of the search record */
   margin: 10px;
 }
 
 .single-history {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space between;
   padding: 7px 3px;
   margin: 2px 0;
+
   &:hover {
     color: var(--kungalgame-blue-4);
+
     .delete {
       display: flex;
     }
   }
+
   span:nth-child(1) {
     cursor: default;
     position: relative;
     display: flex;
     overflow: hidden;
   }
+
   span:nth-child(2) {
     width: 17px;
   }
 }
-/* 删除按钮 */
+
+/* Delete button */
 .delete {
   width: 30px;
   right: 5px;

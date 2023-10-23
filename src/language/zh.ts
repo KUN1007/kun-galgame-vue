@@ -115,6 +115,10 @@ export default {
       to: '回复给',
       master: '狗修金',
       reply: '杂鱼~♡',
+      advance: '高级选项',
+      confirm: '确认发布',
+      rewrite: '确认 Rewrite',
+      save: '保存草稿',
     },
   },
   update: {
@@ -344,6 +348,18 @@ export default {
     server: '，不过可以帮我们缓解一部分服务器的费用，您确定要赞助吗？',
     confirm: '确定赞助',
     back: '返回主页',
+  },
+  page403: {
+    permission: `您没有权限访问这个页面`,
+    back: '点击返回主页',
+  },
+  page404: {
+    existent: `您访问了一个不存在的页面`,
+    back: '点击返回主页',
+  },
+  redirect: {
+    success: '登陆成功',
+    home: '3 秒后你将会进入主页',
   },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {

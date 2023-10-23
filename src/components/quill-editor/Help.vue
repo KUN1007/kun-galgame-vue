@@ -1,34 +1,34 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
 
-// 导入路由
+// Import the router
 import { useRoute, useRouter } from 'vue-router'
 
-// 引入图标字体
+// Import the icon font
 import { Icon } from '@iconify/vue'
 
-// 引入 css 动画
+// Import CSS animations
 import 'animate.css'
 
 const router = useRouter()
-// 当前的路由
+// Current route
 const route = useRoute()
-// 当前页面路由的名字
+// Name of the current page route
 const routeName = computed(() => route.name as string)
 
-// 根据鼠标的坐标调整背景色
+// Adjust the background color based on the mouse coordinates
 const x = ref(0)
-// 是否显示信息提示
+// Whether to display information prompts
 const isShowInfo = ref(false)
 
-// 当鼠标移动时
+// When the mouse moves
 const onMousemove = (e: MouseEvent) => {
   x.value = e.clientX
 }
 
-// 点击帮助
+// Click the help button
 const handleClickHelp = () => {
   if (routeName.value === 'Edit') {
     isShowInfo.value = true
@@ -92,6 +92,7 @@ const handleClickHelp = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   span {
     display: flex;
   }
@@ -104,23 +105,28 @@ const handleClickHelp = () => {
   transition: 0.3s background-color ease;
   border-radius: 5px;
   margin-bottom: 100px;
+
   ul {
     display: flex;
     flex-direction: column;
     background-color: var(--kungalgame-white);
     padding: 5px;
     border-radius: 5px;
+
     li {
       &::before {
         content: '❆ ';
         color: var(--kungalgame-pink-3);
       }
+
       cursor: default;
       font-size: 15px;
       line-height: 27px;
+
       span {
         cursor: pointer;
         color: var(--kungalgame-blue-4);
+
         &:hover {
           text-decoration: underline;
         }

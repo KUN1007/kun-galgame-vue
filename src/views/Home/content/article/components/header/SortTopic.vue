@@ -1,14 +1,14 @@
 <script setup lang="ts">
-// 导入图标
+// Import icons
 import { Icon } from '@iconify/vue'
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 
-// 导入排序列表的字段
+// Import sorting list fields
 import { navSortItem } from './navSortItem'
 import { ref } from 'vue'
 
-// 升序和降序的样式
+// Styles for ascending and descending orders
 const ascClass = ref('')
 
 const { sortField, sortOrder } = storeToRefs(useKUNGalgameHomeStore())
@@ -21,7 +21,7 @@ const handleSortByField = (field: string) => {
 const orderAscending = () => {
   useKUNGalgameHomeStore().resetPageStatus()
   sortOrder.value = 'asc'
-  // 更改样式
+  // Change style
   ascClass.value = 'active'
 }
 
@@ -52,7 +52,8 @@ const isSortField = () => {
     <span class="filter">
       <Icon v-if="isSortField()" :icon="iconMap[sortField]" />
     </span>
-    <!-- 排序的二级菜单 -->
+
+    <!-- Secondary menu for sorting -->
     <div class="sort-container">
       <div class="sort-submenu">
         <div
@@ -64,6 +65,7 @@ const isSortField = () => {
           <span><Icon class="icon-item" :icon="kun.icon" /></span>
           <span>{{ $tm(`mainPage.header.${kun.name}`) }}</span>
         </div>
+
         <div class="sort-order">
           <span @click="orderAscending">
             <Icon icon="tdesign:order-ascending" />
@@ -78,18 +80,15 @@ const isSortField = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 筛选、搜索话题、更多 */
 .container {
   height: 100%;
   width: 1px;
-  /* 居中弹性盒 */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 页面缩小不换行 */
   white-space: nowrap;
 }
-/* 筛选 */
+
 .container {
   background-color: var(--kungalgame-trans-blue-3);
   flex-grow: 1;
@@ -108,6 +107,7 @@ const isSortField = () => {
   top: 100%;
   position: absolute;
 }
+
 .filter {
   display: flex;
   justify-content: center;
@@ -116,6 +116,7 @@ const isSortField = () => {
   margin-left: 7px;
   color: var(--kungalgame-blue-4);
 }
+
 .sort-submenu {
   display: none;
   flex-direction: column;
@@ -139,6 +140,7 @@ const isSortField = () => {
     background-color: var(--kungalgame-trans-blue-1);
     backdrop-filter: blur(5px);
   }
+
   &:active {
     background-color: var(--kungalgame-trans-blue-2);
   }
@@ -150,13 +152,13 @@ const isSortField = () => {
   font-size: 20px;
 }
 
-/* 按照升序还是降序排列 */
 .sort-order {
   width: 100%;
   padding: 10px 0;
   display: flex;
   cursor: default;
   background-color: var(--kungalgame-trans-white-2);
+
   span {
     color: var(--kungalgame-blue-4);
     width: 100%;
@@ -164,19 +166,20 @@ const isSortField = () => {
     justify-content: center;
     align-items: center;
     font-size: 17px;
+
     &:hover {
       transition: all 0.2s;
       color: var(--kungalgame-red-4);
     }
+
     &:nth-child(2) {
       border-left: 1px solid var(--kungalgame-trans-blue-4);
     }
   }
 }
-
-/* 点击升序后的样式 */
 .active {
   background-color: var(--kungalgame-trans-red-3);
+
   .filter {
     color: var(--kungalgame-red-4);
   }
@@ -187,6 +190,7 @@ const isSortField = () => {
     display: flex;
     justify-content: center;
     align-items: center;
+
     span {
       &:nth-child(1) {
         display: none;

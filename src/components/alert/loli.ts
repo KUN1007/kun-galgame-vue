@@ -1,6 +1,6 @@
-// 获取随机数的函数
+// Function to get a random number
 import { randomNum } from '@/utils/random'
-// 获取本地图片文件，注意这里不能用 @ 作为基础路径，只能用 ..
+// Get a local image file; note that you cannot use @ as the base path here, you can only use ..
 const getAssetsFile = (name: string) => {
   return new URL(`../../assets/images/alert/${name}.webp`, import.meta.url).href
 }
@@ -11,7 +11,7 @@ let loli = ''
 let name = ''
 
 if (number === 0) {
-  // 其实人家全名叫：アーデルハイト・フォン・ベルクシュトラーセ
+  // Actually, her full name is: アーデルハイト・フォン・ベルクシュトラーセ
   name = 'あーちゃん'
   loli = getAssetsFile(name)
 } else if (number === 1) {

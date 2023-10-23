@@ -2,15 +2,15 @@
 import { ref } from 'vue'
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// 使用全局通知
+// Using global notifications
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 const info = useKUNGalgameMessageStore()
 
-// 导入 i18n
+// Import i18n
 import { useI18n } from 'vue-i18n'
 const { tm } = useI18n()
 
-// 父组件让它发送验证码它再发送
+// The parent component instructs it to send the verification code, and it will do so.
 const props = defineProps<{
   email: string
   isSendCode: boolean
@@ -21,7 +21,7 @@ const isSending = ref(false)
 const countdown = ref(0)
 
 const sendCode = () => {
-  // 如果父组件传值为假直接返回
+  // If the parent component passes a false value, return directly
   if (!props.isSendCode) {
     return
   }
@@ -38,7 +38,7 @@ const sendCode = () => {
       }
     }, 1000)
 
-    // 发送验证码
+    // Send the verification code
     useKUNGalgameUserStore().sendCode(props.email)
 
     info.info(tm('AlertInfo.code.code'))

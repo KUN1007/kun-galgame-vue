@@ -1,4 +1,3 @@
-// 评论的临时数据，用于组件间传输
 import { defineStore } from 'pinia'
 
 import type {
@@ -18,7 +17,6 @@ interface BalanceStore {
 
 export const useKUNGalgameBalanceStore = defineStore({
   id: 'KUNGalgameBalance',
-  // 不持久
   persist: false,
   state: (): BalanceStore => ({
     income: {
@@ -36,9 +34,7 @@ export const useKUNGalgameBalanceStore = defineStore({
   }),
   getters: {},
   actions: {
-    // 获取 income
     async getIncome(): Promise<BalanceIncomeResponseData> {
-      // 这里的默认值用于初始化
       const requestData: BalanceIncomeRequestData = {
         page: this.income.page,
         limit: this.income.limit,
@@ -48,9 +44,7 @@ export const useKUNGalgameBalanceStore = defineStore({
       return await getIncomeApi(requestData)
     },
 
-    // 获取 expenditure
     async getExpenditure(): Promise<BalanceExpenditureResponseData> {
-      // 这里的默认值用于初始化
       const requestData: BalanceExpenditureRequestData = {
         page: this.income.page,
         limit: this.income.limit,
@@ -60,7 +54,6 @@ export const useKUNGalgameBalanceStore = defineStore({
       return await getExpenditureApi(requestData)
     },
 
-    // 获取收支总额
     async getPLStatement(): Promise<BalancePLStatementResponseData> {
       return await getPLStatementApi()
     },

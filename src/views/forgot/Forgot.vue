@@ -5,9 +5,9 @@ import Message from '@/components/alert/Message'
 import Code from '@/components/verification-code/Code.vue'
 import { checkEmail, checkCode, checkPassword } from './check'
 
-// 使用全局通知
+// Use global notification
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 使用用户 store
+// Use the user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
@@ -23,29 +23,29 @@ const input = reactive({
 })
 
 const router = useRouter()
-// 切换界面
+// Switch interfaces
 const flag = ref(true)
-// 是否发送了验证码
+// Whether the code has been sent
 const isSendCode = ref(false)
 
-// 发送验证码
+// Send verification code
 const handleClickSendCode = () => {
   if (!checkEmail(input.email)) {
     return
   }
 
-  // 未完成人机验证
+  // Incomplete CAPTCHA verification
   if (!isCaptureSuccessful.value) {
-    // 显示人机验证
+    // Display CAPTCHA verification
     isShowCapture.value = true
     return
   }
 
-  // 发送验证码
+  // Send verification code
   isSendCode.value = true
 }
 
-// 下一步
+// Next step
 const handleClickNext = () => {
   if (!checkCode(input.email, input.code)) {
     return
@@ -53,18 +53,18 @@ const handleClickNext = () => {
   flag.value = false
 }
 
-// 上一步
+// Previous step
 const handleClickPrev = () => {
   flag.value = true
 }
 
-// 确定更改密码
+// Confirm password change
 const handleChangePassword = async () => {
   if (!checkPassword(input.newPassword, input.confirmPassword)) {
     return
   }
 
-  // 确定更改密码吗?
+  // Are you sure you want to change your password?
   const result = await useKUNGalgameMessageStore().alert(
     'AlertInfo.code.password',
     true
@@ -107,7 +107,7 @@ const handleChangePassword = async () => {
           </div>
         </div>
 
-        <!-- 新密码 -->
+        <!-- New password -->
         <div class="password" v-else-if="!flag">
           <div class="input">
             <span>{{ $tm('forgot.new') }}: </span>

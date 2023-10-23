@@ -6,13 +6,11 @@ const { showAlert, alertMsg, isShowCancel } = storeToRefs(
   useKUNGalgameMessageStore()
 )
 
-// 关闭提示
 const handleClose = () => {
   showAlert.value = false
   useKUNGalgameMessageStore().handleClose()
 }
 
-// 确定提示
 const handleConfirm = () => {
   showAlert.value = false
   useKUNGalgameMessageStore().handleConfirm()

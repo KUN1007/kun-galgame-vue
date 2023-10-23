@@ -8,7 +8,7 @@ const loginURLs = {
   refreshToken: `/auth/token/refresh`,
 }
 
-// 获取用户登录数据
+// Get user login data
 export const postLoginDataApi = async (
   loginData: Login.LoginRequestData
 ): Promise<Login.LoginResponseData> => {
@@ -19,14 +19,14 @@ export const postLoginDataApi = async (
   return response
 }
 
-// 发送验证码，在注册时需要
+// Send verification code, required during registration
 export const sendVerificationCodeMailApi = async (
   email: Login.VerificationCodeMailRequestData
 ): Promise<void> => {
   await fetchPost<void>(loginURLs.verificationCode, email)
 }
 
-// 注册用户，注册成功直接登陆，返回登陆数据
+// Register a user, log in immediately upon successful registration, and return login data
 export const postRegisterDataApi = async (
   registerData: Login.RegisterRequestData
 ): Promise<Login.LoginResponseData> => {
@@ -37,7 +37,7 @@ export const postRegisterDataApi = async (
   return response
 }
 
-// token 失效时获取 refresh token
+// Obtain a new token using a refresh token when the token is invalid
 export const generateTokenByRefreshTokenApi =
   async (): Promise<Login.RefreshTokenResponseData> => {
     const response = await fetchPost<Login.RefreshTokenResponseData>(

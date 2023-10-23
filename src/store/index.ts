@@ -1,50 +1,65 @@
 /**
- * KUNGalgame 的前端是高度依赖于 pinia 和 pinia-plugin-persistedstate 的
- * 所以二者对于网站运行必不可少，是核心库
+ * KUNGalgame heavily relies on Pinia and pinia-plugin-persistedstate for its frontend.
+ * Both are essential libraries for the website to run and are considered core components.
  */
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import type { App } from 'vue'
 
-// 导入编辑界面 store
+// Import store for the income and expense public disclosure page
+import { useKUNGalgameBalanceStore } from './modules/balance'
+
+// Import store for the editing interface
 import { useKUNGalgameEditStore } from './modules/edit'
 
-// 导入 home store
+// Import home store
 import { useKUNGalgameHomeStore } from './modules/home'
 
-// 导入用户 store
+// Import user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
-// 导入 message store
+// Import message store
 import { useKUNGalgameMessageStore } from './modules/message'
 
-// 导入网站设置面板 store
+// Import non-moe records store
+import { useKUNGalgameNonMoeStore } from './modules/nonMoe'
+
+// Import ranking store
+import { useKUNGalgameRankingStore } from './modules/ranking'
+
+// Import website settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 
-// 导入话题详情页面的 store
+// Import store for the topic detail page
 import { useKUNGalgameTopicStore } from './modules/topic'
 
 const store = createPinia()
 
-// 设置 pinia 的函数，在 main.ts 挂载
+// Function to set up Pinia, to be called in main.ts
 export function setupPinia(app: App<Element>) {
   store.use(piniaPluginPersistedstate)
   app.use(store)
 }
 
-// 重置所有 store，用于登出
+// Reset all stores, used for logging out
 export function kungalgameStoreReset() {
+  const balanceStore = useKUNGalgameBalanceStore()
   const editStore = useKUNGalgameEditStore()
   const homeStore = useKUNGalgameHomeStore()
   const userStore = useKUNGalgameUserStore()
   const messageStore = useKUNGalgameMessageStore()
+  const nonMoeStore = useKUNGalgameNonMoeStore()
+  const rankingStore = useKUNGalgameRankingStore()
   const settingsStore = useKUNGalgameSettingsStore()
   const topicStore = useKUNGalgameTopicStore()
 
+  balanceStore.$reset()
   editStore.$reset()
   homeStore.$reset()
   userStore.$reset()
   messageStore.$reset()
+  nonMoeStore.$reset()
+  rankingStore.$reset()
   settingsStore.$reset()
   topicStore.$reset()
 }

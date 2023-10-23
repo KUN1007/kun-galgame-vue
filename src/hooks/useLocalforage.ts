@@ -1,14 +1,16 @@
 import localforage from 'localforage'
 
-// 保存图片
+// Save image
 const saveImage = async (imageData: Blob, imageName: string): Promise<void> => {
   await localforage.setItem(imageName, imageData)
 }
-// 获取图片
+
+// Get image
 const getImage = async (imageName: string): Promise<Blob | null> => {
   return await localforage.getItem(imageName)
 }
-// 删除图片
+
+// Delete image
 const deleteImage = async (imageName: string): Promise<void> => {
   await localforage.removeItem(imageName)
 }

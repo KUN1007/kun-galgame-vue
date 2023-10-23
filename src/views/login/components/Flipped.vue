@@ -1,30 +1,26 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+const isFlipped = ref(false)
+const flipCard = () => {
+  isFlipped.value = !isFlipped.value
+}
+</script>
+
 <template>
   <div>
     <div class="card" :class="{ flipped: isFlipped }">
       <div class="front">
-        <button @click="flipCard">正面按钮</button>
+        <button @click="flipCard">Front Button</button>
       </div>
       <div class="back">
-        <button @click="flipCard">背面按钮</button>
+        <button @click="flipCard">Back Button</button>
         <div class="back-content">
-          <p>这是背面的内容</p>
+          <p>Back Content</p>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-// 使用ref创建一个响应式变量
-const isFlipped = ref(false)
-
-// 点击按钮翻转卡片
-const flipCard = () => {
-  isFlipped.value = !isFlipped.value
-}
-</script>
 
 <style>
 .card {

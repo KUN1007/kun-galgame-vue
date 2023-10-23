@@ -2,7 +2,7 @@ import { fetchGet } from '@/utils/request'
 import * as NonMoe from './types/nonMoe'
 import objectToQueryParams from '@/utils/objectToQueryParams'
 
-// 获取不萌记录
+// Get non-moe logs
 export async function getNonMoeLogsApi(
   request: NonMoe.NonMoeLogRequestData
 ): Promise<NonMoe.NonMoeGetLogsResponseData> {

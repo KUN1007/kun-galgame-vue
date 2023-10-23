@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-// 使用全局通知
+// Using global notifications
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 使用用户 store
+// Using user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
-// 使用设置
+// Using settings
 import Settings from './Settings.vue'
 
 import {
@@ -19,17 +19,16 @@ import {
 } from '@/utils/validate'
 import Code from '@/components/verification-code/Code.vue'
 
-// 使用消息 store
+// Using the message store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
   useKUNGalgameMessageStore()
 )
 
-// 导入 i18n
 import { useI18n } from 'vue-i18n'
 const { tm } = useI18n()
 const info = useKUNGalgameMessageStore()
 
-// 当前的路由
+// Current route
 const router = useRouter()
 const isSendCode = ref(false)
 
@@ -42,7 +41,7 @@ const registerForm = reactive<Record<string, string>>({
   code: '',
 })
 
-// 验证表单是否为空
+// Check if the form fields are empty
 const isEmptyInput = () => {
   if (!registerForm.name.trim()) {
     Message('Username cannot be empty!', '用户名不可为空！', 'warn')
@@ -58,7 +57,7 @@ const isEmptyInput = () => {
   }
 }
 
-// 验证表单是否合法
+// Check if the form fields are valid
 const isValidInput = (): boolean => {
   if (!isEmptyInput()) {
     return false
@@ -78,22 +77,22 @@ const isValidInput = (): boolean => {
   return true
 }
 
-// 发送验证码
+// Send verification code
 const handleSendCode = () => {
-  // 表单为空
+  // If the form is empty
   if (!isValidInput()) {
     Message('Form cannot be empty', '表单不可为空', 'warn')
     return
   }
 
-  // 未完成人机验证
+  // If human verification is not completed
   if (!isCaptureSuccessful.value) {
-    // 显示人机验证
+    // Show human verification
     isShowCapture.value = true
     return
   }
 
-  // 标志验证码已发送
+  // Mark that the code has been sent
   isSendCode.value = true
 }
 
@@ -125,7 +124,7 @@ const handleRegister = async () => {
     return
   }
 
-  // 执行注册逻辑，发送请求，后端校验验证码
+  // Execute registration logic, send a request, and validate the code on the backend
   const res = await useKUNGalgameUserStore().register({
     name: registerForm.name,
     email: registerForm.email,
@@ -133,7 +132,7 @@ const handleRegister = async () => {
     code: registerForm.code,
   })
 
-  // 如果请求成功跳转到主页
+  // If the request is successful, redirect to the main page
   if (res.code === 200) {
     router.push('/')
     Message('Register successfully!', '注册成功！', 'success')
@@ -145,13 +144,10 @@ const handleRegister = async () => {
 </script>
 
 <template>
-  <!-- 注册 -->
   <div class="register">
-    <!-- 设置 -->
     <Settings />
-    <!-- 注册表单 -->
+
     <div class="form">
-      <!-- 标题 -->
       <h2 class="title">{{ $tm('login.register.title') }}</h2>
 
       <div class="container" v-for="item in registerFormItem" :key="item.index">
@@ -170,16 +166,16 @@ const handleRegister = async () => {
         :isSendCode="isSendCode"
       />
 
-      <!-- 注册按钮 -->
+      <!-- Registration button -->
       <button @click="handleRegister" class="btn" type="submit">
         {{ $tm('login.register.title') }}
       </button>
 
-      <!-- 用户协议提示等 -->
+      <!-- User agreement prompt, etc. -->
       <span class="user-agreement">
         {{ $tm('login.register.click') }}
 
-        <!-- 用户协议和隐私政策 -->
+        <!-- User agreement and privacy policy -->
         <div class="licence">
           <RouterLink to="/agreement">
             <span>{{ $tm('login.register.agreement') }}</span>
@@ -205,7 +201,7 @@ const handleRegister = async () => {
   width: 50%;
   z-index: 1;
 }
-/* 登录和注册的字体 */
+
 .title {
   font-weight: 300;
   font-weight: bold;
@@ -218,7 +214,6 @@ const handleRegister = async () => {
   position: relative;
 }
 
-/* 表单的设置 */
 .form {
   background-color: var(--kungalgame-white);
   display: flex;
@@ -229,7 +224,6 @@ const handleRegister = async () => {
   height: 100%;
 }
 
-// 输入框
 .input {
   border: none;
   outline: none;
@@ -239,10 +233,11 @@ const handleRegister = async () => {
   width: 100%;
   background-color: var(--kungalgame-white);
   color: var(--kungalgame-font-color-3);
-}
-.input:focus {
-  border-bottom: 1.5px solid var(--kungalgame-blue-4);
-  transition: 0.2s linear;
+
+  &:focus {
+    border-bottom: 1.5px solid var(--kungalgame-blue-4);
+    transition: 0.2s linear;
+  }
 }
 
 .code {
@@ -251,13 +246,14 @@ const handleRegister = async () => {
   right: 50px;
 }
 
-/* 用户协议 */
+/* User agreement */
 .user-agreement {
   position: absolute;
   bottom: 3%;
   font-size: x-small;
   color: var(--kungalgame-font-color-1);
   text-decoration: none;
+
   span {
     color: var(--kungalgame-red-4);
     font-style: oblique;
@@ -284,13 +280,16 @@ const handleRegister = async () => {
   text-transform: uppercase;
   transition: all 0.2s;
   margin-top: 30px;
+
   &:hover {
     background-color: var(--kungalgame-blue-4);
     color: var(--kungalgame-white);
   }
+
   &:active {
     transform: scale(0.95);
   }
+
   &:focus {
     outline: none;
   }
@@ -306,6 +305,7 @@ const handleRegister = async () => {
     box-shadow: 0 15px 27px var(--kungalgame-blue-0),
       0 10px 10px var(--kungalgame-blue-0);
   }
+
   .form {
     border-radius: 5px;
   }

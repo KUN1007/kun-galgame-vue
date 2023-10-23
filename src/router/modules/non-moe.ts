@@ -3,7 +3,6 @@ import { type RouteRecordRaw } from 'vue-router'
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
 const nonMoe: RouteRecordRaw[] = [
-  // KUNGalgame 不萌萌页
   {
     path: '/non-moe',
     component: Layout,

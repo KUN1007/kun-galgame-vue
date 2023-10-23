@@ -1,6 +1,6 @@
-// 使用用户 store
+// Using the user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// 错误处理函数
+// Error handling function
 import { onRequestError } from '@/error/onRequestError'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
@@ -14,7 +14,7 @@ export type FetchOptions = {
   body?: BodyInit
 }
 
-// fetch 请求函数
+// Fetch request function
 const kunFetchRequest = async <T>(
   url: string,
   options: FetchOptions
@@ -22,7 +22,7 @@ const kunFetchRequest = async <T>(
   const baseUrl = import.meta.env.VITE_API_BASE_URL
   const fullUrl = `${baseUrl}${url}`
 
-  // 在请求头中添加 token
+  // Add the token to the request headers
   const headers = {
     ...options.headers,
     Authorization: `Bearer ${useKUNGalgameUserStore().getToken()}`,
@@ -30,9 +30,9 @@ const kunFetchRequest = async <T>(
 
   const response = await fetch(fullUrl, { ...options, headers })
 
-  // 不为 20X 则报错
+  // If not 20X, then throw an error
   if (!successResponseArray.includes(response.status)) {
-    // 处理错误，token 过期
+    // Handle errors, such as token expiration
     await onRequestError(response)
     throw new Error('KUNGalgame Fetch Error occurred, but no problem')
   }

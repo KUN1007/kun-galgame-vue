@@ -1,12 +1,12 @@
-// 这是 KUNGalgame 用户登录请求数据的接口
+// Interface for KUNGalgame user login request data
 export interface LoginRequestData {
-  // 登录用户名
+  // Username for login
   name: string
-  // 登录密码
+  // Password for login
   password: string
 }
 
-// 注册请求数据的格式
+// Format for registration request data
 export interface RegisterRequestData {
   name: string
   email: string
@@ -14,12 +14,12 @@ export interface RegisterRequestData {
   code: string
 }
 
-// 发送验证码请求数据格式
+// Format for sending verification code request data
 export interface VerificationCodeMailRequestData {
   email: string
 }
 
-// 登录响应数据的格式
+// Format of the login response data
 export type LoginResponseData = KUNGalgameResponseData<{
   uid: number
   name: string
@@ -29,7 +29,7 @@ export type LoginResponseData = KUNGalgameResponseData<{
   token: string
 }>
 
-// 获取 token 响应数据格式
+// Format of the response data for obtaining a token
 export type RefreshTokenResponseData = KUNGalgameResponseData<{
   token: string
 }>

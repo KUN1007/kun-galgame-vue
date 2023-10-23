@@ -1,5 +1,5 @@
 /**
- * 检查用户的各种输入是否合法
+ * Check if the user's various inputs are valid
  */
 import Message from '@/components/alert/Message'
 import {
@@ -8,7 +8,7 @@ import {
   isValidPassword,
 } from '@/utils/validate'
 
-// 检查发送邮箱验证码
+// Check for sending email verification code
 export const checkSendCode = (email: string) => {
   if (!email) {
     Message('Please input your new email!', '请输入您的新邮箱！', 'warn')
@@ -27,7 +27,7 @@ export const checkSendCode = (email: string) => {
   return true
 }
 
-// 检查重置邮箱
+// Check for resetting email
 export const checkResetEmail = (
   hasSentCodeEmail: string,
   newEmail: string,
@@ -42,10 +42,10 @@ export const checkResetEmail = (
     return false
   }
 
-  // 这里只是临时验证一下，验证逻辑在后端
+  // Temporary validation here, actual validation is on the backend
   if (hasSentCodeEmail !== newEmail) {
     Message(
-      'The email to which the verification code has been sent is different from the one you want to change.!',
+      'The email to which the verification code has been sent is different from the one you want to change.',
       '已经发送验证码的邮箱与要更改的邮箱不相等！',
       'warn'
     )
@@ -71,7 +71,7 @@ export const checkResetEmail = (
   return true
 }
 
-// 检查更改密码
+// Check for changing the password
 export const checkChangePassword = (
   oldPassword: string,
   newPassword: string,

@@ -582,7 +582,7 @@
   text-decoration: underline;
 }
 
-/* 引用的颜色 */
+/* blockquote color */
 .ql-snow .ql-editor blockquote {
   border-left: 4px solid var(--kungalgame-blue-2);
   background-color: var(--kungalgame-trans-blue-0);
@@ -604,7 +604,7 @@
   font-size: 85%;
   padding: 2px 4px;
 }
-/* 代码块颜色 */
+/* code block color */
 .ql-snow .ql-editor pre.ql-syntax {
   background-color: var(--kungalgame-trans-blue-0);
   border: 1px solid var(--kungalgame-blue-4);
@@ -613,7 +613,7 @@
 .ql-snow .ql-editor img {
   max-width: 100%;
 }
-/* 展开列表的颜色 */
+/* list color */
 .ql-snow .ql-picker {
   color: var(--kungalgame-blue-4);
   display: inline-block;
@@ -846,19 +846,22 @@
   border: 1px solid transparent;
   box-shadow: var(--shadow);
 }
-/* 选中列表的样式 */
+/* Selected list style */
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
   background-color: var(--kungalgame-trans-blue-1);
 }
-/* 选中列表的展开选项样式 */
+
+/* Style for expanded options of the selected list */
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
   border-color: var(--kungalgame-blue-1);
 }
-/* 选中颜色的边框颜色 */
+
+/* Border color for selected color */
 .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item.ql-selected,
 .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item:hover {
   border-color: var(--kungalgame-blue-4);
 }
+
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
   border-top: 0px;
 }
@@ -930,7 +933,7 @@
   color: var(--kungalgame-blue-4);
 }
 
-/* 被 reset css 覆盖的样式 */
+/* Styles overridden by reset CSS */
 u {
   text-decoration: underline;
 }

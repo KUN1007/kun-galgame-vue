@@ -1,5 +1,5 @@
 /**
- * 检查用户的输入是否合法
+ * Check if the user's input is valid
  */
 import Message from '@/components/alert/Message'
 import {
@@ -8,7 +8,7 @@ import {
   isValidPassword,
 } from '@/utils/validate'
 
-// 检查邮箱
+// Check email
 export const checkEmail = (email: string) => {
   if (!email.trim()) {
     Message('Email can not be empty!', '邮箱不能为空', 'warn')
@@ -28,7 +28,7 @@ export const checkEmail = (email: string) => {
   return true
 }
 
-// 检查验证码
+// Check verification code
 export const checkCode = (email: string, code: string) => {
   if (!checkEmail(email)) {
     return false
@@ -42,7 +42,7 @@ export const checkCode = (email: string, code: string) => {
   return true
 }
 
-// 检查密码
+// Check password
 export const checkPassword = (newPassword: string, confirmPassword: string) => {
   if (!newPassword) {
     Message('New password cannot be empty!', '新密码不可为空！', 'warn')

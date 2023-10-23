@@ -1,34 +1,34 @@
-// 回复的缓存
+// Reply cache
 interface ReplyDraft {
   /**
-   * 编辑器相关
-   * @param {number} editorHeight - 编辑器高度
-   * @param {'' | 'essential' | 'minimal' | 'full'} mode - 编辑器 toolbar 模式
-   * @param {'snow' | 'bubble'} theme - 编辑器主题
+   * Editor related
+   * @param {number} editorHeight - Editor height
+   * @param {'' | 'essential' | 'minimal' | 'full'} mode - Editor toolbar mode
+   * @param {'snow' | 'bubble'} theme - Editor theme
    */
   editorHeight: number
   textCount: number
-  // 这里仅支持三种模式
+  // Only three modes are supported here
   mode: '' | 'essential' | 'minimal'
   theme: 'snow' | 'bubble'
-  // 是否显示热门关键词
+  // Whether to display hot keywords
   isShowHotKeywords: boolean
 
-  // 当前话题的 id
+  // Current topic ID
   tid: number
-  // 回复给谁，用于回复面板展示
+  // Who to reply to, used for reply panel display
   toUserName: string
   to_uid: number
   content: string
   tags: string[]
-  // 被回复的人的楼层数，用于跳转
+  // Floor number of the person being replied to, used for navigation
   to_floor: number
 
-  // 是否保存回复
+  // Whether to save the reply
   isSaveReply: boolean
 }
 
-// 获取回复的请求
+// Request to get replies
 interface ReplyRequest {
   page: number
   limit: number
@@ -36,38 +36,38 @@ interface ReplyRequest {
   sortOrder: 'asc' | 'desc'
 }
 
-// 更新评论的缓存
+// Update comment cache
 interface ReplyRewrite {
   tid: number
   rid: number
   content: string
   tags: string[]
 
-  // 回复是否正在被重新编辑
+  // Whether the reply is being rewritten
   isReplyRewriting: boolean
 }
 
-// 话题页面的 store
+// Topic page store
 export interface TopicStore {
-  // 是否正在被编辑
+  // Whether it's being edited
   isEdit: boolean
-  // 是否显示高级编辑模式
+  // Whether to show advanced editing mode
   isShowAdvance: boolean
-  // 是否激活左侧交互面板
+  // Whether to activate the left interaction panel
   isActiveAside: boolean
-  // 是否滚动到顶部
+  // Whether to scroll to the top
   isScrollToTop: boolean
-  // 加载完了是否还需要加载
+  // Whether to continue loading after it's done
   isLoading: boolean
-  // 要滚动到的回复 id
+  // Reply ID to scroll to
   scrollToReplyId: number
 
-  // 回复面板的宽度
+  // Width of the reply panel
   replyPanelWidth: number
-  // 回复的缓存
+  // Reply cache
   replyDraft: ReplyDraft
-  // 获取回复的请求接口格式
+  // Request format for getting replies
   replyRequest: ReplyRequest
-  // 更新评论的缓存
+  // Update comment cache
   replyRewrite: ReplyRewrite
 }

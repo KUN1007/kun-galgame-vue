@@ -3,10 +3,10 @@ import { getUpdateLogApi } from '@/api/update-log/index'
 import { UpdateLog } from '@/api'
 import { ref, onBeforeMount } from 'vue'
 
-// 在组件中定义响应式的话题数据
+// Define reactive topic data in the component
 const topics = ref<UpdateLog[]>([])
 
-// 在组件挂载时调用 fetchTopics 获取话题数据
+// Call fetchTopics to get topic data when the component is mounted
 onBeforeMount(async () => {
   topics.value = await getUpdateLogApi()
 })

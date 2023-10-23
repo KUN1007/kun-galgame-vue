@@ -2,45 +2,45 @@
 import { reactive } from 'vue'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
-// 使用全局通知
+// Using global notifications
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { storeToRefs } from 'pinia'
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
-// 导入设置
+// Import settings
 import Settings from './Settings.vue'
-// 导入 i18n
+// Import i18n
 import { useI18n } from 'vue-i18n'
 
-// 导入验证表单是否合法的函数
+// Import functions to validate form fields
 import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 
 const router = useRouter()
 
 const { tm } = useI18n()
 const info = useKUNGalgameMessageStore()
-// 使用消息 store
+// Using the message store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
   useKUNGalgameMessageStore()
 )
 
-// 用户登录的表单
+// User login form
 const loginForm = reactive({
   name: '',
   password: '',
 })
 
-// 检查用户名
+// Check username
 const checkUsername = (name: string) => {
-  // 如果输入的字段为空
+  // If the input field is empty
   if (!name.trim()) {
-    // 提示用户输入的名字为空
+    // Notify the user that the name field cannot be empty
     Message('Username cannot be empty', '用户名不可为空', 'warn')
     return false
   }
 
   if (!isValidName(name) && !isValidEmail(name)) {
-    // 输入的用户名格式错误时的逻辑
+    // Logic for invalid username format
     info.info(tm('AlertInfo.login.invalidUsername'))
     return false
   }
@@ -50,13 +50,13 @@ const checkUsername = (name: string) => {
 
 const checkPassword = (password: string) => {
   if (!password.trim()) {
-    // 提示用户输入的密码为空
+    // Notify the user that the password field cannot be empty
     Message('Password cannot be empty', '密码不可为空', 'warn')
     return false
   }
-  // 输入的密码格式不正确时（为用户名或邮箱）
+  // If the password format is incorrect (same as username or email)
   if (!isValidPassword(password)) {
-    // 如果密码非法的话返回非法密码
+    // If the password is invalid, return an error
     info.info(tm('AlertInfo.login.invalidPassword'))
     return false
   }
@@ -69,12 +69,12 @@ const checkLogin = (
   password: string,
   isCaptureSuccessful: boolean
 ) => {
-  // 检查用户名和密码
+  // Check username and password
   if (!checkUsername(name) || !checkPassword(password)) {
     return false
   }
 
-  // 未完成人机身份验证提示信息，直接返回
+  // If human verification is not completed, return directly
   if (!isCaptureSuccessful) {
     Message(
       'Please click above to complete the human verification',
@@ -87,9 +87,9 @@ const checkLogin = (
   return true
 }
 
-// 处理用户点击登陆时的逻辑
+// Handle user login logic when the user clicks the login button
 const handleLogin = async () => {
-  // 检查用户输入,人机验证
+  // Check user input and human verification
   const result = checkLogin(
     loginForm.name,
     loginForm.password,
@@ -99,9 +99,9 @@ const handleLogin = async () => {
     return
   }
 
-  // 所有的验证都通过了再向后端发送请求
+  // Send a request to the backend only if all validations pass
   const res = await useKUNGalgameUserStore().login(loginForm)
-  // 如果请求成功跳转到主页
+  // If the request is successful, redirect to the main page
   if (res.code === 200) {
     router.push('/kun')
     Message(
@@ -113,16 +113,16 @@ const handleLogin = async () => {
   }
 }
 
-// 忘记密码
+// Forgot password
 const handleClickForgotPassword = () => {
   router.push('/forgot')
 }
 </script>
 
 <template>
-  <!-- 登陆 -->
+  <!-- Login -->
   <div class="login">
-    <!-- 设置 -->
+    <!-- Settings -->
     <Settings />
     <div class="form">
       <h2 class="title">{{ $tm('login.login.loginTitle') }}</h2>
@@ -139,17 +139,17 @@ const handleClickForgotPassword = () => {
         class="input"
       />
 
-      <!-- 忘记密码 -->
+      <!-- Forgot Password -->
       <span @click="handleClickForgotPassword" class="forget">
         {{ $tm('login.login.forget') }}
       </span>
 
-      <!-- 人机验证 -->
+      <!-- Human Verification -->
       <span @click="isShowCapture = true" class="capture">
         {{ $tm('login.login.capture') }}
       </span>
 
-      <!-- 点击登录 -->
+      <!-- Click to Login -->
       <button @click="handleLogin" class="btn" type="submit">
         {{ $tm('login.login.loginTitle') }}
       </button>
@@ -168,7 +168,7 @@ const handleClickForgotPassword = () => {
   transition: all 0.6s ease-in-out;
 }
 
-/* 表单的设置 */
+/* Form styling */
 .form {
   background-color: var(--kungalgame-white);
   display: flex;
@@ -180,11 +180,11 @@ const handleClickForgotPassword = () => {
   text-align: center;
 }
 
-/* 登录和注册的字体 */
+/* Login and Register Fonts */
 .title {
   font-weight: 300;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px;
   color: var(--kungalgame-font-color-2);
 }
 
@@ -197,13 +197,14 @@ const handleClickForgotPassword = () => {
   width: 100%;
   background-color: var(--kungalgame-white);
   color: var(--kungalgame-font-color-3);
-}
-.input:focus {
-  border-bottom: 1.5px solid var(--kungalgame-blue-4);
-  transition: 0.2s linear;
+
+  &:focus {
+    border-bottom: 1.5px solid var(--kungalgame-blue-4);
+    transition: 0.2s linear;
+  }
 }
 
-/* 忘记密码 */
+/* Forgot Password */
 .forget {
   cursor: pointer;
   text-decoration: none;
@@ -234,18 +235,15 @@ const handleClickForgotPassword = () => {
   transition: all 0.2s;
   overflow: hidden;
   white-space: nowrap;
-}
-.btn:hover {
-  background-color: var(--kungalgame-blue-4);
-  color: var(--kungalgame-white);
-}
 
-.btn:active {
-  transform: scale(0.95);
-}
+  &:hover {
+    background-color: var(--kungalgame-blue-4);
+    color: var(--kungalgame-white);
+  }
 
-.btn:focus {
-  outline: none;
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 @media (max-width: 700px) {
@@ -259,6 +257,7 @@ const handleClickForgotPassword = () => {
     box-shadow: 0 15px 27px var(--kungalgame-blue-0),
       0 10px 10px var(--kungalgame-blue-0);
   }
+
   .form {
     border-radius: 5px;
   }

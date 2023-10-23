@@ -1,4 +1,4 @@
-// 话题详情界面的侧边栏
+// Topic detail page sidebar
 
 export interface TopicAside {
   title: string
@@ -6,16 +6,16 @@ export interface TopicAside {
 }
 
 export interface TopicAsideOtherTagRequestData {
-  // 本话题的 tags
+  // Tags of the current topic
   tags: string[]
-  // 当前话题的 tid，因为相同标签下的其它话题不包括本话题
+  // The tid of the current topic, as other topics under the same tag should not include the current one
   tid: number
 }
 
 export interface TopicAsideMasterRequestData {
-  // 当前话题的 tid，因为相同标签下的其它话题不包括本话题
+  // The tid of the current topic, as other topics under the same tag should not include the current one
   tid: string
 }
 
-// Aside 响应数据的格式
+// Format of Aside response data
 export type TopicAsideResponseData = KUNGalgameResponseData<TopicAside[]>

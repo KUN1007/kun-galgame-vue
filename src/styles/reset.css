@@ -2,6 +2,8 @@
    reset.css
    * Resets default browser CSS.
 -------------------------------------------------------------- */
+
+/* Reset default CSS styles for all elements */
 * {
   margin: 0;
   padding: 0;
@@ -10,27 +12,31 @@
   box-sizing: border-box;
 }
 
+/* Remove focus outlines on elements */
 :focus {
   outline: none;
 }
 
+/* Hide scrollbars (compatible with Firefox 64+) */
 *::-webkit-scrollbar {
   display: none;
 }
 
-/* 兼容火狐浏览器不显示滚动条 */
+/* Compatibility for Firefox to hide scrollbars */
 * {
   scrollbar-width: none; /* Firefox 64+ */
 }
 
-/* button, input, select, textarea 元素默认不会继承字体，字体设置会出问题 */
+/* Ensure that button and select elements inherit the font family */
 button,
 select {
   font-family: inherit;
 }
 
-/* 鼠标选中文字的颜色 */
+/* Set the background color and text color for selected text */
 *::selection {
-  background-color: var(--kungalgame-blue-1); /* 选中文本的背景颜色 */
-  color: var(--kungalgame-blue-4); /* 选中文本的文本颜色 */
+  background-color: var(
+    --kungalgame-blue-1
+  ); /* Background color of selected text */
+  color: var(--kungalgame-blue-4); /* Text color of selected text */
 }

@@ -1,15 +1,9 @@
-<!-- 
-  这是回复话题下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
- -->
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
-// 全局消息组件（顶部）
 import Message from '@/components/alert/Message'
-// throttle 函数
 import { throttle } from '@/utils/throttle'
 
-// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
 const props = defineProps<{
@@ -24,7 +18,7 @@ const props = defineProps<{
 const isDisliked = ref(props.dislikes.includes(props.uid))
 const dislikesCount = ref(props.dislikes.length)
 
-// 响应式
+// Reactivity
 watch(
   () => props.dislikes,
   (newLikes) => {
@@ -33,7 +27,7 @@ watch(
   }
 )
 
-// throttle 回调函数
+// Throttle callback function
 const throttleCallback = () => {
   Message(
     'You can only perform one operation within 1007 milliseconds',
@@ -43,13 +37,13 @@ const throttleCallback = () => {
 }
 
 const dislikeComment = async () => {
-  // 已经点踩
+  // Already disliked
   if (isDisliked.value) {
     Message(`You've already disliked it`, '您已经点过踩了', 'warn')
     return
   }
 
-  // 当前用户不可以给自己点赞
+  // The current user cannot dislike themselves
   if (props.uid === props.toUid) {
     Message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
     return
@@ -71,14 +65,13 @@ const dislikeComment = async () => {
   }
 }
 
-// throttle 函数，1007 毫秒仅会触发一次点踩
+// Throttle function, can only trigger dislikes every 1007 milliseconds
 const handleClickDislikeThrottled = throttle(
   dislikeComment,
   1007,
   throttleCallback
 )
 
-// 点踩
 const handleClickDislike = () => {
   handleClickDislikeThrottled()
 }
@@ -104,7 +97,7 @@ li {
   }
 }
 
-/* 激活后的样式 */
+/* Styles after activation */
 .active .icon {
   color: var(--kungalgame-blue-4);
 }

@@ -42,8 +42,8 @@ function replaceTimeUnits(input: string, language: string) {
     (languageOptions as Record<string, any>)[language] || languageOptions.en
 
   const replacements: Record<string, string> = {
-    an: '1', // 将 "an" 替换为 "1"
-    a: '1', // 将 "a" 替换为 "1"
+    an: '1', // Replace "an" with "1"
+    a: '1', // Replace "a" with "1"
     second: languageOption.second,
     seconds: languageOption.seconds,
     minute: languageOption.minute,
@@ -65,13 +65,13 @@ function replaceTimeUnits(input: string, language: string) {
   return input.replace(regex, (matched) => replacements[matched])
 }
 
-// 格式化时间差
+// Format time difference
 export function formatTimeDifference(pastTime: number, language: string) {
   const now = dayjs()
   const diffInSeconds = now.diff(pastTime, 'second')
   const hint = language === 'en' ? ' ago' : '前'
 
-  // 使用 dayjs 的相对时间插件进行相对时间的格式化
+  // Use the relativeTime plugin of dayjs to format relative time
   const time = () => {
     if (diffInSeconds < 60) {
       return now.to(pastTime, true)

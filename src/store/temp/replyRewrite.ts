@@ -1,11 +1,12 @@
-// 回复重新编辑的临时数据，用于组件间传输
+// Temporary data for reply rewriting, used for inter-component communication
 import { defineStore } from 'pinia'
 
 export const useTempReplyRewriteStore = defineStore({
   id: 'tempReplyRewrite',
-  // 不持久
+  // Not persistent
   persist: false,
-  // 重新编辑影响的只有这三个数据，更新这三个数据即可做到响应式
+  // Only these three data are affected by reply rewriting
+  // , updating these three data makes it reactive
   state: () => ({ rid: 0, replyContent: '', tags: [''], edited: 0 }),
   getters: {},
   actions: {},

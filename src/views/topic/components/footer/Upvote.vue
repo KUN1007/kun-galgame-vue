@@ -1,15 +1,15 @@
-<!-- 话题的底部区域，推话题，回复，点赞等 -->
+<!-- Topic's bottom area, including upvote, reply, like, etc. -->
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
-// 全局消息组件（底部）
+// Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
-// 接受父组件的传值
+// Accept props from the parent component
 const props = defineProps<{
   uid: number
   tid: number
@@ -21,7 +21,7 @@ const props = defineProps<{
 const isUpvote = ref(props.upvotes.includes(props.uid))
 const upvoteCount = ref(props.upvotes.length)
 
-// 响应式
+// Reactive
 watch(
   () => props.upvotes,
   (newUpvote) => {
@@ -30,22 +30,22 @@ watch(
   }
 )
 
-// 推话题
+// Upvote topic
 const upvoteTopic = async () => {
-  // 调用弹窗确认
+  // Show a confirmation dialog
   const res = await useKUNGalgameMessageStore().alert(
     'AlertInfo.edit.upvoteTopic',
     true
   )
 
-  // 这里实现用户的点击确认取消逻辑
+  // Implement user's confirmation or cancellation logic here
   if (res) {
     const { tid, toUid } = props
-    // 请求推话题的接口
+    // Call the API to upvote the topic
     const res = await useKUNGalgameTopicStore().updateTopicUpvote(tid, toUid)
 
     if (res.code === 200) {
-      // 更新推数
+      // Update the upvote count
       upvoteCount.value++
       isUpvote.value = true
 
@@ -56,18 +56,18 @@ const upvoteTopic = async () => {
   }
 }
 
-// 推回复
+// Upvote reply
 const upvoteReply = async () => {
-  // 调用弹窗确认
+  // Show a confirmation dialog
   const res = await useKUNGalgameMessageStore().alert(
     'AlertInfo.edit.upvoteReply',
     true
   )
 
-  // 这里实现用户的点击确认取消逻辑
+  // Implement user's confirmation or cancellation logic here
   if (res) {
     const { tid, toUid, rid } = props
-    // 请求推话题的接口
+    // Call the API to upvote the reply
     const res = await useKUNGalgameTopicStore().updateReplyUpvote(
       tid,
       toUid,
@@ -75,7 +75,7 @@ const upvoteReply = async () => {
     )
 
     if (res.code === 200) {
-      // 更新推数
+      // Update the upvote count
       upvoteCount.value++
       isUpvote.value = true
 
@@ -86,15 +86,15 @@ const upvoteReply = async () => {
   }
 }
 
-// 推
+// Upvote
 const handleClickUpvote = async () => {
-  // 当前用户不可以推自己
+  // Users cannot upvote their own content
   if (props.uid === props.toUid) {
     Message('You cannot upvote your own topic', '您不可以推自己的话题', 'warn')
     return
   }
 
-  // 当前用户不可以推自己，后端也有判断
+  // Check if the user has enough moemoepoints to use the upvote feature
   if (useKUNGalgameUserStore().moemoepoint < 1100) {
     Message(
       `Your moemoepoints are less than 1100, so you can't use the topic suggestion feature`,
@@ -104,7 +104,7 @@ const handleClickUpvote = async () => {
     return
   }
 
-  // 为零是楼主的话题
+  // If rid is 0, it's the topic's author
   if (props.rid === 0) {
     upvoteTopic()
   } else {
@@ -114,7 +114,6 @@ const handleClickUpvote = async () => {
 </script>
 
 <template>
-  <!-- 推话题 -->
   <li>
     <span
       class="icon"
@@ -144,14 +143,12 @@ li {
   }
 }
 
-/* 图标字体的样式 */
 .icon {
   font-size: 24px;
   color: var(--kungalgame-font-color-2);
   cursor: pointer;
 }
 
-/* 激活后的样式 */
 .active {
   color: var(--kungalgame-blue-4) !important;
 }

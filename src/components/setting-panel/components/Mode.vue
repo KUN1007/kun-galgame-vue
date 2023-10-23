@@ -1,16 +1,16 @@
 <script setup lang="ts">
-// 引入图标字体
+// Import the icon font
 import { Icon } from '@iconify/vue'
-// 导入设置面板 store
+// Import the settings store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 
-// 使用设置面板的 store
+// Use the settings store
 const settingsStore = useKUNGalgameSettingsStore()
 </script>
 
 <template>
   <div class="mode">
-    <!-- 白天 / 黑夜模式切换 -->
+    <!-- Day / Night mode toggle -->
     <span>{{ $tm('header.settings.mode') }}</span>
     <div class="mode-container">
       <span>

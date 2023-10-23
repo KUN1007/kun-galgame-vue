@@ -5,13 +5,13 @@ export interface HomeStore {
   limit: number
   sortField: string
   sortOrder: string
-  // 加载完了是否还需要加载
+  // Whether to continue loading after it's done
   isLoading: boolean
 
-  // 其它的 store
-  // 是否激活主页的左侧交互面板
+  // Other stores
+  // Whether to activate the left interactive panel of the main page
   isActiveMainPageAside: boolean
 
-  // 搜索历史存储
+  // Storage for search history
   searchHistory: string[]
 }

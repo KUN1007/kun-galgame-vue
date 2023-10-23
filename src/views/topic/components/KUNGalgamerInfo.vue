@@ -1,7 +1,7 @@
-<!-- 这个部分为发帖人的个人信息展示部分 -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
+
 const props = defineProps<{
   user: {
     uid: number
@@ -15,21 +15,21 @@ const user = computed(() => props.user)
 </script>
 
 <template>
-  <!-- 内容区左侧用户的信息 -->
+  <!-- Content area for displaying the user's information on the left side -->
   <div class="kungalgamer">
-    <!-- 头像 -->
+    <!-- Avatar -->
     <div class="avatar">
-      <!-- 头像图片 -->
+      <!-- Avatar image -->
       <RouterLink :to="`/kungalgamer/${user.uid}/info`">
         <img v-if="user.avatar" :src="user.avatar" :alt="user.name" />
       </RouterLink>
     </div>
     <div class="info">
-      <!-- 名字 -->
+      <!-- Name -->
       <div class="name">
         {{ user.name }}
       </div>
-      <!-- 萌萌点 -->
+      <!-- Moemoe Points -->
       <div class="moemoepoint">
         <span><Icon icon="line-md:star-alt-twotone"></Icon></span>
         <span>{{ user.moemoepoint }}</span>
@@ -39,7 +39,7 @@ const user = computed(() => props.user)
 </template>
 
 <style lang="scss" scoped>
-/* 内容区左侧用户信息 */
+/* Left side user information in the content area */
 .kungalgamer {
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ const user = computed(() => props.user)
   margin-bottom: 20px;
   color: var(--kungalgame-font-color-3);
 }
-/* 头像 */
+/* Avatar */
 .avatar {
   width: 100px;
   margin-top: 17px;
@@ -57,7 +57,7 @@ const user = computed(() => props.user)
     height: 100px;
   }
 }
-/* 名字 */
+/* Name */
 .name {
   font-size: small;
   display: flex;
@@ -65,7 +65,7 @@ const user = computed(() => props.user)
   margin-top: 17px;
   font-size: 17px;
 }
-/* 萌萌点 */
+/* Moemoe Points */
 .moemoepoint {
   margin-top: 10px;
   display: flex;
@@ -92,16 +92,19 @@ const user = computed(() => props.user)
     padding-bottom: 10px;
     border-bottom: 1px solid var(--kungalgame-blue-1);
   }
+
   .avatar {
-    /* 图像加载不出来时页面不塌陷 */
+    /* Prevent page collapse when the image fails to load */
     width: 70px;
     height: 70px;
     margin-top: 10px;
+
     img {
       width: 70px;
       height: 70px;
     }
   }
+
   .info {
     margin-left: 50px;
     display: flex;

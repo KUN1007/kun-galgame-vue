@@ -13,18 +13,16 @@ const logs = computed(() => props.logs)
 </script>
 
 <template>
-  <!-- 单个记录 -->
   <div class="log" v-for="(kun, index) in logs" :key="index">
-    <!-- 用户 -->
     <div class="kungalgamer">
       @
       <RouterLink :to="`/kungalgamer/${kun.uid}/info`">
         {{ kun.name }}
       </RouterLink>
     </div>
-    <!-- 原因 -->
+
     <div class="reason" v-html="kun.description"></div>
-    <!-- 后果 -->
+
     <div class="footer">
       <div class="time">
         <Icon class="hourglass" icon="eos-icons:hourglass" />
@@ -39,7 +37,6 @@ const logs = computed(() => props.logs)
 </template>
 
 <style lang="scss" scoped>
-/* 单个记录 */
 .log {
   margin: 20px 40px;
   border-bottom: 1px solid var(--kungalgame-blue-4);
@@ -48,22 +45,24 @@ const logs = computed(() => props.logs)
 .kungalgamer {
   margin-bottom: 10px;
   font-weight: bold;
+
   a {
     cursor: pointer;
     color: var(--kungalgame-blue-5);
     border-bottom: 2px solid var(--kungalgame-trans-white-9);
+
     &:hover {
       border-bottom: 2px solid var(--kungalgame-blue-5);
     }
   }
 }
 
-/* 原因 */
 .reason {
   width: 100%;
   padding-left: 5px;
   border-left: 2px solid var(--kungalgame-blue-4);
 }
+
 .footer {
   width: 100%;
   display: flex;
@@ -71,10 +70,10 @@ const logs = computed(() => props.logs)
   margin-top: 17px;
 }
 
-/* 后果 */
 .time {
   display: flex;
   align-items: center;
+
   .hourglass {
     margin-right: 7px;
     font-size: 17px;
@@ -86,6 +85,7 @@ const logs = computed(() => props.logs)
   padding-right: 5px;
   display: flex;
   align-items: center;
+
   .warning {
     margin-right: 7px;
     font-size: 17px;
