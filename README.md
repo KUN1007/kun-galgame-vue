@@ -60,21 +60,23 @@ KUNGalgame 创建的意义在于：
 * 网站全体字体切换
 * 网站页面宽度调整
 
-要查看网站的全部特性情点击这里
+### 需要注意的是
+
+* 网站会在每 `60min` 刷新一次 `token`，会有短暂白屏，这是为了更加安全
+* 网站使用了 [`vue-quill`](https://github.com/vueup/vue-quill) 作为富文本编辑器，但是该编辑器使用了[过时的 `API`](https://github.com/vueup/vue-quill/issues/409)，所以编辑器出现时控制台会有警告，这是编辑器的原因，并不是网站代码的错误，我们之后会自己开发一款富文本编辑器
+* 如果您遇到网站的任何错误，或者有所建议，请[联系我们](https://github.com/KUN1007/kun-galgame-vue#Contact)
+
+要查看网站的全部特性请点击这里
+
+要查看网站的所有页面功能请点击这里
 
 ## 项目介绍
 
-.
-
 ### 简介
-
-.
 
 这是[`KUNGalgame-pure-css`](https://github.com/KUN1007/kungalgame-pure-css) 的**重构版本**，使用 Vite + Vue3 + Vue-router4 + Typescript + SCSS + Pinia 作为前端技术栈，不依赖任何 UI 框架，因为这个项目主打的就是非 UI 框架，世界都一样多没意思呀。
 
 项目中并未集成 `ESLint`, `Prettier` 等，因为太麻烦了，我爱摸鱼，预计在项目的第一个版本上线时会集成必要的环境类项目配置。
-
-.
 
 ### 预览
 
@@ -82,15 +84,13 @@ KUNGalgame 创建的意义在于：
 
 但是我们在重构的时候增加了大量的内容，并且将图标由`fontawesome`改为了`iconify`，所以外观可能会不同，这里仅展示主页预览
 
-.
 #### Web 端浏览器
-![](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/preview.png)
-![](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/preview-dark.png)
-.
+![白天模式](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/images/preview.png)
+![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/preview-dark.png)
 
 #### 手机端浏览器
-![](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/mobile-preview.png)
-![](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/mobile-preview-dark.png)
+![白天模式](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/mobile-preview.png)
+![黑夜模式](https://github.com/KUN1007/kun-galgame-vue/tree/V1/docs/images/mobile-preview-dark.png)
 
 ### 启动方法
 
@@ -125,7 +125,13 @@ KUNGalgame 创建的意义在于：
 
 Telegram：https://t.me/KUNForum
 
-Tencent QQ Group：872839714
+Tencent QQ Group: 872839714
+
+下面两个群组是 Galgame 群，交流与反馈
+
+Telegram: https://t.me/kungalgame
+
+Tencent QQ Group: 871857690
 
 ## License
 
