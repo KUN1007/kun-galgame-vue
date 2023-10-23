@@ -106,6 +106,13 @@ The following two groups are Galgame groups for discussions and feedback:
 - [Telegram Group](https://t.me/kungalgame)
 - Tencent QQ Group: 871857690
 
+
+## Translation
+
+[中文版](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/zh/README.md)
+
+Special thanks to `yuyu` for the Chinese translation.
+
 ## License
 
 This project follows the `GPL` open-source license.

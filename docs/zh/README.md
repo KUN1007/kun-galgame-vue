@@ -1,6 +1,6 @@
 ![](https://github.com/KUN1007/kun-galgame-vue/blob/layout/src/assets/images/favicon.png)
 
-图片来源为游戏 [Ark Order](https://apps.qoo-app.com/en/app/9593) 中的角色 `鲲`
+图片来源为游戏 [方舟指令](https://apps.qoo-app.com/en/app/9593) 中的角色 `鲲`
 
 # kun-galgame-vue
 
@@ -114,11 +114,6 @@ KUNGalgame 创建的意义在于：
 总之，只要您能想到的，我们都会尽力实现。
 
 
-
-## Translation
-
-中文版
-
 ## 联系我们
 
 如果您想参与我们的开发，可以加入我们的开发群组
@@ -132,6 +127,12 @@ Tencent QQ Group: 872839714
 Telegram: https://t.me/kungalgame
 
 Tencent QQ Group: 871857690
+
+## Translation
+
+[中文版](https://github.com/KUN1007/kun-galgame-vue/blob/V1/docs/zh/README.md)
+
+特别感谢 `yuyu` 的中文版翻译
 
 ## License
 
