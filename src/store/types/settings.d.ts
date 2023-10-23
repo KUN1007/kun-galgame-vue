@@ -1,18 +1,18 @@
-// 设置面板配置
+// Settings panel configuration
 export interface KUNGalgameSettingsStore {
-  // 白天黑夜模式切换
+  // Day and night mode toggle
   showKUNGalgameMode: string
-  // 网站显示语言
+  // Website display language
   showKUNGalgameLanguage: 'en' | 'zh'
-  // 主页宽度
+  // Main page width
   showKUNGalgamePageWidth: Record<string, number>
-  // 网站字体
+  // Website font style
   showKUNGalgameFontStyle: string
-  // 背景图
+  // Background image
   showKUNGalgameBackground: string
-  // 自定义背景图
+  // Custom background image
   showKUNGalgameCustomBackground: string
 
-  // 显示页面宽度还是显示字体设置
+  // Whether to display page width or font settings
   isShowPageWidth: boolean
 }

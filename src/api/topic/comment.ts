@@ -1,10 +1,10 @@
 import { fetchGet, fetchPut, fetchPost } from '@/utils/request'
-// 将对象转为请求参数的函数
+// Function to convert an object to query parameters
 import objectToQueryParams from '@/utils/objectToQueryParams'
 
 import * as Comment from './types/comment'
 
-// 获取一个回复下面所有的评论
+// Get all comments under a reply
 export async function getCommentsByReplyRidApi(
   tid: number,
   rid: number
@@ -21,7 +21,7 @@ export async function getCommentsByReplyRidApi(
   }
 }
 
-// 点赞评论
+// Like a comment
 export async function updateCommentLikeApi(
   request: Comment.TopicLikeCommentRequestData
 ): Promise<Comment.TopicLikeCommentResponseData> {
@@ -33,7 +33,7 @@ export async function updateCommentLikeApi(
   return response
 }
 
-// 点踩评论
+// Dislike a comment
 export async function updateCommentDislikeApi(
   request: Comment.TopicDislikeCommentRequestData
 ): Promise<Comment.TopicDislikeCommentResponseData> {
@@ -45,7 +45,7 @@ export async function updateCommentDislikeApi(
   return response
 }
 
-// 根据 tid 和 rid 创建一个评论
+// Create a comment by tid and rid
 export async function postCommentByPidAndRidApi(
   request: Comment.TopicCreateCommentRequestData
 ): Promise<Comment.TopicCreateCommentResponseData> {

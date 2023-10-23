@@ -1,6 +1,4 @@
-<!-- 
-  KUNGalgame 的话题页面
- -->
+<!-- KUNGalgame topic page -->
 <script setup lang="ts">
 import {
   onMounted,
@@ -12,7 +10,7 @@ import {
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import Message from '@/components/alert/Message'
-// 全局消息组件（底部）
+// Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 
 import { TopicDetail, TopicReply } from '@/api'
@@ -21,24 +19,24 @@ import { TopicDetail, TopicReply } from '@/api'
 import Aside from './aside/Aside.vue'
 import Master from './components/Master.vue'
 import Reply from './components/reply/Reply.vue'
-// 异步导入回复面板
+// Asynchronously import the reply panel
 const ReplyPanel = defineAsyncComponent(
   () => import('./components/reply/ReplyPanel.vue')
 )
 
-// 导入设置面板 store
+// Import the settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
-// 导入话题页面 store
+// Import the topic page store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-// 回复发布响应的临时数据
+// Temporary data for reply publication responses
 import { useTempReplyStore } from '@/store/temp/reply'
-// 回复重新编辑响应的临时数据
+// Temporary data for reply editing responses
 import { useTempReplyRewriteStore } from '@/store/temp/replyRewrite'
-// 使用不持久的评论 store
+// Use non-persistent comment store
 import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
 
-// 当前的路由
+// Current route
 const route = useRoute()
 
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
@@ -61,28 +59,28 @@ const tid = computed(() => {
   return Number(route.params.tid)
 })
 
-// 单个话题数据
+// Single topic data
 const topicData = ref<TopicDetail>()
-// 单个话题的回复数据
+// Single topic reply data
 const repliesData = ref<TopicReply[]>([])
-// 页面的容器，用于计算是否到达底部
+// Page container for calculating whether it has reached the bottom
 const content = ref<HTMLElement>()
-// 滚动到某个话题时触发动画
+// Trigger animation when scrolling to a certain topic
 const isExecuteScrollToReplyAnimate = ref(false)
-// 页面滚动的距离
+// Page scrolling distance
 const contentScrollHeight = ref(0)
 
-// 获取话题详情的函数
+// Function to get topic details
 const getTopic = async (): Promise<TopicDetail> => {
   return (await useKUNGalgameTopicStore().getTopicByTid(tid.value)).data
 }
 
-// 获取回复的函数
+// Function to get replies
 const getReplies = async (): Promise<TopicReply[]> => {
   return (await useKUNGalgameTopicStore().getReplies(tid.value)).data
 }
 
-// 调用 getReplies 获取回复数据（watch 大法好！），点击排序时获取回复
+// Call getReplies to get reply data (watch is great!), get replies when sorting is clicked
 watch(
   () => [replyRequest.value.sortOrder, replyRequest.value.sortField],
   async () => {
@@ -90,32 +88,32 @@ watch(
   }
 )
 
-// 用户新发布回复，滚动到这个回复
+// User publishes a new reply, scroll to this reply
 watch(
   () => tempReply.value.rid,
   async () => {
-    // 新发布的回复加到原来回复的数据中
+    // Add the newly published reply to the existing reply data
     repliesData.value = [...repliesData.value, tempReply.value]
-    // 等待一段时间
+    // Wait for a while
     await new Promise((resolve) => {
       setTimeout(resolve, 107)
     })
-    // 滚动到这个回复
+    // Scroll to this reply
     scrollToReplyId.value = tempReply.value.floor
-    // 最底下的回复，不需要加载了
+    // If it's the bottom reply, no need to load more
     if (repliesData.value.length === tempReply.value.floor) {
       isLoading.value = false
     }
   }
 )
 
-// 用户重新编辑回复
+// User edits a reply
 watch(
   () => edited.value,
   () => {
-    // 找到 repliesData 中的数据
+    // Find the reply data in repliesData
     const reply = repliesData.value.find((reply) => reply.rid === rid.value)
-    // 更新必要的数据
+    // Update the necessary data
     if (reply) {
       reply.content = replyContent.value
       reply.tags = tags.value
@@ -124,42 +122,42 @@ watch(
   }
 )
 
-// 监视是否滚动到顶部
+// Watch whether it has scrolled to the top
 watch(isScrollToTop, () => {
   if (content.value) {
-    // 将页面滚动到顶部
+    // Scroll the page to the top
     content.value.scrollTo({
       top: 0,
       behavior: 'smooth',
     })
-    // 将滚动值还原
+    // Reset the scrolling value
     isScrollToTop.value = false
   }
 })
 
-// 监视用户想要跳转到哪个回复
+// Watch the user's intention to scroll to a specific reply
 watch(
   () => scrollToReplyId.value,
   async () => {
-    // 这段语句会被执行两次（想想为什么）
+    // This block of code will be executed twice (think about why)
     if (content.value && scrollToReplyId.value !== -1) {
-      // 获取父元素下指定的子元素 id
+      // Get the specified child element under the parent element by ID
       const childElement = content.value.querySelector(
         `#kungalgame-reply-${scrollToReplyId.value}`
       ) as HTMLElement
 
-      // 滚动到指定位置并标识 style
+      // Scroll to the specified position and apply a 'style' class
       if (childElement) {
         childElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
         childElement.classList.add('active')
 
-        // 等待一段时间
+        // Wait for a while
         await new Promise((resolve) => {
           setTimeout(resolve, 3000)
         })
 
         childElement.classList.remove('active')
-        // 找不到指定话题，因为这个话题还没有被加载至 DOM
+        // Unable to find the specified reply because this reply has not been loaded into the DOM yet
       } else {
         Message(
           'Unable to find the specified reply for now. Please scroll down.',
@@ -172,88 +170,88 @@ watch(
   }
 )
 
-// 滚动事件处理函数
+// Scroll event handler
 const handelScroll = async () => {
-  // 滚动到底部的处理逻辑
+  // Logic when scrolling to the bottom
   if (isScrollAtBottom() && isLoading.value) {
-    // 自动增加页数
+    // Automatically increase the page number
     replyRequest.value.page++
 
-    // 获取下一页的回复数据
+    // Get the next page of reply data
     const lazyLoadReplies = await getReplies()
 
-    // 判断是否已经将数据加载完，加载完则不需要加载了
+    // Check if all data has been loaded, no need to load more if already loaded
     if (!lazyLoadReplies.length) {
       isLoading.value = false
       return
     }
 
-    // 将新加载的回复数据追加到已有的回复数据中
+    // Append the newly loaded reply data to the existing reply data
     repliesData.value = [...repliesData.value, ...lazyLoadReplies]
   }
 }
 
-// 判断是否滚动到底部
+// Check if it has scrolled to the bottom
 const isScrollAtBottom = () => {
   if (content.value) {
     const scrollHeight = content.value.scrollHeight
     const scrollTop = content.value.scrollTop
     const clientHeight = content.value.clientHeight
 
-    // 记录页面滚动的距离给子组件
+    // Record the page scrolling distance for child components
     contentScrollHeight.value = scrollTop
 
-    // 使用误差范围来比较，因为 js 浮点数不精确
+    // Compare using an error margin because JavaScript floating-point numbers are not precise
     const errorMargin = 1.007
     return Math.abs(scrollHeight - scrollTop - clientHeight) < errorMargin
   }
 }
 
-// 在组件挂载后，添加滚动事件监听器
+// Reset the panel status when the component is mounted
 onMounted(async () => {
-  // 挂载之前重置页数，是否加载等页面状态
+  // Reset the page number, loading status, and other page states before mounting
   useKUNGalgameTopicStore().resetPageStatus()
 
-  // 获取单个话题的数据
+  // Get data for the single topic
   topicData.value = await getTopic()
 
-  // 获取回复的数据
+  // Get reply data
   repliesData.value = await getReplies()
 })
 
 /**
- * 其它操作，关闭回复面板和调整页面宽度等
+ * Other operations, close reply panels, adjust page width, etc.
  */
 
-/* 话题界面的页面宽度 */
+/* Topic page width */
 const topicPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Topic + '%'
 })
 
-// 在页面跳转和刷新时关闭回复面板和评论面板
+// Close reply panels and comment panels when navigating and refreshing the page
 const resetPanelStatus = () => {
   isShowCommentPanelRid.value = 0
   isShowAdvance.value = false
   isEdit.value = false
-  // 重置重新编辑回复的数据
+  // Reset data for editing replies
   // useKUNGalgameTopicStore().resetRewriteTopicData()
 }
 
-// 页面离开时关闭回复面板，如果重新编辑回复需要确认离开
+// Close the reply panel when leaving the page, confirm leaving if there are unsaved reply edits
 onBeforeRouteLeave(async (to, from, next) => {
-  // 如果是正在更新回复
+  // If a reply is being edited
   if (replyRewrite.value.isReplyRewriting) {
-    // 获取用户点击的结果
+    // Get the user's choice
     const res = await useKUNGalgameMessageStore().alert(
       'AlertInfo.edit.leave',
       true
     )
     if (res) {
       resetPanelStatus()
-      // 用户确认离开，继续导航
+      // If the user confirms leaving, continue with the navigation
       next()
     } else {
-      // 用户取消离开，阻止导航
+      // If the user cancels leaving, prevent navigation
       next(false)
     }
   } else {
@@ -261,30 +259,30 @@ onBeforeRouteLeave(async (to, from, next) => {
   }
 })
 
-// 挂载之前关闭回复面板
+// Close the reply panel before mounting the component
 onBeforeMount(() => {
   resetPanelStatus()
 })
 </script>
 
 <template>
-  <!-- 回复面板组件 -->
-  <!-- 总容器 -->
+  <!-- Reply panel component -->
+  <!-- Main container -->
   <div class="root">
-    <!-- 回复面板组件 -->
+    <!-- Reply panel component -->
     <ReplyPanel />
 
-    <!-- 下方可视内容区的容器 -->
+    <!-- Container for visible content below -->
     <div class="content-container">
-      <!-- 侧边栏 -->
+      <!-- Sidebar -->
       <Aside v-if="topicData?.tags" :tags="topicData.tags" />
 
-      <!-- 内容区 -->
+      <!-- Content area -->
       <div class="content" ref="content" @scroll="handelScroll">
         <Transition
           enter-active-class="animate__animated animate__fadeInDown animate__faster"
         >
-          <!-- 滚动时的 title -->
+          <!-- Title during scrolling -->
           <div class="title-scroll" v-if="contentScrollHeight > 400">
             {{ topicData?.title }}
           </div>
@@ -302,7 +300,7 @@ onBeforeMount(() => {
 </template>
 
 <style lang="scss" scoped>
-/* 页面总容器 */
+/* Overall container */
 .root {
   min-height: calc(100vh - 65px);
   display: flex;
@@ -310,7 +308,7 @@ onBeforeMount(() => {
   flex-direction: column;
 }
 
-/* 下方可视内容区的容器 */
+/* Container for visible content below */
 .content-container {
   width: v-bind(topicPageWidth);
   transition: all 0.2s;
@@ -318,21 +316,21 @@ onBeforeMount(() => {
   min-height: 500px;
   margin: 0 auto;
   display: flex;
-  /* 设置背景的毛玻璃效果 */
+  /* Apply frosted glass effect to the background */
   backdrop-filter: blur(5px);
   background-color: var(--kungalgame-trans-white-5);
   border: 1px solid var(--kungalgame-blue-0);
-  /* 设置背景边框和圆角 */
+  /* Add background border and rounded corners */
   border-radius: 5px;
   padding: 5px;
   overflow: hidden;
 }
 
-/* 右侧内容区 */
+/* Right content area */
 .content {
   height: 100%;
   width: 100%;
-  /* 右侧内容区为弹性盒（用户可以一直向下滑） */
+  /* Right content area is a flexbox (users can keep scrolling down) */
   display: flex;
   flex-direction: column;
   overflow-y: scroll;

@@ -1,6 +1,6 @@
 import { TopicUserInfo, TopicToUserInfo } from './topic'
 
-// 回复的请求数据
+// Request data for replying
 export interface TopicReplyRequestData {
   tid: number
   page?: number
@@ -9,13 +9,13 @@ export interface TopicReplyRequestData {
   sortOrder: string
 }
 
-// 回复的数据
+// Reply data
 export interface TopicReply {
   rid: number
   tid: number
-  // reply 所在的楼层
+  // The floor where the reply is located
   floor: number
-  // 被回复的 reply 所在的楼层
+  // The floor of the reply being replied to
   to_floor: number
   r_user: TopicUserInfo
   to_user: TopicToUserInfo
@@ -30,7 +30,7 @@ export interface TopicReply {
   comment: number[]
 }
 
-// 发表回复的请求数据
+// Request data for creating a reply
 export interface TopicCreateReplyRequestData {
   tid: number
   to_uid: number
@@ -39,14 +39,14 @@ export interface TopicCreateReplyRequestData {
   content: string
 }
 
-// 推回复，推操作不可撤销
+// Upvote reply, the upvote operation is irreversible
 export interface TopicUpvoteReplyRequestData {
   tid: number
   to_uid: number
   rid: number
 }
 
-// 点赞回复
+// Like reply
 export interface TopicLikeReplyRequestData {
   tid: number
   to_uid: number
@@ -54,7 +54,7 @@ export interface TopicLikeReplyRequestData {
   isPush: boolean
 }
 
-// 点踩回复
+// Dislike reply
 export interface TopicDislikeReplyRequestData {
   tid: number
   to_uid: number
@@ -62,7 +62,7 @@ export interface TopicDislikeReplyRequestData {
   isPush: boolean
 }
 
-// 更新回复的请求数据
+// Request data for updating a reply
 export interface TopicUpdateReplyRequestData {
   tid: number
   rid: number
@@ -70,20 +70,20 @@ export interface TopicUpdateReplyRequestData {
   tags: string[]
 }
 
-// 单个话题回复响应数据的格式，返回的是多条回复数据，是一个数组
+// Response data format for a single topic reply, returning multiple reply data in an array
 export type TopicReplyResponseData = KUNGalgameResponseData<TopicReply[]>
 
-// 创建单个回复后返回的回复数据
+// Reply data returned after creating a single reply
 export type TopicCreateReplyResponseData = KUNGalgameResponseData<TopicReply>
 
-// 推回复响应数据的格式
+// Response data format for upvoting a reply
 export type TopicUpvoteReplyResponseData = KUNGalgameResponseData<{}>
 
-// 点赞回复响应数据的格式
+// Response data format for liking a reply
 export type TopicLikeReplyResponseData = KUNGalgameResponseData<{}>
 
-// 点踩回复响应数据的格式
+// Response data format for disliking a reply
 export type TopicDislikeReplyResponseData = KUNGalgameResponseData<{}>
 
-// 更新回复响应数据的格式
+// Response data format for updating a reply
 export type TopicUpdateReplyResponseData = KUNGalgameResponseData<{}>

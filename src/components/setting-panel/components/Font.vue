@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -12,18 +12,18 @@ const { showKUNGalgameFontStyle } = storeToRefs(settingsStore)
 
 const font = ref('')
 
-const handleSetFont = () => {
+const setFont = () => {
   if (font.value) {
     settingsStore.setKUNGalgameFontStyle(font.value)
     font.value = ''
   } else {
-    Message('Please input valid font name', '请输入合法的字体名', 'warn')
+    Message('Please input a valid font name', '请输入合法的字体名', 'warn')
   }
 }
 </script>
 
 <template>
-  <!-- 设置某些页面的宽度 -->
+  <!-- Set the width of certain pages -->
   <div class="font">
     <div class="title">
       <span>{{ $tm('header.settings.font') }}</span>
@@ -41,7 +41,7 @@ const handleSetFont = () => {
         v-model="font"
         required
       />
-      <button @click="handleSetFont">
+      <button @click="setFont">
         {{ $tm('header.settings.confirm') }}
       </button>
     </div>
@@ -55,13 +55,14 @@ const handleSetFont = () => {
   margin-bottom: 10px;
 }
 
-/* url 的粘话题框 */
+/* URL input box */
 .font-input {
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--kungalgame-font-color-3);
   padding-bottom: 10px;
+
   input {
     width: 100%;
     padding-left: 5px;
@@ -69,13 +70,14 @@ const handleSetFont = () => {
     border: 1px solid var(--kungalgame-blue-4);
     background-color: var(--kungalgame-trans-white-9);
     color: var(--kungalgame-font-color-3);
-    /* 粘话题框的 focus */
+
+    /* Focus on the input box */
     &:focus {
       outline: none;
       background-color: var(--kungalgame-trans-blue-0);
     }
   }
-  /* 确定按钮 */
+  /* Confirm button */
   button {
     flex-shrink: 0;
     padding: 0 10px;
@@ -86,10 +88,12 @@ const handleSetFont = () => {
     border-left: none;
     background-color: var(--kungalgame-trans-white-5);
     cursor: pointer;
-    /* 确定按钮的 hover */
+
+    /* Confirm button hover effect */
     &:hover {
       background-color: var(--kungalgame-trans-red-1);
-      /* 确定按钮的 active */
+
+      /* Confirm button active effect */
       &:active {
         background-color: var(--kungalgame-trans-red-3);
       }

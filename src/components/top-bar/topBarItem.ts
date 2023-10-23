@@ -1,11 +1,12 @@
-// 顶部导航栏单个项目的接口
+// Interface for individual items in the top navigation bar
 interface topBar {
   index: number
   name: string
   router: string
 }
 
-// 顶部导航栏的项目（这里一定要加上 '/' 不然子路由会出问题！！！）
+// Items in the top navigation bar
+// (be sure to include '/' here, or child routes may have issues!!!)
 export const topBarItem: topBar[] = [
   { index: 1, name: 'pool', router: '/pool' },
   { index: 2, name: 'create', router: '/edit' },

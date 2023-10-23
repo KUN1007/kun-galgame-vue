@@ -1,32 +1,32 @@
-<!-- 话题的底部区域，推话题，回复，点赞等 -->
+<!-- Topic's bottom area, including upvote, reply, like, etc. -->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
-// 推组件
+// Upvote component
 import Upvote from './Upvote.vue'
-// 点赞组件
+// Like component
 import Like from './Like.vue'
-// 踩组件
+// Dislike component
 import Dislike from './Dislike.vue'
-// 回复组件
+// Reply component
 import Reply from './Reply.vue'
-// 重新编辑组件
+// Rewrite component
 import Rewrite from './Rewrite.vue'
 
-// 全局消息组件（顶部）
+// Global message component (at the top)
 import Message from '@/components/alert/Message'
 
-// 导入用户的 store
+// Import the user's store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// 导入设置面板 store
+// Import the settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-// 使用设置面板的 store
+// Use the settings panel store
 const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
 
-// 接受父组件的传值
+// Receive props from the parent component
 const props = defineProps<{
   info: {
     tid: number
@@ -54,14 +54,14 @@ const content = computed(() => props.content)
 const toUser = computed(() => props.toUser)
 
 /**
- * 这里只是简单起见，不显示重新编辑
- * 实际上如果用户自己修改了 localStorage 中保存的信息，这个验证就失效了
- * 但是修改了也没有用，验证逻辑位于后端
+ * For simplicity, we don't display the "rewrite" option here.
+ * In reality, if users modify the information saved in local storage,
+ * this validation will become ineffective, but the validation logic is on the backend.
  */
-// 当前登录用户的 uid
+// Current user's UID
 const currUserUid = useKUNGalgameUserStore().uid
 
-// 分享
+// Share
 const handleClickShare = () => {
   const shareLinkEN = computed(
     () =>
@@ -92,12 +92,12 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
 </script>
 
 <template>
-  <!-- 楼主话题底部 -->
+  <!-- Main topic's bottom -->
   <div class="footer">
-    <!-- 底部左侧部分（点赞、推话题、踩） -->
+    <!-- Left part of the bottom (upvote, share, and dislike) -->
     <div class="left">
       <ul>
-        <!-- 推话题 -->
+        <!-- Upvote -->
         <Upvote
           :uid="currUserUid"
           :tid="info.tid"
@@ -106,13 +106,13 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
           :to-uid="toUser.uid"
         />
 
-        <!-- 浏览数，楼主才会显示 -->
+        <!-- Number of views (only shown for the topic owner) -->
         <li v-if="info.views > 0">
           <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
           {{ info.views }}
         </li>
 
-        <!-- 点赞 -->
+        <!-- Like -->
         <Like
           :uid="currUserUid"
           :tid="info.tid"
@@ -121,7 +121,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
           :to-uid="toUser.uid"
         />
 
-        <!-- 踩 -->
+        <!-- Dislike -->
         <Dislike
           :uid="currUserUid"
           :tid="info.tid"
@@ -132,7 +132,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
       </ul>
     </div>
 
-    <!-- 底部右侧部分（回复、评论、只看、编辑） -->
+    <!-- Right part of the bottom (reply, comment, view only, edit) -->
     <div class="right">
       <Reply
         :tid="info.tid"
@@ -141,15 +141,15 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
         :to_floor="toFloor"
       />
 
-      <!-- 分享 -->
+      <!-- Share -->
       <span @click="handleClickShare" class="icon">
         <Icon icon="majesticons:share-line" />
       </span>
 
-      <!-- 只看 TODO: -->
+      <!-- View Only (TODO) -->
       <!-- <span class="icon"><Icon icon="ph:user-focus-duotone" /></span> -->
 
-      <!-- 编辑 -->
+      <!-- Edit -->
       <Rewrite
         :tid="info.tid"
         :rid="info.rid"
@@ -161,15 +161,14 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
         :to-uid="toUser.uid"
       />
 
-      <!-- 回复的插槽 -->
-
+      <!-- Comment slot -->
       <slot name="comment"></slot>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 楼主话题底部 */
+/* Main topic's bottom */
 .footer {
   padding: 10px 0;
   width: 100%;
@@ -177,12 +176,13 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
   justify-content: space-between;
   align-items: center;
 }
-/* 底部左侧部分（点赞、推话题、踩） */
+/* Left part of the bottom (upvote, share, and dislike) */
 .left ul {
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--kungalgame-font-color-3);
+
   li {
     display: flex;
     justify-content: center;
@@ -190,28 +190,31 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
     font-size: 14px;
     margin: 17px;
     margin-right: 0;
+
     span {
       display: flex;
       margin-right: 3px;
     }
+
     &:nth-child(1) span {
       color: var(--kungalgame-red-4);
     }
   }
 }
 
-/* 图标字体的样式 */
+/* Icon font styles */
 .icon {
   font-size: 24px;
   color: var(--kungalgame-font-color-2);
   cursor: pointer;
 }
 
-/* 底部右侧部分（回复、评论、只看、编辑） */
+/* Right part of the bottom (reply, comment, view only, edit) */
 .right {
   display: flex;
   justify-content: center;
   align-items: center;
+
   span {
     display: flex;
     margin-right: 17px;
@@ -230,6 +233,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
   cursor: pointer;
   transition: all 0.2s;
   margin-right: 10px;
+
   &::before,
   &::after {
     content: '';
@@ -240,6 +244,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
     left: 0;
     border: 2px solid transparent;
   }
+
   &:hover {
     color: var(--kungalgame-pink-4);
 
@@ -263,7 +268,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
   }
 }
 
-/* 激活后的样式 */
+/* Styles after activation */
 .active {
   color: var(--kungalgame-blue-4);
 }

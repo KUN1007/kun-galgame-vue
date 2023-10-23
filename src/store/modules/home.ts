@@ -1,25 +1,25 @@
-/* 主页的 store */
+/* Home Page Store */
 import { defineStore } from 'pinia'
-// api
+// API
 import { getHomeTopicApi } from '@/api/index'
-// 数据接口的类型
+// Data interface types
 import { HomeTopicRequestData, HomeTopicResponseData } from '@/api/index'
 
-// home store 的类型
+// Home store type
 import { HomeStore } from '../types/home'
 
 export const useKUNGalgameHomeStore = defineStore({
   id: 'KUNGalgameHome',
   persist: true,
   state: (): HomeStore => ({
-    // 搜索框的 store
+    // Search box store
     /**
-     * @param {String} keywords - 搜索关键词，不填默认全部
-     * @param {Array} category - 话题的分类，目前有三种，Galgame, Technique, Others
-     * @param {Number} page - 分页页数
-     * @param {Number} limit - 每页的数据数
-     * @param {String} sortField - 按照哪个字段排序
-     * @param {String} sortOrder - 排序的顺序，有 `asc`, `desc`
+     * @param {String} keywords - Search keywords, default to all if not provided
+     * @param {Array} category - Topic categories, currently there are three: Galgame, Technique, Others
+     * @param {Number} page - Page number for pagination
+     * @param {Number} limit - Number of data per page
+     * @param {String} sortField - Field to sort by
+     * @param {String} sortOrder - Sorting order, can be 'asc' or 'desc'
      * @returns {HomeTopicResponseData} topicData
      */
     keywords: '',
@@ -30,18 +30,18 @@ export const useKUNGalgameHomeStore = defineStore({
     sortOrder: 'desc',
     isLoading: true,
 
-    // 其它的 store
-    // 是否激活主页的左侧交互面板
+    // Other store
+    // Whether to activate the left interaction panel on the main page
     isActiveMainPageAside: true,
 
-    // 搜索历史存储
+    // Search history storage
     searchHistory: [],
   }),
   getters: {},
   actions: {
-    // 获取首页话题
+    // Get home topics
     async getHomeTopic(): Promise<HomeTopicResponseData> {
-      // 这里的值用于初始化
+      // The values here are used for initialization
       const requestData: HomeTopicRequestData = {
         keywords: this.keywords,
         category: this.category,
@@ -52,7 +52,7 @@ export const useKUNGalgameHomeStore = defineStore({
       }
       return await getHomeTopicApi(requestData)
     },
-    // 重置页数，是否加载，这样排序才能生效
+    // Reset page number and loading status for sorting to take effect
     resetPageStatus() {
       this.page = 1
       this.isLoading = true

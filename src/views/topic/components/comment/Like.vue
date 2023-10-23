@@ -1,15 +1,9 @@
-<!-- 
-  这是回复话题下方的评论区，包含了所有的评论，是一个单独的组件，它的子组件是单个评论
- -->
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
-// 全局消息组件（顶部）
 import Message from '@/components/alert/Message'
-// throttle 函数
 import { throttle } from '@/utils/throttle'
 
-// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
 const props = defineProps<{
@@ -24,17 +18,17 @@ const props = defineProps<{
 const isLiked = ref(props.likes.includes(props.uid))
 const likesCount = ref(props.likes.length)
 
-// 响应式
+// Reactivity
 watch(
   () => props.likes,
   (newLikes) => {
-    // 更新 isLiked 和 likesCount
+    // Update isLiked and likesCount
     isLiked.value = newLikes.includes(props.uid)
     likesCount.value = newLikes.length
   }
 )
 
-// throttle 回调函数
+// Throttle callback function
 const throttleCallback = () => {
   Message(
     'You can only perform one operation within 1007 milliseconds',
@@ -44,13 +38,13 @@ const throttleCallback = () => {
 }
 
 const likeComment = async () => {
-  // 已经点赞
+  /// Already liked
   if (isLiked.value) {
     Message(`You've already liked it`, '您已经点过赞了', 'warn')
     return
   }
 
-  // 当前用户不可以给自己点赞
+  // The current user cannot like themselves
   if (props.uid === props.toUid) {
     Message('You cannot like yourself', '您不可以给自己点赞', 'warn')
     return
@@ -68,10 +62,9 @@ const likeComment = async () => {
   }
 }
 
-// throttle 函数，1007 毫秒仅会触发一次点赞
+// Throttle function, can only trigger likes every 1007 milliseconds
 const handleClickLikeThrottled = throttle(likeComment, 1007, throttleCallback)
 
-// 点赞
 const handleClickLike = () => {
   handleClickLikeThrottled()
 }
@@ -97,7 +90,7 @@ li {
   }
 }
 
-/* 激活后的样式 */
+/* Styles after activation */
 .active .icon {
   color: var(--kungalgame-blue-4);
 }

@@ -43,17 +43,17 @@ const cidArray = computed(() => {
 })
 
 onMounted(async () => {
-  // 如果有话题的话获取话题
+  // If there are topics, get topics
   if (tidArray.value.length) {
     const response = await useKUNGalgameUserStore().getTopics(tidArray.value)
     topics.value = response.data
   }
-  // 如果有回复的话获取回复
+  // If there are replies, get replies
   if (ridArray.value.length) {
     const response = await useKUNGalgameUserStore().getReplies(ridArray.value)
     replies.value = response.data
   }
-  // 如果有评论的话获取评论
+  // If there are comments, get comments
   if (cidArray.value.length) {
     const response = await useKUNGalgameUserStore().getComments(cidArray.value)
     comments.value = response.data
@@ -62,9 +62,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- 右侧内容区 -->
+  <!-- Right content area -->
   <div class="article">
-    <!-- 如果是话题 -->
+    <!-- If it's topics -->
     <div class="topic" v-if="tidArray.length">
       <div class="item" v-for="(topic, index) in topics" :key="index">
         <RouterLink :to="`/topic/${topic.tid}`">
@@ -78,7 +78,7 @@ onMounted(async () => {
       </div>
     </div>
 
-    <!-- 如果是回复 -->
+    <!-- If it's replies -->
     <div class="reply" v-if="ridArray.length">
       <div class="item" v-for="(reply, index) in replies" :key="index">
         <RouterLink :to="`/topic/${reply.tid}`">
@@ -92,7 +92,7 @@ onMounted(async () => {
       </div>
     </div>
 
-    <!-- 如果是评论 -->
+    <!-- If it's comments -->
     <div class="comment" v-if="cidArray.length">
       <div class="item" v-for="(comment, index) in comments" :key="index">
         <RouterLink :to="`/topic/${comment.tid}`">
@@ -103,7 +103,7 @@ onMounted(async () => {
       </div>
     </div>
 
-    <!-- 如果什么都没有 -->
+    <!-- If there is nothing -->
     <div
       v-if="!tidArray.length && !ridArray.length && !cidArray.length"
       class="null"
@@ -114,36 +114,33 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-/* 内容区 */
 .article {
   width: 100%;
   padding: 7px 17px;
-  /* 竖直弹性盒 */
   display: flex;
   flex-direction: column;
-  /* 溢出显示滚动条 */
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: inline;
     width: 4px;
     height: 0;
   }
+
   &::-webkit-scrollbar-thumb {
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
-  /* 兼容火狐 */
+
   scrollbar-width: thin;
-  scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
+  scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1);
 }
 
-/* 单个话题的样式 */
+/* Style for individual topics */
 .item {
   transition: all 0.2s;
   width: 100%;
-  /* 单个话题高度 */
   height: 30px;
-  /* 话题之间的距离 */
   padding: 2px 5px;
   margin: 5px 0;
   border-bottom: 1px solid var(--kungalgame-blue-1);
@@ -174,9 +171,8 @@ onMounted(async () => {
   }
 }
 
-/* 单个话题的标题 */
+/* Title of an individual topic */
 .title {
-  /* 单行显示，溢出省略号 */
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;

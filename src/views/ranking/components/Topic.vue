@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const topics = computed(() => props.topics)
 
-// 将传过来的数据转为数值
+// Convert the incoming data to numbers
 const parseTopicNumber = (field: string | string[]) => {
   return Array.isArray(field) ? field.length : Math.ceil(parseInt(field))
 }
@@ -19,17 +19,13 @@ const parseTopicNumber = (field: string | string[]) => {
 
 <template>
   <TransitionGroup name="list">
-    <!-- 单个话题 -->
     <div class="single-topic" v-for="topic in topics" :key="topic.tid">
       <RouterLink :to="`/topic/${topic.tid}`">
-        <!-- 话题的名字 -->
         <div class="topic-name">
           {{ topic.title }}
         </div>
-        <!-- 话题的其它信息 -->
-        <div class="detail">
-          <!-- 浏览数 -->
 
+        <div class="detail">
           <Icon :icon="topicIconMap[props.field]" />
           <span>{{ parseTopicNumber(topic.field) }}</span>
         </div>
@@ -39,7 +35,6 @@ const parseTopicNumber = (field: string | string[]) => {
 </template>
 
 <style lang="scss" scoped>
-/* 单个话题 */
 .single-topic {
   a {
     flex-shrink: 0;
@@ -63,7 +58,7 @@ const parseTopicNumber = (field: string | string[]) => {
     }
   }
 }
-/* 话题的名字 */
+
 .topic-name {
   white-space: nowrap;
   overflow: hidden;
@@ -74,13 +69,14 @@ const parseTopicNumber = (field: string | string[]) => {
   display: flex;
   align-items: center;
   color: var(--kungalgame-blue-4);
+
   span {
     color: var(--kungalgame-font-color-3);
     margin-left: 10px;
   }
 }
 
-.list-move, /* 对移动中的元素应用的过渡 */
+.list-move,
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -91,8 +87,6 @@ const parseTopicNumber = (field: string | string[]) => {
   opacity: 0;
 }
 
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
 .list-leave-active {
   position: absolute;
 }

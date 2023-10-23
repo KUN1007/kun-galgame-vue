@@ -1,4 +1,4 @@
-// 话题主，回复主的信息
+// Information about the topic author and the replied user
 export interface TopicUserInfo {
   uid: number
   name: string
@@ -6,13 +6,13 @@ export interface TopicUserInfo {
   moemoepoint: number
 }
 
-// 被回复的用户信息
+// Information about the user being replied to
 export interface TopicToUserInfo {
   uid: number
   name: string
 }
 
-// 话题的返回数据
+// Response data for a topic
 export interface TopicDetail {
   tid: number
   title: string
@@ -33,27 +33,27 @@ export interface TopicDetail {
   upvote_time: number
 }
 
-// 推话题，推操作不可撤销
+// Request data for upvoting a topic, the upvote operation is irreversible
 export interface TopicUpvoteTopicRequestData {
   tid: number
   to_uid: number
 }
 
-// 点赞话题
+// Request data for liking a topic
 export interface TopicLikeTopicRequestData {
   tid: number
   to_uid: number
   isPush: boolean
 }
 
-// 点踩话题
+// Request data for disliking a topic
 export interface TopicDislikeTopicRequestData {
   tid: number
   to_uid: number
   isPush: boolean
 }
 
-// 更新话题的请求数据
+// Request data for updating a topic
 export interface TopicUpdateRequestData {
   tid: number
   uid: number
@@ -63,14 +63,14 @@ export interface TopicUpdateRequestData {
   category: string[]
 }
 
-// 获取单个话题响应数据的格式
+// Response data format for a single topic
 export type TopicDetailResponseData = KUNGalgameResponseData<TopicDetail>
 
-// 推话题响应数据的格式
+// Response data format for upvoting a topic
 export type TopicUpvoteTopicResponseData = KUNGalgameResponseData<{}>
 
-// 点赞话题响应数据的格式
+// Response data format for liking a topic
 export type TopicLikeTopicResponseData = KUNGalgameResponseData<{}>
 
-// 点踩话题响应数据的格式
+// Response data format for disliking a topic
 export type TopicDislikeTopicResponseData = KUNGalgameResponseData<{}>

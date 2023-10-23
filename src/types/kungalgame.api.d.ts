@@ -1,4 +1,4 @@
-// 所有 api 接口的响应数据都为该格式
+// The response data format for all API interfaces is as follows
 
 interface KUNGalgameResponseData<T> {
   code: number

@@ -95,39 +95,38 @@ const link: FooterInfoItem[] = [
 
 <template>
   <div class="info">
-    <!-- 非 galgame 交流 -->
-    <!-- 这里为了适配手机端,带有 mobile 属性的节点将会媒体查询时被隐藏 -->
+    <!-- Non-Galgame Communication -->
+    <!-- For mobile compatibility
+      , nodes with the 'mobile' attribute will be hidden in media queries -->
     <div
       class="catalog"
       v-for="kun in info"
       :key="kun.index"
       :class="kun.mobile"
     >
-      <!-- 每个信息类别的标题 -->
       <h2>
         <span>{{ $tm(`mainPage.footer.title['${kun.title}']`) }}</span>
       </h2>
 
       <ul class="function" v-for="yuyu in kun.list" :key="yuyu.index">
         <li>
-          <RouterLink :to="yuyu.router">{{
-            $tm(`mainPage.footer.item['${yuyu.name}']`)
-          }}</RouterLink>
+          <RouterLink :to="yuyu.router">
+            {{ $tm(`mainPage.footer.item['${yuyu.name}']`) }}
+          </RouterLink>
         </li>
       </ul>
     </div>
 
     <div class="catalog">
-      <!-- 每个信息类别的标题 -->
       <h2>
         <span>{{ $tm(`mainPage.footer.title.friend`) }}</span>
       </h2>
 
       <ul class="function" v-for="azkhx in link" :key="azkhx.index">
         <li>
-          <a :href="azkhx.router" target="_blank">{{
-            $tm(`mainPage.footer.item['${azkhx.name}']`)
-          }}</a>
+          <a :href="azkhx.router" target="_blank">
+            {{ $tm(`mainPage.footer.item['${azkhx.name}']`) }}
+          </a>
         </li>
       </ul>
     </div>
@@ -135,12 +134,11 @@ const link: FooterInfoItem[] = [
 </template>
 
 <style lang="scss" scoped>
-/* 左侧顶部的信息 */
 .info {
   display: flex;
   justify-content: center;
 }
-/* 顶部的三个 ul */
+
 .catalog {
   width: 1px;
   flex-grow: 1;
@@ -149,6 +147,7 @@ const link: FooterInfoItem[] = [
   color: var(--kungalgame-font-color-2);
   font-size: small;
 }
+
 .function {
   color: var(--kungalgame-font-color-2);
   li {

@@ -13,11 +13,8 @@ const user = computed(() => props.user)
 </script>
 
 <template>
-  <!-- 话题发布者个人信息 -->
   <div class="kungalgamer">
-    <!-- 发布者头像 -->
     <div class="avatar">
-      <!-- 用户图片 -->
       <RouterLink :to="`/kungalgamer/${user.uid}/info`">
         <img
           :src="user.avatar.replace(/\.webp$/, '-100.webp')"
@@ -25,7 +22,7 @@ const user = computed(() => props.user)
         />
       </RouterLink>
     </div>
-    <!-- 发布者姓名 -->
+
     <div class="name">
       <span>{{ props.user.name }}</span>
     </div>
@@ -52,35 +49,34 @@ const user = computed(() => props.user)
   flex-grow: 1;
   display: flex;
   justify-content: center;
+
   a {
     width: 100%;
     display: flex;
     justify-content: center;
     flex-grow: 1;
   }
+
   img {
     height: 50px;
     width: 50px;
     padding: 2px;
     border-radius: 50%;
-    /* 页面缩小时头像缩小 */
     display: inline-block;
   }
 }
 
-/* 发帖人昵称位置设置 */
 .name {
   height: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+
   span {
-    /* 页面缩小时省略不换行 */
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    /* 颜色和字体大小 */
     color: var(--kungalgame-font-color-3);
     font-size: x-small;
   }

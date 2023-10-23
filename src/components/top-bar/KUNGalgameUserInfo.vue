@@ -2,15 +2,15 @@
 import { Icon } from '@iconify/vue'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
-// 全局消息组件（底部）
+// Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
-// 重置 store
+// Reset store
 import { kungalgameStoreReset } from '@/store'
-// 重置路由
+// Reset router
 import { resetRouter } from '@/router'
 
 const { uid, name, moemoepoint } = storeToRefs(useKUNGalgameUserStore())
@@ -23,18 +23,18 @@ const emits = defineEmits<{
   close: []
 }>()
 
-// 失去焦点时关闭面板
+// Close the panel when losing focus
 const handlePanelBlur = async () => {
-  // 等待一段时间，不然会直接导致面板关闭
+  // Wait for a while, or it will directly close the panel
   await new Promise((resolve) => {
     setTimeout(resolve, 107)
   })
   emits('close')
 }
 
-// 退出登录，简单起见这里不和后端通信使 token 从 redis 移除了
+// Log out - for simplicity, the code here does not communicate with the backend to remove the token from Redis.
 const logOut = async () => {
-  // 获取用户点击的结果
+  // Get the user's response
   const res = await useKUNGalgameMessageStore().alert(
     'AlertInfo.edit.logout',
     true
@@ -48,7 +48,7 @@ const logOut = async () => {
 }
 
 onMounted(() => {
-  // 自动获取焦点
+  // Automatically get focus
   container.value?.focus()
 })
 </script>
@@ -84,6 +84,7 @@ onMounted(() => {
   right: 80px;
   opacity: 0.77;
 }
+
 .triangle1 {
   position: absolute;
   top: 1px;
@@ -94,6 +95,7 @@ onMounted(() => {
   border-bottom: 17px solid var(--kungalgame-white);
   z-index: 1;
 }
+
 .triangle2 {
   position: absolute;
   width: 0;
@@ -102,6 +104,7 @@ onMounted(() => {
   border-right: 10px solid transparent;
   border-bottom: 17px solid var(--kungalgame-blue-1);
 }
+
 .kungalgamer {
   padding: 10px;
   top: 16px;
@@ -120,11 +123,13 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+
   p {
     display: flex;
     margin-bottom: 5px;
     justify-content: center;
     align-items: center;
+
     span {
       display: flex;
       justify-content: center;
@@ -149,6 +154,7 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+
     a {
       width: 100%;
       height: 100%;
@@ -157,6 +163,7 @@ onMounted(() => {
       align-items: center;
       color: var(--kungalgame-blue-5);
     }
+
     &:hover {
       background-color: var(--kungalgame-trans-blue-1);
     }

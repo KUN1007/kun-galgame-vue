@@ -1,4 +1,4 @@
-<!-- 把所有话题的所有 Tag 组合起来形成的一个区域 -->
+<!-- An area formed by combining all tags of all topics -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
@@ -8,9 +8,9 @@ defineProps<{
 </script>
 
 <template>
-  <!-- 话题的标签 -->
+  <!-- Tags for the topic -->
   <div class="tags" v-if="$props.tags.length">
-    <!-- 标签的图标字体 -->
+    <!-- Icon font for tags -->
     <Icon class="tag" icon="mingcute:tag-2-fill" />
     <ul>
       <li v-for="(tag, index) in tags" :key="index">{{ tag }}</li>
@@ -19,17 +19,19 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-/* 话题的标签 */
+/* Tags for the topic */
 .tags {
   display: flex;
   align-items: center;
   color: var(--kungalgame-font-color-3);
-  /* 单个标签的盒子 */
+
+  /* Box for individual tags */
   ul {
     max-height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
+
     li {
       margin: 3px;
       font-size: small;
@@ -38,6 +40,7 @@ defineProps<{
       border: 1px solid var(--kungalgame-blue-1);
       overflow-y: scroll;
       cursor: pointer;
+
       &:hover {
         background-color: var(--kungalgame-red-0);
         transition: 0.2s;
@@ -45,7 +48,8 @@ defineProps<{
     }
   }
 }
-/* 图标字体 */
+
+/* Icon font */
 .tag {
   font-size: 23px;
   margin: 0 20px;

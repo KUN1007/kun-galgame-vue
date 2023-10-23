@@ -26,7 +26,7 @@ import { Icon } from '@iconify/vue'
       /></a>
     </div>
 
-    <!-- 预计更新时间 -->
+    <!-- Estimated update time -->
     <div class="time">
       <span>{{ $tm('update.time') }}: 2019/10/7</span>
     </div>
@@ -34,13 +34,12 @@ import { Icon } from '@iconify/vue'
 </template>
 
 <style lang="scss" scoped>
-/* 更新的内容 */
 .article-next {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-/* 更新信息 */
+
 .describe {
   div {
     font-size: 20px;
@@ -52,7 +51,6 @@ import { Icon } from '@iconify/vue'
   }
 }
 
-/* 更新预览 */
 .preview {
   margin-top: 70px;
   display: flex;

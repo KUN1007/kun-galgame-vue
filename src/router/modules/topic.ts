@@ -3,7 +3,6 @@ import { type RouteRecordRaw } from 'vue-router'
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
 const topic: RouteRecordRaw[] = [
-  // KUNgalgame 话题详情页
   {
     path: '/topic',
     component: Layout,
@@ -12,9 +11,9 @@ const topic: RouteRecordRaw[] = [
       {
         name: 'Topic',
         path: ':tid',
-        // 路由懒加载
+        // Lazy loading of the route
         component: () => import('@/views/topic/KUNGalgameTopicPage.vue'),
-        // 使路由参数作为组件的 props 传递
+        // Pass route parameters as component props
         props: true,
         meta: {
           transition: 'animate__fadeIn animate__faster',

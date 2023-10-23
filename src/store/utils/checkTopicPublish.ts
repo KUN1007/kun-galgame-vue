@@ -1,37 +1,37 @@
-// api 请求格式
+// API request format
 import { EditCreateTopicRequestData, EditUpdateTopicRequestData } from '@/api'
 
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
 
-// 类型守卫，确定 EditUpdateTopicRequestData 含有 tid
+// Type guard to determine if EditUpdateTopicRequestData contains tid
 const isEditUpdateTopicData = (data: any): data is EditUpdateTopicRequestData =>
   typeof data.tid !== 'undefined'
 
-// 发布时检测用户输入是否合法
+// Check if user input is valid when publishing
 export const checkTopicPublish = (
   textCount: number,
   topicData: EditCreateTopicRequestData | EditUpdateTopicRequestData
 ): boolean => {
-  // 检查 tid
+  // Check tid
   if (isEditUpdateTopicData(topicData)) {
-    // 话题 id 为零，应该。。。。不存在吧（
+    // Topic ID should not be zero
     if (!topicData.tid) {
       Message('Failed to resolve topic', '未能解析话题 ID', 'error')
       return false
     }
   }
 
-  // 检查标题
+  // Check title
   if (!topicData.title.trim()) {
-    // 标题为空的话，警告
+    // If the title is empty, show a warning
     Message('Title cannot be empty!', '标题不可为空！', 'warn')
     return false
   }
 
-  // 检查内容字数
+  // Check content character count
   if (!textCount) {
-    // 内容为空的话，警告
+    // If the content is empty, show a warning
     Message('Content cannot be empty!', '内容不可为空！', 'warn')
     return false
   }
@@ -40,13 +40,13 @@ export const checkTopicPublish = (
     return false
   }
 
-  // 检查 tag
+  // Check tags
   if (!topicData.tags.length) {
     Message('Please use at least one tag!', '请至少使用一个标签！', 'warn')
     return false
   }
 
-  // 检查分类
+  // Check category
   if (!topicData.category.length) {
     Message(
       'Please select at least one category!',
@@ -56,6 +56,6 @@ export const checkTopicPublish = (
     return false
   }
 
-  // 都通过则返回真
+  // If all checks pass, return true
   return true
 }

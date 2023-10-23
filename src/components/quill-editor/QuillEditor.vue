@@ -2,36 +2,36 @@
 import { defineAsyncComponent, computed, ref, onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 
-// 引入编辑器
+// Import the editor
 import { QuillEditor } from '@vueup/vue-quill'
-// 导入编辑器 Modules
+// Import editor Modules
 import { modules } from './modules'
 
-// 自定义 quill 的两个主题，第二个主题暂时懒得动
+// Custom Quill themes, the second theme is not currently in use
 import '@/styles/editor/editor.snow.scss'
 // import '@vueup/vue-quill/dist/vue-quill.bubble.css'
 
-// 导入标题
+// Import Title component
 const Title = defineAsyncComponent(
   () => import('@/components/quill-editor/Title.vue')
 )
 
-// 导入 Footer
+// Import EditorFooter
 import EditorFooter from './EditorFooter.vue'
-// Footer 的插槽
+// Footer slot
 import Help from './Help.vue'
 
-// 导入编辑话题的 store
+// Import the store for editing topics
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 导入过滤 xss 的工具
+// Import XSS filtering tool
 import DOMPurify from 'dompurify'
-// 导入防抖函数
+// Import debounce function
 import { debounce } from '@/utils/debounce'
 
-// 话题编辑界面 store
+// Topic editing page store
 const {
   editorHeight,
   mode,
@@ -41,18 +41,18 @@ const {
   content,
   topicRewrite,
 } = storeToRefs(useKUNGalgameEditStore())
-// 话题界面的 store，用于回复
+// Store for topic page used for replies
 const { replyDraft, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
 
-// 当前的路由
+// Current route
 const route = useRoute()
-// 当前页面路由的名字
+// Current page route name
 const routeName = computed(() => route.name as string)
 
-// 定义父组件传参
+// Define props passed from the parent component
 /**
- * @param {boolean} isShowToolbar - 是否显示工具栏
- * @param {boolean} isShowTitle - 是否显示标题
+ * @param {boolean} isShowToolbar - Whether to display the toolbar
+ * @param {boolean} isShowTitle - Whether to display the title
  */
 
 const props = defineProps<{
@@ -60,16 +60,16 @@ const props = defineProps<{
   isShowTitle: boolean
 }>()
 
-// 编辑器实例
+// Editor instance
 const editorRef = ref<typeof QuillEditor>()
-// 编辑器内的内容
+// Content inside the editor
 const valueHtml = ref('')
-// 编辑器相关配置
+// Editor-related configuration
 const editorOptions = {
   placeholder: 'Moe Moe Moe!',
 }
 
-// 编辑器的高度，根据路由的名字确定
+// Editor height, determined by the route name
 const editorHeightStyle = computed(
   () =>
     `height: ${
@@ -79,88 +79,88 @@ const editorHeightStyle = computed(
     }px`
 )
 
-// 编辑器的模式，根据路由的名字确定
+// Editor mode, determined by the route name
 const editorMode = computed(() =>
   routeName.value === 'Edit' ? mode.value : replyDraft.value.mode
 )
 
-// 编辑器的工具栏是否显示
+// Whether to show the editor toolbar
 const isShowEditorToolbar = computed(() =>
   props.isShowToolbar ? 'block' : 'none'
 )
 
 onBeforeMount(() => {
   /**
-   * 编辑器处于编辑界面
+   * Editor is in the edit mode
    */
-  // 挂载之前载入话题数据，如果不保存，则不载入（并且当前必须在 Edit 界面）
+  // Load topic data before mounting if not saved (and must be on the Edit page)
   if (isSaveTopic.value && routeName.value === 'Edit') {
     valueHtml.value = content.value
   }
   /**
-   * 编辑器处于重新编辑的编辑界面
+   * Editor is in the re-editing edit mode
    */
-  // 挂载之前载入重新编辑话题的数据
+  // Load data for re-editing a topic before mounting
   if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
     valueHtml.value = topicRewrite.value.content
   }
   /**
-   * 编辑器处于回复界面
+   * Editor is in the reply mode
    */
-  // 挂载之前载入回复数据，如果不保存，则不载入（并且当前必须在 topic 界面）
+  // Load reply data before mounting if not saved (and must be on the Topic page)
   if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
     valueHtml.value = replyDraft.value.content
   }
   /**
-   * 编辑器处于回复的重新编辑界面
+   * Editor is in the re-editing reply mode
    */
   if (replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
     valueHtml.value = replyRewrite.value.content
   }
 })
 
-// 编辑器文本改变时自动保存数据
+// Automatically save data when the editor text changes
 const handleTextChange = async () => {
-  // 过滤 xss
+  // Filter out XSS
   const purifiedHtml = DOMPurify.sanitize(editorRef.value?.getHTML())
-  // 创建一个防抖处理函数
+  // Create a debounce function
   const debouncedUpdateContent = debounce(() => {
     /**
-     * 编辑器处于编辑界面
+     * Editor is in edit mode
      */
-    // 否则保存在 edit 界面的 store
+    // Save to the edit store if not in topic re-edit mode
     if (!topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
       content.value = purifiedHtml
     }
     /**
-     * 编辑器处于重新编辑的编辑界面
+     * Editor is in re-editing edit mode
      */
-    // 挂载之前载入重新编辑话题的数据
+    // Load data for re-editing a topic before mounting
     if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
       topicRewrite.value.content = purifiedHtml
     }
     /**
-     * 编辑器处于回复界面
+     * Editor is in reply mode
      */
-    // 如果是在 topic 界面则保存到回复的 store
+    // Save to the reply store if not in reply re-edit mode
     if (!replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
       replyDraft.value.content = purifiedHtml
     }
     /**
-     * 编辑器处于回复的重新编辑界面
+     * Editor is in re-editing reply mode
      */
     if (replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
       replyRewrite.value.content = purifiedHtml
     }
   }, 1007)
 
-  // 调用防抖处理函数，会在延迟时间内只执行一次更新操作
+  // Call the debounce function, which will execute the update operation only once within the delay time
   debouncedUpdateContent()
 
-  // 计算用户输入了多少个字符
+  // Calculate how many characters the user has entered
   const length = computed(() => editorRef.value?.getText().trim().length)
 
-  // 根据页面的路由名保存计数
+  // Save the count based on the page's route name
   if (routeName.value === 'Edit') {
     textCount.value = length.value
   }
@@ -172,10 +172,10 @@ const handleTextChange = async () => {
 
 <template>
   <div class="editor">
-    <!-- 话题 title -->
+    <!-- Topic title -->
     <Title v-if="isShowTitle" />
 
-    <!-- 编辑器主体 -->
+    <!-- Editor body -->
     <QuillEditor
       ref="editorRef"
       contentType="html"
@@ -189,7 +189,7 @@ const handleTextChange = async () => {
       @click.prevent
     />
 
-    <!-- 编辑器 footer -->
+    <!-- Editor footer -->
     <EditorFooter>
       <template #help>
         <Help />
@@ -200,25 +200,26 @@ const handleTextChange = async () => {
 
 <style lang="scss" scoped>
 /* 
- * 解决样式问题
- * 这里是根据编译后的 css 写的，很怪，要怪怪作者 www
+ * Resolve style issues
+ * These styles are written based on the compiled CSS, it's a bit weird, blame the author www
  */
 
-/* 工具栏的样式 */
+/* Style of the toolbar */
 :deep(.ql-toolbar) {
   border-top: 1px solid var(--kungalgame-blue-1);
   border-bottom: 1px solid var(--kungalgame-blue-1);
   background-color: var(--kungalgame-trans-blue-0);
-  /* 头部下方阴影 */
+  /* Shadow below the header */
   box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
   display: v-bind(isShowEditorToolbar);
-  /* 不显示视频插入，这个功能 BUG 太多了 */
+  /* Do not display video insertion, this feature has too many bugs */
+
   .ql-video {
     display: none;
   }
 }
 
-/* 编辑器体的样式 */
+/* Style of the editor body */
 :deep(.ql-container) {
   transition: all 0.2s;
   width: 80%;
@@ -228,6 +229,7 @@ const handleTextChange = async () => {
   font-size: 17px;
   margin-top: 40px;
   margin-bottom: 40px;
+
   &::before {
     content: '∟';
     position: absolute;
@@ -235,6 +237,7 @@ const handleTextChange = async () => {
     transform: translateX(-20px) translateY(-20px) rotate(90deg);
     color: var(--kungalgame-blue-2);
   }
+
   &::after {
     content: '∟';
     position: absolute;
@@ -243,24 +246,30 @@ const handleTextChange = async () => {
     transform: translateX(20px) translateY(-20px) rotate(-90deg);
     color: var(--kungalgame-blue-2);
   }
+
   .ql-editor {
     padding: 0;
+
     &::-webkit-scrollbar {
       display: inline;
       width: 7px;
       height: 0;
     }
+
     &::-webkit-scrollbar-thumb {
       cursor: default;
       background: var(--kungalgame-blue-4);
       border-radius: 3px;
     }
-    /* 兼容火狐 */
+
+    /* Compatible with Firefox */
     scrollbar-width: thin;
     scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
+
     &::before {
       left: 0;
     }
+
     &::after {
       content: '♡ Yuki Yuki';
       font-size: 22px;
@@ -273,16 +282,18 @@ const handleTextChange = async () => {
     }
   }
 
-  /* BlotFormatter 插件的样式，这里不用 !important 不行 */
+  /* Style of BlotFormatter plugin, important here */
   .blot-formatter__toolbar-button {
     margin: 0 5px;
     border: none !important;
     background: var(--kungalgame-trans-white-9) !important;
+
     svg {
       border: 1px solid var(--kungalgame-blue-4) !important;
       background: var(--kungalgame-trans-white-2) !important;
     }
   }
+
   .is-selected {
     svg {
       background: var(--kungalgame-trans-blue-1) !important;

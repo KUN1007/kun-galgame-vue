@@ -1,43 +1,43 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
-// 引入图标字体
+// Import the icon font
 import { Icon } from '@iconify/vue'
-// 引入 css 动画
+// Import CSS animations
 import 'animate.css'
 
-// 导入编辑话题的 store
+// Import the topic editing store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// 导入回复的 store
+// Import the reply store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 导入关键词显示切换按钮
+// Import the keyword display toggle button
 import SwitchButton from './SwitchButton.vue'
 
-// 话题编辑界面 store
+// Topic editing page store
 const { editorHeight, mode } = storeToRefs(useKUNGalgameEditStore())
-// 话题界面的 store，用于回复
+// Topic page store for replies
 const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
 defineProps<{
   isShowSettingsMenu: boolean
 }>()
 
-// 定义是否关闭设置面板的 emits
+// Define emits to close the settings panel
 const emits = defineEmits<{
   close: [isShowSettingsMenu: boolean]
 }>()
 
-// 当前的路由
+// Current route
 const route = useRoute()
-// 当前页面路由的名字
+// Name of the current page route
 const routeName = computed(() => route.name as string)
 
-// 是否显示刷新页面
+// Whether to refresh the page when clicking advanced options
 const isRefreshPage = ref(false)
 
-// 点击高级选项时提醒用户刷新页面
+// Remind the user to refresh the page when clicking on advanced options
 watch(
   () => [replyDraft.value.mode, mode.value],
   () => {
@@ -47,7 +47,7 @@ watch(
 
 const handleRefreshPage = () => location.reload()
 
-// 关闭设置面板
+// Close the settings panel
 const handelCloseSettingsPanel = () => {
   emits('close', false)
 }
@@ -58,16 +58,16 @@ const handelCloseSettingsPanel = () => {
     enter-active-class="animate__animated animate__jackInTheBox animate__faster"
     leave-active-class="animate__animated animate__rollOut animate__faster"
   >
-    <!-- 设置菜单 -->
+    <!-- Settings menu -->
     <div v-if="isShowSettingsMenu" class="settings-menu">
       <div class="content">
-        <!-- 编辑器高度设置 -->
+        <!-- Editor height settings -->
         <div class="editor-height-title">
           <span> {{ $tm('edit.editorHeight') }} </span>
           <span>{{ editorHeight }} px</span>
         </div>
 
-        <!-- 编辑界面 -->
+        <!-- Editor page -->
         <div v-if="routeName === 'Edit'" class="editor-height">
           <span>300 px</span>
           <input
@@ -80,7 +80,7 @@ const handelCloseSettingsPanel = () => {
           <span>500 px</span>
         </div>
 
-        <!-- 回复面板 -->
+        <!-- Reply panel -->
         <div v-if="routeName === 'Topic'" class="editor-height">
           <span>100 px</span>
           <input
@@ -93,7 +93,7 @@ const handelCloseSettingsPanel = () => {
           <span>500 px</span>
         </div>
 
-        <!-- 是否显示编辑器高级选项 -->
+        <!-- Whether to display editor advanced options -->
         <div class="editor-advance">
           <div class="editor-advance-title">
             <Transition mode="out-in" name="slide-up">
@@ -108,7 +108,7 @@ const handelCloseSettingsPanel = () => {
             </Transition>
           </div>
 
-          <!-- 编辑界面切换按钮 -->
+          <!-- Editor page switch button -->
           <select class="select" v-if="routeName === 'Edit'" v-model="mode">
             <option value="minimal">{{ $tm('edit.minimal') }}</option>
             <option value="">{{ $tm('edit.default') }}</option>
@@ -116,7 +116,7 @@ const handelCloseSettingsPanel = () => {
             <option value="full">{{ $tm('edit.full') }}</option>
           </select>
 
-          <!-- 回复面板切换按钮 -->
+          <!-- Reply panel switch button -->
           <select
             class="select"
             v-if="routeName === 'Topic'"
@@ -128,14 +128,14 @@ const handelCloseSettingsPanel = () => {
           </select>
         </div>
 
-        <!-- 是否显示热门关键词 -->
+        <!-- Whether to display popular keywords -->
         <div class="keywords">
           <div class="keywords-title">{{ $tm('edit.tagsHint') }}</div>
           <SwitchButton />
         </div>
       </div>
 
-      <!-- 关闭按钮 -->
+      <!-- Close button -->
       <div class="close">
         <Icon @click="handelCloseSettingsPanel" icon="line-md:close" />
       </div>
@@ -182,7 +182,7 @@ const handelCloseSettingsPanel = () => {
 .editor-height {
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space between;
   align-items: center;
 }
 
@@ -201,7 +201,7 @@ const handelCloseSettingsPanel = () => {
   }
 }
 
-// 编辑器模式的选择框
+// Editor mode selection box
 .select {
   width: 100px;
   font-size: 16px;
@@ -209,12 +209,13 @@ const handelCloseSettingsPanel = () => {
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-white-9);
+
   option {
     background-color: var(--kungalgame-white);
   }
 }
 
-// 关闭设置
+// Close settings
 .close {
   font-size: 25px;
   margin-left: 10px;
@@ -223,7 +224,7 @@ const handelCloseSettingsPanel = () => {
   cursor: pointer;
 }
 
-// 是否显示热门关键词
+// Whether to display popular keywords
 .keywords {
   display: flex;
   justify-content: space-between;

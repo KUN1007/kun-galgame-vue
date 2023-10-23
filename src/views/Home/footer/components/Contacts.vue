@@ -3,10 +3,9 @@ import { Icon } from '@iconify/vue'
 </script>
 
 <template>
-  <!-- 下方上面的联系我们 -->
   <div class="kungalgame-contact">
     <h2>{{ $tm('mainPage.footer.contact') }}</h2>
-    <!-- QQ, bilibili, telegram 的图标列表 -->
+    <!-- QQ, bilibili, telegram icon list -->
     <ul>
       <li>
         <a
@@ -17,6 +16,7 @@ import { Icon } from '@iconify/vue'
           <Icon icon="bi:tencent-qq" />
         </a>
       </li>
+
       <li>
         <a
           aria-label="KUN Visual Novel Official Bilibili Account | 鲲 Galgame 官方 Bilibili"
@@ -26,6 +26,7 @@ import { Icon } from '@iconify/vue'
           <Icon icon="ri:bilibili-line" />
         </a>
       </li>
+
       <li>
         <a
           aria-label="KUN Visual Novel Official Telegram Group"
@@ -40,7 +41,6 @@ import { Icon } from '@iconify/vue'
 </template>
 
 <style lang="scss" scoped>
-/* 下方上面的联系我们 */
 .kungalgame-contact {
   width: 180px;
   margin: 0 auto;
@@ -50,28 +50,28 @@ import { Icon } from '@iconify/vue'
   align-items: center;
   color: var(--kungalgame-font-color-2);
   font-size: small;
-}
 
-.kungalgame-contact h2 {
-  margin-right: 20px;
-  font-size: medium;
-}
+  h2 {
+    margin-right: 20px;
+    font-size: medium;
+  }
 
-.kungalgame-contact ul {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
+  ul {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
 
-.kungalgame-contact ul li {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    li {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-.kungalgame-contact ul li a {
-  font-size: 17px;
-  color: var(--kungalgame-font-color-2);
+      a {
+        font-size: 17px;
+        color: var(--kungalgame-font-color-2);
+      }
+    }
+  }
 }
 </style>

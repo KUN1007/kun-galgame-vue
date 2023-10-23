@@ -8,26 +8,9 @@ export interface EditCreateTopicRequestData {
 
 export interface EditKUNGalgameTopic {
   tid: number
-  // title: string
-  // content: string
-  // uid: number
-  // tags: Array<string>
-  // category: Array<string>
-  // rid: Array<number>
-  // time: number
-  // popularity: number
-  // upvotes: number
-  // views: number
-  // likes: number
-  // replies: number
-  // share: number
-  // comments: number
-  // dislikes: number
-  // status: number
-  // edited: number
 }
 
-// 更新话题的请求数据格式
+// Request data format for updating a topic
 export interface EditUpdateTopicRequestData {
   tid: number
   title: string
@@ -36,17 +19,17 @@ export interface EditUpdateTopicRequestData {
   category: string[]
 }
 
-// 获取热门 tag 的请求数据格式
+// Request data format for getting hot tags
 export interface EditGetHotTagsRequestData {
   limit: number
 }
 
-// 创建话题响应数据的格式
+// Response data format for creating a topic
 export type EditCreateTopicResponseData =
   KUNGalgameResponseData<EditKUNGalgameTopic>
 
-// 更新话题响应数据的格式
+// Response data format for updating a topic
 export type EditUpdateTopicResponseData = KUNGalgameResponseData<{}>
 
-// 热门 tag 的返回数据格式
+// Response data format for hot tags
 export type EditGetHotTagsResponseData = KUNGalgameResponseData<string[]>

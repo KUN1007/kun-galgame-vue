@@ -1,16 +1,12 @@
-<!-- 话题的底部区域，推话题，回复，点赞等 -->
+<!-- Topic's bottom area, including upvote, reply, like, etc. -->
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
-// 全局消息组件（顶部）
 import Message from '@/components/alert/Message'
-// throttle 函数
 import { throttle } from '@/utils/throttle'
 
-// 导入话题页面 store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
-// 接受父组件的传值
 const props = defineProps<{
   uid: number
   tid: number
@@ -22,17 +18,17 @@ const props = defineProps<{
 const isDisliked = ref(props.dislikes.includes(props.uid))
 const dislikesCount = ref(props.dislikes.length)
 
-// 响应式
+// Reactive
 watch(
   () => props.dislikes,
   (newLikes) => {
-    // 更新 isLiked 和 likesCount
+    // Update isDisliked and dislikesCount
     isDisliked.value = newLikes.includes(props.uid)
     dislikesCount.value = newLikes.length
   }
 )
 
-// throttle 回调函数
+// Throttle callback
 const throttleCallback = () => {
   Message(
     'You can only perform one operation within 1007 milliseconds',
@@ -41,14 +37,14 @@ const throttleCallback = () => {
   )
 }
 
-// 点踩
+// Dislike operation
 const dislikeOperation = async (
   tid: number,
   rid: number,
   toUid: number,
   isPush: boolean
 ) => {
-  // rid 为零表示点赞的是楼主的话题
+  // If rid is zero, it means the dislike is for the main topic
   const isMasterTopic = rid === 0
   if (isMasterTopic) {
     return await useKUNGalgameTopicStore().updateTopicDislike(
@@ -66,18 +62,18 @@ const dislikeOperation = async (
   }
 }
 
-// 点踩 / 取消点踩
+// Toggle dislike (dislike or cancel dislike)
 const toggleDislike = async () => {
-  // 当前用户不可以给自己点赞
+  // Current user cannot dislike themselves
   if (props.uid === props.toUid) {
     Message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
     return
   }
 
   const { tid, rid, toUid } = props
-  const isPush = !isDisliked.value // 取反表示点赞或取消点赞
+  const isPush = !isDisliked.value // Invert the value to dislike or cancel dislike
 
-  // 执行点赞或取消点赞操作
+  // Perform dislike or cancel dislike operation
   const res = await dislikeOperation(tid, rid, toUid, isPush)
 
   if (res.code === 200) {
@@ -98,21 +94,21 @@ const toggleDislike = async () => {
   }
 }
 
-// throttle 函数，1007 毫秒仅会触发一次点踩
+// Throttled function, can only trigger dislike once within 1007 milliseconds
 const handleClickDislikeThrottled = throttle(
   toggleDislike,
   1007,
   throttleCallback
 )
 
-// 点踩
+// Handle dislike
 const handleClickDislike = () => {
   handleClickDislikeThrottled()
 }
 </script>
 
 <template>
-  <!-- 踩 -->
+  <!-- Dislike -->
   <li>
     <span
       class="icon"
@@ -142,14 +138,13 @@ li {
   }
 }
 
-/* 图标字体的样式 */
 .icon {
   font-size: 24px;
   color: var(--kungalgame-font-color-2);
   cursor: pointer;
 }
 
-/* 激活后的样式 */
+/* Styles after activation */
 .active {
   color: var(--kungalgame-blue-4);
 }

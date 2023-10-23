@@ -19,71 +19,71 @@ export interface UserInfo {
   upvoteTopic: number[]
 }
 
-// 用户更新头像
+// User updates avatar
 export interface UserUpdateAvatarRequestData {
   uid: number
   avatar: FormData
 }
 
-// 用户更新签名
+// User updates bio (signature)
 export interface UserUpdateBioRequestData {
   uid: number
   bio: string
 }
 
-// 用户更新邮箱
+// User updates email
 export interface UserUpdateEmailRequestData {
   uid: number
   email: string
   code: string
 }
 
-// 用户更新密码
+// User updates password
 export interface UserUpdatePasswordRequestData {
   uid: number
   oldPassword: string
   newPassword: string
 }
 
-// 获取用户的话题返回数据
+// Data interface for user's topics
 export interface UserTopic {
   tid: number
   title: string
   time: number
 }
 
-// 获取用户发布的话题
+// Get topics published by a user
 export interface UserGetUserTopicRequestData {
   uid: number
   tidArray: number[]
 }
 
-// 获取用户发布回复返回数据
+// Data interface for user's replies
 export interface UserReply {
   tid: number
   content: string
   time: number
 }
 
-// 获取用户发布的回复
+// Get replies published by a user
 export interface UserGetUserReplyRequestData {
   uid: number
   ridArray: number[]
 }
 
-// 获取用户发布评论返回数据
+// Data interface for user's comments
 export interface UserComment {
   tid: number
   content: string
 }
 
-// 获取用户发布的回复
+// Get comments published by a user
 export interface UserGetUserCommentRequestData {
   uid: number
   cidArray: number[]
 }
 
-// 用户验证邮箱重置密码,不根据密码重置
+// User resets password by email, not by providing the old password
 export interface UserResetPasswordByEmailRequestData {
   email: string
   code: string

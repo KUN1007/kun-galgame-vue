@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// 导入编辑器的样式
-// 自定义 quill 的两个主题
+// Import editor styles
+// Custom quill with two themes
 import '@/styles/editor/editor.snow.scss'
 
 defineProps<{
@@ -9,15 +9,15 @@ defineProps<{
 </script>
 
 <template>
-  <!-- 内容区右侧的话题展示区，这里富文本必须用 v-html，已经确定文本经过三次处理 -->
-  <!-- 这里用的 v-html，样式是页面刷新后才会有的，所以必须动态绑定样式 -->
+  <!-- Topic display area on the right side of the content, rich text must use v-html,
+    and styles will only appear after page refresh, so dynamic binding of styles is necessary -->
   <div class="kungalgame-topic-content ql-container ql-snow">
     <div class="ql-editor ql-blank" v-html="content"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 内容区右侧的话题展示区 */
+/* Right side content area for the topic */
 .kungalgame-topic-content {
   /** 100 + 20 + 20 + 1 = 141px */
   width: calc(100% - 141px);
@@ -31,7 +31,7 @@ defineProps<{
 }
 
 .kungalgame-topic-content {
-  /* 下面的代码调整富文本区域的格式 */
+  /* The code below adjusts the formatting of the rich text area */
   :deep(*) {
     max-width: 100%;
     overflow-y: scroll;
@@ -45,7 +45,7 @@ defineProps<{
     }
   }
 
-  /* 代码块 */
+  /* Code blocks */
   :deep(pre) {
     font-family: monospace;
     display: flex;
@@ -63,13 +63,13 @@ defineProps<{
     }
   }
 
-  /* 引用 */
+  /* Quotes */
   :deep(blockquote) {
     padding: 7px 10px;
   }
 }
 
-/* 适配手机端 */
+/* Mobile responsiveness */
 @media (max-width: 700px) {
   .kungalgame-topic-content {
     width: 100%;

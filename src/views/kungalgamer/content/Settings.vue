@@ -2,15 +2,15 @@
 import { ref } from 'vue'
 import Avatar from '../components/Avatar.vue'
 import Message from '@/components/alert/Message'
-// 导入用户 store
+// Import user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
-// 签名的内容
+// Content of the bio
 const bioValue = ref('')
 
-// 更改签名
+// Change bio
 const handleChangeBio = async () => {
-  // 签名超过最大长度
+  // Bio exceeds the maximum length
   if (bioValue.value.length > 107) {
     Message(
       'Bio must not exceed a maximum length of 107 characters',
@@ -33,10 +33,10 @@ const handleChangeBio = async () => {
 
 <template>
   <div class="settings">
-    <!-- 更改头像 -->
+    <!-- Change profile picture -->
     <Avatar />
 
-    <!-- 更改 bio -->
+    <!-- Change bio -->
     <div class="bio">
       <div class="title">{{ $tm('user.settings.bio') }}</div>
       <textarea
@@ -80,6 +80,7 @@ const handleChangeBio = async () => {
     background-color: var(--kungalgame-trans-white-9);
     border-radius: 5px;
     padding: 5px;
+
     &:focus {
       border: 1px solid var(--kungalgame-pink-3);
     }

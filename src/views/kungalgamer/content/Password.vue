@@ -4,11 +4,11 @@ import { useRouter } from 'vue-router'
 import type { UserInfo } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import Message from '@/components/alert/Message'
-// 使用全局通知
+// Using global notifications
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 重置 store
+// Reset store
 import { kungalgameStoreReset } from '@/store'
-// 重置路由
+// Reset router
 import { resetRouter } from '@/router'
 import {
   checkSendCode,
@@ -21,12 +21,12 @@ defineProps<{
 }>()
 
 const router = useRouter()
-// 当前用户的邮箱
+// Current user's email
 const email = ref('')
-// 已经发送验证码的邮箱
+// Email where the verification code has been sent
 const hasSentCodeEmail = ref('')
 
-// 5 个输入框的值
+// Values of the 5 input fields
 const input = reactive({
   newEmail: '',
   code: '',
@@ -35,9 +35,9 @@ const input = reactive({
   repeatPassword: '',
 })
 
-// 发送邮箱验证码
+// Send email verification code
 const handleSendCode = async () => {
-  // 检查必要信息
+  // Check necessary information
   if (!checkSendCode(input.newEmail)) {
     return
   }
@@ -52,22 +52,22 @@ const handleSendCode = async () => {
 
   if (res.code === 200) {
     Message(
-      'Reset email verification code send successfully!',
+      'Reset email verification code sent successfully!',
       '重置邮箱验证码发送成功！',
       'success'
     )
   } else {
     Message(
-      'Reset email verification code send failed!',
+      'Reset email verification code sending failed!',
       '重置邮箱验证码发送失败！',
       'error'
     )
   }
 }
 
-// 更改邮箱
+// Reset email
 const handleResetEmail = async () => {
-  // 检查必要信息
+  // Check necessary information
   if (!checkResetEmail(hasSentCodeEmail.value, input.newEmail, input.code)) {
     return
   }
@@ -80,15 +80,15 @@ const handleResetEmail = async () => {
   )
 
   if (res.code === 200) {
-    Message('Email change successfully!', '邮箱更改成功', 'success')
+    Message('Email change successful!', '邮箱更改成功', 'success')
   } else {
     Message('Email change failed!', '邮箱更改失败', 'error')
   }
 }
 
-// 更改密码
+// Change password
 const handleChangePassword = async () => {
-  // 检查必要信息
+  // Check necessary information
   if (
     !checkChangePassword(
       input.oldPassword,
@@ -99,7 +99,7 @@ const handleChangePassword = async () => {
     return
   }
 
-  // 确定更改密码吗?
+  // Are you sure you want to change the password?
   const result = await useKUNGalgameMessageStore().alert(
     'AlertInfo.code.password',
     true
@@ -117,7 +117,7 @@ const handleChangePassword = async () => {
     kungalgameStoreReset()
     router.push('/login')
     resetRouter()
-    Message('Password change successfully!', '密码更改成功', 'success')
+    Message('Password change successful!', '密码更改成功', 'success')
   } else {
     Message('Password change failed!', '密码更改失败', 'error')
   }
@@ -133,58 +133,58 @@ onMounted(async () => {
   }
 })
 
-// 忘记密码
+// Forgot password
 const handleClickForgotPassword = () => {
   router.push('/forgot')
 }
 </script>
 
 <template>
-  <!-- 右侧内容区 -->
+  <!-- Right content area -->
   <div class="article">
-    <!-- 更改邮箱 -->
+    <!-- Change email -->
     <div class="email">
       <div class="title">{{ $tm('user.email.email') }}:</div>
-      <!-- 当前的邮箱 -->
+      <!-- Current email -->
       <div class="current-email">
         {{ $tm('user.email.current') }}: {{ email }}
       </div>
-      <!-- 新邮箱 -->
+      <!-- New email -->
       <div class="input">
         <span>{{ $tm('user.email.newEmail') }}: </span>
         <input v-model="input.newEmail" type="text" />
       </div>
-      <!-- 邮箱验证码 -->
+      <!-- Email verification code -->
       <div class="input">
         <span>{{ $tm('user.email.code') }}: </span>
         <input v-model="input.code" type="text" />
       </div>
-      <!-- 发送验证码 -->
+      <!-- Send code -->
       <div class="btn">
         <button @click="handleSendCode" v-if="!hasSentCodeEmail">
           {{ $tm('user.email.send') }}
         </button>
-        <!-- 确定更改 -->
+        <!-- Confirm email -->
         <button @click="handleResetEmail">
           {{ $tm('user.email.confirmEmail') }}
         </button>
       </div>
     </div>
 
-    <!-- 用户更改密码 -->
+    <!-- Change user password -->
     <div class="password">
       <div class="title">{{ $tm('user.email.pwd') }}:</div>
-      <!-- 旧密码 -->
+      <!-- Old password -->
       <div class="input">
         <span>{{ $tm('user.email.oldPwd') }}: </span>
         <input v-model="input.oldPassword" type="password" />
       </div>
-      <!-- 新密码 -->
+      <!-- New password -->
       <div class="input">
         <span>{{ $tm('user.email.newPwd') }}: </span>
         <input v-model="input.newPassword" type="password" />
       </div>
-      <!-- 确认密码 -->
+      <!-- Confirm password -->
       <div class="input">
         <span>{{ $tm('user.email.rePwd') }}: </span>
         <input v-model="input.repeatPassword" type="password" />
@@ -197,7 +197,7 @@ const handleClickForgotPassword = () => {
       </div>
     </div>
 
-    <!-- 忘记密码 -->
+    <!-- Forgot password -->
     <span @click="handleClickForgotPassword" class="forget">
       {{ $tm('login.login.forget') }}
     </span>
@@ -205,7 +205,6 @@ const handleClickForgotPassword = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 内容区 */
 .article {
   width: 100%;
   height: 100%;
@@ -234,11 +233,13 @@ const handleClickForgotPassword = () => {
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
+
   input {
     height: 25px;
     padding-left: 5px;
     border: 1px solid var(--kungalgame-blue-4);
     background-color: var(--kungalgame-trans-white-9);
+
     &:focus {
       background-color: var(--kungalgame-trans-blue-0);
     }
@@ -262,6 +263,7 @@ const handleClickForgotPassword = () => {
       background-color: var(--kungalgame-blue-4);
       color: var(--kungalgame-white);
     }
+
     &:active {
       transform: scale(0.9);
     }
@@ -272,7 +274,7 @@ const handleClickForgotPassword = () => {
   margin-bottom: 20px;
 }
 
-/* 忘记密码 */
+/* Forgot password */
 .forget {
   font-size: medium;
   cursor: pointer;
@@ -284,9 +286,11 @@ const handleClickForgotPassword = () => {
   .article {
     font-size: small;
   }
+
   .title {
     font-size: medium;
   }
+
   .input {
     padding: 0;
     span {

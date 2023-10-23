@@ -1,43 +1,43 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, ref } from 'vue'
-// 导入路由
+// Import the router
 import { useRoute } from 'vue-router'
 
-// 引入图标字体
+// Import icon font
 import { Icon } from '@iconify/vue'
 
-// 异步引入编辑器设置面板
+// Asynchronously import the editor settings menu
 const EditorSettingsMenu = defineAsyncComponent(
   () => import('./EditorSettingsMenu.vue')
 )
-// 引入 css 动画
+// Import CSS animations
 import 'animate.css'
 
-// 导入编辑话题的 store
+// Import the topic editing store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 话题编辑界面 store
+// Topic editing page store
 const { textCount } = storeToRefs(useKUNGalgameEditStore())
-// 话题界面的 store，用于回复和调整回复面板宽度
+// Topic page store for replies and adjusting reply panel width
 const { replyDraft, replyPanelWidth } = storeToRefs(useKUNGalgameTopicStore())
 
-// 当前的路由
+// Current route
 const route = useRoute()
-// 当前页面路由的名字
+// Name of the current page route
 const routeName = computed(() => route.name as string)
 
 const textCountNumber = computed(() =>
   routeName.value === 'Edit' ? textCount.value : replyDraft.value.textCount
 )
 
-// 是否显示编辑器设置面板
+// Whether to display the editor settings panel
 const isShowSettingsMenu = ref(false)
-// 设置面板被激活后的样式
+// Style when the settings panel is activated
 const settingsPanelActive = ref('')
 
-// 点击设置按钮
+// Click the settings button
 const handelClickSettings = () => {
   isShowSettingsMenu.value = !isShowSettingsMenu.value
   if (isShowSettingsMenu.value) {
@@ -47,7 +47,7 @@ const handelClickSettings = () => {
   }
 }
 
-// 关闭面板 emits
+// Close the panel emits
 const handelCloseSettingsMenu = () => {
   isShowSettingsMenu.value = false
   settingsPanelActive.value = ''
@@ -56,7 +56,7 @@ const handelCloseSettingsMenu = () => {
 
 <template>
   <div class="footer">
-    <!-- 显示设置按钮 -->
+    <!-- Display the settings button -->
     <div class="settings">
       <span
         @click="handelClickSettings"
@@ -66,7 +66,7 @@ const handelCloseSettingsMenu = () => {
         <Icon icon="uiw:setting-o" />
       </span>
 
-      <!-- 帮助插槽 -->
+      <!-- Help slot -->
       <slot name="help" />
       <input
         v-if="routeName === 'Topic'"
@@ -79,10 +79,10 @@ const handelCloseSettingsMenu = () => {
       />
     </div>
 
-    <!-- 文字计数 -->
+    <!-- Word count -->
     <span class="count">{{ textCountNumber + ` ${$tm('edit.word')}` }}</span>
 
-    <!-- 设置面板 -->
+    <!-- Settings panel -->
     <EditorSettingsMenu
       @close="handelCloseSettingsMenu"
       :isShowSettingsMenu="isShowSettingsMenu"
@@ -105,12 +105,14 @@ const handelCloseSettingsMenu = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+
   .settings-icon {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .help {
     cursor: pointer;
     margin-left: 20px;
@@ -120,6 +122,7 @@ const handelCloseSettingsMenu = () => {
     justify-content: center;
     align-items: center;
   }
+
   .info {
     padding: 3px;
     color: var(--kungalgame-font-color-2);
@@ -128,23 +131,28 @@ const handelCloseSettingsMenu = () => {
     transition: 0.3s background-color ease;
     border-radius: 5px;
     margin-bottom: 100px;
+
     ul {
       display: flex;
       flex-direction: column;
       background-color: var(--kungalgame-white);
       padding: 5px;
       border-radius: 5px;
+
       li {
         &::before {
           content: '❆ ';
           color: var(--kungalgame-pink-3);
         }
+
         cursor: default;
         font-size: 15px;
         line-height: 27px;
+
         span {
           cursor: pointer;
           color: var(--kungalgame-blue-4);
+
           &:hover {
             text-decoration: underline;
           }
@@ -152,6 +160,7 @@ const handelCloseSettingsMenu = () => {
       }
     }
   }
+
   .panel-width {
     margin-left: 20px;
   }
@@ -162,11 +171,12 @@ const handelCloseSettingsMenu = () => {
   background-color: var(--kungalgame-trans-white-9);
 }
 
-// 激活时使设置按钮保持旋转
+// Keep the settings button rotating when activated.
 .settings-icon-active {
   color: var(--kungalgame-blue-4);
   animation: settings 3s linear infinite;
 }
+
 @keyframes settings {
   0% {
     transform: rotate(0deg);

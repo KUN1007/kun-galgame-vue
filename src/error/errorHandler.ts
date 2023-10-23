@@ -1,4 +1,4 @@
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
 import { getErrorMessageEN, getErrorMessageCN } from './errorI18n'
 
@@ -10,7 +10,8 @@ const showMessage = (errorCode: number) => {
 }
 
 /**
- * KUNGalgame 已知错误处理函数，错误代码与后端协同
+ * KUNGalgame known error handling function
+ * Error codes coordinated with the backend
  */
 export const kungalgameErrorHandler = (errorNumber: number) => {
   showMessage(errorNumber)

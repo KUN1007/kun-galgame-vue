@@ -1,13 +1,13 @@
-<!-- 话题的底部区域，推话题，回复，点赞等 -->
+<!-- Topic's bottom area, including upvote, reply, like, etc. -->
 <script setup lang="ts">
-// 导入话题页面 store
+// Import the topic page store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 使用话题页面的 store
+// Use the topic page store
 const { isEdit, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
-// 接受父组件的传值
+// Accept props from the parent component
 const props = defineProps<{
   tid: number
   toUserName: string
@@ -15,14 +15,14 @@ const props = defineProps<{
   to_floor: number
 }>()
 
-// 点击回复打开回复面板
+// Click to open the reply panel
 const handleClickReply = () => {
-  // 保存必要信息，以便发表回复
+  // Save necessary information for posting a reply
   replyDraft.value.tid = props.tid
   replyDraft.value.toUserName = props.toUserName
   replyDraft.value.to_uid = props.to_uid
   replyDraft.value.to_floor = props.to_floor
-  // 打开回复面板
+  // Open the reply panel
   isEdit.value = true
 }
 </script>

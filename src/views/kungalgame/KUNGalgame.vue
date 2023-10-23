@@ -113,7 +113,7 @@ const kungalgamePageWidth = computed(() => {
             <li>
               <span class="skip">
                 <a
-                  href="http://acgngames.net"
+                  href="https://acgngames.net"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -125,7 +125,7 @@ const kungalgamePageWidth = computed(() => {
             <li>
               <span class="skip">
                 <a
-                  href="http://shinnku.com"
+                  href="https://shinnku.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -137,14 +137,14 @@ const kungalgamePageWidth = computed(() => {
             <li>
               <span class="skip">
                 <a
-                  href="http://www.ymgal.games"
+                  href="https://www.ymgal.games"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Ymgal
                 </a>
               </span>
-              (YueMu Galgame) Webmaster
+              (YM Galgame) Webmaster
             </li>
             <li>... and more.</li>
           </ul>
@@ -302,8 +302,8 @@ const kungalgamePageWidth = computed(() => {
                 rel="noopener noreferrer"
               >
                 开发阶段
-              </a></span
-            >
+              </a>
+            </span>
           </p>
           <br />
           <p>KUNGalgame 创建的意义在于：</p>
@@ -523,15 +523,18 @@ const kungalgamePageWidth = computed(() => {
   border-radius: 7px;
   display: flex;
   box-shadow: var(--shadow);
+
   &::-webkit-scrollbar {
     display: inline;
     width: 4px;
     height: 0;
   }
+
   &:hover::-webkit-scrollbar-thumb {
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
+
   position: relative;
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
@@ -557,21 +560,25 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+
 h2 {
   margin-top: 77px;
   margin-bottom: 30px;
   border-left: 4px solid var(--kungalgame-blue-4);
   text-indent: 1em;
 }
+
 h3 {
   text-indent: 2em;
   margin-bottom: 30px;
   margin-top: 20px;
 }
+
 p {
   text-indent: 3em;
   margin: 5px;
 }
+
 strong {
   text-transform: uppercase;
 }
@@ -584,6 +591,7 @@ strong {
     color: var(--kungalgame-blue-4);
   }
 }
+
 .list > li {
   list-style: inside;
   text-indent: 4em;
@@ -600,6 +608,7 @@ strong {
   .content-container {
     width: 100%;
   }
+
   .article {
     margin-left: 7px;
   }

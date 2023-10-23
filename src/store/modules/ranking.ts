@@ -16,7 +16,6 @@ interface RankingStore {
 
 export const useKUNGalgameRankingStore = defineStore({
   id: 'KUNGalgameRanking',
-  // 不持久
   persist: false,
   state: (): RankingStore => ({
     topic: {

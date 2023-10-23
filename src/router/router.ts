@@ -126,4 +126,4 @@ const getRouteName = (routeList: RouteRecordRaw[]) => {
 export const asyncRoutes = getAsyncRoute()
 
 // 路由白名单
-export const WHITE_LIST = getRouteName(constantRoutes)
+export const whiteList = getRouteName(constantRoutes)

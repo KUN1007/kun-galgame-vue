@@ -1,10 +1,10 @@
 /*
- * 这个函数是将一个对象转为请求参数的函数，用于发请求
+ * This function converts an object to request parameters for making requests.
  */
 
 /**
- * @param {object} obj - request 对象
- * @param {string} omitKey - 需要在对象里省略的属性
+ * @param {object} obj - Request object
+ * @param {string} omitKey - Property to omit from the object
  */
 export default function objectToQueryParams(
   obj: { [key: string]: any },

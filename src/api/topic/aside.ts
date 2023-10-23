@@ -1,9 +1,9 @@
 import { fetchGet } from '@/utils/request'
-// 将对象转为请求参数的函数
+// Function to convert an object to query parameters
 import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as Aside from './types/aside'
 
-// 左侧相同标签下的其它话题
+// Get other topics with the same tags on the left side
 export async function getRelatedTopicsByTagsApi(
   request: Aside.TopicAsideOtherTagRequestData
 ): Promise<Aside.TopicAsideResponseData> {
@@ -20,7 +20,7 @@ export async function getRelatedTopicsByTagsApi(
   }
 }
 
-// 楼主的其它话题
+// Other topics by the master
 export async function getPopularTopicsByUserUidApi(
   request: Aside.TopicAsideMasterRequestData
 ): Promise<Aside.TopicAsideResponseData> {

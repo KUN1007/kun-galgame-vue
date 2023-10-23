@@ -1,9 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <!-- 根容器 -->
   <div class="root">
-    <!-- 内容区容器 -->
     <div class="container">
       <p>403</p>
       <p>{{ $tm('page404.permission') }}</p>
@@ -30,6 +28,7 @@
   background-color: var(--kungalgame-white);
   color: var(--kungalgame-font-color-3);
 }
+
 .container {
   margin: auto;
   display: flex;
@@ -37,14 +36,17 @@
   justify-content: center;
   align-items: center;
 }
+
 p {
   margin: 7px;
 }
+
 p:first-child {
   font-size: 50px;
   font-weight: bold;
   color: var(--kungalgame-red-5);
 }
+
 button {
   border: 1px solid var(--kungalgame-blue-4);
   width: 200px;
@@ -53,12 +55,15 @@ button {
   background-color: var(--kungalgame-trans-blue-1);
   cursor: pointer;
   transition: all 0.2s;
+
   a {
     transition: color 0.2s;
     color: var(--kungalgame-blue-4);
   }
+
   &:hover {
     background-color: var(--kungalgame-blue-4);
+
     a {
       color: var(--kungalgame-white);
     }

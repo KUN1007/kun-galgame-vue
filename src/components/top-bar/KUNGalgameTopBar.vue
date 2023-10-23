@@ -4,13 +4,13 @@ import { Icon } from '@iconify/vue'
 import 'animate.css'
 import { topBarItem } from './topBarItem'
 import { onBeforeRouteLeave } from 'vue-router'
-// 手机版 hamburger
+// Mobile version hamburger
 const Hamburger = defineAsyncComponent(() => import('./Hamburger.vue'))
-// 设置面板
+// Settings panel
 const KUNGalgameSettingsPanel = defineAsyncComponent(
   () => import('../setting-panel/KUNGalgameSettingPanel.vue')
 )
-// 点击用户头像的面板
+// Panel when clicking on the user's avatar
 const KUNGalgameUserInfo = defineAsyncComponent(
   () => import('./KUNGalgameUserInfo.vue')
 )
@@ -19,18 +19,18 @@ import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 const { name, avatarMin } = storeToRefs(useKUNGalgameUserStore())
 
-// 显示设置面板的状态值
+// Show settings panel state
 const showKUNGalgamePanel = ref(false)
-// 显示手机模式 hamburger 的状态值
+// Show mobile mode hamburger state
 const showKUNGalgameHamburger = ref(false)
-// 显示点击用户头像面板的状态值
+// Show user panel when clicking on the user's avatar
 const showKUNGalgameUserPanel = ref(false)
 
-// 根据导航条的项目个数操作 css 中导航条的宽度，这里必须要这样写，因为用了 css v-bind
+// Set the navigation bar width based on the number of navigation items
 const navItemNum = topBarItem.length
 const navItemLength = `${navItemNum}00px`
 
-// 路由离开之前销毁 SettingsPanel 和 Hamburger
+// Destroy the SettingsPanel and Hamburger before leaving the route
 onBeforeRouteLeave(() => {
   showKUNGalgamePanel.value = false
   showKUNGalgameHamburger.value = false
@@ -39,7 +39,7 @@ onBeforeRouteLeave(() => {
 
 <template>
   <div class="header">
-    <!-- 顶部左侧交互栏 -->
+    <!-- Top left interactive bar -->
     <div class="nav-top">
       <div class="hamburger">
         <Icon
@@ -60,7 +60,7 @@ onBeforeRouteLeave(() => {
         </transition>
       </div>
 
-      <!-- 网站的名字和网站图标 -->
+      <!-- Website name and logo -->
       <div class="kungalgame">
         <RouterLink to="/kun">
           <img
@@ -71,21 +71,21 @@ onBeforeRouteLeave(() => {
         </RouterLink>
       </div>
 
-      <!-- 导航栏 -->
+      <!-- Navigation bar -->
       <div class="top-bar">
-        <!-- 顶部单个板块 -->
+        <!-- Top individual sections -->
         <span v-for="kun in topBarItem" :key="kun.index">
           <RouterLink :to="{ path: kun.router }">
             {{ $tm(`header['${kun.name}']`) }}
           </RouterLink>
         </span>
-        <!-- 顶部板块下部的 hover 效果 -->
+        <!-- Hover effect under the top section -->
         <div class="box"></div>
       </div>
     </div>
 
     <div class="kungalgamer-info">
-      <!-- showKUNGalgamePanel 为 store 里的布尔值,其真假控制设置面板的显示与关闭 -->
+      <!-- showKUNGalgamePanel is a boolean value in the store, true/false controls the display and close of the settings panel -->
       <span
         class="settings"
         @click="showKUNGalgamePanel = !showKUNGalgamePanel"
@@ -127,7 +127,6 @@ onBeforeRouteLeave(() => {
 </template>
 
 <style lang="scss" scoped>
-/* 头部样式 */
 .header {
   height: 58px;
   box-shadow: 0 2px 4px 0 var(--kungalgame-trans-blue-1);
@@ -158,7 +157,6 @@ onBeforeRouteLeave(() => {
   height: 100%;
 }
 
-// 顶部交互栏
 $navNumber: v-bind(navItemNum);
 
 .top-bar {
@@ -167,6 +165,7 @@ $navNumber: v-bind(navItemNum);
   width: v-bind(navItemLength);
   align-items: center;
   display: flex;
+
   .box {
     border-radius: 2px;
     bottom: 0;
@@ -194,6 +193,7 @@ $navNumber: v-bind(navItemNum);
     font-weight: bold;
     line-height: 58px;
     width: 100%;
+
     &:nth-child(1):hover ~ .box {
       background-color: var(--kungalgame-red-3);
       left: calc(100% / $navNumber * 0);
@@ -214,6 +214,7 @@ $navNumber: v-bind(navItemNum);
       background-color: var(--kungalgame-blue-3);
       left: calc(100% / $navNumber * 3);
     }
+
     &:nth-child(5):hover ~ .box {
       filter: hue-rotate(60deg);
       background-color: var(--kungalgame-blue-3);
@@ -239,8 +240,6 @@ $navNumber: v-bind(navItemNum);
     }
   }
 }
-
-/* 用户个人信息 */
 
 .kungalgamer-info {
   display: flex;
@@ -270,10 +269,12 @@ $navNumber: v-bind(navItemNum);
     font-size: medium;
     margin-left: 30px;
     color: var(--kungalgame-font-color-2);
+
     &:hover {
       color: var(--kungalgame-blue-5);
     }
   }
+
   img {
     margin-left: 30px;
     height: 40px;
@@ -285,9 +286,7 @@ $navNumber: v-bind(navItemNum);
   }
 }
 
-/* 设置面板 */
 .settings-panel {
-  /* 永远在其它页面之上 */
   z-index: 999;
 }
 
@@ -301,6 +300,7 @@ $navNumber: v-bind(navItemNum);
     }
   }
 }
+
 @media (max-width: 700px) {
   .settings {
     display: none !important;

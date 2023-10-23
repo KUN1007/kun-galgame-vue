@@ -1,14 +1,14 @@
 /**
- * 目前所有指令均未启用
+ * Currently, all directives are not enabled.
  */
 
 import { type App } from 'vue'
-// 图片点击放大指令
+// Directive for enlarging images on click
 import { zoom } from './zoom/zoom'
-// 权限指令
+// Permission directive
 import { permission } from './permission/permission'
 
-// 挂载 directives
+// Mount directives
 export function setupKUNGalgameDirectives(app: App) {
   app.directive('zoom', zoom)
   app.directive('permission', permission)

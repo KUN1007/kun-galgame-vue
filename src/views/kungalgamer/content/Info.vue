@@ -10,7 +10,7 @@ const props = defineProps<{
 
 const user = computed(() => props.user)
 
-// 角色名
+// Role name
 const rolesName = () => {
   const roles = props.user.roles
   if (roles === 1) {
@@ -25,7 +25,7 @@ const rolesName = () => {
   return ''
 }
 
-// 状态名
+// Status name
 const statusName = () => {
   const status = props.user.status
   if (status === 0) {
@@ -39,50 +39,51 @@ const statusName = () => {
 </script>
 
 <template>
-  <!-- 右侧内容区 -->
+  <!-- Right content area -->
   <div class="article" v-if="user">
-    <!-- 用户个人信息 -->
+    <!-- User profile information -->
     <div class="info">
-      <!-- 用户基本信息 -->
+      <!-- User basic information -->
       <div class="basic">
-        <!-- 用户名 -->
+        <!-- Username -->
         <span>{{ $tm('user.profile.name') }}: {{ user.name }}</span>
-        <!-- 萌萌点 -->
+        <!-- Moemoepoint -->
         <span>
           {{ $tm('user.profile.moemoepoint') }}: {{ user.moemoepoint }}
         </span>
-        <!-- 注册序号 -->
+        <!-- Registration number -->
         <span>{{ $tm('user.profile.register') }}: {{ user.uid }}</span>
-        <!-- 角色 -->
+        <!-- Role -->
         <span>{{ $tm('user.profile.roles') }}: {{ rolesName() }}</span>
-        <!-- 状态 -->
+        <!-- Status -->
         <span>{{ $tm('user.profile.status') }}: {{ statusName() }}</span>
-        <!-- 被推数 -->
+        <!-- Upvotes received -->
         <span>{{ $tm('user.profile.upvote') }}: {{ user.upvote }}</span>
-        <!-- 被赞数 -->
+        <!-- Likes received -->
         <span>{{ $tm('user.profile.like') }}: {{ user.like }}</span>
-        <!-- 被踩数 -->
+        <!-- Dislikes received -->
         <span>{{ $tm('user.profile.dislike') }}: {{ user.dislike }}</span>
-        <!-- 今日发布话题数 -->
+        <!-- Topics published today -->
         <span>
           {{ $tm('user.profile.today') }}: {{ user.daily_topic_count }}
         </span>
-        <!-- 发布话题数 -->
+        <!-- Total topics published -->
         <span>{{ $tm('user.profile.topic') }}: {{ user.topic.length }}</span>
-        <!-- 发布回复数 -->
+        <!-- Total replies published -->
         <span>{{ $tm('user.profile.reply') }}: {{ user.reply.length }}</span>
-        <!-- 发布评论数 -->
+        <!-- Total comments published -->
         <span>
           {{ $tm('user.profile.comment') }}: {{ user.comment.length }}
         </span>
 
-        <!-- 注册时间 -->
+        <!-- Registration date -->
         <span>
           {{ $tm('user.profile.time') }}:
           {{ dayjs(user.time).format('YYYY/MM/DD') }}
         </span>
       </div>
-      <!-- 用户签名 -->
+
+      <!-- User bio -->
       <div class="bio">
         <div>{{ $tm('user.profile.bio') }}:</div>
         <div v-if="user.bio">{{ user.bio }}</div>
@@ -93,17 +94,18 @@ const statusName = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 内容区 */
 .article {
   flex-grow: 1;
   padding: 7px 0;
 }
-/* 用户个人信息 */
+
+/* User profile information */
 .info {
   display: flex;
   flex-direction: column;
 }
-/* 用户基本信息 */
+
+/* User basic information */
 .basic {
   font-size: small;
   place-items: center;
@@ -113,19 +115,23 @@ const statusName = () => {
   grid-template-rows: repeat(5, minmax(0, 1fr));
   padding-bottom: 10px;
   border-bottom: 1px solid var(--kungalgame-blue-4);
+
   span {
     padding: 5px 7px;
+
     &:last-child {
       grid-column-start: span 3;
     }
   }
 }
-/* 用户签名 */
+
+/* User bio */
 .bio {
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   div {
     &:nth-child(1) {
       margin-bottom: 10px;
@@ -133,7 +139,7 @@ const statusName = () => {
   }
 }
 
-/* 签名为空 */
+/* Bio is empty */
 .null {
   color: var(--kungalgame-blue-2);
   font-style: oblique;

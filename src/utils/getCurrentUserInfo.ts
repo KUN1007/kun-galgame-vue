@@ -1,4 +1,5 @@
-// pinia 只能在 setup 中使用，有时候获取用户信息只能这么做
+// Pinia can only be used within the setup function
+// Sometimes, this is the only way to retrieve user information.
 
 interface CurrentUserInfo {
   uid: number

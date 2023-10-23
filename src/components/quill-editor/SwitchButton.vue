@@ -1,25 +1,25 @@
-<!-- KUNGalgame 通用切换按钮 -->
+<!-- Common Toggle Button for KUNGalgame -->
 
 <script setup lang="ts">
 import { watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
-// 导入编辑界面 store
+// Import the store for the editing page
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// 导入回复的 store
+// Import the store for replies
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// 当前页面的路由
+// Current page's route
 const route = useRoute()
-// 当前页面路由的名字
+// Name of the current page's route
 const routeName = computed(() => route.name as string)
 
-// 使用编辑界面的 store
+// Use the store for the editing page
 const { isShowHotKeywords } = storeToRefs(useKUNGalgameEditStore())
-// 话题界面的 store，用于回复
+// Store for the topic page, used for replies
 const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
-// 监听 store 中的状态变化，保持按钮状态与 store 同步
+// Watch for changes in store states to keep button states in sync with the store
 watch(
   () => [isShowHotKeywords.value, replyDraft.value.isShowHotKeywords],
   ([newValue1, newValue2]) => {
@@ -30,7 +30,7 @@ watch(
 </script>
 
 <template>
-  <!-- 根据路由名绑定不同的 model -->
+  <!-- Bind different models based on the route name -->
   <input
     v-if="routeName === 'Edit'"
     type="checkbox"
@@ -85,7 +85,7 @@ input:checked + label:after {
   transform: translateX(-100%);
 }
 
-// centering
+// Centering
 body {
   display: flex;
   justify-content: center;

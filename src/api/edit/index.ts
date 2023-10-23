@@ -1,28 +1,28 @@
 import { fetchPost, fetchGet, fetchPut } from '@/utils/request'
 import type * as Edit from './types/edit'
-// 将对象转为请求参数的函数
+// Function to convert an object to request parameters
 import objectToQueryParams from '@/utils/objectToQueryParams'
 
-// 创建话题
+// Create a new topic
 export async function postNewTopicApi(
   newTopicData: Edit.EditCreateTopicRequestData
 ): Promise<Edit.EditCreateTopicResponseData> {
-  // 调用 fetchPost 函数
+  // Call the fetchPost function
   const response = await fetchPost<Edit.EditCreateTopicResponseData>(
     `/topics`,
     newTopicData
   )
 
-  // 返回创建好的话题 tid
+  // Return the created topic's tid
   return response
 }
 
-// 更新话题
+// Update a topic
 export async function updateNewTopicApi(
   requestData: Edit.EditUpdateTopicRequestData
 ): Promise<Edit.EditUpdateTopicResponseData> {
   const url = `/topics/${requestData.tid}`
-  // 调用 fetchPost 函数
+  // Call the fetchPost function
   const response = await fetchPut<Edit.EditUpdateTopicResponseData>(
     url,
     requestData
@@ -31,7 +31,7 @@ export async function updateNewTopicApi(
   return response
 }
 
-// 获取 10 个热门 tag
+// Get 10 popular tags
 export async function getTopTagsApi(
   requestData: Edit.EditGetHotTagsRequestData
 ): Promise<Edit.EditGetHotTagsResponseData> {

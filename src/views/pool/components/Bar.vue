@@ -21,28 +21,24 @@ import { Icon } from '@iconify/vue'
       </div>
       <div><Icon icon="bi:sort-down" /></div>
     </div>
-    <!-- 返回顶部 -->
+
     <div class="top">
-      <div>顶部</div>
+      <div>Top</div>
       <div><Icon icon="line-md:arrow-close-up"></Icon></div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 右侧的功能栏 */
 .bar {
-  /* 位置 fix */
   position: fixed;
   bottom: 50px;
   right: 17px;
   z-index: 7;
-  /* 居中 */
   display: flex;
   flex-direction: column;
 }
 
-/* 功能栏的左侧 */
 .func {
   position: absolute;
   white-space: nowrap;

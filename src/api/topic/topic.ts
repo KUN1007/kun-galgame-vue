@@ -1,9 +1,9 @@
 import { fetchGet, fetchPost, fetchPut } from '@/utils/request'
-// 将对象转为请求参数的函数
+// Function to convert an object to query parameters
 import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as Topic from './types/topic'
 
-// 获取单个话题
+// Get a single topic by tid
 export async function getTopicByTidApi(
   tid: number
 ): Promise<Topic.TopicDetailResponseData> {
@@ -19,7 +19,7 @@ export async function getTopicByTidApi(
   }
 }
 
-// 推话题
+// Upvote a topic
 export async function updateTopicUpvoteApi(
   request: Topic.TopicUpvoteTopicRequestData
 ): Promise<Topic.TopicUpvoteTopicResponseData> {
@@ -31,7 +31,7 @@ export async function updateTopicUpvoteApi(
   return response
 }
 
-// 点赞话题
+// Like a topic
 export async function updateTopicLikeApi(
   request: Topic.TopicLikeTopicRequestData
 ): Promise<Topic.TopicLikeTopicResponseData> {
@@ -43,7 +43,7 @@ export async function updateTopicLikeApi(
   return response
 }
 
-// 点踩话题
+// Dislike a topic
 export async function updateTopicDislikeApi(
   request: Topic.TopicDislikeTopicRequestData
 ): Promise<Topic.TopicDislikeTopicResponseData> {

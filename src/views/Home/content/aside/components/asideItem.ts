@@ -1,13 +1,9 @@
-/* 这是 KUNGalgame 主页侧边栏的单个项目内容 */
-
-// 单个项目的接口
 interface AsideItem {
   index: number
   name: string
   router: string
 }
 
-// 顶部导航栏的项目
 const asideItem: AsideItem[] = [
   { index: 1, name: 'update', router: '/update-log' },
   { index: 2, name: 'balance', router: '/balance' },

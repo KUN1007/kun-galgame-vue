@@ -2,13 +2,13 @@
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
-// 导入 i18n 格式化时间的函数
+// Import i18n function for formatting time
 import { formatTimeDifference } from '@/utils/formatTime'
 
-// 导入设置面板 store
+// Import settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// 使用设置面板的 store
+// Use the settings panel store
 const settingsStore = storeToRefs(useKUNGalgameSettingsStore())
 
 import { getPlainText } from '@/utils/getPlainText'
@@ -42,15 +42,13 @@ const getRepliesCount = computed(() => {
 </script>
 
 <template>
-  <!-- 话题信息 -->
   <div class="topic-info">
-    <!-- 话题的概览信息 -->
     <div class="summary">
-      <!-- 话题的标题 -->
       <div class="title">
         <span>{{ title }}</span>
       </div>
-      <!-- 话题的状态，点赞数等 -->
+
+      <!-- Topic status, likes, etc. -->
       <div class="status">
         <ul>
           <li>
@@ -66,7 +64,7 @@ const getRepliesCount = computed(() => {
           </li>
         </ul>
 
-        <!-- 话题的发布日期 -->
+        <!-- Publication date of the topic -->
         <div class="time">
           <span>
             {{
@@ -80,7 +78,7 @@ const getRepliesCount = computed(() => {
       </div>
     </div>
 
-    <!-- 话题的预览介绍 -->
+    <!-- Preview introduction of the topic -->
     <div class="introduction">
       <p>
         {{ plainText }}
@@ -88,8 +86,9 @@ const getRepliesCount = computed(() => {
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
-/* 话题信息 */
+/* Topic information */
 .topic-info {
   width: 100%;
   height: 100%;
@@ -98,18 +97,19 @@ const getRepliesCount = computed(() => {
   color: var(--kungalgame-font-color-3);
 }
 
-/* 话题展示的头部 */
+/* Header of the topic display */
 .summary {
   width: 100%;
-  /* 头部三个小部分为弹性盒 */
+  /* The three small parts of the header are flex containers */
   display: flex;
   justify-content: space-between;
 }
-/* 话题的头部信息，标题日期等 */
+
+/* Header information of the topic, title, date, etc. */
 .title {
   width: 100%;
   height: 100%;
-  /* 超出不换行省略 */
+  /* No line break, ellipsis for overflow */
   display: flex;
   align-items: center;
   display: inline-block;
@@ -119,45 +119,46 @@ const getRepliesCount = computed(() => {
   color: var(--kungalgame-blue-5);
 }
 
-/* 话题点赞数等信息 */
+/* Information such as likes and dislikes for the topic */
 .status {
   display: flex;
   align-items: center;
   white-space: nowrap;
+
   ul {
     display: flex;
     color: var(--kungalgame-font-color-2);
     font-size: smaller;
+
     li {
       margin-left: 5px;
       display: flex;
       align-items: center;
       cursor: pointer;
+
       span {
         margin-left: 3px;
       }
     }
   }
 }
-/* 发帖日期 */
+/* Posting date */
 .time {
   width: 77px;
   font-size: x-small;
   color: var(--kungalgame-font-color-0);
-  /* 居中 */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 不换行 */
   overflow: hidden;
   white-space: nowrap;
 }
-/* 话题的预览介绍 */
+
+/* Preview introduction of the topic */
 .introduction {
   width: 100%;
   display: flex;
   align-items: center;
-  /* 设置文本超过两行就显示省略号 */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -165,6 +166,7 @@ const getRepliesCount = computed(() => {
   overflow: hidden;
   -webkit-box-orient: vertical;
   cursor: pointer;
+
   p {
     width: 100%;
     font-size: 14px;

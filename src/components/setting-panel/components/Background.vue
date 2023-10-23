@@ -1,12 +1,12 @@
 <script setup lang="ts">
-// 导入 vue 函数
+// Import Vue functions
 import { onMounted, ref } from 'vue'
 
-// 导入设置面板 store
+// Import the settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-// 全局消息组件（顶部）
+// Global message component (top)
 import Message from '@/components/alert/Message'
 
 import { backgroundImages } from './background'
@@ -14,21 +14,21 @@ import { getBackgroundURL } from '@/hooks/useBackgroundPicture'
 import { restoreBackground } from '@/hooks/useBackgroundPicture'
 
 const imageArray = ref<string[]>([])
-// 使用设置面板的 store
+// Use the settings panel store
 const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
   storeToRefs(useKUNGalgameSettingsStore())
 
-// 获取背景图片略缩图
+// Get background image thumbnails
 const getBackground = async (imageNumber: number) => {
   return await getBackgroundURL(`bg${imageNumber}-m`)
 }
 
-// 更改背景图片
-const handelChangeImage = (index: number) => {
+// Change the background image
+const handleChangeImage = (index: number) => {
   showKUNGalgameBackground.value = `bg${index}`
 }
 
-// 自定义背景
+// Custom background
 const url = ref('')
 
 const handleCustomBackground = () => {
@@ -37,7 +37,7 @@ const handleCustomBackground = () => {
     showKUNGalgameBackground.value = 'bg1007'
     url.value = ''
   } else {
-    Message('Please input valid image url', '请输入合法的图片链接', 'warn')
+    Message('Please input a valid image URL', '请输入合法的图片链接', 'warn')
   }
 }
 
@@ -55,24 +55,24 @@ onMounted(async () => {
     <ul class="kungalgame-background-container">
       <li>
         <span>{{ $tm('header.settings.preset') }}</span>
-        <!-- 预设背景集 -->
+        <!-- Preset background collection -->
         <ul class="kungalgame-restore-bg">
           <li v-for="kun in backgroundImages" :key="kun.index">
             <img
               :src="imageArray[kun.index - 1]"
               :alt="kun.alt"
-              @click="handelChangeImage(kun.index)"
+              @click="handleChangeImage(kun.index)"
             />
           </li>
         </ul>
       </li>
 
-      <!-- 用户自定义背景 -->
+      <!-- User-customized background -->
       <li>
-        <!-- 标题 -->
+        <!-- Title -->
         <span>{{ $tm('header.settings.custom') }}</span>
 
-        <!-- 输入框 -->
+        <!-- Input field -->
         <div class="kungalgamer-bg">
           <div class="bg-url-input">
             <input
@@ -82,14 +82,14 @@ onMounted(async () => {
               required
             />
 
-            <!-- 确定背景 url -->
+            <!-- Confirm background URL -->
             <button @click="handleCustomBackground">
               {{ $tm('header.settings.confirm') }}
             </button>
           </div>
         </div>
 
-        <!-- 重置空白背景 -->
+        <!-- Reset blank background -->
         <button class="restore-bg" @click="restoreBackground">
           {{ $tm('header.settings.restore') }}
         </button>
@@ -99,18 +99,19 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-/* 背景设置 */
+/* Background settings */
 .kungalgame-background-container {
   display: block;
-  /* 背景菜单的高度 */
+  /* Height of the background menu */
   height: 100%;
   font-size: 15px;
   font-weight: normal;
   color: var(--kungalgame-font-color-3);
-  /* 背景容器的标题字体 */
+
+  /* Font for the title of the background container */
   span {
     height: 30px;
-    /* 居中 */
+    /* Centered */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,25 +120,28 @@ onMounted(async () => {
 .bg-settings {
   margin: 10px 0;
 }
-/* 背景图片略缩图三行三列 grid */
+/* Grid of background image thumbnails, three rows and three columns */
 .kungalgame-restore-bg {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 80px);
   grid-template-rows: repeat(3, 50px);
   position: relative;
-  /* 距离下方区域的距离 */
+  /* Distance from the lower area */
   margin-bottom: 10px;
-  /* 单个图片居中 */
+
+  /* Center individual images */
   li {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* 单个图片的距离 */
+
+    /* Spacing for individual images */
     img {
       cursor: pointer;
       width: 70px;
-      /* 图片的 hover */
+
+      /* Image hover effect */
       &:hover {
         transform: scale(3);
         transition: 0.2s;
@@ -150,12 +154,13 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
 }
-/* url 的粘话题框 */
+/* URL input box */
 .bg-url-input {
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--kungalgame-font-color-3);
+
   input {
     width: 100%;
     padding-left: 5px;
@@ -163,13 +168,14 @@ onMounted(async () => {
     border: 1px solid var(--kungalgame-blue-4);
     background-color: var(--kungalgame-trans-white-9);
     color: var(--kungalgame-font-color-3);
-    /* 粘话题框的 focus */
+
+    /* Focus on the input box */
     &:focus {
       outline: none;
       background-color: var(--kungalgame-trans-blue-0);
     }
   }
-  /* 确定按钮 */
+  /* Confirm button */
   button {
     flex-shrink: 0;
     padding: 0 10px;
@@ -180,16 +186,19 @@ onMounted(async () => {
     border-left: none;
     background-color: var(--kungalgame-trans-white-5);
     cursor: pointer;
-    /* 确定按钮的 hover */
+
+    /* Confirm button hover effect */
     &:hover {
       background-color: var(--kungalgame-trans-red-1);
-      /* 确定按钮的 active */
+
+      /* Confirm button active effect */
       &:active {
         background-color: var(--kungalgame-trans-red-3);
       }
     }
   }
 }
+
 .restore-bg {
   font-size: 15px;
   cursor: pointer;
@@ -200,6 +209,7 @@ onMounted(async () => {
   border: 1px solid var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-blue-1);
   transition: all 0.2s;
+
   &:hover {
     background-color: var(--kungalgame-trans-blue-2);
   }

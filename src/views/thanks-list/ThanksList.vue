@@ -2,27 +2,198 @@
 // 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
-// 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-// 使用设置面板的 store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+
+const { showKUNGalgamePageWidth, showKUNGalgameLanguage } = storeToRefs(
+  useKUNGalgameSettingsStore()
+)
 const thanksListPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.ThanksList + '%'
 })
 </script>
 
 <template>
-  <!-- 根容器 -->
   <div class="root">
-    <!-- 内容区容器 -->
     <div class="container">
-      <!-- 页面标题 -->
-      <div class="title">感谢名单</div>
-      <!-- 页面内容 -->
-      <div class="article">
+      <div class="title">{{ $tm('kungalgame.thanks') }}</div>
+
+      <div class="article" v-if="showKUNGalgameLanguage === 'en'">
+        <p>
+          In the design of the KUN Visual Novel website, we referenced the
+          interface designs of the following excellent websites, including:
+        </p>
+        <br />
+        <br />
+        <ul class="list">
+          <li>
+            Twitter - Semi-transparent design, infinitely flexible height boxes
+          </li>
+          <li>Github - Color schemes</li>
+          <li>bbs.kfmax.com - User information categorization</li>
+          <li>StackOverflow - Shadowing of page sections</li>
+          <li>ChatGPT (OpenAI ChatGPT) - Various technical questions</li>
+          <li>Google - Topic details page</li>
+          <li>YouTube - Technical exchange pages</li>
+          <li>Adobe - Bottom Footer</li>
+          <li>Many examples on Codepen - All pages have some relevance</li>
+          <li>Bilibili (Bilibili) - Top navigation bar</li>
+          <li>Ymgal (YM Galgame) - Top navigation bar</li>
+        </ul>
+        <br />
+        <br />
+        <p>
+          In the initial design phase, we browsed a large number of
+          well-designed web pages, and may have also referred to the designs of
+          many other websites. However, we didn't keep records during extensive
+          browsing, so we can't showcase them here.
+        </p>
+        <br />
+        <br />
+        <p>
+          In the development of the KUN Visual Novel website, we received strong
+          support from the following individuals, including:
+        </p>
+        <br />
+        <br />
+        <ul class="list">
+          <li>
+            <span class="skip">
+              <a
+                href="https://acgngames.net"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ACGNGAME
+              </a>
+            </span>
+            (Galworld) Webmaster. Yukino! Log in!
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://shinnku.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Shinnku
+              </a>
+            </span>
+            (UpsetGal) Webmaster. The world's cutest, lovely shinnku sister!
+            Invincible!
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://www.ymgal.games"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ymgal
+              </a>
+            </span>
+            (YM Galgame) Webmaster. Webmaster! So powerful!
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://yurzhang.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                yurzhang
+              </a>
+            </span>
+            (yur!) as the Night's, Reincarnation!
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://github.com/haruki-nikaidou"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Haruki
+              </a>
+            </span>
+            (Haruki-san!) A very, very smart person! A mathematical genius!
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://github.com/asukaminato0721"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Asuka Minato
+              </a>
+            </span>
+            (Asuka-san!) He's too powerful! I'm crying!
+          </li>
+        </ul>
+        <br />
+        <br />
+        <p>
+          And many other individuals who supported us, as well as those who
+          provided suggestions and corrections. We sincerely thank them here.
+        </p>
+        <br />
+        <br />
+        <p>
+          Our website adheres to the principles of moemoe (beautiful),
+          open-source, and free. You can find our projects on GitHub:
+        </p>
+        <br />
+        <br />
+        <p>
+          Frontend: Vue3 + Vite + Typescript + Pinia implementation:
+          <span class="skip">
+            <a
+              href="https://github.com/KUN1007/kun-galgame-vue"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              kun-galgame-vue
+            </a>
+          </span>
+        </p>
+        <p>
+          Backend: Koa2 + Redis + Mongoose + Mongodb implementation:
+          <span class="skip">
+            <a
+              href="https://github.com/KUN1007/kun-galgame-koa"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              kun-galgame-koa
+            </a>
+          </span>
+        </p>
+        <p>
+          Pure HTML + CSS implementation:
+          <span class="skip">
+            <a
+              href="https://github.com/KUN1007/kungalgame-pure-css"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              kun-galgame-pure-css
+            </a>
+          </span>
+        </p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>
+          If you don't mind, you can give the above three GitHub projects a star
+          as a show of support for us.
+        </p>
+      </div>
+
+      <!-- Chinese translation -->
+      <div class="article" v-if="showKUNGalgameLanguage === 'zh'">
         <p>
           在 KUNGalgame 网站的设计中，我们参考了以下优秀网站的界面设计，其中有：
         </p>
@@ -54,36 +225,170 @@ const thanksListPageWidth = computed(() => {
         <br />
         <br />
         <ul class="list">
-          <li><span class="skip">ACGNGAME</span> （Galworld）站长</li>
-          <li><span class="skip">Shinnku</span> （失落的小站）站长</li>
-          <li><span class="skip">Ymgal</span> （月幕 Galgame）站长</li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://acgngames.net"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ACGNGAME
+              </a>
+            </span>
+            （Galworld）站长。老羽！上号！
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://shinnku.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Shinnku
+              </a>
+            </span>
+            （失落的小站）站长。世界第一可爱美少女真红姐姐！无敌！
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://www.ymgal.games"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ymgal
+              </a>
+            </span>
+            （月幕 Galgame）站长。站长！太强了！
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://yurzhang.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                yurzhang
+              </a>
+            </span>
+            （yur!）as the Night's, Reincarnation！
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://github.com/haruki-nikaidou"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Haruki
+              </a>
+            </span>
+            （Haruki 桑！）一个非常非常聪明的人！数学天才！
+          </li>
+          <li>
+            <span class="skip">
+              <a
+                href="https://github.com/asukaminato0721"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Asuka Minato
+              </a>
+            </span>
+            （凑妈！）他太强了！我哭死！
+          </li>
         </ul>
         <br />
         <br />
         <p>
-          以及<span class="skip"> 鲲的 galgame 交流群（QQ）</span>，和<span
-            class="skip"
-          >
-            鲲的 galgame 交流群（Telegram）</span
-          >，以及其它众多人员的相关支持，在这里我们对他们的建议和纠错表示衷心的感谢。
+          以及<span class="skip">
+            <a
+              href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=l8kixeJ-RCfIgpzM63QT7G8H44KkpC7q&authKey=X2IAU3zT2wOOQBCl4mwkYeTGNktTIs%2F5XhtVdKTUuyvPjRkdXjOhEhBT8l3kkSSX&noverify=0&group_code=871857690"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              鲲的 galgame 交流群(Tencent QQ)
+            </a>
+          </span>
+          ,
+          <span class="skip">
+            <a
+              href="https://t.me/kungalgame"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              鲲的 galgame 交流群(Telegram)
+            </a>
+          </span>
+          ,
+          <span class="skip">
+            <a
+              href="https://t.me/kungalgame"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              KUN Visual Novel Forum Dev Team(Tencent QQ)
+            </a>
+          </span>
+          ,
+          <span class="skip">
+            <a
+              href="https://t.me/kungalgame"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              KUN Visual Novel Forum Dev Team(Telegram)
+            </a>
+          </span>
+          ，以及其它众多人员的相关支持，在这里我们对他们的建议和纠错表示衷心的感谢。
         </p>
         <br />
         <br />
         <p>
           我们的网站会秉承萌萌（美好）、开源、免费的
-          <span class="skip"> 建立原则</span>
+          <span class="skip">
+            <RouterLink to="/kungalgame">建立原则</RouterLink>
+          </span>
           ，不断完善和更新，您可以在 github 看到我们的项目：
         </p>
         <br />
         <br />
-        <p>纯 HTML + CSS 实现：<span class="skip">kungalgame-pure-css</span></p>
+
         <p>
-          前端 Vue + Vite + ts + pinia 实现：
-          <span class="skip">kun-galgame-vue</span>
+          前端 Vue3 + Vite + Typescript + Pinia 实现：
+          <span class="skip">
+            <a
+              href="https://github.com/KUN1007/kun-galgame-vue"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              kun-galgame-vue
+            </a>
+          </span>
         </p>
         <p>
-          后端 Koa2 + redis + mongoose + mongodb 实现：
-          <span class="skip">kun-galgame-koa</span>
+          后端 Koa2 + Redis + Mongoose + Mongodb 实现：
+          <span class="skip">
+            <a
+              href="https://github.com/KUN1007/kun-galgame-koa"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              kun-galgame-koa
+            </a>
+          </span>
+        </p>
+        <p>
+          纯 HTML + CSS 实现：
+          <span class="skip">
+            <a
+              href="https://github.com/KUN1007/kungalgame-pure-css"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              kun-galgame-pure-css
+            </a>
+          </span>
         </p>
         <br />
         <br />
@@ -94,7 +399,7 @@ const thanksListPageWidth = computed(() => {
           star，当作对我们的支持。
         </p>
       </div>
-      <!-- 版权 -->
+
       <KUNGalgameFooter style="margin-top: 60px" />
     </div>
   </div>
@@ -104,20 +409,17 @@ const thanksListPageWidth = computed(() => {
 .root {
   display: flex;
   flex-direction: column;
-  height: 1500px;
+  height: 100%;
+  min-height: calc(100vh + 65px);
 }
+
 .container {
-  /* 固定宽高 */
   transition: all 0.2s;
   width: v-bind(thanksListPageWidth);
   max-width: 1300px;
-  height: 1300px;
-  /* 居中 */
   margin: 0 auto;
   position: relative;
   border-radius: 7px;
-  box-shadow: var(--shadow);
-  /* 竖直方向弹性分布 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,29 +427,34 @@ const thanksListPageWidth = computed(() => {
   background-color: var(--kungalgame-trans-white-5);
   backdrop-filter: blur(17px);
   padding: 20px;
+  box-shadow: var(--shadow);
 }
-/* 页面标题 */
+
 .title {
   font-size: 30px;
   margin-bottom: 30px;
 }
-/* 页面内容 */
+
 .article {
   display: flex;
   flex-direction: column;
 }
-/* 被划出来的链接字体 */
+
 .skip {
-  border-bottom: 1px solid var(--kungalgame-blue-4);
+  border-bottom: 1.5px solid var(--kungalgame-blue-4);
   cursor: pointer;
-  color: var(--kungalgame-blue-4);
+
+  a {
+    color: var(--kungalgame-blue-4);
+  }
 }
-/* 单个列表项 */
+
 .list > li {
   list-style: inside;
   text-indent: 4em;
   margin: 5px 0;
 }
+
 p {
   text-indent: 3em;
   margin: 5px;

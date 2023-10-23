@@ -1,45 +1,45 @@
-<!-- 设置面板组件，展示整个论坛的设置面板 -->
+<!-- Settings panel component, displaying the entire forum's settings panel -->
 <script setup lang="ts">
-// 引入图标字体
+// Import icon font
 import { Icon } from '@iconify/vue'
-// 引入看板娘组件
+// Import mascot component
 import Loli from './components/Loli.vue'
-// 导入模式切换组件
+// Import mode switch component
 import Mode from './components/Mode.vue'
-// 导入语言切换组件
+// Import language switch component
 import SwitchLanguage from './components/SwitchLanguage.vue'
-// 页面宽度调整组件
+// Page width adjustment component
 import PageWidth from './components/PageWidth.vue'
-// 字体设置组件
+// Font settings component
 import Font from './components/Font.vue'
-// 引入背景设置组件
+// Import background settings component
 import Background from './components/Background.vue'
-// 导入设置面板 store
+// Import settings store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-// 使用设置面板的 store
+// Use the settings store
 const settingsStore = useKUNGalgameSettingsStore()
 const { isShowPageWidth } = storeToRefs(settingsStore)
 
-// 定义是否关闭设置面板的 emits
+// Define emits to close the settings panel
 const emits = defineEmits<{
   close: [showKUNGalgamePanel: boolean]
 }>()
 
-// 恢复所有设置为默认
+// Restore all settings to default
 const handleRecover = () => {
   settingsStore.setKUNGalgameSettingsRecover()
 }
 
-// 关闭设置面板
+// Close the settings panel
 const handelCloseSettingsPanel = () => {
   emits('close', false)
 }
 </script>
 
 <template>
-  <!-- 根元素 -->
+  <!-- Root element -->
   <div class="root">
     <div class="container">
       <div class="title">
@@ -47,10 +47,10 @@ const handelCloseSettingsPanel = () => {
         <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
 
-      <!-- 模式切换组件 -->
+      <!-- Mode switch component -->
       <Mode />
 
-      <!-- 语言切换组件 -->
+      <!-- Language switch component -->
       <SwitchLanguage />
 
       <div class="switch">
@@ -71,18 +71,18 @@ const handelCloseSettingsPanel = () => {
 
         <TransitionGroup name="item" tag="div">
           <div class="item" v-if="isShowPageWidth">
-            <!-- 页面宽度调整组件 -->
+            <!-- Page width adjustment component -->
             <PageWidth />
           </div>
 
           <div class="item" v-else-if="!isShowPageWidth">
-            <!-- 设置页面的字体 -->
+            <!-- Set the page font -->
             <Font />
           </div>
         </TransitionGroup>
       </div>
 
-      <!-- 背景设置组件 -->
+      <!-- Background settings component -->
       <Background />
 
       <button class="reset" @click="handleRecover">
@@ -90,19 +90,19 @@ const handelCloseSettingsPanel = () => {
       </button>
     </div>
 
-    <!-- 看板娘组件 -->
+    <!-- Mascot component -->
     <Loli class="loli" />
 
-    <!-- 关闭面板 -->
+    <!-- Close panel -->
     <div class="close">
-      <!-- showKUNGalgamePanel 存在于 settings 里,false 为关闭设置面板 -->
+      <!-- showKUNGalgamePanel exists in the settings, false to close the settings panel -->
       <Icon @click="handelCloseSettingsPanel" icon="line-md:close" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* 根容器 */
+/* Root container */
 .root {
   top: 65px;
   right: 0;
@@ -115,25 +115,30 @@ const handelCloseSettingsPanel = () => {
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-1);
 }
+
 .container {
   position: relative;
   margin: 20px;
   font-size: 17px;
 }
+
 .title {
   font-size: 23px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   span {
     display: flex;
     align-items: center;
   }
 }
-// 使设置按钮保持旋转
+
+// Keep the settings button rotating
 .settings-icon {
   animation: settings 3s linear infinite;
 }
+
 @keyframes settings {
   0% {
     transform: rotate(0deg);
@@ -143,15 +148,17 @@ const handelCloseSettingsPanel = () => {
   }
 }
 
-/* 切换设置选项的菜单 */
+/* Menu for switching settings options */
 .switch {
   display: flex;
   flex-direction: column;
+
   .menu {
     display: flex;
     justify-content: space-between;
     margin-bottom: 17px;
     border: 1px solid var(--kungalgame-blue-4);
+
     span {
       cursor: pointer;
       width: 100%;
@@ -161,6 +168,7 @@ const handelCloseSettingsPanel = () => {
       justify-content: center;
       color: var(--kungalgame-blue-4);
       transition: all 0.2s;
+
       &:nth-child(1) {
         border-right: 1px solid var(--kungalgame-blue-4);
       }
@@ -171,6 +179,7 @@ const handelCloseSettingsPanel = () => {
       color: var(--kungalgame-white);
     }
   }
+
   .item {
     width: 100%;
     height: 73px;
@@ -187,6 +196,7 @@ const handelCloseSettingsPanel = () => {
   width: 100%;
   height: 30px;
   transition: all 0.2s;
+
   &:hover {
     background-color: var(--kungalgame-red-4);
     color: var(--kungalgame-white);
@@ -202,7 +212,7 @@ const handelCloseSettingsPanel = () => {
   cursor: pointer;
 }
 
-.item-move, /* 对移动中的元素应用的过渡 */
+.item-move, /* Transition applied to moving elements */
 .item-enter-active,
 .item-leave-active {
   transition: all 0.5s ease;
@@ -214,8 +224,8 @@ const handelCloseSettingsPanel = () => {
   transform: translateY(77px);
 }
 
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
+/* Ensure the leaving element is removed from the layout flow
+  to correctly calculate the animated movement. */
 .item-leave-active {
   position: absolute;
 }

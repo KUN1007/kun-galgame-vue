@@ -3,12 +3,12 @@ import Message from '@/components/alert/Message'
 import { currentUserInfo } from '@/utils/getCurrentUserInfo'
 import router from '@/router'
 
-// 当前用户 uid
+// Current user's UID
 const currentUserUid = currentUserInfo.uid
-// 当前用户 roles
+// Current user's roles
 const currentUserRoles = currentUserInfo.roles
 
-// 用户权限，游客 0，用户 1，管理员 2，超级管理员 3，用户自己 4
+// User roles: Guest 0, User 1, Admin 2, SuperAdmin 3, User Self 4
 enum UserRole {
   Guest = 0,
   User = 1,
@@ -18,8 +18,8 @@ enum UserRole {
 }
 
 /**
- * @roles 可以访问该资源的用户类型
- * @uid 需要鉴权的用户 id
+ * @roles: User types that can access this resource.
+ * @uid: User ID that needs authorization.
  */
 interface BindingProps {
   roles: UserRole[]
@@ -44,12 +44,12 @@ export const permission: Directive = {
     const uid = binding.value.uid
 
     const hasPermission = () => {
-      // 用户自己
+      // User Self
       if (uid === currentUserUid) {
         return true
       }
 
-      // 用户有访问权限
+      // User has access permission
       if (roles.includes(currentUserRoles)) {
         return true
       }

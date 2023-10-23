@@ -4,7 +4,7 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    // ts 严格模式
+    // Open ts strict mode
     "strict": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
@@ -19,7 +19,6 @@
       "@/*": ["src/*"]
     }
   },
-  // ts 的包含编译文件
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",

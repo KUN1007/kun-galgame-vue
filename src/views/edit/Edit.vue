@@ -1,44 +1,44 @@
 <script setup lang="ts">
 import { onBeforeRouteLeave } from 'vue-router'
-// 全局消息组件（底部）
+// Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 引入编辑器
+// Import the editor
 import QuillEditor from '@/components/quill-editor/QuillEditor.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
-// 导入编辑话题的 store
+// Import the store for editing topics
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// 导入设置面板 store
+// Import the settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-// 使用编辑话题的 store
+// Use the store for editing topics
 const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
-// 使用设置面板的 store
+// Use the settings panel store
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const editPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Edit + '%'
 })
 
-// 路由离开时提醒用户发布重新编辑的话题
+// Prompt the user to save a topic being edited when leaving the route
 onBeforeRouteLeave(async (to, from, next) => {
-  // 如果是正在更新话题
+  // If a topic is being updated
   if (topicRewrite.value.isTopicRewriting) {
-    // 获取用户点击的结果
+    // Get the user's response
     const res = await useKUNGalgameMessageStore().alert(
       'AlertInfo.edit.leave',
       true
     )
     if (res) {
-      // 重置重新编辑话题的数据
+      // Reset the data for the topic being rewritten
       useKUNGalgameEditStore().resetRewriteTopicData()
-      // 用户确认离开，继续导航
+      // User confirmed leaving, continue with navigation
       next()
     } else {
-      // 用户取消离开，阻止导航
+      // User canceled leaving, prevent navigation
       next(false)
     }
   } else {
@@ -49,9 +49,9 @@ onBeforeRouteLeave(async (to, from, next) => {
 
 <template>
   <div class="root">
-    <!-- 内容区容器 -->
+    <!-- Content container -->
     <div class="container">
-      <!-- 编辑器 -->
+      <!-- Editor -->
       <QuillEditor
         class="editor"
         :isShowToolbar="true"
@@ -60,7 +60,7 @@ onBeforeRouteLeave(async (to, from, next) => {
         :isShowSettings="true"
       />
 
-      <!-- 内容区的底部 -->
+      <!-- Bottom of the content area -->
       <div class="content-footer">
         <Tags />
 
@@ -68,7 +68,7 @@ onBeforeRouteLeave(async (to, from, next) => {
       </div>
     </div>
 
-    <!-- 版权 -->
+    <!-- Copyright -->
     <KUNGalgameFooter style="margin: 0 auto; padding-top: 10px" />
     <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)">
       Editor powered by quill
@@ -84,13 +84,11 @@ onBeforeRouteLeave(async (to, from, next) => {
   flex-direction: column;
 }
 
-/* 内容部分的总容器 */
 .container {
   transition: all 0.2s;
   width: v-bind(editPageWidth);
   max-width: 1500px;
   margin: 0 auto;
-  /* 容器的阴影 */
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-2);
   color: var(--kungalgame-font-color-3);
@@ -99,7 +97,6 @@ onBeforeRouteLeave(async (to, from, next) => {
 
 .content-footer {
   padding: 10px;
-  /* 距离内容区的距离 */
   padding-top: 17px;
   display: flex;
   flex-direction: column;

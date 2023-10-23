@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue'
-// 导入按钮
+// Import the Button component
 import Button from './Button.vue'
-// 导入编辑话题的 store
+// Import the store for editing topics
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// 导入话题的分类
+// Import topic categories
 import { Category, topicCategory } from './category'
 import { storeToRefs } from 'pinia'
 
@@ -12,57 +12,57 @@ const { isSaveTopic, category, topicRewrite } = storeToRefs(
   useKUNGalgameEditStore()
 )
 
-// 定义被选中的分类的数组
+// Define an array for selected categories
 const selectedCategories = ref<string[]>([])
 
-// 组件挂载之前载入 store 里的数据
+// Load data from the store before the component is mounted
 onBeforeMount(() => {
   /**
-   * 编辑器处于编辑界面
+   * The editor is in the editing interface.
    */
-  // 如果用户保存了草稿则载入
+  // If the user has saved a draft, load it
   if (isSaveTopic.value) {
     selectedCategories.value = category.value
   }
   /**
-   * 编辑器处于重新编辑的编辑界面
+   * The editor is in the editing interface for rewriting.
    */
-  // 挂载之前载入重新编辑话题的数据
+  // Load data for rewriting a topic before mounting
   if (topicRewrite.value.isTopicRewriting) {
     selectedCategories.value = topicRewrite.value.category
   }
 })
 
-// 当用户点击分类时的逻辑
+// Logic when the user clicks on a category
 const handleClickCategory = (kun: Category) => {
-  // 如果选择了 1，同时已选择了 3，则不允许选中 1
+  // If 1 is selected and 3 is already selected, do not allow selecting 1
   if (kun.index === 1 && selectedCategories.value.includes('Others')) {
     return
   }
-  // 如果选择了 3，同时已选择了 1，则不允许选中 3
+  // If 3 is selected and 1 is already selected, do not allow selecting 3
   if (kun.index === 3 && selectedCategories.value.includes('Galgame')) {
     return
   }
 
   const index = selectedCategories.value.indexOf(kun.name)
   if (index !== -1) {
-    // 如果已经选中，则取消选中
+    // If already selected, deselect it
     selectedCategories.value.splice(index, 1)
   } else {
-    // 否则选中分类
+    // Otherwise, select the category
     selectedCategories.value.push(kun.name)
   }
 
-  // 将选中的 category 给 pinia 的 store
+  // Pass the selected category to the Pinia store
   category.value = selectedCategories.value
 }
 </script>
 
 <template>
-  <!-- 话题分类的容器 -->
+  <!-- Container for topic categories -->
   <div class="topic-group">
     <div>{{ $tm('edit.categories') }}</div>
-    <!-- 分类容器的按钮集合 -->
+    <!-- Button group for categories -->
     <div class="group-btn">
       <span
         class="btn"
@@ -76,25 +76,27 @@ const handleClickCategory = (kun: Category) => {
     </div>
   </div>
 
-  <!-- 发布按钮 -->
+  <!-- Publish button -->
   <Button />
 </template>
 
 <style lang="scss" scoped>
-/* 话题分类的容器 */
+/* Container for topic categories */
 .topic-group {
   width: 100%;
   margin-top: 20px;
   margin-bottom: 10px;
 }
-/* 分类容器的按钮集合 */
+
+/* Button group for categories */
 .group-btn {
   height: 100%;
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
 }
-/* 单个按钮的样式 */
+
+/* Style for individual buttons */
 .btn {
   height: 30px;
   width: 177px;
@@ -106,12 +108,13 @@ const handleClickCategory = (kun: Category) => {
   display: flex;
   justify-content: center;
   align-items: center;
+
   &:nth-child(2) {
     margin: 0 10px;
   }
 }
 
-/* 被选中按钮的样式 */
+/* Style for selected buttons */
 .active {
   transition: 0.2s;
   background-color: var(--kungalgame-blue-4);

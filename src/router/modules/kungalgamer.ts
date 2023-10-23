@@ -1,16 +1,17 @@
 import { type RouteRecordRaw } from 'vue-router'
-// 当前用户的信息
+// Current user's information
 import { currentUserInfo } from '@/utils/getCurrentUserInfo'
 
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
-// 用户权限，游客 0，用户 1，管理员 2，超级管理员 3，用户自己 4
+// ATTENTION! All route names must be unique!
+// User roles: Guest 0, User 1, Admin 2, Super Admin 3, User Self 4
 const kungalgamer: RouteRecordRaw[] = [
-  // KUNGalgame 用户页
+  // KUNGalgame user page
   {
     path: '/kungalgamer',
     component: Layout,
-    // 访问默认跳转到当前用户的主页
+    // Access defaults to the current user's main page
     redirect: `/kungalgamer/${currentUserInfo.uid}/info`,
     children: [
       {
@@ -45,7 +46,6 @@ const kungalgamer: RouteRecordRaw[] = [
             },
           },
           {
-            // 所有路由的命名是不能重复的！！！！
             name: 'KUNGalgamerPublishedTopic',
             path: 'published-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
@@ -54,7 +54,6 @@ const kungalgamer: RouteRecordRaw[] = [
             },
           },
           {
-            // 所有路由的命名是不能重复的！！！！
             name: 'KUNGalgamerLikedTopic',
             path: 'liked-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
@@ -64,7 +63,6 @@ const kungalgamer: RouteRecordRaw[] = [
             },
           },
           {
-            // 所有路由的命名是不能重复的！！！！
             name: 'KUNGalgamerUpvoteTopic',
             path: 'upvote-topic',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
@@ -74,7 +72,6 @@ const kungalgamer: RouteRecordRaw[] = [
             },
           },
           {
-            // 所有路由的命名是不能重复的！！！！
             name: 'KUNGalgamerReply',
             path: 'reply',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),
@@ -83,7 +80,6 @@ const kungalgamer: RouteRecordRaw[] = [
             },
           },
           {
-            // 所有路由的命名是不能重复的！！！！
             name: 'KUNGalgamerComment',
             path: 'comment',
             component: () => import('@/views/kungalgamer/content/Topic.vue'),

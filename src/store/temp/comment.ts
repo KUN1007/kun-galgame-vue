@@ -1,9 +1,9 @@
-// 评论的临时数据，用于组件间传输
+// Temporary data for comments, used for inter-component communication
 import { defineStore } from 'pinia'
 
 export const useTempCommentStore = defineStore({
   id: 'tempComment',
-  // 不持久
+  // Not persistent
   persist: false,
   state: () => ({
     tid: 0,
@@ -12,7 +12,7 @@ export const useTempCommentStore = defineStore({
     toUsername: '',
     content: '',
 
-    // 要展示哪个回复底下的评论面板
+    // Which reply's comment panel to display
     isShowCommentPanelRid: 0,
   }),
   getters: {},

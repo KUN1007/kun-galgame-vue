@@ -1,11 +1,11 @@
-// 更新日志的数据接口
+// Data interface for update logs
 export interface UpdateLog {
-  // 更新描述
+  // Update description
   description: string
-  // 更新发布时间
+  // Release time of the update
   time: number
-  // 更新排序 ID
+  // Update sorting ID
   upid: number
-  // 更新版本
-  version: String
+  // Version of the update
+  version: string
 }

@@ -1,5 +1,5 @@
 /*
- * 防抖函数，接受一个函数和一个延时时间
+ * Debounce function that takes a function and a delay time as parameters
  */
 export type DebouncedFunction<T extends (...args: any[]) => any> = (
   ...args: Parameters<T>

@@ -1,7 +1,7 @@
 import Message from '@/components/alert/Message'
 import { dataURItoBlob } from '@/utils/dataURItoBlob'
 
-// 检查图片类型是否合法，允许 png 和 jpg
+// Check if the image type is valid, allowing PNG and JPG
 export const checkImageValid = (file: File) => {
   if (file.type === 'image/jpeg' || file.type === 'image/png') {
     return true
@@ -15,13 +15,13 @@ export const checkImageValid = (file: File) => {
   }
 }
 
-// 转换压缩图片
+// Resize and compress the image
 export const resizeImage = (file: File): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     const image = new Image()
     image.src = URL.createObjectURL(file)
     image.onload = () => {
-      // 这里要求图片最大长宽均为 233px
+      // Here, the maximum width and height of the image are set to 233px
       const maxWidth = 233
       const maxHeight = 233
       let newWidth = image.width
@@ -49,7 +49,7 @@ export const resizeImage = (file: File): Promise<Blob> => {
       if (resizedFile.size > 1007 * 1024) {
         Message(
           'Image is too large. Please select an image smaller than 1007KB!',
-          '文件过大, 请选择小于 1007KB 的文件! ',
+          '文件过大，请选择小于 1007KB 的文件！',
           'warn'
         )
         reject(

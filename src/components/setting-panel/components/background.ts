@@ -1,4 +1,4 @@
-/* 背景测试图片: 
+/* Background test picture: 
   https://s3.bmp.ovh/imgs/2023/05/30/1ee99996d0eb2646.png
   https://s3.bmp.ovh/imgs/2023/05/30/87d94be5e004547a.png
   https://s3.bmp.ovh/imgs/2023/05/30/2a639bd15113b570.png
@@ -16,7 +16,6 @@ interface background {
   alt: string
 }
 
-// 定义背景图片列表
 export const backgroundImages: background[] = [
   {
     index: 1,

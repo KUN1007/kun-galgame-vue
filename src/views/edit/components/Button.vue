@@ -1,10 +1,10 @@
 <script setup lang="ts">
-// 全局消息组件（底部）
+// Global message component (at the bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// 导入编辑话题的 store
+// Import the store for editing topics
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
-// 导入路由
+// Import the router
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -12,19 +12,21 @@ const router = useRouter()
 const { isSaveTopic, topicRewrite } = storeToRefs(useKUNGalgameEditStore())
 const messageStore = useKUNGalgameMessageStore()
 
-// 发布话题
+// Publish a topic
 const handlePublish = async () => {
   const res = await messageStore.alert('AlertInfo.edit.publish', true)
-  // 这里实现用户的点击确认取消逻辑
+  // Implement user's confirmation or cancellation logic here
   if (res) {
-    // 后端返回的创建好的话题数据
-    const createdTopic = await useKUNGalgameEditStore().createNewTopic()
+    // Backend returns the created topic data
+    const res = await useKUNGalgameEditStore().createNewTopic()
 
-    if (createdTopic) {
-      // 获取创建好话题的 tid
-      const tid = createdTopic.data.tid
+    console.log(res)
 
-      // 将用户 push 进对应 tid 话题的详情页面
+    if (res?.code === 200) {
+      // Get the tid of the created topic
+      const tid = res.data.tid
+
+      // Push the user to the corresponding topic details page
       router.push({
         name: 'Topic',
         params: {
@@ -33,7 +35,7 @@ const handlePublish = async () => {
       })
 
       messageStore.info('AlertInfo.edit.publishSuccess')
-      // 清除数据，并不再保存数据，因为此时该话题已被发布
+      // Clear data and no longer save it, as the topic has been published at this point
       useKUNGalgameEditStore().resetTopicData()
     }
   } else {
@@ -41,18 +43,18 @@ const handlePublish = async () => {
   }
 }
 
-// 重新编辑
+// Rewrite a topic
 const handleRewrite = async () => {
   const res = await messageStore.alert('AlertInfo.edit.rewrite', true)
-  // 这里实现用户的点击确认取消逻辑
+  // Implement user's confirmation or cancellation logic here
   if (res) {
-    // 更新话题
+    // Update the topic
     await useKUNGalgameEditStore().rewriteTopic()
 
-    // 获取创建好话题的 tid
+    // Get the tid of the rewritten topic
     const tid = topicRewrite.value.tid
 
-    // 将用户 push 进对应 tid 话题的详情页面
+    // Push the user to the corresponding topic details page
     router.push({
       name: 'Topic',
       params: {
@@ -61,25 +63,25 @@ const handleRewrite = async () => {
     })
 
     messageStore.info('AlertInfo.edit.rewriteSuccess')
-    // 清除数据，并不再保存数据，因为此时该话题已被更新
+    // Clear data and no longer save it, as the topic has been updated at this point
     useKUNGalgameEditStore().resetRewriteTopicData()
   } else {
     messageStore.info('AlertInfo.edit.rewriteCancel')
   }
 }
 
-// 用户点击保存话题的逻辑
+// Logic when the user clicks to save the topic
 const handleSave = () => {
-  // 这个值为 true 的时候每次页面加载的时候都会预加载上一次的话题数据
+  // When this value is true, the previous topic data will be preloaded each time the page is loaded
   isSaveTopic.value = true
   messageStore.info('AlertInfo.edit.draft')
 }
 </script>
 
 <template>
-  <!-- 按钮的容器 -->
+  <!-- Button container -->
   <div class="btn-container">
-    <!-- 确认按钮 -->
+    <!-- Confirm button -->
     <button
       v-if="!topicRewrite.isTopicRewriting"
       class="confirm-btn"
@@ -88,7 +90,7 @@ const handleSave = () => {
       {{ $tm('edit.publish') }}
     </button>
 
-    <!-- 重新编辑按钮 -->
+    <!-- Rewrite button -->
     <button
       v-if="topicRewrite.isTopicRewriting"
       class="rewrite-btn"
@@ -97,7 +99,7 @@ const handleSave = () => {
       {{ $tm('edit.rewrite') }}
     </button>
 
-    <!-- 保存按钮 -->
+    <!-- Save button -->
     <button class="save-btn" @click="handleSave">
       {{ $tm('edit.draft') }}
     </button>
@@ -105,64 +107,69 @@ const handleSave = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 按钮的容器 */
+/* Button container */
 .btn-container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* 距离最底端的距离 */
   margin-bottom: 20px;
-}
-/* 单个按钮的样式 */
-.btn-container button {
-  transition: all 0.2s;
-  height: 40px;
-  width: 200px;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-  cursor: pointer;
-  flex-shrink: 0;
-  &:hover {
-    color: var(--kungalgame-white);
+
+  button {
+    transition: all 0.2s;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--kungalgame-white);
+    }
   }
 }
-/* 确认按钮的样式 */
+
+/* Style for the confirm button */
 .confirm-btn {
   color: var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-blue-1);
   border: 1px solid var(--kungalgame-blue-4);
-}
-.confirm-btn:hover {
-  background-color: var(--kungalgame-blue-4);
-  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--kungalgame-blue-4);
+    transition: 0.2s;
+  }
 }
 
-/* 重新编辑按钮的样式 */
+/* Style for the rewrite button */
 .rewrite-btn {
   color: var(--kungalgame-red-4);
   background-color: var(--kungalgame-trans-red-1);
   border: 1px solid var(--kungalgame-red-4);
-}
-.rewrite-btn:hover {
-  background-color: var(--kungalgame-red-4);
-  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--kungalgame-red-4);
+    transition: 0.2s;
+  }
 }
 
-/* 保存按钮的样式 */
+/* Style for the save button */
 .save-btn {
   color: var(--kungalgame-pink-4);
   background-color: var(--kungalgame-trans-pink-1);
   border: 1px solid var(--kungalgame-pink-4);
-}
-.save-btn:hover {
-  background-color: var(--kungalgame-pink-4);
-  transition: 0.2s;
-}
-.save-btn:active {
-  background-color: var(--kungalgame-pink-3);
-  transform: scale(0.8);
+
+  &:hover {
+    background-color: var(--kungalgame-pink-4);
+    transition: 0.2s;
+  }
+
+  &:active {
+    background-color: var(--kungalgame-pink-3);
+    transform: scale(0.8);
+  }
 }
 
 @media (max-width: 700px) {

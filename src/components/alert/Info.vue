@@ -1,14 +1,11 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { storeToRefs } from 'pinia'
+import img from './loli'
+import 'animate.css'
 
 const { showInfo, infoMsg } = storeToRefs(useKUNGalgameMessageStore())
-
-import { Icon } from '@iconify/vue'
-// 导入图片地址
-import img from './loli'
-// 导入动画
-import 'animate.css'
 
 const { loli, name } = img
 
@@ -41,7 +38,7 @@ const handleClose = () => {
           enter-active-class="animate__animated animate__bounceInRight animate__faster"
           appear
         >
-          <!-- 啊哈哈哈！想不到吧这里参考的是糖调写的 -->
+          <!-- A ha ha ha! You probably didn't expect that this was inspired by しゅがてん！-Sugarfull tempering- -->
           <div class="info">{{ `「 ${$t(`${infoMsg}`)} 」` }}</div>
         </Transition>
 
@@ -75,14 +72,14 @@ const handleClose = () => {
   top: -41px;
   padding-left: 150px;
   border-bottom: none;
-  /* 这里的阴影只能这么绘制 */
+  /* This shadow can only be drawn like this */
   filter: drop-shadow(2px 4px 3px var(--kungalgame-trans-blue-4));
   span {
     padding: 0 50px;
     text-align: center;
     background-color: var(--kungalgame-trans-white-2);
     font-size: 24px;
-    /* 这里将人物名字的形状裁剪成六边形 */
+    /* Here, the shape of the character's name is clipped into a hexagon */
     clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
   }
 }

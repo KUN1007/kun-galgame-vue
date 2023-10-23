@@ -1,4 +1,4 @@
-// 用户信息接口
+// User Information Interface
 export interface KUNGalgamerStore {
   uid: number
   name: string

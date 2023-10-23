@@ -49,7 +49,6 @@ const loliTime = computed(() => {
 .time {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-shrink: 0;
   font-size: small;
   /* 文字间距 */
@@ -68,5 +67,12 @@ const loliTime = computed(() => {
   font-size: 23px;
   margin: 0 10px;
   color: var(--kungalgame-red-4);
+}
+
+/* 适配手机端 */
+@media (max-width: 700px) {
+  .time {
+    justify-content: center;
+  }
 }
 </style>

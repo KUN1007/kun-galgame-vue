@@ -9,14 +9,14 @@ const route = useRoute()
 const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
 
-// 页面宽度
+// Page width
 const pageWidth = ref(0)
-// 当前页面路由的名字
+// Current route name
 const routeName = computed(() => route.name as string)
-// 调整页面宽度是否被禁用
+// Whether page width adjustment is disabled
 const isDisabled = ref(false)
 
-// 允许调整宽度的页面
+// Pages where width adjustment is allowed
 const pageNameArray = [
   'KUN',
   'Topic',
@@ -28,12 +28,12 @@ const pageNameArray = [
   'ThanksList',
 ]
 
-// 初始化页面宽度
+// Initialize page width
 const initPageWidth = () => {
   if (pageNameArray.includes(routeName.value)) {
-    // 页面宽度值等于 store 宽度值
+    // Page width value equals store width value
     pageWidth.value = showKUNGalgamePageWidth.value[routeName.value]
-    // 取消禁用输入
+    // Enable input
     isDisabled.value = false
   } else {
     isDisabled.value = true
@@ -42,7 +42,7 @@ const initPageWidth = () => {
 
 watch(pageWidth, () => {
   if (pageNameArray.includes(routeName.value)) {
-    // 将用户输入的宽度存入 store
+    // Store user-input width
     showKUNGalgamePageWidth.value[routeName.value] = pageWidth.value
   }
 })
@@ -57,7 +57,7 @@ onActivated(() => {
 </script>
 
 <template>
-  <!-- 设置某些页面的宽度 -->
+  <!-- Set the width for specific pages -->
   <div
     class="width"
     :class="isDisabled ? 'disabled' : ''"
@@ -88,11 +88,12 @@ onActivated(() => {
   width: 100%;
   font-size: 15px;
   display: flex;
+
   span {
     margin-top: 15px;
   }
 }
-/* 主页页面宽度滑动条 */
+/* Main page width slider */
 .main {
   width: 100%;
   height: 10px;
@@ -104,10 +105,11 @@ onActivated(() => {
   justify-content: space-between;
 }
 
-/* 调整页面宽度被禁用时的样式 */
+/* Styles when page width adjustment is disabled */
 .disabled {
   cursor: not-allowed;
   color: var(--kungalgame-font-color-0);
+
   input {
     cursor: not-allowed;
   }

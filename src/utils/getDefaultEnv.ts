@@ -1,11 +1,11 @@
 /*
- * 这个文件用于获取用户系统或浏览器的所有默认环境
+ * This file is used to obtain all default environments of the user's system or browser.
  */
 
-// 读取本地存储中的语言配置
+// Read language configuration from local storage
 const localStorageString = localStorage.getItem('KUNGalgameSettings')
 
-// 这里是为了兼容各种浏览器，某些浏览器的 navigator.language 值为 'zh-CN'，会导致报错
+// To ensure compatibility with various browsers, some browsers have 'zh-CN' as navigator.language, which may cause errors.
 const getInitLanguage = () => {
   const userLanguage = navigator.language
 
@@ -14,7 +14,7 @@ const getInitLanguage = () => {
   } else if (userLanguage.includes('zh')) {
     return 'zh'
   } else {
-    // 返回默认语言或其他处理逻辑
+    // Return the default language or implement other handling logic.
     return 'en'
   }
 }
@@ -23,7 +23,7 @@ export const KUNGalgameLanguage = localStorageString
   ? JSON.parse(localStorageString).showKUNGalgameLanguage
   : getInitLanguage()
 
-// 读取本地的白天黑夜模式，这个函数如果是黑夜模式的话会返回 true
+// Read local day-night mode, this function will return 'true' if it's in dark mode.
 export const mode = window.matchMedia('(prefers-color-scheme: dark)').matches
   ? 'dark'
   : ''

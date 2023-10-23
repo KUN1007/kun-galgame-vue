@@ -1,12 +1,13 @@
 /**
- * Throttle（节流）函数
- * 在一段时间内，无论触发多少次函数，都只执行一次
+ * Throttle function
+ * Executes the function only once within a specified time period,
+ * regardless of how many times it's triggered.
  */
 
 /**
- * @param {T} executeCallback - 要应用 throttle 函数的代码
- * @param {number} delay - throttle 的时间
- * @param {T | undefined} delayedCallback - 用户在 throttle 时间未到执行了 execute 函数产生的回调
+ * @param {T} executeCallback - The code to apply the throttle function to.
+ * @param {number} delay - Throttle time interval.
+ * @param {T | undefined} delayedCallback - Callback generated when the execute function is executed before the throttle time interval.
  */
 export function throttle<T extends (...args: any[]) => void>(
   executeCallback: T,

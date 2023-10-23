@@ -4,7 +4,6 @@ import MainPageFooter from './footer/MainPageFooter.vue'
 </script>
 
 <template>
-  <!-- 可视部分的容器 -->
   <div class="root">
     <MainPageContent />
     <MainPageFooter />

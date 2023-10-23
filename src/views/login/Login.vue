@@ -2,25 +2,25 @@
 import { ref } from 'vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
-// 导入登录面板
+// Import login panel
 import Login from './components/Login.vue'
 
-// 导入注册面板
+// Import registration panel
 import Register from './components/Register.vue'
 
 const isShowPanel = ref('')
 
-// 背景图片，这是后端的地址
+// Background image, this is the backend's URL
 const backgroundImageUrl = `${
   import.meta.env.VITE_API_BASE_URL
 }/uploads/avatar/login.webp`
 
-// 点击登录，面板滑动
+// Click login, slide the panel
 const handleClickSignIn = () => {
   isShowPanel.value = ''
 }
 
-// 点击注册，面板滑动
+// Click register, slide the panel
 const handleClickRegister = () => {
   isShowPanel.value = 'active'
 }
@@ -33,19 +33,21 @@ const handleClickRegister = () => {
       :class="isShowPanel"
       :style="{ backgroundImage: `url(${backgroundImageUrl})` }"
     >
-      <!-- 登陆注册切换 -->
+      <!-- Login and registration toggle -->
       <div class="switch">
         <div @click="handleClickSignIn">{{ $tm('login.overlay.login') }}</div>
         <div @click="handleClickRegister">
           {{ $tm('login.overlay.register') }}
         </div>
       </div>
-      <!-- 登录面板 -->
+
+      <!-- Login panel -->
       <Login class="login" />
-      <!-- 注册面板 -->
+
+      <!-- Registration panel -->
       <Register class="register" />
 
-      <!-- 侧边 -->
+      <!-- Sidebar -->
       <div class="container-overlay">
         <div class="overlay">
           <div class="panel left">
@@ -77,7 +79,6 @@ const handleClickRegister = () => {
       </div>
     </div>
 
-    <!-- 版权 -->
     <KUNGalgameFooter style="position: absolute; bottom: 2%" />
   </div>
 </template>
@@ -97,14 +98,11 @@ const handleClickRegister = () => {
   position: relative;
 }
 
-/* 总容器 */
 .container {
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  /* 圆角 */
   border-radius: 5px;
-  /* 容器的阴影 */
   box-shadow: 0 15px 27px var(--kungalgame-blue-0),
     0 10px 10px var(--kungalgame-blue-0);
   height: 490px;
@@ -128,12 +126,14 @@ const handleClickRegister = () => {
   background-color: var(--kungalgame-blue-4);
   border-radius: 5px 5px 0 0;
   display: none;
+
   div {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
     &:nth-child(1) {
       border-right: 1px solid var(--kungalgame-white);
     }
@@ -204,7 +204,6 @@ const handleClickRegister = () => {
   }
 }
 
-/* 交互页面的盒子 */
 .panel {
   align-items: center;
   display: flex;
@@ -232,7 +231,6 @@ const handleClickRegister = () => {
   transition: all 0.2s;
   overflow: hidden;
   white-space: nowrap;
-  /* 红色按钮距离底部的距离 */
   position: absolute;
   bottom: 10%;
   background-color: var(--kungalgame-red-0);
@@ -267,24 +265,29 @@ const handleClickRegister = () => {
   .switch {
     display: flex;
   }
+
   .root {
     min-width: 0;
     width: 100%;
     background: var(--kungalgame-trans-blue-0);
   }
+
   .container {
     background-image: none !important;
     display: flex;
     box-shadow: none;
   }
+
   .container-overlay {
     display: none;
   }
+
   .container.active {
     .login {
       display: none;
       transform: translateX(0);
     }
+
     .register {
       animation: none;
       transform: translateX(0);

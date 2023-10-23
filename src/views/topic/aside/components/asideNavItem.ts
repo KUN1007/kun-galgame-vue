@@ -1,4 +1,3 @@
-// 顶部导航栏单个项目的接口
 interface navItem {
   index: number
   sortField: string
@@ -6,7 +5,6 @@ interface navItem {
   name: string
 }
 
-// 导航栏的项目
 export const asideNavItem: navItem[] = [
   {
     index: 1,

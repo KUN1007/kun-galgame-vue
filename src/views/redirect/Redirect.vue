@@ -3,8 +3,8 @@
 <template>
   <div class="root">
     <div class="container">
-      <p>登陆成功</p>
-      <p>3 秒后你将会进入主页</p>
+      <p>{{ $tm('redirect.success') }}</p>
+      <p>{{ $tm('redirect.home') }}</p>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
   align-items: center;
   background-color: var(--kungalgame-white);
 }
+
 .container {
   margin: auto;
   display: flex;
@@ -31,6 +32,7 @@
   justify-content: center;
   align-items: center;
 }
+
 p {
   margin: 7px;
 }

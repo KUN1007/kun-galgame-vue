@@ -3,20 +3,20 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { navBarRoute } from './routeName'
 
-// 根据 uid 获取当前用户的权限
+// Get the current user's role based on UID
 import { getCurrentUserRole } from '@/utils/getCurrentUserRole'
 
 const props = defineProps<{
   uid: number
 }>()
 
-// 当前页面的 uid
+// UID of the current page
 const currentPageUid = ref(0)
-// 是否展示 nav item，其它用户访问主页时
+// Show the nav item for other users' profiles based on their permissions
 const isShowNavItem = (permission: number[]) =>
   permission.includes(getCurrentUserRole(currentPageUid.value))
 
-// 点击样式激活
+// Apply active CSS class to the selected item
 const activeClass = (currentPageUid: number, routeName: string) => {
   return useRoute().fullPath === `/kungalgamer/${currentPageUid}/${routeName}`
     ? 'active'
@@ -29,9 +29,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- 左侧交互区 -->
   <div class="nav">
-    <!-- 这里 v-for 不能和 v-if 一起用 -->
+    <!-- Using v-for and v-show together is not recommended -->
     <div
       class="item"
       v-for="kun in navBarRoute"
@@ -47,9 +46,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-/* 左侧交互区 */
 .nav {
-  /* 固定宽度 */
   height: 100%;
   width: 120px;
   background-color: var(--kungalgame-trans-pink-0);
@@ -65,9 +62,11 @@ onMounted(() => {
   background-color: var(--kungalgame-trans-blue-0);
   display: flex;
   transition: all 0.2s;
+
   &:hover {
     background-color: var(--kungalgame-trans-blue-2);
   }
+
   a {
     width: 100%;
     height: 100%;
@@ -78,12 +77,13 @@ onMounted(() => {
   }
 }
 
-/* 当前选中 */
 .active {
   background-color: var(--kungalgame-blue-4);
+
   &:hover {
     background-color: var(--kungalgame-blue-4);
   }
+
   a {
     color: var(--kungalgame-white);
   }

@@ -1,7 +1,7 @@
 type SortField = 'time' | 'amount'
 type SortOrder = 'asc' | 'desc'
 
-// 获取 income 请求数据
+// Get income request data
 export interface BalanceIncomeRequestData {
   page: number
   limit: number
@@ -9,7 +9,7 @@ export interface BalanceIncomeRequestData {
   sortOrder: SortOrder
 }
 
-// 获取 expenditure 请求数据
+// Get expenditure request data
 export interface BalanceExpenditureRequestData {
   page: number
   limit: number
@@ -17,7 +17,7 @@ export interface BalanceExpenditureRequestData {
   sortOrder: SortOrder
 }
 
-// 单条收入返回数据
+// Single income response data
 export interface BalanceIncome {
   iid: number
   reason: string
@@ -25,7 +25,7 @@ export interface BalanceIncome {
   amount: number
 }
 
-// 单条支出返回数据
+// Single expenditure response data
 export interface BalanceExpenditure {
   eid: number
   reason: string
@@ -33,19 +33,20 @@ export interface BalanceExpenditure {
   amount: number
 }
 
-// 收支总额返回数据
+// Income and expenditure statement response data
 export interface PLStatement {
   totalIncome: number
   totalExpenditure: number
   profitLoss: number
 }
 
-// income 响应数据
+// Income response data
 export type BalanceIncomeResponseData = KUNGalgameResponseData<BalanceIncome[]>
 
-// expenditure 响应数据
+// Expenditure response data
 export type BalanceExpenditureResponseData = KUNGalgameResponseData<
   BalanceExpenditure[]
 >
 
+// Profit and loss statement response data
 export type BalancePLStatementResponseData = KUNGalgameResponseData<PLStatement>

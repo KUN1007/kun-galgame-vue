@@ -1,35 +1,36 @@
 <!-- 
-  这是 KUNGalgame 话题展示区域下方的其他人话题展示部分，任何非楼主发布的话题将会被展示在这里
+  This is the section below the KUNGalgame topic display area where topics posted by other users will be shown.
 
-  这个区域包含所有人回复给楼主的话题，其中每个人的话题将会被拆分成为单独的组件
+  This area contains all the replies from other users to the topic's master.
+  Each user's reply will be split into separate components.
  -->
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
-// 内容区组件
+// Content component
 import Content from '../Content.vue'
-// 导入评论组件
+// Import Comment component
 import Comments from '../comment/Comments.vue'
-// 导入 Footer 组件
+// Import Footer component
 import Footer from '../footer/Footer.vue'
-// 导入发布时间组件
+// Import Time component
 import Time from '../Time.vue'
-// 导入标签组件
+// Import Tags component
 import Tags from '../Tags.vue'
-// 导入重新编辑
+// Import Rewrite component
 import Rewrite from '../Rewrite.vue'
-// 导入发布人个人信息
+// Import KUNGalgamerInfo component
 import KUNGalgamerInfo from '../KUNGalgamerInfo.vue'
 
-// 导入计算时间差的函数
+// Import the function to calculate the time difference
 import { hourDiff } from '@/utils/time'
 
 import { TopicReply } from '@/api/index'
 
-// 导入话题页面 store
+// Import the topic page store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
-// 使用不持久的评论 store
+// Use the non-persistent comment store
 import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
 
@@ -44,12 +45,13 @@ const props = defineProps<{
   title: string
 }>()
 
-// 响应式 props 的值，因为子组件还要用
+// Reactive values of props for use in child components
 const replies = computed(() => props.repliesData)
 
-// 控制面板关闭的值
+// Value to control the comment panel visibility
 const isCommentPanelOpen = ref(false)
-// 切换面板的状态
+
+// Function to toggle the comment panel's state
 const handleClickComment = (
   topicId: number,
   replyIid: number,
@@ -70,14 +72,14 @@ const handleClickComment = (
 </script>
 
 <template>
-  <!-- 其它人的回复 -->
-  <!-- 这里使用 Math.random 的原因是 key 必须唯一 -->
+  <!-- Other people's replies -->
+  <!-- We use Math.random as the key must be unique -->
   <Transition
     enter-active-class="animate__animated animate__fadeInUp animate__faster"
     appear
   >
     <div>
-      <!-- 被推 10 小时内样式改变 -->
+      <!-- Apply style changes for topics upvoted within 10 hours -->
       <div
         class="other-topic-container"
         v-for="(reply, index) in replies"
@@ -85,48 +87,47 @@ const handleClickComment = (
         :key="`${index}`"
         :id="`kungalgame-reply-${reply.floor}`"
       >
-        <!-- 每个人的单个话题 -->
-        <!-- 楼层标志 -->
+        <!-- Floor marker -->
         <div class="floor" :class="reply.edited ? 'rewrite' : ''">
           <span>K{{ reply.floor }}</span>
         </div>
-        <!-- 其他人话题内容区的容器 -->
+        <!-- Container for the content of other people's topics -->
         <div class="container">
-          <!-- 其它人回复的内容区 -->
+          <!-- Content of other people's replies -->
           <div class="content">
-            <!-- 其他人回复的上部 -->
+            <!-- Upper part of other people's replies -->
             <div class="article">
-              <!-- 其它人回复的上部左侧区域 -->
+              <!-- Left side of the upper part of other people's replies -->
               <KUNGalgamerInfo :user="reply.r_user" />
-              <!-- 其它人回复的上部右侧区域 -->
+              <!-- Right side of the upper part of other people's replies -->
               <div class="right">
-                <!-- 右侧的上部区域 -->
+                <!-- Top part on the right side -->
                 <div class="top">
-                  <!-- 上部区域的左边 -->
+                  <!-- Left side of the top part -->
                   <div class="reply">
-                    <!-- 跳转到页面中话题的位置 -->
                     {{ `${$tm('topic.panel.to')} @` }}
+
                     <span @click="scrollToReplyId = reply.to_floor">
                       {{ reply.to_user.name }}
                     </span>
                   </div>
-                  <!-- 上部区域的右边 -->
+                  <!-- Right side of the top part -->
                   <Rewrite v-if="reply.edited" :time="reply.edited" />
                 </div>
 
-                <!-- 富文本内容展示区域 -->
+                <!-- Rich text content display area -->
                 <Content :content="reply.content" />
               </div>
             </div>
-            <!-- 其他人回复的下部 -->
+            <!-- Bottom part of other people's replies -->
             <div class="bottom">
               <Tags :tags="reply.tags" />
               <Time :time="reply.time" />
             </div>
           </div>
 
-          <!-- 回复没有浏览数，所以是 0，占位 -->
-          <!-- title 和 category 也没有，占位 -->
+          <!-- Placeholder for views, title, and category as replies do not have them -->
+          <!-- Footer component -->
           <Footer
             :info="{
               tid: reply.tid,
@@ -165,11 +166,11 @@ const handleClickComment = (
             </template>
           </Footer>
 
-          <!-- 评论区域 -->
+          <!-- Comment area -->
           <Comments
             :tid="reply.tid"
             :rid="reply.rid"
-            :toUser="{ uid: reply.r_user.uid, name: reply.r_user.name }"
+            :to-user="{ uid: reply.r_user.uid, name: reply.r_user.name }"
           />
         </div>
       </div>
@@ -178,8 +179,8 @@ const handleClickComment = (
 </template>
 
 <style lang="scss" scoped>
-/* 其它人的回复 */
-/* 每个人的话题 */
+/* Other people's replies */
+/* Styling for each person's topic */
 .other-topic-container {
   width: 100%;
   min-height: 300px;
@@ -190,7 +191,7 @@ const handleClickComment = (
   align-items: center;
 }
 
-/* 单个回复 */
+/* Styling for individual replies */
 .floor {
   width: 100%;
   display: flex;
@@ -199,20 +200,20 @@ const handleClickComment = (
   font-style: oblique;
   color: var(--kungalgame-red-3);
   border-bottom: none;
-  /* 这里的阴影只能这么绘制 */
   filter: drop-shadow(1px 2px 2px var(--kungalgame-trans-blue-4));
   margin: 5px 0;
+
   span {
     transform: rotate(10deg) translateY(40px);
     padding: 0 30px;
     text-align: center;
     background-color: var(--kungalgame-trans-white-2);
     font-size: 20px;
-    /* 这里将形状裁剪成六边形 */
     clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
   }
 }
-/* 其他人话题内容区容器 */
+
+/* Container for the content of other people's topics */
 .container {
   width: 100%;
   display: flex;
@@ -224,25 +225,29 @@ const handleClickComment = (
   box-shadow: var(--shadow);
   transition: all 0.5s;
 }
-/* 其它人回复的内容区 */
+
+/* Content of other people's replies */
 .content {
   width: 100%;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
 }
-/* 其他人回复的上部 */
+
+/* Upper part of other people's replies */
 .article {
   display: flex;
   flex-grow: 1;
 }
-/* 其它人回复的上部右侧区域 */
+
+/* Right side of the upper part of other people's replies */
 .right {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-/* 右侧的上部区域 */
+
+/* Top part on the right side */
 .top {
   display: flex;
   justify-content: space-between;
@@ -250,23 +255,17 @@ const handleClickComment = (
   margin: 10px 0;
   letter-spacing: 1px;
 }
-/* 其他人回复的下部 */
-.bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--kungalgame-blue-1);
-  padding-bottom: 7px;
-}
 
-/* 上部区域的左边 */
+/* Left side of the top part */
 .reply {
   font-size: 17px;
   color: var(--kungalgame-font-color-3);
+
   span {
     color: var(--kungalgame-blue-5);
     font-weight: 500;
     cursor: pointer;
+
     &:hover {
       text-decoration: underline;
       text-decoration-thickness: 2px;
@@ -274,36 +273,20 @@ const handleClickComment = (
   }
 }
 
-/* 内容区右侧的话题展示区 */
-.text {
-  font-size: 15px;
-  padding: 17px;
-  border-left: 1px solid var(--kungalgame-blue-1);
-  color: var(--kungalgame-font-color-3);
-}
-
-/* 插槽的样式 */
-.icon {
-  cursor: pointer;
-  font-size: 24px;
-  color: var(--kungalgame-font-color-2);
-  display: flex;
-  margin-right: 17px;
-}
-
-/* 被重新编辑后的楼层标志样式 */
+/* Right side of the top part */
+/* Styling for replies that have been edited */
 .rewrite {
   span {
     transform: rotate(0) translateY(0) translateX(-7px);
   }
 }
 
-/* 回复被推的样式 */
+/* Styling for upvoted replies within 10 hours */
 .active-upvote .container {
   border: 1px solid var(--kungalgame-red-4);
 }
 
-/* 滚动到指定话题激活后的样式 */
+/* Styling for activated topics when scrolling to a specific topic */
 .active .container {
   border: 1px solid var(--kungalgame-red-3);
   background-color: var(--kungalgame-trans-red-1);

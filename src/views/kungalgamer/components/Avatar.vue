@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Message from '@/components/alert/Message'
-// 上传头像的函数
+// Function for uploading avatars
 import { checkImageValid, resizeImage } from '../utils/handleFileChange'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
-// 准备给后端的图片
+// Prepare the image to send to the backend
 const uploadedImage = ref<Blob>()
-// 上传好的头像链接
+// Uploaded avatar link
 const selectedFileUrl = ref<string>('')
-// 上传的 input
+// Input for uploading
 const input = ref<HTMLElement>()
-// 本地保存的用户头像链接
+// Locally saved user avatar link
 const { avatar, avatarMin } = storeToRefs(useKUNGalgameUserStore())
 
-// 上传图片的函数
+// Function for uploading an image
 const uploadImage = async (file: File) => {
-  // 检查图片是否合法，不合法则退出
+  // Check if the image is valid, exit if it's not
   const isFileValid = checkImageValid(file)
   if (!isFileValid) {
     return
@@ -27,7 +27,7 @@ const uploadImage = async (file: File) => {
   selectedFileUrl.value = URL.createObjectURL(resizedFile)
 }
 
-// 点击上传
+// Handle file input change
 const handleFileChange = async (event: Event) => {
   const input = event.target as HTMLInputElement
 
@@ -39,9 +39,9 @@ const handleFileChange = async (event: Event) => {
   uploadImage(file)
 }
 
-// 拖拽上传
+// Handle drop to upload
 const handleDrop = async (event: DragEvent) => {
-  // 阻止浏览器默认行为
+  // Prevent the browser's default behavior
   event.preventDefault()
   event.stopPropagation()
 
@@ -52,18 +52,18 @@ const handleDrop = async (event: DragEvent) => {
   }
 }
 
-// 拖拽上传完成后阻止默认行为
+// Prevent default behavior when dragging over
 const handleDragOver = (event: DragEvent) => {
   event.preventDefault()
   event.dataTransfer!.dropEffect = 'copy'
 }
 
-// 点击上传
+// Handle avatar upload
 const handleClickUpload = () => {
   input.value?.click()
 }
 
-// 更改头像
+// Change avatar
 const handleChangeAvatar = async () => {
   if (!uploadedImage.value) {
     return
@@ -75,11 +75,11 @@ const handleChangeAvatar = async () => {
   const res = await useKUNGalgameUserStore().updateAvatar(formData)
 
   if (res.code === 200) {
-    // 保存返回的头像链接
+    // Save the returned avatar link
     const avatarLink = res.data.avatar
     avatar.value = avatarLink
     avatarMin.value = avatarLink.replace(/\.webp$/, '-100.webp')
-    // 清除数据
+    // Clear the data
     selectedFileUrl.value = ''
 
     Message('Update avatar successfully!', '更新头像成功', 'success')
@@ -102,7 +102,7 @@ const handleChangeAvatar = async () => {
         @dragover="handleDragOver"
         @click="handleClickUpload"
       >
-        <!-- 加号提示 -->
+        <!-- Plus sign prompt -->
         <span class="plus" v-if="!selectedFileUrl"></span>
         <img
           class="avatar-preview"
@@ -119,7 +119,7 @@ const handleChangeAvatar = async () => {
         />
       </div>
 
-      <!-- 帮助区域 -->
+      <!-- Help section -->
       <div class="help">
         <div class="hint">
           <span>{{ $tm('user.settings.drag') }}</span>
@@ -166,13 +166,14 @@ const handleChangeAvatar = async () => {
 
   &:hover {
     border: 1px solid var(--kungalgame-pink-3);
+
     .plus::before,
     .plus::after {
       background: var(--kungalgame-pink-3);
     }
   }
 
-  /* 单标签加号 */
+  /* Single tag plus */
   .plus {
     display: inline-block;
     position: relative;
@@ -203,7 +204,7 @@ const handleChangeAvatar = async () => {
   }
 }
 
-/* 头像预览 */
+/* Avatar preview */
 .avatar-preview {
   max-width: 140px;
   max-height: 140px;
@@ -229,6 +230,7 @@ const handleChangeAvatar = async () => {
       background-color: var(--kungalgame-blue-4);
       color: var(--kungalgame-white);
     }
+
     &:active {
       transform: scale(0.9);
     }

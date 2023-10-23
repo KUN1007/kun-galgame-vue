@@ -2,7 +2,7 @@ import { fetchGet } from '@/utils/request'
 import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as Ranking from './types/ranking'
 
-// 获取 ranking 热门话题
+// Get ranking hot topics
 export async function getRankingTopicsApi(
   request: Ranking.RankingGetTopicsRequestData
 ): Promise<Ranking.RankingGetTopicsResponseData> {
@@ -13,7 +13,7 @@ export async function getRankingTopicsApi(
   return response
 }
 
-// 获取 ranking 热门用户
+// Get ranking hot users
 export async function getRankingUsersApi(
   request: Ranking.RankingGetUserRequestData
 ): Promise<Ranking.RankingGetUsersResponseData> {

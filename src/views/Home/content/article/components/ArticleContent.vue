@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onBeforeUnmount, onBeforeMount } from 'vue'
 import SingleTopic from './SingleTopic.vue'
-// 导入计算时间差的函数
+// Import the function for calculating time difference
 import { hourDiff } from '@/utils/time'
 
 import { HomeTopic } from '@/api'
 
-// 导入主页 store
+// Import the homepage store
 import { useKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 
@@ -14,78 +14,78 @@ const { page, keywords, sortField, sortOrder, isLoading } = storeToRefs(
   useKUNGalgameHomeStore()
 )
 
-// 在组件中定义响应式的话题数据
+// Define reactive topic data in the component
 const topics = ref<HomeTopic[]>([])
-// 页面的容器，用于计算是否到达底部
+// Page container for calculating whether it has reached the bottom
 const content = ref<HTMLElement>()
 
-// 获取页面话题的函数
+// Function to get page topics
 const getTopics = async (): Promise<HomeTopic[]> => {
   return (await useKUNGalgameHomeStore().getHomeTopic()).data
 }
 
-// 调用 fetchTopics 获取话题数据（watch 大法好！）
+// Call fetchTopics to get topic data (watch is great!)
 watch([keywords, sortField, sortOrder], async () => {
   topics.value = await getTopics()
 })
 
-// 滚动事件处理函数
+// Scroll event handler
 const scrollHandler = async () => {
-  // 滚动到底部的处理逻辑
+  // Handling logic when scrolling to the bottom
   if (isScrollAtBottom() && isLoading.value) {
-    // 自动增加页数
+    // Automatically increment the page number
     page.value++
 
-    // 获取下一页的话题
+    // Get the topics for the next page
     const lazyLoadTopics = await getTopics()
 
-    // 判断是否已经将数据加载完，加载完则不需要加载了
+    // Check if data has already been loaded, if so, no need to load more
     if (!lazyLoadTopics.length) {
       isLoading.value = false
     }
 
-    // 将新加载的回复数据追加到已有的回复数据中
+    // Append the newly loaded reply data to the existing reply data
     topics.value = [...topics.value, ...lazyLoadTopics]
   }
 }
 
-// 判断是否滚动到底部
+// Check if it has scrolled to the bottom
 const isScrollAtBottom = () => {
   if (content.value) {
     const scrollHeight = content.value.scrollHeight
     const scrollTop = content.value.scrollTop
     const clientHeight = content.value.clientHeight
 
-    // 使用误差范围来比较，因为 js 浮点数不精确
-    // 为什么是 1007 呢，因为我抽到鲲是在 10 月 7 日，啊哈哈哈
+    // Compare with a margin of error, as JavaScript floating-point numbers are not precise
+    // Why 1007? Because I got KUN san on October 7th, ahahaha
     const errorMargin = 1.007
     return Math.abs(scrollHeight - scrollTop - clientHeight) < errorMargin
   }
 }
 
 onBeforeMount(async () => {
-  // 挂载之前重置页数，是否加载等页面状态
+  // Reset page number, loading status, etc. before mounting
   useKUNGalgameHomeStore().resetPageStatus()
 })
 
-// 在组件挂载后，添加滚动事件监听器
+// Add a scroll event listener after the component is mounted
 onMounted(async () => {
-  // 获取滚动元素的引用
+  // Get a reference to the scrolling element
   const element = content.value
 
-  // 获取到了则启动监听器，监听页面滚动行为
+  // If the element is found, start the listener to track scroll behavior
   if (element) {
     element.addEventListener('scroll', scrollHandler)
   }
 
-  // 首次加载获取话题
+  // Load topics for the first time
   topics.value = await getTopics()
 })
 
-// 在组件卸载前，移除滚动事件监听器
+// Remove the scroll event listener before the component is unmounted
 onBeforeUnmount(() => {
   const element = content.value
-  // 如果获取到页面元素则销毁监听器
+  // If the page element is found, remove the listener
   if (element) {
     element.removeEventListener('scroll', scrollHandler)
   }
@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="topic-container" ref="content">
     <TransitionGroup name="list" tag="div">
-      <!-- 被推时间在 10h 之内 -->
+      <!-- Posted within 10 hours -->
       <div
         v-for="topic in topics"
         :key="topic.tid"
@@ -116,27 +116,30 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 @use '@/styles/effect/effect.scss';
-/* 话题区容器 */
+/* Topic container */
 .topic-container {
-  /* 话题区域占文章总区域的宽度 */
+  /* The topic area occupies the width of the entire article area */
   width: 100%;
   padding: 0 7px;
   overflow-y: scroll;
-  /* 所有话题的总区域占左侧页面的下边距 */
+  /* The total area of all topics occupies the bottom margin of the left page */
   margin: 5px 0;
-  /* 话题区域弹性盒 */
+  /* Topic area flex container */
   display: flex;
   flex-direction: column;
+
   &::-webkit-scrollbar {
     display: inline;
     width: 4px;
     height: 0;
   }
+
   &::-webkit-scrollbar-thumb {
     background: var(--kungalgame-blue-4);
     border-radius: 2px;
   }
-  /* 兼容火狐 */
+
+  /* Compatibility with Firefox */
   scrollbar-width: thin;
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
 
@@ -145,14 +148,14 @@ onBeforeUnmount(() => {
   }
 }
 
-/* 规范一下样式 */
+/* Style normalization */
 .kungalgame-comet-surround {
   padding: 0;
   flex-shrink: 0;
   border: 2px solid var(--kungalgame-red-4);
 }
 
-.list-move, /* 对移动中的元素应用的过渡 */
+.list-move, /* Applied to moving elements during the transition */
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -163,8 +166,8 @@ onBeforeUnmount(() => {
   opacity: 0;
 }
 
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
+/* Ensure that the leaving element is removed from the layout flow
+   to calculate the moving animation correctly. */
 .list-leave-active {
   position: absolute;
 }
