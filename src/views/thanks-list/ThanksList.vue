@@ -122,7 +122,7 @@ const thanksListPageWidth = computed(() => {
           <li>
             <span class="skip">
               <a
-                href="https://github.com/asukaminato0721"
+                href="https://asukaminato.pages.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -288,14 +288,14 @@ const thanksListPageWidth = computed(() => {
           <li>
             <span class="skip">
               <a
-                href="https://github.com/asukaminato0721"
+                href="https://asukaminato.pages.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Asuka Minato
               </a>
             </span>
-            （凑妈！）他太强了！我哭死！
+            （湊妈！）他太强了！我哭死！
           </li>
         </ul>
         <br />
