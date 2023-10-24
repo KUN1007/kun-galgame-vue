@@ -27,3 +27,6 @@ kun-ssr
 
 # rollup-plugin-visualizer
 stats.html
+
+# .env.production
+.env.production

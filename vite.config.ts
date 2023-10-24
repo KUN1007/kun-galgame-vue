@@ -16,6 +16,10 @@ export default defineConfig({
   esbuild: {
     drop: ['console', 'debugger'],
   },
+  build: {
+    // Dist dir name
+    assetsDir: 'kun',
+  },
   server: { host: '127.0.0.1', port: 1007 },
   // Suppress i18n warnings
   define: {
