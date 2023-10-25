@@ -65,6 +65,7 @@ const handleClose = () => {
   right: 0;
   z-index: 9999;
 }
+
 .lass {
   padding: 5px;
   font-size: 20px;
@@ -74,6 +75,7 @@ const handleClose = () => {
   border-bottom: none;
   /* This shadow can only be drawn like this */
   filter: drop-shadow(2px 4px 3px var(--kungalgame-trans-blue-4));
+
   span {
     padding: 0 50px;
     text-align: center;
@@ -83,14 +85,18 @@ const handleClose = () => {
     clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
   }
 }
+
 .avatar {
   position: absolute;
   margin-top: 10px;
   margin-left: 20px;
+
   img {
     height: 100px;
+    width: 100%;
   }
 }
+
 .info {
   margin-top: 20px;
   margin-left: 150px;
@@ -111,5 +117,34 @@ const handleClose = () => {
   top: 0;
   right: 0;
   color: var(--kungalgame-font-color-1);
+}
+
+@media (max-width: 700px) {
+  .container {
+    min-height: 77px;
+  }
+
+  .lass {
+    padding: 5px;
+    font-size: 15px;
+    padding-left: 20px;
+    top: -33px;
+
+    span {
+      font-size: 17px;
+    }
+  }
+  .info {
+    margin-top: 10px;
+    margin-right: 30px;
+    margin-left: 77px;
+  }
+
+  .avatar {
+    img {
+      height: 50px;
+      width: 100%;
+    }
+  }
 }
 </style>

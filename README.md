@@ -32,7 +32,7 @@ We believe that "what truly makes a good game is something that makes you feel h
 
 - Compatible with all modern browsers on both mobile and desktop.
 - Responsive design for screens of any size.
-- Developed entirely using `Vue3` Composition API and fully supports `Typescript`. The coding style follows the best practices recommended on the [Vue official website](https://chat.openai.com/c/vuejs.org).
+- Developed entirely using `Vue3` Composition API and fully supports `Typescript`. The coding style follows the best practices recommended on the [Vue official website](https://vuejs.org/).
 
 ## Features
 
