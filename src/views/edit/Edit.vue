@@ -3,7 +3,7 @@ import { onBeforeRouteLeave } from 'vue-router'
 // Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // Import the editor
-import QuillEditor from '@/components/quill-editor/QuillEditor.vue'
+import MilkdownEditorWrapper from '@/components/milkdown/MilkdownEditorWrapper.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -52,13 +52,7 @@ onBeforeRouteLeave(async (to, from, next) => {
     <!-- Content container -->
     <div class="container">
       <!-- Editor -->
-      <QuillEditor
-        class="editor"
-        :isShowToolbar="true"
-        :isShowAdvance="true"
-        :isShowTitle="true"
-        :isShowSettings="true"
-      />
+      <MilkdownEditorWrapper />
 
       <!-- Bottom of the content area -->
       <div class="content-footer">

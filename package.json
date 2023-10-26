@@ -18,7 +18,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vueup/vue-quill": "^1.2.0",
+    "@milkdown/core": "^7.3.0",
+    "@milkdown/ctx": "^7.3.0",
+    "@milkdown/preset-commonmark": "^7.3.0",
+    "@milkdown/prose": "^7.3.0",
+    "@milkdown/transformer": "^7.3.0",
+    "@milkdown/vue": "^7.3.0",
     "animate.css": "^4.1.1",
     "dayjs": "^1.11.10",
     "dompurify": "^3.0.6",
@@ -26,9 +31,6 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.0",
-    "quill-blot-formatter": "^1.0.5",
-    "quill-image-compress": "^1.2.30",
-    "quill-magic-url": "^4.2.0",
     "vue": "^3.3.6",
     "vue-i18n": "^9.5.0",
     "vue-router": "^4.2.5"
