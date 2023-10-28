@@ -5,11 +5,32 @@
 
 /* Reset default CSS styles for all elements */
 * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+p {
   margin: 0;
   padding: 0;
-  text-decoration: none;
   list-style: none;
-  box-sizing: border-box;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 /* Remove focus outlines on elements */

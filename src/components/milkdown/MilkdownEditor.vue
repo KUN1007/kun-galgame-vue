@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// KUN Visual Novel Title
+import Title from './components/Title.vue'
 // KUN Visual Novel Menu
 import MilkdownMenu from './plugins/MilkdownMenu.vue'
 // Milkdown core
@@ -40,25 +42,7 @@ import tsx from 'refractor/lang/tsx'
 import markdown from 'refractor/lang/markdown'
 
 // Editor markdown preset
-const valueMarkdown = `# Milkdown Vanilla Shiki Highlight
-
-> You're scared of a world where you're needed.
-
-\`\`\`rust
-Editor
-  .make()
-  .config(ctx => {
-    ctx.set(rootCtx, '#app')
-    ctx.set(defaultValueCtx, markdown)
-  })
-  .config(nord)
-  .use(commonmark)
-  .use(milkShiki)
-  .create()
-\`\`\`
-
-This is a demo for using Milkdown with **Vanilla Typescript**.
-The code block is highlighted by [shiki](https://shiki.matsu.io/).`
+const valueMarkdown = ``
 
 const tooltip = tooltipFactory('Text')
 const pluginViewFactory = usePluginViewFactory()
@@ -125,6 +109,7 @@ const editorInfo = useEditor((root) =>
 <!-- MilkdownEditor.vue -->
 <template>
   <div class="editor-container">
+    <Title />
     <MilkdownMenu :editorInfo="editorInfo" />
     <Milkdown class="editor" />
   </div>

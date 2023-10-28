@@ -14,11 +14,3 @@ import MilkdownEditor from './MilkdownEditor.vue'
     </MilkdownProvider>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.editor {
-  margin: 10px;
-  border: 1px solid var(--kungalgame-blue-4);
-  border-radius: 5px;
-}
-</style>

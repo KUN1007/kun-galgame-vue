@@ -94,6 +94,8 @@ const handleClickCodeBlock = () => {
   flex-wrap: wrap;
   width: 100%;
   background-color: var(--kungalgame-trans-blue-1);
+  border-bottom: 1px solid var(--kungalgame-blue-1);
+  border-top: 1px solid var(--kungalgame-blue-1);
 
   button {
     cursor: pointer;
