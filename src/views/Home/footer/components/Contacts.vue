@@ -43,8 +43,6 @@ import { Icon } from '@iconify/vue'
 <style lang="scss" scoped>
 .kungalgame-contact {
   width: 180px;
-  margin: 0 auto;
-  margin-bottom: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,6 +56,7 @@ import { Icon } from '@iconify/vue'
 
   ul {
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-grow: 1;
 
