@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// KUN Visual Novel Title
+import Title from '@/components/milkdown/components/Title.vue'
 import { onBeforeRouteLeave } from 'vue-router'
 // Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
@@ -52,6 +54,7 @@ onBeforeRouteLeave(async (to, from, next) => {
     <!-- Content container -->
     <div class="container">
       <!-- Editor -->
+      <Title />
       <MilkdownEditorWrapper />
 
       <!-- Bottom of the content area -->
@@ -65,7 +68,7 @@ onBeforeRouteLeave(async (to, from, next) => {
     <!-- Copyright -->
     <KUNGalgameFooter style="margin: 0 auto; padding-top: 10px" />
     <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)">
-      Editor powered by quill
+      Editor powered by Milkdown & KUN Visual Novel
     </span>
   </div>
 </template>
@@ -73,7 +76,7 @@ onBeforeRouteLeave(async (to, from, next) => {
 <style lang="scss" scoped>
 .root {
   height: calc(100vh - 65px);
-  min-height: 1200px;
+  min-height: 700px;
   display: flex;
   flex-direction: column;
 }
@@ -82,6 +85,7 @@ onBeforeRouteLeave(async (to, from, next) => {
   transition: all 0.2s;
   width: v-bind(editPageWidth);
   max-width: 1500px;
+  overflow-y: scroll;
   margin: 0 auto;
   box-shadow: var(--shadow);
   background-color: var(--kungalgame-trans-white-2);

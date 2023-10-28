@@ -17,8 +17,6 @@ export const useKUNGalgameEditStore = defineStore({
   state: (): EditStore => ({
     editorHeight: 300,
     textCount: 0,
-    mode: '',
-    theme: 'snow',
 
     title: '',
     content: '',

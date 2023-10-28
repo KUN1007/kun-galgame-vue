@@ -13,24 +13,16 @@ const EditorSettingsMenu = defineAsyncComponent(
 // Import CSS animations
 import 'animate.css'
 
-// Import the topic editing store
-import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { storeToRefs } from 'pinia'
 
-// Topic editing page store
-const { textCount } = storeToRefs(useKUNGalgameEditStore())
 // Topic page store for replies and adjusting reply panel width
-const { replyDraft, replyPanelWidth } = storeToRefs(useKUNGalgameTopicStore())
+const { replyPanelWidth } = storeToRefs(useKUNGalgameTopicStore())
 
 // Current route
 const route = useRoute()
 // Name of the current page route
 const routeName = computed(() => route.name as string)
-
-const textCountNumber = computed(() =>
-  routeName.value === 'Edit' ? textCount.value : replyDraft.value.textCount
-)
 
 // Whether to display the editor settings panel
 const isShowSettingsMenu = ref(false)
@@ -55,7 +47,7 @@ const handelCloseSettingsMenu = () => {
 </script>
 
 <template>
-  <div class="footer">
+  <div class="container">
     <!-- Display the settings button -->
     <div class="settings">
       <span
@@ -79,9 +71,6 @@ const handelCloseSettingsMenu = () => {
       />
     </div>
 
-    <!-- Word count -->
-    <span class="count">{{ textCountNumber + ` ${$tm('edit.word')}` }}</span>
-
     <!-- Settings panel -->
     <EditorSettingsMenu
       @close="handelCloseSettingsMenu"
@@ -91,9 +80,7 @@ const handelCloseSettingsMenu = () => {
 </template>
 
 <style lang="scss" scoped>
-.footer {
-  padding: 10px 17px;
-  width: 100%;
+.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -168,11 +155,6 @@ const handelCloseSettingsMenu = () => {
   .panel-width {
     margin-left: 20px;
   }
-}
-
-.count {
-  color: var(--kungalgame-font-color-0);
-  background-color: var(--kungalgame-trans-white-9);
 }
 
 // Keep the settings button rotating when activated.
