@@ -1,12 +1,23 @@
 <script setup lang="ts">
+import { MilkdownProvider } from '@milkdown/vue'
+import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/vue'
+import ReadOnlyMilkdown from '@/components/milkdown/ReadOnlyMilkdown.vue'
+
 defineProps<{
   content: string
 }>()
 </script>
 
 <template>
-  <div class="kungalgame-topic-content ql-container ql-snow">
-    <div class="ql-editor ql-blank" v-html="content"></div>
+  <div class="kungalgame-topic-content">
+    <MilkdownProvider>
+      <ProsemirrorAdapterProvider>
+        <ReadOnlyMilkdown
+          :is-readonly="true"
+          :value-markdown="$props.content"
+        />
+      </ProsemirrorAdapterProvider>
+    </MilkdownProvider>
   </div>
 </template>
 
@@ -22,14 +33,6 @@ defineProps<{
   padding: 0 10px;
   margin-top: 20px;
   overflow-x: auto;
-}
-
-.kungalgame-topic-content {
-  /* The code below adjusts the formatting of the rich text area */
-  :deep(*) {
-    max-width: 100%;
-    overflow-y: scroll;
-  }
 }
 
 /* Mobile responsiveness */
