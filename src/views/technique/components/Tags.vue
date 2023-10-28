@@ -36,6 +36,10 @@ import { tagsList } from './tags'
 
 /* 单个标签容器 */
 .tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   & > li {

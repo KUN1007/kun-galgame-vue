@@ -107,6 +107,10 @@ const handleClickHelp = () => {
   margin-bottom: 100px;
 
   ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     background-color: var(--kungalgame-white);

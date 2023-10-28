@@ -137,6 +137,13 @@ const link: FooterInfoItem[] = [
 .info {
   display: flex;
   justify-content: center;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+  }
 }
 
 .catalog {

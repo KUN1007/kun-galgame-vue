@@ -101,6 +101,10 @@ onMounted(async () => {
 <style lang="scss" scoped>
 /* Background settings */
 .kungalgame-background-container {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
   display: block;
   /* Height of the background menu */
   height: 100%;
@@ -117,11 +121,17 @@ onMounted(async () => {
     align-items: center;
   }
 }
+
 .bg-settings {
   margin: 10px 0;
 }
+
 /* Grid of background image thumbnails, three rows and three columns */
 .kungalgame-restore-bg {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 80px);

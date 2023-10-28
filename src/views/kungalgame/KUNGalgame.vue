@@ -545,6 +545,13 @@ const kungalgamePageWidth = computed(() => {
   margin-left: 30px;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
 h1,
 h2,
 h3,

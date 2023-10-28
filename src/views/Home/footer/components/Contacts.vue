@@ -55,6 +55,10 @@ import { Icon } from '@iconify/vue'
   }
 
   ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
