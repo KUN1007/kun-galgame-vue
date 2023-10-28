@@ -180,7 +180,7 @@ useEditor((root) =>
 
     ul li,
     ol li {
-      color: var(--kungalgame-blue-4);
+      color: var(--kungalgame-blue-5);
     }
 
     .tableWrapper {

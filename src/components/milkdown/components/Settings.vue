@@ -1,10 +1,8 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { computed, defineAsyncComponent, ref } from 'vue'
 // Import the router
 import { useRoute } from 'vue-router'
-
-// Import icon font
-import { Icon } from '@iconify/vue'
 
 // Asynchronously import the editor settings menu
 const EditorSettingsMenu = defineAsyncComponent(

@@ -287,7 +287,9 @@ onBeforeMount(() => {
             {{ topicData?.title }}
           </div>
         </Transition>
+
         <Master v-if="topicData" :topicData="topicData" />
+
         <Reply
           v-if="topicData && repliesData"
           :repliesData="repliesData"
