@@ -178,6 +178,10 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
 }
 /* Left part of the bottom (upvote, share, and dislike) */
 .left ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;

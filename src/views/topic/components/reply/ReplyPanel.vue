@@ -6,8 +6,8 @@ import 'animate.css'
 // Import Vue asynchronous functions
 import { computed, defineAsyncComponent } from 'vue'
 
-const QuillEditor = defineAsyncComponent(
-  () => import('@/components/quill-editor/QuillEditor.vue')
+const MilkdownEditor = defineAsyncComponent(
+  () => import('@/components/milkdown/MilkdownEditorWrapper.vue')
 )
 const Tags = defineAsyncComponent(
   () => import('@/views/edit/components/Tags.vue')
@@ -70,13 +70,12 @@ const handleClosePanel = async () => {
               icon="line-md:close"
             />
           </div>
+
           <!-- Reply editor -->
           <div class="content">
-            <QuillEditor
-              :is-show-toolbar="isShowAdvance"
-              :is-show-title="false"
-            />
+            <MilkdownEditor :is-show-menu="isShowAdvance" />
           </div>
+
           <!-- Reply footer -->
           <div class="footer">
             <Tags

@@ -58,7 +58,6 @@ const tooltip = tooltipFactory('Text')
 const pluginViewFactory = usePluginViewFactory()
 const container = ref<HTMLElement | null>(null)
 const isEditorFocus = ref(false)
-const isShowPlaceHolder = ref(true)
 
 const editorInfo = useEditor((root) =>
   Editor.make()
@@ -74,12 +73,6 @@ const editorInfo = useEditor((root) =>
       listener.markdownUpdated((ctx, markdown, prevMarkdown) => {
         if (markdown !== prevMarkdown) {
           emits('saveMarkdown', markdown)
-        }
-
-        if (!markdown) {
-          isShowPlaceHolder.value = true
-        } else {
-          isShowPlaceHolder.value = false
         }
       })
       listener.blur(() => {
@@ -140,10 +133,7 @@ const editorInfo = useEditor((root) =>
 <template>
   <div ref="container" class="editor-container">
     <MilkdownMenu v-if="isShowMenu" :editorInfo="editorInfo" />
-    <Milkdown
-      class="editor"
-      :class="isEditorFocus && isShowPlaceHolder ? 'active' : ''"
-    />
+    <Milkdown class="editor" :class="isEditorFocus ? 'active' : ''" />
   </div>
 </template>
 
