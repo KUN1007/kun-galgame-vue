@@ -32,15 +32,8 @@ import DOMPurify from 'dompurify'
 import { debounce } from '@/utils/debounce'
 
 // Topic editing page store
-const {
-  editorHeight,
-  mode,
-  theme,
-  textCount,
-  isSaveTopic,
-  content,
-  topicRewrite,
-} = storeToRefs(useKUNGalgameEditStore())
+const { editorHeight, textCount, isSaveTopic, content, topicRewrite } =
+  storeToRefs(useKUNGalgameEditStore())
 // Store for topic page used for replies
 const { replyDraft, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
 
@@ -77,11 +70,6 @@ const editorHeightStyle = computed(
         ? editorHeight.value
         : replyDraft.value.editorHeight
     }px`
-)
-
-// Editor mode, determined by the route name
-const editorMode = computed(() =>
-  routeName.value === 'Edit' ? mode.value : replyDraft.value.mode
 )
 
 // Whether to show the editor toolbar
@@ -181,9 +169,7 @@ const handleTextChange = async () => {
       contentType="html"
       :content="valueHtml"
       :style="editorHeightStyle"
-      :theme="theme"
       :modules="modules"
-      :toolbar="editorMode"
       :options="editorOptions"
       @textChange="handleTextChange"
       @click.prevent

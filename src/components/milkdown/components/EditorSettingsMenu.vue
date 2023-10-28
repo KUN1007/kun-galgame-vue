@@ -56,10 +56,10 @@ const handelCloseSettingsPanel = () => {
 
         <!-- Editor page -->
         <div v-if="routeName === 'Edit'" class="editor-height">
-          <span>300 px</span>
+          <span>200 px</span>
           <input
             type="range"
-            min="300"
+            min="200"
             max="500"
             step="1"
             v-model="editorHeight"

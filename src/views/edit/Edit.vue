@@ -55,7 +55,7 @@ onBeforeRouteLeave(async (to, from, next) => {
     <div class="container">
       <!-- Editor -->
       <Title />
-      <MilkdownEditorWrapper />
+      <MilkdownEditorWrapper :is-show-menu="true" />
 
       <!-- Bottom of the content area -->
       <div class="content-footer">
@@ -67,8 +67,27 @@ onBeforeRouteLeave(async (to, from, next) => {
 
     <!-- Copyright -->
     <KUNGalgameFooter style="margin: 0 auto; padding-top: 10px" />
-    <span style="margin: 0 auto; color: var(--kungalgame-font-color-3)">
-      Editor powered by Milkdown & KUN Visual Novel
+
+    <span
+      class="reference"
+      style="margin: 0 auto; color: var(--kungalgame-font-color-3)"
+    >
+      Editor powered by
+      <a
+        href="https://github.com/Milkdown/milkdown"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Milkdown
+      </a>
+      &
+      <a
+        href="https://github.com/KUN1007/milkdown-vue3-demo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        KUN Visual Novel
+      </a>
     </span>
   </div>
 </template>
@@ -99,6 +118,17 @@ onBeforeRouteLeave(async (to, from, next) => {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.reference {
+  a {
+    font-style: oblique;
+    color: var(--kungalgame-blue-4);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 @media (max-width: 1000px) {
