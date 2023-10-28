@@ -1,10 +1,9 @@
 <script setup lang="ts">
-// KUN Visual Novel Title
-import Title from './components/Title.vue'
+import { computed, ref } from 'vue'
 // KUN Visual Novel Menu
 import MilkdownMenu from './plugins/MilkdownMenu.vue'
 // Milkdown core
-import { Editor, rootCtx, defaultValueCtx } from '@milkdown/core'
+import { Editor, rootCtx, rootAttrsCtx, defaultValueCtx } from '@milkdown/core'
 import { Milkdown, useEditor } from '@milkdown/vue'
 import { commonmark } from '@milkdown/preset-commonmark'
 import { gfm } from '@milkdown/preset-gfm'
@@ -41,17 +40,27 @@ import sql from 'refractor/lang/sql'
 import tsx from 'refractor/lang/tsx'
 import markdown from 'refractor/lang/markdown'
 
-// Editor markdown preset
-const valueMarkdown = ``
+const props = defineProps<{
+  valueMarkdown: string
+  editorHight: number
+}>()
+
+const editorHight = computed(() => props.editorHight + 'px')
+const valueMarkdown = computed(() => props.valueMarkdown)
 
 const tooltip = tooltipFactory('Text')
 const pluginViewFactory = usePluginViewFactory()
+const container = ref<HTMLElement | null>(null)
 
 const editorInfo = useEditor((root) =>
   Editor.make()
     .config((ctx) => {
       ctx.set(rootCtx, root)
-      ctx.set(defaultValueCtx, valueMarkdown)
+      ctx.set(rootAttrsCtx, {
+        roles: 'kun-galgame-milkdown-editor',
+        'aria-label': 'kun-galgame-milkdown-editor',
+      })
+      ctx.set(defaultValueCtx, valueMarkdown.value)
 
       const listener = ctx.get(listenerCtx)
 
@@ -99,6 +108,7 @@ const editorInfo = useEditor((root) =>
           new Plugin({
             view: pluginViewFactory({
               component: Size,
+              root: () => (container.value ? container.value : root),
             }),
           })
       )
@@ -108,8 +118,7 @@ const editorInfo = useEditor((root) =>
 
 <!-- MilkdownEditor.vue -->
 <template>
-  <div class="editor-container">
-    <Title />
+  <div ref="container" class="editor-container">
     <MilkdownMenu :editorInfo="editorInfo" />
     <Milkdown class="editor" />
   </div>
@@ -128,7 +137,7 @@ const editorInfo = useEditor((root) =>
 
     & > div:nth-child(1) {
       margin: 0 auto;
-      min-height: 300px;
+      min-height: v-bind(editorHight);
       overflow-y: scroll;
 
       &::-webkit-scrollbar {
@@ -212,7 +221,7 @@ const editorInfo = useEditor((root) =>
 
     ul li,
     ol li {
-      color: var(--kungalgame-blue-5);
+      color: var(--kungalgame-blue-4);
     }
 
     .tableWrapper {

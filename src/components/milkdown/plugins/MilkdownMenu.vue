@@ -30,7 +30,7 @@ const call = <T>(command: CmdKey<T>, payload?: T) => {
   return get()?.action(callCommand(command, payload))
 }
 
-// Select a language
+// Select a language TODO:
 const selectLanguage = () => {}
 
 // Create code block
@@ -42,47 +42,77 @@ const handleClickCodeBlock = () => {
 <template>
   <div class="menu">
     <!-- Mark Group -->
-    <button class="bold" @click="call(toggleStrongCommand.key)">
+    <button
+      aria-label="kun-galgame-bold"
+      @click="call(toggleStrongCommand.key)"
+    >
       <Icon icon="material-symbols:format-bold-rounded" />
     </button>
 
-    <button class="italic" @click="call(toggleEmphasisCommand.key)">
+    <button
+      aria-label="kun-galgame-italic"
+      @click="call(toggleEmphasisCommand.key)"
+    >
       <Icon icon="material-symbols:format-italic-rounded" />
     </button>
 
-    <button class="italic" @click="call(toggleStrikethroughCommand.key)">
+    <button
+      aria-label="kun-galgame-italic"
+      @click="call(toggleStrikethroughCommand.key)"
+    >
       <Icon icon="material-symbols:strikethrough-s-rounded" />
     </button>
 
-    <button class="table" @click="call(insertTableCommand.key)">
+    <button
+      aria-label="kun-galgame-table"
+      @click="call(insertTableCommand.key)"
+    >
       <Icon icon="material-symbols:table" />
     </button>
 
-    <button class="list-bulleted" @click="call(wrapInBulletListCommand.key)">
+    <button
+      aria-label="kun-galgame-list-bulleted"
+      @click="call(wrapInBulletListCommand.key)"
+    >
       <Icon icon="material-symbols:format-list-bulleted-rounded" />
     </button>
 
-    <button class="list-numbered" @click="call(wrapInOrderedListCommand.key)">
+    <button
+      aria-label="kun-galgame-list-numbered"
+      @click="call(wrapInOrderedListCommand.key)"
+    >
       <Icon icon="material-symbols:format-list-numbered-rounded" />
     </button>
 
-    <button class="quote" @click="call(wrapInBlockquoteCommand.key)">
+    <button
+      aria-label="kun-galgame-quote"
+      @click="call(wrapInBlockquoteCommand.key)"
+    >
       <Icon icon="material-symbols:format-quote-rounded" />
     </button>
 
-    <button class="horizontal" @click="call(insertHrCommand.key)">
+    <button
+      aria-label="kun-galgame-horizontal"
+      @click="call(insertHrCommand.key)"
+    >
       <Icon icon="material-symbols:horizontal-rule-rounded" />
     </button>
 
-    <button class="italic" @click="call(toggleLinkCommand.key)">
+    <button
+      aria-label="kun-galgame-italic"
+      @click="call(toggleLinkCommand.key)"
+    >
       <Icon icon="material-symbols:link-rounded" />
     </button>
 
-    <button class="italic" @click="handleClickCodeBlock">
+    <button aria-label="kun-galgame-italic" @click="handleClickCodeBlock">
       <Icon icon="material-symbols:code-blocks-outline-rounded" />
     </button>
 
-    <button class="italic" @click="call(toggleInlineCodeCommand.key)">
+    <button
+      aria-label="kun-galgame-italic"
+      @click="call(toggleInlineCodeCommand.key)"
+    >
       <Icon icon="material-symbols:code-rounded" />
     </button>
   </div>

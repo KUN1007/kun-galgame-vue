@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 // Import the icon font
 import { Icon } from '@iconify/vue'
@@ -16,7 +16,7 @@ import { storeToRefs } from 'pinia'
 import SwitchButton from './SwitchButton.vue'
 
 // Topic editing page store
-const { editorHeight, mode } = storeToRefs(useKUNGalgameEditStore())
+const { editorHeight } = storeToRefs(useKUNGalgameEditStore())
 // Topic page store for replies
 const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
 
@@ -33,19 +33,6 @@ const emits = defineEmits<{
 const route = useRoute()
 // Name of the current page route
 const routeName = computed(() => route.name as string)
-
-// Whether to refresh the page when clicking advanced options
-const isRefreshPage = ref(false)
-
-// Remind the user to refresh the page when clicking on advanced options
-watch(
-  () => [replyDraft.value.mode, mode.value],
-  () => {
-    isRefreshPage.value = true
-  }
-)
-
-const handleRefreshPage = () => location.reload()
 
 // Close the settings panel
 const handelCloseSettingsPanel = () => {
@@ -91,41 +78,6 @@ const handelCloseSettingsPanel = () => {
             v-model="replyDraft.editorHeight"
           />
           <span>500 px</span>
-        </div>
-
-        <!-- Whether to display editor advanced options -->
-        <div class="editor-advance">
-          <div class="editor-advance-title">
-            <Transition mode="out-in" name="slide-up">
-              <span v-if="!isRefreshPage"> {{ $tm('edit.editorMode') }} </span>
-              <span
-                @click="handleRefreshPage"
-                class="refresh"
-                v-else-if="isRefreshPage"
-              >
-                {{ $tm('edit.refresh') }}
-              </span>
-            </Transition>
-          </div>
-
-          <!-- Editor page switch button -->
-          <select class="select" v-if="routeName === 'Edit'" v-model="mode">
-            <option value="minimal">{{ $tm('edit.minimal') }}</option>
-            <option value="">{{ $tm('edit.default') }}</option>
-            <option value="essential">{{ $tm('edit.essential') }}</option>
-            <option value="full">{{ $tm('edit.full') }}</option>
-          </select>
-
-          <!-- Reply panel switch button -->
-          <select
-            class="select"
-            v-if="routeName === 'Topic'"
-            v-model="replyDraft.mode"
-          >
-            <option value="minimal">{{ $tm('edit.minimal') }}</option>
-            <option value="">{{ $tm('edit.default') }}</option>
-            <option value="essential">{{ $tm('edit.essential') }}</option>
-          </select>
         </div>
 
         <!-- Whether to display popular keywords -->
@@ -184,35 +136,6 @@ const handelCloseSettingsPanel = () => {
   display: flex;
   justify-content: space between;
   align-items: center;
-}
-
-.editor-advance-title {
-  display: flex;
-  flex-direction: column;
-  .refresh {
-    display: flex;
-    align-items: center;
-    font-size: 17px;
-    cursor: pointer;
-    color: var(--kungalgame-blue-4);
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-// Editor mode selection box
-.select {
-  width: 100px;
-  font-size: 16px;
-  margin-left: 20px;
-  color: var(--kungalgame-font-color-3);
-  border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-white-9);
-
-  option {
-    background-color: var(--kungalgame-white);
-  }
 }
 
 // Close settings

@@ -16,16 +16,8 @@ interface TopicRewrite {
 }
 
 export interface EditStore {
-  /**
-   * Editor related
-   * @param {number} editorHeight - Editor height
-   * @param {'' | 'essential' | 'minimal' | 'full'} mode - Editor toolbar mode
-   * @param {'snow' | 'bubble'} theme - Editor theme
-   */
   editorHeight: number
   textCount: number
-  mode: '' | 'essential' | 'minimal' | 'full'
-  theme: 'snow' | 'bubble'
 
   /**
    * Topic related
