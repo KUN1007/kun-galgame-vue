@@ -106,10 +106,10 @@ const saveMarkdown = (editorMarkdown: string) => {
     <MilkdownProvider>
       <ProsemirrorAdapterProvider>
         <MilkdownEditor
+          @save-markdown="saveMarkdown"
           :value-markdown="valueMarkdown"
           :editor-hight="editorHeightStyle.toString()"
           :is-show-menu="isShowMenu"
-          @save-markdown="saveMarkdown"
         />
       </ProsemirrorAdapterProvider>
     </MilkdownProvider>
