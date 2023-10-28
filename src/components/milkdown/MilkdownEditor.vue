@@ -42,15 +42,23 @@ import markdown from 'refractor/lang/markdown'
 
 const props = defineProps<{
   valueMarkdown: string
-  editorHight: number
+  editorHight: string
+  isShowMenu: boolean
+}>()
+
+const emits = defineEmits<{
+  saveMarkdown: [editorMarkdown: string]
 }>()
 
 const editorHight = computed(() => props.editorHight + 'px')
 const valueMarkdown = computed(() => props.valueMarkdown)
+const isShowMenu = computed(() => props.isShowMenu)
 
 const tooltip = tooltipFactory('Text')
 const pluginViewFactory = usePluginViewFactory()
 const container = ref<HTMLElement | null>(null)
+const isEditorFocus = ref(false)
+const isShowPlaceHolder = ref(true)
 
 const editorInfo = useEditor((root) =>
   Editor.make()
@@ -63,10 +71,22 @@ const editorInfo = useEditor((root) =>
       ctx.set(defaultValueCtx, valueMarkdown.value)
 
       const listener = ctx.get(listenerCtx)
-
       listener.markdownUpdated((ctx, markdown, prevMarkdown) => {
         if (markdown !== prevMarkdown) {
+          emits('saveMarkdown', markdown)
         }
+
+        if (!markdown) {
+          isShowPlaceHolder.value = true
+        } else {
+          isShowPlaceHolder.value = false
+        }
+      })
+      listener.blur(() => {
+        isEditorFocus.value = false
+      })
+      listener.focus(() => {
+        isEditorFocus.value = true
       })
 
       ctx.set(prismConfig.key, {
@@ -101,7 +121,7 @@ const editorInfo = useEditor((root) =>
     .use(indent)
     .use(trailing)
     .use(tooltip)
-    // Add custom plugin view
+    // Add custom plugin view, calculate markdown text size
     .use(
       $prose(
         () =>
@@ -119,13 +139,25 @@ const editorInfo = useEditor((root) =>
 <!-- MilkdownEditor.vue -->
 <template>
   <div ref="container" class="editor-container">
-    <MilkdownMenu :editorInfo="editorInfo" />
-    <Milkdown class="editor" />
+    <MilkdownMenu v-if="isShowMenu" :editorInfo="editorInfo" />
+    <Milkdown
+      class="editor"
+      :class="isEditorFocus && isShowPlaceHolder ? 'active' : ''"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .editor {
+  position: relative;
+  &::before {
+    position: absolute;
+    padding: 27px 10px;
+    content: 'Moe Moe Moe!';
+    font-style: oblique;
+    color: var(--kungalgame-blue-3);
+  }
+
   :deep(.milkdown) {
     width: 100%;
     padding: 10px;
@@ -136,6 +168,7 @@ const editorInfo = useEditor((root) =>
     }
 
     & > div:nth-child(1) {
+      transition: all 0.2s;
       margin: 0 auto;
       min-height: v-bind(editorHight);
       overflow-y: scroll;
@@ -229,6 +262,12 @@ const editorInfo = useEditor((root) =>
       position: relative;
       overflow-x: auto;
     }
+  }
+}
+
+.active {
+  &::before {
+    content: '';
   }
 }
 </style>
