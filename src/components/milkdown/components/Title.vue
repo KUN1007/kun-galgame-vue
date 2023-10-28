@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 
-// Import the store for editing topics
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 
-// Import debounce function
 import { debounce } from '@/utils/debounce'
 
 const { isSaveTopic, title, topicRewrite } = storeToRefs(
@@ -40,7 +38,6 @@ const handleInput = () => {
     topicTitle.value = topicTitle.value.slice(0, maxInputLength)
   }
 
-  // User input is pure whitespace
   if (topicTitle.value.trim() === '') {
     title.value = ''
     topicRewrite.value.title = ''
@@ -65,7 +62,6 @@ const handleInput = () => {
     }
   }, 300)
 
-  // Call the debounce handling function, which will execute the update operation only once within the delay time
   debouncedInput()
 }
 </script>
