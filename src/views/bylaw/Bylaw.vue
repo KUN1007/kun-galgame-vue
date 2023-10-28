@@ -292,6 +292,10 @@ const bylawPageWidth = computed(() => {
 }
 
 .moemoepoint ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
   margin: 10px 0;
   margin-left: 40px;
 
@@ -301,6 +305,10 @@ const bylawPageWidth = computed(() => {
 }
 
 .kungalgamer > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
   margin-left: 20px;
 
   li {
@@ -309,6 +317,10 @@ const bylawPageWidth = computed(() => {
 }
 
 .topic > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
   margin-left: 20px;
 
   li {

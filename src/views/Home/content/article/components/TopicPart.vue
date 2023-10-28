@@ -126,6 +126,10 @@ const getRepliesCount = computed(() => {
   white-space: nowrap;
 
   ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
     display: flex;
     color: var(--kungalgame-font-color-2);
     font-size: smaller;

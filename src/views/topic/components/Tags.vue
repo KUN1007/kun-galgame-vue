@@ -27,6 +27,10 @@ defineProps<{
 
   /* Box for individual tags */
   ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
     max-height: 100%;
     display: flex;
     flex-wrap: wrap;

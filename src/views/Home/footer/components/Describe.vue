@@ -39,23 +39,21 @@ const info: Info[] = [
 </template>
 
 <style lang="scss" scoped>
-/* 右侧的网站信息容器 */
 .introduction {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* 右侧网站介绍部分相对于左侧的占比 */
   flex-grow: 1;
   color: var(--kungalgame-font-color-2);
 }
-/* 网站名 */
+
 .kungalgame {
   font-size: larger;
   padding-bottom: 20px;
   font-weight: bold;
 }
-/* 网站描述 */
+
 .kungalgame-describe {
   max-width: 100%;
   display: flex;
