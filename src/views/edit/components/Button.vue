@@ -20,8 +20,6 @@ const handlePublish = async () => {
     // Backend returns the created topic data
     const res = await useKUNGalgameEditStore().createNewTopic()
 
-    console.log(res)
-
     if (res?.code === 200) {
       // Get the tid of the created topic
       const tid = res.data.tid
