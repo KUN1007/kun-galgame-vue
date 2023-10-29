@@ -12,8 +12,8 @@ const isShowPanel = ref('')
 
 // Background image, this is the backend's URL
 const backgroundImageUrl = `${
-  import.meta.env.VITE_API_BASE_URL
-}/uploads/login/login.webp`
+  import.meta.env.VITE_API_UPLOADS_URL
+}/login/login.webp`
 
 // Click login, slide the panel
 const handleClickSignIn = () => {
