@@ -1,7 +1,7 @@
 ---
-name: KUN Visual Novel Feature Request
+name: Feature Request
 about: Suggest an idea or enhancement
-title: ''
+title: 'KUN Visual Novel Feature Request'
 labels: enhancement
 assignees: ''
 
