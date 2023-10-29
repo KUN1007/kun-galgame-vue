@@ -1,7 +1,7 @@
 ---
-name: KUN Visual Novel Bug Report
+name: Bug Report
 about: Create a report to help us improve
-title: ''
+title: 'KUN Visual Novel Bug Report'
 labels: bug
 assignees: ''
 
