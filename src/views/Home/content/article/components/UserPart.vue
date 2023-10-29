@@ -17,9 +17,11 @@ const user = computed(() => props.user)
     <div class="avatar">
       <RouterLink :to="`/kungalgamer/${user.uid}/info`">
         <img
+          v-if="props.user.avatar"
           :src="user.avatar.replace(/\.webp$/, '-100.webp')"
           :alt="user.name"
         />
+        <span v-if="!props.user.avatar">{{ props.user.name.slice(0, 1) }}</span>
       </RouterLink>
     </div>
 
@@ -63,6 +65,14 @@ const user = computed(() => props.user)
     padding: 2px;
     border-radius: 50%;
     display: inline-block;
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--kungalgame-blue-5);
+    font-weight: bold;
   }
 }
 
