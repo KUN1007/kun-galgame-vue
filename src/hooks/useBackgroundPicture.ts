@@ -10,8 +10,8 @@ const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
 
 // Fetch background image data from the backend
 const fetchGetBackground = async (imageName: string): Promise<Blob> => {
-  const baseUrl = import.meta.env.VITE_API_BASE_URL
-  const url = `/uploads/image/bg/${imageName}.webp`
+  const baseUrl = import.meta.env.VITE_API_UPLOADS_URL
+  const url = `/image/bg/${imageName}.webp`
   const fullUrl = `${baseUrl}${url}`
   const response = await fetch(fullUrl, {
     method: 'GET',
