@@ -81,7 +81,6 @@ const isValidInput = (): boolean => {
 const handleSendCode = () => {
   // If the form is empty
   if (!isValidInput()) {
-    Message('Form cannot be empty', '表单不可为空', 'warn')
     return
   }
 
