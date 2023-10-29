@@ -24,6 +24,7 @@ defineProps<{
 <style lang="scss" scoped>
 /* Right side content area for the topic */
 .kungalgame-topic-content {
+  min-height: 200px;
   /** 100 + 20 + 20 + 1 = 141px */
   width: calc(100% - 141px);
   font-size: 15px;
