@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 import { storeToRefs } from 'pinia'
+import i18n from '@/language/i18n'
 
 const { showAlert, alertMsg, isShowCancel } = storeToRefs(
   useKUNGalgameMessageStore()
 )
+
+const i18nMessage = i18n.global.tm(alertMsg.value)
 
 const handleClose = () => {
   showAlert.value = false
@@ -23,7 +26,7 @@ const handleConfirm = () => {
       <div v-if="showAlert" class="mask">
         <div class="container">
           <div class="header">
-            <h3>{{ $t(`${alertMsg}`) }}</h3>
+            <h3>{{ i18nMessage }}</h3>
           </div>
 
           <div class="footer">

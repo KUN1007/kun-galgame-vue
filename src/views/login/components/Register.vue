@@ -18,14 +18,13 @@ import {
   isValidMailConfirmCode,
 } from '@/utils/validate'
 import Code from '@/components/verification-code/Code.vue'
+import i18n from '@/language/i18n'
 
 // Using the message store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
   useKUNGalgameMessageStore()
 )
 
-import { useI18n } from 'vue-i18n'
-const { tm } = useI18n()
 const info = useKUNGalgameMessageStore()
 
 // Current route
@@ -41,10 +40,74 @@ const registerForm = reactive<Record<string, string>>({
   code: '',
 })
 
+const checkRegisterForm = (
+  name: string,
+  email: string,
+  password: string
+): boolean => {
+  if (!name.trim() || !email.trim() || !password.trim()) {
+    Message(
+      'Username, email, password field cannot be empty!',
+      '用户名，邮箱，密码字段不可为空！',
+      'warn'
+    )
+    return false
+  }
+
+  if (!isValidName(name)) {
+    info.info(i18n.global.tm('AlertInfo.login.invalidUsername'))
+    return false
+  }
+
+  if (!isValidEmail(email)) {
+    Message('Invalid email format!', '非法的邮箱格式！', 'warn')
+    return false
+  }
+
+  if (!isValidPassword(password)) {
+    info.info(i18n.global.tm('AlertInfo.login.invalidPassword'))
+    return false
+  }
+
+  return true
+}
+
+const checkRegisterFormSubmit = (isSendCode: boolean, code: string) => {
+  if (!isSendCode) {
+    Message(
+      'Need to send an email verification code',
+      '需要发送邮箱验证码',
+      'warn'
+    )
+    return false
+  }
+
+  if (!code.trim()) {
+    Message(
+      'Email verification code cannot be empty',
+      '邮箱验证码不可为空',
+      'warn'
+    )
+    return false
+  }
+
+  if (!isValidMailConfirmCode(code)) {
+    info.info(i18n.global.tm('AlertInfo.login.invalidCode'))
+    return false
+  }
+
+  return true
+}
+
 // Send verification code
 const handleSendCode = () => {
-  // If the form is empty
-  if (!isValidInput()) {
+  if (
+    !checkRegisterForm(
+      registerForm.name,
+      registerForm.email,
+      registerForm.password
+    )
+  ) {
     return
   }
 
@@ -60,6 +123,10 @@ const handleSendCode = () => {
 }
 
 const handleRegister = async () => {
+  if (!checkRegisterFormSubmit(isSendCode.value, registerForm.code)) {
+    return
+  }
+
   // Execute registration logic, send a request, and validate the code on the backend
   const res = await useKUNGalgameUserStore().register({
     name: registerForm.name,
@@ -72,7 +139,7 @@ const handleRegister = async () => {
   if (res.code === 200) {
     router.push('/')
     Message('Register successfully!', '注册成功！', 'success')
-    info.info(tm('AlertInfo.login.success'))
+    info.info(i18n.global.tm('AlertInfo.login.success'))
   } else {
     Message('Register failed!', '注册失败！', 'error')
   }
