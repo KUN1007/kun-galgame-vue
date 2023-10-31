@@ -41,42 +41,6 @@ const registerForm = reactive<Record<string, string>>({
   code: '',
 })
 
-// Check if the form fields are empty
-const isEmptyInput = () => {
-  if (!registerForm.name.trim()) {
-    Message('Username cannot be empty!', '用户名不可为空！', 'warn')
-    return false
-  } else if (!registerForm.email.trim()) {
-    Message('Email cannot be empty!', '邮箱不可为空！', 'warn')
-    return false
-  } else if (!registerForm.password.trim()) {
-    Message('Password cannot be empty!', '密码不可为空！', 'warn')
-    return false
-  } else {
-    return true
-  }
-}
-
-// Check if the form fields are valid
-const isValidInput = (): boolean => {
-  if (!isEmptyInput()) {
-    return false
-  }
-  if (!isValidName(registerForm.name)) {
-    Message('Invalid username format!', '非法的用户名格式！', 'warn')
-    return false
-  }
-  if (!isValidEmail(registerForm.email)) {
-    Message('Invalid email format!', '非法的邮箱格式！', 'warn')
-    return false
-  }
-  if (!isValidPassword(registerForm.password)) {
-    Message('Invalid password format!', '非法的密码格式！', 'warn')
-    return false
-  }
-  return true
-}
-
 // Send verification code
 const handleSendCode = () => {
   // If the form is empty
@@ -96,33 +60,6 @@ const handleSendCode = () => {
 }
 
 const handleRegister = async () => {
-  if (!isSendCode.value) {
-    Message(
-      'Need to send an email verification code',
-      '需要发送邮箱验证码',
-      'warn'
-    )
-    return
-  }
-
-  if (!registerForm.code.trim()) {
-    Message(
-      'Email verification code cannot be empty',
-      '邮箱验证码不可为空',
-      'warn'
-    )
-    return
-  }
-
-  if (!isValidMailConfirmCode(registerForm.code)) {
-    Message(
-      'Invalid email verification code format!',
-      '非法的邮箱验证码格式！',
-      'warn'
-    )
-    return
-  }
-
   // Execute registration logic, send a request, and validate the code on the backend
   const res = await useKUNGalgameUserStore().register({
     name: registerForm.name,

@@ -11,6 +11,8 @@ const index: RouteRecordRaw[] = [
       {
         name: 'KUN',
         path: '',
+        // Try fix nginx slash
+        alias: '/',
         component: () => import('@/views/Home/KUNGalgameMainPage.vue'),
         meta: {
           title: 'home',
