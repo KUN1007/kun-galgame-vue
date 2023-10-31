@@ -17,9 +17,9 @@ export const isValidName = (name: string) => {
   return regex.test(name)
 }
 
-// Regular expression to match a password of 6 to 17 characters, containing at least one letter and one number, and optionally including special characters \w!@#$%^&*()-+=
+// Regular expression to match a password of 6 to 107 characters, containing at least one letter and one number, and optionally including special characters \w!@#$%^&*()-+=
 export const isValidPassword = (pwd: string) => {
-  const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[\w!@#$%^&*()-+=]{6,17}$/
+  const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[\w!@#$%^&*()-+=]{6,107}$/
   return regex.test(pwd)
 }
 
