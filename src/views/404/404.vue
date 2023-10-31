@@ -49,11 +49,13 @@ p:first-child {
 
 button {
   border: 1px solid var(--kungalgame-blue-4);
-  width: 200px;
-  height: 30px;
+  border-radius: 5px;
   font-size: 17px;
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: var(--kungalgame-trans-white-9);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: var(--kungalgame-blue-4);
@@ -61,6 +63,7 @@ button {
   }
 
   a {
+    padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,17 +1,13 @@
 <script setup lang="ts">
+import NavBar from './components/NavBar.vue'
+import Header from './components/Header.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { UserInfo } from '@/api'
 
-// Import user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-
-// Import left-side interaction section
-import NavBar from './components/NavBar.vue'
-// Import header
-import Header from './components/Header.vue'
-// Import common footer
-import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 // Get the current user's UID from the route parameters
 const uid = computed(() => {

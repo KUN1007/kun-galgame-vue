@@ -50,6 +50,11 @@ select {
   font-family: inherit;
 }
 
+button {
+  padding: 0;
+  margin: 0;
+}
+
 /* Set the background color and text color for selected text */
 *::selection {
   background-color: var(
