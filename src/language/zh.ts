@@ -389,6 +389,7 @@ export default {
       invalidPassword:
         '非法的密码格式，密码的长度为 6 到 107 位，必须包含至少一个英文字符和一个数字，可以选择性的包含 \\w!@#$%^&*()-+= 等特殊字符',
       invalidCode: '非法的邮箱验证码格式，邮箱验证码必须为 7 位数字或字母',
+      success: '登陆成功! 欢迎来到鲲 Galgame! ',
     },
     capture: {
       title: '请回答下面的问题',

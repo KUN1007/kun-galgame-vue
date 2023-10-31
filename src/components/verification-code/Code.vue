@@ -6,10 +6,6 @@ import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 const info = useKUNGalgameMessageStore()
 
-// Import i18n
-import { useI18n } from 'vue-i18n'
-const { tm } = useI18n()
-
 // The parent component instructs it to send the verification code, and it will do so.
 const props = defineProps<{
   email: string
@@ -41,7 +37,7 @@ const sendCode = () => {
     // Send the verification code
     useKUNGalgameUserStore().sendCode(props.email)
 
-    info.info(tm('AlertInfo.code.code'))
+    info.info('AlertInfo.code.code')
   }
 }
 </script>

@@ -9,15 +9,12 @@ import { storeToRefs } from 'pinia'
 import Message from '@/components/alert/Message'
 // Import settings
 import Settings from './Settings.vue'
-// Import i18n
-import { useI18n } from 'vue-i18n'
 
 // Import functions to validate form fields
 import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 
 const router = useRouter()
 
-const { tm } = useI18n()
 const info = useKUNGalgameMessageStore()
 // Using the message store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
@@ -41,7 +38,7 @@ const checkUsername = (name: string) => {
 
   if (!isValidName(name) && !isValidEmail(name)) {
     // Logic for invalid username format
-    info.info(tm('AlertInfo.login.invalidUsername'))
+    info.info('AlertInfo.login.invalidUsername')
     return false
   }
 
@@ -57,7 +54,7 @@ const checkPassword = (password: string) => {
   // If the password format is incorrect (same as username or email)
   if (!isValidPassword(password)) {
     // If the password is invalid, return an error
-    info.info(tm('AlertInfo.login.invalidPassword'))
+    info.info('AlertInfo.login.invalidPassword')
     return false
   }
 
@@ -95,6 +92,7 @@ const handleLogin = async () => {
     loginForm.password,
     isCaptureSuccessful.value
   )
+
   if (!result) {
     return
   }
@@ -109,6 +107,7 @@ const handleLogin = async () => {
       'success',
       5000
     )
+    info.info('AlertInfo.login.success')
     router.push('/kun')
   }
 }

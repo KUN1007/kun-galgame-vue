@@ -394,6 +394,7 @@ export default {
         'Invalid password format. Password must be 6 to 107 characters long and must include at least one letter and one number. It can optionally include special characters such as \\w!@#$%^&()-+=',
       invalidCode:
         'Invalid email verification code format. The email verification code must consist of 7 digits or letters.',
+      success: 'Login Successfully! Welcome to KUN Visual Novel',
     },
     capture: {
       title: 'Answer Question(s)',

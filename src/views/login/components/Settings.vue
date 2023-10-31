@@ -26,9 +26,9 @@ const handleSwitchLanguage = () => {
 
 <template>
   <div class="settings">
-    <span @click="handleSwitchLanguage" class="language"
-      ><Icon icon="fa:language"
-    /></span>
+    <span @click="handleSwitchLanguage" class="language">
+      <Icon icon="fa:language" />
+    </span>
     <span class="light" v-if="showKUNGalgameMode === 'dark'">
       <Icon
         class="sun"
