@@ -103,13 +103,13 @@ const handleLogin = async () => {
   const res = await useKUNGalgameUserStore().login(loginForm)
   // If the request is successful, redirect to the main page
   if (res.code === 200) {
-    router.push('/kun')
     Message(
       'Login Successfully! Welcome to KUN Visual Novel ~ ',
       '登陆成功!欢迎来到 鲲 Galgame ~ ',
       'success',
       5000
     )
+    router.push('/kun')
   }
 }
 

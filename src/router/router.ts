@@ -92,9 +92,6 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
 ]
 
-const isArray = (val: any): val is object =>
-  toString.call(val) === '[object Array]'
-
 // 获取动态路由表
 const getAsyncRoute = (): RouteRecordRaw[] => {
   const modules = import.meta.glob('./modules/*.ts', {
@@ -103,7 +100,7 @@ const getAsyncRoute = (): RouteRecordRaw[] => {
   })
   const asyncRoute: RouteRecordRaw[] = []
   Object.values(modules).forEach((value) => {
-    const moduleList = isArray(value)
+    const moduleList = Array.isArray(value)
       ? [...(value as RouteRecordRaw[])]
       : [value as RouteRecordRaw]
     asyncRoute.push(...moduleList)

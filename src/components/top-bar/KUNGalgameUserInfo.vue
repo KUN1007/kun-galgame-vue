@@ -10,8 +10,6 @@ import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 // Reset store
 import { kungalgameStoreReset } from '@/store'
-// Reset router
-import { resetRouter } from '@/router'
 
 const { uid, name, moemoepoint } = storeToRefs(useKUNGalgameUserStore())
 
@@ -42,7 +40,6 @@ const logOut = async () => {
   if (res) {
     kungalgameStoreReset()
     router.push('/login')
-    resetRouter()
     Message('Logout successfully!', '登出成功', 'success')
   }
 }
