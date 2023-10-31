@@ -18,7 +18,6 @@ import {
   isValidMailConfirmCode,
 } from '@/utils/validate'
 import Code from '@/components/verification-code/Code.vue'
-import i18n from '@/language/i18n'
 
 // Using the message store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
@@ -55,7 +54,7 @@ const checkRegisterForm = (
   }
 
   if (!isValidName(name)) {
-    info.info(i18n.global.tm('AlertInfo.login.invalidUsername'))
+    info.info('AlertInfo.login.invalidUsername')
     return false
   }
 
@@ -65,7 +64,7 @@ const checkRegisterForm = (
   }
 
   if (!isValidPassword(password)) {
-    info.info(i18n.global.tm('AlertInfo.login.invalidPassword'))
+    info.info('AlertInfo.login.invalidPassword')
     return false
   }
 
@@ -92,7 +91,7 @@ const checkRegisterFormSubmit = (isSendCode: boolean, code: string) => {
   }
 
   if (!isValidMailConfirmCode(code)) {
-    info.info(i18n.global.tm('AlertInfo.login.invalidCode'))
+    info.info('AlertInfo.login.invalidCode')
     return false
   }
 
@@ -139,7 +138,7 @@ const handleRegister = async () => {
   if (res.code === 200) {
     router.push('/')
     Message('Register successfully!', '注册成功！', 'success')
-    info.info(i18n.global.tm('AlertInfo.login.success'))
+    info.info('AlertInfo.login.success')
   } else {
     Message('Register failed!', '注册失败！', 'error')
   }
