@@ -58,6 +58,7 @@ const tooltip = tooltipFactory('Text')
 const pluginViewFactory = usePluginViewFactory()
 const container = ref<HTMLElement | null>(null)
 const isEditorFocus = ref(false)
+const editorContent = ref('')
 
 const editorInfo = useEditor((root) =>
   Editor.make()
@@ -72,6 +73,7 @@ const editorInfo = useEditor((root) =>
       const listener = ctx.get(listenerCtx)
       listener.markdownUpdated((ctx, markdown, prevMarkdown) => {
         if (markdown !== prevMarkdown) {
+          editorContent.value = markdown
           emits('saveMarkdown', markdown)
         }
       })
@@ -133,7 +135,10 @@ const editorInfo = useEditor((root) =>
 <template>
   <div ref="container" class="editor-container">
     <MilkdownMenu v-if="isShowMenu" :editorInfo="editorInfo" />
-    <Milkdown class="editor" :class="isEditorFocus ? 'active' : ''" />
+    <Milkdown
+      class="editor"
+      :class="isEditorFocus || editorContent ? 'active' : ''"
+    />
   </div>
 </template>
 
