@@ -8,8 +8,6 @@ import Message from '@/components/alert/Message'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 // Reset store
 import { kungalgameStoreReset } from '@/store'
-// Reset router
-import { resetRouter } from '@/router'
 import {
   checkSendCode,
   checkResetEmail,
@@ -116,7 +114,6 @@ const handleChangePassword = async () => {
   if (res.code === 200) {
     kungalgameStoreReset()
     router.push('/login')
-    resetRouter()
     Message('Password change successful!', '密码更改成功', 'success')
   } else {
     Message('Password change failed!', '密码更改失败', 'error')
