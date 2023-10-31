@@ -49,23 +49,31 @@ p:first-child {
 
 button {
   border: 1px solid var(--kungalgame-blue-4);
-  width: 200px;
-  height: 30px;
+  border-radius: 5px;
   font-size: 17px;
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: var(--kungalgame-trans-white-9);
   cursor: pointer;
-  transition: all 0.2s;
-
-  a {
-    transition: color 0.2s;
-    color: var(--kungalgame-blue-4);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: var(--kungalgame-blue-4);
+    transition: 0.2s;
+  }
 
-    a {
+  a {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: var(--kungalgame-blue-4);
+
+    &:hover {
       color: var(--kungalgame-white);
+      transition: 0.2s;
     }
   }
 }

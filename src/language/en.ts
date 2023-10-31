@@ -289,6 +289,8 @@ export default {
     agreement: 'User Agreement',
     privacy: 'Privacy',
     redirect: 'Redirect',
+    kungalgame403: '403 Permission Denied',
+    kungalgame404: '404 Not Found',
 
     home: 'Home',
     balance: 'P & L',

@@ -77,7 +77,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/:path(.*)*',
     component: () => import('@/views/404/404.vue'),
     meta: {
-      title: '404',
+      title: 'kungalgame404',
     },
   },
 
@@ -87,7 +87,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/kungalgame403',
     component: () => import('@/views/403/403.vue'),
     meta: {
-      title: '403',
+      title: 'kungalgame403',
     },
   },
 ]

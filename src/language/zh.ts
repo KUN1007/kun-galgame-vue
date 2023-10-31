@@ -288,6 +288,8 @@ export default {
     agreement: '用户协议',
     privacy: '隐私政策',
     redirect: '重定向',
+    kungalgame403: '403 无权访问',
+    kungalgame404: '404 页面未找到',
 
     home: '主页',
     balance: '收支公示',
