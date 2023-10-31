@@ -391,7 +391,9 @@ export default {
       invalidUsername:
         'Invalid username. Username should be 1 to 17 characters long and can include: Chinese characters, English letters, numbers, underscore, and tilde (~)',
       invalidPassword:
-        'Invalid password format. Password must be 6 to 17 characters long and must include at least one letter and one number. It can optionally include special characters such as \\w!@#$%^&()-+=',
+        'Invalid password format. Password must be 6 to 107 characters long and must include at least one letter and one number. It can optionally include special characters such as \\w!@#$%^&()-+=',
+      invalidCode:
+        'Invalid email verification code format. The email verification code must consist of 7 digits or letters.',
     },
     capture: {
       title: 'Answer Question(s)',

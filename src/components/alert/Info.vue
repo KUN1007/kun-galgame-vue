@@ -5,7 +5,11 @@ import { storeToRefs } from 'pinia'
 import img from './loli'
 import 'animate.css'
 
+import i18n from '@/language/i18n'
+
 const { showInfo, infoMsg } = storeToRefs(useKUNGalgameMessageStore())
+
+const i18nMessage = i18n.global.tm(infoMsg.value)
 
 const { loli, name } = img
 
@@ -39,7 +43,7 @@ const handleClose = () => {
           appear
         >
           <!-- A ha ha ha! You probably didn't expect that this was inspired by しゅがてん！-Sugarfull tempering- -->
-          <div class="info">{{ `「 ${$t(`${infoMsg}`)} 」` }}</div>
+          <div class="info">{{ `「 ${i18nMessage} 」` }}</div>
         </Transition>
 
         <div class="close" @click="handleClose">
