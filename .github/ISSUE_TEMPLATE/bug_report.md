@@ -1,8 +1,8 @@
 ---
 name: Bug Report
 about: Create a report to help us improve
-title: 'KUN Visual Novel Bug Report'
-labels: bug
+title: KUN Visual Novel Bug Report
+labels: bug, enhancement
 assignees: ''
 
 ---
