@@ -3,17 +3,14 @@ import { ref, computed, watch } from 'vue'
 // Import questions
 import { questionsEN, Question } from './questionsEN'
 import { questionsCN } from './questionsCN'
-// Global message component (top)
+
 import Message from '@/components/alert/Message'
-// Import message store
+
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// Import settings component to get the language
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-// Use the settings store to get the language
 const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
-// Variables from the message component
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
   useKUNGalgameMessageStore()
 )
@@ -41,9 +38,7 @@ const userAnswers = ref('')
 // Current question index
 const currentQuestionIndex = ref(randomizeQuestion())
 // Current question
-const currentQuestion = computed(
-  () => questions.value[currentQuestionIndex.value]
-)
+const currentQuestion = ref(questions.value[currentQuestionIndex.value])
 // Error count
 const errorCounter = ref(0)
 const expectedKeys = ref(['k', 'u', 'n'])
@@ -52,6 +47,16 @@ const currentIndex = ref(0)
 const isShowHint = ref(false)
 // Whether to show the answer
 const isShowAnswer = ref(false)
+
+const resetStatus = () => {
+  userAnswers.value = ''
+  currentQuestionIndex.value = randomizeQuestion()
+  currentQuestion.value = questions.value[currentQuestionIndex.value]
+  errorCounter.value = 0
+  currentIndex.value = 0
+  isShowHint.value = false
+  isShowAnswer.value = false
+}
 
 // Listen to keyboard events
 const checkKeyPress = (event: KeyboardEvent) => {
@@ -87,6 +92,7 @@ const submitAnswer = () => {
       '人机身份验证通过 ~',
       'success'
     )
+    resetStatus()
   } else {
     // Wrong answer
     errorCounter.value++
@@ -103,6 +109,12 @@ const submitAnswer = () => {
       isShowHint.value = true
     }
   }
+}
+
+// Close panel
+const handleCloseCapture = () => {
+  isShowCapture.value = false
+  resetStatus()
 }
 </script>
 
@@ -141,7 +153,7 @@ const submitAnswer = () => {
             <button @click="submitAnswer">
               {{ $tm('AlertInfo.capture.submit') }}
             </button>
-            <button @click="isShowCapture = false">
+            <button @click="handleCloseCapture">
               {{ $tm('AlertInfo.capture.close') }}
             </button>
           </div>
