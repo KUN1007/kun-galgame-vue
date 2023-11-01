@@ -110,15 +110,14 @@ const handleSendCode = () => {
     return
   }
 
-  // If human verification is not completed
-  if (!isCaptureSuccessful.value) {
+  if (isCaptureSuccessful.value) {
+    // Change isSendCode, because Code component use watch
+    isSendCode.value = !isSendCode.value
+    isCaptureSuccessful.value = false
+  } else {
     // Show human verification
     isShowCapture.value = true
-    return
   }
-
-  // Mark that the code has been sent
-  isSendCode.value = true
 }
 
 const handleRegister = async () => {
