@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// Using global notifications
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
 const info = useKUNGalgameMessageStore()
 
@@ -16,34 +15,32 @@ const isSending = ref(false)
 
 const countdown = ref(0)
 
-const sendCode = () => {
-  // If the parent component passes a false value, return directly
-  if (!props.isSendCode) {
-    return
+watch(
+  () => props.isSendCode,
+  async () => {
+    if (!isSending.value) {
+      isSending.value = true
+      countdown.value = 30
+
+      const countdownInterval = setInterval(() => {
+        countdown.value -= 1
+        if (countdown.value === 0) {
+          clearInterval(countdownInterval)
+          isSending.value = false
+        }
+      }, 1000)
+
+      // Send the verification code
+      await useKUNGalgameUserStore().sendCode(props.email)
+
+      info.info('AlertInfo.code.code')
+    }
   }
-
-  if (!isSending.value) {
-    isSending.value = true
-    countdown.value = 30
-
-    const countdownInterval = setInterval(() => {
-      countdown.value -= 1
-      if (countdown.value === 0) {
-        clearInterval(countdownInterval)
-        isSending.value = false
-      }
-    }, 1000)
-
-    // Send the verification code
-    useKUNGalgameUserStore().sendCode(props.email)
-
-    info.info('AlertInfo.code.code')
-  }
-}
+)
 </script>
 
 <template>
-  <button @click="sendCode" :disabled="isSending">
+  <button :disabled="isSending">
     {{ isSending ? countdown : $tm('login.register.send') }}
   </button>
 </template>
