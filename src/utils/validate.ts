@@ -11,9 +11,10 @@ export const isValidEmail = (email: string) => {
   return regex.test(email)
 }
 
-// Match a username of 1 to 17 characters containing Chinese, English, numbers, underscores, or tildes
+// Match a username of 1 to 17 characters containing Chinese, English, Japanese, numbers, underscores, or tildes
 export const isValidName = (name: string) => {
-  const regex = /^[\u4E00-\u9FFFa-zA-Z0-9_~]{1,17}$/
+  const regex =
+    /^[\u4E00-\u9FFFa-zA-Z0-9_~\u3040-\u30FF\u31F0-\u31FF\u3200-\u33FF\u3400-\u4DBF\u20000-\x2A6DF\x2A700-\x2B73F\x2B740-\x2B81F\x2B820-\x2CEAF\xF900-\xFAFF]{1,17}$/
   return regex.test(name)
 }
 
