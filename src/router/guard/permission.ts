@@ -43,6 +43,12 @@ export const createPermission = (router: Router) => {
       if (to.matched[0].path === '/kungalgamer') {
         return { name: 'KUNGalgamerInfo' }
       }
+    }
+
+    if (
+      !requiredPermissions.includes(currentUserRoles()) &&
+      to.name === '403'
+    ) {
       return { name: '403' }
     }
   })
