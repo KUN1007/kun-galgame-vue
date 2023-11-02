@@ -1,12 +1,10 @@
 import type { Directive, DirectiveBinding } from 'vue'
 import Message from '@/components/alert/Message'
-import { currentUserInfo } from '@/utils/getCurrentUserInfo'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
 import router from '@/router'
 
-// Current user's UID
-const currentUserUid = currentUserInfo.uid
-// Current user's roles
-const currentUserRoles = currentUserInfo.roles
+const { roles, uid } = storeToRefs(useKUNGalgameUserStore())
 
 // User roles: Guest 0, User 1, Admin 2, SuperAdmin 3, User Self 4
 enum UserRole {
@@ -40,17 +38,17 @@ const handleUnauthorizedAccess = (element: HTMLElement) => {
 
 export const permission: Directive = {
   mounted(element: HTMLElement, binding: DirectiveBinding<BindingProps>) {
-    const roles = [...binding.value.roles]
-    const uid = binding.value.uid
+    const bindingRoles = [...binding.value.roles]
+    const bindingUid = binding.value.uid
 
     const hasPermission = () => {
       // User Self
-      if (uid === currentUserUid) {
+      if (bindingUid === uid.value) {
         return true
       }
 
       // User has access permission
-      if (roles.includes(currentUserRoles)) {
+      if (bindingRoles.includes(roles.value)) {
         return true
       }
 

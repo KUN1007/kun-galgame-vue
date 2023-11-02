@@ -4,7 +4,7 @@
   <div class="root">
     <div class="container">
       <p>403</p>
-      <p>{{ $tm('page404.permission') }}</p>
+      <p>{{ $tm('page403.permission') }}</p>
       <button>
         <RouterLink to="/kun">{{ $tm('page403.back') }}</RouterLink>
       </button>
