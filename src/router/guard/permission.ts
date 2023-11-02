@@ -2,8 +2,7 @@
 import { Router } from 'vue-router'
 import { whiteList } from '../router'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-
-import { getCurrentUserRole } from '@/utils/getCurrentUserRole'
+import { storeToRefs } from 'pinia'
 
 import NProgress from 'nprogress'
 import '@/styles/nprogress/nprogress.scss'
@@ -16,6 +15,7 @@ export const createPermission = (router: Router) => {
     NProgress.start()
 
     const token = useKUNGalgameUserStore().getToken()
+    const { uid, roles } = storeToRefs(useKUNGalgameUserStore())
 
     const isInWhitelist = whiteList.includes(to.name as string)
     // Get the required permissions for the target route
@@ -25,21 +25,25 @@ export const createPermission = (router: Router) => {
 
     if (!token && !isInWhitelist) {
       NProgress.done()
-      return '/login'
+      return { name: 'Login' }
     }
 
     // Authentication is required
-    if (requiredPermissions) {
-      const currentPageUid = parseInt(to.params.uid as string)
-      const currentUserRole = getCurrentUserRole(currentPageUid)
+    const currentPageUid = parseInt(to.params.uid as string)
 
-      if (!requiredPermissions.includes(currentUserRole)) {
-        // If it's a user interface, redirect to 'info';
-        // Otherwise, redirect to '403'
-        return to.matched[0].path === '/kungalgamer'
-          ? `/kungalgamer/${currentPageUid}/info`
-          : '/kungalgame403'
+    const currentUserRoles = () => {
+      if (currentPageUid === uid.value) {
+        return 4
+      } else {
+        return roles.value
       }
+    }
+
+    if (!requiredPermissions.includes(currentUserRoles())) {
+      if (to.matched[0].path === '/kungalgamer') {
+        return { name: 'KUNGalgamerInfo' }
+      }
+      return { name: '403' }
     }
   })
 

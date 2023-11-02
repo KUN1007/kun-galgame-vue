@@ -1,31 +1,46 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { navBarRoute } from './routeName'
 
-// Get the current user's role based on UID
-import { getCurrentUserRole } from '@/utils/getCurrentUserRole'
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
+
+const { uid, roles } = storeToRefs(useKUNGalgameUserStore())
 
 const props = defineProps<{
   uid: number
 }>()
 
+const route = useRoute()
 // UID of the current page
 const currentPageUid = ref(0)
+
+const currentPageUserRoles = computed(() => {
+  if (props.uid === uid.value) {
+    return 4
+  } else {
+    return roles.value
+  }
+})
 // Show the nav item for other users' profiles based on their permissions
 const isShowNavItem = (permission: number[]) =>
-  permission.includes(getCurrentUserRole(currentPageUid.value))
+  permission.includes(currentPageUserRoles.value)
 
 // Apply active CSS class to the selected item
 const activeClass = (currentPageUid: number, routeName: string) => {
-  return useRoute().fullPath === `/kungalgamer/${currentPageUid}/${routeName}`
+  return route.fullPath === `/kungalgamer/${currentPageUid}/${routeName}`
     ? 'active'
     : ''
 }
 
-onMounted(() => {
-  currentPageUid.value = props.uid
-})
+watch(
+  () => props.uid,
+  () => {
+    currentPageUid.value = props.uid
+  },
+  { immediate: true }
+)
 </script>
 
 <template>

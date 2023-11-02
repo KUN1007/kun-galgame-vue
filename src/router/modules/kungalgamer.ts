@@ -1,6 +1,4 @@
 import { type RouteRecordRaw } from 'vue-router'
-// Current user's information
-import { currentUserInfo } from '@/utils/getCurrentUserInfo'
 
 const Layout = () => import('@/layout/KUNGalgameAPP.vue')
 
@@ -12,11 +10,11 @@ const kungalgamer: RouteRecordRaw[] = [
     path: '/kungalgamer',
     component: Layout,
     // Access defaults to the current user's main page
-    redirect: `/kungalgamer/${currentUserInfo.uid}/info`,
+    // redirect: `/kungalgamer/${uid.value}/info`,
     children: [
       {
         path: ':uid',
-        redirect: `/kungalgamer/${currentUserInfo.uid}/info`,
+        // redirect: `/kungalgamer/${uid.value}/info`,
         component: () => import('@/views/kungalgamer/KUNGalgamer.vue'),
         children: [
           {
