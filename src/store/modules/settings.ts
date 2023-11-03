@@ -32,7 +32,7 @@ export const useKUNGalgameSettingsStore = defineStore({
   actions: {
     // Set the theme, there are only two modes
     // , light and dark, with light represented as ''
-    setKUNGalgameTheme(theme: string) {
+    setKUNGalgameTheme(theme: '' | 'dark') {
       this.showKUNGalgameMode = theme
       document.documentElement.className = theme
     },

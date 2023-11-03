@@ -13,7 +13,7 @@ defineEmits(['showKUNGalgameHamburger'])
       enter-active-class="animate__animated animate__fadeInLeft animate__faster"
       appear
     >
-      <div class="container">
+      <div class="container" @click.stop>
         <div class="kungalgame">
           <img src="@/assets/images/favicon.webp" alt="KUNGalgame" />
           <span>{{ $tm('header.name') }}</span>
@@ -21,9 +21,9 @@ defineEmits(['showKUNGalgameHamburger'])
         <!-- Interactive items -->
         <div class="item" style="font-size: 17px">
           <span v-for="kun in topBarItem" :key="kun.index">
-            <RouterLink :to="kun.router">{{
-              $tm(`header['${kun.name}']`)
-            }}</RouterLink>
+            <RouterLink :to="kun.router">
+              {{ $tm(`header['${kun.name}']`) }}
+            </RouterLink>
           </span>
         </div>
 
@@ -54,15 +54,16 @@ defineEmits(['showKUNGalgameHamburger'])
 }
 
 .container {
+  position: absolute;
   width: 277px;
   height: 400px;
   padding: 10px;
+  background-color: var(--kungalgame-trans-white-2);
+  border: 1px solid var(--kungalgame-blue-1);
   box-shadow: var(--shadow);
   border-left: none;
   border-top: none;
   border-radius: 0 5px 5px 5px;
-  background-color: var(--kungalgame-trans-white-2);
-  border: 1px solid var(--kungalgame-blue-1);
 }
 
 .item {
