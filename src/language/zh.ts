@@ -251,7 +251,7 @@ export default {
       supportImage: '支持 1007KB 以内的图片',
       supportFormat: '支持 jpg 和 png 格式',
       confirm: '确定更改',
-      bio: '更改签名',
+      bio: '更改签名 (107 字之内)',
       hint: '输入您的新签名，最大 107 个字符',
       count: '字数',
     },
