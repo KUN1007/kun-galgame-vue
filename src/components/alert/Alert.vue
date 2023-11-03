@@ -48,7 +48,7 @@ const handleConfirm = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--kungalgame-mask-color-0);
   display: flex;
   transition: opacity 0.3s ease;
   color: var(--kungalgame-font-color-3);
