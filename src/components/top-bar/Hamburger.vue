@@ -31,7 +31,7 @@ defineEmits(['showKUNGalgameHamburger'])
         <Mode style="font-size: 20px" />
 
         <!-- Language switch component -->
-        <SwitchLanguage style="font-size: 20px; margin-bottom: 40px" />
+        <SwitchLanguage style="font-size: 20px" />
       </div>
     </Transition>
   </div>
@@ -56,7 +56,6 @@ defineEmits(['showKUNGalgameHamburger'])
 .container {
   position: absolute;
   width: 277px;
-  height: 400px;
   padding: 10px;
   background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-1);
