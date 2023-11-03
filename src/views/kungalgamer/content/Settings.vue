@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import Avatar from '../components/Avatar.vue'
 import Message from '@/components/alert/Message'
-// Import user store
+
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+
+import type { UserInfo } from '@/api'
+
+const props = defineProps<{
+  user: UserInfo
+}>()
+
+const user = computed(() => props.user)
 
 // Content of the bio
 const bioValue = ref('')
@@ -29,6 +37,10 @@ const handleChangeBio = async () => {
     Message('Rewrite bio failed!', 'Rewrite 签名失败', 'error')
   }
 }
+
+onMounted(() => {
+  bioValue.value = user.value.bio
+})
 </script>
 
 <template>

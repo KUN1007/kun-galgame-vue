@@ -252,7 +252,7 @@ export default {
       supportImage: 'Supports images up to 1007KB',
       supportFormat: 'Supports jpg and png formats',
       confirm: 'Confirm',
-      bio: 'Change Bio',
+      bio: 'Change Bio (Up to 107 characters)',
       hint: 'Please enter your new signature, up to 107 characters',
       count: 'Character count',
     },
