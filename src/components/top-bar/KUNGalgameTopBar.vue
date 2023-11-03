@@ -47,17 +47,12 @@ onBeforeRouteLeave(() => {
           v-if="!showKUNGalgameHamburger"
           @click="showKUNGalgameHamburger = !showKUNGalgameHamburger"
         />
-        <transition
-          enter-active-class="animate__animated animate__fadeInLeft animate__faster"
-          leave-active-class="animate__animated animate__fadeOutLeft animate__faster"
-        >
-          <KeepAlive>
-            <Hamburger
-              v-if="showKUNGalgameHamburger"
-              @showKUNGalgameHamburger="showKUNGalgameHamburger = false"
-            />
-          </KeepAlive>
-        </transition>
+        <Transition name="hamburger">
+          <Hamburger
+            v-if="showKUNGalgameHamburger"
+            @showKUNGalgameHamburger="showKUNGalgameHamburger = false"
+          />
+        </Transition>
       </div>
 
       <!-- Website name and logo -->
@@ -287,6 +282,20 @@ $navNumber: v-bind(navItemNum);
 
 .settings-panel {
   z-index: 999;
+}
+
+.hamburger-enter-from {
+  opacity: 0;
+}
+
+.hamburger-leave-to {
+  opacity: 0;
+}
+
+.hamburger-enter-from .container,
+.hamburger-leave-to .container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 @media (max-width: 1000px) {
