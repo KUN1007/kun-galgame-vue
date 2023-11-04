@@ -1,5 +1,8 @@
-import { basename } from 'path'
 import { createApp } from './main'
+
+import { createKUNGalgameRouter } from './router'
+import { setupPinia } from './store'
+import i18n from '@/language/i18n'
 
 import { renderToString } from '@vue/server-renderer'
 
@@ -27,20 +30,12 @@ const renderPreloadLinks = (
   let links = ''
   const seen = new Set()
   if (modules === undefined) throw new Error()
-
   modules.forEach((id) => {
     const files = manifest[id]
     if (files) {
       files.forEach((file) => {
         if (!seen.has(file)) {
           seen.add(file)
-          const filename = basename(file)
-          if (manifest[filename]) {
-            for (const depFile of manifest[filename]) {
-              links += renderPreloadLink(depFile)
-              seen.add(depFile)
-            }
-          }
           links += renderPreloadLink(file)
         }
       })
@@ -52,12 +47,22 @@ const renderPreloadLinks = (
 export const render = async (
   ctx: ParameterizedContext,
   manifest: Record<string, string[]>
-): Promise<[string, string]> => {
-  const { app, router } = createApp()
+): Promise<[string, string, string]> => {
+  const { app } = createApp()
 
+  // router
+  const router = createKUNGalgameRouter()
   app.use(router)
   await router.push(ctx.path)
   await router.isReady()
+
+  // pinia
+  const pinia = setupPinia()
+  app.use(pinia)
+  const state = JSON.stringify(pinia.state.value)
+
+  // i18n
+  app.use(i18n)
 
   const renderCtx: { modules?: string[] } = {}
 
@@ -65,5 +70,5 @@ export const render = async (
 
   const preloadLinks = renderPreloadLinks(renderCtx.modules, manifest)
 
-  return [renderedHtml, preloadLinks]
+  return [renderedHtml, state, preloadLinks]
 }

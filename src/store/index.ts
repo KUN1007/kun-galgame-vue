@@ -4,7 +4,6 @@
  */
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import type { App } from 'vue'
 
 // Import store for the income and expense public disclosure page
 import { useKUNGalgameBalanceStore } from './modules/balance'
@@ -36,12 +35,11 @@ import { useKUNGalgameTopicStore } from './modules/topic'
 const pinia = createPinia()
 
 // Function to set up Pinia, to be called in main.ts
-export const setupPinia = (app: App<Element>) => {
+export const setupPinia = () => {
   if (!import.meta.env.SSR) {
     pinia.use(piniaPluginPersistedstate)
   }
 
-  app.use(pinia)
   return pinia
 }
 
