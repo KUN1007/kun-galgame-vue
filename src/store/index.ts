@@ -33,16 +33,20 @@ import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 // Import store for the topic detail page
 import { useKUNGalgameTopicStore } from './modules/topic'
 
-const store = createPinia()
+const pinia = createPinia()
 
 // Function to set up Pinia, to be called in main.ts
-export function setupPinia(app: App<Element>) {
-  store.use(piniaPluginPersistedstate)
-  app.use(store)
+export const setupPinia = (app: App<Element>) => {
+  if (!import.meta.env.SSR) {
+    pinia.use(piniaPluginPersistedstate)
+  }
+
+  app.use(pinia)
+  return pinia
 }
 
 // Reset all stores, used for logging out
-export function kungalgameStoreReset() {
+export const kungalgameStoreReset = () => {
   const balanceStore = useKUNGalgameBalanceStore()
   const editStore = useKUNGalgameEditStore()
   const homeStore = useKUNGalgameHomeStore()
@@ -63,5 +67,3 @@ export function kungalgameStoreReset() {
   settingsStore.$reset()
   topicStore.$reset()
 }
-
-export { store }

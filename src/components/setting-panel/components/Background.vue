@@ -11,7 +11,6 @@ import Message from '@/components/alert/Message'
 
 import { backgroundImages } from './background'
 import { getBackgroundURL } from '@/hooks/useBackgroundPicture'
-import { restoreBackground } from '@/hooks/useBackgroundPicture'
 
 const imageArray = ref<string[]>([])
 // Use the settings panel store
@@ -26,6 +25,11 @@ const getBackground = async (imageNumber: number) => {
 // Change the background image
 const handleChangeImage = (index: number) => {
   showKUNGalgameBackground.value = `bg${index}`
+}
+
+// Restore the blank background
+const restoreBackground = () => {
+  showKUNGalgameBackground.value = 'bg0'
 }
 
 // Custom background

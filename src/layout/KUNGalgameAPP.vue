@@ -2,7 +2,7 @@
 import { onMounted, watch, ref } from 'vue'
 // Import animations
 import 'animate.css'
-import { getCurrentBackground } from '@/hooks/useBackgroundPicture'
+import { getBackgroundURL } from '@/hooks/useBackgroundPicture'
 import KUNGalgameTopBar from '@/components/top-bar/KUNGalgameTopBar.vue'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -10,6 +10,20 @@ import { storeToRefs } from 'pinia'
 
 const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
   storeToRefs(useKUNGalgameSettingsStore())
+const getCurrentBackground = async () => {
+  if (
+    showKUNGalgameBackground.value === 'bg0' ||
+    showKUNGalgameBackground.value === 'none'
+  ) {
+    return 'none'
+  }
+  if (showKUNGalgameBackground.value === 'bg1007') {
+    return `${showKUNGalgameCustomBackground.value}`
+  }
+  // Get the image's blob URL
+  const url = await getBackgroundURL(showKUNGalgameBackground.value)
+  return url
+}
 
 const imageURL = ref('')
 

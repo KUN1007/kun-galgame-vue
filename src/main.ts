@@ -1,22 +1,25 @@
-// Vue core
-import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
-// Import vue i18n
+import { createSSRApp } from 'vue'
+
+import { createKUNGalgameRouter } from './router'
+import { setupRouterGuard } from '@/router/guard'
+
 import i18n from '@/language/i18n'
 
-import { setupRouterGuard } from '@/router/guard'
 import { setupPinia } from '@/store/index'
 
-// Import css styles, color, theme, etc.
 import '@/styles/index.scss'
 
-// Get vue App instance
-const app = createApp(App)
+export function createApp() {
+  const app = createSSRApp(App)
+  const pinia = setupPinia(app)
+  app.use(pinia)
 
-// Setup router guard
-setupRouterGuard(router)
-// Setup pinia
-setupPinia(app)
+  const router = createKUNGalgameRouter()
+  setupRouterGuard(router)
+  app.use(router)
 
-app.use(router).use(i18n).mount('#app')
+  app.use(i18n)
+
+  return { app, router, pinia }
+}

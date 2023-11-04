@@ -10,12 +10,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="The CUTEST Visual Novel Forum!世界上最萌的 Galgame 论坛. Topic, Technique. NO ADs Forever. Free Forever"
+      content="KUN Visual Novel | 鲲 Galgame. The CUTEST Visual Novel Forum!世界上最萌的 Galgame 论坛. Topic, Technique. NO ADs Forever. Free Forever"
     />
-    <title>KUNGalgame</title>
+    <title>KUN Visual Novel | 鲲 Galgame</title>
+    <!--preload-links-->
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="app"><!--ssr-outlet--></div>
+    <script type="module" src="/src/entry-client.ts"></script>
+
+    <script>
+      window.__INITIAL_STATE__ = '<!--pinia-state-->'
+    </script>
   </body>
 </html>
