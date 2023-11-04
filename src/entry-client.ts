@@ -1,17 +1,17 @@
 import { createApp } from './main'
-import i18n from '@/language/i18n'
+import { createKUNGalgameRouter } from './router'
+import { setupPinia } from './store'
 import '@/styles/index.scss'
 
-const { app, router, pinia } = createApp()
+const { app } = createApp()
 
-app.use(router)
-app.use(i18n)
+const router = createKUNGalgameRouter()
+const pinia = setupPinia()
 
 if (window.__INITIAL_STATE__) {
   pinia.state.value = JSON.parse(window.__INITIAL_STATE__)
 }
 
 router.isReady().then(() => {
-  app.mount('#app')
-  console.log('hydrated')
+  app.mount('#app', true)
 })

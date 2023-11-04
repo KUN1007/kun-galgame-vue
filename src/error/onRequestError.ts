@@ -1,4 +1,3 @@
-import { useRouter } from 'vue-router'
 // Global message component (top)
 import Message from '@/components/alert/Message'
 import { generateTokenByRefreshTokenApi } from '@/api'
@@ -14,7 +13,7 @@ interface ErrorResponseData {
   message: string
 }
 
-const router = useRouter()
+const router = createKUNGalgameRouter()
 
 /**
  * Acts as an interceptor, first recognizing common errors based on predictable status codes.

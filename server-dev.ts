@@ -17,15 +17,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
   const app = new Koa()
 
   const vite = await createViteServer({
-    server: {
-      middlewareMode: true,
-      watch: {
-        // During tests we edit the files too fast and sometimes chokidar
-        // misses change events, so enforce polling for consistency
-        usePolling: true,
-        interval: 100,
-      },
-    },
+    server: { middlewareMode: true },
+    appType: 'custom',
   })
 
   app.use(koaConnect(vite.middlewares))
@@ -50,7 +43,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
       ctx.type = 'text/html'
       ctx.body = html
     } catch (e) {
-      vite.ssrFixStacktrace(e as Error)
+      vite && vite.ssrFixStacktrace(e as Error)
       ctx.throw(500, e as Error)
     }
   })
