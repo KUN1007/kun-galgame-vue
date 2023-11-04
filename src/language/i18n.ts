@@ -8,10 +8,7 @@ import en from './en'
 
 const i18n = createI18n({
   locale: KUNGalgameLanguage,
-  // 支持 Vue3 composition API
   legacy: false,
-  // 全局注册 t 方法
-  globalInjection: true,
   messages: {
     zh,
     en,

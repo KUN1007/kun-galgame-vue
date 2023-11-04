@@ -3,11 +3,19 @@
  */
 
 // Read language configuration from local storage
-const localStorageString = localStorage.getItem('KUNGalgameSettings')
+let localStorageString = ''
+if (typeof window !== 'undefined') {
+  const storage = localStorage.getItem('KUNGalgameSettings')
+  localStorageString = storage ? storage : ''
+}
 
 // To ensure compatibility with various browsers, some browsers have 'zh-CN' as navigator.language, which may cause errors.
 const getInitLanguage = () => {
-  const userLanguage = navigator.language
+  let userLanguage = ''
+
+  if (typeof navigator !== 'undefined') {
+    userLanguage = navigator.language
+  }
 
   if (userLanguage.includes('en')) {
     return 'en'
@@ -24,6 +32,11 @@ export const KUNGalgameLanguage = localStorageString
   : getInitLanguage()
 
 // Read local day-night mode, this function will return 'true' if it's in dark mode.
-export const mode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  ? 'dark'
-  : ''
+export const mode = () => {
+  if (typeof window !== 'undefined') {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : ''
+  }
+  return ''
+}
