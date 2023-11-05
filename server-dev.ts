@@ -13,12 +13,29 @@ const APP_PORT = 1007
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+// Inject teleports in template
+const injectTeleports = (html: string, teleports: string) => {
+  if (teleports) {
+    for (const [target, content] of Object.entries(teleports)) {
+      if (['head', 'body', 'html'].includes(target)) {
+        const replacement = `</${target}>`
+        html = html.replace(replacement, content + replacement)
+      } else {
+        const replacement = ` id="${target.replace('#', '')}">`
+        html = html.replace(replacement, replacement + content)
+      }
+    }
+  }
+
+  return html
+}
+
 ;(async () => {
   const app = new Koa()
 
   const vite = await createViteServer({
     server: { middlewareMode: true },
-    appType: 'custom',
+    appType: 'spa',
   })
 
   app.use(koaConnect(vite.middlewares))
@@ -34,11 +51,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
       const { render } = await vite.ssrLoadModule('/src/entry-server.ts')
 
-      const [renderedHtml, state] = await render(ctx, {})
+      const [renderedHtml, renderedPinia, renderedLinks, renderedTeleports] =
+        await render(ctx, {})
 
-      const html = template
+      const injectedTeleportsHtml = injectTeleports(template, renderedTeleports)
+
+      const html = injectedTeleportsHtml
+        .replace('<!--preload-links-->', renderedLinks)
         .replace('<!--ssr-outlet-->', renderedHtml)
-        .replace('<!--pinia-state-->', state)
+        .replace('__pinia', renderedPinia)
 
       ctx.type = 'text/html'
       ctx.body = html

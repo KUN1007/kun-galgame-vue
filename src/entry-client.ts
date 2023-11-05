@@ -1,15 +1,18 @@
 import { createApp } from './main'
 import { createKUNGalgameRouter } from './router'
 import { setupPinia } from './store'
+import i18n from '@/language/i18n'
 import '@/styles/index.scss'
+
+const router = createKUNGalgameRouter('client')
+const pinia = setupPinia()
 
 const { app } = createApp()
 
-const router = createKUNGalgameRouter()
-const pinia = setupPinia()
+app.use(router).use(pinia).use(i18n)
 
-if (window.__INITIAL_STATE__) {
-  pinia.state.value = JSON.parse(window.__INITIAL_STATE__)
+if (window.__pinia) {
+  pinia.state.value = JSON.parse(window.__pinia)
 }
 
 router.isReady().then(() => {

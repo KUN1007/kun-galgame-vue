@@ -13,8 +13,6 @@ import '@/styles/index.scss'
 const renderPreloadLink = (file: string) => {
   if (file.endsWith('.js')) {
     return `<link rel="modulepreload" crossorigin href="${file}">`
-  } else if (file.endsWith('.js')) {
-    return `<link rel="modulepreload" crossorigin href="${file}">`
   } else if (file.endsWith('.css')) {
     return `<link rel="stylesheet" href="${file}">`
   } else if (file.endsWith('.png')) {
@@ -49,11 +47,11 @@ const renderPreloadLinks = (
 export const render = async (
   ctx: ParameterizedContext,
   manifest: Record<string, string[]>
-): Promise<[string, string, string]> => {
+): Promise<[string, string, string, string]> => {
   const { app } = createApp()
 
   // router
-  const router = createKUNGalgameRouter()
+  const router = createKUNGalgameRouter('server')
   app.use(router)
   await router.push(ctx.path)
   await router.isReady()
@@ -61,7 +59,8 @@ export const render = async (
   // pinia
   const pinia = setupPinia()
   app.use(pinia)
-  const state = JSON.stringify(pinia.state.value)
+
+  const renderedPinia = JSON.stringify(pinia.state.value)
 
   // i18n
   app.use(i18n)
@@ -70,7 +69,9 @@ export const render = async (
 
   const renderedHtml = await renderToString(app, renderCtx)
 
-  const preloadLinks = renderPreloadLinks(renderCtx.modules, manifest)
+  const renderedLinks = renderPreloadLinks(renderCtx.modules, manifest)
 
-  return [renderedHtml, state, preloadLinks]
+  const renderedTeleports = ctx.teleports
+
+  return [renderedHtml, renderedPinia, renderedLinks, renderedTeleports]
 }

@@ -33,8 +33,8 @@ import manifest from './dist/client/ssr-manifest.json' assert { type: 'json' }
 
     const html = template
       .replace('<!--preload-links-->', preloadLinks)
-      .replace('<!--pinia-state-->', state)
       .replace('<!--ssr-outlet-->', renderedHtml)
+      .replace('__pinia', state)
 
     ctx.type = 'text/html'
     ctx.body = html
