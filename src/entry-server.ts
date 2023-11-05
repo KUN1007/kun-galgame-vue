@@ -13,6 +13,8 @@ import '@/styles/index.scss'
 const renderPreloadLink = (file: string) => {
   if (file.endsWith('.js')) {
     return `<link rel="modulepreload" crossorigin href="${file}">`
+  } else if (file.endsWith('.js')) {
+    return `<link rel="modulepreload" crossorigin href="${file}">`
   } else if (file.endsWith('.css')) {
     return `<link rel="stylesheet" href="${file}">`
   } else if (file.endsWith('.png')) {
