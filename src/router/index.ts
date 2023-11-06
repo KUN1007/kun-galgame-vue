@@ -3,12 +3,11 @@ import { createWebHistory, createRouter, createMemoryHistory } from 'vue-router'
 import { constantRoutes } from './router'
 import { asyncRoutes } from './router'
 
-export const createKUNGalgameRouter = (type: 'client' | 'server'): Router =>
+export const createKUNGalgameRouter = (): Router =>
   createRouter({
-    history:
-      type === 'server'
-        ? createMemoryHistory(import.meta.env.BASE_URL)
-        : createWebHistory(import.meta.env.BASE_URL),
+    history: import.meta.env.SSR
+      ? createMemoryHistory(import.meta.env.BASE_URL)
+      : createWebHistory(import.meta.env.BASE_URL),
 
     routes: [...constantRoutes, ...asyncRoutes] as RouteRecordRaw[],
 

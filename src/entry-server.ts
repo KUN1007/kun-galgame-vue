@@ -47,11 +47,11 @@ const renderPreloadLinks = (
 export const render = async (
   ctx: ParameterizedContext,
   manifest: Record<string, string[]>
-): Promise<[string, string, string, string]> => {
+): Promise<[string, string, string]> => {
   const { app } = createApp()
 
   // router
-  const router = createKUNGalgameRouter('server')
+  const router = createKUNGalgameRouter()
   app.use(router)
   await router.push(ctx.path)
   await router.isReady()
@@ -71,7 +71,5 @@ export const render = async (
 
   const renderedLinks = renderPreloadLinks(renderCtx.modules, manifest)
 
-  const renderedTeleports = ctx.teleports
-
-  return [renderedHtml, renderedPinia, renderedLinks, renderedTeleports]
+  return [renderedHtml, renderedPinia, renderedLinks]
 }
