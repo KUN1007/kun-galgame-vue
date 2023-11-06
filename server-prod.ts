@@ -41,6 +41,6 @@ import manifest from './dist/client/ssr-manifest.json' assert { type: 'json' }
   })
 
   app.listen(APP_PORT, () => {
-    console.log(`Server is listening in http://${HOST_NAME}:${APP_PORT}`)
+    console.log(`Server is listening on http://${HOST_NAME}:${APP_PORT}`)
   })
 })()

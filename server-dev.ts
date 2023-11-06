@@ -13,29 +13,12 @@ const APP_PORT = 1007
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// Inject teleports in template
-const injectTeleports = (html: string, teleports: string) => {
-  if (teleports) {
-    for (const [target, content] of Object.entries(teleports)) {
-      if (['head', 'body', 'html'].includes(target)) {
-        const replacement = `</${target}>`
-        html = html.replace(replacement, content + replacement)
-      } else {
-        const replacement = ` id="${target.replace('#', '')}">`
-        html = html.replace(replacement, replacement + content)
-      }
-    }
-  }
-
-  return html
-}
-
 ;(async () => {
   const app = new Koa()
 
   const vite = await createViteServer({
     server: { middlewareMode: true },
-    appType: 'spa',
+    appType: 'custom',
   })
 
   app.use(koaConnect(vite.middlewares))
@@ -51,12 +34,9 @@ const injectTeleports = (html: string, teleports: string) => {
 
       const { render } = await vite.ssrLoadModule('/src/entry-server.ts')
 
-      const [renderedHtml, renderedPinia, renderedLinks, renderedTeleports] =
-        await render(ctx, {})
+      const [renderedHtml, renderedPinia, renderedLinks] = await render(ctx, {})
 
-      const injectedTeleportsHtml = injectTeleports(template, renderedTeleports)
-
-      const html = injectedTeleportsHtml
+      const html = template
         .replace('<!--preload-links-->', renderedLinks)
         .replace('<!--ssr-outlet-->', renderedHtml)
         .replace('__pinia', renderedPinia)
@@ -70,6 +50,6 @@ const injectTeleports = (html: string, teleports: string) => {
   })
 
   app.listen(APP_PORT, () => {
-    console.log(`Server is listening in http://${HOST_NAME}:${APP_PORT}`)
+    console.log(`Server is listening on http://${HOST_NAME}:${APP_PORT}`)
   })
 })()
