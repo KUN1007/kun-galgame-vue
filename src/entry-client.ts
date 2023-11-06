@@ -12,7 +12,7 @@ const { app } = createApp()
 app.use(router).use(pinia).use(i18n)
 
 if (window.__pinia) {
-  pinia.state.value = JSON.parse(window.__pinia)
+  pinia.state.value = JSON.parse(JSON.stringify(window.__pinia))
 }
 
 router.isReady().then(() => {

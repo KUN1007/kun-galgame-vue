@@ -1,3 +1,4 @@
+import { useRouter } from 'vue-router'
 // Global message component (top)
 import Message from '@/components/alert/Message'
 import { generateTokenByRefreshTokenApi } from '@/api'
@@ -12,8 +13,6 @@ interface ErrorResponseData {
   code: number
   message: string
 }
-
-const router = createKUNGalgameRouter()
 
 /**
  * Acts as an interceptor, first recognizing common errors based on predictable status codes.
@@ -41,7 +40,7 @@ export async function onRequestError(response: Response) {
         'error'
       )
       useKUNGalgameUserStore().removeToken()
-      router.push('/login')
+      useRouter().push('/login')
     }
     return
   }
