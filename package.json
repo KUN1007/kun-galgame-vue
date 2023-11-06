@@ -17,8 +17,7 @@
     "prod": "ts-node-esm server-prod.ts",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.ts",
-    "build:ssr": "pnpm build:client && pnpm build:server",
-    "preview": "vite preview"
+    "build": "pnpm build:client && pnpm build:server"
   },
   "dependencies": {
     "@milkdown/core": "^7.3.1",

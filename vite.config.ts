@@ -20,7 +20,6 @@ export default defineConfig({
     // Dist dir name
     assetsDir: 'kun',
   },
-  server: { host: '127.0.0.1', port: 1007 },
   // Suppress i18n warnings
   define: {
     __VUE_I18N_FULL_INSTALL__: true,
