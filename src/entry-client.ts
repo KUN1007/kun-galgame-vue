@@ -4,7 +4,7 @@ import { setupPinia } from './store'
 import i18n from '@/language/i18n'
 import '@/styles/index.scss'
 
-const router = createKUNGalgameRouter('client')
+const router = createKUNGalgameRouter()
 const pinia = setupPinia()
 
 const { app } = createApp()
