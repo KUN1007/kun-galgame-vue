@@ -2,7 +2,7 @@ import { createApp } from './main'
 
 import { createKUNGalgameRouter } from './router'
 import { setupPinia } from './store'
-import i18n from '@/language/i18n'
+import createI18n from '@/language/i18n'
 
 import { renderToString } from '@vue/server-renderer'
 
@@ -46,9 +46,11 @@ const renderPreloadLinks = (
 
 export const render = async (
   ctx: ParameterizedContext,
-  manifest: Record<string, string[]>
-): Promise<[string, string, string]> => {
+  manifest: Record<string, string[]>,
+  options: { language: string; country: string }
+) => {
   const { app } = createApp()
+  const { language, country } = options
 
   // router
   const router = createKUNGalgameRouter()
@@ -63,7 +65,9 @@ export const render = async (
   const renderedPinia = JSON.stringify(pinia.state.value)
 
   // i18n
-  app.use(i18n)
+  app.use(createI18n(
+    language.includes('zh') ? 'zh' : 'en',
+  ))
 
   const renderCtx: { modules?: string[] } = {}
 
@@ -71,5 +75,9 @@ export const render = async (
 
   const renderedLinks = renderPreloadLinks(renderCtx.modules, manifest)
 
-  return [renderedHtml, renderedPinia, renderedLinks]
+  const renderedTeleports = renderCtx.teleports as {
+    '#teleported': string
+  }
+
+  return [renderedHtml, renderedPinia, renderedLinks, renderedTeleports]
 }
