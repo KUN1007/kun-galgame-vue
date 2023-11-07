@@ -15,37 +15,35 @@ const handleClose = () => {
 </script>
 
 <template>
-  <Teleport to="#teleported" :disabled="showInfo">
+  <Teleport to="body" :disabled="showInfo">
     <Transition
       enter-active-class="animate__animated animate__fadeInUp animate__faster"
       leave-active-class="animate__animated animate__fadeOutDown animate__faster"
     >
-      <div>
-        <div class="container" v-if="showInfo">
-          <Transition
-            enter-active-class="animate__animated animate__swing"
-            appear
-          >
-            <div class="lass">
-              <span>{{ name }}</span>
-            </div>
-          </Transition>
-
-          <div class="avatar">
-            <img :src="loli" />
+      <div class="container" v-if="showInfo">
+        <Transition
+          enter-active-class="animate__animated animate__swing"
+          appear
+        >
+          <div class="lass">
+            <span>{{ name }}</span>
           </div>
+        </Transition>
 
-          <Transition
-            enter-active-class="animate__animated animate__bounceInRight animate__faster"
-            appear
-          >
-            <!-- A ha ha ha! You probably didn't expect that this was inspired by しゅがてん！-Sugarfull tempering- -->
-            <div class="info">{{ `「 ${$t(`${infoMsg}`)} 」` }}</div>
-          </Transition>
+        <div class="avatar">
+          <img :src="loli" />
+        </div>
 
-          <div class="close" @click="handleClose">
-            <Icon icon="line-md:close" />
-          </div>
+        <Transition
+          enter-active-class="animate__animated animate__bounceInRight animate__faster"
+          appear
+        >
+          <!-- A ha ha ha! You probably didn't expect that this was inspired by しゅがてん！-Sugarfull tempering- -->
+          <div class="info">{{ `「 ${$t(`${infoMsg}`)} 」` }}</div>
+        </Transition>
+
+        <div class="close" @click="handleClose">
+          <Icon icon="line-md:close" />
         </div>
       </div>
     </Transition>

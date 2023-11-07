@@ -24,9 +24,7 @@
     "src/**/*.d.ts",
     "src/**/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "server-dev.ts",
-    "server-prod.ts"
+    "src/**/*.vue"
   ],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]

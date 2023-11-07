@@ -7,7 +7,7 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 const successResponseArray = [200, 201, 202, 204, 205, 206]
 
-export type FetchOptions = RequestInit & {
+export type FetchOptions = {
   method: HttpMethod
   credentials: 'include'
   headers?: Record<string, string>

@@ -1,19 +1,21 @@
-import { createI18n as _createI18n } from 'vue-i18n'
-// Get localeStorage language config
+import { createI18n } from 'vue-i18n'
+// 读取本地存储中的语言配置
 import { KUNGalgameLanguage } from '@/utils/getDefaultEnv'
 
-// Import language file
+// 引入语言文件
 import zh from './zh'
 import en from './en'
 
-const createI18n = (language?: string) =>
-  _createI18n({
-    locale: language || KUNGalgameLanguage,
-    legacy: false,
-    messages: {
-      zh,
-      en,
-    },
-  })
+const i18n = createI18n({
+  locale: KUNGalgameLanguage,
+  // 支持 Vue3 composition API
+  legacy: false,
+  // 全局注册 t 方法
+  globalInjection: true,
+  messages: {
+    zh,
+    en,
+  },
+})
 
-export default createI18n
+export default i18n

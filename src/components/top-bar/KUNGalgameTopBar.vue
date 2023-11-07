@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted, ref } from 'vue'
+import { defineAsyncComponent, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import 'animate.css'
 import { topBarItem } from './topBarItem'
@@ -25,8 +25,6 @@ const showKUNGalgamePanel = ref(false)
 const showKUNGalgameHamburger = ref(false)
 // Show user panel when clicking on the user's avatar
 const showKUNGalgameUserPanel = ref(false)
-// User avatar image link, ssr friendly
-const userAvatar = ref('')
 
 // Set the navigation bar width based on the number of navigation items
 const navItemNum = topBarItem.length
@@ -37,101 +35,89 @@ onBeforeRouteLeave(() => {
   showKUNGalgamePanel.value = false
   showKUNGalgameHamburger.value = false
 })
-
-onMounted(() => {
-  userAvatar.value = avatarMin.value
-    ? avatarMin.value
-    : '/src/assets/images/favicon.webp'
-})
 </script>
 
 <template>
-  <div>
-    <div class="header">
-      <!-- Top left interactive bar -->
-      <div class="nav-top">
-        <div class="hamburger">
-          <Icon
-            icon="line-md:menu-fold-right"
-            v-if="!showKUNGalgameHamburger"
-            @click="showKUNGalgameHamburger = !showKUNGalgameHamburger"
-          />
-          <Transition name="hamburger">
-            <Hamburger
-              v-if="showKUNGalgameHamburger"
-              @showKUNGalgameHamburger="showKUNGalgameHamburger = false"
-            />
-          </Transition>
-        </div>
-
-        <!-- Website name and logo -->
-        <div class="kungalgame">
-          <RouterLink to="/kun">
-            <img
-              src="@/assets/images/favicon.webp"
-              alt="KUN Visual Novel 鲲 Galgame"
-            />
-            <span>{{ $tm('header.name') }}</span>
-          </RouterLink>
-        </div>
-
-        <!-- Navigation bar -->
-        <div class="top-bar">
-          <!-- Top individual sections -->
-          <span v-for="kun in topBarItem" :key="kun.index">
-            <RouterLink :to="{ path: kun.router }">
-              {{ $tm(`header['${kun.name}']`) }}
-            </RouterLink>
-          </span>
-          <!-- Hover effect under the top section -->
-          <div class="box"></div>
-        </div>
-      </div>
-
-      <div class="kungalgamer-info">
-        <!-- showKUNGalgamePanel is a boolean value in the store, true/false controls the display and close of the settings panel -->
-        <span
-          class="settings"
-          @click="showKUNGalgamePanel = !showKUNGalgamePanel"
-        >
-          <Icon icon="uiw:setting-o" />
-        </span>
-
-        <div class="avatar">
-          <img
-            @click="showKUNGalgameUserPanel = true"
-            :src="userAvatar"
-            :alt="name"
-          />
-
-          <!-- For SSR -->
-          <span
-            @click="showKUNGalgameUserPanel = true"
-            v-if="userAvatar === '/src/assets/images/favicon.webp'"
-          >
-            {{ name }}
-          </span>
-        </div>
-        <KUNGalgameUserInfo
-          v-if="showKUNGalgameUserPanel"
-          @close="showKUNGalgameUserPanel = false"
+  <div class="header">
+    <!-- Top left interactive bar -->
+    <div class="nav-top">
+      <div class="hamburger">
+        <Icon
+          icon="line-md:menu-fold-right"
+          v-if="!showKUNGalgameHamburger"
+          @click="showKUNGalgameHamburger = !showKUNGalgameHamburger"
         />
+        <Transition name="hamburger">
+          <Hamburger
+            v-if="showKUNGalgameHamburger"
+            @showKUNGalgameHamburger="showKUNGalgameHamburger = false"
+          />
+        </Transition>
+      </div>
+
+      <!-- Website name and logo -->
+      <div class="kungalgame">
+        <RouterLink to="/kun">
+          <img
+            src="@/assets/images/favicon.webp"
+            alt="KUN Visual Novel 鲲 Galgame"
+          />
+          <span>{{ $tm('header.name') }}</span>
+        </RouterLink>
+      </div>
+
+      <!-- Navigation bar -->
+      <div class="top-bar">
+        <!-- Top individual sections -->
+        <span v-for="kun in topBarItem" :key="kun.index">
+          <RouterLink :to="{ path: kun.router }">
+            {{ $tm(`header['${kun.name}']`) }}
+          </RouterLink>
+        </span>
+        <!-- Hover effect under the top section -->
+        <div class="box"></div>
       </div>
     </div>
 
-    <div class="settings-panel">
-      <transition
-        enter-active-class="animate__animated animate__jackInTheBox animate__faster"
-        leave-active-class="animate__animated animate__fadeOutRight animate__faster"
+    <div class="kungalgamer-info">
+      <!-- showKUNGalgamePanel is a boolean value in the store, true/false controls the display and close of the settings panel -->
+      <span
+        class="settings"
+        @click="showKUNGalgamePanel = !showKUNGalgamePanel"
       >
-        <KeepAlive :exclude="['PageWidth', 'Font']">
-          <KUNGalgameSettingsPanel
-            v-if="showKUNGalgamePanel"
-            @close="showKUNGalgamePanel = false"
-          />
-        </KeepAlive>
-      </transition>
+        <Icon icon="uiw:setting-o" />
+      </span>
+
+      <div class="avatar">
+        <img
+          v-if="avatarMin"
+          @click="showKUNGalgameUserPanel = true"
+          :src="avatarMin"
+          alt="KUN"
+        />
+        <span @click="showKUNGalgameUserPanel = true" v-if="!avatarMin">
+          {{ name }}
+        </span>
+      </div>
+      <KUNGalgameUserInfo
+        v-if="showKUNGalgameUserPanel"
+        @close="showKUNGalgameUserPanel = false"
+      />
     </div>
+  </div>
+
+  <div class="settings-panel">
+    <transition
+      enter-active-class="animate__animated animate__jackInTheBox animate__faster"
+      leave-active-class="animate__animated animate__fadeOutRight animate__faster"
+    >
+      <KeepAlive :exclude="['PageWidth', 'Font']">
+        <KUNGalgameSettingsPanel
+          v-if="showKUNGalgamePanel"
+          @close="showKUNGalgamePanel = false"
+        />
+      </KeepAlive>
+    </transition>
   </div>
 </template>
 

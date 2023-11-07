@@ -1,6 +1,12 @@
 // Import the settings panel store
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { saveImage, getImage } from './useLocalforage'
+import { storeToRefs } from 'pinia'
+
+// Use the settings panel store
+const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
+  storeToRefs(useKUNGalgameSettingsStore())
 
 // Fetch background image data from the backend
 const fetchGetBackground = async (imageName: string): Promise<Blob> => {
@@ -33,4 +39,25 @@ const getBackgroundURL = async (imageName: string) => {
   }
 }
 
-export { getBackgroundURL }
+// The image names here are defined by the backend as bg1.webp (large image) and bg1-m.webp (preview image)
+const getCurrentBackground = async () => {
+  if (
+    showKUNGalgameBackground.value === 'bg0' ||
+    showKUNGalgameBackground.value === 'none'
+  ) {
+    return 'none'
+  }
+  if (showKUNGalgameBackground.value === 'bg1007') {
+    return `${showKUNGalgameCustomBackground.value}`
+  }
+  // Get the image's blob URL
+  const url = await getBackgroundURL(showKUNGalgameBackground.value)
+  return url
+}
+
+// Restore the blank background
+const restoreBackground = () => {
+  showKUNGalgameBackground.value = 'bg0'
+}
+
+export { getBackgroundURL, getCurrentBackground, restoreBackground }

@@ -18,23 +18,21 @@ const handleConfirm = () => {
 </script>
 
 <template>
-  <Teleport to="#teleported" :disabled="showAlert">
+  <Teleport to="body" :disabled="showAlert">
     <Transition name="alert">
-      <div>
-        <div v-if="showAlert" class="mask">
-          <div class="container">
-            <div class="header">
-              <h3>{{ $t(`${alertMsg}`) }}</h3>
-            </div>
+      <div v-if="showAlert" class="mask">
+        <div class="container">
+          <div class="header">
+            <h3>{{ $t(`${alertMsg}`) }}</h3>
+          </div>
 
-            <div class="footer">
-              <button v-if="isShowCancel" class="button" @click="handleClose">
-                {{ $tm('ComponentAlert.cancel') }}
-              </button>
-              <button class="button" @click="handleConfirm">
-                {{ $tm('ComponentAlert.confirm') }}
-              </button>
-            </div>
+          <div class="footer">
+            <button v-if="isShowCancel" class="button" @click="handleClose">
+              {{ $tm('ComponentAlert.cancel') }}
+            </button>
+            <button class="button" @click="handleConfirm">
+              {{ $tm('ComponentAlert.confirm') }}
+            </button>
           </div>
         </div>
       </div>

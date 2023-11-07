@@ -4,6 +4,7 @@
  */
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import type { App } from 'vue'
 
 // Import store for the income and expense public disclosure page
 import { useKUNGalgameBalanceStore } from './modules/balance'
@@ -32,19 +33,16 @@ import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 // Import store for the topic detail page
 import { useKUNGalgameTopicStore } from './modules/topic'
 
-const pinia = createPinia()
+const store = createPinia()
 
 // Function to set up Pinia, to be called in main.ts
-export const setupPinia = () => {
-  if (!import.meta.env.SSR) {
-    pinia.use(piniaPluginPersistedstate)
-  }
-
-  return pinia
+export function setupPinia(app: App<Element>) {
+  store.use(piniaPluginPersistedstate)
+  app.use(store)
 }
 
 // Reset all stores, used for logging out
-export const kungalgameStoreReset = () => {
+export function kungalgameStoreReset() {
   const balanceStore = useKUNGalgameBalanceStore()
   const editStore = useKUNGalgameEditStore()
   const homeStore = useKUNGalgameHomeStore()
@@ -65,3 +63,5 @@ export const kungalgameStoreReset = () => {
   settingsStore.$reset()
   topicStore.$reset()
 }
+
+export { store }

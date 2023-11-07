@@ -1,11 +1,10 @@
-import { useRouter } from 'vue-router'
 // Global message component (top)
 import Message from '@/components/alert/Message'
 import { generateTokenByRefreshTokenApi } from '@/api'
 // Use the user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 // Import the router
-import { createKUNGalgameRouter } from '@/router'
+import router from '@/router'
 // Import known error handling functions
 import { kungalgameErrorHandler } from './errorHandler'
 
@@ -29,9 +28,7 @@ export async function onRequestError(response: Response) {
     if (accessTokenResponse.code === 200 && accessTokenResponse.data.token) {
       useKUNGalgameUserStore().setToken(accessTokenResponse.data.token)
       // Set the page to reload with the new token applied
-      if (typeof window !== 'undefined') {
-        location.reload()
-      }
+      location.reload()
     } else {
       // Otherwise, prompt the user to log in again
       Message(
@@ -40,7 +37,7 @@ export async function onRequestError(response: Response) {
         'error'
       )
       useKUNGalgameUserStore().removeToken()
-      useRouter().push('/login')
+      router.push('/login')
     }
     return
   }
