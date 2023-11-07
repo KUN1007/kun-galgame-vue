@@ -119,65 +119,67 @@ const handleCloseCapture = () => {
 </script>
 
 <template>
-  <Teleport to="body" :disabled="isShowCapture">
+  <Teleport to="#teleported" :disabled="isShowCapture">
     <Transition name="capture">
-      <!-- Mask -->
-      <div
-        class="mask"
-        @keydown="checkKeyPress($event)"
-        tabindex="0"
-        v-if="isShowCapture"
-      >
-        <div class="validate">
-          <!-- Title -->
-          <div class="title">
-            <!-- <span>{{ `❮` }}</span> -->
-            <h2>{{ $tm('AlertInfo.capture.title') }}</h2>
-            <!-- <span>{{ `❯` }}</span> -->
-          </div>
-          <p class="question">{{ currentQuestion.text }}</p>
-
-          <!-- Options -->
-          <div class="select">
-            <label
-              v-for="(option, index) in currentQuestion.options"
-              :key="index"
-            >
-              <input type="radio" v-model="userAnswers" :value="option" />
-              {{ option }}
-            </label>
-          </div>
-
-          <!-- Submit buttons -->
-          <div class="btn">
-            <button @click="submitAnswer">
-              {{ $tm('AlertInfo.capture.submit') }}
-            </button>
-            <button @click="handleCloseCapture">
-              {{ $tm('AlertInfo.capture.close') }}
-            </button>
-          </div>
-
-          <!-- Hints -->
-          <!-- tabindex allows this element to be focused on the page -->
-          <div class="hint-container">
-            <div v-if="isShowHint" class="hint">
-              <div>{{ $tm('AlertInfo.capture.hint1') }}</div>
-              <div>
-                {{ $tm('AlertInfo.capture.hint2') }}
-                <span>kun</span>
-                {{ $tm('AlertInfo.capture.hint3') }}
-              </div>
+      <div>
+        <!-- Mask -->
+        <div
+          class="mask"
+          @keydown="checkKeyPress($event)"
+          tabindex="0"
+          v-if="isShowCapture"
+        >
+          <div class="validate">
+            <!-- Title -->
+            <div class="title">
+              <!-- <span>{{ `❮` }}</span> -->
+              <h2>{{ $tm('AlertInfo.capture.title') }}</h2>
+              <!-- <span>{{ `❯` }}</span> -->
             </div>
-            <div v-if="isShowAnswer" class="answer">
-              <div>{{ $tm('AlertInfo.capture.hint4') }}</div>
-              <a
-                href="https://github.com/KUN1007/kun-galgame-vue/tree/remove-server/src/components/capture"
-                target="_blank"
-                rel="noopener noreferrer"
+            <p class="question">{{ currentQuestion.text }}</p>
+
+            <!-- Options -->
+            <div class="select">
+              <label
+                v-for="(option, index) in currentQuestion.options"
+                :key="index"
               >
-                {{ $tm('AlertInfo.capture.answer') }}
-              </a>
+                <input type="radio" v-model="userAnswers" :value="option" />
+                {{ option }}
+              </label>
+            </div>
+
+            <!-- Submit buttons -->
+            <div class="btn">
+              <button @click="submitAnswer">
+                {{ $tm('AlertInfo.capture.submit') }}
+              </button>
+              <button @click="handleCloseCapture">
+                {{ $tm('AlertInfo.capture.close') }}
+              </button>
+            </div>
+
+            <!-- Hints -->
+            <!-- tabindex allows this element to be focused on the page -->
+            <div class="hint-container">
+              <div v-if="isShowHint" class="hint">
+                <div>{{ $tm('AlertInfo.capture.hint1') }}</div>
+                <div>
+                  {{ $tm('AlertInfo.capture.hint2') }}
+                  <span>kun</span>
+                  {{ $tm('AlertInfo.capture.hint3') }}
+                </div>
+              </div>
+              <div v-if="isShowAnswer" class="answer">
+                <div>{{ $tm('AlertInfo.capture.hint4') }}</div>
+                <a
+                  href="https://github.com/KUN1007/kun-galgame-vue/tree/remove-server/src/components/capture"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ $tm('AlertInfo.capture.answer') }}
+                </a>
+              </div>
             </div>
           </div>
         </div>

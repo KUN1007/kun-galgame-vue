@@ -1,6 +1,6 @@
 import { Router } from 'vue-router'
 import { createPermission } from './permission'
-import i18n from '@/language/i18n'
+import { i18n } from '@/entry-client'
 
 const createPageTitle = (router: Router) => {
   router.beforeEach((to) => {
