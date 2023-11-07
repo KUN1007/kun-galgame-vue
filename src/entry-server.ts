@@ -65,15 +65,16 @@ export const render = async (
   const renderedPinia = JSON.stringify(pinia.state.value)
 
   // i18n
-  app.use(createI18n(
-    language.includes('zh') ? 'zh' : 'en',
-  ))
+  app.use(createI18n(language.includes('zh') ? 'zh' : 'en'))
 
-  const renderCtx: { modules?: string[] } = {}
+  const renderCtx: Record<string, string[] | {}> = {}
 
   const renderedHtml = await renderToString(app, renderCtx)
 
-  const renderedLinks = renderPreloadLinks(renderCtx.modules, manifest)
+  const renderedLinks = renderPreloadLinks(
+    renderCtx.modules as string[],
+    manifest
+  )
 
   const renderedTeleports = renderCtx.teleports as {
     '#teleported': string
