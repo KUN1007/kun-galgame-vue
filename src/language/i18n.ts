@@ -1,8 +1,8 @@
 import { createI18n as _createI18n } from 'vue-i18n'
-// 读取本地存储中的语言配置
+// Get localeStorage language config
 import { KUNGalgameLanguage } from '@/utils/getDefaultEnv'
 
-// 引入语言文件
+// Import language file
 import zh from './zh'
 import en from './en'
 
