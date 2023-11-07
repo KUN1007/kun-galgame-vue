@@ -14,35 +14,37 @@ const APP_PORT = 1007
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Inject teleports in template
-const injectTeleports = (html: string, teleports: {
+const injectTeleports = (
+  html: string,
+  teleports: {
     '#teleported': string
-  }) => {
-    // if (teleports) {
-    //   for (const [target, content] of Object.entries(teleports)) {
-    //     if (['head', 'body', 'html'].includes(target)) {
-    //       const replacement = `</${target}>`
-    //       html = html.replace(replacement, content + replacement)
-    //     } else {
-    //       const replacement = ` id="${target.replace('#', '')}">`
-    //       html = html.replace(replacement, replacement + content)
-    //     }
-    //   }
-    // }
-    //
-    // return html
-    return html.replace('<!--teleports-->', teleports['#teleported'])
   }
+) => {
+  // return html
+  return html.replace('<!--teleports-->', teleports['#teleported'])
+}
 
-;(async () => {
+;(async (hmrPort) => {
   const app = new Koa()
 
   const vite = await createViteServer({
-    server: { middlewareMode: true },
+    server: {
+      middlewareMode: true,
+      watch: {
+        // During tests we edit the files too fast and sometimes chokidar
+        // misses change events, so enforce polling for consistency
+        usePolling: true,
+        interval: 107,
+      },
+      hmr: {
+        port: hmrPort,
+      },
+    },
     appType: 'custom',
   })
 
-  // 解析accept-language
-  function parseAcceptLanguage(acceptLanguage: string) {
+  // Parse accept-language
+  const parseAcceptLanguage = (acceptLanguage: string) => {
     const languages = acceptLanguage.split(',')
     const language = languages[0]
     const country = language.split('-')[1]
@@ -52,7 +54,9 @@ const injectTeleports = (html: string, teleports: {
   app.use(koaConnect(vite.middlewares))
 
   app.use(async (ctx) => {
-    const { language, country } = parseAcceptLanguage(ctx.request.headers['accept-language'] as string)
+    const { language, country } = parseAcceptLanguage(
+      ctx.request.headers['accept-language'] as string
+    )
     try {
       let template = fs.readFileSync(
         path.resolve(__dirname, 'index.html'),
@@ -64,10 +68,14 @@ const injectTeleports = (html: string, teleports: {
       const { render } = await vite.ssrLoadModule('/src/entry-server.ts')
 
       const [renderedHtml, renderedPinia, renderedLinks, renderedTeleports] =
-        await render(ctx, {}, {
-          language,
-          country,
-        })
+        await render(
+          ctx,
+          {},
+          {
+            language,
+            country,
+          }
+        )
 
       const html = injectTeleports(template, renderedTeleports)
         .replace('<!--preload-links-->', renderedLinks)

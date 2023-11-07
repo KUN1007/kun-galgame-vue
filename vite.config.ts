@@ -14,9 +14,12 @@ export default defineConfig(({ mode, ssrBuild, command }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    esbuild: command  === 'serve' ? {} : {
-      drop: ['console', 'debugger']
-    },
+    esbuild:
+      command === 'serve'
+        ? {}
+        : {
+            drop: ['console', 'debugger'],
+          },
     build: {
       // Dist dir name
       assetsDir: 'kun',
