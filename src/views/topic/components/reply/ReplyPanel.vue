@@ -47,14 +47,13 @@ const handleClosePanel = async () => {
 </script>
 
 <template>
-  <Teleport to="body" :disabled="isEdit">
+  <Teleport to="#teleported" :disabled="isEdit">
     <Transition
       enter-active-class="animate__animated animate__fadeInUp animate__faster"
       leave-active-class="animate__animated animate__fadeOutDown animate__faster"
     >
       <div class="root" v-if="isEdit">
         <div class="container" :style="`width: ${panelWidth}`">
-          <!-- Reply panel - reply to whom -->
           <div class="title">
             <h3>
               <span>{{ $tm('topic.panel.to') + ' @' }}</span>
@@ -71,12 +70,10 @@ const handleClosePanel = async () => {
             />
           </div>
 
-          <!-- Reply editor -->
           <div class="content">
             <MilkdownEditor :is-show-menu="isShowAdvance" />
           </div>
 
-          <!-- Reply footer -->
           <div class="footer">
             <Tags
               style="margin-top: 10px; padding: 10px"

@@ -48,7 +48,6 @@ const getRepliesCount = computed(() => {
         <span>{{ title }}</span>
       </div>
 
-      <!-- Topic status, likes, etc. -->
       <div class="status">
         <ul>
           <li>
@@ -64,7 +63,6 @@ const getRepliesCount = computed(() => {
           </li>
         </ul>
 
-        <!-- Publication date of the topic -->
         <div class="time">
           <span>
             {{
@@ -78,7 +76,6 @@ const getRepliesCount = computed(() => {
       </div>
     </div>
 
-    <!-- Preview introduction of the topic -->
     <div class="introduction">
       <p>
         {{ plainText }}
