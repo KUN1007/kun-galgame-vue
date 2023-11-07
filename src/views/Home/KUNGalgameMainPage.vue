@@ -1,12 +1,8 @@
-<script setup lang="ts">
-import MainPageContent from './content/MainPageContent.vue'
-import MainPageFooter from './footer/MainPageFooter.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="root">
-    <MainPageContent />
-    <MainPageFooter />
+    <h1>KUN IS THE CUTEST!</h1>
   </div>
 </template>
 
