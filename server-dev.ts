@@ -43,8 +43,8 @@ const injectTeleports = (
     appType: 'custom',
   })
 
-  // 解析accept-language
-  function parseAcceptLanguage(acceptLanguage: string) {
+  // Parse accept-language
+  const parseAcceptLanguage = (acceptLanguage: string) => {
     const languages = acceptLanguage.split(',')
     const language = languages[0]
     const country = language.split('-')[1]
