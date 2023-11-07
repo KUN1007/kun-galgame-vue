@@ -1,0 +1,91 @@
+<!-- This file is for adapting the top navigation bar for mobile devices -->
+<script setup lang="ts">
+import Mode from '../setting-panel/components/Mode.vue'
+import SwitchLanguage from '../setting-panel/components/SwitchLanguage.vue'
+import { topBarItem } from './topBarItem'
+
+defineEmits(['showKUNGalgameHamburger'])
+</script>
+
+<template>
+  <div class="root" @click="$emit('showKUNGalgameHamburger', false)">
+    <Transition
+      enter-active-class="animate__animated animate__fadeInLeft animate__faster"
+      appear
+    >
+      <div class="container" @click.stop>
+        <div class="kungalgame">
+          <img src="@/assets/images/favicon.webp" alt="KUNGalgame" />
+          <span>{{ $tm('header.name') }}</span>
+        </div>
+        <!-- Interactive items -->
+        <div class="item" style="font-size: 17px">
+          <span v-for="kun in topBarItem" :key="kun.index">
+            <RouterLink :to="kun.router">
+              {{ $tm(`header['${kun.name}']`) }}
+            </RouterLink>
+          </span>
+        </div>
+
+        <!-- Day and night mode switch component -->
+        <Mode style="font-size: 20px" />
+
+        <!-- Language switch component -->
+        <SwitchLanguage style="font-size: 20px" />
+      </div>
+    </Transition>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.root {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--kungalgame-font-color-3);
+  font-size: 25px;
+  background-color: var(--kungalgame-mask-color-0);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.container {
+  position: absolute;
+  width: 277px;
+  padding: 10px;
+  background-color: var(--kungalgame-trans-white-2);
+  border: 1px solid var(--kungalgame-blue-1);
+  box-shadow: var(--shadow);
+  border-left: none;
+  border-top: none;
+  border-radius: 0 5px 5px 5px;
+}
+
+.item {
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  a {
+    color: var(--kungalgame-blue-4);
+  }
+}
+
+.kungalgame {
+  display: flex;
+  align-items: center;
+  img {
+    height: 40px;
+    margin-right: 10px;
+  }
+  span {
+    font-size: 20px;
+  }
+}
+</style>
