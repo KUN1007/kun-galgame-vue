@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n'
+import { createI18n as _createI18n } from 'vue-i18n'
 // 读取本地存储中的语言配置
 import { KUNGalgameLanguage } from '@/utils/getDefaultEnv'
 
@@ -6,8 +6,8 @@ import { KUNGalgameLanguage } from '@/utils/getDefaultEnv'
 import zh from './zh'
 import en from './en'
 
-const i18n = createI18n({
-  locale: KUNGalgameLanguage,
+const createI18n = (language?: string) => _createI18n({
+  locale: language || KUNGalgameLanguage,
   legacy: false,
   messages: {
     zh,
@@ -15,4 +15,4 @@ const i18n = createI18n({
   },
 })
 
-export default i18n
+export default createI18n
