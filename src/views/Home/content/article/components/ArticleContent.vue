@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onBeforeUnmount, onBeforeMount } from 'vue'
 import SingleTopic from './SingleTopic.vue'
-// Import the function for calculating time difference
+import HomeTopicSkeleton from '@/components/skeleton/home/HomeTopicSkeleton.vue'
 import { hourDiff } from '@/utils/time'
 
 import { HomeTopic } from '@/api'
@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="topic-container" ref="content">
-    <TransitionGroup name="list" tag="div">
+    <TransitionGroup name="list" tag="div" v-if="topics.length">
       <!-- Posted within 10 hours -->
       <div
         v-for="topic in topics"
@@ -111,6 +111,9 @@ onBeforeUnmount(() => {
         <SingleTopic :topic="topic" />
       </div>
     </TransitionGroup>
+
+    <!-- Skeleton -->
+    <HomeTopicSkeleton v-if="!topics.length || isLoading" />
   </div>
 </template>
 
