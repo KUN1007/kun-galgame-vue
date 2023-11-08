@@ -113,7 +113,9 @@ onBeforeUnmount(() => {
     </TransitionGroup>
 
     <!-- Skeleton -->
-    <HomeTopicSkeleton v-if="!topics.length || isLoading" />
+    <HomeTopicSkeleton :number="17" v-if="!topics.length" />
+
+    <HomeTopicSkeleton v-if="isLoading" />
   </div>
 </template>
 
