@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
 import { HomeHotTopic, HomeNewTopic } from '@/api/home/types/home'
+import HomeAsideSkeleton from '@/components/skeleton/home/HomeAsideSkeleton.vue'
 import { getHomeNavHotTopicApi, getHomeNavNewTopicApi } from '@/api/home/index'
 
 // Import settings panel store
@@ -18,6 +19,9 @@ const navHotTopic = ref<HomeHotTopic[]>()
 const navNewTopic = ref<HomeNewTopic[]>()
 
 onMounted(async () => {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 10007)
+  })
   const responseHotData = await getHomeNavHotTopicApi()
   navHotTopic.value = responseHotData.data
 
@@ -36,7 +40,11 @@ onMounted(async () => {
     </div>
     <!-- Directory of hot topics -->
     <!-- Use the isHotTopic data passed from the parent component here -->
-    <span class="topic-content hot-bg" v-for="kun in navHotTopic">
+    <span
+      class="topic-content hot-bg"
+      v-if="navHotTopic"
+      v-for="kun in navHotTopic"
+    >
       <RouterLink :to="{ path: `/topic/${kun.tid}` }">
         <div class="topic">
           <div class="title">{{ kun.title }}</div>
@@ -49,11 +57,17 @@ onMounted(async () => {
       </RouterLink>
     </span>
 
+    <HomeAsideSkeleton v-if="!navHotTopic" />
+
     <!-- Today's newest topics -->
     <div class="title-new">
       {{ $tm(`mainPage.asideActive.new`) }}
     </div>
-    <span class="topic-content new-bg" v-for="kun in navNewTopic">
+    <span
+      class="topic-content new-bg"
+      v-if="navNewTopic"
+      v-for="kun in navNewTopic"
+    >
       <RouterLink :to="{ path: `/topic/${kun.tid}` }">
         <div class="topic">
           <div class="title">{{ kun.title }}</div>
@@ -69,6 +83,8 @@ onMounted(async () => {
         </div>
       </RouterLink>
     </span>
+
+    <HomeAsideSkeleton v-if="!navNewTopic" />
   </div>
 </template>
 
@@ -103,11 +119,13 @@ onMounted(async () => {
 
 .title-hot {
   border: 3px dashed var(--kungalgame-trans-blue-1);
+  border-radius: 5px 5px 0 0;
   border-bottom: none;
 }
 
 .title-new {
   border: 3px dashed var(--kungalgame-trans-pink-1);
+  border-radius: 5px 5px 0 0;
   border-bottom: none;
   margin-top: 5px;
 }

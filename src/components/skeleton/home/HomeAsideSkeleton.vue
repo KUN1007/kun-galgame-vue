@@ -1,55 +1,28 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const props = defineProps<{
-  number?: number
-}>()
-
-const numberSkeleton = computed(() => (props.number ? props.number : 1))
+const count = 10
 </script>
 
 <template>
-  <div v-for="(_, index) in numberSkeleton" :key="index" class="skeleton">
-    <div class="container">
-      <span></span>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
+  <div class="skeleton">
+    <ul>
+      <li v-for="(_, index) in count" :key="index"></li>
+    </ul>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .skeleton {
   width: 100%;
-  height: 100%;
+  height: 430px;
   display: flex;
   justify-content: center;
 }
 
-.container {
+ul {
   background-color: var(--kungalgame-trans-white-5);
   border-radius: 3px;
   margin: 0 auto;
   padding: 10px;
-  width: 100%;
-  display: flex;
-
-  span {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    background-color: var(--kungalgame-trans-blue-2);
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-}
-
-ul {
-  padding: 0;
-  margin: 0;
   width: 100%;
 
   li {
@@ -61,21 +34,12 @@ ul {
     );
     border-radius: 3px;
     width: 100%;
-    height: 10px;
+    height: 30px;
     list-style: none;
     background-size: 400% 100%;
     margin-top: 10px;
     background-position: 100% 50%;
     animation: skeleton 1.7s ease infinite;
-
-    &:first-child {
-      margin-top: 0;
-      width: 23%;
-    }
-
-    &:last-child {
-      width: 77%;
-    }
   }
 }
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import Topic from './Topic.vue'
-// Import individual items from the functional area
 import asideItem from './asideItem'
 
-// Receive props from the parent component
-const props = defineProps(['isActive'])
+const props = defineProps<{
+  isActive: boolean
+}>()
 </script>
 
 <template>
@@ -22,10 +22,10 @@ const props = defineProps(['isActive'])
     <!-- Functional box container -->
     <div class="item-box-container">
       <!-- Sidebar individual items -->
-      <span v-for="kun in asideItem" :key="kun.index">
-        <RouterLink :to="{ path: kun.router }">{{
-          $tm(`mainPage.asideActive['${kun.name}']`)
-        }}</RouterLink>
+      <span v-if="asideItem.length" v-for="kun in asideItem" :key="kun.index">
+        <RouterLink :to="{ path: kun.router }">
+          {{ $tm(`mainPage.asideActive['${kun.name}']`) }}
+        </RouterLink>
       </span>
     </div>
   </div>
