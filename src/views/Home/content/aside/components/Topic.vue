@@ -19,9 +19,6 @@ const navHotTopic = ref<HomeHotTopic[]>()
 const navNewTopic = ref<HomeNewTopic[]>()
 
 onMounted(async () => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 10007)
-  })
   const responseHotData = await getHomeNavHotTopicApi()
   navHotTopic.value = responseHotData.data
 
