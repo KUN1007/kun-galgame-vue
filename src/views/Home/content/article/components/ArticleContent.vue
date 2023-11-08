@@ -115,7 +115,7 @@ onBeforeUnmount(() => {
     <!-- Skeleton -->
     <HomeTopicSkeleton :number="17" v-if="!topics.length" />
 
-    <HomeTopicSkeleton v-if="isLoading" />
+    <HomeTopicSkeleton v-if="isLoading && topics.length >= 16" />
   </div>
 </template>
 
