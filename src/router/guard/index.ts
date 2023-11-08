@@ -10,7 +10,7 @@ const createPageTitle = (router: Router) => {
   })
 }
 
-export function setupRouterGuard(router: Router) {
+export function setupKUNGalgameRouterGuard(router: Router) {
   createPermission(router)
   createPageTitle(router)
 }

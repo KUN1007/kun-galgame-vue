@@ -36,7 +36,7 @@ import { useKUNGalgameTopicStore } from './modules/topic'
 const store = createPinia()
 
 // Function to set up Pinia, to be called in main.ts
-export function setupPinia(app: App<Element>) {
+export function setupKUNGalgamePinia(app: App<Element>) {
   store.use(piniaPluginPersistedstate)
   app.use(store)
 }
@@ -63,5 +63,3 @@ export function kungalgameStoreReset() {
   settingsStore.$reset()
   topicStore.$reset()
 }
-
-export { store }

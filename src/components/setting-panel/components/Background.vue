@@ -50,13 +50,19 @@ onMounted(async () => {
 
 <template>
   <div class="kungalgame-background">
-    <div class="bg-settings">{{ $tm('header.settings.background') }}</div>
+    <div class="bg-settings">
+      {{ $tm('header.settings.background') }}
+    </div>
     <ul class="kungalgame-background-container">
       <li>
         <span>{{ $tm('header.settings.preset') }}</span>
         <!-- Preset background collection -->
         <ul class="kungalgame-restore-bg">
-          <li v-for="kun in backgroundImages" :key="kun.index">
+          <li
+            v-for="kun in backgroundImages"
+            :key="kun.index"
+            v-tooltip="{ message: kun.alt, position: 'bottom' }"
+          >
             <img
               v-if="kun"
               :src="imageArray[kun.index - 1]"
