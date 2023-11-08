@@ -11,12 +11,12 @@
   https://s3.bmp.ovh/imgs/2023/05/30/7aa57120cc6977a1.png
   */
 
-interface background {
+interface Background {
   index: number
   alt: string
 }
 
-export const backgroundImages: background[] = [
+export const backgroundImages: Background[] = [
   {
     index: 1,
     alt: 'Akai Hitomi ni Utsuru Sekai 紅い瞳に映るセカイ 红瞳映入的世界',

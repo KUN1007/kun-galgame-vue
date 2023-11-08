@@ -1,13 +1,10 @@
 <script setup lang="ts">
-// Import Vue functions
 import { onMounted, ref } from 'vue'
+import Message from '@/components/alert/Message'
+import BackgroundImageSkeleton from '@/components/skeleton/settings-panel/BackgroundImageSkeleton.vue'
 
-// Import the settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-
-// Global message component (top)
-import Message from '@/components/alert/Message'
 
 import { backgroundImages } from './background'
 import { getBackgroundURL } from '@/hooks/useBackgroundPicture'
@@ -41,6 +38,8 @@ const handleCustomBackground = () => {
   }
 }
 
+const handleHoverBackgroundImage = () => {}
+
 onMounted(async () => {
   for (const background of backgroundImages) {
     const backgroundURL = await getBackground(background.index)
@@ -59,10 +58,13 @@ onMounted(async () => {
         <ul class="kungalgame-restore-bg">
           <li v-for="kun in backgroundImages" :key="kun.index">
             <img
+              v-if="kun"
               :src="imageArray[kun.index - 1]"
-              :alt="kun.alt"
               @click="handleChangeImage(kun.index)"
+              @hover="handleHoverBackgroundImage"
             />
+
+            <BackgroundImageSkeleton v-if="!imageArray[kun.index - 1]" />
           </li>
         </ul>
       </li>
@@ -150,6 +152,7 @@ onMounted(async () => {
     img {
       cursor: pointer;
       width: 70px;
+      position: relative;
 
       /* Image hover effect */
       &:hover {
@@ -157,6 +160,10 @@ onMounted(async () => {
         transition: 0.2s;
         z-index: 7;
       }
+    }
+
+    .image-detail {
+      position: absolute;
     }
   }
 }

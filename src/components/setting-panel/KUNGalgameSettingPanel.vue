@@ -1,28 +1,20 @@
 <!-- Settings panel component, displaying the entire forum's settings panel -->
 <script setup lang="ts">
-// Import icon font
 import { Icon } from '@iconify/vue'
-// Import mascot component
+
 import Loli from './components/Loli.vue'
-// Import mode switch component
 import Mode from './components/Mode.vue'
-// Import language switch component
 import SwitchLanguage from './components/SwitchLanguage.vue'
-// Page width adjustment component
 import PageWidth from './components/PageWidth.vue'
-// Font settings component
 import Font from './components/Font.vue'
-// Import background settings component
 import Background from './components/Background.vue'
-// Import settings store
+
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-// Use the settings store
 const settingsStore = useKUNGalgameSettingsStore()
 const { isShowPageWidth } = storeToRefs(settingsStore)
 
-// Define emits to close the settings panel
 const emits = defineEmits<{
   close: [showKUNGalgamePanel: boolean]
 }>()
