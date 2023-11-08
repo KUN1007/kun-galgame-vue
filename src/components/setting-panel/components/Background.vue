@@ -61,7 +61,7 @@ onMounted(async () => {
           <li
             v-for="kun in backgroundImages"
             :key="kun.index"
-            v-tooltip="{ message: kun.alt, position: 'bottom' }"
+            v-tooltip="{ message: kun.message, position: 'bottom' }"
           >
             <img
               v-if="kun"

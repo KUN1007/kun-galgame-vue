@@ -1,7 +1,11 @@
 import type { Directive, DirectiveBinding } from 'vue'
+import { KUNGalgameLanguage } from '@/utils/getDefaultEnv'
 
 interface TooltipBinding {
-  message: string
+  message: {
+    en: string
+    zh: string
+  }
   position: 'top' | 'right' | 'bottom' | 'left'
 }
 
@@ -11,7 +15,9 @@ const initializeTooltip = (element: HTMLElement, binding: DirectiveBinding) => {
     position: 'left',
   }
 
-  element.setAttribute('tooltip', message)
+  const messageI18n = KUNGalgameLanguage === 'en' ? message.en : message.zh
+
+  element.setAttribute('tooltip', messageI18n)
   element.setAttribute('position', position)
 }
 
