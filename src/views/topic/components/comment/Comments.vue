@@ -81,49 +81,40 @@ const handleClickComment = (
 </script>
 
 <template>
-  <!-- Comment container -->
   <div class="comment-container">
-    <!-- Comment popup panel -->
     <CommentPanel
       @getCommentEmits="getCommentEmits"
       v-if="isShowCommentPanelRid === ridRef"
     />
 
-    <!-- Comment display area -->
     <div class="container" v-if="commentsData?.length">
-      <!-- Comment title -->
       <div class="title">
         <span>{{ $tm('topic.content.comments') }}</span>
       </div>
+
       <div
         class="comment"
         v-for="(comment, index) in commentsData"
         :key="index"
       >
-        <!-- User avatar -->
         <RouterLink :to="`/kungalgamer/${comment.c_user.uid}/info`">
-          <!-- Compressed avatar is used here -->
           <img
             :src="comment.c_user.avatar.replace(/\.webp$/, '-100.webp')"
             alt="KUN"
           />
         </RouterLink>
-        <!-- Content area of an individual comment -->
+
         <div class="content">
-          <!-- Top of individual comment content area -->
           <div class="describe">
-            <!-- Name on the top left -->
             <div class="name">
               {{ `${comment.c_user.name} ${$tm('topic.content.comment')}` }}
-              <!-- Go to user's profile -->
               <RouterLink :to="`/kungalgamer/${comment.to_user.uid}/info`">
                 {{ comment.to_user.name }}
               </RouterLink>
             </div>
-            <!-- Top right for likes and dislikes -->
+
             <div class="operate">
               <ul>
-                <!-- Like -->
                 <Like
                   :tid="props.tid"
                   :cid="comment.cid"
@@ -131,7 +122,7 @@ const handleClickComment = (
                   :to-uid="comment.c_user.uid"
                   :likes="comment.likes"
                 />
-                <!-- Dislike -->
+
                 <Dislike
                   :tid="props.tid"
                   :cid="comment.cid"
@@ -139,6 +130,7 @@ const handleClickComment = (
                   :to-uid="comment.c_user.uid"
                   :dislikes="comment.dislikes"
                 />
+
                 <li
                   @click="
                     handleClickComment(
@@ -154,7 +146,7 @@ const handleClickComment = (
               </ul>
             </div>
           </div>
-          <!-- Bottom of individual comment content area -->
+
           <div class="text">
             {{ comment.content }}
           </div>
@@ -165,9 +157,13 @@ const handleClickComment = (
 </template>
 
 <style lang="scss" scoped>
+.comment-container {
+  border-top: 1px solid var(--kungalgame-blue-1);
+}
+
 .title {
   flex-shrink: 0;
-  margin-bottom: 17px;
+  margin: 17px 0;
   color: var(--kungalgame-font-color-3);
 }
 

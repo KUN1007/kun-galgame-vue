@@ -3,7 +3,7 @@
 <template>
   <div class="footer">
     <span>Copyright © 2023 KUNGalgame</span>
-    <span>All rights reserved | Version 1.0.0</span>
+    <span>All rights reserved | Version 1.1.2</span>
   </div>
 </template>
 

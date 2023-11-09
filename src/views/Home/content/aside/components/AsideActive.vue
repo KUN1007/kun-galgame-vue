@@ -8,20 +8,16 @@ const props = defineProps<{
 </script>
 
 <template>
-  <!-- Sidebar functional area -->
   <div class="item-box" v-show="props.isActive">
-    <!-- Publish a new article -->
     <div class="new-article">
-      <!-- Button to publish a new article -->
       <RouterLink to="/edit">
         <button class="btn-new-article">
           {{ $tm('mainPage.asideActive.create') }}
         </button>
       </RouterLink>
     </div>
-    <!-- Functional box container -->
+
     <div class="item-box-container">
-      <!-- Sidebar individual items -->
       <span v-if="asideItem.length" v-for="kun in asideItem" :key="kun.index">
         <RouterLink :to="{ path: kun.router }">
           {{ $tm(`mainPage.asideActive['${kun.name}']`) }}
@@ -30,7 +26,6 @@ const props = defineProps<{
     </div>
   </div>
 
-  <!-- Left interactive topic section -->
   <Topic v-show="props.isActive" />
 </template>
 

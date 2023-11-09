@@ -170,7 +170,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
 <style lang="scss" scoped>
 /* Main topic's bottom */
 .footer {
-  padding: 10px 0;
+  padding: 7px 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
