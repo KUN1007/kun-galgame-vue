@@ -34,17 +34,11 @@ const user = computed(() => props.user)
 <style lang="scss" scoped>
 .kungalgamer {
   width: 60px;
-  height: 100%;
+  height: 50px;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  margin: 0 5px;
-}
-
-.avatar,
-.name {
-  width: 100%;
-  height: calc(100% - 20px);
+  margin: 5px;
 }
 
 .avatar {

@@ -144,7 +144,9 @@ onBeforeUnmount(() => {
   scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1); /* Firefox 64+ */
 
   div {
-    margin: 5px 0;
+    & > div {
+      margin: 7px 0;
+    }
   }
 }
 

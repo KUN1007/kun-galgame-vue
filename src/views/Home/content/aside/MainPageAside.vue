@@ -55,7 +55,7 @@ watch(
 
 <style lang="scss" scoped>
 .aside {
-  margin-right: 5px;
+  margin-right: 7px;
   width: v-bind('asideWidth');
   height: 100%;
   display: flex;

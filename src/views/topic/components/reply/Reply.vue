@@ -7,19 +7,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
-// Content component
+
 import Content from '../Content.vue'
-// Import Comment component
 import Comments from '../comment/Comments.vue'
-// Import Footer component
 import Footer from '../footer/Footer.vue'
-// Import Time component
 import Time from '../Time.vue'
-// Import Tags component
 import Tags from '../Tags.vue'
-// Import Rewrite component
 import Rewrite from '../Rewrite.vue'
-// Import KUNGalgamerInfo component
 import KUNGalgamerInfo from '../KUNGalgamerInfo.vue'
 
 // Import the function to calculate the time difference
@@ -27,10 +21,7 @@ import { hourDiff } from '@/utils/time'
 
 import { TopicReply } from '@/api/index'
 
-// Import the topic page store
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-
-// Use the non-persistent comment store
 import { useTempCommentStore } from '@/store/temp/comment'
 import { storeToRefs } from 'pinia'
 
@@ -45,10 +36,7 @@ const props = defineProps<{
   title: string
 }>()
 
-// Reactive values of props for use in child components
 const replies = computed(() => props.repliesData)
-
-// Value to control the comment panel visibility
 const isCommentPanelOpen = ref(false)
 
 // Function to toggle the comment panel's state
@@ -79,7 +67,6 @@ const handleClickComment = (
     appear
   >
     <div>
-      <!-- Apply style changes for topics upvoted within 10 hours -->
       <div
         class="other-topic-container"
         v-for="(reply, index) in replies"
@@ -87,23 +74,16 @@ const handleClickComment = (
         :key="`${index}`"
         :id="`kungalgame-reply-${reply.floor}`"
       >
-        <!-- Floor marker -->
         <div class="floor" :class="reply.edited ? 'rewrite' : ''">
           <span>K{{ reply.floor }}</span>
         </div>
-        <!-- Container for the content of other people's topics -->
+
         <div class="container">
-          <!-- Content of other people's replies -->
           <div class="content">
-            <!-- Upper part of other people's replies -->
             <div class="article">
-              <!-- Left side of the upper part of other people's replies -->
               <KUNGalgamerInfo :user="reply.r_user" />
-              <!-- Right side of the upper part of other people's replies -->
               <div class="right">
-                <!-- Top part on the right side -->
                 <div class="top">
-                  <!-- Left side of the top part -->
                   <div class="reply">
                     {{ `${$tm('topic.panel.to')} @` }}
 
@@ -111,23 +91,20 @@ const handleClickComment = (
                       {{ reply.to_user.name }}
                     </span>
                   </div>
-                  <!-- Right side of the top part -->
+
                   <Rewrite v-if="reply.edited" :time="reply.edited" />
                 </div>
 
-                <!-- Rich text content display area -->
                 <Content :content="reply.content" />
               </div>
             </div>
-            <!-- Bottom part of other people's replies -->
+
             <div class="bottom">
               <Tags :tags="reply.tags" />
               <Time :time="reply.time" />
             </div>
           </div>
 
-          <!-- Placeholder for views, title, and category as replies do not have them -->
-          <!-- Footer component -->
           <Footer
             :info="{
               tid: reply.tid,
@@ -166,7 +143,6 @@ const handleClickComment = (
             </template>
           </Footer>
 
-          <!-- Comment area -->
           <Comments
             :tid="reply.tid"
             :rid="reply.rid"
@@ -179,8 +155,6 @@ const handleClickComment = (
 </template>
 
 <style lang="scss" scoped>
-/* Other people's replies */
-/* Styling for each person's topic */
 .other-topic-container {
   width: 100%;
   min-height: 300px;
@@ -191,7 +165,6 @@ const handleClickComment = (
   align-items: center;
 }
 
-/* Styling for individual replies */
 .floor {
   width: 100%;
   display: flex;
@@ -213,7 +186,6 @@ const handleClickComment = (
   }
 }
 
-/* Container for the content of other people's topics */
 .container {
   width: 100%;
   display: flex;
@@ -226,7 +198,6 @@ const handleClickComment = (
   transition: all 0.5s;
 }
 
-/* Content of other people's replies */
 .content {
   width: 100%;
   display: flex;
@@ -234,20 +205,22 @@ const handleClickComment = (
   flex-direction: column;
 }
 
-/* Upper part of other people's replies */
 .article {
   display: flex;
   flex-grow: 1;
 }
 
-/* Right side of the upper part of other people's replies */
+.bottom {
+  border-top: 1px solid var(--kungalgame-blue-1);
+  border-bottom: 1px solid var(--kungalgame-blue-1);
+}
+
 .right {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-/* Top part on the right side */
 .top {
   display: flex;
   justify-content: space-between;
@@ -256,7 +229,6 @@ const handleClickComment = (
   letter-spacing: 1px;
 }
 
-/* Left side of the top part */
 .reply {
   font-size: 17px;
   color: var(--kungalgame-font-color-3);
@@ -283,20 +255,16 @@ const handleClickComment = (
   margin-right: 17px;
 }
 
-/* Right side of the top part */
-/* Styling for replies that have been edited */
 .rewrite {
   span {
     transform: rotate(0) translateY(0) translateX(-7px);
   }
 }
 
-/* Styling for upvoted replies within 10 hours */
 .active-upvote .container {
   border: 1px solid var(--kungalgame-red-4);
 }
 
-/* Styling for activated topics when scrolling to a specific topic */
 .active .container {
   border: 1px solid var(--kungalgame-red-3);
   background-color: var(--kungalgame-trans-red-1);

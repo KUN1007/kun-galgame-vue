@@ -69,7 +69,7 @@ const handleBackToTop = () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid var(--kungalgame-trans-red-4);
+  border: 1px solid var(--kungalgame-trans-blue-4);
   background-color: var(--kungalgame-trans-blue-0);
   box-shadow: var(--shadow);
   border-radius: 5px;

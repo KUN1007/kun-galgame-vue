@@ -2,13 +2,10 @@
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
-// Import i18n function for formatting time
 import { formatTimeDifference } from '@/utils/formatTime'
 
-// Import settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-// Use the settings panel store
 const settingsStore = storeToRefs(useKUNGalgameSettingsStore())
 
 import { getPlainText } from '@/utils/getPlainText'
@@ -48,7 +45,6 @@ const getRepliesCount = computed(() => {
         <span>{{ title }}</span>
       </div>
 
-      <!-- Topic status, likes, etc. -->
       <div class="status">
         <ul>
           <li>
@@ -64,7 +60,6 @@ const getRepliesCount = computed(() => {
           </li>
         </ul>
 
-        <!-- Publication date of the topic -->
         <div class="time">
           <span>
             {{
@@ -78,7 +73,6 @@ const getRepliesCount = computed(() => {
       </div>
     </div>
 
-    <!-- Preview introduction of the topic -->
     <div class="introduction">
       <p>
         {{ plainText }}
@@ -88,7 +82,6 @@ const getRepliesCount = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-/* Topic information */
 .topic-info {
   width: 100%;
   height: 100%;
@@ -97,19 +90,15 @@ const getRepliesCount = computed(() => {
   color: var(--kungalgame-font-color-3);
 }
 
-/* Header of the topic display */
 .summary {
   width: 100%;
-  /* The three small parts of the header are flex containers */
   display: flex;
   justify-content: space-between;
 }
 
-/* Header information of the topic, title, date, etc. */
 .title {
   width: 100%;
   height: 100%;
-  /* No line break, ellipsis for overflow */
   display: flex;
   align-items: center;
   display: inline-block;
@@ -119,7 +108,6 @@ const getRepliesCount = computed(() => {
   color: var(--kungalgame-blue-5);
 }
 
-/* Information such as likes and dislikes for the topic */
 .status {
   display: flex;
   align-items: center;
@@ -146,7 +134,7 @@ const getRepliesCount = computed(() => {
     }
   }
 }
-/* Posting date */
+
 .time {
   width: 77px;
   font-size: x-small;
@@ -158,7 +146,6 @@ const getRepliesCount = computed(() => {
   white-space: nowrap;
 }
 
-/* Preview introduction of the topic */
 .introduction {
   width: 100%;
   display: flex;

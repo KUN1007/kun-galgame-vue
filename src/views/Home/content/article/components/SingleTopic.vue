@@ -25,8 +25,7 @@ const props = defineProps<{
   height: 70px;
   flex-shrink: 0;
   border-radius: 3px;
-  padding: 5px;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-blue-0);
   display: flex;
   flex-shrink: 0;
 
@@ -44,6 +43,7 @@ const props = defineProps<{
       Here it's 2 + 5 + 60 + 5 + 2 = 74px */
   a {
     width: calc(100% - 74px);
+    padding: 7px 0;
   }
 }
 </style>
