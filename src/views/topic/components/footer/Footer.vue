@@ -185,7 +185,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
         :category="content.category"
         :to-uid="toUser.uid"
         v-tooltip="{
-          message: { en: 'Rewrite Topic', zh: 'Rewrite 话题' },
+          message: { en: 'Rewrite', zh: 'Rewrite' },
           position: 'bottom',
         }"
       />
