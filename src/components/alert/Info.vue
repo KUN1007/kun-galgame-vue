@@ -55,7 +55,7 @@ const handleClose = () => {
   min-height: 120px;
   width: 100%;
   color: var(--kungalgame-font-color-3);
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-white-2);
   backdrop-filter: blur(2px);
   box-shadow: var(--shadow);
   border-top: 1px solid var(--kungalgame-blue-1);
