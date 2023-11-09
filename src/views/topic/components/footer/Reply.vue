@@ -41,7 +41,6 @@ const handleClickReply = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   color: var(--kungalgame-blue-4);
   cursor: pointer;
   transition: all 0.2s;
@@ -56,6 +55,7 @@ const handleClickReply = () => {
     top: 0;
     left: 0;
     border: 2px solid transparent;
+    box-sizing: border-box;
   }
   &:hover {
     color: var(--kungalgame-pink-4);

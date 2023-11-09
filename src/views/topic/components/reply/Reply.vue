@@ -137,6 +137,10 @@ const handleClickComment = (
                   )
                 "
                 class="icon"
+                v-tooltip="{
+                  message: { en: 'Comment Topic', zh: '评论话题' },
+                  position: 'bottom',
+                }"
               >
                 <Icon icon="fa-regular:comment-dots" />
               </span>

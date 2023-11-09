@@ -104,10 +104,20 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
           :rid="info.rid"
           :upvotes="info.upvotes"
           :to-uid="toUser.uid"
+          v-tooltip="{
+            message: { en: 'Upvote', zh: '推话题' },
+            position: 'bottom',
+          }"
         />
 
         <!-- Number of views (only shown for the topic owner) -->
-        <li v-if="info.views > 0">
+        <li
+          v-if="info.views > 0"
+          v-tooltip="{
+            message: { en: 'Views', zh: '浏览数' },
+            position: 'bottom',
+          }"
+        >
           <span class="icon"><Icon icon="ic:outline-remove-red-eye" /></span>
           {{ info.views }}
         </li>
@@ -119,6 +129,10 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
           :rid="info.rid"
           :likes="info.likes"
           :to-uid="toUser.uid"
+          v-tooltip="{
+            message: { en: 'Likes', zh: '点赞数' },
+            position: 'bottom',
+          }"
         />
 
         <!-- Dislike -->
@@ -128,6 +142,10 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
           :rid="info.rid"
           :dislikes="info.dislikes"
           :to-uid="toUser.uid"
+          v-tooltip="{
+            message: { en: 'Dislikes', zh: '点踩数' },
+            position: 'bottom',
+          }"
         />
       </ul>
     </div>
@@ -142,7 +160,14 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
       />
 
       <!-- Share -->
-      <span @click="handleClickShare" class="icon">
+      <span
+        @click="handleClickShare"
+        class="icon"
+        v-tooltip="{
+          message: { en: 'Share', zh: '分享话题' },
+          position: 'bottom',
+        }"
+      >
         <Icon icon="majesticons:share-line" />
       </span>
 
@@ -159,6 +184,10 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
         :tags="content.tags"
         :category="content.category"
         :to-uid="toUser.uid"
+        v-tooltip="{
+          message: { en: 'Rewrite Topic', zh: 'Rewrite 话题' },
+          position: 'bottom',
+        }"
       />
 
       <!-- Comment slot -->

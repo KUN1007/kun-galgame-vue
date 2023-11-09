@@ -155,9 +155,13 @@ onBeforeUnmount(() => {
   padding: 0;
   flex-shrink: 0;
   border: 2px solid var(--kungalgame-red-4);
+
+  & > div {
+    margin: 0 !important;
+  }
 }
 
-.list-move, /* Applied to moving elements during the transition */
+.list-move,
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
