@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
 const { name, avatar } = storeToRefs(useKUNGalgameUserStore())
 
 const currentPageUsername = ref(name)
-
 const currentPageUserAvatar = ref(avatar)
 
 const props = defineProps<{
@@ -16,20 +15,21 @@ const props = defineProps<{
   moemoepoint?: number
 }>()
 
-// Use watchEffect instead of watch, it's kind of confusing, right?
-//  Yeah, I'm confused too, ahahaha
-watchEffect(() => {
-  // Users without avatars
-  if (props.name) {
-    currentPageUsername.value = props.name
-    currentPageUserAvatar.value = ''
+watch(
+  () => props.name,
+  () => {
+    // Users without avatars
+    if (props.name) {
+      currentPageUsername.value = props.name
+      currentPageUserAvatar.value = ''
+    }
+    // Users with avatars
+    if (props.name && props.avatar) {
+      currentPageUsername.value = props.name
+      currentPageUserAvatar.value = props.avatar
+    }
   }
-  // Users with avatars
-  if (props.name && props.avatar) {
-    currentPageUsername.value = props.name
-    currentPageUserAvatar.value = props.avatar
-  }
-})
+)
 
 const mpWidth = computed(() => {
   return props.moemoepoint ? `${props.moemoepoint % 100}%` : '0%'

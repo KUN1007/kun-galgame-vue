@@ -15,21 +15,21 @@ const user = computed(() => props.user)
 </script>
 
 <template>
-  <!-- Content area for displaying the user's information on the left side -->
   <div class="kungalgamer">
-    <!-- Avatar -->
     <div class="avatar">
-      <!-- Avatar image -->
-      <RouterLink :to="`/kungalgamer/${user.uid}/info`">
+      <RouterLink
+        :aria-label="`KUN Visual Novel, 鲲 Galgame, User ${props.user.name}`"
+        :to="`/kungalgamer/${user.uid}/info`"
+      >
         <img v-if="user.avatar" :src="user.avatar" :alt="user.name" />
       </RouterLink>
     </div>
+
     <div class="info">
-      <!-- Name -->
       <div class="name">
         {{ user.name }}
       </div>
-      <!-- Moemoe Points -->
+
       <div class="moemoepoint">
         <span><Icon icon="line-md:star-alt-twotone"></Icon></span>
         <span>{{ user.moemoepoint }}</span>
@@ -39,7 +39,6 @@ const user = computed(() => props.user)
 </template>
 
 <style lang="scss" scoped>
-/* Left side user information in the content area */
 .kungalgamer {
   display: flex;
   flex-direction: column;
@@ -47,7 +46,7 @@ const user = computed(() => props.user)
   margin-bottom: 20px;
   color: var(--kungalgame-font-color-3);
 }
-/* Avatar */
+
 .avatar {
   width: 100px;
   margin-top: 17px;
@@ -57,7 +56,7 @@ const user = computed(() => props.user)
     height: 100px;
   }
 }
-/* Name */
+
 .name {
   font-size: small;
   display: flex;
@@ -65,7 +64,7 @@ const user = computed(() => props.user)
   margin-top: 17px;
   font-size: 17px;
 }
-/* Moemoe Points */
+
 .moemoepoint {
   margin-top: 10px;
   display: flex;
@@ -94,7 +93,6 @@ const user = computed(() => props.user)
   }
 
   .avatar {
-    /* Prevent page collapse when the image fails to load */
     width: 70px;
     height: 70px;
     margin-top: 10px;
