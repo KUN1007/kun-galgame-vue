@@ -3,6 +3,7 @@ import { useLoliDataURL } from '@/hooks/useLoli'
 import { onMounted, ref } from 'vue'
 
 import LoliSkeleton from '@/components/skeleton/settings-panel/LoliSkeleton.vue'
+import KUNGalgameLoading from '@/components/loading/KUNGalgameLoading.vue'
 
 const loliData = ref({
   loliBodyLeft: '',
@@ -21,10 +22,13 @@ const loliData = ref({
   mouth: '',
   face: '',
 })
+const isShowLoading = ref(false)
 
 const reGetLoli = async () => {
+  isShowLoading.value = true
   await new Promise((res) => setTimeout(res, 2000))
   loliData.value = await useLoliDataURL()
+  isShowLoading.value = false
 }
 
 onMounted(async () => {
@@ -69,6 +73,8 @@ onMounted(async () => {
     </div>
 
     <LoliSkeleton v-if="!loliData.body" />
+
+    <KUNGalgameLoading v-if="isShowLoading" style="top: 310px; left: 140px" />
   </div>
 </template>
 

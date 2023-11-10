@@ -230,11 +230,13 @@ onMounted(async () => {
   margin-top: 10px;
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: var(--kungalgame-trans-white-9);
   transition: all 0.2s;
+  color: var(--kungalgame-blue-4);
 
   &:hover {
-    background-color: var(--kungalgame-trans-blue-2);
+    color: var(--kungalgame-white);
+    background-color: var(--kungalgame-blue-4);
   }
 }
 </style>

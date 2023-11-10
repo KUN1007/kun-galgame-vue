@@ -182,9 +182,9 @@ const handelCloseSettingsPanel = () => {
   font-size: 15px;
   cursor: pointer;
   margin-top: 20px;
-  color: var(--kungalgame-font-color-3);
+  color: var(--kungalgame-red-4);
   border: 1px solid var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-1);
+  background-color: var(--kungalgame-trans-white-9);
   width: 100%;
   height: 30px;
   transition: all 0.2s;
