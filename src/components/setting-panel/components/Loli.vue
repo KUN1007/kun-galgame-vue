@@ -26,13 +26,11 @@ const isShowLoading = ref(false)
 
 const reGetLoli = async () => {
   isShowLoading.value = true
-  await new Promise((res) => setTimeout(res, 2000))
   loliData.value = await useLoliDataURL()
   isShowLoading.value = false
 }
 
 onMounted(async () => {
-  await new Promise((res) => setTimeout(res, 2000))
   loliData.value = await useLoliDataURL()
 })
 </script>

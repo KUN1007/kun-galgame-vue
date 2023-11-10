@@ -1,29 +1,36 @@
-<script setup lang="ts"></script>
+/* When page blank, loading */
 
-<template>
-  <span class="loader"></span>
-</template>
+:root {
+  --kungalgame-blue-1: #b6e3ff;
+  --kungalgame-blue-4: #218bff;
 
-<style lang="scss" scoped>
-.loader {
-  width: 0;
+  --kungalgame-trans-blue-1: #b6e3ff77;
+
+  --kungalgame-shadow-0: 0px 0px 17px 5px var(--kungalgame-blue-1);
+}
+
+#kungalgame-loading-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+#kungalgame-loading {
   height: 4.8px;
-  display: inline-block;
-  position: relative;
   background: var(--kungalgame-blue-4);
   box-shadow: var(--kungalgame-shadow-0);
   box-sizing: border-box;
-  animation: animFw 8s linear infinite;
+  animation: loading 7.7s linear infinite;
+  position: relative;
 }
-.loader::after,
-.loader::before {
+
+#kungalgame-loading::after,
+#kungalgame-loading::before {
   content: '';
   width: 10px;
   height: 1px;
-  background: linear-gradient(
-    var(--kungalgame-trans-pink-1),
-    var(--kungalgame-trans-blue-1)
-  );
+  background: var(--kungalgame-blue-4);
   position: absolute;
   top: 9px;
   right: -2px;
@@ -32,13 +39,20 @@
   box-sizing: border-box;
   animation: coli1 0.3s linear infinite;
 }
-.loader::before {
+
+#kungalgame-loading::before {
   top: -4px;
   transform: rotate(45deg);
   animation: coli2 0.3s linear infinite;
 }
 
-@keyframes animFw {
+#kungalgame-loading h2 {
+  position: absolute;
+  top: 17px;
+  color: var(--kungalgame-blue-4);
+}
+
+@keyframes loading {
   0% {
     width: 0;
   }
@@ -68,4 +82,3 @@
     opacity: 0.7;
   }
 }
-</style>
