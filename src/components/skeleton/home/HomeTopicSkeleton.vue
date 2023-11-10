@@ -27,13 +27,14 @@ const numberSkeleton = computed(() => (props.number ? props.number : 1))
   height: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 7px;
 }
 
 .container {
   background-color: var(--kungalgame-trans-white-5);
   border-radius: 3px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 12px;
   width: 100%;
   display: flex;
 
