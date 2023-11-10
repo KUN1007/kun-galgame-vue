@@ -113,7 +113,7 @@ onBeforeUnmount(() => {
     </TransitionGroup>
 
     <!-- Skeleton -->
-    <HomeTopicSkeleton :number="7" v-if="!topics.length" />
+    <HomeTopicSkeleton v-if="!topics.length" />
 
     <HomeTopicSkeleton v-if="isLoading && topics.length >= 16" />
   </div>

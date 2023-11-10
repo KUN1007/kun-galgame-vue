@@ -5,6 +5,8 @@
 import { ref, onMounted } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
+import TopicAsideSkeleton from '@/components/skeleton/topic/TopicAsideSkeleton.vue'
+
 import { TopicAside } from '@/api/index'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 
@@ -15,7 +17,7 @@ const tid = route.params.tid as string
 const topicData = ref<TopicAside[]>()
 
 const fetchTopicData = async () => {
-  topicData.value = (
+  return (
     await useKUNGalgameTopicStore().getPopularTopicsByUserUid({
       tid: tid,
     })
@@ -23,16 +25,24 @@ const fetchTopicData = async () => {
 }
 
 onMounted(async () => {
-  fetchTopicData()
+  topicData.value = await fetchTopicData()
 })
 </script>
 
 <template>
-  <div class="master" v-if="topicData?.length">
+  <div class="master">
     <div class="title">
       {{ $tm('topic.aside.master') }}
     </div>
-    <div class="topic" v-for="(kun, index) in topicData" :key="index">
+
+    <TopicAsideSkeleton v-if="!topicData" />
+
+    <div
+      class="topic"
+      v-else-if="topicData"
+      v-for="(kun, index) in topicData"
+      :key="index"
+    >
       <RouterLink :to="`/topic/${kun.tid}`">{{ kun.title }}</RouterLink>
     </div>
   </div>

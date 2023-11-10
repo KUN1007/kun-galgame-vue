@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, toRaw } from 'vue'
+import TopicAsideSkeleton from '@/components/skeleton/topic/TopicAsideSkeleton.vue'
 import { useRoute } from 'vue-router'
 import { TopicAside } from '@/api/index'
 import { useKUNGalgameTopicStore } from '@/store/modules/topic'
@@ -17,7 +18,7 @@ const tid = parseInt(route.params.tid as string)
 const topicData = ref<TopicAside[]>()
 
 const fetchTopicData = async () => {
-  topicData.value = (
+  return (
     await useKUNGalgameTopicStore().getRelatedTopicsByTags({
       tags: tags,
       tid: tid,
@@ -26,16 +27,18 @@ const fetchTopicData = async () => {
 }
 
 onMounted(async () => {
-  fetchTopicData()
+  topicData.value = await fetchTopicData()
 })
 </script>
 
 <template>
-  <!-- Other topics with the same tags -->
-  <div class="other" v-if="topicData?.length">
+  <div class="other">
     <div class="title">
       {{ $tm('topic.aside.tags') }}
     </div>
+
+    <TopicAsideSkeleton v-if="!topicData" />
+
     <div class="topic" v-for="(kun, index) in topicData" :key="index">
       <RouterLink :to="`/topic/${kun.tid}`">{{ kun.title }}</RouterLink>
     </div>
