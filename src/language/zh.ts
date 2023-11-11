@@ -97,7 +97,9 @@ export default {
       commentSort: '按评论排序',
       updatedSort: '按更新排序',
       tags: '相同标签下的其它话题',
+      tagsEmpty: '该标签下暂无其它话题',
       master: '楼主的其它话题',
+      masterEmpty: '楼主暂无其它话题',
     },
     content: {
       status: '话题状态',

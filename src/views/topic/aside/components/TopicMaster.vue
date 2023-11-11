@@ -13,8 +13,8 @@ import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 const route = useRoute()
 
 const tid = route.params.tid as string
-
 const topicData = ref<TopicAside[]>()
+const isEmpty = ref(false)
 
 const fetchTopicData = async () => {
   return (
@@ -26,6 +26,7 @@ const fetchTopicData = async () => {
 
 onMounted(async () => {
   topicData.value = await fetchTopicData()
+  isEmpty.value = !topicData.value.length
 })
 </script>
 
@@ -37,14 +38,13 @@ onMounted(async () => {
 
     <TopicAsideSkeleton v-if="!topicData" />
 
-    <div
-      class="topic"
-      v-else-if="topicData"
-      v-for="(kun, index) in topicData"
-      :key="index"
-    >
+    <div class="topic" v-for="(kun, index) in topicData" :key="index">
       <RouterLink :to="`/topic/${kun.tid}`">{{ kun.title }}</RouterLink>
     </div>
+
+    <span class="empty" v-if="isEmpty">
+      {{ $tm('topic.aside.masterEmpty') }}
+    </span>
   </div>
 </template>
 
@@ -101,5 +101,16 @@ onMounted(async () => {
       align-items: center;
     }
   }
+}
+
+.empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px;
+  font-size: 14px;
+  font-style: oblique;
 }
 </style>

@@ -97,7 +97,9 @@ export default {
       commentSort: 'Reply Sort',
       updatedSort: 'Update Sort',
       tags: 'Topics Under the Same Tags',
+      tagsEmpty: 'The tags currently has no other topics',
       master: 'Other Topics of The Master',
+      masterEmpty: 'Master currently has no other topics',
     },
     content: {
       status: 'Topic status',
