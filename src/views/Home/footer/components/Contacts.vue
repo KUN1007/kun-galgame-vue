@@ -7,6 +7,16 @@ import { Icon } from '@iconify/vue'
     <ul>
       <li>
         <a
+          aria-label="KUN Visual Novel Official Telegram Group"
+          href="https://t.me/kungalgame"
+          target="_blank"
+        >
+          <Icon icon="line-md:telegram" />
+        </a>
+      </li>
+
+      <li>
+        <a
           aria-label="KUN Visual Novel Official Twitter (X) Account | 鲲 Galgame 论坛官方推特账号"
           href="https://twitter.com/kungalgame"
           target="_blank"
@@ -22,16 +32,6 @@ import { Icon } from '@iconify/vue'
           target="_blank"
         >
           <Icon icon="line-md:github-loop" />
-        </a>
-      </li>
-
-      <li>
-        <a
-          aria-label="KUN Visual Novel Official Telegram Group"
-          href="https://t.me/kungalgame"
-          target="_blank"
-        >
-          <Icon icon="line-md:telegram" />
         </a>
       </li>
 
@@ -60,7 +60,7 @@ import { Icon } from '@iconify/vue'
 
 <style lang="scss" scoped>
 .kungalgame-contact {
-  width: 180px;
+  width: 160px;
   display: flex;
   justify-content: center;
   align-items: center;

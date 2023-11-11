@@ -77,6 +77,7 @@ export default {
         acgngame: 'ACGNGAME',
         shinnku: `Shinnku's Visual Novel`,
         ymgal: 'YM galgame',
+        kun: `KUN's Blog`,
       },
       describe: {
         title: 'KUN Visual Novel',

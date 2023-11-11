@@ -77,6 +77,7 @@ export default {
         acgngame: 'ACGNGAME',
         shinnku: '失落的小站',
         ymgal: '月幕 galgame',
+        kun: '鲲的博客',
       },
       describe: {
         title: '鲲 Galgame',

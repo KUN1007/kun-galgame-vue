@@ -58,7 +58,6 @@ const mainPageWidth = computed(() => {
   .content-container {
     width: 80%;
     border: none;
-    background-color: var(--kungalgame-trans-white-9);
   }
 }
 
@@ -70,7 +69,6 @@ const mainPageWidth = computed(() => {
   .content-container {
     width: 100%;
     border: none;
-    background-color: var(--kungalgame-trans-white-9);
   }
 }
 </style>

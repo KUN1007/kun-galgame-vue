@@ -3,6 +3,7 @@ interface FooterInfoItem {
   index: number
   name: string
   router: string
+  label: string
 }
 
 interface FooterInfo {
@@ -22,11 +23,13 @@ const info: FooterInfo[] = [
         index: 1,
         name: `daily`,
         router: `/pool`,
+        label: 'KUN Visual Novel Daily Communicate | 鲲 Galgame 日常交流',
       },
       {
         index: 2,
         name: `chat`,
         router: `/contact`,
+        label: 'KUN Visual Novel Contacts | 鲲 Galgame 联系我们',
       },
     ],
   },
@@ -38,16 +41,22 @@ const info: FooterInfo[] = [
         index: 1,
         name: `execute`,
         router: `/technique`,
+        label:
+          'KUN Visual Novel Technique, Visual Novel Execute Problem | 鲲 Galgame 技术交流, Galgame 运行问题',
       },
       {
         index: 2,
         name: `globalization`,
         router: `/technique`,
+        label:
+          'KUN Visual Novel Technique, Visual Novel Globalization | 鲲 Galgame 技术交流, Galgame 汉化',
       },
       {
         index: 3,
         name: `make`,
         router: `/technique`,
+        label:
+          'KUN Visual Novel Technique, Visual Novel Maker | 鲲 Galgame 技术交流, Galgame 制作',
       },
     ],
   },
@@ -59,16 +68,19 @@ const info: FooterInfo[] = [
         index: 1,
         name: `privacy`,
         router: `/privacy`,
+        label: 'KUN Visual Novel Privacy | 鲲 Galgame 隐私政策',
       },
       {
         index: 2,
         name: `principle`,
         router: `/kungalgame`,
+        label: 'KUN Visual Novel Principle | 鲲 Galgame 运营理念',
       },
       {
         index: 3,
         name: `balance`,
         router: `/balance`,
+        label: 'KUN Visual Novel P & L | 鲲 Galgame 收支公示',
       },
     ],
   },
@@ -78,17 +90,27 @@ const link: FooterInfoItem[] = [
   {
     index: 1,
     name: `acgngame`,
-    router: `http://acgngames.net`,
+    router: `https://acgngames.net`,
+    label: 'ACGNGAME, Gal World, Galgame 游戏爱好者之家',
   },
   {
     index: 2,
     name: `shinnku`,
-    router: `http://shinnku.com`,
+    router: `https://shinnku.com`,
+    label: '失落小站 - galgame资源站',
   },
   {
     index: 3,
     name: `ymgal`,
-    router: `http://www.ymgal.games`,
+    router: `https://www.ymgal.games`,
+    label:
+      '月幕Galgame-最戳你XP的美少女游戏综合交流平台 | 来感受这绝妙的艺术体裁',
+  },
+  {
+    index: 4,
+    name: `kun`,
+    router: `https://soft.moe`,
+    label: `KUN's Blog | KUN's Blog | 鲲的博客`,
   },
 ]
 </script>
@@ -110,7 +132,7 @@ const link: FooterInfoItem[] = [
 
       <ul class="function" v-for="yuyu in kun.list" :key="yuyu.index">
         <li>
-          <RouterLink :to="yuyu.router">
+          <RouterLink :to="yuyu.router" :aria-label="yuyu.label">
             {{ $tm(`mainPage.footer.item['${yuyu.name}']`) }}
           </RouterLink>
         </li>
@@ -119,13 +141,16 @@ const link: FooterInfoItem[] = [
 
     <div class="catalog">
       <h2>
-        <span>{{ $tm(`mainPage.footer.title.friend`) }}</span>
+        <span>
+          {{ $tm(`mainPage.footer.title.friend`) }}
+          {{ `(${link.length})` }}
+        </span>
       </h2>
 
-      <ul class="function" v-for="azkhx in link" :key="azkhx.index">
+      <ul class="function" v-for="kun in link" :key="kun.index">
         <li>
-          <a :href="azkhx.router" target="_blank">
-            {{ $tm(`mainPage.footer.item['${azkhx.name}']`) }}
+          <a :href="kun.router" target="_blank" :aria-label="kun.label">
+            {{ $tm(`mainPage.footer.item.${kun.name}`) }}
           </a>
         </li>
       </ul>
@@ -153,6 +178,8 @@ const link: FooterInfoItem[] = [
   flex-direction: column;
   color: var(--kungalgame-font-color-2);
   font-size: small;
+  height: 117px;
+  overflow-y: scroll;
 }
 
 .function {
