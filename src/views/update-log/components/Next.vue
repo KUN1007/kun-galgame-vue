@@ -22,8 +22,8 @@ import { Icon } from '@iconify/vue'
         {{ $tm('update.visit') }}
       </a>
       <a href="https://github.com/KUN1007/KUNGalGame-vue" target="_blank">
-        <Icon class="icon" icon="raphael:github"
-      /></a>
+        <Icon class="icon" icon="line-md:github-loop" />
+      </a>
     </div>
 
     <!-- Estimated update time -->
