@@ -2,14 +2,13 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
-// Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// Global message component (top)
 import Message from '@/components/alert/Message'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 
-// Accept props from the parent component
+import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { useTempTopicStore } from '@/store/temp/topic/topic'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
+
 const props = defineProps<{
   uid: number
   tid: number
@@ -21,7 +20,6 @@ const props = defineProps<{
 const isUpvote = ref(props.upvotes.includes(props.uid))
 const upvoteCount = ref(props.upvotes.length)
 
-// Reactive
 watch(
   () => props.upvotes,
   (newUpvote) => {
@@ -30,22 +28,17 @@ watch(
   }
 )
 
-// Upvote topic
 const upvoteTopic = async () => {
-  // Show a confirmation dialog
   const res = await useKUNGalgameMessageStore().alert(
     'AlertInfo.edit.upvoteTopic',
     true
   )
 
-  // Implement user's confirmation or cancellation logic here
   if (res) {
     const { tid, toUid } = props
-    // Call the API to upvote the topic
-    const res = await useKUNGalgameTopicStore().updateTopicUpvote(tid, toUid)
+    const res = await useTempTopicStore().updateTopicUpvote(tid, toUid)
 
     if (res.code === 200) {
-      // Update the upvote count
       upvoteCount.value++
       isUpvote.value = true
 
@@ -56,26 +49,17 @@ const upvoteTopic = async () => {
   }
 }
 
-// Upvote reply
 const upvoteReply = async () => {
-  // Show a confirmation dialog
   const res = await useKUNGalgameMessageStore().alert(
     'AlertInfo.edit.upvoteReply',
     true
   )
 
-  // Implement user's confirmation or cancellation logic here
   if (res) {
     const { tid, toUid, rid } = props
-    // Call the API to upvote the reply
-    const res = await useKUNGalgameTopicStore().updateReplyUpvote(
-      tid,
-      toUid,
-      rid
-    )
+    const res = await useTempReplyStore().updateReplyUpvote(tid, toUid, rid)
 
     if (res.code === 200) {
-      // Update the upvote count
       upvoteCount.value++
       isUpvote.value = true
 
@@ -86,15 +70,12 @@ const upvoteReply = async () => {
   }
 }
 
-// Upvote
 const handleClickUpvote = async () => {
-  // Users cannot upvote their own content
   if (props.uid === props.toUid) {
     Message('You cannot upvote your own topic', '您不可以推自己的话题', 'warn')
     return
   }
 
-  // Check if the user has enough moemoepoints to use the upvote feature
   if (useKUNGalgameUserStore().moemoepoint < 1100) {
     Message(
       `Your moemoepoints are less than 1100, so you can't use the topic suggestion feature`,
@@ -104,7 +85,6 @@ const handleClickUpvote = async () => {
     return
   }
 
-  // If rid is 0, it's the topic's author
   if (props.rid === 0) {
     upvoteTopic()
   } else {

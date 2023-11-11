@@ -3,7 +3,7 @@ import { MilkdownProvider } from '@milkdown/vue'
 import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/vue'
 import ReadOnlyMilkdown from '@/components/milkdown/ReadOnlyMilkdown.vue'
 
-defineProps<{
+const props = defineProps<{
   content: string
 }>()
 </script>
@@ -12,10 +12,7 @@ defineProps<{
   <div class="kungalgame-topic-content">
     <MilkdownProvider>
       <ProsemirrorAdapterProvider>
-        <ReadOnlyMilkdown
-          :is-readonly="true"
-          :value-markdown="$props.content"
-        />
+        <ReadOnlyMilkdown :is-readonly="true" :value-markdown="props.content" />
       </ProsemirrorAdapterProvider>
     </MilkdownProvider>
   </div>
@@ -25,8 +22,6 @@ defineProps<{
 /* Right side content area for the topic */
 .kungalgame-topic-content {
   min-height: 200px;
-  /** 100 + 20 + 20 + 1 = 141px */
-  width: calc(100% - 141px);
   font-size: 15px;
   padding: 17px;
   color: var(--kungalgame-font-color-3);

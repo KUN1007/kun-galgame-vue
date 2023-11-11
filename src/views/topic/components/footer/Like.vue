@@ -2,15 +2,14 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
-// Global message component (top)
+
 import Message from '@/components/alert/Message'
-// Throttle function
+
 import { throttle } from '@/utils/throttle'
 
-// Import topic page store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useTempTopicStore } from '@/store/temp/topic/topic'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 
-// Accept props from the parent component
 const props = defineProps<{
   uid: number
   tid: number
@@ -22,17 +21,14 @@ const props = defineProps<{
 const isLiked = ref(props.likes.includes(props.uid))
 const likesCount = ref(props.likes.length)
 
-// Reactive
 watch(
   () => props.likes,
   (newLikes) => {
-    // Update isLiked and likesCount
     isLiked.value = newLikes.includes(props.uid)
     likesCount.value = newLikes.length
   }
 )
 
-// Throttle callback
 const throttleCallback = () => {
   Message(
     'You can only perform one operation within 1007 milliseconds',
@@ -41,39 +37,29 @@ const throttleCallback = () => {
   )
 }
 
-// Like operation
 const likeOperation = async (
   tid: number,
   rid: number,
   toUid: number,
   isPush: boolean
 ) => {
-  // If rid is zero, it means liking the main topic
   const isMasterTopic = rid === 0
   if (isMasterTopic) {
-    return await useKUNGalgameTopicStore().updateTopicLike(tid, toUid, isPush)
+    return await useTempTopicStore().updateTopicLike(tid, toUid, isPush)
   } else {
-    return await useKUNGalgameTopicStore().updateReplyLike(
-      tid,
-      toUid,
-      rid,
-      isPush
-    )
+    return await useTempReplyStore().updateReplyLike(tid, toUid, rid, isPush)
   }
 }
 
-// Like / Unlike
 const toggleLike = async () => {
-  // Current user cannot like themselves
   if (props.uid === props.toUid) {
     Message('You cannot like yourself', '您不可以给自己点赞', 'warn')
     return
   }
 
   const { tid, rid, toUid } = props
-  const isPush = !isLiked.value // Invert the value to like or unlike
+  const isPush = !isLiked.value
 
-  // Perform like or unlike operation
   const res = await likeOperation(tid, rid, toUid, isPush)
 
   if (res.code === 200) {
@@ -94,17 +80,14 @@ const toggleLike = async () => {
   }
 }
 
-// Throttled function, can only trigger like once within 1007 milliseconds
 const handleClickLikeThrottled = throttle(toggleLike, 1007, throttleCallback)
 
-// Like
 const handleClickLike = () => {
   handleClickLikeThrottled()
 }
 </script>
 
 <template>
-  <!-- Like -->
   <li>
     <span
       class="icon"
@@ -136,7 +119,6 @@ li {
   }
 }
 
-/* Icon font style */
 .icon {
   font-size: 24px;
   color: var(--kungalgame-font-color-2);

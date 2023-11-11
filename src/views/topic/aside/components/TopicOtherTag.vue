@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref, toRaw } from 'vue'
-import TopicAsideSkeleton from '@/components/skeleton/topic/TopicAsideSkeleton.vue'
 import { useRoute } from 'vue-router'
-import { TopicAside } from '@/api/index'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+
+import TopicAsideSkeleton from '@/components/skeleton/topic/TopicAsideSkeleton.vue'
+
+import { useTempTopicStore } from '@/store/temp/topic/topic'
+import type { TopicAside } from '@/api/index'
 
 const props = defineProps<{
   tags: string[]
@@ -18,7 +20,7 @@ const isEmpty = ref(false)
 
 const fetchTopicData = async () => {
   return (
-    await useKUNGalgameTopicStore().getRelatedTopicsByTags({
+    await useTempTopicStore().getRelatedTopicsByTags({
       tags: tags,
       tid: tid,
     })

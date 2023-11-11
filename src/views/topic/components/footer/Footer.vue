@@ -2,31 +2,22 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
-// Upvote component
+
 import Upvote from './Upvote.vue'
-// Like component
 import Like from './Like.vue'
-// Dislike component
 import Dislike from './Dislike.vue'
-// Reply component
 import Reply from './Reply.vue'
-// Rewrite component
 import Rewrite from './Rewrite.vue'
 
-// Global message component (at the top)
 import Message from '@/components/alert/Message'
 
-// Import the user's store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// Import the settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-// Use the settings panel store
 const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
 
-// Receive props from the parent component
 const props = defineProps<{
   info: {
     tid: number
@@ -130,7 +121,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
           :likes="info.likes"
           :to-uid="toUser.uid"
           v-tooltip="{
-            message: { en: 'Likes', zh: '点赞数' },
+            message: { en: 'Like', zh: '点赞' },
             position: 'bottom',
           }"
         />
@@ -143,7 +134,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
           :dislikes="info.dislikes"
           :to-uid="toUser.uid"
           v-tooltip="{
-            message: { en: 'Dislikes', zh: '点踩数' },
+            message: { en: 'Dislike', zh: '点踩' },
             position: 'bottom',
           }"
         />
@@ -155,8 +146,8 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
       <Reply
         :tid="info.tid"
         :to-user-name="toUser.name"
-        :to_uid="toUser.uid"
-        :to_floor="toFloor"
+        :to-uid="toUser.uid"
+        :to-floor="toFloor"
       />
 
       <!-- Share -->
@@ -164,7 +155,7 @@ Link: https://www.kungal.com/topic/${props.info.tid}`
         @click="handleClickShare"
         class="icon"
         v-tooltip="{
-          message: { en: 'Share', zh: '分享话题' },
+          message: { en: 'Share', zh: '分享' },
           position: 'bottom',
         }"
       >

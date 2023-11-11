@@ -1,10 +1,7 @@
 <script setup lang="ts">
-// Import icons
-import { Icon } from '@iconify/vue'
-// Import animations
-import 'animate.css'
-// Import Vue asynchronous functions
 import { computed, defineAsyncComponent } from 'vue'
+import { Icon } from '@iconify/vue'
+import 'animate.css'
 
 const MilkdownEditor = defineAsyncComponent(
   () => import('@/components/milkdown/MilkdownEditorWrapper.vue')
@@ -15,28 +12,32 @@ const Tags = defineAsyncComponent(
 import ReplyPanelBtn from './ReplyPanelBtn.vue'
 
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
+
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
 const messageStore = useKUNGalgameMessageStore()
-// Use the topic page store
-const { isShowAdvance, isEdit, replyDraft, replyRewrite, replyPanelWidth } =
-  storeToRefs(useKUNGalgameTopicStore())
+const { isShowAdvance } = storeToRefs(usePersistKUNGalgameTopicStore())
+const { replyDraft, isReplyRewriting, replyPanelWidth } = storeToRefs(
+  usePersistKUNGalgameReplyStore()
+)
+
+const { isEdit } = storeToRefs(useTempReplyStore())
 
 const position = computed(() => {
-  return replyDraft.value.to_floor === 0 ? 'master' : 'reply'
+  return replyDraft.value.toFloor === 0 ? 'master' : 'reply'
 })
 
 const panelWidth = computed(() => `${replyPanelWidth.value}%`)
 
 const handleClosePanel = async () => {
-  // If currently rewriting a reply
-  if (replyRewrite.value.isReplyRewriting) {
+  if (isReplyRewriting.value) {
     const res = await messageStore.alert('AlertInfo.edit.closePanel', true)
-    // Implement user's confirmation or cancel logic here
+
     if (res) {
-      // Clear data because the reply has been updated at this point
-      useKUNGalgameTopicStore().resetRewriteTopicData()
+      usePersistKUNGalgameReplyStore().resetRewriteReplyData()
     } else {
       return
     }
@@ -61,7 +62,7 @@ const handleClosePanel = async () => {
               <span>{{ replyDraft.toUserName }}</span>
               <span>
                 <span class="emoji">(⋈◍＞◡＜◍)。✧♡ </span>
-                {{ `${$tm(`topic.panel.${position}`)} ${replyDraft.to_floor}` }}
+                {{ `${$tm(`topic.panel.${position}`)} ${replyDraft.toFloor}` }}
               </span>
             </h3>
             <Icon

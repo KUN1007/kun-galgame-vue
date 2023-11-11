@@ -24,35 +24,33 @@ const ReplyPanel = defineAsyncComponent(
   () => import('./components/reply/ReplyPanel.vue')
 )
 
-// Import the settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
-// Import the topic page store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-// Temporary data for reply publication responses
-import { useTempReplyStore } from '@/store/temp/reply'
-// Temporary data for reply editing responses
-import { useTempReplyRewriteStore } from '@/store/temp/replyRewrite'
-// Use non-persistent comment store
-import { useTempCommentStore } from '@/store/temp/comment'
+import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
+
+import { useTempTopicStore } from '@/store/temp/topic/topic'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
+import { useTempCommentStore } from '@/store/temp/topic/comment'
+
 import { storeToRefs } from 'pinia'
 
 // Current route
 const route = useRoute()
 
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
+const { isShowAdvance } = storeToRefs(usePersistKUNGalgameTopicStore())
+const { isReplyRewriting } = storeToRefs(usePersistKUNGalgameReplyStore())
+
 const {
-  isShowAdvance,
   isEdit,
   replyRequest,
-  replyRewrite,
   isScrollToTop,
   isLoading,
   scrollToReplyId,
-} = storeToRefs(useKUNGalgameTopicStore())
-const { tempReply } = storeToRefs(useTempReplyStore())
-const { rid, replyContent, tags, edited } = storeToRefs(
-  useTempReplyRewriteStore()
-)
+  tempReply,
+  tempReplyRewrite,
+} = storeToRefs(useTempReplyStore())
+
 const { isShowCommentPanelRid } = storeToRefs(useTempCommentStore())
 
 const tid = computed(() => {
@@ -72,12 +70,12 @@ const contentScrollHeight = ref(0)
 
 // Function to get topic details
 const getTopic = async (): Promise<TopicDetail> => {
-  return (await useKUNGalgameTopicStore().getTopicByTid(tid.value)).data
+  return (await useTempTopicStore().getTopicByTid(tid.value)).data
 }
 
 // Function to get replies
 const getReplies = async (): Promise<TopicReply[]> => {
-  return (await useKUNGalgameTopicStore().getReplies(tid.value)).data
+  return (await useTempReplyStore().getReplies(tid.value)).data
 }
 
 // Call getReplies to get reply data (watch is great!), get replies when sorting is clicked
@@ -109,15 +107,17 @@ watch(
 
 // User edits a reply
 watch(
-  () => edited.value,
+  () => tempReplyRewrite.value.edited,
   () => {
     // Find the reply data in repliesData
-    const reply = repliesData.value.find((reply) => reply.rid === rid.value)
+    const reply = repliesData.value.find(
+      (reply) => reply.rid === tempReplyRewrite.value.rid
+    )
     // Update the necessary data
     if (reply) {
-      reply.content = replyContent.value
-      reply.tags = tags.value
-      reply.edited = edited.value
+      reply.content = tempReplyRewrite.value.content
+      reply.tags = tempReplyRewrite.value.tags
+      reply.edited = tempReplyRewrite.value.edited
     }
   }
 )
@@ -209,9 +209,6 @@ const isScrollAtBottom = () => {
 
 // Reset the panel status when the component is mounted
 onMounted(async () => {
-  // Reset the page number, loading status, and other page states before mounting
-  useKUNGalgameTopicStore().resetPageStatus()
-
   // Get data for the single topic
   topicData.value = await getTopic()
 
@@ -240,7 +237,7 @@ const resetPanelStatus = () => {
 // Close the reply panel when leaving the page, confirm leaving if there are unsaved reply edits
 onBeforeRouteLeave(async (to, from, next) => {
   // If a reply is being edited
-  if (replyRewrite.value.isReplyRewriting) {
+  if (isReplyRewriting.value) {
     // Get the user's choice
     const res = await useKUNGalgameMessageStore().alert(
       'AlertInfo.edit.leave',
@@ -275,7 +272,11 @@ onBeforeMount(() => {
     <!-- Container for visible content below -->
     <div class="content-container">
       <!-- Sidebar -->
-      <Aside v-if="topicData?.tags" :tags="topicData.tags" />
+      <Aside
+        v-if="topicData?.tags && topicData.user"
+        :tags="topicData.tags"
+        :uid="topicData.user.uid"
+      />
 
       <!-- Content area -->
       <div class="content" ref="content" @scroll="handelScroll">
@@ -325,7 +326,6 @@ onBeforeMount(() => {
   /* Add background border and rounded corners */
   border-radius: 5px;
   padding: 5px;
-  overflow: hidden;
 }
 
 /* Right content area */
@@ -336,7 +336,6 @@ onBeforeMount(() => {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  overflow-x: visible;
 }
 
 .title-scroll {

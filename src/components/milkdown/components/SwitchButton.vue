@@ -3,10 +3,9 @@
 <script setup lang="ts">
 import { watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
-// Import the store for the editing page
+
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// Import the store for replies
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
 // Current page's route
@@ -15,16 +14,20 @@ const route = useRoute()
 const routeName = computed(() => route.name as string)
 
 // Use the store for the editing page
-const { isShowHotKeywords } = storeToRefs(useKUNGalgameEditStore())
+const { isShowHotKeywords: isShowEditHotKeywords } = storeToRefs(
+  useKUNGalgameEditStore()
+)
 // Store for the topic page, used for replies
-const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+const { isShowHotKeywords: isShowReplyHotKeywords, replyDraft } = storeToRefs(
+  usePersistKUNGalgameReplyStore()
+)
 
 // Watch for changes in store states to keep button states in sync with the store
 watch(
-  () => [isShowHotKeywords.value, replyDraft.value.isShowHotKeywords],
+  () => [isShowEditHotKeywords.value, isShowReplyHotKeywords.value],
   ([newValue1, newValue2]) => {
-    isShowHotKeywords.value = newValue1
-    replyDraft.value.isShowHotKeywords = newValue2
+    isShowEditHotKeywords.value = newValue1
+    isShowReplyHotKeywords.value = newValue2
   }
 )
 </script>
@@ -35,13 +38,14 @@ watch(
     v-if="routeName === 'Edit'"
     type="checkbox"
     id="switch"
-    v-model="isShowHotKeywords"
+    v-model="isShowEditHotKeywords"
   />
+
   <input
     v-if="routeName === 'Topic'"
     type="checkbox"
     id="switch"
-    v-model="replyDraft.isShowHotKeywords"
+    v-model="isShowReplyHotKeywords"
   />
   <label for="switch"></label>
 </template>

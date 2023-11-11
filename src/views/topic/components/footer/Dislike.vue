@@ -5,7 +5,8 @@ import { Icon } from '@iconify/vue'
 import Message from '@/components/alert/Message'
 import { throttle } from '@/utils/throttle'
 
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useTempTopicStore } from '@/store/temp/topic/topic'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 
 const props = defineProps<{
   uid: number
@@ -18,17 +19,14 @@ const props = defineProps<{
 const isDisliked = ref(props.dislikes.includes(props.uid))
 const dislikesCount = ref(props.dislikes.length)
 
-// Reactive
 watch(
   () => props.dislikes,
   (newLikes) => {
-    // Update isDisliked and dislikesCount
     isDisliked.value = newLikes.includes(props.uid)
     dislikesCount.value = newLikes.length
   }
 )
 
-// Throttle callback
 const throttleCallback = () => {
   Message(
     'You can only perform one operation within 1007 milliseconds',
@@ -37,43 +35,29 @@ const throttleCallback = () => {
   )
 }
 
-// Dislike operation
 const dislikeOperation = async (
   tid: number,
   rid: number,
   toUid: number,
   isPush: boolean
 ) => {
-  // If rid is zero, it means the dislike is for the main topic
   const isMasterTopic = rid === 0
   if (isMasterTopic) {
-    return await useKUNGalgameTopicStore().updateTopicDislike(
-      tid,
-      toUid,
-      isPush
-    )
+    return await useTempTopicStore().updateTopicDislike(tid, toUid, isPush)
   } else {
-    return await useKUNGalgameTopicStore().updateReplyDislike(
-      tid,
-      toUid,
-      rid,
-      isPush
-    )
+    return await useTempReplyStore().updateReplyDislike(tid, toUid, rid, isPush)
   }
 }
 
-// Toggle dislike (dislike or cancel dislike)
 const toggleDislike = async () => {
-  // Current user cannot dislike themselves
   if (props.uid === props.toUid) {
     Message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
     return
   }
 
   const { tid, rid, toUid } = props
-  const isPush = !isDisliked.value // Invert the value to dislike or cancel dislike
+  const isPush = !isDisliked.value
 
-  // Perform dislike or cancel dislike operation
   const res = await dislikeOperation(tid, rid, toUid, isPush)
 
   if (res.code === 200) {
@@ -94,21 +78,18 @@ const toggleDislike = async () => {
   }
 }
 
-// Throttled function, can only trigger dislike once within 1007 milliseconds
 const handleClickDislikeThrottled = throttle(
   toggleDislike,
   1007,
   throttleCallback
 )
 
-// Handle dislike
 const handleClickDislike = () => {
   handleClickDislikeThrottled()
 }
 </script>
 
 <template>
-  <!-- Dislike -->
   <li>
     <span
       class="icon"

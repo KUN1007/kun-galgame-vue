@@ -9,13 +9,22 @@ import MilkdownEditor from './MilkdownEditor.vue'
 
 // KUN Visual Novel store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
-const { editorHeight, isSaveTopic, content, topicRewrite } = storeToRefs(
-  useKUNGalgameEditStore()
-)
-const { replyDraft, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
+const {
+  editorHeight: editEditorHeight,
+  isSaveTopic,
+  content,
+  topicRewrite,
+} = storeToRefs(useKUNGalgameEditStore())
+const {
+  editorHeight: replyEditorHeight,
+  isSaveReply,
+  isReplyRewriting,
+  replyDraft,
+  replyRewrite,
+} = storeToRefs(usePersistKUNGalgameReplyStore())
 
 const props = defineProps<{
   isShowMenu: boolean
@@ -29,9 +38,7 @@ const valueMarkdown = ref('')
 
 // Editor height, determined by the route name
 const editorHeightStyle = computed(() =>
-  routeName.value === 'Edit'
-    ? editorHeight.value
-    : replyDraft.value.editorHeight
+  routeName.value === 'Edit' ? editEditorHeight.value : replyEditorHeight.value
 )
 
 onBeforeMount(() => {
@@ -53,13 +60,13 @@ onBeforeMount(() => {
    * Editor is in the reply mode
    */
   // Load reply data before mounting if not saved (and must be on the Topic page)
-  if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
+  if (isSaveReply.value && routeName.value === 'Topic') {
     valueMarkdown.value = replyDraft.value.content
   }
   /**
    * Editor is in the re-editing reply mode
    */
-  if (replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
+  if (isReplyRewriting.value && routeName.value === 'Topic') {
     valueMarkdown.value = replyRewrite.value.content
   }
 })
@@ -85,13 +92,13 @@ const saveMarkdown = (editorMarkdown: string) => {
      * Editor is in reply mode
      */
     // Save to the reply store if not in reply re-edit mode
-    if (!replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
+    if (!isReplyRewriting.value && routeName.value === 'Topic') {
       replyDraft.value.content = editorMarkdown
     }
     /**
      * Editor is in re-editing reply mode
      */
-    if (replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
+    if (isReplyRewriting.value && routeName.value === 'Topic') {
       replyRewrite.value.content = editorMarkdown
     }
   }, 1007)

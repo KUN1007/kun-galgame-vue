@@ -3,20 +3,21 @@
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
-// Import the edit page store
+
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// Import the reply page store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
+
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-// Use the edit page store
 const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
-// Use the reply page store
-const { isEdit, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
-// Use the router
+const { isEdit } = storeToRefs(useTempReplyStore())
+const { isReplyRewriting, replyRewrite } = storeToRefs(
+  usePersistKUNGalgameReplyStore()
+)
+
 const router = useRouter()
 
-// Accept props from the parent component
 const props = defineProps<{
   tid: number
   rid: number
@@ -28,10 +29,8 @@ const props = defineProps<{
   toUid: number
 }>()
 
-// Check if the user has permission to rewrite
 const isShowRewrite = ref(props.uid === props.toUid)
 
-// Reactive
 watch(
   () => props.toUid,
   () => {
@@ -43,38 +42,29 @@ watch(
   }
 )
 
-// Rewrite the topic
 const rewriteTopic = () => {
-  // Save the data
   topicRewrite.value.tid = props.tid
   topicRewrite.value.title = props.title
   topicRewrite.value.content = props.content
   topicRewrite.value.tags = props.tags
   topicRewrite.value.category = props.category
 
-  // Set the "isTopicRewriting" state to true
   topicRewrite.value.isTopicRewriting = true
 
-  // Navigate to the edit page
   router.push({ name: 'Edit' })
 }
 
-// Rewrite the reply
 const rewriteReply = () => {
-  // Save the data
   replyRewrite.value.tid = props.tid
   replyRewrite.value.rid = props.rid
   replyRewrite.value.content = props.content
   replyRewrite.value.tags = props.tags
 
-  // Set the "isReplyRewriting" state to true
-  replyRewrite.value.isReplyRewriting = true
+  isReplyRewriting.value = true
 
-  // Open the reply panel
   isEdit.value = true
 }
 
-// Edit
 const handleClickRewrite = () => {
   if (props.rid === 0) {
     rewriteTopic()

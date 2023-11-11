@@ -3,10 +3,14 @@ import TopicAsideNav from './TopicAsideNav.vue'
 import TopicOtherTag from './TopicOtherTag.vue'
 import TopicMaster from './TopicMaster.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
+import { toRefs } from 'vue'
 
-defineProps<{
+const props = defineProps<{
   tags: string[]
+  uid: number
 }>()
+
+const { tags, uid } = toRefs(props)
 </script>
 
 <template>
@@ -16,8 +20,8 @@ defineProps<{
   >
     <div class="aside">
       <TopicAsideNav />
-      <TopicOtherTag style="margin-bottom: 17px" :tags="$props.tags" />
-      <TopicMaster />
+      <TopicOtherTag style="margin-bottom: 17px" :tags="tags" />
+      <TopicMaster :uid="uid" />
       <KUNGalgameFooter />
     </div>
   </Transition>

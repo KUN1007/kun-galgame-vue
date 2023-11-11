@@ -7,11 +7,11 @@ import Settings from '../components/Settings.vue'
 import { usePluginViewContext } from '@prosemirror-adapter/vue'
 
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-const { textCount } = storeToRefs(useKUNGalgameEditStore())
-const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+const { textCount: textCountEdit } = storeToRefs(useKUNGalgameEditStore())
+const { textCount: textCountReply } = storeToRefs(useTempReplyStore())
 
 const { view } = usePluginViewContext()
 
@@ -26,10 +26,10 @@ watch(
   () => size.value,
   () => {
     if (routeName.value === 'Edit') {
-      textCount.value = size.value
+      textCountEdit.value = size.value
     }
     if (routeName.value === 'Topic') {
-      replyDraft.value.textCount = size.value
+      textCountReply.value = size.value
     }
   }
 )

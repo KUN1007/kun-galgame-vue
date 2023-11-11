@@ -8,7 +8,11 @@ import { RouterLink, useRoute } from 'vue-router'
 import TopicAsideSkeleton from '@/components/skeleton/topic/TopicAsideSkeleton.vue'
 
 import { TopicAside } from '@/api/index'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useTempTopicStore } from '@/store/temp/topic/topic'
+
+const props = defineProps<{
+  uid: number
+}>()
 
 const route = useRoute()
 
@@ -18,7 +22,8 @@ const isEmpty = ref(false)
 
 const fetchTopicData = async () => {
   return (
-    await useKUNGalgameTopicStore().getPopularTopicsByUserUid({
+    await useTempTopicStore().getPopularTopicsByUserUid({
+      uid: props.uid,
       tid: tid,
     })
   ).data

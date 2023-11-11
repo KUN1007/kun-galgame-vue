@@ -39,7 +39,7 @@ const {
   user,
   // replies,
   status,
-  share,
+  // share,
   category,
   // popularity,
   upvote_time,

@@ -11,11 +11,11 @@ const EditorSettingsMenu = defineAsyncComponent(
 // Import CSS animations
 import 'animate.css'
 
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
 // Topic page store for replies and adjusting reply panel width
-const { replyPanelWidth } = storeToRefs(useKUNGalgameTopicStore())
+const { replyPanelWidth } = storeToRefs(usePersistKUNGalgameReplyStore())
 
 // Current route
 const route = useRoute()

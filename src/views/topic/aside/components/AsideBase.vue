@@ -2,34 +2,23 @@
 import { Icon } from '@iconify/vue'
 import { asideNavItem } from './asideNavItem'
 
-// Import the topic store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-const { isScrollToTop, replyRequest } = storeToRefs(useKUNGalgameTopicStore())
+const { isScrollToTop, replyRequest } = storeToRefs(useTempReplyStore())
 
-// Sort the replies
 const handleSortReply = (sortField: string) => {
-  // Reset page-related status (e.g., page number, loading status) to prevent errors
-  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortField = sortField
 }
 
-// Sort in ascending order
 const orderAscending = () => {
-  // Reset page-related status to prevent errors
-  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'asc'
 }
 
-// Sort in descending order
 const orderDescending = () => {
-  // Reset page-related status to prevent errors
-  useKUNGalgameTopicStore().resetPageStatus()
   replyRequest.value.sortOrder = 'desc'
 }
 
-// Scroll back to the top
 const handleBackToTop = () => {
   isScrollToTop.value = true
 }

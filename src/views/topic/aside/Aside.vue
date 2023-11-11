@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { ref, watch } from 'vue'
+import { ref, toRefs, watch } from 'vue'
 import AsideActive from './components/AsideActive.vue'
 import AsideBase from './components/AsideBase.vue'
 
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
 import { storeToRefs } from 'pinia'
 
-defineProps<{
+const props = defineProps<{
   tags: string[]
+  uid: number
 }>()
 
-const { isActiveAside } = storeToRefs(useKUNGalgameTopicStore())
+const { tags, uid } = toRefs(props)
+const { isActiveAside } = storeToRefs(usePersistKUNGalgameTopicStore())
 const asideWidth = ref('250px')
 const handleFold = () => {
   isActiveAside.value = !isActiveAside.value
@@ -44,7 +46,7 @@ watch(
     </div>
 
     <div class="item-active" v-if="isActiveAside">
-      <AsideActive :tags="$props.tags" />
+      <AsideActive :tags="tags" :uid="uid" />
     </div>
 
     <div class="item" v-if="!isActiveAside">

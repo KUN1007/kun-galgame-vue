@@ -16,16 +16,15 @@ import Tags from '../Tags.vue'
 import Rewrite from '../Rewrite.vue'
 import KUNGalgamerInfo from '../KUNGalgamerInfo.vue'
 
-// Import the function to calculate the time difference
 import { hourDiff } from '@/utils/time'
 
 import { TopicReply } from '@/api/index'
 
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-import { useTempCommentStore } from '@/store/temp/comment'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
+import { useTempCommentStore } from '@/store/temp/topic/comment'
 import { storeToRefs } from 'pinia'
 
-const { scrollToReplyId } = storeToRefs(useKUNGalgameTopicStore())
+const { scrollToReplyId } = storeToRefs(useTempReplyStore())
 
 const { tid, rid, toUid, toUsername, isShowCommentPanelRid } = storeToRefs(
   useTempCommentStore()
@@ -39,7 +38,6 @@ const props = defineProps<{
 const replies = computed(() => props.repliesData)
 const isCommentPanelOpen = ref(false)
 
-// Function to toggle the comment panel's state
 const handleClickComment = (
   topicId: number,
   replyIid: number,
@@ -138,7 +136,7 @@ const handleClickComment = (
                 "
                 class="icon"
                 v-tooltip="{
-                  message: { en: 'Comment Topic', zh: '评论话题' },
+                  message: { en: 'Comment', zh: '评论' },
                   position: 'bottom',
                 }"
               >

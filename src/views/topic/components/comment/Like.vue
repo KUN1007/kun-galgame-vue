@@ -4,7 +4,7 @@ import { Icon } from '@iconify/vue'
 import Message from '@/components/alert/Message'
 import { throttle } from '@/utils/throttle'
 
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useTempCommentStore } from '@/store/temp/topic/comment'
 
 const props = defineProps<{
   tid: number
@@ -18,17 +18,14 @@ const props = defineProps<{
 const isLiked = ref(props.likes.includes(props.uid))
 const likesCount = ref(props.likes.length)
 
-// Reactivity
 watch(
   () => props.likes,
   (newLikes) => {
-    // Update isLiked and likesCount
     isLiked.value = newLikes.includes(props.uid)
     likesCount.value = newLikes.length
   }
 )
 
-// Throttle callback function
 const throttleCallback = () => {
   Message(
     'You can only perform one operation within 1007 milliseconds',
@@ -38,20 +35,18 @@ const throttleCallback = () => {
 }
 
 const likeComment = async () => {
-  /// Already liked
   if (isLiked.value) {
     Message(`You've already liked it`, '您已经点过赞了', 'warn')
     return
   }
 
-  // The current user cannot like themselves
   if (props.uid === props.toUid) {
     Message('You cannot like yourself', '您不可以给自己点赞', 'warn')
     return
   }
 
   const { tid, cid, toUid } = props
-  const res = await useKUNGalgameTopicStore().updateCommentLike(tid, cid, toUid)
+  const res = await useTempCommentStore().updateCommentLike(tid, cid, toUid)
 
   if (res.code === 200) {
     likesCount.value++
@@ -62,7 +57,6 @@ const likeComment = async () => {
   }
 }
 
-// Throttle function, can only trigger likes every 1007 milliseconds
 const handleClickLikeThrottled = throttle(likeComment, 1007, throttleCallback)
 
 const handleClickLike = () => {

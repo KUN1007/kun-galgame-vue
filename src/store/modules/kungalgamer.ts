@@ -1,5 +1,4 @@
 /*
-
 User Information Storage
 */
 import { defineStore } from 'pinia'

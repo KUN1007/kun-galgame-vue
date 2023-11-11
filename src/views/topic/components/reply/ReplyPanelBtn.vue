@@ -1,45 +1,39 @@
 <script setup lang="ts">
-// Global message component (bottom)
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// Global message component (top)
 import Message from '@/components/alert/Message'
-// Import topic page store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-// Temporary reply data
-import { useTempReplyStore } from '@/store/temp/reply'
-import { storeToRefs } from 'pinia'
-// Temporary response data for reply rewriting
-import { useTempReplyRewriteStore } from '@/store/temp/replyRewrite'
 
-const { rid, replyContent, tags, edited } = storeToRefs(
-  useTempReplyRewriteStore()
+import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
+
+import { useTempReplyStore } from '@/store/temp/topic/reply'
+import { storeToRefs } from 'pinia'
+
+const { isShowAdvance } = storeToRefs(usePersistKUNGalgameTopicStore())
+const { isSaveReply, isReplyRewriting, replyRewrite } = storeToRefs(
+  usePersistKUNGalgameReplyStore()
 )
-// Use the topic page store
-const { isShowAdvance, replyDraft, replyRewrite, isEdit } = storeToRefs(
-  useKUNGalgameTopicStore()
-)
+
+const { isEdit, textCount, tempReplyRewrite } = storeToRefs(useTempReplyStore())
 
 const messageStore = useKUNGalgameMessageStore()
 
 // Check if the reply is valid
 const isValidReply = () => {
-  const count = replyDraft.value.textCount
+  const count = textCount.value
   return count && count < 10007
 }
 
 // Function to publish a reply
 const publishReply = async () => {
   if (isValidReply()) {
-    // Reset page status, load status, and other page settings
-    useKUNGalgameTopicStore().resetPageStatus()
     // Publish the reply
-    const responseData = await useKUNGalgameTopicStore().postNewReply()
+    const responseData = await usePersistKUNGalgameReplyStore().postNewReply()
 
     if (responseData.code === 200) {
       // Save the data of the new reply
       useTempReplyStore().tempReply = responseData.data
       // Clear the data because the reply has been successfully posted
-      useKUNGalgameTopicStore().resetReplyDraft()
+      usePersistKUNGalgameReplyStore().resetReplyDraft()
       // Close the panel
       isEdit.value = false
       // Display a success message
@@ -66,10 +60,10 @@ const handlePublish = async () => {
 
 // Save the data for reply rewriting
 const saveRewriteReply = () => {
-  rid.value = replyRewrite.value.rid
-  replyContent.value = replyRewrite.value.content
-  tags.value = replyRewrite.value.tags
-  edited.value = Date.now()
+  tempReplyRewrite.value.rid = replyRewrite.value.rid
+  tempReplyRewrite.value.content = replyRewrite.value.content
+  tempReplyRewrite.value.tags = replyRewrite.value.tags
+  tempReplyRewrite.value.edited = Date.now()
 }
 
 // Handle reply rewriting
@@ -78,7 +72,7 @@ const handleRewrite = async () => {
   // Implement user's confirmation or cancel logic here
   if (res) {
     // Update the reply
-    const responseData = await useKUNGalgameTopicStore().updateReply()
+    const responseData = await usePersistKUNGalgameReplyStore().updateReply()
 
     if (responseData.code === 200) {
       // Change the publish status, the front-end will add data for the new reply
@@ -88,7 +82,7 @@ const handleRewrite = async () => {
       saveRewriteReply()
 
       // Clear the data because the reply has been updated at this point
-      useKUNGalgameTopicStore().resetRewriteTopicData()
+      usePersistKUNGalgameReplyStore().resetRewriteReplyData()
       // Close the panel
       isShowAdvance.value = false
       isEdit.value = false
@@ -101,7 +95,7 @@ const handleRewrite = async () => {
 // Handle saving a draft
 const handleSave = () => {
   // Set the save flag to true
-  replyDraft.value.isSaveReply = true
+  isSaveReply.value = true
   // Implement the logic for saving the draft here
   Message(
     'The draft has been saved successfully!',
@@ -117,7 +111,6 @@ const handleShowAdvance = () => {
 </script>
 
 <template>
-  <!-- Button container -->
   <div class="btn-container">
     <!-- Advanced options button -->
     <button class="advance-btn" @click="handleShowAdvance">
@@ -125,20 +118,12 @@ const handleShowAdvance = () => {
     </button>
 
     <!-- Confirm button -->
-    <button
-      v-if="!replyRewrite.isReplyRewriting"
-      class="confirm-btn"
-      @click="handlePublish"
-    >
+    <button v-if="!isReplyRewriting" class="confirm-btn" @click="handlePublish">
       {{ $tm('topic.panel.confirm') }}
     </button>
 
     <!-- Rewrite button -->
-    <button
-      v-if="replyRewrite.isReplyRewriting"
-      class="rewrite-btn"
-      @click="handleRewrite"
-    >
+    <button v-if="isReplyRewriting" class="rewrite-btn" @click="handleRewrite">
       {{ $tm('topic.panel.rewrite') }}
     </button>
 

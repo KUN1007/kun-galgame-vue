@@ -4,7 +4,7 @@ import { Icon } from '@iconify/vue'
 import Message from '@/components/alert/Message'
 import { throttle } from '@/utils/throttle'
 
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { useTempCommentStore } from '@/store/temp/topic/comment'
 
 const props = defineProps<{
   tid: number
@@ -18,7 +18,6 @@ const props = defineProps<{
 const isDisliked = ref(props.dislikes.includes(props.uid))
 const dislikesCount = ref(props.dislikes.length)
 
-// Reactivity
 watch(
   () => props.dislikes,
   (newLikes) => {
@@ -27,7 +26,6 @@ watch(
   }
 )
 
-// Throttle callback function
 const throttleCallback = () => {
   Message(
     'You can only perform one operation within 1007 milliseconds',
@@ -37,24 +35,18 @@ const throttleCallback = () => {
 }
 
 const dislikeComment = async () => {
-  // Already disliked
   if (isDisliked.value) {
     Message(`You've already disliked it`, '您已经点过踩了', 'warn')
     return
   }
 
-  // The current user cannot dislike themselves
   if (props.uid === props.toUid) {
     Message('You cannot dislike yourself', '您不可以给自己点踩', 'warn')
     return
   }
 
   const { tid, cid, toUid } = props
-  const res = await useKUNGalgameTopicStore().updateCommentDislike(
-    tid,
-    cid,
-    toUid
-  )
+  const res = await useTempCommentStore().updateCommentDislike(tid, cid, toUid)
 
   if (res.code === 200) {
     dislikesCount.value++
@@ -65,7 +57,6 @@ const dislikeComment = async () => {
   }
 }
 
-// Throttle function, can only trigger dislikes every 1007 milliseconds
 const handleClickDislikeThrottled = throttle(
   dislikeComment,
   1007,

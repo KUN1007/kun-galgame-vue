@@ -31,7 +31,8 @@ import { useKUNGalgameRankingStore } from './modules/ranking'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 
 // Import store for the topic detail page
-import { useKUNGalgameTopicStore } from './modules/topic'
+import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 
 const store = createPinia()
 
@@ -51,7 +52,8 @@ export function kungalgameStoreReset() {
   const nonMoeStore = useKUNGalgameNonMoeStore()
   const rankingStore = useKUNGalgameRankingStore()
   const settingsStore = useKUNGalgameSettingsStore()
-  const topicStore = useKUNGalgameTopicStore()
+  const topicStore = usePersistKUNGalgameTopicStore()
+  const replyStore = usePersistKUNGalgameReplyStore()
 
   balanceStore.$reset()
   editStore.$reset()
@@ -62,4 +64,5 @@ export function kungalgameStoreReset() {
   rankingStore.$reset()
   settingsStore.$reset()
   topicStore.$reset()
+  replyStore.$reset()
 }

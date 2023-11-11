@@ -6,8 +6,7 @@ import { debounce } from '@/utils/debounce'
 import { TopicComment } from '@/api/index'
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
-import { useTempCommentStore } from '@/store/temp/comment'
+import { useTempCommentStore } from '@/store/temp/topic/comment'
 import { storeToRefs } from 'pinia'
 
 const { name } = storeToRefs(useKUNGalgameUserStore())
@@ -60,7 +59,7 @@ const handlePublishComment = async () => {
   if (isValidComment()) {
     // Get the new comment
     const newComment = (
-      await useKUNGalgameTopicStore().postNewComment(
+      await useTempCommentStore().postNewComment(
         tid.value,
         rid.value,
         toUid.value,

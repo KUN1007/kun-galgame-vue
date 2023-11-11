@@ -1,40 +1,36 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-// Import the icon font
-import { Icon } from '@iconify/vue'
-// Import CSS animations
 import 'animate.css'
 
-// Import the topic editing store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// Import the reply store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
-// Import the keyword display toggle button
 import SwitchButton from './SwitchButton.vue'
 
-// Topic editing page store
-const { editorHeight } = storeToRefs(useKUNGalgameEditStore())
-// Topic page store for replies
-const { replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+const { editorHeight: editEditorHeight } = storeToRefs(useKUNGalgameEditStore())
+const { editorHeight: replyEditorHeight } = storeToRefs(
+  usePersistKUNGalgameReplyStore()
+)
 
 defineProps<{
   isShowSettingsMenu: boolean
 }>()
 
-// Define emits to close the settings panel
 const emits = defineEmits<{
   close: [isShowSettingsMenu: boolean]
 }>()
 
-// Current route
 const route = useRoute()
-// Name of the current page route
 const routeName = computed(() => route.name as string)
+const editorHeight = computed(() => {
+  return routeName.value === 'Edit'
+    ? `${editEditorHeight.value}px`
+    : `${replyEditorHeight.value}px`
+})
 
-// Close the settings panel
 const handelCloseSettingsPanel = () => {
   emits('close', false)
 }
@@ -51,7 +47,7 @@ const handelCloseSettingsPanel = () => {
         <!-- Editor height settings -->
         <div class="editor-height-title">
           <span> {{ $tm('edit.editorHeight') }} </span>
-          <span>{{ editorHeight }} px</span>
+          <span>{{ editorHeight }} </span>
         </div>
 
         <!-- Editor page -->
@@ -62,7 +58,7 @@ const handelCloseSettingsPanel = () => {
             min="200"
             max="500"
             step="1"
-            v-model="editorHeight"
+            v-model="editEditorHeight"
           />
           <span>500 px</span>
         </div>
@@ -75,7 +71,7 @@ const handelCloseSettingsPanel = () => {
             min="100"
             max="500"
             step="1"
-            v-model="replyDraft.editorHeight"
+            v-model="replyEditorHeight"
           />
           <span>500 px</span>
         </div>

@@ -14,9 +14,8 @@ import Dislike from './Dislike.vue'
 
 import { TopicComment } from '@/api/index'
 
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-import { useTempCommentStore } from '@/store/temp/comment'
+import { useTempCommentStore } from '@/store/temp/topic/comment'
 import { storeToRefs } from 'pinia'
 
 const { tid, rid, toUid, toUsername, isShowCommentPanelRid } = storeToRefs(
@@ -35,10 +34,8 @@ const props = defineProps<{
 const tidRef = ref(props.tid)
 const ridRef = ref(props.rid)
 const toUser = ref(props.toUser)
-// Current user uid
 const currentUserUid = useKUNGalgameUserStore().uid
 
-// Reactivity
 watch(
   () => props.rid,
   async () => {
@@ -48,14 +45,12 @@ watch(
   }
 )
 
-// Comments data
 const commentsData = ref<TopicComment[]>([])
 
 const getComments = async (topicId: number, replyId: number) => {
-  return (await useKUNGalgameTopicStore().getComments(topicId, replyId)).data
+  return (await useTempCommentStore().getComments(topicId, replyId)).data
 }
 
-// Get the newly published comment and push it to the existing data, no need to retrieve it again
 const getCommentEmits = (newComment: TopicComment) => {
   commentsData.value?.push(newComment)
 }
@@ -64,7 +59,6 @@ onMounted(async () => {
   commentsData.value = await getComments(tidRef.value, ridRef.value)
 })
 
-// Click to reply
 const handleClickComment = (
   topicId: number,
   replyId: number,
@@ -75,7 +69,7 @@ const handleClickComment = (
   rid.value = replyId
   toUid.value = uid
   toUsername.value = name
-  // Open the reply panel
+
   isShowCommentPanelRid.value = ridRef.value
 }
 </script>

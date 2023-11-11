@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, watch, onBeforeMount, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-// Global message component (top)
 import Message from '@/components/alert/Message'
-// Import the store for editing topics
+
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
 // Current page's route
@@ -14,17 +13,26 @@ const route = useRoute()
 const routeName = computed(() => route.name as string)
 
 // Store for the topic edit interface
-const { isShowHotKeywords, tags, isSaveTopic, topicRewrite } = storeToRefs(
-  useKUNGalgameEditStore()
-)
+const {
+  isShowHotKeywords: isShowEditHotKeywords,
+  tags,
+  isSaveTopic,
+  topicRewrite,
+} = storeToRefs(useKUNGalgameEditStore())
 // Store for the topic interface, used for replies
-const { replyDraft, replyRewrite } = storeToRefs(useKUNGalgameTopicStore())
+const {
+  isShowHotKeywords: isShowReplyHotKeywords,
+  isSaveReply,
+  isReplyRewriting,
+  replyDraft,
+  replyRewrite,
+} = storeToRefs(usePersistKUNGalgameReplyStore())
 
 // Compute whether to show hot tags based on route name
 const isShowKeywords = computed(() =>
   routeName.value === 'Edit'
-    ? isShowHotKeywords.value
-    : replyDraft.value.isShowHotKeywords
+    ? isShowEditHotKeywords.value
+    : isShowReplyHotKeywords.value
 )
 
 // Backend response for hot tags
@@ -58,14 +66,14 @@ onBeforeMount(() => {
    * The editor is in the reply interface
    */
   // Load reply data before mounting if it's not saved (and the current page must be in topic mode)
-  if (replyDraft.value.isSaveReply && routeName.value === 'Topic') {
+  if (isSaveReply.value && routeName.value === 'Topic') {
     selectedTags.value = replyDraft.value.tags
   }
   /**
    * The editor is in the reply rewriting interface
    */
   // Load tags for rewriting a reply before mounting (if the current page is in topic mode)
-  if (replyRewrite.value.isReplyRewriting && routeName.value === 'Topic') {
+  if (isReplyRewriting.value && routeName.value === 'Topic') {
     selectedTags.value = replyRewrite.value.tags
   }
 })
@@ -161,21 +169,27 @@ const getTags = async () => {
 }
 
 // Watch for changes in isShowKeywords and fetch tags when it's true, adapting to page responsiveness
-watch(isShowKeywords, async () => {
-  if (isShowHotKeywords.value === true) {
-    hotTags.value = await getTags()
+watch(
+  () => isShowKeywords.value,
+  async () => {
+    if (
+      (routeName.value === 'Edit' && isShowEditHotKeywords.value) ||
+      (routeName.value === 'Topic' && isShowReplyHotKeywords.value)
+    ) {
+      hotTags.value = await getTags()
+    }
   }
-})
+)
 
 // Fetch hot tags when the component is mounted
 onMounted(async () => {
   // Trigger the interface if hot tags need to be loaded in edit mode
   const isLoadEditHotTags =
-    routeName.value === 'Edit' && isShowHotKeywords.value
+    routeName.value === 'Edit' && isShowEditHotKeywords.value
 
   // Trigger the interface if hot tags need to be loaded in topic mode
   const isLoadTopicHotTags =
-    routeName.value === 'Topic' && replyDraft.value.isShowHotKeywords
+    routeName.value === 'Topic' && isShowReplyHotKeywords.value
 
   // Fetch only when needed
   if (isLoadEditHotTags || isLoadTopicHotTags) {

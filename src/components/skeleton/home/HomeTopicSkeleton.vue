@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const count = 7
+import { computed } from 'vue'
+
+const props = defineProps<{
+  count?: number
+}>()
+
+const count = computed(() => (props.count ? props.count : 1))
 </script>
 
 <template>

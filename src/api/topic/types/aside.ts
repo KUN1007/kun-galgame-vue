@@ -13,6 +13,8 @@ export interface TopicAsideOtherTagRequestData {
 }
 
 export interface TopicAsideMasterRequestData {
+  // User uid
+  uid: number
   // The tid of the current topic, as other topics under the same tag should not include the current one
   tid: string
 }

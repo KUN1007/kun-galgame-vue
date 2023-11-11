@@ -1,28 +1,25 @@
 <!-- Topic's bottom area, including upvote, reply, like, etc. -->
 <script setup lang="ts">
-// Import the topic page store
-import { useKUNGalgameTopicStore } from '@/store/modules/topic'
+import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-// Use the topic page store
-const { isEdit, replyDraft } = storeToRefs(useKUNGalgameTopicStore())
+const { isEdit } = storeToRefs(useTempReplyStore())
+const { replyDraft } = storeToRefs(usePersistKUNGalgameReplyStore())
 
-// Accept props from the parent component
 const props = defineProps<{
   tid: number
   toUserName: string
-  to_uid: number
-  to_floor: number
+  toUid: number
+  toFloor: number
 }>()
 
-// Click to open the reply panel
 const handleClickReply = () => {
-  // Save necessary information for posting a reply
   replyDraft.value.tid = props.tid
   replyDraft.value.toUserName = props.toUserName
-  replyDraft.value.to_uid = props.to_uid
-  replyDraft.value.to_floor = props.to_floor
-  // Open the reply panel
+  replyDraft.value.toUid = props.toUid
+  replyDraft.value.toFloor = props.toFloor
+
   isEdit.value = true
 }
 </script>
