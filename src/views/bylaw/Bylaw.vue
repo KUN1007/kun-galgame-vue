@@ -132,6 +132,8 @@ const bylawPageWidth = computed(() => {
         <br />
         <br />
         <br />
+        <br />
+        <br />
       </div>
 
       <!-- chinese translation -->
@@ -210,6 +212,8 @@ const bylawPageWidth = computed(() => {
             </li>
           </ul>
         </div>
+        <br />
+        <br />
         <br />
         <br />
         <br />

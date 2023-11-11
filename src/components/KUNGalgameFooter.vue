@@ -4,9 +4,11 @@ import { Icon } from '@iconify/vue'
 
 <template>
   <div class="footer">
-    <span>Copyright © 2023 KUNGalgame</span>
-    <span>
-      GitHub Open Source
+    <div>{{ $tm('footer.copyright') }}</div>
+
+    <div>
+      <span>{{ $tm('footer.openSource') }}</span>
+
       <a
         href="http://github.com/KUN1007/kun-galgame-vue"
         target="_blank"
@@ -14,8 +16,11 @@ import { Icon } from '@iconify/vue'
       >
         <Icon icon="line-md:github-loop" />
       </a>
-    </span>
-    <span> All rights reserved | Version 1.2.0 </span>
+    </div>
+
+    <div>
+      <span>{{ $tm('footer.reserved') }} 1.2.0</span>
+    </div>
   </div>
 </template>
 
@@ -28,8 +33,9 @@ import { Icon } from '@iconify/vue'
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
 
-  span {
+  div {
     display: flex;
     justify-self: center;
     align-items: center;

@@ -4,13 +4,41 @@ import { Icon } from '@iconify/vue'
 
 <template>
   <div class="kungalgame-contact">
-    <h2>{{ $tm('mainPage.footer.contact') }}</h2>
-    <!-- QQ, bilibili, telegram icon list -->
     <ul>
       <li>
         <a
-          href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=hlXYbLM8MqOm9WzE22ZodNiQJ3nc1Bu2&authKey=7xfTYC1atV5loXyWNv9VOTOaf5ZzR9BdCFcMNJWdmyukck8%2FDLSF3%2FrHgyiY48pT&noverify=0&group_code=726477957"
+          aria-label="KUN Visual Novel Official Twitter (X) Account | 鲲 Galgame 论坛官方推特账号"
+          href="https://twitter.com/kungalgame"
+          target="_blank"
+        >
+          <Icon icon="line-md:twitter-x-alt" />
+        </a>
+      </li>
+
+      <li>
+        <a
+          aria-label="KUN Visual Novel Open Source GitHub Repository | 鲲 Galgame 论坛开源 GitHub 仓库"
+          href="https://t.me/kungalgame"
+          target="_blank"
+        >
+          <Icon icon="line-md:github-loop" />
+        </a>
+      </li>
+
+      <li>
+        <a
+          aria-label="KUN Visual Novel Official Telegram Group"
+          href="https://t.me/kungalgame"
+          target="_blank"
+        >
+          <Icon icon="line-md:telegram" />
+        </a>
+      </li>
+
+      <li>
+        <a
           aria-label="KUN Visual Novel Official QQ Group | 鲲 Galgame 官方 QQ 群"
+          href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=hlXYbLM8MqOm9WzE22ZodNiQJ3nc1Bu2&authKey=7xfTYC1atV5loXyWNv9VOTOaf5ZzR9BdCFcMNJWdmyukck8%2FDLSF3%2FrHgyiY48pT&noverify=0&group_code=726477957"
           target="_blank"
         >
           <Icon icon="bi:tencent-qq" />
@@ -24,16 +52,6 @@ import { Icon } from '@iconify/vue'
           target="_blank"
         >
           <Icon icon="ri:bilibili-line" />
-        </a>
-      </li>
-
-      <li>
-        <a
-          aria-label="KUN Visual Novel Official Telegram Group"
-          href="https://t.me/kungalgame"
-          target="_blank"
-        >
-          <Icon icon="ic:baseline-telegram" />
         </a>
       </li>
     </ul>

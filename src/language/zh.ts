@@ -85,7 +85,6 @@ export default {
         kun3: '鲲 Galgame 永远不会有广告',
         kun4: '鲲 Galgame 永远不会收费',
       },
-      contact: '联系我们',
     },
   },
   topic: {
@@ -364,6 +363,11 @@ export default {
   redirect: {
     success: '登陆成功',
     home: '3 秒后你将会进入主页',
+  },
+  footer: {
+    copyright: '版权所有 © 2023 鲲 Galgame (图片除外)',
+    openSource: 'GitHub 开源',
+    reserved: '保留所有权利 | 版本',
   },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {

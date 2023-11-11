@@ -85,7 +85,6 @@ export default {
         kun3: 'NO ADs Forever',
         kun4: 'Free Forever',
       },
-      contact: 'Contact Us',
     },
   },
   topic: {
@@ -366,6 +365,11 @@ export default {
   redirect: {
     success: 'Login successful',
     home: 'You will be redirected to the home page in 3 seconds',
+  },
+  footer: {
+    copyright: 'Copyright © 2023 KUN Visual Novel (except for images)',
+    openSource: 'GitHub Open Source',
+    reserved: 'All rights reserved | Version',
   },
   // 非页面组件这里统一用大驼峰
   ComponentAlert: {
