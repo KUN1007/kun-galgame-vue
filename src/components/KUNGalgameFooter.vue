@@ -13,6 +13,7 @@ import { Icon } from '@iconify/vue'
         href="http://github.com/KUN1007/kun-galgame-vue"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="KUN Visual Novel Open Source GitHub Repository. 鲲 Galgame 开源 GitHub 仓库."
       >
         <Icon icon="line-md:github-loop" />
       </a>

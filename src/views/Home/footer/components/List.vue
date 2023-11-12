@@ -23,13 +23,14 @@ const info: FooterInfo[] = [
         index: 1,
         name: `daily`,
         router: `/pool`,
-        label: 'KUN Visual Novel Daily Communicate | 鲲 Galgame 日常交流',
+        label: 'KUN Visual Novel Daily Communication | 鲲 Galgame 日常交流',
       },
       {
         index: 2,
         name: `chat`,
         router: `/contact`,
-        label: 'KUN Visual Novel Contacts | 鲲 Galgame 联系我们',
+        label:
+          'KUN Visual Novel Contacts, Chatting | 鲲 Galgame 联系我们, 闲聊灌水',
       },
     ],
   },
@@ -42,21 +43,21 @@ const info: FooterInfo[] = [
         name: `execute`,
         router: `/technique`,
         label:
-          'KUN Visual Novel Technique, Visual Novel Execute Problem | 鲲 Galgame 技术交流, Galgame 运行问题',
+          'KUN Visual Novel Technique, Visual Novel Execute Problem | 鲲 Galgame 技术交流, Galgame 运行问题, Galgame 运行相关',
       },
       {
         index: 2,
         name: `globalization`,
         router: `/technique`,
         label:
-          'KUN Visual Novel Technique, Visual Novel Globalization | 鲲 Galgame 技术交流, Galgame 汉化',
+          'KUN Visual Novel Technique, Visual Novel Globalization | 鲲 Galgame 技术交流, Galgame 汉化相关',
       },
       {
         index: 3,
         name: `make`,
         router: `/technique`,
         label:
-          'KUN Visual Novel Technique, Visual Novel Maker | 鲲 Galgame 技术交流, Galgame 制作',
+          'KUN Visual Novel Technique, Visual Novel Making | 鲲 Galgame 技术交流, Galgame 制作相关',
       },
     ],
   },
@@ -80,7 +81,7 @@ const info: FooterInfo[] = [
         index: 3,
         name: `balance`,
         router: `/balance`,
-        label: 'KUN Visual Novel P & L | 鲲 Galgame 收支公示',
+        label: 'KUN Visual Novel Profit and Loss | 鲲 Galgame 收支公示',
       },
     ],
   },
@@ -97,20 +98,20 @@ const link: FooterInfoItem[] = [
     index: 2,
     name: `shinnku`,
     router: `https://shinnku.com`,
-    label: '失落小站 - galgame资源站',
+    label: `Shinnku's Visual Novel, Upset Gal, 失落的小站 失落小站 - galgame资源站`,
   },
   {
     index: 3,
     name: `ymgal`,
     router: `https://www.ymgal.games`,
     label:
-      '月幕Galgame-最戳你XP的美少女游戏综合交流平台 | 来感受这绝妙的艺术体裁',
+      'YM Galgame, 月幕 Galgame -最戳你XP的美少女游戏综合交流平台 | 来感受这绝妙的艺术体裁',
   },
   {
     index: 4,
     name: `kun`,
     router: `https://soft.moe`,
-    label: `KUN's Blog | KUN's Blog | 鲲的博客`,
+    label: `KUN's Blog | 鲲的博客`,
   },
 ]
 </script>
