@@ -7,13 +7,96 @@
       type="image/svg+xml"
       href="/src/assets/images/favicon.webp"
     />
-    <link rel="stylesheet" href="/kungalgame-loading.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="The CUTEST Visual Novel Forum!世界上最萌的 Galgame 论坛. Topic, Technique. NO ADs Forever. Free Forever"
     />
     <title>KUNGalgame</title>
+    <style>
+      :root {
+        --kungalgame-blue-1: #b6e3ff;
+        --kungalgame-blue-4: #218bff;
+
+        --kungalgame-trans-blue-1: #b6e3ff77;
+
+        --kungalgame-shadow-0: 0px 0px 17px 5px var(--kungalgame-blue-1);
+      }
+
+      #kungalgame-loading-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+
+      #kungalgame-loading {
+        height: 4.8px;
+        background: var(--kungalgame-blue-4);
+        box-shadow: var(--kungalgame-shadow-0);
+        box-sizing: border-box;
+        animation: kungalgame-loading 7.7s linear infinite;
+        position: relative;
+      }
+
+      #kungalgame-loading::after,
+      #kungalgame-loading::before {
+        content: '';
+        width: 10px;
+        height: 1px;
+        background: var(--kungalgame-blue-4);
+        position: absolute;
+        top: 9px;
+        right: -2px;
+        opacity: 0;
+        transform: rotate(-45deg) translateX(0px);
+        box-sizing: border-box;
+        animation: coli1 0.3s linear infinite;
+      }
+
+      #kungalgame-loading::before {
+        top: -4px;
+        transform: rotate(45deg);
+        animation: coli2 0.3s linear infinite;
+      }
+
+      #kungalgame-loading h2 {
+        position: absolute;
+        top: 17px;
+        color: var(--kungalgame-blue-4);
+      }
+
+      @keyframes kungalgame-loading {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      @keyframes coli1 {
+        0% {
+          transform: rotate(-45deg) translateX(0px);
+          opacity: 0.7;
+        }
+        100% {
+          transform: rotate(-45deg) translateX(-45px);
+          opacity: 0;
+        }
+      }
+
+      @keyframes coli2 {
+        0% {
+          transform: rotate(45deg) translateX(0px);
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(45deg) translateX(-45px);
+          opacity: 0.7;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="app">
