@@ -110,7 +110,7 @@ const thanksListPageWidth = computed(() => {
           <li>
             <span class="skip">
               <a
-                href="https://github.com/haruki-nikaidou"
+                href="https://i.plr.moe"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -276,7 +276,7 @@ const thanksListPageWidth = computed(() => {
           <li>
             <span class="skip">
               <a
-                href="https://github.com/haruki-nikaidou"
+                href="https://i.plr.moe"
                 target="_blank"
                 rel="noopener noreferrer"
               >

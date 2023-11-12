@@ -78,7 +78,7 @@ const handleClickUpvote = async () => {
 
   if (useKUNGalgameUserStore().moemoepoint < 1100) {
     Message(
-      `Your moemoepoints are less than 1100, so you can't use the topic suggestion feature`,
+      `Your moemoepoints are less than 1100, so you can't use the upvote topic feature`,
       '您的萌萌点不足 1100, 无法使用推话题功能',
       'warn'
     )
