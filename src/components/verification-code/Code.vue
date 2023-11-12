@@ -3,20 +3,22 @@ import { ref, watch } from 'vue'
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-const info = useKUNGalgameMessageStore()
+import { storeToRefs } from 'pinia'
 
 // The parent component instructs it to send the verification code, and it will do so.
 const props = defineProps<{
   email: string
-  isSendCode: boolean
 }>()
 
-const isSending = ref(false)
+const { isCaptureSuccessful } = storeToRefs(useKUNGalgameMessageStore())
+const info = useKUNGalgameMessageStore()
 
+const isSendCode = ref(false)
+const isSending = ref(false)
 const countdown = ref(0)
 
 watch(
-  () => props.isSendCode,
+  () => isSendCode.value,
   async () => {
     if (!isSending.value) {
       isSending.value = true
@@ -37,10 +39,16 @@ watch(
     }
   }
 )
+
+const handleSendCode = () => {
+  if (isCaptureSuccessful.value) {
+    isSendCode.value = !isSendCode.value
+  }
+}
 </script>
 
 <template>
-  <button :disabled="isSending">
+  <button @click="handleSendCode" :disabled="isSending">
     {{ isSending ? countdown : $tm('login.register.send') }}
   </button>
 </template>

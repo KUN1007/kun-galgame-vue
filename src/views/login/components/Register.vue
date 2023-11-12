@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-// Using global notifications
+
+import Message from '@/components/alert/Message'
+import Settings from './Settings.vue'
+
 import { useKUNGalgameMessageStore } from '@/store/modules/message'
-// Using user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
-// Global message component (top)
-import Message from '@/components/alert/Message'
-// Using settings
-import Settings from './Settings.vue'
 
 import {
   isValidEmail,
@@ -111,11 +109,10 @@ const handleSendCode = () => {
   }
 
   if (isCaptureSuccessful.value) {
-    // Change isSendCode, because Code component use watch
-    isSendCode.value = !isSendCode.value
+    isSendCode.value = true
     isCaptureSuccessful.value = false
   } else {
-    // Show human verification
+    isSendCode.value = false
     isShowCapture.value = true
   }
 }
@@ -160,12 +157,7 @@ const handleRegister = async () => {
         />
       </div>
 
-      <Code
-        @click="handleSendCode"
-        class="code"
-        :email="registerForm.email"
-        :isSendCode="isSendCode"
-      />
+      <Code @click="handleSendCode" class="code" :email="registerForm.email" />
 
       <!-- Registration button -->
       <button @click="handleRegister" class="btn" type="submit">

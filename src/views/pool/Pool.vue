@@ -1,16 +1,16 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import KUNGalgameSearchBox from '@/components/KUNGalgameSearchBox.vue'
+import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import Tags from './components/Tags.vue'
 import Topic from './components/Topic.vue'
 import Bar from './components/Bar.vue'
 
 import { topic } from './components/topic'
 
-// 导入设置面板 store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
-// 使用设置面板的 store
+
 const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
 const poolPageWidth = computed(() => {
@@ -37,6 +37,8 @@ const poolPageWidth = computed(() => {
           :class="`item-${kun.index}`"
         />
       </div>
+
+      <KUNGalgameFooter />
     </div>
 
     <Bar />
@@ -45,7 +47,7 @@ const poolPageWidth = computed(() => {
 
 <style lang="scss" scoped>
 .pool {
-  height: 100vh;
+  height: calc(100vh - 65px);
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
