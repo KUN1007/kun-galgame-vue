@@ -4,7 +4,6 @@ import { useRoute } from 'vue-router'
 import type { UserInfo, UserTopic, UserReply, UserComment } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import dayjs from 'dayjs'
-import { getPlainText } from '@/utils/getPlainText'
 
 const props = defineProps<{
   user: UserInfo
@@ -83,7 +82,7 @@ onMounted(async () => {
       <div class="item" v-for="(reply, index) in replies" :key="index">
         <RouterLink :to="`/topic/${reply.tid}`">
           <div class="title">
-            {{ getPlainText(reply.content) }}
+            {{ reply.content }}
           </div>
           <div class="time">
             {{ dayjs(reply.time).format('YYYY/MM/DD') }}

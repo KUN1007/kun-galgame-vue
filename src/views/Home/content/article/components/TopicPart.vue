@@ -8,8 +8,6 @@ import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 const settingsStore = storeToRefs(useKUNGalgameSettingsStore())
 
-import { getPlainText } from '@/utils/getPlainText'
-
 import { HomeTopic } from '@/api'
 
 const props = defineProps<{
@@ -30,8 +28,6 @@ const {
   category,
   popularity,
 } = props.topic
-
-const plainText = getPlainText(content)
 
 const getRepliesCount = computed(() => {
   return repliesCount + comments
@@ -75,7 +71,7 @@ const getRepliesCount = computed(() => {
 
     <div class="introduction">
       <p>
-        {{ plainText }}
+        {{ content }}
       </p>
     </div>
   </div>

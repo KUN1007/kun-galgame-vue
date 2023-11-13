@@ -213,7 +213,7 @@ onMounted(async () => {
   topicData.value = await getTopic()
   repliesData.value = await getReplies()
 
-  if (!repliesData.value.length) {
+  if (repliesData.value.length < 3) {
     isLoading.value = false
   }
 })
