@@ -13,24 +13,20 @@ const { isSaveReply, isReplyRewriting, replyRewrite } = storeToRefs(
   usePersistKUNGalgameReplyStore()
 )
 
-const { isEdit, textCount, tempReplyRewrite } = storeToRefs(useTempReplyStore())
+const { isEdit, tempReplyRewrite } = storeToRefs(useTempReplyStore())
 
 const messageStore = useKUNGalgameMessageStore()
 
-// Check if the reply is valid
-const isValidReply = () => {
-  const count = textCount.value
-  return count && count < 10007
-}
-
-// Function to publish a reply
-const publishReply = async () => {
-  if (isValidReply()) {
+// Click to publish a reply
+const handlePublish = async () => {
+  const res = await messageStore.alert('AlertInfo.edit.publish', true)
+  // Implement user's confirmation or cancel logic here
+  if (res) {
     useTempReplyStore().resetPageStatus()
     // Publish the reply
     const responseData = await usePersistKUNGalgameReplyStore().postNewReply()
 
-    if (responseData.code === 200) {
+    if (responseData?.code === 200) {
       // Save the data of the new reply
       useTempReplyStore().tempReply = responseData.data
       // Clear the data because the reply has been successfully posted
@@ -39,23 +35,7 @@ const publishReply = async () => {
       isEdit.value = false
       // Display a success message
       Message('Publish reply successfully!', '发布回复成功！', 'success')
-    } else {
-      Message('Publish reply failed!', '发布回复失败！', 'error')
     }
-  } else {
-    Message('Reply content cannot be empty!', '回复内容不能为空！', 'warn')
-  }
-}
-
-// Click to publish a reply
-const handlePublish = async () => {
-  const res = await messageStore.alert('AlertInfo.edit.publish', true)
-  // Implement user's confirmation or cancel logic here
-  if (res) {
-    publishReply()
-  } else {
-    // Cancel the publish and display a message
-    Message('Cancel publish reply', '取消发布回复', 'info')
   }
 }
 
@@ -75,7 +55,7 @@ const handleRewrite = async () => {
     // Update the reply
     const responseData = await usePersistKUNGalgameReplyStore().updateReply()
 
-    if (responseData.code === 200) {
+    if (responseData?.code === 200) {
       // Change the publish status, the front-end will add data for the new reply
 
       Message('Reply rewrite successfully', '回复重新编辑成功', 'success')
@@ -87,8 +67,6 @@ const handleRewrite = async () => {
       // Close the panel
       isShowAdvance.value = false
       isEdit.value = false
-    } else {
-      Message('Reply rewrite failed!', '回复重新编辑失败！', 'error')
     }
   }
 }
@@ -136,7 +114,6 @@ const handleShowAdvance = () => {
 </template>
 
 <style lang="scss" scoped>
-/* Button container */
 .btn-container {
   padding: 10px;
   width: 100%;
@@ -145,7 +122,7 @@ const handleShowAdvance = () => {
   justify-content: space-between;
   align-items: center;
 }
-/* Style for individual buttons */
+
 .btn-container button {
   margin: 10px 0;
   height: 40px;
@@ -162,7 +139,6 @@ const handleShowAdvance = () => {
   }
 }
 
-/* Confirm button style */
 .confirm-btn {
   color: var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-white-9);
@@ -179,7 +155,6 @@ const handleShowAdvance = () => {
   }
 }
 
-/* Rewrite button style */
 .rewrite-btn {
   color: var(--kungalgame-red-4);
   background-color: var(--kungalgame-trans-white-9);
@@ -196,7 +171,6 @@ const handleShowAdvance = () => {
   }
 }
 
-/* Save button style */
 .save-btn {
   color: var(--kungalgame-pink-4);
   background-color: var(--kungalgame-trans-white-9);
@@ -213,7 +187,6 @@ const handleShowAdvance = () => {
   }
 }
 
-/* Advanced options button style */
 .advance-btn {
   color: var(--kungalgame-purple-4);
   background-color: var(--kungalgame-trans-white-9);
@@ -230,7 +203,6 @@ const handleShowAdvance = () => {
   }
 }
 
-/* Mobile responsiveness */
 @media (max-width: 700px) {
   .advance-btn {
     display: none;

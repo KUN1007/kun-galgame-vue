@@ -11,6 +11,7 @@ import type {
 } from '@/api'
 
 import { ReplyStorePersist } from '@/store/types/topic/reply'
+import { checkReplyPublish } from '@/store/utils/checkReplyPublish'
 
 export const usePersistKUNGalgameReplyStore = defineStore({
   id: 'KUNGalgameReply',
@@ -43,7 +44,7 @@ export const usePersistKUNGalgameReplyStore = defineStore({
   }),
   actions: {
     // Create a new reply
-    async postNewReply(): Promise<TopicCreateReplyResponseData> {
+    async postNewReply(): Promise<TopicCreateReplyResponseData | undefined> {
       // The values here are used to initialize the reply
       const requestData: TopicCreateReplyRequestData = {
         tid: this.replyDraft.tid,
@@ -52,17 +53,27 @@ export const usePersistKUNGalgameReplyStore = defineStore({
         tags: this.replyDraft.tags,
         content: this.replyDraft.content,
       }
+
+      if (!checkReplyPublish(requestData.tags, requestData.content)) {
+        return
+      }
+
       return await postReplyByPidApi(requestData)
     },
 
     // Update a reply
-    async updateReply(): Promise<TopicUpdateReplyResponseData> {
+    async updateReply(): Promise<TopicUpdateReplyResponseData | undefined> {
       const requestData: TopicUpdateReplyRequestData = {
         tid: this.replyRewrite.tid,
         rid: this.replyRewrite.rid,
         content: this.replyRewrite.content,
         tags: this.replyRewrite.tags,
       }
+
+      if (!checkReplyPublish(requestData.tags, requestData.content)) {
+        return
+      }
+
       return await updateReplyApi(requestData)
     },
 
