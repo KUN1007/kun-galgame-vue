@@ -71,7 +71,7 @@ onBeforeRouteLeave(() => {
         <!-- Top individual sections -->
         <span v-for="kun in topBarItem" :key="kun.index">
           <RouterLink :to="{ path: kun.router }">
-            {{ $tm(`header['${kun.name}']`) }}
+            {{ $tm(`header.${kun.name}`) }}
           </RouterLink>
         </span>
         <!-- Hover effect under the top section -->

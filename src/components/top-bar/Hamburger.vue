@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import Mode from '../setting-panel/components/Mode.vue'
 import SwitchLanguage from '../setting-panel/components/SwitchLanguage.vue'
-import { topBarItem } from './topBarItem'
+import { hamburgerItem } from './hamburgerItem'
 
 defineEmits(['showKUNGalgameHamburger'])
 </script>
@@ -20,18 +20,22 @@ defineEmits(['showKUNGalgameHamburger'])
         </div>
         <!-- Interactive items -->
         <div class="item" style="font-size: 17px">
-          <span v-for="kun in topBarItem" :key="kun.index">
+          <span v-for="kun in hamburgerItem" :key="kun.index">
             <RouterLink :to="kun.router">
-              {{ $tm(`header['${kun.name}']`) }}
+              {{ $tm(`header.hamburger.${kun.name}`) }}
             </RouterLink>
           </span>
         </div>
 
         <!-- Day and night mode switch component -->
-        <Mode style="font-size: 20px" />
+        <Mode style="font-size: 15px" />
 
         <!-- Language switch component -->
-        <SwitchLanguage style="font-size: 20px" />
+        <SwitchLanguage style="font-size: 15px" />
+
+        <div class="home">
+          <RouterLink to="/kun">{{ $tm('header.hamburger.home') }}</RouterLink>
+        </div>
       </div>
     </Transition>
   </div>
@@ -54,8 +58,9 @@ defineEmits(['showKUNGalgameHamburger'])
 }
 
 .container {
+  height: 100vh;
   position: absolute;
-  width: 277px;
+  width: 247px;
   padding: 10px;
   background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-1);
@@ -86,6 +91,23 @@ defineEmits(['showKUNGalgameHamburger'])
   }
   span {
     font-size: 20px;
+  }
+}
+
+.home {
+  width: 100%;
+  padding: 10px;
+
+  a {
+    padding: 5px 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 20px;
+    border: 1px solid var(--kungalgame-blue-4);
+    color: var(--kungalgame-blue-4);
   }
 }
 </style>
