@@ -110,6 +110,7 @@ onBeforeRouteLeave(async (to, from, next) => {
   background-color: var(--kungalgame-trans-white-2);
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-blue-1);
+  border-radius: 5px;
 }
 
 .content-footer {

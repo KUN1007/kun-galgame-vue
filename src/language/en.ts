@@ -381,14 +381,12 @@ export default {
     edit: {
       publish: 'Confirm to publish?',
       publishSuccess: 'Publish Successfully',
-      publishCancel: 'Cancel Publish',
       upvoteTopic:
         'Are you sure you want to upvote this topic? This will cost you 17 Moe Moe Points',
       upvoteReply:
         'Are you sure you want to upvote this reply? This will cost you 3 Moe Moe Points',
       rewrite: 'Confirm to Rewrite?',
       rewriteSuccess: 'Rewrite Successfully',
-      rewriteCancel: 'Cancel Rewrite',
       closePanel: 'Confirm closing the panel? Your changes will not be saved.',
       draft: 'The draft has been saved successfully!',
       leave: 'Confirm leaving the page? Your changes will not be saved.',

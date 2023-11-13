@@ -36,8 +36,6 @@ const handlePublish = async () => {
       // Clear data and no longer save it, as the topic has been published at this point
       useKUNGalgameEditStore().resetTopicData()
     }
-  } else {
-    messageStore.info('AlertInfo.edit.publishCancel')
   }
 }
 
@@ -63,8 +61,6 @@ const handleRewrite = async () => {
     messageStore.info('AlertInfo.edit.rewriteSuccess')
     // Clear data and no longer save it, as the topic has been updated at this point
     useKUNGalgameEditStore().resetRewriteTopicData()
-  } else {
-    messageStore.info('AlertInfo.edit.rewriteCancel')
   }
 }
 
@@ -122,6 +118,7 @@ const handleSave = () => {
     overflow: hidden;
     cursor: pointer;
     flex-shrink: 0;
+    border-radius: 5px;
 
     &:hover {
       color: var(--kungalgame-white);
@@ -132,7 +129,7 @@ const handleSave = () => {
 /* Style for the confirm button */
 .confirm-btn {
   color: var(--kungalgame-blue-4);
-  background-color: var(--kungalgame-trans-blue-1);
+  background-color: var(--kungalgame-trans-white-9);
   border: 1px solid var(--kungalgame-blue-4);
 
   &:hover {
@@ -144,7 +141,7 @@ const handleSave = () => {
 /* Style for the rewrite button */
 .rewrite-btn {
   color: var(--kungalgame-red-4);
-  background-color: var(--kungalgame-trans-red-1);
+  background-color: var(--kungalgame-trans-white-9);
   border: 1px solid var(--kungalgame-red-4);
 
   &:hover {
@@ -156,7 +153,7 @@ const handleSave = () => {
 /* Style for the save button */
 .save-btn {
   color: var(--kungalgame-pink-4);
-  background-color: var(--kungalgame-trans-pink-1);
+  background-color: var(--kungalgame-trans-white-9);
   border: 1px solid var(--kungalgame-pink-4);
 
   &:hover {

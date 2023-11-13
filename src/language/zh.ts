@@ -379,12 +379,10 @@ export default {
     edit: {
       publish: '确认发布吗？',
       publishSuccess: '发布成功',
-      publishCancel: '取消发布',
       upvoteTopic: '您确定推这个话题吗，这将会消耗您 17 萌萌点',
       upvoteReply: '您确定推这个回复吗，这将会消耗您 3 萌萌点',
       rewrite: '确认 Rewrite 吗？',
       rewriteSuccess: 'Rewrite 成功',
-      rewriteCancel: '取消 Rewrite',
       closePanel: '确认关闭面板吗？您的更改将不会被保存',
       draft: '草稿已经保存成功！',
       leave: '确认离开界面吗？您的更改将不会保存',
