@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-// Import debounce function
-import { debounce } from '@/utils/debounce'
 import { ref, onBeforeMount } from 'vue'
-// Import user store
-import { useKUNGalgameHomeStore } from '@/store/modules/home'
+
+import { debounce } from '@/utils/debounce'
+
+import { usePersistKUNGalgameHomeStore } from '@/store/modules/home'
+import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
-const { keywords, searchHistory, category } = storeToRefs(
-  useKUNGalgameHomeStore()
-)
+
+const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
+const { keywords, category } = storeToRefs(useTempHomeStore())
 
 // Value of the input field
 const inputValue = ref('')
@@ -31,7 +32,7 @@ onBeforeMount(() => {
 // Define the debounce handling function
 const debouncedSearch = debounce((inputValue: string) => {
   // Reset page status and loading state before searching
-  useKUNGalgameHomeStore().resetPageStatus()
+  useTempHomeStore().resetPageStatus()
   keywords.value = inputValue
 }, 300) // 300 milliseconds debounce delay
 

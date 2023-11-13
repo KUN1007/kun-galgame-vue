@@ -5,10 +5,10 @@ import AsideActive from './components/AsideActive.vue'
 
 import Aside from './components/Aside.vue'
 
-import { useKUNGalgameHomeStore } from '@/store/modules/home'
+import { usePersistKUNGalgameHomeStore } from '@/store/modules/home'
 import { storeToRefs } from 'pinia'
 
-const { isActiveMainPageAside } = storeToRefs(useKUNGalgameHomeStore())
+const { isActiveMainPageAside } = storeToRefs(usePersistKUNGalgameHomeStore())
 
 const asideWidth = ref('240px')
 

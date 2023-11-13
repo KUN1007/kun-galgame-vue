@@ -1,32 +1,30 @@
 <script setup lang="ts">
-// Import icons
 import { Icon } from '@iconify/vue'
-import { useKUNGalgameHomeStore } from '@/store/modules/home'
-import { storeToRefs } from 'pinia'
-
-// Import sorting list fields
-import { navSortItem } from './navSortItem'
 import { ref } from 'vue'
 
-// Styles for ascending and descending orders
+import { useTempHomeStore } from '@/store/temp/home'
+import { storeToRefs } from 'pinia'
+
+import { navSortItem } from './navSortItem'
+
 const ascClass = ref('')
 
-const { sortField, sortOrder } = storeToRefs(useKUNGalgameHomeStore())
+const { sortField, sortOrder } = storeToRefs(useTempHomeStore())
 
 const handleSortByField = (field: string) => {
-  useKUNGalgameHomeStore().resetPageStatus()
+  useTempHomeStore().resetPageStatus()
   sortField.value = field
 }
 
 const orderAscending = () => {
-  useKUNGalgameHomeStore().resetPageStatus()
+  useTempHomeStore().resetPageStatus()
   sortOrder.value = 'asc'
   // Change style
   ascClass.value = 'active'
 }
 
 const orderDescending = () => {
-  useKUNGalgameHomeStore().resetPageStatus()
+  useTempHomeStore().resetPageStatus()
   sortOrder.value = 'desc'
   ascClass.value = ''
 }
@@ -36,13 +34,9 @@ const iconMap: Record<string, string> = {
   time: 'eos-icons:hourglass',
   popularity: 'bi:fire',
   views: 'ic:outline-remove-red-eye',
-  likes: 'line-md:thumbs-up-twotone',
-  replies: 'ri:reply-line',
+  likes_count: 'line-md:thumbs-up-twotone',
+  replies_count: 'ri:reply-line',
   comments: 'fa-regular:comment-dots',
-}
-
-const isSortField = () => {
-  return Object.keys(iconMap).includes(sortField.value)
 }
 </script>
 
@@ -50,7 +44,7 @@ const isSortField = () => {
   <div class="container" :class="ascClass">
     <span>{{ $tm('mainPage.header.filter') }}</span>
     <span class="filter">
-      <Icon v-if="isSortField()" :icon="iconMap[sortField]" />
+      <Icon :icon="iconMap[sortField]" />
     </span>
 
     <!-- Secondary menu for sorting -->

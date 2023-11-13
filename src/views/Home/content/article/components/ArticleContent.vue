@@ -6,12 +6,11 @@ import { hourDiff } from '@/utils/time'
 
 import { HomeTopic } from '@/api'
 
-// Import the homepage store
-import { useKUNGalgameHomeStore } from '@/store/modules/home'
+import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
 const { page, keywords, sortField, sortOrder, isLoading } = storeToRefs(
-  useKUNGalgameHomeStore()
+  useTempHomeStore()
 )
 
 // Define reactive topic data in the component
@@ -21,7 +20,7 @@ const content = ref<HTMLElement>()
 
 // Function to get page topics
 const getTopics = async (): Promise<HomeTopic[]> => {
-  return (await useKUNGalgameHomeStore().getHomeTopic()).data
+  return (await useTempHomeStore().getHomeTopic()).data
 }
 
 // Call fetchTopics to get topic data (watch is great!)
@@ -65,7 +64,7 @@ const isScrollAtBottom = () => {
 
 onBeforeMount(async () => {
   // Reset page number, loading status, etc. before mounting
-  useKUNGalgameHomeStore().resetPageStatus()
+  useTempHomeStore().resetPageStatus()
 })
 
 // Add a scroll event listener after the component is mounted

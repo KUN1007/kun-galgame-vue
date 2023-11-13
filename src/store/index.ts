@@ -13,7 +13,7 @@ import { useKUNGalgameBalanceStore } from './modules/balance'
 import { useKUNGalgameEditStore } from './modules/edit'
 
 // Import home store
-import { useKUNGalgameHomeStore } from './modules/home'
+import { usePersistKUNGalgameHomeStore } from './modules/home'
 
 // Import user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
@@ -46,7 +46,7 @@ export function setupKUNGalgamePinia(app: App<Element>) {
 export function kungalgameStoreReset() {
   const balanceStore = useKUNGalgameBalanceStore()
   const editStore = useKUNGalgameEditStore()
-  const homeStore = useKUNGalgameHomeStore()
+  const homeStore = usePersistKUNGalgameHomeStore()
   const userStore = useKUNGalgameUserStore()
   const messageStore = useKUNGalgameMessageStore()
   const nonMoeStore = useKUNGalgameNonMoeStore()
