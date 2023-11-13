@@ -490,29 +490,23 @@ const kungalgamePageWidth = computed(() => {
           <br />
         </div>
       </div>
-
-      <KUNGalgameFooter
-        style="width: 100%; bottom: 0; display: flex; justify-content: center"
-      />
     </div>
+    <KUNGalgameFooter />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .root {
-  height: 100%;
-  min-height: calc(100vh + 65px);
+  min-height: 800px;
 }
 
 .content-container {
-  background-color: var(--kungalgame-trans-white-5);
   border-radius: 7px;
-  height: 100vh;
-  transition: all 0.2s;
+  height: calc(100vh - 138px);
+  transition: width 0.2s;
   width: v-bind(kungalgamePageWidth);
-  max-width: 1300px;
+  min-height: 800px;
   margin: auto;
-  padding: 5px;
 }
 
 .content {
@@ -576,13 +570,11 @@ h2 {
 }
 
 h3 {
-  text-indent: 2em;
   margin-bottom: 30px;
   margin-top: 20px;
 }
 
 p {
-  text-indent: 3em;
   margin: 5px;
 }
 
@@ -601,7 +593,7 @@ strong {
 
 .list > li {
   list-style: inside;
-  text-indent: 4em;
+  text-indent: 1em;
 }
 
 @media (max-width: 1000px) {

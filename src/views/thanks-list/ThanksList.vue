@@ -414,7 +414,7 @@ const thanksListPageWidth = computed(() => {
 }
 
 .container {
-  transition: all 0.2s;
+  transition: width 0.2s;
   width: v-bind(thanksListPageWidth);
   max-width: 1300px;
   margin: 0 auto;
@@ -449,14 +449,17 @@ const thanksListPageWidth = computed(() => {
   }
 }
 
-.list > li {
-  list-style: inside;
-  text-indent: 4em;
-  margin: 5px 0;
+.list {
+  padding: 0;
+  margin: 0;
+
+  & > li {
+    list-style: inside;
+    margin: 5px 0;
+  }
 }
 
 p {
-  text-indent: 3em;
   margin: 5px;
 }
 </style>

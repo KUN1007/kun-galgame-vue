@@ -38,7 +38,7 @@ const mainPageWidth = computed(() => {
 
 .content-container {
   width: v-bind(mainPageWidth);
-  transition: all 0.2s;
+  transition: width 0.2s;
   height: 100%;
   margin: 0 auto;
   display: flex;

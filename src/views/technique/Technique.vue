@@ -62,7 +62,7 @@ const techniquePageWidth = computed(() => {
   padding: 5px;
   height: 1400px;
   /* 占总页面的宽度 */
-  transition: all 0.2s;
+  transition: width 0.2s;
   width: v-bind(techniquePageWidth);
   /* 水平垂直居中 */
   margin: 0 auto;

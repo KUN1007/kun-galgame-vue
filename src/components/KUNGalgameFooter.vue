@@ -20,7 +20,7 @@ import { Icon } from '@iconify/vue'
     </div>
 
     <div>
-      <span>{{ $tm('footer.reserved') }} 1.2.0</span>
+      <span>{{ $tm('footer.reserved') }} 1.3.0</span>
     </div>
   </div>
 </template>

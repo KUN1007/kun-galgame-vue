@@ -313,7 +313,7 @@ onBeforeMount(() => {
 /* Container for visible content below */
 .content-container {
   width: v-bind(topicPageWidth);
-  transition: all 0.2s;
+  transition: width 0.2s;
   height: calc(100vh - 65px);
   min-height: 500px;
   margin: 0 auto;

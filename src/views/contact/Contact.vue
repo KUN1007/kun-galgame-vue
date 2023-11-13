@@ -13,28 +13,52 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
       </div>
 
       <div class="content">
-        <a href="https://t.me/kungalgame" target="_blank">
-          <span>Telegram</span>
+        <a
+          aria-label="KUN Visual Novel Official Telegram Group"
+          href="https://t.me/kungalgame"
+          target="_blank"
+        >
           <Icon class="icon" icon="line-md:telegram" />
         </a>
+
         <a
+          aria-label="KUN Visual Novel Official Twitter (X) Account | 鲲 Galgame 论坛官方推特账号"
+          href="https://twitter.com/kungalgame"
+          target="_blank"
+        >
+          <Icon class="icon" icon="line-md:twitter-x-alt" />
+        </a>
+
+        <a
+          aria-label="KUN Visual Novel Open Source GitHub Repository | 鲲 Galgame 论坛开源 GitHub 仓库"
+          href="https://t.me/kungalgame"
+          target="_blank"
+        >
+          <Icon class="icon" icon="line-md:github-loop" />
+        </a>
+
+        <a
+          aria-label="KUN Visual Novel Official QQ Group | 鲲 Galgame 官方 QQ 群"
           href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=hlXYbLM8MqOm9WzE22ZodNiQJ3nc1Bu2&authKey=7xfTYC1atV5loXyWNv9VOTOaf5ZzR9BdCFcMNJWdmyukck8%2FDLSF3%2FrHgyiY48pT&noverify=0&group_code=726477957"
           target="_blank"
         >
-          <span>QQ</span>
           <Icon class="icon" icon="bi:tencent-qq" />
         </a>
-        <a href="https://space.bilibili.com/1748455574" target="_blank">
-          <span>Bilibili</span>
+
+        <a
+          aria-label="KUN Visual Novel Official Bilibili Account | 鲲 Galgame 官方 Bilibili"
+          href="https://space.bilibili.com/1748455574"
+          target="_blank"
+        >
           <Icon class="icon" icon="ri:bilibili-line" />
         </a>
       </div>
       <BackToPrevious />
-
-      <KUNGalgameFooter
-        style="position: absolute; bottom: -20%; white-space: nowrap"
-      />
     </div>
+
+    <KUNGalgameFooter
+      style="position: absolute; bottom: 20px; width: 100%; margin: 0 auto"
+    />
   </div>
 </template>
 
@@ -42,8 +66,7 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 .root {
   height: 100vh;
   width: 100vw;
-  min-width: 500px;
-  min-height: 500px;
+  min-height: 300px;
   background: linear-gradient(
     var(--kungalgame-trans-pink-1),
     var(--kungalgame-trans-blue-1)
@@ -53,12 +76,11 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 }
 
 .container {
+  position: relative;
   width: 400px;
   height: 300px;
   margin: auto;
-  position: relative;
   background-color: var(--kungalgame-trans-blue-0);
-  border: 1px solid var(--kungalgame-trans-blue-4);
   border-radius: 7px;
   box-shadow: var(--kungalgame-shadow-0);
   display: flex;
@@ -77,7 +99,7 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .contact-us {
@@ -103,11 +125,12 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 }
 
 .content {
+  width: 100%;
   display: flex;
+  justify-content: space-around;
   font-size: 20px;
 
   & > a {
-    width: 110px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,6 +155,16 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
     color: var(--kungalgame-red-4);
     transform: scale(1.2);
     transition: 0.1s;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 95%;
+  }
+
+  .kungalgame {
+    font-size: 50px;
   }
 }
 </style>
