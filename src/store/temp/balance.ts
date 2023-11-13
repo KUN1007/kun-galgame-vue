@@ -15,8 +15,8 @@ interface BalanceStore {
   expenditure: BalanceExpenditureRequestData
 }
 
-export const useKUNGalgameBalanceStore = defineStore({
-  id: 'KUNGalgameBalance',
+export const useTempBalanceStore = defineStore({
+  id: 'tempBalance',
   persist: false,
   state: (): BalanceStore => ({
     income: {

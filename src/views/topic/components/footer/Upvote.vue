@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import Message from '@/components/alert/Message'
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
@@ -29,7 +29,7 @@ watch(
 )
 
 const upvoteTopic = async () => {
-  const res = await useKUNGalgameMessageStore().alert(
+  const res = await useTempMessageStore().alert(
     'AlertInfo.edit.upvoteTopic',
     true
   )
@@ -50,7 +50,7 @@ const upvoteTopic = async () => {
 }
 
 const upvoteReply = async () => {
-  const res = await useKUNGalgameMessageStore().alert(
+  const res = await useTempMessageStore().alert(
     'AlertInfo.edit.upvoteReply',
     true
   )

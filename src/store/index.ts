@@ -6,9 +6,6 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import type { App } from 'vue'
 
-// Import store for the income and expense public disclosure page
-import { useKUNGalgameBalanceStore } from './modules/balance'
-
 // Import store for the editing interface
 import { useKUNGalgameEditStore } from './modules/edit'
 
@@ -17,15 +14,6 @@ import { usePersistKUNGalgameHomeStore } from './modules/home'
 
 // Import user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-
-// Import message store
-import { useKUNGalgameMessageStore } from './modules/message'
-
-// Import non-moe records store
-import { useKUNGalgameNonMoeStore } from './modules/nonMoe'
-
-// Import ranking store
-import { useKUNGalgameRankingStore } from './modules/ranking'
 
 // Import website settings panel store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -44,24 +32,16 @@ export function setupKUNGalgamePinia(app: App<Element>) {
 
 // Reset all stores, used for logging out
 export function kungalgameStoreReset() {
-  const balanceStore = useKUNGalgameBalanceStore()
   const editStore = useKUNGalgameEditStore()
   const homeStore = usePersistKUNGalgameHomeStore()
   const userStore = useKUNGalgameUserStore()
-  const messageStore = useKUNGalgameMessageStore()
-  const nonMoeStore = useKUNGalgameNonMoeStore()
-  const rankingStore = useKUNGalgameRankingStore()
   const settingsStore = useKUNGalgameSettingsStore()
   const topicStore = usePersistKUNGalgameTopicStore()
   const replyStore = usePersistKUNGalgameReplyStore()
 
-  balanceStore.$reset()
   editStore.$reset()
   homeStore.$reset()
   userStore.$reset()
-  messageStore.$reset()
-  nonMoeStore.$reset()
-  rankingStore.$reset()
   settingsStore.$reset()
   topicStore.$reset()
   replyStore.$reset()

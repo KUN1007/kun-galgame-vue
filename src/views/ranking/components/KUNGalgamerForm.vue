@@ -3,20 +3,20 @@ import { onMounted, ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 import KUNGalgamer from './KUNGalgamer.vue'
 
-import { useKUNGalgameRankingStore } from '@/store/modules/ranking'
+import { useTempRankingStore } from '@/store/temp/ranking'
 import { storeToRefs } from 'pinia'
 
 import type { RankingUsers } from '@/api'
 import { userSortItem, userIconMap } from './navSortItem'
 
-const { user } = storeToRefs(useKUNGalgameRankingStore())
+const { user } = storeToRefs(useTempRankingStore())
 const users = ref<RankingUsers[]>([])
 // Ascending or descending order
 const isAscending = ref(false)
 
 // Get users
 const getUsers = async () => {
-  const responseData = await useKUNGalgameRankingStore().getUsers()
+  const responseData = await useTempRankingStore().getUsers()
   return responseData.data
 }
 

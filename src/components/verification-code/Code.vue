@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { storeToRefs } from 'pinia'
 
 // The parent component instructs it to send the verification code, and it will do so.
@@ -10,8 +10,8 @@ const props = defineProps<{
   email: string
 }>()
 
-const { isCaptureSuccessful } = storeToRefs(useKUNGalgameMessageStore())
-const info = useKUNGalgameMessageStore()
+const { isCaptureSuccessful } = storeToRefs(useTempMessageStore())
+const info = useTempMessageStore()
 
 const isSendCode = ref(false)
 const isSending = ref(false)

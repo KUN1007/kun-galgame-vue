@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import Log from './components/Log.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
-import { useKUNGalgameNonMoeStore } from '@/store/modules/nonMoe'
+import { useTempNonMoeStore } from '@/store/temp/nonMoe'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
@@ -17,7 +17,7 @@ const langClass = computed(() => {
 })
 
 const getLogs = async () => {
-  const response = await useKUNGalgameNonMoeStore().getLogs()
+  const response = await useTempNonMoeStore().getLogs()
   return response.data
 }
 

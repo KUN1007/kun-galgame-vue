@@ -11,14 +11,14 @@ const Tags = defineAsyncComponent(
 )
 import ReplyPanelBtn from './ReplyPanelBtn.vue'
 
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
 import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-const messageStore = useKUNGalgameMessageStore()
+const messageStore = useTempMessageStore()
 const { isShowAdvance } = storeToRefs(usePersistKUNGalgameTopicStore())
 const { replyDraft, isReplyRewriting, replyPanelWidth } = storeToRefs(
   usePersistKUNGalgameReplyStore()

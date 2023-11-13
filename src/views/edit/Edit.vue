@@ -3,7 +3,7 @@
 import Title from '@/components/milkdown/components/Title.vue'
 import { onBeforeRouteLeave } from 'vue-router'
 // Global message component (bottom)
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 // Import the editor
 import MilkdownEditorWrapper from '@/components/milkdown/MilkdownEditorWrapper.vue'
 import Tags from './components/Tags.vue'
@@ -30,10 +30,7 @@ onBeforeRouteLeave(async (to, from, next) => {
   // If a topic is being updated
   if (topicRewrite.value.isTopicRewriting) {
     // Get the user's response
-    const res = await useKUNGalgameMessageStore().alert(
-      'AlertInfo.edit.leave',
-      true
-    )
+    const res = await useTempMessageStore().alert('AlertInfo.edit.leave', true)
     if (res) {
       // Reset the data for the topic being rewritten
       useKUNGalgameEditStore().resetRewriteTopicData()

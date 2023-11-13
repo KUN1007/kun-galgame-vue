@@ -4,8 +4,8 @@ import type { NonMoeLogRequestData, NonMoeGetLogsResponseData } from '@/api'
 
 import { getNonMoeLogsApi } from '@/api'
 
-export const useKUNGalgameNonMoeStore = defineStore({
-  id: 'KUNGalgameNonMoe',
+export const useTempNonMoeStore = defineStore({
+  id: 'tempNonMoe',
   persist: false,
   state: (): NonMoeLogRequestData => ({
     page: 1,

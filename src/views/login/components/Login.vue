@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { useRouter } from 'vue-router'
 // Using global notifications
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { storeToRefs } from 'pinia'
 // Global message component (top)
 import Message from '@/components/alert/Message'
@@ -15,10 +15,10 @@ import { isValidEmail, isValidName, isValidPassword } from '@/utils/validate'
 
 const router = useRouter()
 
-const info = useKUNGalgameMessageStore()
+const info = useTempMessageStore()
 // Using the message store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
-  useKUNGalgameMessageStore()
+  useTempMessageStore()
 )
 
 // User login form

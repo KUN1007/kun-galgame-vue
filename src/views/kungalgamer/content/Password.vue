@@ -5,7 +5,7 @@ import type { UserInfo } from '@/api'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import Message from '@/components/alert/Message'
 // Using global notifications
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 // Reset store
 import { kungalgameStoreReset } from '@/store'
 import {
@@ -98,7 +98,7 @@ const handleChangePassword = async () => {
   }
 
   // Are you sure you want to change the password?
-  const result = await useKUNGalgameMessageStore().alert(
+  const result = await useTempMessageStore().alert(
     'AlertInfo.code.password',
     true
   )

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Global message component (at the bottom)
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 // Import the store for editing topics
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
@@ -10,7 +10,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const { isSaveTopic, topicRewrite } = storeToRefs(useKUNGalgameEditStore())
-const messageStore = useKUNGalgameMessageStore()
+const messageStore = useTempMessageStore()
 
 // Publish a topic
 const handlePublish = async () => {

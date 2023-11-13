@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-// Import questions
+import { ref, watch } from 'vue'
 import { questionsEN, Question } from './questionsEN'
 import { questionsCN } from './questionsCN'
 
 import Message from '@/components/alert/Message'
 
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
 const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
-  useKUNGalgameMessageStore()
+  useTempMessageStore()
 )
 // Current language
 const questions = ref<Question[]>([])

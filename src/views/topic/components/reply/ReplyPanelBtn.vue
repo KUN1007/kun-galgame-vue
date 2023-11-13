@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import Message from '@/components/alert/Message'
 
 import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
@@ -15,7 +15,7 @@ const { isSaveReply, isReplyRewriting, replyRewrite } = storeToRefs(
 
 const { isEdit, tempReplyRewrite } = storeToRefs(useTempReplyStore())
 
-const messageStore = useKUNGalgameMessageStore()
+const messageStore = useTempMessageStore()
 
 // Click to publish a reply
 const handlePublish = async () => {

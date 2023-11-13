@@ -6,13 +6,13 @@ import Code from '@/components/verification-code/Code.vue'
 import { checkEmail, checkCode, checkPassword } from './check'
 
 // Use global notification
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 // Use the user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
-  useKUNGalgameMessageStore()
+  useTempMessageStore()
 )
 
 const input = reactive({
@@ -65,7 +65,7 @@ const handleChangePassword = async () => {
   }
 
   // Are you sure you want to change your password?
-  const result = await useKUNGalgameMessageStore().alert(
+  const result = await useTempMessageStore().alert(
     'AlertInfo.code.password',
     true
   )

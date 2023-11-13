@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 // Global message component (top)
 import Message from '@/components/alert/Message'
 // Global message component (bottom)
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 // Reset store
@@ -33,10 +33,7 @@ const handlePanelBlur = async () => {
 // Log out - for simplicity, the code here does not communicate with the backend to remove the token from Redis.
 const logOut = async () => {
   // Get the user's response
-  const res = await useKUNGalgameMessageStore().alert(
-    'AlertInfo.edit.logout',
-    true
-  )
+  const res = await useTempMessageStore().alert('AlertInfo.edit.logout', true)
   if (res) {
     kungalgameStoreReset()
     router.push('/login')

@@ -10,8 +10,8 @@ import {
 } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import Message from '@/components/alert/Message'
-// Global message component (bottom)
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+
+import { useTempMessageStore } from '@/store/temp/message'
 
 import { TopicDetail, TopicReply } from '@/api'
 
@@ -241,10 +241,7 @@ onBeforeRouteLeave(async (to, from, next) => {
   // If a reply is being edited
   if (isReplyRewriting.value) {
     // Get the user's choice
-    const res = await useKUNGalgameMessageStore().alert(
-      'AlertInfo.edit.leave',
-      true
-    )
+    const res = await useTempMessageStore().alert('AlertInfo.edit.leave', true)
     if (res) {
       resetPanelStatus()
       // If the user confirms leaving, continue with the navigation

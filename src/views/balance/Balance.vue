@@ -3,7 +3,7 @@ import { onMounted, reactive, ref } from 'vue'
 import Form from './components/Form.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
-import { useKUNGalgameBalanceStore } from '@/store/modules/balance'
+import { useTempBalanceStore } from '@/store/temp/balance'
 import type { BalanceIncome, BalanceExpenditure, PLStatement } from '@/api'
 
 const incomeData = ref<BalanceIncome[]>([])
@@ -15,17 +15,17 @@ const statement: PLStatement = reactive({
 })
 
 const getIncomeData = async () => {
-  const response = await useKUNGalgameBalanceStore().getIncome()
+  const response = await useTempBalanceStore().getIncome()
   return response.data
 }
 
 const getExpenditureData = async () => {
-  const response = await useKUNGalgameBalanceStore().getExpenditure()
+  const response = await useTempBalanceStore().getExpenditure()
   return response.data
 }
 
 const getPLStatementData = async () => {
-  const response = await useKUNGalgameBalanceStore().getPLStatement()
+  const response = await useTempBalanceStore().getPLStatement()
   return response.data
 }
 

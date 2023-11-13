@@ -1,19 +1,17 @@
 <script setup lang="ts">
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { storeToRefs } from 'pinia'
 
-const { showAlert, alertMsg, isShowCancel } = storeToRefs(
-  useKUNGalgameMessageStore()
-)
+const { showAlert, alertMsg, isShowCancel } = storeToRefs(useTempMessageStore())
 
 const handleClose = () => {
   showAlert.value = false
-  useKUNGalgameMessageStore().handleClose()
+  useTempMessageStore().handleClose()
 }
 
 const handleConfirm = () => {
   showAlert.value = false
-  useKUNGalgameMessageStore().handleConfirm()
+  useTempMessageStore().handleConfirm()
 }
 </script>
 

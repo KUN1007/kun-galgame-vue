@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 import Message from '@/components/alert/Message'
 import Settings from './Settings.vue'
 
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 
@@ -19,10 +19,10 @@ import Code from '@/components/verification-code/Code.vue'
 
 // Using the message store
 const { isShowCapture, isCaptureSuccessful } = storeToRefs(
-  useKUNGalgameMessageStore()
+  useTempMessageStore()
 )
 
-const info = useKUNGalgameMessageStore()
+const info = useTempMessageStore()
 
 // Current route
 const router = useRouter()

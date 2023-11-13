@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { useKUNGalgameMessageStore } from '@/store/modules/message'
+import { useTempMessageStore } from '@/store/temp/message'
 import { storeToRefs } from 'pinia'
 import img from './loli'
 import 'animate.css'
 
-const { showInfo, infoMsg } = storeToRefs(useKUNGalgameMessageStore())
+const { showInfo, infoMsg } = storeToRefs(useTempMessageStore())
 
 const { loli, name } = img
 
