@@ -8,18 +8,22 @@ import { storeToRefs } from 'pinia'
 const { isScrollToTop, replyRequest } = storeToRefs(useTempReplyStore())
 
 const handleSortReply = (sortField: string) => {
+  useTempReplyStore().resetPageStatus()
   replyRequest.value.sortField = sortField
 }
 
 const orderAscending = () => {
+  useTempReplyStore().resetPageStatus()
   replyRequest.value.sortOrder = 'asc'
 }
 
 const orderDescending = () => {
+  useTempReplyStore().resetPageStatus()
   replyRequest.value.sortOrder = 'desc'
 }
 
 const handleBackToTop = () => {
+  useTempReplyStore().resetPageStatus()
   isScrollToTop.value = true
 }
 </script>

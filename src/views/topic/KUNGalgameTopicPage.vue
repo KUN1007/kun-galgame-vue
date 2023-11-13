@@ -209,10 +209,8 @@ const isScrollAtBottom = () => {
 
 // Reset the panel status when the component is mounted
 onMounted(async () => {
-  // Get data for the single topic
+  useTempReplyStore().resetPageStatus()
   topicData.value = await getTopic()
-
-  // Get reply data
   repliesData.value = await getReplies()
 })
 

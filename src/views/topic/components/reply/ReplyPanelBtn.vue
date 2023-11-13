@@ -26,6 +26,7 @@ const isValidReply = () => {
 // Function to publish a reply
 const publishReply = async () => {
   if (isValidReply()) {
+    useTempReplyStore().resetPageStatus()
     // Publish the reply
     const responseData = await usePersistKUNGalgameReplyStore().postNewReply()
 
