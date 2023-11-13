@@ -212,6 +212,10 @@ onMounted(async () => {
   useTempReplyStore().resetPageStatus()
   topicData.value = await getTopic()
   repliesData.value = await getReplies()
+
+  if (!repliesData.value.length) {
+    isLoading.value = false
+  }
 })
 
 /**
