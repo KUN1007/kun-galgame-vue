@@ -15,6 +15,7 @@ import Time from '../Time.vue'
 import Tags from '../Tags.vue'
 import Rewrite from '../Rewrite.vue'
 import KUNGalgamerInfo from '../KUNGalgamerInfo.vue'
+import ReplyLoadingSkeleton from '@/components/skeleton/topic/ReplyLoadingSkeleton.vue'
 
 import { hourDiff } from '@/utils/time'
 
@@ -24,7 +25,7 @@ import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { useTempCommentStore } from '@/store/temp/topic/comment'
 import { storeToRefs } from 'pinia'
 
-const { scrollToReplyId } = storeToRefs(useTempReplyStore())
+const { isLoading, scrollToReplyId } = storeToRefs(useTempReplyStore())
 
 const { tid, rid, toUid, toUsername, isShowCommentPanelRid } = storeToRefs(
   useTempCommentStore()
@@ -152,6 +153,8 @@ const handleClickComment = (
           />
         </div>
       </div>
+
+      <ReplyLoadingSkeleton v-if="isLoading" />
     </div>
   </Transition>
 </template>
