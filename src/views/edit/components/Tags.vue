@@ -272,15 +272,16 @@ onMounted(async () => {
 }
 
 .selected-tag {
-  border: 1px solid var(--kungalgame-blue-1);
+  border: 1px solid var(--kungalgame-pink-4);
+  border-radius: 14px;
   margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   white-space: nowrap;
   font-size: 14px;
-  padding: 2px;
-  background-color: var(--kungalgame-trans-red-1);
+  padding: 3px 17px;
+  background-color: var(--kungalgame-trans-pink-0);
 
   span {
     cursor: pointer;
@@ -343,17 +344,19 @@ onMounted(async () => {
   flex-wrap: wrap;
 
   & > span {
-    border: 1px solid var(--kungalgame-blue-1);
+    border: 1px solid var(--kungalgame-blue-4);
+    border-radius: 14px;
     margin: 5px;
     display: block;
     white-space: nowrap;
     font-size: 14px;
-    padding: 3px;
-    background-color: var(--kungalgame-trans-blue-1);
+    padding: 3px 17px;
+    background-color: var(--kungalgame-trans-blue-0);
     cursor: pointer;
 
     &:hover {
-      background-color: var(--kungalgame-trans-red-1);
+      color: var(--kungalgame-white);
+      background-color: var(--kungalgame-blue-4);
     }
   }
 }

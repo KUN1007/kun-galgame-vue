@@ -39,15 +39,16 @@ defineProps<{
     li {
       margin: 3px;
       font-size: small;
-      padding: 2px;
+      padding: 3px 17px;
       background-color: var(--kungalgame-trans-blue-0);
-      border: 1px solid var(--kungalgame-blue-1);
+      border: 1px solid var(--kungalgame-blue-4);
+      border-radius: 14px;
       overflow-y: scroll;
       cursor: pointer;
 
       &:hover {
-        background-color: var(--kungalgame-red-0);
-        transition: 0.2s;
+        color: var(--kungalgame-white);
+        background-color: var(--kungalgame-blue-4);
       }
     }
   }
