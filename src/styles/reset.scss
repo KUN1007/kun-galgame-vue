@@ -62,3 +62,11 @@ button {
   ); /* Background color of selected text */
   color: var(--kungalgame-blue-4); /* Text color of selected text */
 }
+
+/* Milkdown */
+p code {
+  background-color: var(--kungalgame-trans-blue-2);
+  padding: 2px 7px;
+  font-size: 13px;
+  border-radius: 7px;
+}
