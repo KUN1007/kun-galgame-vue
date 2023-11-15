@@ -122,7 +122,7 @@ const thanksListPageWidth = computed(() => {
           <li>
             <span class="skip">
               <a
-                href="https://asukaminato.pages.dev/"
+                href="https://asukaminato.eu.org/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -288,7 +288,7 @@ const thanksListPageWidth = computed(() => {
           <li>
             <span class="skip">
               <a
-                href="https://asukaminato.pages.dev/"
+                href="https://asukaminato.eu.org/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
