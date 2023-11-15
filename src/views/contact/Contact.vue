@@ -31,7 +31,7 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
 
         <a
           aria-label="KUN Visual Novel Open Source GitHub Repository | 鲲 Galgame 论坛开源 GitHub 仓库"
-          href="https://t.me/kungalgame"
+          href="https://github.com/KUN1007/kun-galgame-vue"
           target="_blank"
         >
           <Icon class="icon" icon="line-md:github-loop" />
