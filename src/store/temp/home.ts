@@ -38,10 +38,5 @@ export const useTempHomeStore = defineStore({
       }
       return await getHomeTopicApi(requestData)
     },
-
-    resetPageStatus() {
-      this.page = 1
-      this.isLoading = true
-    },
   },
 })

@@ -12,7 +12,7 @@ const { category } = storeToRefs(useTempHomeStore())
 const categoryIcon = ref('galgame')
 
 const handleSortByCategory = (name: string) => {
-  useTempHomeStore().resetPageStatus()
+  useTempHomeStore().$reset()
   category.value = []
   categoryIcon.value = name
 

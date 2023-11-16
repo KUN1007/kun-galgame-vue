@@ -24,7 +24,7 @@ onBeforeMount(() => {
 })
 
 const debouncedSearch = debounce((inputValue: string) => {
-  useTempHomeStore().resetPageStatus()
+  useTempHomeStore().$reset()
   keywords.value = inputValue
 }, 300)
 

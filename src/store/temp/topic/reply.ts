@@ -127,10 +127,5 @@ export const useTempReplyStore = defineStore({
       }
       return await updateReplyDislikeApi(requestData)
     },
-
-    resetPageStatus() {
-      this.replyRequest.page = 1
-      this.isLoading = true
-    },
   },
 })

@@ -22,7 +22,7 @@ const handlePublish = async () => {
   const res = await messageStore.alert('AlertInfo.edit.publish', true)
   // Implement user's confirmation or cancel logic here
   if (res) {
-    useTempReplyStore().resetPageStatus()
+    useTempReplyStore().$reset()
     // Publish the reply
     const responseData = await usePersistKUNGalgameReplyStore().postNewReply()
 

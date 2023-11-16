@@ -12,19 +12,19 @@ const ascClass = ref('')
 const { sortField, sortOrder } = storeToRefs(useTempHomeStore())
 
 const handleSortByField = (field: string) => {
-  useTempHomeStore().resetPageStatus()
+  useTempHomeStore().$reset()
   sortField.value = field
 }
 
 const orderAscending = () => {
-  useTempHomeStore().resetPageStatus()
+  useTempHomeStore().$reset()
   sortOrder.value = 'asc'
   // Change style
   ascClass.value = 'active'
 }
 
 const orderDescending = () => {
-  useTempHomeStore().resetPageStatus()
+  useTempHomeStore().$reset()
   sortOrder.value = 'desc'
   ascClass.value = ''
 }

@@ -49,7 +49,7 @@ const isScrollAtBottom = () => {
 }
 
 onBeforeMount(async () => {
-  useTempHomeStore().resetPageStatus()
+  useTempHomeStore().$reset()
 })
 
 onMounted(async () => {
