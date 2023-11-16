@@ -49,10 +49,11 @@ export default {
   mainPage: {
     header: {
       filter: '筛选',
-      search: '搜索话题',
+      category: '分类',
+      galgame: 'Galgame',
+      technique: '技术交流',
+      others: '其它',
       all: '全部话题',
-      history: '搜索历史',
-      clear: '清除所有历史',
       updated: '恢复默认排序',
       time: '按照时间排序',
       popularity: '按热度值排序',

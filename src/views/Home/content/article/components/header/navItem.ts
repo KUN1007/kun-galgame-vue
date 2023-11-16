@@ -1,3 +1,27 @@
+interface Category {
+  index: number
+  icon: string
+  name: string
+}
+
+export const categoryItem: Category[] = [
+  {
+    index: 1,
+    icon: 'icon-park-outline:game',
+    name: 'galgame',
+  },
+  {
+    index: 2,
+    icon: 'mingcute:tool-line',
+    name: 'technique',
+  },
+  {
+    index: 3,
+    icon: 'basil:other-1-outline',
+    name: 'others',
+  },
+]
+
 interface Sort {
   index: number
   icon: string
@@ -5,7 +29,7 @@ interface Sort {
   sortField: string
 }
 
-export const navSortItem: Sort[] = [
+export const sortItem: Sort[] = [
   {
     index: 1,
     icon: 'line-md:arrows-vertical',

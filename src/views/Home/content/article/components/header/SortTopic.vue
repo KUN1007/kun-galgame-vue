@@ -5,7 +5,7 @@ import { ref } from 'vue'
 import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
-import { navSortItem } from './navSortItem'
+import { sortItem } from './navItem'
 
 const ascClass = ref('')
 
@@ -47,12 +47,11 @@ const iconMap: Record<string, string> = {
       <Icon :icon="iconMap[sortField]" />
     </span>
 
-    <!-- Secondary menu for sorting -->
     <div class="sort-container">
       <div class="sort-submenu">
         <div
           class="sort-item"
-          v-for="kun in navSortItem"
+          v-for="kun in sortItem"
           :key="kun.index"
           @click="handleSortByField(kun.sortField)"
         >
@@ -86,10 +85,9 @@ const iconMap: Record<string, string> = {
 .container {
   background-color: var(--kungalgame-trans-blue-3);
   flex-grow: 1;
-  border-radius: 5px 0 0 0;
   position: relative;
-  border-right: 1px solid var(--kungalgame-trans-blue-4);
   cursor: pointer;
+  margin-left: 10px;
 
   &:hover {
     background-color: var(--kungalgame-trans-white-5);
@@ -114,7 +112,9 @@ const iconMap: Record<string, string> = {
 .sort-submenu {
   display: none;
   flex-direction: column;
-  box-shadow: 1px 2px 1px 1px var(--kungalgame-trans-blue-4);
+  background-color: var(--kungalgame-trans-white-2);
+  box-shadow: var(--shadow);
+  border-radius: 0 0 5px 5px;
 }
 
 .container:hover .sort-submenu {
@@ -123,7 +123,6 @@ const iconMap: Record<string, string> = {
 
 .sort-item {
   padding: 10px 0;
-  background-color: var(--kungalgame-trans-white-2);
   font-size: 14px;
   color: var(--kungalgame-font-color-3);
   text-decoration: none;
@@ -148,10 +147,10 @@ const iconMap: Record<string, string> = {
 
 .sort-order {
   width: 100%;
-  padding: 10px 0;
   display: flex;
   cursor: default;
   background-color: var(--kungalgame-trans-white-2);
+  border-radius: 0 0 5px 5px;
 
   span {
     color: var(--kungalgame-blue-4);
@@ -160,6 +159,8 @@ const iconMap: Record<string, string> = {
     justify-content: center;
     align-items: center;
     font-size: 17px;
+    padding: 10px 0;
+    cursor: pointer;
 
     &:hover {
       transition: all 0.2s;
@@ -171,6 +172,7 @@ const iconMap: Record<string, string> = {
     }
   }
 }
+
 .active {
   background-color: var(--kungalgame-trans-red-3);
 
@@ -182,14 +184,8 @@ const iconMap: Record<string, string> = {
 @media (max-width: 700px) {
   .sort-item {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-
-    span {
-      &:nth-child(1) {
-        display: none;
-      }
-    }
   }
 }
 </style>

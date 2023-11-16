@@ -49,10 +49,11 @@ export default {
   mainPage: {
     header: {
       filter: 'Filter',
-      search: 'Search Topics',
+      category: 'Category',
+      galgame: 'Visual Novel',
+      technique: 'Technique',
+      others: 'Others',
       all: 'All Topics',
-      history: 'Search History',
-      clear: 'Clear all history',
       updated: 'Default',
       time: 'Time',
       popularity: 'Popularity',

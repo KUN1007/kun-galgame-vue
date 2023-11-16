@@ -18,7 +18,7 @@ export const useTempHomeStore = defineStore({
      * @returns {HomeTopicResponseData} topicData
      */
     keywords: '',
-    category: '',
+    category: 'galgame',
     page: 1,
     limit: 17,
     sortField: 'updated',
