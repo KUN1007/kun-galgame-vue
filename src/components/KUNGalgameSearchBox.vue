@@ -94,13 +94,9 @@ const handleDeleteHistory = (historyIndex: number) => {
 </script>
 
 <template>
-  <!-- Interactive area search box -->
   <div class="container">
-    <!-- Search box form -->
     <form class="search-form">
-      <!-- Search box content -->
       <div class="content">
-        <!-- Input field -->
         <input
           v-model="inputValue"
           type="search"
@@ -113,21 +109,20 @@ const handleDeleteHistory = (historyIndex: number) => {
           @keydown.enter="handleClickEnter"
         />
       </div>
-      <!-- Search box icon -->
+
       <div class="search-btn" @click="handleClickSearch">
         <Icon icon="line-md:search" />
       </div>
     </form>
-    <!-- Search history container -->
+
     <div v-if="isShowSearchHistory" class="history">
-      <!-- Search history title -->
       <div class="title">
         <span>{{ $tm('mainPage.header.history') }}</span>
         <span @click="clearSearchHistory">
           {{ $tm('mainPage.header.clear') }}
         </span>
       </div>
-      <!-- Search history -->
+
       <div class="history-container">
         <div
           class="single-history"
@@ -146,49 +141,40 @@ const handleDeleteHistory = (historyIndex: number) => {
 </template>
 
 <style lang="scss" scoped>
-/* Search topics */
 .container {
   height: 39px;
   width: 1px;
   justify-content: center;
   align-items: center;
-  /* Prevent line breaks when the page is resized */
   white-space: nowrap;
   background-color: var(--kungalgame-trans-blue-2);
   border: 1px solid var(--kungalgame-blue-4);
   flex-grow: 2;
-  /* Position relative to the secondary menu */
   position: relative;
   display: flex;
   color: var(--kungalgame-font-color-3);
 }
 
-/* Search box form */
 .search-form {
   display: flex;
   height: 39px;
-  /* Grows with the page */
   width: 1px;
   flex-grow: 1;
-  /* Centered */
   justify-content: center;
   align-items: center;
 }
 
-/* Search content area */
 .content {
   width: 100%;
 }
 
-/* Input field */
 .input {
   padding: 0 15px;
   height: 39px;
   width: 100%;
-  /* Font size for input during search */
   font-size: 16px;
   border: none;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-white-9);
   color: var(--kungalgame-font-color-3);
   transition: all 0.2s;
 
@@ -197,14 +183,11 @@ const handleDeleteHistory = (historyIndex: number) => {
   }
 }
 
-/* Search button */
 .search-btn {
-  /* Square shape, does not shrink */
   height: 39px;
   width: 39px;
   flex-shrink: 0;
   border-left: 1px solid var(--kungalgame-trans-blue-4);
-  /* Center the search icon */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,12 +204,9 @@ const handleDeleteHistory = (historyIndex: number) => {
   }
 }
 
-/* Search history container */
 .history {
   width: 100%;
-  /* Absolute positioning relative to the search area in the nav */
   position: absolute;
-  /* Tight positioning under the topic search area */
   top: 39px;
   left: 0;
   flex-direction: column;
@@ -237,11 +217,9 @@ const handleDeleteHistory = (historyIndex: number) => {
   box-shadow: var(--shadow);
 }
 
-/* Text for the search history title */
 .title {
   display: flex;
   margin: 10px;
-  /* Distribute two hint texts left and right */
   justify-content: space-between;
 
   span {
@@ -257,13 +235,10 @@ const handleDeleteHistory = (historyIndex: number) => {
   }
 }
 
-/* Container for storing search history tags */
 .history-container {
   display: flex;
   flex-direction: column;
-  /* Font for individual search records */
   font-size: 13px;
-  /* Blank space on the left and right sides of the search record */
   margin: 10px;
 }
 

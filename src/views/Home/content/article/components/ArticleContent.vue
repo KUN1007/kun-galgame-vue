@@ -13,78 +13,58 @@ const { page, keywords, sortField, sortOrder, isLoading } = storeToRefs(
   useTempHomeStore()
 )
 
-// Define reactive topic data in the component
 const topics = ref<HomeTopic[]>([])
-// Page container for calculating whether it has reached the bottom
 const content = ref<HTMLElement>()
 
-// Function to get page topics
 const getTopics = async (): Promise<HomeTopic[]> => {
   return (await useTempHomeStore().getHomeTopic()).data
 }
 
-// Call fetchTopics to get topic data (watch is great!)
 watch([keywords, sortField, sortOrder], async () => {
   topics.value = await getTopics()
 })
 
-// Scroll event handler
 const scrollHandler = async () => {
-  // Handling logic when scrolling to the bottom
   if (isScrollAtBottom() && isLoading.value) {
-    // Automatically increment the page number
     page.value++
 
-    // Get the topics for the next page
     const lazyLoadTopics = await getTopics()
 
-    // Check if data has already been loaded, if so, no need to load more
     if (!lazyLoadTopics.length) {
       isLoading.value = false
     }
 
-    // Append the newly loaded reply data to the existing reply data
     topics.value = [...topics.value, ...lazyLoadTopics]
   }
 }
 
-// Check if it has scrolled to the bottom
 const isScrollAtBottom = () => {
   if (content.value) {
     const scrollHeight = content.value.scrollHeight
     const scrollTop = content.value.scrollTop
     const clientHeight = content.value.clientHeight
 
-    // Compare with a margin of error, as JavaScript floating-point numbers are not precise
-    // Why 1007? Because I got KUN san on October 7th, ahahaha
     const errorMargin = 1.007
     return Math.abs(scrollHeight - scrollTop - clientHeight) < errorMargin
   }
 }
 
 onBeforeMount(async () => {
-  // Reset page number, loading status, etc. before mounting
   useTempHomeStore().resetPageStatus()
 })
 
-// Add a scroll event listener after the component is mounted
 onMounted(async () => {
-  // Get a reference to the scrolling element
   const element = content.value
 
-  // If the element is found, start the listener to track scroll behavior
   if (element) {
     element.addEventListener('scroll', scrollHandler)
   }
 
-  // Load topics for the first time
   topics.value = await getTopics()
 })
 
-// Remove the scroll event listener before the component is unmounted
 onBeforeUnmount(() => {
   const element = content.value
-  // If the page element is found, remove the listener
   if (element) {
     element.removeEventListener('scroll', scrollHandler)
   }

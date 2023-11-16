@@ -20,15 +20,13 @@ const poolPageWidth = computed(() => {
 
 <template>
   <div class="pool">
-    <!-- 话题池容器 -->
     <div class="pool-container">
-      <KUNGalgameSearchBox style="width: 100%; height: 40px" />
+      <KUNGalgameSearchBox
+        style="width: 100%; height: 40px; border-radius: 5px"
+      />
       <Tags />
 
       <div class="topic-container">
-        <!-- TODO: -->
-        <h1 style="margin: auto">This page is under development.</h1>
-
         <Topic
           v-for="kun in topic"
           class="item"
@@ -52,21 +50,17 @@ const poolPageWidth = computed(() => {
   flex-direction: column;
   overflow-y: scroll;
 }
-/* 话题池容器 */
+
 .pool-container {
-  /* 占页面的宽度比例 */
   transition: all 0.2s;
   width: v-bind(poolPageWidth);
-  /* 居中 */
   margin: 0 auto;
   display: flex;
-  /* 不收缩 */
   flex-shrink: 0;
-  /* 竖直方向弹性盒 */
   flex-direction: column;
-  /* 毛玻璃背景 */
   backdrop-filter: blur(5px);
   background-color: var(--kungalgame-trans-white-5);
+  border-radius: 5px;
   padding: 5px;
 }
 

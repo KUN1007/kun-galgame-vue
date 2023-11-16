@@ -3,18 +3,15 @@ import { Icon } from '@iconify/vue'
 </script>
 
 <template>
-  <!-- 右侧部分 -->
   <div class="bar">
-    <!-- 对话题进行排序 -->
     <div class="sort">
       <div>排序</div>
-      <!-- 左侧部分 -->
+
       <div class="func">
-        <!-- 按照浏览数排序 -->
         <div><Icon icon="ic:outline-remove-red-eye" /> 按照浏览数排序</div>
-        <!-- 按照点赞数排序 -->
+
         <div><Icon icon="line-md:thumbs-up-twotone" /> 按照点赞数排序</div>
-        <!-- 按照时间排序 -->
+
         <div>
           <Icon class="hourglass" icon="eos-icons:hourglass" /> 按照时间排序
         </div>
@@ -48,27 +45,20 @@ import { Icon } from '@iconify/vue'
   background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-1);
   top: 0;
+
+  & > div {
+    padding: 8px;
+
+    &:hover {
+      background-color: var(--kungalgame-trans-pink-1);
+    }
+  }
 }
-.func > div {
-  padding: 8px;
-}
-.func > div:hover {
-  background-color: var(--kungalgame-trans-pink-1);
-}
-/* 排序 hover 出现 */
+
 .sort:hover .func {
   display: block;
 }
-/* 图标字体的颜色 */
-.func i {
-  margin-right: 10px;
-  color: var(--kungalgame-red-4);
-}
-/* 最后一个排序的样式 */
-.func div:last-child i {
-  margin-right: 14px;
-}
-/* 排序 */
+
 .sort,
 .top {
   display: flex;
@@ -82,12 +72,8 @@ import { Icon } from '@iconify/vue'
   border: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
 }
+
 .top {
   margin-top: 11px;
-}
-.sort i,
-.top i {
-  margin-top: 5px;
-  color: var(--kungalgame-red-4);
 }
 </style>
