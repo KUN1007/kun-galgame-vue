@@ -1,6 +1,6 @@
 export interface HomeStoreTemp {
   keywords: string
-  category: string
+  category: string[]
   page: number
   limit: number
   sortField: string

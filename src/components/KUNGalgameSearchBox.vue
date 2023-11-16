@@ -9,34 +9,25 @@ import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
-const { keywords, category } = storeToRefs(useTempHomeStore())
+const { keywords } = storeToRefs(useTempHomeStore())
 
-// Value of the input field
 const inputValue = ref('')
-// Whether to show search history
 const isShowSearchHistory = ref(false)
-// Style when the input field is active
 const inputActiveClass = ref({})
 
-// Define props to tell the input field in which category to search for topics
-const props = defineProps(['category'])
+const props = defineProps<{
+  category: string[]
+}>()
 
-// Initialize the content of the search box to prevent content from persisting after page refresh
-// Assign the topic category to be searched because the search box will be rendered on three pages
-// , corresponding to three categories
 onBeforeMount(() => {
   keywords.value = ''
-  category.value = props.category
 })
 
-// Define the debounce handling function
 const debouncedSearch = debounce((inputValue: string) => {
-  // Reset page status and loading state before searching
   useTempHomeStore().resetPageStatus()
   keywords.value = inputValue
-}, 300) // 300 milliseconds debounce delay
+}, 300)
 
-// When the search box is focused
 const handleInputFocus = () => {
   if (searchHistory.value.length !== 0) {
     isShowSearchHistory.value = true
@@ -46,48 +37,39 @@ const handleInputFocus = () => {
   }
 }
 
-// When the search box is blurred
 const handleInputBlur = () => {
-  // Delay hiding the search history so that clicking on the search history can trigger the fill event
   setTimeout(() => {
     isShowSearchHistory.value = false
     inputActiveClass.value = {}
   }, 100)
 }
 
-// Search function logic
 const search = () => {
   debouncedSearch(inputValue.value)
   if (!searchHistory.value.includes(inputValue.value)) {
-    // Push the element into the array only when there are no identical elements in the array
     searchHistory.value.push(inputValue.value)
   }
 }
 
-// When the user presses Enter
 const handleClickEnter = (event: KeyboardEvent) => {
   event.preventDefault()
   search()
 }
 
-// Clicking the search button triggers the search logic
 const handleClickSearch = () => {
   if (inputValue.value.trim()) {
     search()
   }
 }
 
-// Clicking on search history
 const handleClickHistory = (index: number) => {
   inputValue.value = searchHistory.value[index]
 }
 
-// Clear search history
 const clearSearchHistory = () => {
   searchHistory.value = []
 }
 
-// Delete search history
 const handleDeleteHistory = (historyIndex: number) => {
   searchHistory.value.splice(historyIndex, 1)
 }

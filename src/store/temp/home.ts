@@ -18,7 +18,7 @@ export const useTempHomeStore = defineStore({
      * @returns {HomeTopicResponseData} topicData
      */
     keywords: '',
-    category: 'galgame',
+    category: ['Galgame'],
     page: 1,
     limit: 17,
     sortField: 'updated',
@@ -30,7 +30,7 @@ export const useTempHomeStore = defineStore({
     async getHomeTopic(): Promise<HomeTopicResponseData> {
       const requestData: HomeTopicRequestData = {
         keywords: this.keywords,
-        category: this.category,
+        category: JSON.stringify(this.category),
         page: this.page,
         limit: this.limit,
         sortField: this.sortField,

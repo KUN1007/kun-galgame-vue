@@ -83,14 +83,27 @@ const iconMap: Record<string, string> = {
 }
 
 .container {
-  background-color: var(--kungalgame-trans-blue-3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1px;
   flex-grow: 1;
   position: relative;
+  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid var(--kungalgame-blue-4);
+  border-radius: 5px;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 7px;
 
   &:hover {
-    background-color: var(--kungalgame-trans-white-5);
+    transition: all 0.2s;
+    border: 1px solid var(--kungalgame-blue-4);
+    background-color: var(--kungalgame-blue-4);
+    color: var(--kungalgame-white);
+
+    & > span:nth-child(2) {
+      color: var(--kungalgame-white);
+    }
   }
 }
 
@@ -114,7 +127,7 @@ const iconMap: Record<string, string> = {
   flex-direction: column;
   background-color: var(--kungalgame-trans-white-2);
   box-shadow: var(--shadow);
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
 }
 
 .container:hover .sort-submenu {
@@ -136,6 +149,10 @@ const iconMap: Record<string, string> = {
 
   &:active {
     background-color: var(--kungalgame-trans-blue-2);
+  }
+
+  &:first-child {
+    border-radius: 5px 5px 0 0;
   }
 }
 
@@ -174,10 +191,16 @@ const iconMap: Record<string, string> = {
 }
 
 .active {
-  background-color: var(--kungalgame-trans-red-3);
+  border: 1px solid var(--kungalgame-pink-4);
+  background-color: var(--kungalgame-pink-4);
+  color: var(--kungalgame-white);
+
+  & > span:nth-child(2) {
+    color: var(--kungalgame-white);
+  }
 
   .filter {
-    color: var(--kungalgame-red-4);
+    color: var(--kungalgame-pink-4);
   }
 }
 

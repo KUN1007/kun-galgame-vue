@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import SortTopic from './SortTopic.vue'
 
@@ -8,10 +9,16 @@ import { storeToRefs } from 'pinia'
 import { categoryItem } from './navItem'
 
 const { category } = storeToRefs(useTempHomeStore())
+const categoryIcon = ref('galgame')
 
 const handleSortByCategory = (name: string) => {
   useTempHomeStore().resetPageStatus()
-  category.value = name
+  category.value = []
+  categoryIcon.value = name
+
+  // Because category is [Galgame, Technique, Others], need to capitalize first letter
+  const capitalizeFirstLetter = name.charAt(0).toUpperCase() + name.slice(1)
+  category.value.push(capitalizeFirstLetter)
 }
 
 const iconMap: Record<string, string> = {
@@ -25,7 +32,7 @@ const iconMap: Record<string, string> = {
   <div class="nav-article">
     <div class="category">
       <span>{{ $tm('mainPage.header.category') }}</span>
-      <span><Icon :icon="iconMap[category]" /></span>
+      <span><Icon :icon="iconMap[categoryIcon]" /></span>
 
       <div class="category-container">
         <div class="category-submenu">
@@ -70,7 +77,8 @@ const iconMap: Record<string, string> = {
   width: 1px;
   flex-grow: 1;
   position: relative;
-  background-color: var(--kungalgame-trans-white-5);
+  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid var(--kungalgame-blue-4);
   border-radius: 5px;
   cursor: pointer;
 
@@ -81,6 +89,17 @@ const iconMap: Record<string, string> = {
     font-size: 18px;
     margin-left: 7px;
     color: var(--kungalgame-blue-4);
+  }
+
+  &:hover {
+    transition: all 0.2s;
+    border: 1px solid var(--kungalgame-blue-4);
+    background-color: var(--kungalgame-blue-4);
+    color: var(--kungalgame-white);
+
+    & > span:nth-child(2) {
+      color: var(--kungalgame-white);
+    }
   }
 }
 
@@ -142,19 +161,23 @@ const iconMap: Record<string, string> = {
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  background-color: var(--kungalgame-trans-blue-3);
+  background-color: var(--kungalgame-trans-blue-0);
+  border: 1px solid var(--kungalgame-blue-4);
   flex-grow: 1;
-  border-radius: 0 5px 0 0;
+  border-radius: 5px;
   cursor: pointer;
   color: var(--kungalgame-font-color-3);
-  margin-left: 10px;
+  margin-left: 7px;
 
   &:hover {
-    background-color: var(--kungalgame-trans-blue-2);
-  }
+    transition: all 0.2s;
+    border: 1px solid var(--kungalgame-blue-4);
+    background-color: var(--kungalgame-blue-4);
+    color: var(--kungalgame-white);
 
-  &:active {
-    background-color: var(--kungalgame-trans-blue-4);
+    & > span:nth-child(2) {
+      color: var(--kungalgame-white);
+    }
   }
 }
 

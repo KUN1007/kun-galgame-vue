@@ -9,9 +9,8 @@ import { HomeTopic } from '@/api'
 import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
-const { page, keywords, sortField, sortOrder, isLoading } = storeToRefs(
-  useTempHomeStore()
-)
+const { page, keywords, category, sortField, sortOrder, isLoading } =
+  storeToRefs(useTempHomeStore())
 
 const topics = ref<HomeTopic[]>([])
 const content = ref<HTMLElement>()
@@ -20,7 +19,7 @@ const getTopics = async (): Promise<HomeTopic[]> => {
   return (await useTempHomeStore().getHomeTopic()).data
 }
 
-watch([keywords, sortField, sortOrder], async () => {
+watch([keywords, category, sortField, sortOrder], async () => {
   topics.value = await getTopics()
 })
 
@@ -74,7 +73,6 @@ onBeforeUnmount(() => {
 <template>
   <div class="topic-container" ref="content">
     <TransitionGroup name="list" tag="div" v-if="topics.length">
-      <!-- Posted within 10 hours -->
       <div
         v-for="topic in topics"
         :key="topic.tid"

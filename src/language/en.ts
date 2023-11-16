@@ -64,7 +64,7 @@ export default {
     },
     asideActive: {
       fold: 'Fold Aside',
-      create: 'CREATE Topic!',
+      create: 'CREATE TOPIC',
       update: 'Update',
       balance: 'P & L',
       ranking: 'Ranking',

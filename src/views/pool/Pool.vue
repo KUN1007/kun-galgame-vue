@@ -22,6 +22,7 @@ const poolPageWidth = computed(() => {
   <div class="pool">
     <div class="pool-container">
       <KUNGalgameSearchBox
+        :category="[]"
         style="width: 100%; height: 40px; border-radius: 5px"
       />
       <Tags />
