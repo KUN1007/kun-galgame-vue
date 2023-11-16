@@ -4,13 +4,14 @@ import { Icon } from '@iconify/vue'
 import 'animate.css'
 import { topBarItem } from './topBarItem'
 import { onBeforeRouteLeave } from 'vue-router'
-// Mobile version hamburger
+
 const Hamburger = defineAsyncComponent(() => import('./Hamburger.vue'))
-// Settings panel
+const KUNGalgameSearchBox = defineAsyncComponent(
+  () => import('@/components/search/KUNGalgameSearchBox.vue')
+)
 const KUNGalgameSettingsPanel = defineAsyncComponent(
   () => import('../setting-panel/KUNGalgameSettingPanel.vue')
 )
-// Panel when clicking on the user's avatar
 const KUNGalgameUserInfo = defineAsyncComponent(
   () => import('./KUNGalgameUserInfo.vue')
 )
@@ -19,18 +20,14 @@ import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
 const { name, avatarMin } = storeToRefs(useKUNGalgameUserStore())
 
-// Show settings panel state
-const showKUNGalgamePanel = ref(false)
-// Show mobile mode hamburger state
 const showKUNGalgameHamburger = ref(false)
-// Show user panel when clicking on the user's avatar
+const showKUNGalgameSearchBox = ref(false)
+const showKUNGalgamePanel = ref(false)
 const showKUNGalgameUserPanel = ref(false)
 
-// Set the navigation bar width based on the number of navigation items
 const navItemNum = topBarItem.length
 const navItemLength = `${navItemNum}00px`
 
-// Destroy the SettingsPanel and Hamburger before leaving the route
 onBeforeRouteLeave(() => {
   showKUNGalgamePanel.value = false
   showKUNGalgameHamburger.value = false
@@ -39,7 +36,6 @@ onBeforeRouteLeave(() => {
 
 <template>
   <div class="header">
-    <!-- Top left interactive bar -->
     <div class="nav-top">
       <div class="hamburger">
         <Icon
@@ -55,32 +51,36 @@ onBeforeRouteLeave(() => {
         </Transition>
       </div>
 
-      <!-- Website name and logo -->
       <div class="kungalgame">
         <RouterLink to="/kun">
           <img
             src="@/assets/images/favicon.webp"
-            alt="KUN Visual Novel 鲲 Galgame"
+            alt="KUN Visual Novel | 鲲 Galgame"
           />
           <span>{{ $tm('header.name') }}</span>
         </RouterLink>
       </div>
 
-      <!-- Navigation bar -->
       <div class="top-bar">
-        <!-- Top individual sections -->
         <span v-for="kun in topBarItem" :key="kun.index">
           <RouterLink :to="{ path: kun.router }">
             {{ $tm(`header.${kun.name}`) }}
           </RouterLink>
         </span>
-        <!-- Hover effect under the top section -->
+
         <div class="box"></div>
       </div>
     </div>
 
     <div class="kungalgamer-info">
-      <!-- showKUNGalgamePanel is a boolean value in the store, true/false controls the display and close of the settings panel -->
+      <span
+        class="search"
+        @click="showKUNGalgameSearchBox = !showKUNGalgameSearchBox"
+      >
+        <KUNGalgameSearchBox :is-show-search="!showKUNGalgameSearchBox" />
+        <Icon icon="line-md:search" />
+      </span>
+
       <span
         class="settings"
         @click="showKUNGalgamePanel = !showKUNGalgamePanel"
@@ -130,7 +130,6 @@ onBeforeRouteLeave(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* 相对于设置面板定位 */
   position: relative;
   z-index: 1;
   margin-bottom: 7px;
@@ -241,6 +240,16 @@ $navNumber: v-bind(navItemNum);
   justify-content: center;
   align-items: center;
   margin-right: 50px;
+
+  .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--kungalgame-font-color-2);
+    font-size: 25px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
 
   .settings {
     display: flex;

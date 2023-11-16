@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, onMounted } from 'vue'
 
 import { debounce } from '@/utils/debounce'
 
@@ -8,16 +8,16 @@ import { usePersistKUNGalgameHomeStore } from '@/store/modules/home'
 import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
+const props = defineProps<{
+  isShowSearch: boolean
+}>()
+
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
 const { keywords } = storeToRefs(useTempHomeStore())
 
 const inputValue = ref('')
 const isShowSearchHistory = ref(false)
 const inputActiveClass = ref({})
-
-const props = defineProps<{
-  category: string[]
-}>()
 
 onBeforeMount(() => {
   keywords.value = ''
@@ -76,53 +76,72 @@ const handleDeleteHistory = (historyIndex: number) => {
 </script>
 
 <template>
-  <div class="container">
-    <form class="search-form">
-      <div class="content">
-        <input
-          v-model="inputValue"
-          type="search"
-          class="input"
-          :style="inputActiveClass"
-          :placeholder="`${$tm('mainPage.header.search')}`"
-          @focus="handleInputFocus"
-          @blur="handleInputBlur"
-          @input="debouncedSearch(inputValue)"
-          @keydown.enter="handleClickEnter"
-        />
-      </div>
+  <Teleport to="body" :disabled="props.isShowSearch">
+    <Transition name="search">
+      <div class="mask" v-if="!props.isShowSearch">
+        <div class="container">
+          <form class="search-form">
+            <div class="content">
+              <input
+                v-model="inputValue"
+                type="search"
+                class="input"
+                :style="inputActiveClass"
+                :placeholder="`${$tm('mainPage.header.search')}`"
+                @focus="handleInputFocus"
+                @blur="handleInputBlur"
+                @input="debouncedSearch(inputValue)"
+                @keydown.enter="handleClickEnter"
+              />
+            </div>
 
-      <div class="search-btn" @click="handleClickSearch">
-        <Icon icon="line-md:search" />
-      </div>
-    </form>
+            <div class="search-btn" @click="handleClickSearch">
+              <Icon icon="line-md:search" />
+            </div>
+          </form>
 
-    <div v-if="isShowSearchHistory" class="history">
-      <div class="title">
-        <span>{{ $tm('mainPage.header.history') }}</span>
-        <span @click="clearSearchHistory">
-          {{ $tm('mainPage.header.clear') }}
-        </span>
-      </div>
+          <div v-if="isShowSearchHistory" class="history">
+            <div class="title">
+              <span>{{ $tm('mainPage.header.history') }}</span>
+              <span @click="clearSearchHistory">
+                {{ $tm('mainPage.header.clear') }}
+              </span>
+            </div>
 
-      <div class="history-container">
-        <div
-          class="single-history"
-          v-for="(history, index) in searchHistory"
-          :key="index"
-          @click="handleClickHistory(index)"
-        >
-          <span>{{ history }} </span>
-          <span @click="handleDeleteHistory(index)">
-            <Icon class="delete" icon="line-md:close-circle" />
-          </span>
+            <div class="history-container">
+              <div
+                class="single-history"
+                v-for="(history, index) in searchHistory"
+                :key="index"
+                @click="handleClickHistory(index)"
+              >
+                <span>{{ history }} </span>
+                <span @click="handleDeleteHistory(index)">
+                  <Icon class="delete" icon="line-md:close-circle" />
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <style lang="scss" scoped>
+.mask {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--kungalgame-mask-color-0);
+  display: flex;
+  transition: opacity 0.3s ease;
+  color: var(--kungalgame-font-color-3);
+}
+
 .container {
   height: 39px;
   width: 1px;
