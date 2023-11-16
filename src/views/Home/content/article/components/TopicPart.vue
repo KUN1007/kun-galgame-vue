@@ -119,7 +119,7 @@ const getRepliesCount = computed(() => {
     font-size: smaller;
 
     li {
-      margin-left: 5px;
+      margin-right: 5px;
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -158,6 +158,12 @@ const getRepliesCount = computed(() => {
     width: 100%;
     font-size: 14px;
     color: var(--kungalgame-font-color-2);
+  }
+}
+
+@media (max-width: 700px) {
+  .time {
+    display: none;
   }
 }
 </style>
