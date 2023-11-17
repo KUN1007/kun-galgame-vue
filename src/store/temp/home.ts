@@ -14,7 +14,7 @@ export const useTempHomeStore = defineStore({
   state: (): HomeStoreTemp => ({
     search: {
       keywords: '',
-      category: ['Galgame'],
+      category: ['Galgame', 'Technique', 'Others'],
       page: 1,
       limit: 7,
       sortField: 'updated',
@@ -36,7 +36,7 @@ export const useTempHomeStore = defineStore({
   actions: {
     async searchTopic(): Promise<HomeSearchTopicResponseData> {
       const requestData: HomeSearchTopicRequestData = {
-        keywords: this.search.keywords,
+        keywords: this.search.keywords.trim().slice(0, 40),
         category: JSON.stringify(this.search.category),
         page: this.search.page,
         limit: this.search.limit,
@@ -58,12 +58,8 @@ export const useTempHomeStore = defineStore({
     },
 
     resetSearchStatus() {
-      this.search.keywords = ''
-      this.search.category = ['Galgame']
       this.search.page = 1
       this.search.limit = 7
-      this.search.sortField = 'updated'
-      this.search.sortOrder = 'desc'
       this.search.isLoading = true
     },
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onBeforeMount, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import SearchBox from './SearchBox.vue'
 import SearchHistory from './SearchHistory.vue'
 import SearchResult from './SearchResult.vue'
@@ -12,35 +12,76 @@ import { HomeSearchTopic } from '@/api'
 const { search, isShowSearch } = storeToRefs(useTempHomeStore())
 
 const topics = ref<HomeSearchTopic[]>([])
+const container = ref<HTMLElement>()
 
 const searchTopics = async () => {
-  topics.value = (await useTempHomeStore().searchTopic()).data
+  return (await useTempHomeStore().searchTopic()).data
 }
-
-watch(
-  () => [search.value.category, search.value.sortField, search.value.sortOrder],
-  async () => {
-    await searchTopics()
-  }
-)
 
 watch(
   () => search.value.keywords,
   async () => {
     if (search.value.keywords) {
-      await searchTopics()
+      topics.value = await searchTopics()
     } else {
       topics.value = []
+      useTempHomeStore().resetSearchStatus()
     }
   }
 )
+
+watch(
+  () => container.value,
+  () => {
+    const element = container.value
+    if (element) {
+      element.addEventListener('scroll', scrollHandler)
+    }
+  }
+)
+
+const scrollHandler = async () => {
+  if (isScrollAtBottom() && search.value.isLoading && search.value.keywords) {
+    console.log(12222)
+
+    search.value.page++
+
+    const lazyLoadTopics = await searchTopics()
+
+    if (!lazyLoadTopics.length) {
+      console.log(1)
+
+      search.value.isLoading = false
+    }
+
+    topics.value = [...topics.value, ...lazyLoadTopics]
+  }
+}
+
+const isScrollAtBottom = () => {
+  if (container.value) {
+    const scrollHeight = container.value.scrollHeight
+    const scrollTop = container.value.scrollTop
+    const clientHeight = container.value.clientHeight
+
+    const errorMargin = 1.007
+    return Math.abs(scrollHeight - scrollTop - clientHeight) < errorMargin
+  }
+}
+
+onBeforeUnmount(() => {
+  const element = container.value
+  if (element) {
+    element.removeEventListener('scroll', scrollHandler)
+  }
+})
 </script>
 
 <template>
   <Teleport to="body" :disabled="isShowSearch">
     <Transition name="search">
       <div class="mask" v-if="isShowSearch" @click="isShowSearch = false">
-        <div class="container" @click.stop>
+        <div ref="container" class="container" @click.stop>
           <SearchBox />
 
           <SearchHistory v-if="!search.keywords" />
