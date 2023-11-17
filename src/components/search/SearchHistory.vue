@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { ref, onBeforeMount, onMounted } from 'vue'
+import { onBeforeMount } from 'vue'
 
 import { usePersistKUNGalgameHomeStore } from '@/store/modules/home'
 import { useTempHomeStore } from '@/store/temp/home'
@@ -8,8 +8,6 @@ import { storeToRefs } from 'pinia'
 
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
 const { search } = storeToRefs(useTempHomeStore())
-
-const isShowSearchHistory = ref(false)
 
 onBeforeMount(() => {
   search.value.keywords = ''
@@ -26,16 +24,10 @@ const clearSearchHistory = () => {
 const handleDeleteHistory = (historyIndex: number) => {
   searchHistory.value.splice(historyIndex, 1)
 }
-
-onMounted(() => {
-  if (searchHistory.value.length) {
-    isShowSearchHistory.value = true
-  }
-})
 </script>
 
 <template>
-  <div v-if="isShowSearchHistory" class="history">
+  <div class="history">
     <div class="title">
       <span>{{ $tm('mainPage.header.history') }}</span>
       <span @click="clearSearchHistory">

@@ -1,10 +1,33 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import SearchBox from './SearchBox.vue'
 import SearchHistory from './SearchHistory.vue'
+import SearchResult from './SearchResult.vue'
 
 import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
-const { isShowSearch } = storeToRefs(useTempHomeStore())
+
+import { HomeSearchTopic } from '@/api'
+
+const { search, isShowSearch } = storeToRefs(useTempHomeStore())
+
+const topics = ref<HomeSearchTopic[]>([])
+
+const searchTopics = async () => {
+  topics.value = (await useTempHomeStore().searchTopic()).data
+}
+
+watch(
+  () => [
+    search.value.keywords,
+    search.value.category,
+    search.value.sortField,
+    search.value.sortOrder,
+  ],
+  async () => {
+    await searchTopics()
+  }
+)
 </script>
 
 <template>
@@ -14,7 +37,9 @@ const { isShowSearch } = storeToRefs(useTempHomeStore())
         <div class="container" @click.stop>
           <SearchBox />
 
-          <SearchHistory />
+          <SearchHistory v-if="search.keywords" />
+
+          <SearchResult :topics="topics" v-if="topics.length" />
         </div>
       </div>
     </Transition>
@@ -39,8 +64,8 @@ const { isShowSearch } = storeToRefs(useTempHomeStore())
 
 .container {
   display: flex;
-  justify-content: center;
-  align-items: start;
+  flex-direction: column;
+  align-items: center;
   white-space: nowrap;
   position: relative;
   color: var(--kungalgame-font-color-3);
@@ -52,6 +77,7 @@ const { isShowSearch } = storeToRefs(useTempHomeStore())
   max-width: 500px;
   min-height: 200px;
   max-height: 600px;
+  overflow-y: scroll;
 }
 
 .search-enter-from {

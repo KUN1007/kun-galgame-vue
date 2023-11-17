@@ -16,7 +16,7 @@ export const useTempHomeStore = defineStore({
       keywords: '',
       category: ['Galgame'],
       page: 1,
-      limit: 17,
+      limit: 10,
       sortField: 'updated',
       sortOrder: 'desc',
       isLoading: true,

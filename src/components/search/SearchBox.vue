@@ -52,12 +52,16 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .search-form {
-  width: 40vw;
+  position: sticky;
+  top: 0;
+  width: calc(40vw - 20px);
   max-width: 777px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 17px;
+  background-color: var(--kungalgame-trans-white-2);
+  backdrop-filter: blur(5px);
 }
 
 .input {

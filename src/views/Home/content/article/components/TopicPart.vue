@@ -146,7 +146,6 @@ const getRepliesCount = computed(() => {
   width: 100%;
   display: flex;
   align-items: center;
-  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
