@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { onBeforeMount } from 'vue'
 
 import { usePersistKUNGalgameHomeStore } from '@/store/modules/home'
 import { useTempHomeStore } from '@/store/temp/home'
@@ -8,10 +7,6 @@ import { storeToRefs } from 'pinia'
 
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
 const { search } = storeToRefs(useTempHomeStore())
-
-onBeforeMount(() => {
-  search.value.keywords = ''
-})
 
 const handleClickHistory = (index: number) => {
   search.value.keywords = searchHistory.value[index]
@@ -54,7 +49,6 @@ const handleDeleteHistory = (historyIndex: number) => {
 <style lang="scss" scoped>
 .history {
   width: 100%;
-  position: absolute;
   top: 70px;
   left: 0;
   flex-direction: column;

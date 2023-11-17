@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Tags from './Tags.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
-import KUNGalgameSearchBox from '@/components/search/KUNGalgameSearchBox.vue'
 </script>
 
 <template>
@@ -10,10 +9,6 @@ import KUNGalgameSearchBox from '@/components/search/KUNGalgameSearchBox.vue'
     <div class="aside-container">
       <!-- 页面的标题 -->
       <div class="page-title">技术交流</div>
-      <!-- 侧边的搜索框 -->
-      <div class="search">
-        <KUNGalgameSearchBox style="height: 40px; width: 100%; border: none" />
-      </div>
       <!-- 推荐标签 -->
       <div class="recommend">
         <span>galgame 汉化相关</span>

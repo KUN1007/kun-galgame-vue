@@ -18,14 +18,20 @@ const searchTopics = async () => {
 }
 
 watch(
-  () => [
-    search.value.keywords,
-    search.value.category,
-    search.value.sortField,
-    search.value.sortOrder,
-  ],
+  () => [search.value.category, search.value.sortField, search.value.sortOrder],
   async () => {
     await searchTopics()
+  }
+)
+
+watch(
+  () => search.value.keywords,
+  async () => {
+    if (search.value.keywords) {
+      await searchTopics()
+    } else {
+      topics.value = []
+    }
   }
 )
 </script>
@@ -37,7 +43,7 @@ watch(
         <div class="container" @click.stop>
           <SearchBox />
 
-          <SearchHistory v-if="search.keywords" />
+          <SearchHistory v-if="!search.keywords" />
 
           <SearchResult :topics="topics" v-if="topics.length" />
         </div>

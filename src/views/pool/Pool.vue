@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import KUNGalgameSearchBox from '@/components/search/KUNGalgameSearchBox.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import Tags from './components/Tags.vue'
 import Topic from './components/Topic.vue'
@@ -21,9 +20,6 @@ const poolPageWidth = computed(() => {
 <template>
   <div class="pool">
     <div class="pool-container">
-      <KUNGalgameSearchBox
-        style="width: 100%; height: 40px; border-radius: 5px"
-      />
       <Tags />
 
       <div class="topic-container">

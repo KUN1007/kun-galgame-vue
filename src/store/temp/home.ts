@@ -16,7 +16,7 @@ export const useTempHomeStore = defineStore({
       keywords: '',
       category: ['Galgame'],
       page: 1,
-      limit: 10,
+      limit: 7,
       sortField: 'updated',
       sortOrder: 'desc',
       isLoading: true,
@@ -57,7 +57,17 @@ export const useTempHomeStore = defineStore({
       return await getHomeTopicApi(requestData)
     },
 
-    resetPageStatus() {
+    resetSearchStatus() {
+      this.search.keywords = ''
+      this.search.category = ['Galgame']
+      this.search.page = 1
+      this.search.limit = 7
+      this.search.sortField = 'updated'
+      this.search.sortOrder = 'desc'
+      this.search.isLoading = true
+    },
+
+    resetHomePageStatus() {
       this.topic.category = ['Galgame']
       this.topic.page = 1
       this.topic.limit = 17

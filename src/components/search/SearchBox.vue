@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { ref, onBeforeMount, onMounted } from 'vue'
+import { ref, onBeforeMount, onMounted, watch } from 'vue'
 
 import { debounce } from '@/utils/debounce'
 
-import { usePersistKUNGalgameHomeStore } from '@/store/modules/home'
 import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
-const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
 const { search } = storeToRefs(useTempHomeStore())
 
 const input = ref<HTMLElement | null>(null)
@@ -18,16 +16,25 @@ onBeforeMount(() => {
 })
 
 const debouncedSearch = debounce((inputValue: string) => {
-  useTempHomeStore().resetPageStatus()
-  search.value.keywords = inputValue
+  if (inputValue.trim()) {
+    search.value.keywords = inputValue
+  } else {
+    search.value.keywords = ''
+  }
 }, 300)
 
 const searchTopics = () => {
   debouncedSearch(inputValue.value)
-  if (!searchHistory.value.includes(inputValue.value)) {
-    searchHistory.value.push(inputValue.value)
-  }
 }
+
+watch(
+  () => search.value.keywords,
+  () => {
+    if (!inputValue.value) {
+      inputValue.value = search.value.keywords
+    }
+  }
+)
 
 onMounted(() => {
   if (input) {
