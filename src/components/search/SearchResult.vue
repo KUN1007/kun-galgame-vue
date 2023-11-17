@@ -72,6 +72,12 @@ const handleClickTopic = (tid: number) => {
 
   span {
     &:nth-child(1) {
+      white-space: wrap;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
       color: var(--kungalgame-blue-5);
     }
 
