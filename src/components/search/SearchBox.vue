@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, onMounted } from 'vue'
 
 import { debounce } from '@/utils/debounce'
 
@@ -11,9 +10,9 @@ import { storeToRefs } from 'pinia'
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
 const { keywords } = storeToRefs(useTempHomeStore())
 
+const input = ref<HTMLElement | null>(null)
 const inputValue = ref('')
 const isShowSearchHistory = ref(false)
-const inputActiveClass = ref({})
 
 onBeforeMount(() => {
   keywords.value = ''
@@ -28,15 +27,11 @@ const handleInputFocus = () => {
   if (searchHistory.value.length !== 0) {
     isShowSearchHistory.value = true
   }
-  inputActiveClass.value = {
-    backgroundColor: 'var(--kungalgame-white)',
-  }
 }
 
 const handleInputBlur = () => {
   setTimeout(() => {
     isShowSearchHistory.value = false
-    inputActiveClass.value = {}
   }, 100)
 }
 
@@ -47,45 +42,37 @@ const search = () => {
   }
 }
 
-const handleClickSearch = () => {
-  if (inputValue.value.trim()) {
-    search()
+onMounted(() => {
+  if (input) {
+    input.value?.focus()
   }
-}
+})
 </script>
 
 <template>
   <div class="search-form">
-    <div class="content">
-      <input
-        v-model="inputValue"
-        type="search"
-        class="input"
-        :style="inputActiveClass"
-        :placeholder="`${$tm('mainPage.header.search')}`"
-        @focus="handleInputFocus"
-        @blur="handleInputBlur"
-        @input="debouncedSearch(inputValue)"
-        @keydown.enter="search"
-      />
-    </div>
-
-    <div class="search-btn" @click="handleClickSearch">
-      <Icon icon="line-md:search" />
-    </div>
+    <input
+      ref="input"
+      v-model="inputValue"
+      type="search"
+      class="input"
+      :placeholder="`${$tm('mainPage.header.search')}`"
+      @focus="handleInputFocus"
+      @blur="handleInputBlur"
+      @input="debouncedSearch(inputValue)"
+      @keydown.enter="search"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .search-form {
+  width: 40vw;
+  max-width: 777px;
   display: flex;
-  height: 39px;
   justify-content: center;
   align-items: center;
-}
-
-.content {
-  width: 100%;
+  border-radius: 17px;
 }
 
 .input {
@@ -95,32 +82,17 @@ const handleClickSearch = () => {
   font-size: 16px;
   border: none;
   background-color: var(--kungalgame-trans-white-9);
+  border: 2px solid var(--kungalgame-blue-0);
+  border-radius: 17px;
   color: var(--kungalgame-font-color-3);
   transition: all 0.2s;
 
+  &:focus {
+    border: 2px solid var(--kungalgame-blue-4);
+  }
+
   &::placeholder {
     color: var(--kungalgame-font-color-1);
-  }
-}
-
-.search-btn {
-  height: 39px;
-  width: 39px;
-  flex-shrink: 0;
-  border-left: 1px solid var(--kungalgame-trans-blue-4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: var(--kungalgame-red-1);
-  }
-
-  &:active {
-    background-color: var(--kungalgame-red-2);
   }
 }
 </style>

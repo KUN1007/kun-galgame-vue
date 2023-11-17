@@ -61,6 +61,7 @@ export default {
       likes: 'Likes',
       replies: 'Replies',
       comments: 'Comments',
+      search: 'Input to Auto Search',
     },
     asideActive: {
       fold: 'Fold Aside',

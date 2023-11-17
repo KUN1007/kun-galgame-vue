@@ -24,6 +24,7 @@ export const useTempHomeStore = defineStore({
     sortField: 'updated',
     sortOrder: 'desc',
     isLoading: true,
+    isShowSearch: false,
   }),
   getters: {},
   actions: {

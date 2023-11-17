@@ -8,6 +8,8 @@ export interface HomeStoreTemp {
 
   // Whether to continue loading after it's done
   isLoading: boolean
+
+  isShowSearch: boolean
 }
 
 export interface HomeStorePersist {

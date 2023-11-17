@@ -61,6 +61,7 @@ export default {
       likes: '按点赞数排序',
       replies: '按回复数排序',
       comments: '按评论数排序',
+      search: '输入内容以自动搜索',
     },
     asideActive: {
       fold: '折叠左侧区域',

@@ -9,6 +9,9 @@ import Info from '@/components/alert/Info.vue'
 const Capture = defineAsyncComponent(
   () => import('@/components/capture/Capture.vue')
 )
+const KUNGalgameSearchBox = defineAsyncComponent(
+  () => import('@/components/search/KUNGalgameSearchBox.vue')
+)
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
@@ -43,6 +46,9 @@ onBeforeMount(() => {
 
   <!-- Global capture component -->
   <Capture />
+
+  <!-- Global search component -->
+  <KUNGalgameSearchBox />
 
   <RouterView />
 </template>

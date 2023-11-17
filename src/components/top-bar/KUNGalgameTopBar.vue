@@ -6,9 +6,6 @@ import { topBarItem } from './topBarItem'
 import { onBeforeRouteLeave } from 'vue-router'
 
 const Hamburger = defineAsyncComponent(() => import('./Hamburger.vue'))
-const KUNGalgameSearchBox = defineAsyncComponent(
-  () => import('@/components/search/KUNGalgameSearchBox.vue')
-)
 const KUNGalgameSettingsPanel = defineAsyncComponent(
   () => import('../setting-panel/KUNGalgameSettingPanel.vue')
 )
@@ -16,12 +13,14 @@ const KUNGalgameUserInfo = defineAsyncComponent(
   () => import('./KUNGalgameUserInfo.vue')
 )
 
+import { useTempHomeStore } from '@/store/temp/home'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { storeToRefs } from 'pinia'
+
+const { isShowSearch } = storeToRefs(useTempHomeStore())
 const { name, avatarMin } = storeToRefs(useKUNGalgameUserStore())
 
 const showKUNGalgameHamburger = ref(false)
-const showKUNGalgameSearchBox = ref(false)
 const showKUNGalgamePanel = ref(false)
 const showKUNGalgameUserPanel = ref(false)
 
@@ -73,11 +72,7 @@ onBeforeRouteLeave(() => {
     </div>
 
     <div class="kungalgamer-info">
-      <span
-        class="search"
-        @click="showKUNGalgameSearchBox = !showKUNGalgameSearchBox"
-      >
-        <KUNGalgameSearchBox :is-show-search="!showKUNGalgameSearchBox" />
+      <span class="search" @click="isShowSearch = true">
         <Icon icon="line-md:search" />
       </span>
 
