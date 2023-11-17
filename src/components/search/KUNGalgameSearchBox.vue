@@ -83,6 +83,10 @@ onBeforeUnmount(() => {
           <SearchHistory v-if="!search.keywords" />
 
           <SearchResult :topics="topics" v-if="topics.length" />
+
+          <span class="empty" v-if="!topics.length && search.keywords">
+            {{ $tm('mainPage.header.emptyResult') }}
+          </span>
         </div>
       </div>
     </Transition>
@@ -121,6 +125,14 @@ onBeforeUnmount(() => {
   min-height: 200px;
   max-height: 600px;
   overflow-y: scroll;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  color: var(--kungalgame-blue-2);
+  font-style: oblique;
+  margin-top: 20px;
 }
 
 .search-enter-from {

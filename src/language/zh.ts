@@ -64,6 +64,8 @@ export default {
       search: '输入内容以自动搜索',
       history: '搜索历史',
       clear: '清除所有历史',
+      emptyHistory: '这只萝莉什么也没搜索过',
+      emptyResult: '什么也没有搜索到。。。',
     },
     asideActive: {
       fold: '折叠左侧区域',

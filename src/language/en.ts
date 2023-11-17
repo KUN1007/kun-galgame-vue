@@ -64,6 +64,8 @@ export default {
       search: 'Input to Auto Search',
       history: 'Search History',
       clear: 'Clear all history',
+      emptyHistory: `This loli hasn't searched for anything`,
+      emptyResult: 'No results found...',
     },
     asideActive: {
       fold: 'Fold Aside',

@@ -30,7 +30,7 @@ const handleDeleteHistory = (historyIndex: number) => {
       </span>
     </div>
 
-    <div class="history-container">
+    <div class="history-container" v-if="searchHistory.length">
       <div
         class="single-history"
         v-for="(history, index) in searchHistory"
@@ -47,6 +47,10 @@ const handleDeleteHistory = (historyIndex: number) => {
         </span>
       </div>
     </div>
+
+    <span class="empty" v-if="!searchHistory.length">
+      {{ $tm('mainPage.header.emptyHistory') }}
+    </span>
   </div>
 </template>
 
@@ -121,5 +125,12 @@ const handleDeleteHistory = (historyIndex: number) => {
   cursor: pointer;
   color: var(--kungalgame-font-color-0);
   display: none;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  color: var(--kungalgame-blue-2);
+  font-style: oblique;
 }
 </style>
