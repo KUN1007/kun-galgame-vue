@@ -9,23 +9,23 @@ import { sortItem } from './navItem'
 
 const ascClass = ref('')
 
-const { sortField, sortOrder } = storeToRefs(useTempHomeStore())
+const { topic } = storeToRefs(useTempHomeStore())
 
 const handleSortByField = (field: string) => {
-  useTempHomeStore().$reset()
-  sortField.value = field
+  useTempHomeStore().resetPageStatus()
+  topic.value.sortField = field
 }
 
 const orderAscending = () => {
-  useTempHomeStore().$reset()
-  sortOrder.value = 'asc'
+  useTempHomeStore().resetPageStatus()
+  topic.value.sortOrder = 'asc'
   // Change style
   ascClass.value = 'active'
 }
 
 const orderDescending = () => {
-  useTempHomeStore().$reset()
-  sortOrder.value = 'desc'
+  useTempHomeStore().resetPageStatus()
+  topic.value.sortOrder = 'desc'
   ascClass.value = ''
 }
 
@@ -44,7 +44,7 @@ const iconMap: Record<string, string> = {
   <div class="container" :class="ascClass">
     <span>{{ $tm('mainPage.header.filter') }}</span>
     <span class="filter">
-      <Icon :icon="iconMap[sortField]" />
+      <Icon :icon="iconMap[topic.sortField]" />
     </span>
 
     <div class="sort-container">

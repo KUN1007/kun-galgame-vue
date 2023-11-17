@@ -5,9 +5,23 @@ import type * as Home from './types/home'
 
 // URLs to be requested
 const homeURLs = {
+  search: `/home/search`,
   home: `/home/topic`,
   navHot: `/home/nav/hot`,
   navNew: `/home/nav/new`,
+}
+
+// Home page topic list
+export async function getHomeSearchTopicApi(
+  requestData: Home.HomeSearchTopicRequestData
+): Promise<Home.HomeSearchTopicResponseData> {
+  const queryParams = objectToQueryParams(requestData)
+
+  const response = await fetchGet<Home.HomeSearchTopicResponseData>(
+    `${homeURLs.search}?${queryParams}`
+  )
+
+  return response
 }
 
 // Home page topic list

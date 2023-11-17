@@ -1,3 +1,19 @@
+export interface HomeSearchTopic {
+  tid: number
+  title: string
+  content: string
+  category: string[]
+}
+
+export interface HomeSearchTopicRequestData {
+  keywords: string
+  category: string
+  page: number
+  limit: number
+  sortField: string
+  sortOrder: string
+}
+
 interface HomeUserInfo {
   uid: number
   avatar: string
@@ -17,7 +33,6 @@ export interface HomeNewTopic {
 }
 
 export interface HomeTopicRequestData {
-  keywords: string
   category: string
   page: number
   limit: number
@@ -44,11 +59,12 @@ export interface HomeTopic {
   upvote_time: number
 }
 
-// 10 hot topics on the left side
+export type HomeSearchTopicResponseData = KUNGalgameResponseData<
+  HomeSearchTopic[]
+>
+
 export type HomeHotTopicResponseData = KUNGalgameResponseData<HomeHotTopic[]>
 
-// 10 latest topics on the left side
 export type HomeNewTopicResponseData = KUNGalgameResponseData<HomeNewTopic[]>
 
-// Topics displayed in the middle
 export type HomeTopicResponseData = KUNGalgameResponseData<HomeTopic[]>

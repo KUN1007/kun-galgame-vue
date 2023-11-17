@@ -8,21 +8,21 @@ import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
-const { keywords } = storeToRefs(useTempHomeStore())
+const { search } = storeToRefs(useTempHomeStore())
 
 const input = ref<HTMLElement | null>(null)
 const inputValue = ref('')
 
 onBeforeMount(() => {
-  keywords.value = ''
+  search.value.keywords = ''
 })
 
 const debouncedSearch = debounce((inputValue: string) => {
   useTempHomeStore().resetPageStatus()
-  keywords.value = inputValue
+  search.value.keywords = inputValue
 }, 300)
 
-const search = () => {
+const searchTopics = () => {
   debouncedSearch(inputValue.value)
   if (!searchHistory.value.includes(inputValue.value)) {
     searchHistory.value.push(inputValue.value)
@@ -45,7 +45,7 @@ onMounted(() => {
       class="input"
       :placeholder="`${$tm('mainPage.header.search')}`"
       @input="debouncedSearch(inputValue)"
-      @keydown.enter="search"
+      @keydown.enter="searchTopics"
     />
   </div>
 </template>

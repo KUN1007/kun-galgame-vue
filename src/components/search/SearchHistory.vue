@@ -7,16 +7,16 @@ import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
-const { keywords } = storeToRefs(useTempHomeStore())
+const { search } = storeToRefs(useTempHomeStore())
 
 const isShowSearchHistory = ref(false)
 
 onBeforeMount(() => {
-  keywords.value = ''
+  search.value.keywords = ''
 })
 
 const handleClickHistory = (index: number) => {
-  keywords.value = searchHistory.value[index]
+  search.value.keywords = searchHistory.value[index]
 }
 
 const clearSearchHistory = () => {

@@ -1,4 +1,4 @@
-export interface HomeStoreTemp {
+interface HomeSearchTemp {
   keywords: string
   category: string[]
   page: number
@@ -8,6 +8,22 @@ export interface HomeStoreTemp {
 
   // Whether to continue loading after it's done
   isLoading: boolean
+}
+
+export interface HomeTopicTemp {
+  category: string[]
+  page: number
+  limit: number
+  sortField: string
+  sortOrder: string
+
+  // Whether to continue loading after it's done
+  isLoading: boolean
+}
+
+export interface HomeStoreTemp {
+  search: HomeSearchTemp
+  topic: HomeTopicTemp
 
   isShowSearch: boolean
 }

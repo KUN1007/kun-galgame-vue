@@ -9,31 +9,33 @@ import { HomeTopic } from '@/api'
 import { useTempHomeStore } from '@/store/temp/home'
 import { storeToRefs } from 'pinia'
 
-const { page, keywords, category, sortField, sortOrder, isLoading } =
-  storeToRefs(useTempHomeStore())
+const { topic } = storeToRefs(useTempHomeStore())
 
-const topics = ref<HomeTopic[]>([])
+const homeTopics = ref<HomeTopic[]>([])
 const content = ref<HTMLElement>()
 
 const getTopics = async (): Promise<HomeTopic[]> => {
   return (await useTempHomeStore().getHomeTopic()).data
 }
 
-watch([keywords, category, sortField, sortOrder], async () => {
-  topics.value = await getTopics()
-})
+watch(
+  () => [topic.value.category, topic.value.sortField, topic.value.sortOrder],
+  async () => {
+    homeTopics.value = await getTopics()
+  }
+)
 
 const scrollHandler = async () => {
-  if (isScrollAtBottom() && isLoading.value) {
-    page.value++
+  if (isScrollAtBottom() && topic.value.isLoading) {
+    topic.value.page++
 
     const lazyLoadTopics = await getTopics()
 
     if (!lazyLoadTopics.length) {
-      isLoading.value = false
+      topic.value.isLoading = false
     }
 
-    topics.value = [...topics.value, ...lazyLoadTopics]
+    homeTopics.value = [...homeTopics.value, ...lazyLoadTopics]
   }
 }
 
@@ -49,7 +51,7 @@ const isScrollAtBottom = () => {
 }
 
 onBeforeMount(async () => {
-  useTempHomeStore().$reset()
+  useTempHomeStore().resetPageStatus()
 })
 
 onMounted(async () => {
@@ -59,7 +61,7 @@ onMounted(async () => {
     element.addEventListener('scroll', scrollHandler)
   }
 
-  topics.value = await getTopics()
+  homeTopics.value = await getTopics()
 })
 
 onBeforeUnmount(() => {
@@ -72,9 +74,9 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="topic-container" ref="content">
-    <TransitionGroup name="list" tag="div" v-if="topics.length">
+    <TransitionGroup name="list" tag="div" v-if="homeTopics.length">
       <div
-        v-for="topic in topics"
+        v-for="topic in homeTopics"
         :key="topic.tid"
         :class="
           hourDiff(topic.upvote_time, 10) ? 'kungalgame-comet-surround' : ''
@@ -90,9 +92,9 @@ onBeforeUnmount(() => {
     </TransitionGroup>
 
     <!-- Skeleton -->
-    <HomeTopicSkeleton :count="7" v-if="!topics.length" />
+    <HomeTopicSkeleton :count="7" v-if="!homeTopics.length" />
 
-    <HomeTopicSkeleton v-if="isLoading && topics.length >= 16" />
+    <HomeTopicSkeleton v-if="topic.isLoading && homeTopics.length >= 16" />
   </div>
 </template>
 

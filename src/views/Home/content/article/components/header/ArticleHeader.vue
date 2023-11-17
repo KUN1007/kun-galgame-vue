@@ -8,17 +8,17 @@ import { storeToRefs } from 'pinia'
 
 import { categoryItem } from './navItem'
 
-const { category } = storeToRefs(useTempHomeStore())
+const { topic } = storeToRefs(useTempHomeStore())
 const categoryIcon = ref('galgame')
 
 const handleSortByCategory = (name: string) => {
-  useTempHomeStore().$reset()
-  category.value = []
+  useTempHomeStore().resetPageStatus()
+  topic.value.category = []
   categoryIcon.value = name
 
   // Because category is [Galgame, Technique, Others], need to capitalize first letter
   const capitalizeFirstLetter = name.charAt(0).toUpperCase() + name.slice(1)
-  category.value.push(capitalizeFirstLetter)
+  topic.value.category.push(capitalizeFirstLetter)
 }
 
 const iconMap: Record<string, string> = {
