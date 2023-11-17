@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { onBeforeUnmount, ref, watch } from 'vue'
 import SearchBox from './SearchBox.vue'
 import SearchHistory from './SearchHistory.vue'
 import SearchResult from './SearchResult.vue'
@@ -42,15 +42,11 @@ watch(
 
 const scrollHandler = async () => {
   if (isScrollAtBottom() && search.value.isLoading && search.value.keywords) {
-    console.log(12222)
-
     search.value.page++
 
     const lazyLoadTopics = await searchTopics()
 
     if (!lazyLoadTopics.length) {
-      console.log(1)
-
       search.value.isLoading = false
     }
 
@@ -140,5 +136,17 @@ onBeforeUnmount(() => {
   transition: all 0.3s ease;
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 90vw;
+  }
 }
 </style>

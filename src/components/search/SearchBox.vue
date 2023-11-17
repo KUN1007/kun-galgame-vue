@@ -61,7 +61,7 @@ onMounted(() => {
 .search-form {
   position: sticky;
   top: 0;
-  width: calc(40vw - 20px);
+  width: 100%;
   max-width: 777px;
   display: flex;
   justify-content: center;

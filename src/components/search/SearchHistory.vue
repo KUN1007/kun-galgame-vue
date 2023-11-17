@@ -38,8 +38,12 @@ const handleDeleteHistory = (historyIndex: number) => {
         @click="handleClickHistory(index)"
       >
         <span>{{ history }} </span>
-        <span @click="handleDeleteHistory(index)">
-          <Icon class="delete" icon="line-md:close-circle" />
+        <span>
+          <Icon
+            @click="handleDeleteHistory(index)"
+            class="delete"
+            icon="line-md:close-circle"
+          />
         </span>
       </div>
     </div>
@@ -107,7 +111,6 @@ const handleDeleteHistory = (historyIndex: number) => {
   }
 }
 
-/* Delete button */
 .delete {
   width: 30px;
   right: 5px;

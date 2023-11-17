@@ -311,12 +311,13 @@ $navNumber: v-bind(navItemNum);
       margin-right: 0 !important;
     }
   }
-}
 
-@media (max-width: 700px) {
   .settings {
     display: none !important;
   }
+}
+
+@media (max-width: 700px) {
   .top-bar {
     display: none;
   }
@@ -330,6 +331,12 @@ $navNumber: v-bind(navItemNum);
 
   .kungalgamer-info {
     margin-right: 30px;
+  }
+
+  .avatar {
+    img {
+      margin-left: 0;
+    }
   }
 }
 </style>
