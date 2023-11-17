@@ -12,28 +12,15 @@ const { keywords } = storeToRefs(useTempHomeStore())
 
 const input = ref<HTMLElement | null>(null)
 const inputValue = ref('')
-const isShowSearchHistory = ref(false)
 
 onBeforeMount(() => {
   keywords.value = ''
 })
 
 const debouncedSearch = debounce((inputValue: string) => {
-  useTempHomeStore().$reset()
+  useTempHomeStore().resetPageStatus()
   keywords.value = inputValue
 }, 300)
-
-const handleInputFocus = () => {
-  if (searchHistory.value.length !== 0) {
-    isShowSearchHistory.value = true
-  }
-}
-
-const handleInputBlur = () => {
-  setTimeout(() => {
-    isShowSearchHistory.value = false
-  }, 100)
-}
 
 const search = () => {
   debouncedSearch(inputValue.value)
@@ -57,8 +44,6 @@ onMounted(() => {
       type="search"
       class="input"
       :placeholder="`${$tm('mainPage.header.search')}`"
-      @focus="handleInputFocus"
-      @blur="handleInputBlur"
       @input="debouncedSearch(inputValue)"
       @keydown.enter="search"
     />
@@ -77,18 +62,18 @@ onMounted(() => {
 
 .input {
   padding: 0 15px;
-  height: 39px;
+  height: 40px;
   width: 100%;
   font-size: 16px;
   border: none;
   background-color: var(--kungalgame-trans-white-9);
-  border: 2px solid var(--kungalgame-blue-0);
+  border: 2px solid var(--kungalgame-blue-4);
   border-radius: 17px;
   color: var(--kungalgame-font-color-3);
   transition: all 0.2s;
 
   &:focus {
-    border: 2px solid var(--kungalgame-blue-4);
+    border: 2px solid var(--kungalgame-pink-4);
   }
 
   &::placeholder {

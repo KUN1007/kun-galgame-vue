@@ -62,6 +62,8 @@ export default {
       replies: '按回复数排序',
       comments: '按评论数排序',
       search: '输入内容以自动搜索',
+      history: '搜索历史',
+      clear: '清除所有历史',
     },
     asideActive: {
       fold: '折叠左侧区域',

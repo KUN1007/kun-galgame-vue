@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, onMounted } from 'vue'
 
 import { usePersistKUNGalgameHomeStore } from '@/store/modules/home'
 import { useTempHomeStore } from '@/store/temp/home'
@@ -9,7 +9,6 @@ import { storeToRefs } from 'pinia'
 const { searchHistory } = storeToRefs(usePersistKUNGalgameHomeStore())
 const { keywords } = storeToRefs(useTempHomeStore())
 
-const inputValue = ref('')
 const isShowSearchHistory = ref(false)
 
 onBeforeMount(() => {
@@ -17,7 +16,7 @@ onBeforeMount(() => {
 })
 
 const handleClickHistory = (index: number) => {
-  inputValue.value = searchHistory.value[index]
+  keywords.value = searchHistory.value[index]
 }
 
 const clearSearchHistory = () => {
@@ -27,6 +26,12 @@ const clearSearchHistory = () => {
 const handleDeleteHistory = (historyIndex: number) => {
   searchHistory.value.splice(historyIndex, 1)
 }
+
+onMounted(() => {
+  if (searchHistory.value.length) {
+    isShowSearchHistory.value = true
+  }
+})
 </script>
 
 <template>
@@ -58,14 +63,11 @@ const handleDeleteHistory = (historyIndex: number) => {
 .history {
   width: 100%;
   position: absolute;
-  top: 39px;
+  top: 70px;
   left: 0;
   flex-direction: column;
-  background-color: var(--kungalgame-white);
   color: var(--kungalgame-font-color-3);
-  border: 1px solid var(--kungalgame-red-1);
   border-radius: 7px;
-  box-shadow: var(--shadow);
 }
 
 .title {
@@ -77,10 +79,9 @@ const handleDeleteHistory = (historyIndex: number) => {
     font-size: 14px;
     &:nth-child(2) {
       cursor: pointer;
-      border-bottom: 1.5px solid var(--kungalgame-trans-white-5);
 
       &:hover {
-        border-bottom: 1.5px solid var(--kungalgame-blue-4);
+        color: var(--kungalgame-blue-4);
       }
     }
   }
@@ -130,7 +131,6 @@ const handleDeleteHistory = (historyIndex: number) => {
   align-items: center;
   cursor: pointer;
   color: var(--kungalgame-font-color-0);
-  background-color: var(--kungalgame-white);
   display: none;
 }
 </style>

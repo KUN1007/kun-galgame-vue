@@ -39,5 +39,15 @@ export const useTempHomeStore = defineStore({
       }
       return await getHomeTopicApi(requestData)
     },
+
+    resetPageStatus() {
+      this.keywords = ''
+      this.category = ['Galgame']
+      this.page = 1
+      this.limit = 17
+      this.sortField = 'updated'
+      this.sortOrder = 'desc'
+      this.isLoading = true
+    },
   },
 })

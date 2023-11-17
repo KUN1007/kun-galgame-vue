@@ -62,6 +62,8 @@ export default {
       replies: 'Replies',
       comments: 'Comments',
       search: 'Input to Auto Search',
+      history: 'Search History',
+      clear: 'Clear all history',
     },
     asideActive: {
       fold: 'Fold Aside',

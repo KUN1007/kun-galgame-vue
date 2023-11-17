@@ -50,7 +50,7 @@ const { isShowSearch } = storeToRefs(useTempHomeStore())
   padding: 10px;
   width: 40vw;
   max-width: 500px;
-  height: 60vh;
+  min-height: 200px;
   max-height: 600px;
 }
 
