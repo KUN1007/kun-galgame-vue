@@ -1,4 +1,4 @@
-![Logo](https://github.com/KUN1007/kun-galgame-vue/blob/layout/src/assets/images/favicon.png)Logo
+![Logo](https://github.com/KUN1007/kun-galgame-vue/blob/unfixed-loli/src/assets/images/favicon.png)
 
 The image is sourced from the game [Ark Order](https://apps.qoo-app.com/en/app/9593), featuring the character '鲲' (Kun).
 
