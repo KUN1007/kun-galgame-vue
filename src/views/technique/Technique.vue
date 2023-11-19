@@ -1,41 +1,53 @@
 <script setup lang="ts">
-import SingleTopic from './components/SingleTopic.vue'
-import Pagination from './components/Pagination.vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import Topic from './components/Topic.vue'
 
-import { ref, onBeforeMount } from 'vue'
-
-const topics = ref()
-
-onBeforeMount(async () => {
-  try {
-  } catch (error) {
-    console.error('Error fetching topics:', error)
-  }
-})
-
+import { useTempTechniqueStore } from '@/store/temp/technique'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
 
+import type { TechniqueTopic } from '@/api'
+
+const topics = ref<TechniqueTopic[]>([])
+
+const { page } = storeToRefs(useTempTechniqueStore())
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 
 const techniquePageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Technique + '%'
+})
+
+const getTopics = async () => {
+  return (await useTempTechniqueStore().getTopics()).data
+}
+
+watch(
+  () => page.value,
+  async () => {
+    topics.value = await getTopics()
+  }
+)
+
+onMounted(async () => {
+  useTempTechniqueStore().resetPageStatus()
+  topics.value = await getTopics()
 })
 </script>
 
 <template>
   <div class="root">
     <div class="content">
-      <div class="article">
-        <div class="article-container">
-          <h1 style="margin: auto">This page is under development.</h1>
+      <div class="container">
+        <Topic :topics="topics" />
+      </div>
 
-          <div class="topic" v-for="topic in topics" :key="topic.topicId">
-            <SingleTopic :data="topic" />
-          </div>
-        </div>
-        <Pagination />
+      <div class="next">
+        <span v-if="page > 1" @click="page--">上一页</span>
+        <span v-if="topics.length === 10" @click="page++">下一页</span>
+      </div>
+
+      <div style="margin: auto">
+        我不知道这个页面怎么写了，如果有建议，请联系我
       </div>
     </div>
   </div>
@@ -55,33 +67,39 @@ const techniquePageWidth = computed(() => {
   width: v-bind(techniquePageWidth);
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   background-color: var(--kungalgame-trans-white-5);
   color: var(--kungalgame-font-color-3);
   border: 1px solid var(--kungalgame-trans-blue-2);
   border-radius: 5px;
+  overflow-y: scroll;
 }
 
-.article {
-  height: 100%;
-  width: 1px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-}
-
-.article-container {
-  height: 1px;
-  flex-grow: 1;
+.container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  grid-template-rows: repeat(5, 255px);
   gap: 10px;
 }
 
-.topic {
-  width: 100%;
-  height: 100%;
+.next {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+
+  span {
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--kungalgame-blue-4);
+    border-bottom: 2px solid var(--kungalgame-trans-white-9);
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    &:hover {
+      border-bottom: 2px solid var(--kungalgame-blue-4);
+    }
+  }
 }
 
 @media (max-width: 1000px) {

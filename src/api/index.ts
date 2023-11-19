@@ -17,6 +17,7 @@ export * from './ranking/types/ranking'
 export * from './topic/types'
 export * from './update-log/types/updateLog'
 export * from './pool/types/pool'
+export * from './technique/types/technique'
 
 // Expose all APIs
 export * from './balance'
@@ -29,3 +30,4 @@ export * from './ranking'
 export * from './topic'
 export * from './update-log'
 export * from './pool'
+export * from './technique'
