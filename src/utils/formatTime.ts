@@ -37,7 +37,7 @@ const languageOptions = {
   },
 }
 
-function replaceTimeUnits(input: string, language: string) {
+const replaceTimeUnits = (input: string, language: string) => {
   const languageOption =
     (languageOptions as Record<string, any>)[language] || languageOptions.en
 
@@ -66,7 +66,7 @@ function replaceTimeUnits(input: string, language: string) {
 }
 
 // Format time difference
-export function formatTimeDifference(pastTime: number, language: string) {
+export const formatTimeDifference = (pastTime: number, language: string) => {
   const now = dayjs()
   const diffInSeconds = now.diff(pastTime, 'second')
   const hint = language === 'en' ? ' ago' : '前'

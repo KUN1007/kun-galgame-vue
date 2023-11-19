@@ -1,18 +1,29 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import Topic from './components/Topic.vue'
 import Bar from './components/Bar.vue'
 
-import { topic } from './components/topic'
-
+import { useTempPoolStore } from '@/store/temp/pool'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
+import type { PoolTopic } from '@/api'
+
+const topics = ref<PoolTopic[]>([])
+
+const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
+
 const poolPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Pool + '%'
+})
+
+const getTopics = async () => {
+  return (await useTempPoolStore().getTopics()).data
+}
+
+onMounted(async () => {
+  topics.value = await getTopics()
 })
 </script>
 
@@ -21,11 +32,10 @@ const poolPageWidth = computed(() => {
     <div class="pool-container">
       <div class="topic-container">
         <Topic
-          v-for="kun in topic"
+          v-for="(kun, index) in topics"
+          :key="index"
           class="item"
-          :key="kun.index"
-          :data="kun"
-          :class="`item-${kun.index}`"
+          :topic="kun"
         />
       </div>
 
@@ -70,7 +80,7 @@ const poolPageWidth = computed(() => {
   }
 
   .topic-container {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, minmax(100px, 222px));
     grid-auto-rows: minmax(100px, 300px);
   }
 }

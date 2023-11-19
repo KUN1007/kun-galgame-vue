@@ -10,7 +10,7 @@ export const useTempPoolStore = defineStore({
   persist: false,
   state: (): PoolStoreTemp => ({
     page: 1,
-    limit: 0,
+    limit: 10,
     sortField: 'time',
     sortOrder: 'desc',
   }),

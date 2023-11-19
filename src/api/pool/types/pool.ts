@@ -1,4 +1,4 @@
-interface PoolTopic {
+export interface PoolTopic {
   tid: number
   title: string
   views: number

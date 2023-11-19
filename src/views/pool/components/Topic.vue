@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { onMounted, watch, ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
-import { ref } from 'vue'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
 
-const { showKUNGalgameMode } = storeToRefs(useKUNGalgameSettingsStore())
+import { randomNum } from '@/utils/random'
+import { formatTimeI18n } from '@/utils/formatTimeI18n'
 
 const light = `rgba(${randomNum(200, 255)}, ${randomNum(200, 255)}, ${randomNum(
   200,
@@ -17,7 +18,30 @@ const dark = `rgba(${randomNum(0, 55)}, ${randomNum(0, 55)}, ${randomNum(
   55
 )}, ${randomNum(30, 70) / 100})`
 
+import type { PoolTopic } from '@/api'
+
+const props = defineProps<{
+  topic: PoolTopic
+}>()
+
 const color = ref(light)
+const { showKUNGalgameMode, showKUNGalgameLanguage } = storeToRefs(
+  useKUNGalgameSettingsStore()
+)
+const topic = computed(() => props.topic)
+const { formattedENDate, formattedCNDate } = formatTimeI18n(topic.value.time)
+
+const loliTime = computed(() => {
+  if (showKUNGalgameLanguage.value === 'en') {
+    return formattedENDate
+  }
+
+  if (showKUNGalgameLanguage.value === 'zh') {
+    return formattedCNDate
+  }
+
+  return ''
+})
 
 // 初始化色彩
 onMounted(() => {
@@ -35,35 +59,31 @@ onMounted(() => {
     }
   })
 })
-
-const props = defineProps(['data', 'itemStyle'])
-import { randomNum } from '@/utils/random'
-import { onMounted, watch } from 'vue'
 </script>
 
 <template>
   <div class="topic">
     <div class="title">
-      {{ props.data.title }}
+      {{ topic.title }}
     </div>
 
-    <div class="content">{{ props.data.content }}</div>
+    <div class="content">{{ topic.content }}</div>
 
     <div class="status">
       <span>
         <Icon icon="ic:outline-remove-red-eye" />
-        {{ props.data.view }}
+        {{ topic.views }}
       </span>
 
       <span>
         <Icon icon="line-md:thumbs-up-twotone" />
-        {{ props.data.like }}
+        {{ topic.likesCount }}
       </span>
     </div>
 
     <div class="time">
       <Icon class="hourglass" icon="eos-icons:hourglass" />
-      <div>{{ props.data.time }} 发布</div>
+      <div>{{ loliTime }}</div>
     </div>
   </div>
 </template>
@@ -126,10 +146,10 @@ import { onMounted, watch } from 'vue'
   font-size: small;
   letter-spacing: 1px;
   overflow: hidden;
-  white-space: nowrap;
   padding: 7px 0;
 
   .hourglass {
+    flex-shrink: 0;
     margin: 0 5px;
     color: var(--kungalgame-purple-4);
   }
