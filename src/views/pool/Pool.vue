@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
-import Tags from './components/Tags.vue'
 import Topic from './components/Topic.vue'
 import Bar from './components/Bar.vue'
 
@@ -20,8 +19,6 @@ const poolPageWidth = computed(() => {
 <template>
   <div class="pool">
     <div class="pool-container">
-      <Tags />
-
       <div class="topic-container">
         <Topic
           v-for="kun in topic"

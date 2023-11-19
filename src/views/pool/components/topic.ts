@@ -1,7 +1,3 @@
-// 临时数据
-
-import { randomNum } from '@/utils/random'
-
 interface Topic {
   index: number
   title: string
