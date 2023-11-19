@@ -3,6 +3,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import Topic from './components/Topic.vue'
 import Bar from './components/Bar.vue'
+import PoolTopicsSkeleton from '@/components/skeleton/pool/PoolTopicsSkeleton.vue'
 
 import { useTempPoolStore } from '@/store/temp/pool'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -78,11 +79,14 @@ onMounted(async () => {
     <div class="pool-container">
       <div class="topic-container">
         <Topic
+          v-if="topics.length"
           v-for="(kun, index) in topics"
           :key="index"
           class="item"
           :topic="kun"
         />
+
+        <PoolTopicsSkeleton v-if="!topics.length" />
       </div>
 
       <div class="load">
