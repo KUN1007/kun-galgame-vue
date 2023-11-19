@@ -370,6 +370,9 @@ export default {
   pool: {
     load: '点击继续加载话题',
     complete: '已经。。。一滴也不剩了',
+    view: '按浏览数排序',
+    like: '按点赞数排序',
+    time: '按照时间排序',
   },
   donate: {
     donate: '赞助我们',

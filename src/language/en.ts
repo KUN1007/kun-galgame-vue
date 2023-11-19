@@ -371,6 +371,9 @@ export default {
   pool: {
     load: 'Click to Load More Topics',
     complete: `Already there's nothing left...`,
+    view: 'Sort by Views',
+    like: 'Sort by Likes',
+    time: 'Sort by Time',
   },
   donate: {
     donate: 'Donate Us',

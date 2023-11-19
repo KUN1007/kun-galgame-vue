@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import Topic from './components/Topic.vue'
 import Bar from './components/Bar.vue'
@@ -12,7 +12,7 @@ import type { PoolTopic } from '@/api'
 
 const topics = ref<PoolTopic[]>([])
 
-const { page } = storeToRefs(useTempPoolStore())
+const { page, sortField, sortOrder } = storeToRefs(useTempPoolStore())
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const isLoadingComplete = ref(false)
 
@@ -23,6 +23,15 @@ const poolPageWidth = computed(() => {
 const getTopics = async () => {
   return (await useTempPoolStore().getTopics()).data
 }
+
+watch(
+  () => [sortField.value, sortOrder.value],
+  async () => {
+    isLoadingComplete.value = false
+    useTempPoolStore().resetPageStatus()
+    topics.value = await getTopics()
+  }
+)
 
 const handleLoadTopics = async () => {
   if (isLoadingComplete.value) {

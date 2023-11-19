@@ -1,17 +1,35 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+import { useTempPoolStore } from '@/store/temp/pool'
+import { storeToRefs } from 'pinia'
+
+import { sortItem } from './sortItem'
+
+const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
 </script>
 
 <template>
   <div class="bar">
     <div class="sort">
       <div class="func">
-        <div><Icon icon="ic:outline-remove-red-eye" /> 按照浏览数排序</div>
+        <div
+          class="item"
+          v-for="item in sortItem"
+          :key="item.index"
+          @click="sortField = item.field"
+        >
+          <Icon :icon="item.icon" />
+          <span>{{ $tm(`pool.${item.name}`) }}</span>
+        </div>
 
-        <div><Icon icon="line-md:thumbs-up-twotone" /> 按照点赞数排序</div>
-
-        <div>
-          <Icon class="hourglass" icon="eos-icons:hourglass" /> 按照时间排序
+        <div class="order">
+          <span @click="sortOrder = 'asc'">
+            <Icon icon="tdesign:order-ascending" />
+          </span>
+          <span @click="sortOrder = 'desc'">
+            <Icon icon="tdesign:order-descending" />
+          </span>
         </div>
       </div>
 
@@ -45,14 +63,44 @@ import { Icon } from '@iconify/vue'
   cursor: pointer;
   display: none;
   background-color: var(--kungalgame-trans-white-2);
-  border: 1px solid var(--kungalgame-blue-1);
+  border: 1px solid var(--kungalgame-blue-4);
   top: 0;
+}
 
-  & > div {
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+
+  span {
+    margin-left: 8px;
+  }
+
+  &:hover {
+    background-color: var(--kungalgame-trans-blue-1);
+  }
+}
+
+.order {
+  display: flex;
+
+  &:hover {
+    background-color: var(--kungalgame-trans-white-2);
+  }
+
+  span {
     padding: 8px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--kungalgame-blue-4);
 
     &:hover {
-      background-color: var(--kungalgame-trans-blue-1);
+      background-color: var(--kungalgame-blue-4);
+      color: var(--kungalgame-white);
     }
   }
 }
