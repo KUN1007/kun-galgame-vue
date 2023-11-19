@@ -16,6 +16,7 @@ export * from './non-moe/types/nonMoe'
 export * from './ranking/types/ranking'
 export * from './topic/types'
 export * from './update-log/types/updateLog'
+export * from './pool/types/pool'
 
 // Expose all APIs
 export * from './balance'
@@ -27,3 +28,4 @@ export * from './non-moe'
 export * from './ranking'
 export * from './topic'
 export * from './update-log'
+export * from './pool'

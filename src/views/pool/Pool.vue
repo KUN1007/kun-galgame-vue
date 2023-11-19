@@ -63,4 +63,15 @@ const poolPageWidth = computed(() => {
   grid-auto-rows: minmax(100px, 320px);
   gap: 10px;
 }
+
+@media (max-width: 700px) {
+  .pool-container {
+    width: 100%;
+  }
+
+  .topic-container {
+    grid-template-columns: repeat(2, auto);
+    grid-auto-rows: minmax(100px, 300px);
+  }
+}
 </style>
