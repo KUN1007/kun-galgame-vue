@@ -375,6 +375,11 @@ export default {
     like: 'Sort by Likes',
     time: 'Sort by Time',
   },
+  technique: {
+    prev: 'Prev',
+    next: 'Next',
+    KKKKK: `We're not sure how this page should be written. If you have any suggestions, please contact us.`,
+  },
   donate: {
     donate: 'Donate Us',
     no: 'comes with no Moemoepoint rewards',

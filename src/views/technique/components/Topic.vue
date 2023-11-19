@@ -11,7 +11,12 @@ const topics = computed(() => props.topics)
 </script>
 
 <template>
-  <div class="topic" v-for="(topic, index) in topics" :key="index">
+  <RouterLink
+    class="topic"
+    v-for="(topic, index) in topics"
+    :key="index"
+    :to="`/topic/${topic.tid}`"
+  >
     <span></span>
     <span></span>
     <span></span>
@@ -47,7 +52,7 @@ const topics = computed(() => props.topics)
 
       <span v-for="(kun, _) in topic.tags">{{ kun }}</span>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <style lang="scss" scoped>
@@ -59,6 +64,7 @@ const topics = computed(() => props.topics)
   display: inline-block;
   overflow: hidden;
   max-width: 350px;
+  color: var(--kungalgame-font-color-3);
 
   &:hover {
     box-shadow: var(--shadow);

@@ -374,6 +374,11 @@ export default {
     like: '按点赞数排序',
     time: '按照时间排序',
   },
+  technique: {
+    prev: '上一页',
+    next: '下一页',
+    KKKKK: `我们不知道这个页面怎么写了，如果有建议，请联系我们`,
+  },
   donate: {
     donate: '赞助我们',
     no: '没有任何的萌萌点奖励',

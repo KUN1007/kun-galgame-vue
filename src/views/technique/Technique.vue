@@ -37,17 +37,22 @@ onMounted(async () => {
 <template>
   <div class="root">
     <div class="content">
+      <!-- TODO: -->
+      <div style="margin: auto">
+        {{ $tm('technique.KKKKK') }}
+      </div>
+
       <div class="container">
         <Topic :topics="topics" />
       </div>
 
       <div class="next">
-        <span v-if="page > 1" @click="page--">上一页</span>
-        <span v-if="topics.length === 10" @click="page++">下一页</span>
-      </div>
-
-      <div style="margin: auto">
-        我不知道这个页面怎么写了，如果有建议，请联系我
+        <span v-if="page > 1" @click="page--">
+          {{ $tm('technique.prev') }}
+        </span>
+        <span v-if="topics.length === 10" @click="page++">
+          {{ $tm('technique.next') }}
+        </span>
       </div>
     </div>
   </div>

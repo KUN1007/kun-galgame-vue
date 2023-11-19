@@ -16,18 +16,23 @@ const user = computed(() => props.user)
 
 <template>
   <div class="kungalgamer">
-    <div class="avatar">
+    <div class="avatar" v-if="user.avatar">
       <RouterLink
         :aria-label="`KUN Visual Novel, 鲲 Galgame, User ${props.user.name}`"
         :to="`/kungalgamer/${user.uid}/info`"
       >
-        <img v-if="user.avatar" :src="user.avatar" :alt="user.name" />
+        <img :src="user.avatar" :alt="user.name" />
       </RouterLink>
     </div>
 
     <div class="info">
       <div class="name">
-        {{ user.name }}
+        <RouterLink
+          :aria-label="`KUN Visual Novel, 鲲 Galgame, User ${props.user.name}`"
+          :to="`/kungalgamer/${user.uid}/info`"
+        >
+          {{ user.name }}
+        </RouterLink>
       </div>
 
       <div class="moemoepoint">
@@ -63,6 +68,15 @@ const user = computed(() => props.user)
   justify-content: center;
   margin-top: 17px;
   font-size: 17px;
+
+  a {
+    color: var(--kungalgame-blue-5);
+    border-bottom: 2px solid var(--kungalgame-trans-white-9);
+
+    &:hover {
+      border-bottom: 2px solid var(--kungalgame-blue-5);
+    }
+  }
 }
 
 .moemoepoint {
