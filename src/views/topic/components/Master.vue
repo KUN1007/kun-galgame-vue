@@ -1,24 +1,14 @@
-<!-- This is the area for displaying the main topic in the KUNGalgame topic display area.
-  The main topic will be shown here and is located at the top of the topic display area. -->
-
 <script setup lang="ts">
-// Importing components
+import { computed } from 'vue'
 import Footer from './footer/Footer.vue'
-// Whether the main topic has been edited
 import Rewrite from '../components/Rewrite.vue'
-// Main topic information
 import KUNGalgamerInfo from '../components/KUNGalgamerInfo.vue'
-// Topic content display area
 import Content from './Content.vue'
-// Posting time of the main topic
 import Time from '../components/Time.vue'
-// Tags of the main topic
 import Tags from '../components/Tags.vue'
 
 import { TopicDetail } from '@/api/topic/types/topic'
-import { computed } from 'vue'
 
-// Importing a function to calculate time difference
 import { hourDiff } from '@/utils/time'
 
 const topicData = defineProps<{
@@ -45,9 +35,7 @@ const {
   upvote_time,
 } = topicData.topicData
 
-// Topic status
 const loliStatus = computed(() => {
-  // If upvoted within 10 hours, it will be marked as "featured"
   if (hourDiff(upvote_time, 10)) {
     return 'featured'
   }
@@ -67,44 +55,37 @@ const loliStatus = computed(() => {
     enter-active-class="animate__animated animate__fadeInRight animate__faster"
     appear
   >
-    <!-- Main container for the main topic, the ID is for easy navigation -->
     <div class="container" :id="`kungalgame-reply-0`">
-      <!-- Container for the main content of the main topic -->
       <div class="content-container">
-        <!-- Header for the main topic -->
         <div class="header">
-          <!-- Title of the main topic -->
           <div class="title">
             {{ title }}
           </div>
         </div>
-        <!-- Content area for the main topic -->
+
         <div class="content">
-          <!-- Top section of the content area -->
           <div class="content-top">
             <Tags v-if="tags" :tags="tags" />
             <Time v-if="time" :time="time" />
           </div>
-          <!-- Middle section of the content area -->
+
           <div class="content-center">
             <KUNGalgamerInfo v-if="user" :user="user" />
 
-            <!-- Rich text content display area -->
             <Content :content="content" />
           </div>
-          <!-- Bottom section of the content area -->
+
           <div class="content-bottom">
-            <!-- Topic status -->
             <div class="status">
               <span>{{ `${$tm('topic.content.status')}:` }}</span>
-              <span :class="loliStatus">{{
-                $tm(`topic.content.${loliStatus}`)
-              }}</span>
+              <span :class="loliStatus">
+                {{ $tm(`topic.content.${loliStatus}`) }}
+              </span>
             </div>
             <Rewrite v-if="edited" :time="edited" />
           </div>
         </div>
-        <!-- Footer displaying topic information such as upvotes, views, likes, etc. -->
+
         <Footer
           :info="{
             tid,
@@ -132,10 +113,8 @@ const loliStatus = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-/* Main container for the main topic */
 .container {
   width: 100%;
-  /* Minimum height of the main topic */
   min-height: 400px;
   display: flex;
   flex-direction: column;
@@ -143,7 +122,6 @@ const loliStatus = computed(() => {
   flex-shrink: 0;
 }
 
-/* Container for the main content of the main topic */
 .content-container {
   flex-grow: 1;
   width: 100%;
@@ -157,7 +135,6 @@ const loliStatus = computed(() => {
   transition: all 0.5s;
 }
 
-/* Header for the main topic */
 .header {
   width: 100%;
   min-height: 70px;
@@ -169,40 +146,34 @@ const loliStatus = computed(() => {
   font-size: 17px;
   border-bottom: 1px solid var(--kungalgame-blue-1);
 }
-/* Title of the main topic */
+
 .title {
   font-size: 17px;
   font-weight: bold;
-  /* Letter spacing */
   letter-spacing: 1px;
 }
 
-/* Content area for the main topic */
 .content {
   display: flex;
   flex-direction: column;
 }
-/* Top section of the content area */
+
 .content-top {
   width: 100%;
   max-height: 100px;
   display: flex;
   text-align: center;
-  /* Time and tags on separate sides */
   justify-content: space-between;
-  /* Bottom separator */
   border-bottom: 1px solid var(--kungalgame-blue-1);
   flex-grow: 1;
 }
 
-/* Container for the main topic and main topic information */
 .content-center {
   width: 100%;
   display: flex;
   border-bottom: 1px solid var(--kungalgame-blue-1);
 }
 
-/* Bottom section of the content area */
 .content-bottom {
   width: 100%;
   height: 20px;
@@ -212,13 +183,11 @@ const loliStatus = computed(() => {
   border-bottom: 1px solid var(--kungalgame-blue-1);
 }
 
-/* Topic status */
 .status {
   display: flex;
   font-size: 12px;
   margin-left: 10px;
   color: var(--kungalgame-font-color-3);
-  /* Topic status */
   span {
     &:nth-child(1) {
       margin-right: 5px;
@@ -234,7 +203,6 @@ const loliStatus = computed(() => {
   }
 }
 
-/* Topic status styles */
 .normal {
   background-color: var(--kungalgame-green-4);
 }
@@ -247,8 +215,6 @@ const loliStatus = computed(() => {
   background-color: var(--kungalgame-pink-3);
 }
 
-/* Style when a topic is clicked to navigate */
-/* Style when a specific topic is activated after scrolling */
 .active .content-container {
   border: 1px solid var(--kungalgame-red-3);
   background-color: var(--kungalgame-trans-red-1);
@@ -264,6 +230,14 @@ const loliStatus = computed(() => {
 @media (max-width: 700px) {
   .content-center {
     flex-direction: column;
+  }
+
+  .status {
+    span {
+      &:nth-child(1) {
+        display: none;
+      }
+    }
   }
 }
 </style>
