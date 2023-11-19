@@ -6,7 +6,7 @@ import { storeToRefs } from 'pinia'
 
 import { sortItem } from './sortItem'
 
-const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
+const { sortField, sortOrder, isScrollToTop } = storeToRefs(useTempPoolStore())
 </script>
 
 <template>
@@ -38,7 +38,7 @@ const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
       </div>
     </div>
 
-    <div class="top">
+    <div class="top" @click="isScrollToTop = true">
       <div class="icon">
         <Icon icon="line-md:arrow-close-up" />
       </div>
@@ -64,6 +64,7 @@ const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
   display: none;
   background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-4);
+  border-radius: 6px;
   top: 0;
 }
 
@@ -77,6 +78,10 @@ const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
     margin-left: 8px;
   }
 
+  &:first-child {
+    border-radius: 5px 5px 0 0;
+  }
+
   &:hover {
     background-color: var(--kungalgame-trans-blue-1);
   }
@@ -84,10 +89,6 @@ const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
 
 .order {
   display: flex;
-
-  &:hover {
-    background-color: var(--kungalgame-trans-white-2);
-  }
 
   span {
     padding: 8px;
@@ -101,6 +102,14 @@ const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
     &:hover {
       background-color: var(--kungalgame-blue-4);
       color: var(--kungalgame-white);
+    }
+
+    &:first-child {
+      border-radius: 0 0 0 5px;
+    }
+
+    &:last-child {
+      border-radius: 0 0 5px 0;
     }
   }
 }
@@ -122,6 +131,7 @@ const { sortField, sortOrder } = storeToRefs(useTempPoolStore())
   background-color: var(--kungalgame-trans-white-2);
   border: 1px solid var(--kungalgame-blue-1);
   color: var(--kungalgame-font-color-3);
+  border-radius: 50%;
 
   .icon {
     font-size: 22px;

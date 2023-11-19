@@ -3,4 +3,6 @@ export interface PoolStoreTemp {
   limit: number
   sortField: string
   sortOrder: string
+
+  isScrollToTop: boolean
 }

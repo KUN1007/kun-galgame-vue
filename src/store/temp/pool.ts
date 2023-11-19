@@ -13,6 +13,8 @@ export const useTempPoolStore = defineStore({
     limit: 10,
     sortField: 'time',
     sortOrder: 'desc',
+
+    isScrollToTop: false,
   }),
   actions: {
     async getTopics(): Promise<PoolTopicResponseData> {

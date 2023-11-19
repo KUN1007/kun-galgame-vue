@@ -10,9 +10,12 @@ import { storeToRefs } from 'pinia'
 
 import type { PoolTopic } from '@/api'
 
+const pool = ref<HTMLElement>()
 const topics = ref<PoolTopic[]>([])
 
-const { page, sortField, sortOrder } = storeToRefs(useTempPoolStore())
+const { page, sortField, sortOrder, isScrollToTop } = storeToRefs(
+  useTempPoolStore()
+)
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const isLoadingComplete = ref(false)
 
@@ -30,6 +33,19 @@ watch(
     isLoadingComplete.value = false
     useTempPoolStore().resetPageStatus()
     topics.value = await getTopics()
+  }
+)
+
+watch(
+  () => isScrollToTop.value,
+  () => {
+    if (pool.value) {
+      pool.value.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+      isScrollToTop.value = false
+    }
   }
 )
 
@@ -58,7 +74,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="pool">
+  <div class="pool" ref="pool">
     <div class="pool-container">
       <div class="topic-container">
         <Topic
