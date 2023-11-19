@@ -367,6 +367,10 @@ export default {
     donate: '赞助我们',
     home: '返回主页',
   },
+  pool: {
+    load: '点击继续加载话题',
+    complete: '已经。。。一滴也不剩了',
+  },
   donate: {
     donate: '赞助我们',
     no: '没有任何的萌萌点奖励',

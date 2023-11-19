@@ -368,6 +368,10 @@ export default {
     donate: 'Donate Us',
     home: 'Back Home',
   },
+  pool: {
+    load: 'Click to Load More Topics',
+    complete: `Already there's nothing left...`,
+  },
   donate: {
     donate: 'Donate Us',
     no: 'comes with no Moemoepoint rewards',

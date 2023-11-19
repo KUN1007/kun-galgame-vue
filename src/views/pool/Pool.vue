@@ -12,7 +12,9 @@ import type { PoolTopic } from '@/api'
 
 const topics = ref<PoolTopic[]>([])
 
+const { page } = storeToRefs(useTempPoolStore())
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
+const isLoadingComplete = ref(false)
 
 const poolPageWidth = computed(() => {
   return showKUNGalgamePageWidth.value.Pool + '%'
@@ -22,8 +24,27 @@ const getTopics = async () => {
   return (await useTempPoolStore().getTopics()).data
 }
 
+const handleLoadTopics = async () => {
+  if (isLoadingComplete.value) {
+    return
+  }
+
+  page.value++
+  const newTopicData = await getTopics()
+
+  if (newTopicData.length < 10) {
+    isLoadingComplete.value = true
+  }
+  topics.value = [...topics.value, ...newTopicData]
+}
+
 onMounted(async () => {
+  useTempPoolStore().resetPageStatus()
   topics.value = await getTopics()
+
+  if (topics.value.length < 10) {
+    isLoadingComplete.value = true
+  }
 })
 </script>
 
@@ -39,7 +60,15 @@ onMounted(async () => {
         />
       </div>
 
-      <div class="load"><span>点击继续加载</span></div>
+      <div class="load">
+        <span v-if="!isLoadingComplete" @click="handleLoadTopics">
+          {{ $tm('pool.load') }}
+        </span>
+
+        <span v-else-if="isLoadingComplete">
+          {{ $tm('pool.complete') }}
+        </span>
+      </div>
 
       <KUNGalgameFooter />
     </div>

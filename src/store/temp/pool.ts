@@ -25,5 +25,10 @@ export const useTempPoolStore = defineStore({
 
       return await getPoolTopicApi(requestData)
     },
+
+    resetPageStatus() {
+      this.page = 1
+      this.limit = 10
+    },
   },
 })

@@ -67,6 +67,7 @@ onActivated(() => {
       <span>{{ $tm('header.settings.width') }}</span>
       <span>{{ pageWidth }}%</span>
     </div>
+
     <div class="page-width">
       <span>50%</span>
       <input

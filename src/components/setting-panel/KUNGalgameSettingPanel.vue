@@ -204,7 +204,7 @@ const handelCloseSettingsPanel = () => {
   cursor: pointer;
 }
 
-.item-move, /* Transition applied to moving elements */
+.item-move,
 .item-enter-active,
 .item-leave-active {
   transition: all 0.5s ease;
@@ -216,8 +216,6 @@ const handelCloseSettingsPanel = () => {
   transform: translateY(77px);
 }
 
-/* Ensure the leaving element is removed from the layout flow
-  to correctly calculate the animated movement. */
 .item-leave-active {
   position: absolute;
 }
