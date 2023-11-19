@@ -110,6 +110,7 @@ const user = computed(() => props.user)
     width: 70px;
     height: 70px;
     margin-top: 10px;
+    margin-right: 50px;
 
     img {
       width: 70px;
@@ -118,7 +119,6 @@ const user = computed(() => props.user)
   }
 
   .info {
-    margin-left: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
