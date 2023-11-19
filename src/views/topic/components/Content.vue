@@ -19,8 +19,8 @@ const props = defineProps<{
 </template>
 
 <style lang="scss" scoped>
-/* Right side content area for the topic */
 .kungalgame-topic-content {
+  width: 100%;
   min-height: 200px;
   font-size: 15px;
   padding: 17px;
@@ -31,7 +31,6 @@ const props = defineProps<{
   overflow-x: auto;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 700px) {
   .kungalgame-topic-content {
     width: 100%;

@@ -39,6 +39,8 @@ onMounted(async () => {
         />
       </div>
 
+      <div class="load"><span>点击继续加载</span></div>
+
       <KUNGalgameFooter />
     </div>
 
@@ -55,7 +57,7 @@ onMounted(async () => {
 }
 
 .pool-container {
-  transition: all 0.2s;
+  transition: width 0.2s;
   width: v-bind(poolPageWidth);
   margin: 0 auto;
   display: flex;
@@ -72,6 +74,24 @@ onMounted(async () => {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: minmax(100px, 320px);
   gap: 10px;
+}
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+
+  span {
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--kungalgame-blue-4);
+    border-bottom: 2px solid var(--kungalgame-trans-white-9);
+
+    &:hover {
+      border-bottom: 2px solid var(--kungalgame-blue-4);
+    }
+  }
 }
 
 @media (max-width: 700px) {

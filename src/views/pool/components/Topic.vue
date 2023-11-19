@@ -62,7 +62,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="topic">
+  <RouterLink class="topic" :to="`/topic/${topic.tid}`">
     <div class="title">
       {{ topic.title }}
     </div>
@@ -85,7 +85,7 @@ onMounted(() => {
       <Icon class="hourglass" icon="eos-icons:hourglass" />
       <div>{{ loliTime }}</div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <style lang="scss" scoped>
@@ -101,7 +101,9 @@ onMounted(() => {
   max-width: 300px;
 
   &:hover {
+    transition: all 0.2s;
     background-color: var(--kungalgame-trans-white-2);
+    box-shadow: var(--kungalgame-shadow-1);
   }
 }
 
@@ -121,6 +123,11 @@ onMounted(() => {
 
 .content {
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  overflow-wrap: break-word;
   font-size: 14px;
   padding: 0 10px;
   margin: 7px 0;
@@ -146,7 +153,7 @@ onMounted(() => {
   font-size: small;
   letter-spacing: 1px;
   overflow: hidden;
-  padding: 7px 0;
+  padding: 7px;
 
   .hourglass {
     flex-shrink: 0;
