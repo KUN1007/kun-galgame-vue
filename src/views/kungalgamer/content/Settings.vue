@@ -92,6 +92,7 @@ onMounted(() => {
     background-color: var(--kungalgame-trans-white-9);
     border-radius: 5px;
     padding: 5px;
+    resize: none;
 
     &:focus {
       border: 1px solid var(--kungalgame-pink-3);
