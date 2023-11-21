@@ -20,7 +20,8 @@ import { storeToRefs } from 'pinia'
 
 const messageStore = useTempMessageStore()
 const { isShowAdvance } = storeToRefs(usePersistKUNGalgameTopicStore())
-const { replyDraft, isReplyRewriting, replyPanelWidth } = storeToRefs(
+const { isReplyRewriting } = storeToRefs(useTempReplyStore())
+const { replyDraft, replyPanelWidth } = storeToRefs(
   usePersistKUNGalgameReplyStore()
 )
 
@@ -37,7 +38,7 @@ const handleClosePanel = async () => {
     const res = await messageStore.alert('AlertInfo.edit.closePanel', true)
 
     if (res) {
-      usePersistKUNGalgameReplyStore().resetRewriteReplyData()
+      useTempReplyStore().resetRewriteReplyData()
     } else {
       return
     }

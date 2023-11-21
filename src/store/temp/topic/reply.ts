@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-// Replies
+
 import {
   getRepliesByPidApi,
   updateReplyUpvoteApi,
   updateReplyLikeApi,
   updateReplyDislikeApi,
+  updateReplyApi,
 } from '@/api'
 
 import type {
@@ -16,8 +17,11 @@ import type {
   TopicLikeReplyResponseData,
   TopicDislikeReplyRequestData,
   TopicDislikeReplyResponseData,
+  TopicUpdateReplyRequestData,
+  TopicUpdateReplyResponseData,
 } from '@/api'
 
+import { checkReplyPublish } from '@/store/utils/checkReplyPublish'
 import type { ReplyStoreTemp } from '@/store/types/topic/reply'
 
 export const useTempReplyStore = defineStore({
@@ -28,8 +32,9 @@ export const useTempReplyStore = defineStore({
     isEdit: false,
     isScrollToTop: false,
     isLoading: true,
-    // Reply ID starts from 0, -1 is just for monitoring data changes
+
     scrollToReplyId: -1,
+    isReplyRewriting: false,
 
     replyRequest: {
       page: 1,
@@ -38,13 +43,20 @@ export const useTempReplyStore = defineStore({
       sortOrder: 'asc',
     },
 
+    replyRewrite: {
+      tid: 0,
+      rid: 0,
+      content: '',
+      tags: [],
+      edited: 0,
+    },
+
     tempReply: {
       rid: 0,
       tid: 0,
-      // Floor where the reply is located
       floor: 0,
-      // Floor where the replied reply is located
       to_floor: 0,
+
       r_user: {
         uid: 0,
         name: '',
@@ -127,6 +139,33 @@ export const useTempReplyStore = defineStore({
         isPush: isPush,
       }
       return await updateReplyDislikeApi(requestData)
+    },
+
+    // Update a reply
+    async updateReply(): Promise<TopicUpdateReplyResponseData | undefined> {
+      const requestData: TopicUpdateReplyRequestData = {
+        tid: this.replyRewrite.tid,
+        rid: this.replyRewrite.rid,
+        content: this.replyRewrite.content,
+        tags: this.replyRewrite.tags,
+        edited: Date.now(),
+      }
+
+      if (!checkReplyPublish(requestData.tags, requestData.content)) {
+        return
+      }
+
+      return await updateReplyApi(requestData)
+    },
+
+    // Reset data for re-editing a reply
+    resetRewriteReplyData() {
+      this.replyRewrite.tid = 0
+      this.replyRewrite.rid = 0
+      this.replyRewrite.content = ''
+      this.replyRewrite.tags = []
+
+      this.isReplyRewriting = false
     },
 
     resetPageStatus() {

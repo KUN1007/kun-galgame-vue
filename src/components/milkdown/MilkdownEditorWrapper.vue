@@ -9,6 +9,7 @@ import MilkdownEditor from './MilkdownEditor.vue'
 
 // KUN Visual Novel store
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
@@ -18,12 +19,11 @@ const {
   content,
   topicRewrite,
 } = storeToRefs(useKUNGalgameEditStore())
+const { isReplyRewriting, replyRewrite } = storeToRefs(useTempReplyStore())
 const {
   editorHeight: replyEditorHeight,
   isSaveReply,
-  isReplyRewriting,
   replyDraft,
-  replyRewrite,
 } = storeToRefs(usePersistKUNGalgameReplyStore())
 
 const props = defineProps<{

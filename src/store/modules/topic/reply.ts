@@ -1,17 +1,14 @@
 import { defineStore } from 'pinia'
 
-// Replies
-import { postReplyByPidApi, updateReplyApi } from '@/api'
+import { postReplyByPidApi } from '@/api'
 
 import type {
   TopicCreateReplyRequestData,
   TopicCreateReplyResponseData,
-  TopicUpdateReplyRequestData,
-  TopicUpdateReplyResponseData,
 } from '@/api'
 
-import { ReplyStorePersist } from '@/store/types/topic/reply'
 import { checkReplyPublish } from '@/store/utils/checkReplyPublish'
+import type { ReplyStorePersist } from '@/store/types/topic/reply'
 
 export const usePersistKUNGalgameReplyStore = defineStore({
   id: 'KUNGalgameReply',
@@ -23,9 +20,6 @@ export const usePersistKUNGalgameReplyStore = defineStore({
     isShowHotKeywords: true,
     editorHeight: 200,
 
-    // Whether the reply is being rewritten
-    isReplyRewriting: false,
-
     replyDraft: {
       tid: 0,
       toUserName: '',
@@ -33,13 +27,6 @@ export const usePersistKUNGalgameReplyStore = defineStore({
       content: '',
       tags: [],
       toFloor: 0,
-    },
-    replyRewrite: {
-      tid: 0,
-      rid: 0,
-      content: '',
-      tags: [],
-      edited: 0,
     },
   }),
   actions: {
@@ -62,23 +49,6 @@ export const usePersistKUNGalgameReplyStore = defineStore({
       return await postReplyByPidApi(requestData)
     },
 
-    // Update a reply
-    async updateReply(): Promise<TopicUpdateReplyResponseData | undefined> {
-      const requestData: TopicUpdateReplyRequestData = {
-        tid: this.replyRewrite.tid,
-        rid: this.replyRewrite.rid,
-        content: this.replyRewrite.content,
-        tags: this.replyRewrite.tags,
-        edited: Date.now(),
-      }
-
-      if (!checkReplyPublish(requestData.tags, requestData.content)) {
-        return
-      }
-
-      return await updateReplyApi(requestData)
-    },
-
     // Reset reply draft to its original value, used for the reply publish button
     resetReplyDraft() {
       this.replyDraft.tid = 0
@@ -89,16 +59,6 @@ export const usePersistKUNGalgameReplyStore = defineStore({
       this.replyDraft.toFloor = 0
 
       this.isSaveReply = false
-    },
-
-    // Reset data for re-editing a reply
-    resetRewriteReplyData() {
-      this.replyRewrite.tid = 0
-      this.replyRewrite.rid = 0
-      this.replyRewrite.content = ''
-      this.replyRewrite.tags = []
-
-      this.isReplyRewriting = false
     },
   },
 })

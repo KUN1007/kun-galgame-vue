@@ -42,7 +42,10 @@ export interface ReplyStoreTemp {
   // Reply ID to scroll to
   scrollToReplyId: number
 
+  isReplyRewriting: boolean
+
   replyRequest: ReplyRequest
+  replyRewrite: ReplyRewrite
   tempReply: TopicReply
   tempReplyRewrite: ReplyRewriteTemp
 }
@@ -54,8 +57,5 @@ export interface ReplyStorePersist {
   isShowHotKeywords: boolean
   editorHeight: number
 
-  isReplyRewriting: boolean
-
   replyDraft: ReplyDraft
-  replyRewrite: ReplyRewrite
 }

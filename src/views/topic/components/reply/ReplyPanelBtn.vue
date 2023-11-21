@@ -9,37 +9,30 @@ import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
 const { isShowAdvance } = storeToRefs(usePersistKUNGalgameTopicStore())
-const { isSaveReply, isReplyRewriting, replyRewrite } = storeToRefs(
-  usePersistKUNGalgameReplyStore()
-)
+const { isReplyRewriting, replyRewrite } = storeToRefs(useTempReplyStore())
+const { isSaveReply } = storeToRefs(usePersistKUNGalgameReplyStore())
 
 const { isEdit, tempReplyRewrite } = storeToRefs(useTempReplyStore())
 
 const messageStore = useTempMessageStore()
 
-// Click to publish a reply
 const handlePublish = async () => {
   const res = await messageStore.alert('AlertInfo.edit.publish', true)
-  // Implement user's confirmation or cancel logic here
+
   if (res) {
     useTempReplyStore().resetPageStatus()
-    // Publish the reply
     const responseData = await usePersistKUNGalgameReplyStore().postNewReply()
 
     if (responseData?.code === 200) {
-      // Save the data of the new reply
       useTempReplyStore().tempReply = responseData.data
-      // Clear the data because the reply has been successfully posted
       usePersistKUNGalgameReplyStore().resetReplyDraft()
-      // Close the panel
+
       isEdit.value = false
-      // Display a success message
       Message('Publish reply successfully!', '发布回复成功！', 'success')
     }
   }
 }
 
-// Save the data for reply rewriting
 const saveRewriteReply = () => {
   tempReplyRewrite.value.rid = replyRewrite.value.rid
   tempReplyRewrite.value.content = replyRewrite.value.content
@@ -47,35 +40,26 @@ const saveRewriteReply = () => {
   tempReplyRewrite.value.edited = Date.now()
 }
 
-// Handle reply rewriting
 const handleRewrite = async () => {
   const res = await messageStore.alert('AlertInfo.edit.rewrite', true)
-  // Implement user's confirmation or cancel logic here
+
   if (res) {
-    // Update the reply
-    const responseData = await usePersistKUNGalgameReplyStore().updateReply()
+    const responseData = await useTempReplyStore().updateReply()
 
     if (responseData?.code === 200) {
-      // Change the publish status, the front-end will add data for the new reply
-
       Message('Reply rewrite successfully', '回复重新编辑成功', 'success')
-      // Save the data for the new reply, which is essentially the draft data
       saveRewriteReply()
 
-      // Clear the data because the reply has been updated at this point
-      usePersistKUNGalgameReplyStore().resetRewriteReplyData()
-      // Close the panel
+      useTempReplyStore().resetRewriteReplyData()
+
       isShowAdvance.value = false
       isEdit.value = false
     }
   }
 }
 
-// Handle saving a draft
 const handleSave = () => {
-  // Set the save flag to true
   isSaveReply.value = true
-  // Implement the logic for saving the draft here
   Message(
     'The draft has been saved successfully!',
     '草稿已经保存成功',
@@ -83,7 +67,6 @@ const handleSave = () => {
   )
 }
 
-// Show advanced editing options
 const handleShowAdvance = () => {
   isShowAdvance.value = !isShowAdvance.value
 }

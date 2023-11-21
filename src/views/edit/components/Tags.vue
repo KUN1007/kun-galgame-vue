@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import Message from '@/components/alert/Message'
 
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
@@ -19,13 +20,11 @@ const {
   isSaveTopic,
   topicRewrite,
 } = storeToRefs(useKUNGalgameEditStore())
-// Store for the topic interface, used for replies
+const { isReplyRewriting, replyRewrite } = storeToRefs(useTempReplyStore())
 const {
   isShowHotKeywords: isShowReplyHotKeywords,
   isSaveReply,
-  isReplyRewriting,
   replyDraft,
-  replyRewrite,
 } = storeToRefs(usePersistKUNGalgameReplyStore())
 
 // Compute whether to show hot tags based on route name

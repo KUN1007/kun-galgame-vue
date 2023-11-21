@@ -5,16 +5,13 @@ import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
 
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
-import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
 const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
 const { isEdit } = storeToRefs(useTempReplyStore())
-const { isReplyRewriting, replyRewrite } = storeToRefs(
-  usePersistKUNGalgameReplyStore()
-)
+const { isReplyRewriting, replyRewrite } = storeToRefs(useTempReplyStore())
 
 const router = useRouter()
 

@@ -24,7 +24,6 @@ const ReplyPanel = defineAsyncComponent(
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { usePersistKUNGalgameTopicStore } from '@/store/modules/topic/topic'
-import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 
 import { useTempTopicStore } from '@/store/temp/topic/topic'
 import { useTempReplyStore } from '@/store/temp/topic/reply'
@@ -36,7 +35,7 @@ const route = useRoute()
 
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const { isShowAdvance } = storeToRefs(usePersistKUNGalgameTopicStore())
-const { isReplyRewriting } = storeToRefs(usePersistKUNGalgameReplyStore())
+const { isReplyRewriting } = storeToRefs(useTempReplyStore())
 
 const {
   isEdit,
