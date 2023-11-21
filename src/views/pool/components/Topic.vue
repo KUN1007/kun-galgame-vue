@@ -7,6 +7,7 @@ import { storeToRefs } from 'pinia'
 
 import { randomNum } from '@/utils/random'
 import { formatTimeI18n } from '@/utils/formatTimeI18n'
+import { markdownToText } from '@/utils/markdownToText'
 
 // rgba(208, 234, 255, 0.31) is good
 const light = `rgba(${randomNum(200, 255)}, ${randomNum(200, 255)}, ${randomNum(
@@ -68,7 +69,7 @@ onMounted(() => {
       {{ topic.title }}
     </div>
 
-    <div class="content">{{ topic.content }}</div>
+    <div class="content">{{ markdownToText(topic.content) }}</div>
 
     <div class="status">
       <span>

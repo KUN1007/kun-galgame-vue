@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import type { TechniqueTopic } from '@/api'
-import { computed } from 'vue'
+import { markdownToText } from '@/utils/markdownToText'
 
 const props = defineProps<{
   topics: TechniqueTopic[]
@@ -25,7 +26,7 @@ const topics = computed(() => props.topics)
     <div class="topic-title">{{ topic.title }}</div>
 
     <div class="topic-content">
-      <p>{{ topic.content }}</p>
+      <p>{{ markdownToText(topic.content) }}</p>
     </div>
 
     <div class="topic-status">

@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
 import { formatTimeDifference } from '@/utils/formatTime'
+import { markdownToText } from '@/utils/markdownToText'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
@@ -71,7 +72,7 @@ const getRepliesCount = computed(() => {
 
     <div class="introduction">
       <p>
-        {{ content }}
+        {{ markdownToText(content) }}
       </p>
     </div>
   </div>
