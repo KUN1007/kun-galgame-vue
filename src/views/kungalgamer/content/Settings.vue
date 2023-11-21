@@ -45,10 +45,8 @@ onMounted(() => {
 
 <template>
   <div class="settings">
-    <!-- Change profile picture -->
     <Avatar />
 
-    <!-- Change bio -->
     <div class="bio">
       <div class="title">{{ $tm('user.settings.bio') }}</div>
       <textarea

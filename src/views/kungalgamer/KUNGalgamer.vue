@@ -8,25 +8,25 @@ import { useRoute } from 'vue-router'
 import { UserInfo } from '@/api'
 
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
+import { storeToRefs } from 'pinia'
 
-// Get the current user's UID from the route parameters
 const uid = computed(() => {
   return parseInt(useRoute().params.uid as string)
 })
 const user = ref<UserInfo>()
+const { name, moemoepoint } = storeToRefs(useKUNGalgameUserStore())
 
-// Fetch current user information
 const getUser = async (uid: number) => {
   const userInfo = await useKUNGalgameUserStore().getUser(uid)
   return userInfo.data
 }
 
-// Fetch user information when mounted
 onMounted(async () => {
   user.value = await getUser(uid.value)
 
-  // Update the locally stored latest moemoepoint of the user, as it is not real-time
-  useKUNGalgameUserStore().moemoepoint = user.value.moemoepoint
+  if (user.value.name === name.value) {
+    moemoepoint.value = user.value.moemoepoint
+  }
 })
 </script>
 

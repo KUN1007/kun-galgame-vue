@@ -1,35 +1,12 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { computed, ref, watch } from 'vue'
-import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-import { storeToRefs } from 'pinia'
-
-const { name, avatar } = storeToRefs(useKUNGalgameUserStore())
-
-const currentPageUsername = ref(name)
-const currentPageUserAvatar = ref(avatar)
+import { computed } from 'vue'
 
 const props = defineProps<{
   name?: string
   avatar?: string
   moemoepoint?: number
 }>()
-
-watch(
-  () => props.name,
-  () => {
-    // Users without avatars
-    if (props.name) {
-      currentPageUsername.value = props.name
-      currentPageUserAvatar.value = ''
-    }
-    // Users with avatars
-    if (props.name && props.avatar) {
-      currentPageUsername.value = props.name
-      currentPageUserAvatar.value = props.avatar
-    }
-  }
-)
 
 const mpWidth = computed(() => {
   return props.moemoepoint ? `${props.moemoepoint % 100}%` : '0%'
@@ -40,13 +17,13 @@ const mpWidth = computed(() => {
   <!-- Page header -->
   <div class="header">
     <!-- User avatar -->
-    <div class="avatar">
-      <img v-if="avatar" :src="avatar" :alt="name" />
+    <div class="avatar" v-if="props.avatar">
+      <img :src="props.avatar" :alt="props.name" />
     </div>
 
     <!-- Username -->
     <div class="name">
-      <span>{{ name }}</span>
+      <span>{{ props.name }}</span>
       <span>KUNGalgame</span>
     </div>
 
