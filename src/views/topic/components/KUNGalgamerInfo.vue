@@ -62,6 +62,10 @@ const user = computed(() => props.user)
   }
 }
 
+.info {
+  width: 100px;
+}
+
 .name {
   font-size: small;
   display: flex;
