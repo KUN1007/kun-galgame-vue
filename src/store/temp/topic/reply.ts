@@ -92,6 +92,7 @@ export const useTempReplyStore = defineStore({
         tid: tid,
         to_uid: toUid,
         rid: rid,
+        time: Date.now(),
       }
       return await updateReplyUpvoteApi(requestData)
     },

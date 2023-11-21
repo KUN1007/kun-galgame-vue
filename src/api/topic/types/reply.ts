@@ -37,6 +37,7 @@ export interface TopicCreateReplyRequestData {
   to_floor: number
   tags: string[]
   content: string
+  time: number
 }
 
 // Upvote reply, the upvote operation is irreversible
@@ -44,6 +45,7 @@ export interface TopicUpvoteReplyRequestData {
   tid: number
   to_uid: number
   rid: number
+  time: number
 }
 
 // Like reply
@@ -68,6 +70,7 @@ export interface TopicUpdateReplyRequestData {
   rid: number
   content: string
   tags: string[]
+  edited: number
 }
 
 // Response data format for a single topic reply, returning multiple reply data in an array

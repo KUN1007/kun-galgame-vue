@@ -52,6 +52,7 @@ export const usePersistKUNGalgameReplyStore = defineStore({
         to_floor: this.replyDraft.toFloor,
         tags: this.replyDraft.tags,
         content: this.replyDraft.content,
+        time: Date.now(),
       }
 
       if (!checkReplyPublish(requestData.tags, requestData.content)) {
@@ -68,6 +69,7 @@ export const usePersistKUNGalgameReplyStore = defineStore({
         rid: this.replyRewrite.rid,
         content: this.replyRewrite.content,
         tags: this.replyRewrite.tags,
+        edited: Date.now(),
       }
 
       if (!checkReplyPublish(requestData.tags, requestData.content)) {

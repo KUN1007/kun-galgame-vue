@@ -51,10 +51,8 @@ import {
   updateUserPasswordByEmailApi,
 } from '@/api'
 
-// KUNGalgamer store type
-import { KUNGalgamerStore } from '../types/kungalgamer'
+import type { KUNGalgamerStore } from '../types/kungalgamer'
 
-// Here, pinia-plugin-persistedstate is used, so storage is automatic
 export const useKUNGalgameUserStore = defineStore({
   id: 'KUNGalgameUser',
   persist: true,

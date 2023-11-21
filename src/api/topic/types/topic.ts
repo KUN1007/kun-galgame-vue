@@ -37,6 +37,7 @@ export interface TopicDetail {
 export interface TopicUpvoteTopicRequestData {
   tid: number
   to_uid: number
+  time: number
 }
 
 // Request data for liking a topic

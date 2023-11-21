@@ -54,6 +54,7 @@ export const useTempTopicStore = defineStore({
       const requestData: TopicUpvoteTopicRequestData = {
         tid: tid,
         to_uid: toUid,
+        time: Date.now(),
       }
       return await updateTopicUpvoteApi(requestData)
     },

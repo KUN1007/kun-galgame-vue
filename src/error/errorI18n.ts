@@ -22,6 +22,7 @@ const errorMessagesEN: Record<number, string> = {
   10205: `Topic content length exceed 100007 characters. Or empty. (-B)`,
   10206: `Topic with a maximum of 7 tags. Minimum one tag. (-B)`,
   10207: `Topic with a maximum of 2 categories. Minimum one category. (-B)`,
+  10208: `Invalid topics timestamp. (-B)`,
 
   // Auth Part
   10301: `Sending emails too frequently, please waiting 30s (-B)`,
@@ -36,6 +37,7 @@ const errorMessagesEN: Record<number, string> = {
   10502: `Single tag maximum length is 17 characters (-B)`,
   10503: `Reply content is empty (-B)`,
   10504: `Reply maximum length is 10007 characters (-B)`,
+  10505: `Invalid reply timestamp. (-B)`,
 }
 
 const errorMessagesCN: Record<number, string> = {
@@ -58,6 +60,7 @@ const errorMessagesCN: Record<number, string> = {
   10205: `话题内容长度超过 100007 个字符, 或为空 (-B)`,
   10206: `话题最多 7 个标签, 最少一个标签 (-B)`,
   10207: `话题最多 2 个分类, 最少一个分类 (-B)`,
+  10208: `非法的话题时间戳. (-B)`,
 
   10301: `发送邮件频率过快, 请等待 30 秒 (-B)`,
   10302: `非法的邮箱格式 (-B)`,
@@ -69,6 +72,7 @@ const errorMessagesCN: Record<number, string> = {
   10502: `单个标签最长 17 个字符 (-B)`,
   10503: `回复内容不可为空 (-B)`,
   10504: `回复内容最大长度为 10007 个字符 (-B)`,
+  10505: `非法的回复时间戳 (-B)`,
 }
 
 export const getErrorMessageEN = (errorCode: number) => {
