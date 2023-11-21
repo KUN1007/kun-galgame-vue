@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 
+import { useTempEditStore } from '@/store/temp/edit'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
 
 import { debounce } from '@/utils/debounce'
 
-const { isSaveTopic, title, topicRewrite } = storeToRefs(
-  useKUNGalgameEditStore()
+const { title: rewriteTitle, isTopicRewriting } = storeToRefs(
+  useTempEditStore()
 )
+const { isSaveTopic, title: editTitle } = storeToRefs(useKUNGalgameEditStore())
 
 // Topic title text
 const topicTitle = ref('')
@@ -20,14 +22,14 @@ onBeforeMount(() => {
    * Editor is in edit mode
    */
   if (isSaveTopic.value) {
-    topicTitle.value = title.value
+    topicTitle.value = editTitle.value
   }
   /**
    * Editor is in re-editing edit mode
    */
   // Load data for re-editing a topic before mounting
-  if (topicRewrite.value.isTopicRewriting) {
-    topicTitle.value = topicRewrite.value.title
+  if (isTopicRewriting.value) {
+    topicTitle.value = rewriteTitle.value
   }
 })
 
@@ -39,8 +41,8 @@ const handleInput = () => {
   }
 
   if (topicTitle.value.trim() === '') {
-    title.value = ''
-    topicRewrite.value.title = ''
+    rewriteTitle.value = ''
+    editTitle.value = ''
     return
   }
 
@@ -50,15 +52,15 @@ const handleInput = () => {
      * Editor is in reply mode
      */
     // Save to the edit store if not in topic re-edit mode
-    if (!topicRewrite.value.isTopicRewriting) {
-      title.value = topicTitle.value
+    if (!isTopicRewriting.value) {
+      editTitle.value = topicTitle.value
     }
     /**
      * Editor is in re-editing edit mode
      */
     // Save to the re-editing page's store if in re-edit mode
-    if (topicRewrite.value.isTopicRewriting) {
-      topicRewrite.value.title = topicTitle.value
+    if (isTopicRewriting.value) {
+      rewriteTitle.value = topicTitle.value
     }
   }, 300)
 

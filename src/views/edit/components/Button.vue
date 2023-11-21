@@ -1,30 +1,26 @@
 <script setup lang="ts">
-// Global message component (at the bottom)
+import { useRouter } from 'vue-router'
+
 import { useTempMessageStore } from '@/store/temp/message'
-// Import the store for editing topics
+import { useTempEditStore } from '@/store/temp/edit'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { storeToRefs } from 'pinia'
-// Import the router
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const { isSaveTopic, topicRewrite } = storeToRefs(useKUNGalgameEditStore())
+const { tid, isTopicRewriting } = storeToRefs(useTempEditStore())
+const { isSaveTopic } = storeToRefs(useKUNGalgameEditStore())
 const messageStore = useTempMessageStore()
 
-// Publish a topic
 const handlePublish = async () => {
   const res = await messageStore.alert('AlertInfo.edit.publish', true)
-  // Implement user's confirmation or cancellation logic here
+
   if (res) {
-    // Backend returns the created topic data
     const res = await useKUNGalgameEditStore().createNewTopic()
 
     if (res?.code === 200) {
-      // Get the tid of the created topic
       const tid = res.data.tid
 
-      // Push the user to the corresponding topic details page
       router.push({
         name: 'Topic',
         params: {
@@ -33,63 +29,45 @@ const handlePublish = async () => {
       })
 
       messageStore.info('AlertInfo.edit.publishSuccess')
-      // Clear data and no longer save it, as the topic has been published at this point
       useKUNGalgameEditStore().resetTopicData()
     }
   }
 }
 
-// Rewrite a topic
 const handleRewrite = async () => {
   const res = await messageStore.alert('AlertInfo.edit.rewrite', true)
-  // Implement user's confirmation or cancellation logic here
   if (res) {
-    // Update the topic
-    await useKUNGalgameEditStore().rewriteTopic()
+    await useTempEditStore().rewriteTopic()
 
-    // Get the tid of the rewritten topic
-    const tid = topicRewrite.value.tid
+    const rewrittenTopicTid = tid.value
 
-    // Push the user to the corresponding topic details page
     router.push({
       name: 'Topic',
       params: {
-        tid: tid,
+        tid: rewrittenTopicTid,
       },
     })
 
     messageStore.info('AlertInfo.edit.rewriteSuccess')
-    // Clear data and no longer save it, as the topic has been updated at this point
-    useKUNGalgameEditStore().resetRewriteTopicData()
+    useTempEditStore().resetRewriteTopicData()
   }
 }
 
-// Logic when the user clicks to save the topic
 const handleSave = () => {
-  // When this value is true, the previous topic data will be preloaded each time the page is loaded
   isSaveTopic.value = true
   messageStore.info('AlertInfo.edit.draft')
 }
 </script>
 
 <template>
-  <!-- Button container -->
   <div class="btn-container">
     <!-- Confirm button -->
-    <button
-      v-if="!topicRewrite.isTopicRewriting"
-      class="confirm-btn"
-      @click="handlePublish"
-    >
+    <button v-if="!isTopicRewriting" class="confirm-btn" @click="handlePublish">
       {{ $tm('edit.publish') }}
     </button>
 
     <!-- Rewrite button -->
-    <button
-      v-if="topicRewrite.isTopicRewriting"
-      class="rewrite-btn"
-      @click="handleRewrite"
-    >
+    <button v-if="isTopicRewriting" class="rewrite-btn" @click="handleRewrite">
       {{ $tm('edit.rewrite') }}
     </button>
 
@@ -101,7 +79,6 @@ const handleSave = () => {
 </template>
 
 <style lang="scss" scoped>
-/* Button container */
 .btn-container {
   width: 100%;
   display: flex;
@@ -126,7 +103,6 @@ const handleSave = () => {
   }
 }
 
-/* Style for the confirm button */
 .confirm-btn {
   color: var(--kungalgame-blue-4);
   background-color: var(--kungalgame-trans-white-9);
@@ -138,7 +114,6 @@ const handleSave = () => {
   }
 }
 
-/* Style for the rewrite button */
 .rewrite-btn {
   color: var(--kungalgame-red-4);
   background-color: var(--kungalgame-trans-white-9);
@@ -150,7 +125,6 @@ const handleSave = () => {
   }
 }
 
-/* Style for the save button */
 .save-btn {
   color: var(--kungalgame-pink-4);
   background-color: var(--kungalgame-trans-white-9);

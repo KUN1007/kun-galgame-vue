@@ -8,16 +8,19 @@ import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/vue'
 import MilkdownEditor from './MilkdownEditor.vue'
 
 // KUN Visual Novel store
+import { useTempEditStore } from '@/store/temp/edit'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
+const { content: rewriteContent, isTopicRewriting } = storeToRefs(
+  useTempEditStore()
+)
 const {
   editorHeight: editEditorHeight,
   isSaveTopic,
-  content,
-  topicRewrite,
+  content: editContent,
 } = storeToRefs(useKUNGalgameEditStore())
 const { isReplyRewriting, replyRewrite } = storeToRefs(useTempReplyStore())
 const {
@@ -47,14 +50,14 @@ onBeforeMount(() => {
    */
   // Load topic data before mounting if not saved (and must be on the Edit page)
   if (isSaveTopic.value && routeName.value === 'Edit') {
-    valueMarkdown.value = content.value
+    valueMarkdown.value = editContent.value
   }
   /**
    * Editor is in the re-editing edit mode
    */
   // Load data for re-editing a topic before mounting
-  if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
-    valueMarkdown.value = topicRewrite.value.content
+  if (isTopicRewriting.value && routeName.value === 'Edit') {
+    valueMarkdown.value = rewriteContent.value
   }
   /**
    * Editor is in the reply mode
@@ -78,15 +81,15 @@ const saveMarkdown = (editorMarkdown: string) => {
      * Editor is in edit mode
      */
     // Save to the edit store if not in topic re-edit mode
-    if (!topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
-      content.value = editorMarkdown
+    if (!isTopicRewriting.value && routeName.value === 'Edit') {
+      editContent.value = editorMarkdown
     }
     /**
      * Editor is in re-editing edit mode
      */
     // Load data for re-editing a topic before mounting
-    if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
-      topicRewrite.value.content = editorMarkdown
+    if (isTopicRewriting.value && routeName.value === 'Edit') {
+      rewriteContent.value = editorMarkdown
     }
     /**
      * Editor is in reply mode

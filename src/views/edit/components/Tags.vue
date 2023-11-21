@@ -3,22 +3,20 @@ import { ref, computed, watch, onBeforeMount, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Message from '@/components/alert/Message'
 
+import { useTempEditStore } from '@/store/temp/edit'
 import { useKUNGalgameEditStore } from '@/store/modules/edit'
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { usePersistKUNGalgameReplyStore } from '@/store/modules/topic/reply'
 import { storeToRefs } from 'pinia'
 
-// Current page's route
 const route = useRoute()
-// Current page route name
 const routeName = computed(() => route.name as string)
 
-// Store for the topic edit interface
+const { tags: rewriteTags, isTopicRewriting } = storeToRefs(useTempEditStore())
 const {
   isShowHotKeywords: isShowEditHotKeywords,
-  tags,
+  tags: editTags,
   isSaveTopic,
-  topicRewrite,
 } = storeToRefs(useKUNGalgameEditStore())
 const { isReplyRewriting, replyRewrite } = storeToRefs(useTempReplyStore())
 const {
@@ -47,31 +45,18 @@ const canDeleteTag = ref(false)
 
 // Load data from the store before the component is mounted
 onBeforeMount(() => {
-  /**
-   * The editor is in the editing interface
-   */
-  // Load topic data before mounting if it's not saved (and the current page must be in edit mode)
   if (isSaveTopic.value && routeName.value === 'Edit') {
-    selectedTags.value = tags.value
+    selectedTags.value = editTags.value
   }
-  /**
-   * The editor is in the editing interface for rewriting
-   */
-  // Load tags for rewriting a topic before mounting (if the current page is in edit mode)
-  if (topicRewrite.value.isTopicRewriting && routeName.value === 'Edit') {
-    selectedTags.value = topicRewrite.value.tags
+
+  if (isTopicRewriting.value && routeName.value === 'Edit') {
+    selectedTags.value = rewriteTags.value
   }
-  /**
-   * The editor is in the reply interface
-   */
-  // Load reply data before mounting if it's not saved (and the current page must be in topic mode)
+
   if (isSaveReply.value && routeName.value === 'Topic') {
     selectedTags.value = replyDraft.value.tags
   }
-  /**
-   * The editor is in the reply rewriting interface
-   */
-  // Load tags for rewriting a reply before mounting (if the current page is in topic mode)
+
   if (isReplyRewriting.value && routeName.value === 'Topic') {
     selectedTags.value = replyRewrite.value.tags
   }
@@ -158,7 +143,7 @@ watch(selectedTags.value, () => {
   }
   // Otherwise, save to the edit store
   if (routeName.value === 'Edit') {
-    tags.value = selectedTags.value
+    editTags.value = selectedTags.value
   }
 })
 

@@ -1,35 +1,30 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue'
-// Import the Button component
-import Button from './Button.vue'
-// Import the store for editing topics
-import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// Import topic categories
-import { Category, topicCategory } from './category'
-import { storeToRefs } from 'pinia'
 
-const { isSaveTopic, category, topicRewrite } = storeToRefs(
+import Button from './Button.vue'
+import { useTempEditStore } from '@/store/temp/edit'
+import { useKUNGalgameEditStore } from '@/store/modules/edit'
+
+import { storeToRefs } from 'pinia'
+import { Category, topicCategory } from './category'
+
+const { category: rewriteCategory, isTopicRewriting } = storeToRefs(
+  useTempEditStore()
+)
+const { isSaveTopic, category: editCategory } = storeToRefs(
   useKUNGalgameEditStore()
 )
 
-// Define an array for selected categories
 const selectedCategories = ref<string[]>([])
 
-// Load data from the store before the component is mounted
 onBeforeMount(() => {
-  /**
-   * The editor is in the editing interface.
-   */
-  // If the user has saved a draft, load it
-  if (isSaveTopic.value) {
-    selectedCategories.value = category.value
+  if (isTopicRewriting.value) {
+    selectedCategories.value = rewriteCategory.value
+    return
   }
-  /**
-   * The editor is in the editing interface for rewriting.
-   */
-  // Load data for rewriting a topic before mounting
-  if (topicRewrite.value.isTopicRewriting) {
-    selectedCategories.value = topicRewrite.value.category
+
+  if (isSaveTopic.value) {
+    selectedCategories.value = editCategory.value
   }
 })
 
@@ -53,8 +48,12 @@ const handleClickCategory = (kun: Category) => {
     selectedCategories.value.push(kun.name)
   }
 
-  // Pass the selected category to the Pinia store
-  category.value = selectedCategories.value
+  if (isTopicRewriting.value) {
+    rewriteCategory.value = selectedCategories.value
+    return
+  }
+
+  editCategory.value = selectedCategories.value
 }
 </script>
 
@@ -81,14 +80,12 @@ const handleClickCategory = (kun: Category) => {
 </template>
 
 <style lang="scss" scoped>
-/* Container for topic categories */
 .topic-group {
   width: 100%;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-/* Button group for categories */
 .group-btn {
   height: 100%;
   display: flex;
@@ -96,7 +93,6 @@ const handleClickCategory = (kun: Category) => {
   margin: 20px 0;
 }
 
-/* Style for individual buttons */
 .btn {
   height: 30px;
   width: 177px;
@@ -115,7 +111,6 @@ const handleClickCategory = (kun: Category) => {
   }
 }
 
-/* Style for selected buttons */
 .active {
   transition: 0.2s;
   background-color: var(--kungalgame-blue-4);

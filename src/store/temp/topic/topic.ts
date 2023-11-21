@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 
-// Topics
 import {
   getTopicByTidApi,
   getRelatedTopicsByTagsApi,

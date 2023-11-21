@@ -4,12 +4,14 @@ import { watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
 
-import { useKUNGalgameEditStore } from '@/store/modules/edit'
+import { useTempEditStore } from '@/store/temp/edit'
 
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
+const { tid, title, content, tags, category, isTopicRewriting } = storeToRefs(
+  useTempEditStore()
+)
 const { isEdit } = storeToRefs(useTempReplyStore())
 const { isReplyRewriting, replyRewrite } = storeToRefs(useTempReplyStore())
 
@@ -40,13 +42,12 @@ watch(
 )
 
 const rewriteTopic = () => {
-  topicRewrite.value.tid = props.tid
-  topicRewrite.value.title = props.title
-  topicRewrite.value.content = props.content
-  topicRewrite.value.tags = props.tags
-  topicRewrite.value.category = props.category
-
-  topicRewrite.value.isTopicRewriting = true
+  tid.value = props.tid
+  title.value = props.title
+  content.value = props.content
+  tags.value = props.tags
+  category.value = props.category
+  isTopicRewriting.value = true
 
   router.push({ name: 'Edit' })
 }

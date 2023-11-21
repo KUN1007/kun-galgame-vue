@@ -1,20 +1,19 @@
 import { defineStore } from 'pinia'
-import { postNewTopicApi, updateNewTopicApi, getTopTagsApi } from '@/api'
+import { postNewTopicApi, getTopTagsApi } from '@/api'
 import {
   EditCreateTopicRequestData,
   EditCreateTopicResponseData,
-  EditUpdateTopicRequestData,
-  EditUpdateTopicResponseData,
   EditGetHotTagsRequestData,
   EditGetHotTagsResponseData,
 } from '@/api'
-import { EditStore } from '../types/edit'
+
 import { checkTopicPublish } from '../utils/checkTopicPublish'
+import type { EditStorePersist } from '../types/edit'
 
 export const useKUNGalgameEditStore = defineStore({
   id: 'KUNGalgameEdit',
   persist: true,
-  state: (): EditStore => ({
+  state: (): EditStorePersist => ({
     editorHeight: 300,
     textCount: 0,
 
@@ -24,16 +23,6 @@ export const useKUNGalgameEditStore = defineStore({
     category: [],
     isShowHotKeywords: true,
     isSaveTopic: false,
-
-    topicRewrite: {
-      tid: 0,
-      title: '',
-      content: '',
-      tags: [],
-      category: [],
-
-      isTopicRewriting: false,
-    },
   }),
   getters: {},
   actions: {
@@ -55,25 +44,6 @@ export const useKUNGalgameEditStore = defineStore({
       return await postNewTopicApi(requestData)
     },
 
-    // Update a topic
-    async rewriteTopic(): Promise<EditUpdateTopicResponseData | undefined> {
-      const requestData: EditUpdateTopicRequestData = {
-        tid: this.topicRewrite.tid,
-        title: this.topicRewrite.title,
-        content: this.topicRewrite.content,
-        tags: this.topicRewrite.tags,
-        category: this.topicRewrite.category,
-        edited: Date.now(),
-      }
-
-      // If the topic data is invalid, return directly
-      if (!checkTopicPublish(this.textCount, requestData)) {
-        return
-      }
-
-      return await updateNewTopicApi(requestData)
-    },
-
     // Get popular tags
     async getHotTags(limit: number): Promise<EditGetHotTagsResponseData> {
       const requestData: EditGetHotTagsRequestData = { limit }
@@ -89,17 +59,6 @@ export const useKUNGalgameEditStore = defineStore({
       this.category = []
 
       this.isSaveTopic = false
-    },
-
-    // Reset data for re-editing a topic
-    resetRewriteTopicData() {
-      this.textCount = 0
-      this.topicRewrite.title = ''
-      this.topicRewrite.content = ''
-      this.topicRewrite.tags = []
-      this.topicRewrite.category = []
-
-      this.topicRewrite.isTopicRewriting = false
     },
   },
 })

@@ -1,24 +1,20 @@
 <script setup lang="ts">
-// KUN Visual Novel Title
-import Title from '@/components/milkdown/components/Title.vue'
+import { computed } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
-// Global message component (bottom)
-import { useTempMessageStore } from '@/store/temp/message'
-// Import the editor
+
+import Title from '@/components/milkdown/components/Title.vue'
 import MilkdownEditorWrapper from '@/components/milkdown/MilkdownEditorWrapper.vue'
 import Tags from './components/Tags.vue'
 import Footer from './components/Footer.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
-// Import the store for editing topics
-import { useKUNGalgameEditStore } from '@/store/modules/edit'
-// Import the settings panel store
+import { useTempMessageStore } from '@/store/temp/message'
+import { useTempEditStore } from '@/store/temp/edit'
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
 
 // Use the store for editing topics
-const { topicRewrite } = storeToRefs(useKUNGalgameEditStore())
+const { isTopicRewriting } = storeToRefs(useTempEditStore())
 // Use the settings panel store
 const { showKUNGalgamePageWidth } = storeToRefs(useKUNGalgameSettingsStore())
 const editPageWidth = computed(() => {
@@ -28,12 +24,12 @@ const editPageWidth = computed(() => {
 // Prompt the user to save a topic being edited when leaving the route
 onBeforeRouteLeave(async (to, from, next) => {
   // If a topic is being updated
-  if (topicRewrite.value.isTopicRewriting) {
+  if (isTopicRewriting.value) {
     // Get the user's response
     const res = await useTempMessageStore().alert('AlertInfo.edit.leave', true)
     if (res) {
       // Reset the data for the topic being rewritten
-      useKUNGalgameEditStore().resetRewriteTopicData()
+      useTempEditStore().resetRewriteTopicData()
       // User confirmed leaving, continue with navigation
       next()
     } else {
