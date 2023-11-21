@@ -63,6 +63,7 @@ export const useKUNGalgameEditStore = defineStore({
         content: this.topicRewrite.content,
         tags: this.topicRewrite.tags,
         category: this.topicRewrite.category,
+        edited: Date.now(),
       }
 
       // If the topic data is invalid, return directly

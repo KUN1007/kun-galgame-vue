@@ -17,6 +17,7 @@ export interface EditUpdateTopicRequestData {
   content: string
   tags: string[]
   category: string[]
+  edited: number
 }
 
 // Request data format for getting hot tags
