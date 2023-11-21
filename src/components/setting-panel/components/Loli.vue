@@ -25,6 +25,9 @@ const loliData = ref({
 const isShowLoading = ref(false)
 
 const reGetLoli = async () => {
+  if (isShowLoading.value) {
+    return
+  }
   isShowLoading.value = true
   loliData.value = await useLoliDataURL()
   isShowLoading.value = false
