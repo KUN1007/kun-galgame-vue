@@ -53,6 +53,7 @@ export const useKUNGalgameEditStore = defineStore({
     // Reset topic draft data for publishing
     resetTopicData() {
       this.textCount = 0
+
       this.title = ''
       this.content = ''
       this.tags = []

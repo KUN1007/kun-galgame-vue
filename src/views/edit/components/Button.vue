@@ -72,7 +72,7 @@ const handleSave = () => {
     </button>
 
     <!-- Save button -->
-    <button class="save-btn" @click="handleSave">
+    <button v-if="!isTopicRewriting" class="save-btn" @click="handleSave">
       {{ $tm('edit.draft') }}
     </button>
   </div>

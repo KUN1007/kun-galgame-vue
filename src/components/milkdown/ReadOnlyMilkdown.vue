@@ -116,6 +116,10 @@ useEditor((root) =>
       scrollbar-color: var(--kungalgame-blue-4) var(--kungalgame-blue-1);
     }
 
+    img {
+      max-width: 100%;
+    }
+
     del {
       text-decoration: line-through;
     }

@@ -18,7 +18,9 @@ export const usePersistKUNGalgameReplyStore = defineStore({
 
     isSaveReply: false,
     isShowHotKeywords: true,
+
     editorHeight: 200,
+    textCount: 0,
 
     replyDraft: {
       tid: 0,
@@ -51,6 +53,8 @@ export const usePersistKUNGalgameReplyStore = defineStore({
 
     // Reset reply draft to its original value, used for the reply publish button
     resetReplyDraft() {
+      this.textCount = 0
+
       this.replyDraft.tid = 0
       this.replyDraft.toUserName = ''
       this.replyDraft.toUid = 0

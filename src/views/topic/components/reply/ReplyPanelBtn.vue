@@ -90,7 +90,7 @@ const handleShowAdvance = () => {
     </button>
 
     <!-- Save button -->
-    <button class="save-btn" @click="handleSave">
+    <button v-if="!isReplyRewriting" class="save-btn" @click="handleSave">
       {{ $tm('topic.panel.save') }}
     </button>
   </div>

@@ -55,7 +55,9 @@ export interface ReplyStorePersist {
 
   isSaveReply: boolean
   isShowHotKeywords: boolean
+
   editorHeight: number
+  textCount: number
 
   replyDraft: ReplyDraft
 }

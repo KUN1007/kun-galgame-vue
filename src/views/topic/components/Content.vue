@@ -29,10 +29,6 @@ const props = defineProps<{
   padding: 0 10px;
   margin-top: 17px;
   overflow-x: auto;
-
-  :deep(img) {
-    max-width: 100%;
-  }
 }
 
 @media (max-width: 700px) {
