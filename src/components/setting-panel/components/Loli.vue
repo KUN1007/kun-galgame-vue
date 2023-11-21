@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useLoliDataURL } from '@/hooks/useLoli'
 import { onMounted, ref } from 'vue'
+import { getLoli } from './loli'
 
 import LoliSkeleton from '@/components/skeleton/settings-panel/LoliSkeleton.vue'
 import KUNGalgameLoading from '@/components/loading/KUNGalgameLoading.vue'
@@ -25,16 +25,13 @@ const loliData = ref({
 const isShowLoading = ref(false)
 
 const reGetLoli = async () => {
-  if (isShowLoading.value) {
-    return
-  }
   isShowLoading.value = true
-  loliData.value = await useLoliDataURL()
+  loliData.value = await getLoli()
   isShowLoading.value = false
 }
 
 onMounted(async () => {
-  loliData.value = await useLoliDataURL()
+  await reGetLoli()
 })
 </script>
 
