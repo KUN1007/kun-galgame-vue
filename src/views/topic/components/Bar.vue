@@ -10,9 +10,7 @@ const { isScrollToTop } = storeToRefs(useTempReplyStore())
 <template>
   <div class="bar">
     <div class="top" @click="isScrollToTop = true">
-      <div class="icon">
-        <Icon icon="line-md:arrow-close-up" />
-      </div>
+      <Icon class="icon" icon="line-md:arrow-close-up" />
     </div>
   </div>
 </template>
@@ -26,7 +24,7 @@ const { isScrollToTop } = storeToRefs(useTempReplyStore())
   display: flex;
   flex-direction: column;
 }
-.sort,
+
 .top {
   display: flex;
   flex-direction: column;
