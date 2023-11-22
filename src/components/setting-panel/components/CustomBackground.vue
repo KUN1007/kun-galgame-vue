@@ -7,10 +7,12 @@ import { storeToRefs } from 'pinia'
 
 import { saveImage, getImage } from '@/hooks/useLocalforage'
 
-// Use the settings panel store
 const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
   storeToRefs(useKUNGalgameSettingsStore())
 
+const props = defineProps<{
+  isMobile?: boolean
+}>()
 const input = ref<HTMLElement>()
 
 const handleCustomBackground = () => {
@@ -48,7 +50,10 @@ const handleFileChange = async (event: Event) => {
       accept=".jpg, .jpeg, .png"
       @change="handleFileChange($event)"
     />
-    <button @click="handleCustomBackground">
+    <button
+      :class="props.isMobile ? 'mobile' : ''"
+      @click="handleCustomBackground"
+    >
       {{ $tm('header.settings.custom') }}
     </button>
   </div>
@@ -75,5 +80,9 @@ const handleFileChange = async (event: Event) => {
       background-color: var(--kungalgame-blue-4);
     }
   }
+}
+
+.mobile {
+  border-radius: 14px;
 }
 </style>

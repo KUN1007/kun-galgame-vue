@@ -1,7 +1,7 @@
-<!-- This file is for adapting the top navigation bar for mobile devices -->
 <script setup lang="ts">
 import Mode from '../setting-panel/components/Mode.vue'
 import SwitchLanguage from '../setting-panel/components/SwitchLanguage.vue'
+import CustomBackground from '../setting-panel/components/CustomBackground.vue'
 import { hamburgerItem } from './hamburgerItem'
 
 defineEmits(['showKUNGalgameHamburger'])
@@ -27,11 +27,11 @@ defineEmits(['showKUNGalgameHamburger'])
           </span>
         </div>
 
-        <!-- Day and night mode switch component -->
         <Mode style="font-size: 15px" />
 
-        <!-- Language switch component -->
         <SwitchLanguage style="font-size: 15px" />
+
+        <CustomBackground :is-mobile="true" />
 
         <div class="home">
           <RouterLink to="/kun">{{ $tm('header.hamburger.home') }}</RouterLink>
@@ -96,7 +96,7 @@ defineEmits(['showKUNGalgameHamburger'])
 
 .home {
   width: 100%;
-  padding: 10px;
+  margin-top: 50px;
 
   a {
     padding: 5px 10px;
@@ -104,8 +104,8 @@ defineEmits(['showKUNGalgameHamburger'])
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    font-size: 20px;
+    border-radius: 17px;
+    font-size: 17px;
     border: 1px solid var(--kungalgame-blue-4);
     color: var(--kungalgame-blue-4);
   }
