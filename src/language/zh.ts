@@ -33,6 +33,7 @@ export default {
       background: '背景设置',
       preset: '点击使用我们预设的背景',
       custom: '自定义背景',
+      confirm: '确定',
       restore: '恢复空白背景',
       recover: '恢复所有设置为默认',
     },
@@ -109,12 +110,9 @@ export default {
   },
   topic: {
     aside: {
-      top: '返回到顶端',
-      floorSort: '按楼层排序',
-      timeSort: '按时间排序',
-      likeSort: '按点赞排序',
-      commentSort: '按评论排序',
-      updatedSort: '按更新排序',
+      floor: '按照楼层数排序',
+      like: '按照点赞数排序',
+      comment: '按照评论数排序',
       tags: '相同标签下的其它话题',
       tagsEmpty: '该标签下暂无其它话题',
       master: '楼主的其它话题',

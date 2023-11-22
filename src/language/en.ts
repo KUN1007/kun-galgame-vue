@@ -33,6 +33,7 @@ export default {
       background: 'Background Setting',
       preset: 'Use our preset background',
       custom: 'Custom Background',
+      confirm: 'Confirm',
       restore: 'Restore blank background',
       recover: 'Recover all settings to default',
     },
@@ -109,12 +110,9 @@ export default {
   },
   topic: {
     aside: {
-      top: 'Back Top',
-      floorSort: 'Floor Sort',
-      timeSort: 'Time Sort',
-      likeSort: 'Like Sort',
-      commentSort: 'Comment Sort',
-      updatedSort: 'Update Sort',
+      floor: 'Sort by Floor Number',
+      like: 'Sort by Likes Count',
+      comment: 'Sort by Comment Count',
       tags: 'Topics Under the Same Tags',
       tagsEmpty: 'The tags currently has no other topics',
       master: 'Other Topics of The Master',
