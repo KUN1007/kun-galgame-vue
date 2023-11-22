@@ -4,23 +4,19 @@ import { Icon } from '@iconify/vue'
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-import { asideItem } from './asideItem'
+import { asideItem, sortItem } from './asideItem'
+import type { SortField, SortOrder } from './asideItem'
 
 const { isScrollToTop, replyRequest } = storeToRefs(useTempReplyStore())
 
-const handleSortReply = (sortField: string) => {
+const handleSortReply = (sortField: SortField) => {
   useTempReplyStore().resetPageStatus()
   replyRequest.value.sortField = sortField
 }
 
-const orderAscending = () => {
+const handleClickSortOrder = (sortOrder: SortOrder) => {
   useTempReplyStore().resetPageStatus()
-  replyRequest.value.sortOrder = 'asc'
-}
-
-const orderDescending = () => {
-  useTempReplyStore().resetPageStatus()
-  replyRequest.value.sortOrder = 'desc'
+  replyRequest.value.sortOrder = sortOrder
 }
 
 const handleBackToTop = () => {
@@ -41,12 +37,16 @@ const handleBackToTop = () => {
       >
         <Icon class="icon" :icon="kun.icon" />
       </span>
-      <span class="sort" @click="orderAscending">
-        <Icon class="icon" icon="tdesign:order-ascending" />
+
+      <span
+        class="sort"
+        v-for="order in sortItem"
+        :key="order.index"
+        @click="handleClickSortOrder(order.sortOrder)"
+      >
+        <Icon class="icon" :icon="order.icon" />
       </span>
-      <span class="sort" @click="orderDescending">
-        <Icon class="icon" icon="tdesign:order-descending" />
-      </span>
+
       <span class="top" @click="handleBackToTop">
         <Icon class="icon" icon="line-md:arrow-close-up" />
       </span>

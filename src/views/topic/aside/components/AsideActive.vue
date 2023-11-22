@@ -9,7 +9,8 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
-import { asideItem } from './asideItem'
+import { asideItem, sortItem } from './asideItem'
+import type { SortField, SortOrder } from './asideItem'
 
 const { replyRequest } = storeToRefs(useTempReplyStore())
 
@@ -19,19 +20,14 @@ const props = defineProps<{
 }>()
 const { tags, uid } = toRefs(props)
 
-const handleSortReply = (sortField: string) => {
+const handleSortReply = (sortField: SortField) => {
   useTempReplyStore().resetPageStatus()
   replyRequest.value.sortField = sortField
 }
 
-const orderAscending = () => {
+const handleClickSortOrder = (sortOrder: SortOrder) => {
   useTempReplyStore().resetPageStatus()
-  replyRequest.value.sortOrder = 'asc'
-}
-
-const orderDescending = () => {
-  useTempReplyStore().resetPageStatus()
-  replyRequest.value.sortOrder = 'desc'
+  replyRequest.value.sortOrder = sortOrder
 }
 </script>
 
@@ -44,6 +40,9 @@ const orderDescending = () => {
       <div class="sort">
         <div
           class="item"
+          :class="
+            replyRequest.sortField === item.sortField ? 'item-active' : ''
+          "
           v-for="item in asideItem"
           :key="item.index"
           @click="handleSortReply(item.sortField)"
@@ -53,11 +52,15 @@ const orderDescending = () => {
         </div>
 
         <div class="order">
-          <span @click="orderAscending">
-            <Icon icon="tdesign:order-ascending" />
-          </span>
-          <span @click="orderDescending">
-            <Icon icon="tdesign:order-descending" />
+          <span
+            :class="
+              replyRequest.sortOrder === order.sortOrder ? 'order-active' : ''
+            "
+            v-for="order in sortItem"
+            :key="order.index"
+            @click="handleClickSortOrder(order.sortOrder)"
+          >
+            <Icon :icon="order.icon" />
           </span>
         </div>
       </div>
@@ -102,11 +105,6 @@ const orderDescending = () => {
       justify-content: center;
       align-items: center;
     }
-
-    &:hover {
-      transition: all 0.2s;
-      background-color: var(--kungalgame-trans-blue-2);
-    }
   }
 
   .order {
@@ -121,13 +119,18 @@ const orderDescending = () => {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      &:hover {
-        transition: all 0.2s;
-        background-color: var(--kungalgame-blue-4);
-        color: var(--kungalgame-white);
-      }
     }
   }
+}
+
+.item-active {
+  transition: all 0.2s;
+  background-color: var(--kungalgame-trans-blue-2);
+}
+
+.order-active {
+  transition: all 0.2s;
+  background-color: var(--kungalgame-blue-4);
+  color: var(--kungalgame-white);
 }
 </style>

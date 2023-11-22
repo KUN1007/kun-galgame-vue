@@ -1,6 +1,9 @@
+export type SortField = 'floor' | 'likes_count' | 'comments_count'
+export type SortOrder = 'asc' | 'desc'
+
 interface Item {
   index: number
-  sortField: string
+  sortField: SortField
   icon: string
   name: string
 }
@@ -23,5 +26,24 @@ export const asideItem: Item[] = [
     sortField: 'comments_count',
     icon: 'fa-regular:comment-dots',
     name: 'comment',
+  },
+]
+
+interface SortItem {
+  index: number
+  sortOrder: SortOrder
+  icon: string
+}
+
+export const sortItem: SortItem[] = [
+  {
+    index: 1,
+    sortOrder: 'asc',
+    icon: 'tdesign:order-ascending',
+  },
+  {
+    index: 2,
+    sortOrder: 'desc',
+    icon: 'tdesign:order-descending',
   },
 ]
