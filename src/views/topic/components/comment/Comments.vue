@@ -91,7 +91,10 @@ const handleClickComment = (
         v-for="(comment, index) in commentsData"
         :key="index"
       >
-        <RouterLink :to="`/kungalgamer/${comment.c_user.uid}/info`">
+        <RouterLink
+          v-if="comment.c_user.avatar"
+          :to="`/kungalgamer/${comment.c_user.uid}/info`"
+        >
           <img
             :src="comment.c_user.avatar.replace(/\.webp$/, '-100.webp')"
             alt="KUN"
@@ -228,7 +231,6 @@ const handleClickComment = (
 
 .text {
   font-size: 12px;
-  text-indent: 25px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
