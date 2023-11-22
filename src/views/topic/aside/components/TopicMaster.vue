@@ -1,6 +1,3 @@
-<!-- 
-  这里是楼主的其他话题组件
- -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
@@ -96,11 +93,11 @@ onMounted(async () => {
       height: 100%;
       margin: 0 17px;
       color: var(--kungalgame-font-color-3);
-      overflow: hidden; /* Hide the overflow */
-      text-overflow: ellipsis; /* Display ellipsis (three dots) for overflowed text */
-      display: -webkit-box; /* Convert the text box into a flexible box */
-      -webkit-box-orient: vertical; /* Set it to arrange vertically */
-      -webkit-line-clamp: 2; /* Display two lines of text */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
       font-size: small;
       display: flex;
       align-items: center;

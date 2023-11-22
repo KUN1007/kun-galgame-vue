@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { asideNavItem } from './asideNavItem'
 
 import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { storeToRefs } from 'pinia'
 
 const { isScrollToTop, replyRequest } = storeToRefs(useTempReplyStore())
-
-const handleSortReply = (sortField: string) => {
-  useTempReplyStore().resetPageStatus()
-  replyRequest.value.sortField = sortField
-}
 
 const orderAscending = () => {
   useTempReplyStore().resetPageStatus()
@@ -33,13 +27,6 @@ const handleBackToTop = () => {
     appear
   >
     <div class="item">
-      <span
-        v-for="kun in asideNavItem"
-        :key="kun.index"
-        @click="handleSortReply(kun.sortField)"
-      >
-        <Icon class="icon" :icon="kun.icon" />
-      </span>
       <span class="sort" @click="orderAscending">
         <Icon class="icon" icon="tdesign:order-ascending" />
       </span>

@@ -113,7 +113,7 @@ export default {
       floorSort: 'Floor Sort',
       timeSort: 'Time Sort',
       likeSort: 'Like Sort',
-      commentSort: 'Reply Sort',
+      commentSort: 'Comment Sort',
       updatedSort: 'Update Sort',
       tags: 'Topics Under the Same Tags',
       tagsEmpty: 'The tags currently has no other topics',

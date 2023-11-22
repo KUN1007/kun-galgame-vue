@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TopicAsideNav from './TopicAsideNav.vue'
 import TopicOtherTag from './TopicOtherTag.vue'
 import TopicMaster from './TopicMaster.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
@@ -19,7 +18,6 @@ const { tags, uid } = toRefs(props)
     appear
   >
     <div class="aside">
-      <TopicAsideNav />
       <TopicOtherTag style="margin-bottom: 17px" :tags="tags" />
       <TopicMaster :uid="uid" />
       <KUNGalgameFooter />
