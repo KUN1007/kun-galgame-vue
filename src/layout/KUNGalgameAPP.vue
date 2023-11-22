@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted, watch, ref } from 'vue'
-// Import animations
 import 'animate.css'
 import { getCurrentBackground } from '@/hooks/useBackgroundPicture'
 import KUNGalgameTopBar from '@/components/top-bar/KUNGalgameTopBar.vue'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
 import { storeToRefs } from 'pinia'
+import { getImage } from '@/hooks/useLocalforage'
 
 const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
   storeToRefs(useKUNGalgameSettingsStore())
@@ -14,6 +14,12 @@ const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
 const imageURL = ref('')
 
 onMounted(async () => {
+  const backgroundImageBlobData = await getImage('kun-galgame-custom-bg')
+  if (showKUNGalgameBackground.value === 'bg1007' && backgroundImageBlobData) {
+    showKUNGalgameCustomBackground.value = URL.createObjectURL(
+      backgroundImageBlobData
+    )
+  }
   imageURL.value = await getCurrentBackground()
 })
 
@@ -31,7 +37,7 @@ watch(
     <div class="top-bar">
       <KUNGalgameTopBar />
     </div>
-    <!-- <RouterView /> -->
+
     <RouterView #default="{ route, Component }">
       <Transition
         :enter-active-class="`animate__animated ${route.meta.transition}`"

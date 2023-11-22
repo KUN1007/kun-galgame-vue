@@ -33,8 +33,6 @@ export default {
       background: '背景设置',
       preset: '点击使用我们预设的背景',
       custom: '自定义背景',
-      url: '请在这里粘贴图片的URL',
-      confirm: '确定',
       restore: '恢复空白背景',
       recover: '恢复所有设置为默认',
     },

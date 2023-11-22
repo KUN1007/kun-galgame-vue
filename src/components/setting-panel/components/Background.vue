@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import Message from '@/components/alert/Message'
+import CustomBackground from './CustomBackground.vue'
 import BackgroundImageSkeleton from '@/components/skeleton/settings-panel/BackgroundImageSkeleton.vue'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -12,8 +12,7 @@ import { restoreBackground } from '@/hooks/useBackgroundPicture'
 
 const imageArray = ref<string[]>([])
 // Use the settings panel store
-const { showKUNGalgameBackground, showKUNGalgameCustomBackground } =
-  storeToRefs(useKUNGalgameSettingsStore())
+const { showKUNGalgameBackground } = storeToRefs(useKUNGalgameSettingsStore())
 
 // Get background image thumbnails
 const getBackground = async (imageNumber: number) => {
@@ -23,19 +22,6 @@ const getBackground = async (imageNumber: number) => {
 // Change the background image
 const handleChangeImage = (index: number) => {
   showKUNGalgameBackground.value = `bg${index}`
-}
-
-// Custom background
-const url = ref('')
-
-const handleCustomBackground = () => {
-  if (url.value) {
-    showKUNGalgameCustomBackground.value = url.value
-    showKUNGalgameBackground.value = 'bg1007'
-    url.value = ''
-  } else {
-    Message('Please input a valid image URL', '请输入合法的图片链接', 'warn')
-  }
 }
 
 const handleHoverBackgroundImage = () => {}
@@ -77,25 +63,8 @@ onMounted(async () => {
 
       <!-- User-customized background -->
       <li>
-        <!-- Title -->
-        <span>{{ $tm('header.settings.custom') }}</span>
-
         <!-- Input field -->
-        <div class="kungalgamer-bg">
-          <div class="bg-url-input">
-            <input
-              :placeholder="`${$tm('header.settings.url')}`"
-              type="text"
-              v-model="url"
-              required
-            />
-
-            <!-- Confirm background URL -->
-            <button @click="handleCustomBackground">
-              {{ $tm('header.settings.confirm') }}
-            </button>
-          </div>
-        </div>
+        <CustomBackground />
 
         <!-- Reset blank background -->
         <button class="restore-bg" @click="restoreBackground">
@@ -170,54 +139,6 @@ onMounted(async () => {
 
     .image-detail {
       position: absolute;
-    }
-  }
-}
-.kungalgamer-bg {
-  display: flex;
-  flex-direction: column;
-}
-/* URL input box */
-.bg-url-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--kungalgame-font-color-3);
-
-  input {
-    width: 100%;
-    padding-left: 5px;
-    height: 25px;
-    border: 1px solid var(--kungalgame-blue-4);
-    background-color: var(--kungalgame-trans-white-9);
-    color: var(--kungalgame-font-color-3);
-
-    /* Focus on the input box */
-    &:focus {
-      outline: none;
-      background-color: var(--kungalgame-trans-blue-0);
-    }
-  }
-  /* Confirm button */
-  button {
-    flex-shrink: 0;
-    padding: 0 10px;
-    height: 25px;
-    width: 70px;
-    color: var(--kungalgame-font-color-3);
-    border: 1px solid var(--kungalgame-blue-4);
-    border-left: none;
-    background-color: var(--kungalgame-trans-white-5);
-    cursor: pointer;
-
-    /* Confirm button hover effect */
-    &:hover {
-      background-color: var(--kungalgame-trans-red-1);
-
-      /* Confirm button active effect */
-      &:active {
-        background-color: var(--kungalgame-trans-red-3);
-      }
     }
   }
 }

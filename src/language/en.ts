@@ -33,8 +33,6 @@ export default {
       background: 'Background Setting',
       preset: 'Use our preset background',
       custom: 'Custom Background',
-      url: 'Paste the picture url here',
-      confirm: 'confirm',
       restore: 'Restore blank background',
       recover: 'Recover all settings to default',
     },
