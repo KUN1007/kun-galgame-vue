@@ -18,6 +18,7 @@ import { TopicDetail, TopicReply } from '@/api'
 import Aside from './aside/Aside.vue'
 import Master from './components/Master.vue'
 import Reply from './components/reply/Reply.vue'
+import Bar from './components/Bar.vue'
 const ReplyPanel = defineAsyncComponent(
   () => import('./components/reply/ReplyPanel.vue')
 )
@@ -225,6 +226,8 @@ onBeforeMount(() => {
         />
       </div>
     </div>
+
+    <Bar />
   </div>
 </template>
 
