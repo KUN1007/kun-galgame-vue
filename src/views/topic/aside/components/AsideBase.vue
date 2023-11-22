@@ -23,7 +23,6 @@ const orderDescending = () => {
 }
 
 const handleBackToTop = () => {
-  useTempReplyStore().resetPageStatus()
   isScrollToTop.value = true
 }
 </script>

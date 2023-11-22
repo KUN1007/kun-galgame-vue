@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { MilkdownProvider } from '@milkdown/vue'
 import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/vue'
 import ReadOnlyMilkdown from '@/components/milkdown/ReadOnlyMilkdown.vue'
@@ -6,13 +7,15 @@ import ReadOnlyMilkdown from '@/components/milkdown/ReadOnlyMilkdown.vue'
 const props = defineProps<{
   content: string
 }>()
+
+const content = computed(() => props.content)
 </script>
 
 <template>
   <div class="kungalgame-topic-content">
     <MilkdownProvider>
       <ProsemirrorAdapterProvider>
-        <ReadOnlyMilkdown :is-readonly="true" :value-markdown="props.content" />
+        <ReadOnlyMilkdown :is-readonly="true" :value-markdown="content" />
       </ProsemirrorAdapterProvider>
     </MilkdownProvider>
   </div>

@@ -44,7 +44,6 @@ const {
   isLoading,
   scrollToReplyId,
   tempReply,
-  tempReplyRewrite,
 } = storeToRefs(useTempReplyStore())
 
 const { isShowCommentPanelRid } = storeToRefs(useTempCommentStore())
@@ -86,20 +85,6 @@ watch(
     scrollToReplyId.value = tempReply.value.floor
     if (repliesData.value.length === tempReply.value.floor) {
       isLoading.value = false
-    }
-  }
-)
-
-watch(
-  () => tempReplyRewrite.value.edited,
-  () => {
-    const reply = repliesData.value.find(
-      (reply) => reply.rid === tempReplyRewrite.value.rid
-    )
-    if (reply) {
-      reply.content = tempReplyRewrite.value.content
-      reply.tags = tempReplyRewrite.value.tags
-      reply.edited = tempReplyRewrite.value.edited
     }
   }
 )

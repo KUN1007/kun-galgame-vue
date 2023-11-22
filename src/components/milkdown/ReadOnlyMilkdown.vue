@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-// Milkdown core
+import { computed, onMounted, watch } from 'vue'
+
 import {
   Editor,
   rootCtx,
@@ -11,10 +11,10 @@ import {
 import { Milkdown, useEditor } from '@milkdown/vue'
 import { commonmark } from '@milkdown/preset-commonmark'
 import { gfm } from '@milkdown/preset-gfm'
-// Milkdown Plugins
-import { prism, prismConfig } from '@milkdown/plugin-prism'
 
-// KUN Visual Novel style
+import { prism, prismConfig } from '@milkdown/plugin-prism'
+import { replaceAll } from '@milkdown/utils'
+
 import '@/styles/editor/index.scss'
 
 // Syntax highlight
@@ -40,7 +40,7 @@ const valueMarkdown = computed(() => props.valueMarkdown)
 
 const editable = () => !props.isReadonly
 
-useEditor((root) =>
+const editor = useEditor((root) =>
   Editor.make()
     .config((ctx) => {
       ctx.set(rootCtx, root)
@@ -75,6 +75,13 @@ useEditor((root) =>
     .use(commonmark)
     .use(gfm)
     .use(prism)
+)
+
+watch(
+  () => valueMarkdown.value,
+  () => {
+    editor.get()?.action(replaceAll(valueMarkdown.value))
+  }
 )
 </script>
 

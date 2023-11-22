@@ -5,7 +5,7 @@
   Each user's reply will be split into separate components.
  -->
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, watch, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
 import Content from '../Content.vue'
@@ -25,7 +25,9 @@ import { useTempReplyStore } from '@/store/temp/topic/reply'
 import { useTempCommentStore } from '@/store/temp/topic/comment'
 import { storeToRefs } from 'pinia'
 
-const { isLoading, scrollToReplyId } = storeToRefs(useTempReplyStore())
+const { isLoading, scrollToReplyId, tempReplyRewrite } = storeToRefs(
+  useTempReplyStore()
+)
 
 const { tid, rid, toUid, toUsername, isShowCommentPanelRid } = storeToRefs(
   useTempCommentStore()
@@ -56,11 +58,25 @@ const handleClickComment = (
     isShowCommentPanelRid.value = 0
   }
 }
+
+watch(
+  () => tempReplyRewrite.value.edited,
+  () => {
+    const index = replies.value.findIndex(
+      (replyItem) => replyItem.rid === tempReplyRewrite.value.rid
+    )
+
+    // Note: 0 is K1
+    if (index >= 0) {
+      replies.value[index].content = tempReplyRewrite.value.content
+      replies.value[index].tags = tempReplyRewrite.value.tags
+      replies.value[index].edited = tempReplyRewrite.value.edited
+    }
+  }
+)
 </script>
 
 <template>
-  <!-- Other people's replies -->
-  <!-- We use Math.random as the key must be unique -->
   <Transition
     enter-active-class="animate__animated animate__fadeInUp animate__faster"
     appear
@@ -70,7 +86,7 @@ const handleClickComment = (
         class="other-topic-container"
         v-for="(reply, index) in replies"
         :class="hourDiff(reply.upvote_time, 10) ? 'active-upvote' : ''"
-        :key="`${index}`"
+        :key="index"
         :id="`kungalgame-reply-${reply.floor}`"
       >
         <div class="floor" :class="reply.edited ? 'rewrite' : ''">
