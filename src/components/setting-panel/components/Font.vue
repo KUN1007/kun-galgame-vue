@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
-// Global message component (top)
 import Message from '@/components/alert/Message'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -23,7 +21,6 @@ const setFont = () => {
 </script>
 
 <template>
-  <!-- Set the width of certain pages -->
   <div class="font">
     <div class="title">
       <span>{{ $tm('header.settings.font') }}</span>
@@ -34,6 +31,7 @@ const setFont = () => {
         {{ showKUNGalgameFontStyle }}
       </span>
     </div>
+
     <div class="font-input">
       <input
         :placeholder="`${$tm('header.settings.fontInput')}`"
@@ -55,7 +53,6 @@ const setFont = () => {
   margin-bottom: 10px;
 }
 
-/* URL input box */
 .font-input {
   display: flex;
   justify-content: center;
@@ -71,13 +68,12 @@ const setFont = () => {
     background-color: var(--kungalgame-trans-white-9);
     color: var(--kungalgame-font-color-3);
 
-    /* Focus on the input box */
     &:focus {
       outline: none;
       background-color: var(--kungalgame-trans-blue-0);
     }
   }
-  /* Confirm button */
+
   button {
     flex-shrink: 0;
     padding: 0 10px;
@@ -89,11 +85,9 @@ const setFont = () => {
     background-color: var(--kungalgame-trans-white-5);
     cursor: pointer;
 
-    /* Confirm button hover effect */
     &:hover {
       background-color: var(--kungalgame-trans-red-1);
 
-      /* Confirm button active effect */
       &:active {
         background-color: var(--kungalgame-trans-red-3);
       }

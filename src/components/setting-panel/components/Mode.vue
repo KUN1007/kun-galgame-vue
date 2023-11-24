@@ -1,30 +1,25 @@
 <script setup lang="ts">
-// Import the icon font
 import { Icon } from '@iconify/vue'
-// Import the settings store
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
-
-// Use the settings store
-const settingsStore = useKUNGalgameSettingsStore()
 </script>
 
 <template>
   <div class="mode">
-    <!-- Day / Night mode toggle -->
     <span>{{ $tm('header.settings.mode') }}</span>
     <div class="mode-container">
       <span>
         <Icon
           class="sun"
           icon="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
-          @click="settingsStore.setKUNGalgameTheme('')"
+          @click="useKUNGalgameSettingsStore().setKUNGalgameTheme('')"
         />
       </span>
+
       <span>
         <Icon
           class="moon"
           icon="line-md:sunny-outline-to-moon-loop-transition"
-          @click="settingsStore.setKUNGalgameTheme('dark')"
+          @click="useKUNGalgameSettingsStore().setKUNGalgameTheme('dark')"
         />
       </span>
     </div>
@@ -38,6 +33,7 @@ const settingsStore = useKUNGalgameSettingsStore()
   align-items: center;
   justify-content: space-between;
 }
+
 .mode-container {
   font-size: 25px;
   width: 60%;

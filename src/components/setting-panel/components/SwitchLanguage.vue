@@ -1,18 +1,11 @@
 <script setup lang="ts">
-// Import the settings store
-import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
-import { storeToRefs } from 'pinia'
 import { watch } from 'vue'
-// Import i18n
 import { useI18n } from 'vue-i18n'
 
-// Use the settings store
-const settingsStore = useKUNGalgameSettingsStore()
-const { showKUNGalgameLanguage } = storeToRefs(settingsStore)
+import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
 
-/*
- * Website language settings
- */
+const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
 const { locale } = useI18n({ useScope: 'global' })
 
 watch(showKUNGalgameLanguage, () => {
@@ -31,13 +24,12 @@ watch(showKUNGalgameLanguage, () => {
 </template>
 
 <style lang="scss" scoped>
-// Language settings
 .set-lang {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-// Language selection box
+
 .select {
   width: 100px;
   font-size: 16px;

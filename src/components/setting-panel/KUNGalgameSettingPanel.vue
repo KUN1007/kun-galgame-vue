@@ -1,4 +1,3 @@
-<!-- Settings panel component, displaying the entire forum's settings panel -->
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
@@ -19,19 +18,16 @@ const emits = defineEmits<{
   close: [showKUNGalgamePanel: boolean]
 }>()
 
-// Restore all settings to default
 const handleRecover = () => {
   settingsStore.setKUNGalgameSettingsRecover()
 }
 
-// Close the settings panel
 const handelCloseSettingsPanel = () => {
   emits('close', false)
 }
 </script>
 
 <template>
-  <!-- Root element -->
   <div class="root">
     <div class="container">
       <div class="title">
@@ -39,10 +35,8 @@ const handelCloseSettingsPanel = () => {
         <span><Icon class="settings-icon" icon="uiw:setting-o" /></span>
       </div>
 
-      <!-- Mode switch component -->
       <Mode />
 
-      <!-- Language switch component -->
       <SwitchLanguage />
 
       <div class="switch">
@@ -63,18 +57,15 @@ const handelCloseSettingsPanel = () => {
 
         <TransitionGroup name="item" tag="div">
           <div class="item" v-if="isShowPageWidth">
-            <!-- Page width adjustment component -->
             <PageWidth />
           </div>
 
           <div class="item" v-else-if="!isShowPageWidth">
-            <!-- Set the page font -->
             <Font />
           </div>
         </TransitionGroup>
       </div>
 
-      <!-- Background settings component -->
       <Background />
 
       <button class="reset" @click="handleRecover">
@@ -82,19 +73,15 @@ const handelCloseSettingsPanel = () => {
       </button>
     </div>
 
-    <!-- Mascot component -->
     <Loli class="loli" />
 
-    <!-- Close panel -->
     <div class="close">
-      <!-- showKUNGalgamePanel exists in the settings, false to close the settings panel -->
       <Icon @click="handelCloseSettingsPanel" icon="line-md:close" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* Root container */
 .root {
   top: 65px;
   right: 0;
@@ -126,7 +113,6 @@ const handelCloseSettingsPanel = () => {
   }
 }
 
-// Keep the settings button rotating
 .settings-icon {
   animation: settings 3s linear infinite;
 }
@@ -140,7 +126,6 @@ const handelCloseSettingsPanel = () => {
   }
 }
 
-/* Menu for switching settings options */
 .switch {
   display: flex;
   flex-direction: column;

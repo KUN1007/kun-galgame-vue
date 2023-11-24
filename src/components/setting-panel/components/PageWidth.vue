@@ -9,14 +9,10 @@ const route = useRoute()
 const settingsStore = useKUNGalgameSettingsStore()
 const { showKUNGalgamePageWidth } = storeToRefs(settingsStore)
 
-// Page width
 const pageWidth = ref(0)
-// Current route name
 const routeName = computed(() => route.name as string)
-// Whether page width adjustment is disabled
 const isDisabled = ref(false)
 
-// Pages where width adjustment is allowed
 const pageNameArray = [
   'KUN',
   'Topic',
@@ -28,12 +24,9 @@ const pageNameArray = [
   'ThanksList',
 ]
 
-// Initialize page width
 const initPageWidth = () => {
   if (pageNameArray.includes(routeName.value)) {
-    // Page width value equals store width value
     pageWidth.value = showKUNGalgamePageWidth.value[routeName.value]
-    // Enable input
     isDisabled.value = false
   } else {
     isDisabled.value = true
@@ -42,7 +35,6 @@ const initPageWidth = () => {
 
 watch(pageWidth, () => {
   if (pageNameArray.includes(routeName.value)) {
-    // Store user-input width
     showKUNGalgamePageWidth.value[routeName.value] = pageWidth.value
   }
 })
@@ -57,7 +49,6 @@ onActivated(() => {
 </script>
 
 <template>
-  <!-- Set the width for specific pages -->
   <div
     class="width"
     :class="isDisabled ? 'disabled' : ''"
@@ -94,7 +85,7 @@ onActivated(() => {
     margin-top: 15px;
   }
 }
-/* Main page width slider */
+
 .main {
   width: 100%;
   height: 10px;
@@ -106,7 +97,6 @@ onActivated(() => {
   justify-content: space-between;
 }
 
-/* Styles when page width adjustment is disabled */
 .disabled {
   cursor: not-allowed;
   color: var(--kungalgame-font-color-0);
