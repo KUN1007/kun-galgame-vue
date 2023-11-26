@@ -184,6 +184,10 @@ watch(
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
 }
 
 .floor {
