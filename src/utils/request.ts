@@ -1,11 +1,7 @@
-// Using the user store
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-// Error handling function
-import { onRequestError } from '@/error/onRequestError'
+import { requestRefresh } from './requestRefresh'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
-
-const successResponseArray = [200, 201, 202, 204, 205, 206]
 
 export type FetchOptions = {
   method: HttpMethod
@@ -14,7 +10,6 @@ export type FetchOptions = {
   body?: BodyInit
 }
 
-// Fetch request function
 const kunFetchRequest = async <T>(
   url: string,
   options: FetchOptions
@@ -22,7 +17,6 @@ const kunFetchRequest = async <T>(
   const baseUrl = import.meta.env.VITE_API_BASE_URL
   const fullUrl = `${baseUrl}${url}`
 
-  // Add the token to the request headers
   const headers = {
     ...options.headers,
     Authorization: `Bearer ${useKUNGalgameUserStore().getToken()}`,
@@ -30,15 +24,14 @@ const kunFetchRequest = async <T>(
 
   const response = await fetch(fullUrl, { ...options, headers })
 
-  // If not 20X, then throw an error
-  if (!successResponseArray.includes(response.status)) {
-    // Handle errors, such as token expiration
-    await onRequestError(response)
-    throw new Error('KUNGalgame Fetch Error occurred, but no problem')
+  if (response.status === 205) {
+    const newResponseData = await requestRefresh(fullUrl, options)
+    const data: T = await newResponseData.json()
+    return data
+  } else {
+    const data: T = await response.json()
+    return data
   }
-
-  const data: T = await response.json()
-  return data
 }
 
 const fetchGet = async <T>(
