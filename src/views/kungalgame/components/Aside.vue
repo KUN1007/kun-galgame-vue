@@ -3,18 +3,64 @@ interface asideBar {
   index: number
   name: string
   router: string
+  label: string
 }
 
 const asideBarItem: asideBar[] = [
-  { index: 1, name: 'privacy', router: '/privacy' },
-  { index: 2, name: 'bylaw', router: '/bylaw' },
-  { index: 3, name: 'update', router: '/update-log' },
-  { index: 4, name: 'pl', router: '/balance' },
-  { index: 5, name: 'nonMoe', router: '/non-moe' },
-  { index: 6, name: 'join', router: '/contact' },
-  { index: 7, name: 'thanks', router: '/thanks-list' },
-  { index: 8, name: 'donate', router: '/donate' },
-  { index: 9, name: 'home', router: '/' },
+  {
+    index: 1,
+    name: 'privacy',
+    router: '/privacy',
+    label: 'KUN Visual Novel Privacy | 鲲 Galgame 隐私政策',
+  },
+  {
+    index: 2,
+    name: 'bylaw',
+    router: '/bylaw',
+    label: 'KUN Visual Novel Bylaw | 鲲 Galgame 执行条例',
+  },
+  {
+    index: 3,
+    name: 'update',
+    router: '/update-log',
+    label: 'KUN Visual Novel Update Log | 鲲 Galgame 更新日志',
+  },
+  {
+    index: 4,
+    name: 'pl',
+    router: '/balance',
+    label: 'KUN Visual Novel Balance | 鲲 Galgame 收支公示',
+  },
+  {
+    index: 5,
+    name: 'nonMoe',
+    router: '/non-moe',
+    label: 'KUN Visual Novel Non-Moe | 鲲 Galgame 不萌记录',
+  },
+  {
+    index: 6,
+    name: 'join',
+    router: '/contact',
+    label: 'KUN Visual Novel Contact | 鲲 Galgame 加入我们',
+  },
+  {
+    index: 7,
+    name: 'thanks',
+    router: '/thanks-list',
+    label: 'KUN Visual Novel Thanks-List | 鲲 Galgame 感谢名单',
+  },
+  {
+    index: 8,
+    name: 'donate',
+    router: '/donate',
+    label: 'KUN Visual Novel Donate | 鲲 Galgame 赞助我们',
+  },
+  {
+    index: 9,
+    name: 'home',
+    router: '/',
+    label: 'KUN Visual Novel Home | 鲲 Galgame 返回主页',
+  },
 ]
 </script>
 
@@ -27,6 +73,7 @@ const asideBarItem: asideBar[] = [
       <RouterLink
         style="color: var(--kungalgame-blue-4)"
         :to="{ path: kun.router }"
+        :aria-label="kun.label"
       >
         {{ $tm(`kungalgame.${kun.name}`) }}
       </RouterLink>
