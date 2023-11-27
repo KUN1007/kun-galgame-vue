@@ -6,4 +6,5 @@ export const markdownToText = (markdown: string) => {
     .replace(/!?\[(.*?)\]\(.*?\)/gs, '$1')
     .replace(/`([^`]+)`/g, '$1')
     .replace(/```[\s\S]+?```/gs, '')
+    .replace(/[<>~\\]/g, '')
 }
