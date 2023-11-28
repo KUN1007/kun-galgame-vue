@@ -1,5 +1,6 @@
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
 import { requestRefresh } from './requestRefresh'
+import { onRequestError } from '@/error/onRequestError'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
@@ -28,6 +29,10 @@ const kunFetchRequest = async <T>(
     const newResponseData = await requestRefresh(fullUrl, options)
     const data: T = await newResponseData.json()
     return data
+  } else if (response.status === 233) {
+    // Handle some known backend error
+    await onRequestError(response)
+    return {} as T
   } else {
     const data: T = await response.json()
     return data

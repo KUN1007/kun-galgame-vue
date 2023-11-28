@@ -54,39 +54,29 @@ const handleSendCode = async () => {
       '重置邮箱验证码发送成功！',
       'success'
     )
-  } else {
-    Message(
-      'Reset email verification code sending failed!',
-      '重置邮箱验证码发送失败！',
-      'error'
-    )
   }
 }
 
 // Reset email
 const handleResetEmail = async () => {
-  // Check necessary information
   if (!checkResetEmail(hasSentCodeEmail.value, input.newEmail, input.code)) {
     return
   }
 
-  input.newEmail = ''
-  input.code = ''
   const res = await useKUNGalgameUserStore().updateEmail(
     hasSentCodeEmail.value,
     input.code
   )
 
   if (res.code === 200) {
+    input.newEmail = ''
+    input.code = ''
     Message('Email change successful!', '邮箱更改成功', 'success')
-  } else {
-    Message('Email change failed!', '邮箱更改失败', 'error')
   }
 }
 
 // Change password
 const handleChangePassword = async () => {
-  // Check necessary information
   if (
     !checkChangePassword(
       input.oldPassword,

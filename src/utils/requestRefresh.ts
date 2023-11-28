@@ -1,7 +1,6 @@
 import Message from '@/components/alert/Message'
 import router from '@/router'
 import { useKUNGalgameUserStore } from '@/store/modules/kungalgamer'
-import { onRequestError } from '@/error/onRequestError'
 import { generateTokenByRefreshTokenApi } from '@/api'
 import type { FetchOptions } from './request'
 
@@ -30,8 +29,5 @@ export const requestRefresh = async (
 
   const response = await fetch(fullUrl, { ...options, headers })
 
-  if (!response.ok) {
-    await onRequestError(response)
-  }
   return response
 }

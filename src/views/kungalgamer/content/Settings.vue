@@ -33,8 +33,6 @@ const handleChangeBio = async () => {
   if (res.code === 200) {
     Message('Rewrite bio successfully!', 'Rewrite 签名成功', 'success')
     bioValue.value = ''
-  } else {
-    Message('Rewrite bio failed!', 'Rewrite 签名失败', 'error')
   }
 }
 
