@@ -72,6 +72,7 @@ const user = computed(() => props.user)
   justify-content: center;
   margin-top: 17px;
   font-size: 17px;
+  word-break: break-word;
 
   a {
     color: var(--kungalgame-blue-5);

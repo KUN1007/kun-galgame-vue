@@ -30,7 +30,6 @@ const content = computed(() => props.content)
   color: var(--kungalgame-font-color-3);
   border: none !important;
   padding: 0 10px;
-  margin-top: 17px;
   overflow-x: auto;
 }
 
