@@ -1,4 +1,3 @@
-<!-- KUNGalgame topic page -->
 <script setup lang="ts">
 import {
   onMounted,
@@ -49,9 +48,7 @@ const {
 
 const { isShowCommentPanelRid } = storeToRefs(useTempCommentStore())
 
-const tid = computed(() => {
-  return parseInt(route.params.tid as string)
-})
+const tid = ref(parseInt(route.params.tid as string))
 
 const topicData = ref<TopicDetail>()
 const repliesData = ref<TopicReply[]>([])

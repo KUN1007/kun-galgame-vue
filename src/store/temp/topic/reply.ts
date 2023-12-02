@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 import {
-  getRepliesByPidApi,
+  getRepliesByTidApi,
   updateReplyUpvoteApi,
   updateReplyLikeApi,
   updateReplyDislikeApi,
@@ -91,7 +91,7 @@ export const useTempReplyStore = defineStore({
         sortField: this.replyRequest.sortField || 'floor',
         sortOrder: this.replyRequest.sortOrder || 'desc',
       }
-      return await getRepliesByPidApi(requestData)
+      return await getRepliesByTidApi(requestData)
     },
 
     // Upvote a reply

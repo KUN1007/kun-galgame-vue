@@ -4,7 +4,7 @@ import objectToQueryParams from '@/utils/objectToQueryParams'
 import * as Reply from './types/reply'
 
 // Get topic replies by tid
-export async function getRepliesByPidApi(
+export async function getRepliesByTidApi(
   request: Reply.TopicReplyRequestData
 ): Promise<Reply.TopicReplyResponseData> {
   const queryParams = objectToQueryParams(request, 'tid')
@@ -16,7 +16,7 @@ export async function getRepliesByPidApi(
 }
 
 // Create a reply by tid
-export async function postReplyByPidApi(
+export async function postReplyByTidApi(
   request: Reply.TopicCreateReplyRequestData
 ): Promise<Reply.TopicCreateReplyResponseData> {
   const url = `/topics/${request.tid}/reply`

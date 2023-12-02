@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-import { postReplyByPidApi } from '@/api'
+import { postReplyByTidApi } from '@/api'
 
 import type {
   TopicCreateReplyRequestData,
@@ -48,7 +48,7 @@ export const usePersistKUNGalgameReplyStore = defineStore({
         return
       }
 
-      return await postReplyByPidApi(requestData)
+      return await postReplyByTidApi(requestData)
     },
 
     // Reset reply draft to its original value, used for the reply publish button
