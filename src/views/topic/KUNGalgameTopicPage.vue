@@ -50,7 +50,7 @@ const {
 const { isShowCommentPanelRid } = storeToRefs(useTempCommentStore())
 
 const tid = computed(() => {
-  return Number(route.params.tid)
+  return parseInt(route.params.tid as string)
 })
 
 const topicData = ref<TopicDetail>()
