@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import UserPart from './UserPart.vue'
 import TopicPart from './TopicPart.vue'
 
@@ -7,14 +8,16 @@ import { HomeTopic } from '@/api'
 const props = defineProps<{
   topic: HomeTopic
 }>()
+
+const topic = computed(() => props.topic)
 </script>
 
 <template>
   <div class="topic">
-    <UserPart :user="props.topic.user" />
+    <UserPart :user="topic.user" />
 
-    <RouterLink :to="`/topic/${props.topic.tid}`">
-      <TopicPart :topic="props.topic" />
+    <RouterLink :to="`/topic/${topic.tid}`">
+      <TopicPart :topic="topic" />
     </RouterLink>
   </div>
 </template>
