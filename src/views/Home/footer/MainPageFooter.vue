@@ -17,6 +17,7 @@ import KUNGalgameInfo from './components/KUNGalgameInfo.vue'
   height: 1px;
   width: 100%;
   flex-grow: 4;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }

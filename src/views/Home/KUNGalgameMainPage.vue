@@ -16,4 +16,10 @@ import MainPageFooter from './footer/MainPageFooter.vue'
   display: flex;
   flex-direction: column;
 }
+
+@media (max-width: 700px) {
+  .root {
+    height: 100vh;
+  }
+}
 </style>

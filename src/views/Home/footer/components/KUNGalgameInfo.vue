@@ -9,7 +9,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
   <div class="kungalgame-info">
     <div class="container">
       <div class="top">
-        <List />
+        <List class="list" />
 
         <div class="bottom">
           <Contacts class="contacts" />
@@ -17,7 +17,7 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
         </div>
       </div>
 
-      <Describe />
+      <Describe class="describe" />
     </div>
   </div>
 </template>
@@ -51,19 +51,10 @@ import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 }
 
 @media (max-width: 1000px) {
-  .contacts {
-    margin: 20px 0;
-    width: 100%;
-    justify-content: center;
-  }
-  .footer {
-    margin: 20px 0;
-  }
-  .container {
-    flex-direction: column;
-  }
-  .bottom {
-    flex-direction: column;
+  .list,
+  .contacts,
+  .describe {
+    display: none;
   }
 }
 </style>
