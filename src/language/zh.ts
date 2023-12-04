@@ -44,6 +44,7 @@ export default {
   },
   back: {
     back: '返回',
+    home: '主页',
   },
   mainPage: {
     header: {

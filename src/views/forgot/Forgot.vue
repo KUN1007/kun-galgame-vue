@@ -147,8 +147,8 @@ const handleChangePassword = async () => {
   height: 100vh;
   width: 100vw;
   background: linear-gradient(
-    var(--kungalgame-trans-pink-0),
-    var(--kungalgame-trans-blue-0)
+    var(--kungalgame-trans-pink-1),
+    var(--kungalgame-trans-blue-1)
   );
   display: flex;
   color: var(--kungalgame-font-color-3);
@@ -191,6 +191,7 @@ const handleChangePassword = async () => {
 
   input {
     border: none;
+    color: var(--kungalgame-font-color-3);
     border-bottom: 1.5px solid var(--kungalgame-blue-1);
     background-color: var(--kungalgame-white);
     transition: all 0.2s;

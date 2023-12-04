@@ -44,6 +44,7 @@ export default {
   },
   back: {
     back: 'Back',
+    home: 'Home',
   },
   mainPage: {
     header: {

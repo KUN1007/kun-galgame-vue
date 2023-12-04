@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 import BackToPrevious from '@/components/BackToPrevious.vue'
+import BackToHome from '@/components/BackToHome.vue'
 </script>
 
 <template>
@@ -54,6 +55,7 @@ import BackToPrevious from '@/components/BackToPrevious.vue'
         </a>
       </div>
       <BackToPrevious />
+      <BackToHome />
     </div>
 
     <KUNGalgameFooter

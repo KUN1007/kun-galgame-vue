@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BackToPrevious from '@/components/BackToPrevious.vue'
+import BackToHome from '@/components/BackToHome.vue'
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
@@ -47,6 +48,7 @@ const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
           </li>
         </ul>
         <BackToPrevious />
+        <BackToHome />
       </div>
 
       <div class="article" v-if="showKUNGalgameLanguage === 'zh'">
@@ -71,6 +73,7 @@ const { showKUNGalgameLanguage } = storeToRefs(useKUNGalgameSettingsStore())
           <li>设备相关：设备日期、操作系统信息等，方便我们对设备进行适配</li>
         </ul>
         <BackToPrevious />
+        <BackToHome />
       </div>
 
       <KUNGalgameFooter style="position: absolute; bottom: -60px" />

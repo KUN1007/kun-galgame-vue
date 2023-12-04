@@ -5,7 +5,6 @@ const router = useRouter()
 </script>
 
 <template>
-  <!-- Back to homepage -->
   <div class="return" @click="router.back()">
     <span>{{ `< ${$tm('back.back')}` }}</span>
   </div>
