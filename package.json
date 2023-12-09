@@ -53,7 +53,7 @@
     "rollup-plugin-visualizer": "^5.10.0",
     "sass": "^1.69.5",
     "typescript": "^5.3.3",
-    "vite": "^4.5.1",
+    "vite": "^5.0.7",
     "vue-tsc": "^1.8.25"
   },
   "keywords": [
