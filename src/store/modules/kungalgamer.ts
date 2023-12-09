@@ -107,10 +107,6 @@ export const useKUNGalgameUserStore = defineStore({
           res.data.roles
         )
         this.setToken(res.data.token)
-      } else if (res.code === 500) {
-        console.log(res.message)
-      } else {
-        throw new Error('500 Server ERROR')
       }
       return res
     },
