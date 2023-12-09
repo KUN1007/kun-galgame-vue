@@ -29,7 +29,7 @@ const kunFetchRequest = async <T>(
     const newResponseData = await requestRefresh(fullUrl, options)
     const data: T = await newResponseData.json()
     return data
-  } else if (response.status === 233) {
+  } else if (response.status === 233 || !response.ok) {
     // Handle some known backend error
     await onRequestError(response)
     return {} as T

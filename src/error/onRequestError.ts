@@ -15,7 +15,11 @@ interface ErrorResponseData {
  */
 export const onRequestError = async (response: Response) => {
   if (response.status === 401) {
-    Message('Unauthorized', '未认证', 'error')
+    Message(
+      'Login expired, please log in again.',
+      '登陆过期，请重新登陆',
+      'error'
+    )
     useKUNGalgameUserStore().removeToken()
     router.push('/login')
     return

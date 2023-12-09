@@ -10,17 +10,7 @@ export const requestRefresh = async (
 ) => {
   const accessTokenResponse = await generateTokenByRefreshTokenApi()
 
-  if (accessTokenResponse.code === 200 && accessTokenResponse.data.token) {
-    useKUNGalgameUserStore().setToken(accessTokenResponse.data.token)
-  } else {
-    Message(
-      'Login expired, please log in again.',
-      '登陆过期，请重新登陆',
-      'error'
-    )
-    useKUNGalgameUserStore().removeToken()
-    router.push('/login')
-  }
+  useKUNGalgameUserStore().setToken(accessTokenResponse.data.token)
 
   const headers = {
     ...options.headers,
