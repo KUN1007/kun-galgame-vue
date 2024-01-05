@@ -67,6 +67,10 @@ const getReplies = async (): Promise<TopicReply[]> => {
 watch(
   () => [replyRequest.value.sortOrder, replyRequest.value.sortField],
   async () => {
+    if (repliesData.value && repliesData.value?.length < 3) {
+      isLoading.value = false
+      return
+    }
     repliesData.value = await getReplies()
   }
 )
