@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// 导入 Footer
 import KUNGalgameFooter from '@/components/KUNGalgameFooter.vue'
 
 import { useKUNGalgameSettingsStore } from '@/store/modules/settings'
