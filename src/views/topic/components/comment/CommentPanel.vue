@@ -22,16 +22,10 @@ const emits = defineEmits<{
 const commentValue = ref('')
 
 // Handle comment input
-const handleInputComment = () => {
-  // Create a debounced processing function
-  const debouncedUpdateContent = debounce(() => {
+const handleInputComment = () =>
+  debounce(() => {
     content.value = commentValue.value
   }, 300)
-
-  // Call the debounced processing function
-  // which will execute the update operation only once within the specified delay
-  debouncedUpdateContent()
-}
 
 // Check if the comment is valid
 const isValidComment = () => {

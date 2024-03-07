@@ -74,9 +74,8 @@ onBeforeMount(() => {
   }
 })
 
-const saveMarkdown = (editorMarkdown: string) => {
-  // Create a debounce function
-  const debouncedUpdateContent = debounce(() => {
+const saveMarkdown = (editorMarkdown: string) =>
+  debounce(() => {
     /**
      * Editor is in edit mode
      */
@@ -105,9 +104,6 @@ const saveMarkdown = (editorMarkdown: string) => {
       replyRewrite.value.content = editorMarkdown
     }
   }, 1007)
-
-  debouncedUpdateContent()
-}
 </script>
 
 <!-- MilkdownEditorWrapper.vue -->

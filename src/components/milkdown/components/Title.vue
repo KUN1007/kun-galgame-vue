@@ -46,8 +46,7 @@ const handleInput = () => {
     return
   }
 
-  // Create a debounce handling function
-  const debouncedInput = debounce(() => {
+  return debounce(() => {
     /**
      * Editor is in reply mode
      */
@@ -63,8 +62,6 @@ const handleInput = () => {
       rewriteTitle.value = topicTitle.value
     }
   }, 300)
-
-  debouncedInput()
 }
 </script>
 
